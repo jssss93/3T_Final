@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="notice">
+	
+	<select id="selectList" parameterType="hashmap" resultType="hashmap">
+		<include refid="common.pagingPre"/> 
+		<![CDATA[
+			SELECT
+			    NOTICE_NO,
+			    NOTICE_STATE,
+			    NOTICE_WRITER,
+			    NOTICE_SUBJECT,
+			    NOTICE_CONTENT,
+			    NOTICE_REGDATE,
+			    NOTICE_READCNT,
+			    ROW_NUMBER() OVER (ORDER BY NOTICE_NO DESC) RNUM
+			FROM
+			    NOTICE
+			
+		]]>
+		<include refid="common.pagingPost"/> 
+
+	</select>
+	
+	<insert id="insert" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO NOTICE
+			(
+				NOTICE_NO,
+			    NOTICE_STATE,
+			    NOTICE_WRITER,
+			    NOTICE_READCNT,
+			    NOTICE_SUBJECT,
+			    NOTICE_CONTENT
+			)
+			VALUES
+			(
+				NOTICE_NO_SEQ.NEXTVAL,
+			    1, 
+			    'ADMIN', 
+			    0,
+			    #{NOTICE_SUBJECT},
+			    #{NOTICE_CONTENT}		    
+			)
+		]]>
+	</insert>
+	
+	<update id="updateReadCnt" parameterType="hashmap">
+		<![CDATA[
+			UPDATE 
+				NOTICE 
+			SET
+				NOTICE_READCNT = NVL(NOTICE_READCNT, 0) + 1
+			WHERE
+				NOTICE_NO = #{NOTICE_NO}	
+		]]>
+	</update>
+	
+	<select id="selectDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+			    NOTICE_NO,
+			    NOTICE_STATE,
+			    NOTICE_WRITER,
+			    NOTICE_SUBJECT,
+			    NOTICE_CONTENT,
+			    NOTICE_REGDATE,
+			    NOTICE_READCNT
+			FROM
+			    NOTICE
+			WHERE
+				NOTICE_NO=#{NOTICE_NO}		
+		]]>
+	</select>
+	
+	<update id="update" parameterType="hashmap">
+		<![CDATA[
+			UPDATE 
+				NOTICE 
+			SET
+			    NOTICE_SUBJECT = #{NOTICE_SUBJECT},
+			    NOTICE_CONTENT = #{NOTICE_CONTENT}
+			WHERE
+				NOTICE_NO = #{NOTICE_NO}	
+		]]>
+	</update>
+	
+	<update id="delete" parameterType="hashmap">
+		<![CDATA[
+			DELETE
+			 	
+			FROM
+				NOTICE
+			WHERE
+				NOTICE_NO = #{NOTICE_NO}
+		]]>
+	</update>
+</mapper>
