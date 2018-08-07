@@ -12,7 +12,7 @@
 			value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url"
 			value="jdbc:oracle:thin:@istudy.iptime.org:7000:ORCL" />
-		<property name="username" value="KH1003" />
+		<property name="username" value="KH10003" />
 		<property name="password" value="oracle" />
 	</bean>
 

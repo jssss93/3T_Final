@@ -5,8 +5,6 @@
 <head>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
-
-
 </head>
 <body>
 	<h2>상품 게시판 목록</h2>
@@ -37,9 +35,9 @@
 				<th scope="col">IMG</th>
 				<th scope="col">NAME</th>
 				<th scope="col">COLOR</th>
-				<th scope="col">SIZE</th>
 				<th scope="col">PRICE</th>
 				<th scope="col">CATEGORY</th>
+				<th scope="col">TOTALCNT</th>
 				<th scope="col">REGDATE</th>
 				<th scope="col">READCNT</th>
 			</tr>

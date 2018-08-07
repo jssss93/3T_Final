@@ -1,4 +1,4 @@
-package com.kh.iclass.goods.controller;
+package com.kh.iclass.faq;
 
 import java.util.Map;
 
@@ -12,23 +12,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.iclass.common.map.CommandMap;
-import com.kh.iclass.goods.service.GoodsService;
 
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @Controller
 
-public class GoodsController {
+public class faqController {
 	Logger log = Logger.getLogger(this.getClass());
 
-	@Resource(name = "goodsService")
-	private GoodsService goodsService;
+	@Resource(name = "faqService")
+	private faqService faqService;
 
-	@RequestMapping(value = "/goods/list")
+	@RequestMapping(value = "/faq/list")
 	public ModelAndView goodsList(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("goods/list");
+		ModelAndView mv = new ModelAndView("faq/list");
 
-		Map<String, Object> resultMap = goodsService.goodsList(commandMap.getMap());
+		Map<String, Object> resultMap = faqService.faqList(commandMap.getMap());
 
 		mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
 
@@ -37,25 +36,23 @@ public class GoodsController {
 		return mv;
 	}
 
-	
-	
-	@RequestMapping(value = "/goods/write" , method = RequestMethod.GET)
+	@RequestMapping(value = "/faq/write" ,method = RequestMethod.GET)
 	public ModelAndView goodsWriteForm(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("goods/write");
+		ModelAndView mv = new ModelAndView("faq/write");
 
 		return mv;
 	}
 
-	@RequestMapping(value = "/goods/write" , method = RequestMethod.POST)
+	@RequestMapping(value = "/faq/write")
 	public ModelAndView goodsWrite(CommandMap commandMap,HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/goods/list");
+		ModelAndView mv = new ModelAndView("redirect:faq/list");
 
-		goodsService.goodsWrite(commandMap.getMap(),request);
+		faqService.faqWrite(commandMap.getMap(),request);
 
 		return mv;
 	}
-	/*
-	@RequestMapping(value = "/goods/detail")
+
+	/*@RequestMapping(value = "/goods/detail")
 	public ModelAndView goodsDetail(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("goods/detail");
 
@@ -82,7 +79,7 @@ public class GoodsController {
 	// 업데이트 처리
 	@RequestMapping(value = "/goods/update")
 	public ModelAndView goodsUpdate(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/goods/detail");
+		ModelAndView mv = new ModelAndView("redirect:goods/detail");
 
 		goodsService.goodsUpdate(commandMap.getMap(),request);
 
@@ -92,11 +89,11 @@ public class GoodsController {
 
 	@RequestMapping(value = "/goods/delete")
 	public ModelAndView goodsDelete(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/goods/list");
+		ModelAndView mv = new ModelAndView("redirect:goods/list");
 
 		goodsService.goodsDelete(commandMap.getMap());
 
 		return mv;
-	}*/
-
+	}
+*/
 }
