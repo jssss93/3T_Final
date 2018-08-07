@@ -4,8 +4,6 @@ import java.util.Map;
 
 public interface NoticeService {
 
-	/*List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception;*/
-	//대신에
 	Map<String, Object> NoticeList(Map<String, Object> map) throws Exception;
 	
 	Map<String, Object> NoticeDetail(Map<String, Object> map) throws Exception;

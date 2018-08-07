@@ -9,14 +9,14 @@
 
 </head>
 <body>
-	<h2>공지사항 게시판 목록</h2>
+	<h2>FAQ 게시판 목록</h2>
 	<table width="80%" border="0" cellspacing="0" cellpadding="2">
 
 		<tr>
-			<td height="50"></td>
+			<td height="30"></td>
 		</tr>
 		<tr>
-			<td align="center" class="text01 formbar"><h2>NOTICE List.</h2></td>
+			<td align="center" class="text01 formbar"><h2>FAQ List.</h2></td>
 		</tr>
 
 		<tr>
@@ -33,12 +33,11 @@
 		</colgroup>
 		<thead>
 			<tr>
-				<th scope="col">NOTICE_NO</th>
+				<th scope="col">FAQ_NO</th>
 				<th scope="col">MEMBER_ID</th>
 				<th scope="col">TITLE</th>
 				<th scope="col">CONTENT</th>
 				<th scope="col">REGDATE</th>
-				<th scope="col">READCNT</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -46,15 +45,14 @@
 				<c:when test="${fn:length(list) > 0}">
 					<c:forEach items="${list }" var="row">
 						<tr>
-							<td>${row.NOTICE_NO }</td>
+							<td>${row.FAQ_NO }</td>
 							<td>${row.MEMBER_ID }</td>
 							<td><a href="#this" name="title">${row.TITLE }</a> <input
-								type="hidden" id="NOTICE_NO" value="${row.NOTICE_NO }">
+								type="hidden" id="FAQ_NO" value="${row.FAQ_NO }">
 							</td>
 
 							<td>${row.CONTENT }</td>
 							<td>${row.REGDATE }</td>
-							<td>${row.READCNT }</td>
 
 						</tr>
 					</c:forEach>
@@ -76,7 +74,7 @@
 
 
 	<br />
-	<a href="write" class="btn" >공지사항 작성</a>
+	<a href="write" class="btn" >FAQ 작성</a>
 
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	<script type="text/javascript">
@@ -94,20 +92,20 @@
 	
 		function fn_WriteForm() {
 			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/notice/write' />");
+			comSubmit.setUrl("<c:url value='/faq/write' />");
 			comSubmit.submit();
 		}
 
 		function fn_Detail(obj) {
 			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/notice/detail' />");
-			comSubmit.addParam("NOTICE_NO", obj.parent().find("#NOTICE_NO")
+			comSubmit.setUrl("<c:url value='/faq/detail' />");
+			comSubmit.addParam("FAQ_NO", obj.parent().find("#FAQ_NO")
 					.val());
 			comSubmit.submit();
 		}
 		function fn_search(pageNo) {
 			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/notice/list' />");
+			comSubmit.setUrl("<c:url value='/faq/list' />");
 			comSubmit.addParam("currentPageNo", pageNo);
 			comSubmit.submit();
 		}

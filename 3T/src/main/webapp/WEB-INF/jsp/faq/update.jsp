@@ -41,7 +41,8 @@
 		</table>
 	</form>
 
-	<input type="hidden" id="FAQ_NO" name="FAQ_NO" value="${map.FAQ_NO }">
+	<input type="hidden" id="FAQ_NO" name="FAQ_NO"
+		value="${map.FAQ_NO }">
 
 	<a href="#this" class="btn" id="list">목록으로</a>
 	<a href="#this" class="btn" id="update">저장하기</a>
