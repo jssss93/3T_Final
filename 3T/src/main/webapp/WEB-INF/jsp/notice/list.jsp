@@ -13,7 +13,7 @@
 	<table width="80%" border="0" cellspacing="0" cellpadding="2">
 
 		<tr>
-			<td height="30"></td>
+			<td height="50"></td>
 		</tr>
 		<tr>
 			<td align="center" class="text01 formbar"><h2>NOTICE List.</h2></td>
@@ -33,9 +33,9 @@
 		</colgroup>
 		<thead>
 			<tr>
-				<th scope="col">NO</th>
-				<th scope="col">WRITER</th>
-				<th scope="col">SUBJECT</th>
+				<th scope="col">NOTICE_NO</th>
+				<th scope="col">MEMBER_ID</th>
+				<th scope="col">TITLE</th>
 				<th scope="col">CONTENT</th>
 				<th scope="col">REGDATE</th>
 				<th scope="col">READCNT</th>
@@ -47,17 +47,14 @@
 					<c:forEach items="${list }" var="row">
 						<tr>
 							<td>${row.NOTICE_NO }</td>
-							<%-- <td><img
-								src="/3T/resources/upload/${row.GOODS_FILE_SAVNAME.split(',')[0] }" />
-							</td> --%>
-							<td>${row.NOTICE_WRITER }</td>
-							<td><a href="#this" name="title">${row.NOTICE_SUBJECT }</a> <input
+							<td>${row.MEMBER_ID }</td>
+							<td><a href="#this" name="title">${row.TITLE }</a> <input
 								type="hidden" id="NOTICE_NO" value="${row.NOTICE_NO }">
 							</td>
 
-							<td>${row.NOTICE_CONTENT }</td>
-							<td>${row.NOTICE_REGDATE }</td>
-							<td>${row.NOTICE_READCNT }</td>
+							<td>${row.CONTENT }</td>
+							<td>${row.REGDATE }</td>
+							<td>${row.READCNT }</td>
 
 						</tr>
 					</c:forEach>
@@ -79,7 +76,7 @@
 
 
 	<br />
-	<a href="#this" class="btn" id="write">공지사항 작성</a>
+	<a href="write" class="btn" >공지사항 작성</a>
 
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	<script type="text/javascript">
@@ -97,7 +94,7 @@
 	
 		function fn_WriteForm() {
 			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/notice/writeForm' />");
+			comSubmit.setUrl("<c:url value='/notice/write' />");
 			comSubmit.submit();
 		}
 

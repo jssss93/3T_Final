@@ -17,13 +17,9 @@
 		<tbody>
 			<tr>
 				<th scope="row">글 번호</th>
-				<td>${Detail.NOTICE_NO }</td>
-				<th scope="row">조회수</th>
-				<td>${Detail.READCNT }</td>
+				<td>${Detail.FAQ_NO }</td>
 			</tr>
 			<tr>
-				<th scope="row">상태</th>
-				<td>${Detail.STATE }</td>
 				<th scope="row">작성시간</th>
 				<td>${Detail.REGDATE }</td>
 			</tr>
@@ -38,7 +34,7 @@
 		</tbody>
 	</table>
 
-	<input type="hidden" id="NOTICE_NO" value="${Detail.NOTICE_NO}">
+	<input type="hidden" id="FAQ_NO" value="${Detail.FAQ_NO}">
 
 	<a href="#this" class="btn" id="list">목록으로</a>
 	<a href="#this" class="btn" id="update">수정하기</a>
@@ -64,23 +60,23 @@
 
 		function fn_List() {
 			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/notice/list' />");
+			comSubmit.setUrl("<c:url value='/faq/list' />");
 			comSubmit.submit();
 		}
 
 		function fn_UpdateForm() {
-			var NOTICE_NO = "${Detail.NOTICE_NO}";
+			var FAQ_NO = "${Detail.FAQ_NO}";
 			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/notice/updateForm' />");
-			comSubmit.addParam("NOTICE_NO", NOTICE_NO);
+			comSubmit.setUrl("<c:url value='/faq/updateForm' />");
+			comSubmit.addParam("FAQ_NO", FAQ_NO);
 			comSubmit.submit();
 		}
 
 		function fn_Delete() {
-			var NOTICE_NO = "${Detail.NOTICE_NO}";
+			var FAQ_NO = "${Detail.FAQ_NO}";
 			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/notice/delete' />");
-			comSubmit.addParam("NOTICE_NO", NOTICE_NO);
+			comSubmit.setUrl("<c:url value='/faq/delete' />");
+			comSubmit.addParam("FAQ_NO", FAQ_NO);
 			comSubmit.submit();
 		}
 	</script>

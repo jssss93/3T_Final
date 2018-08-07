@@ -5,24 +5,32 @@
 <head>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
+
+
+
 </head>
 <body>
-	<h2>상품 게시판 목록</h2>
+	<h2>FAQ 게시판 목록</h2>
+
 	<table width="80%" border="0" cellspacing="0" cellpadding="2">
 
 		<tr>
 			<td height="30"></td>
 		</tr>
 		<tr>
-			<td align="center" class="text01 formbar"><h2>Goods List.</h2></td>
+
+			<td align="center" class="text01 formbar"><h2>FAQ List.</h2></td>
+
 		</tr>
 
 		<tr>
 			<td height="50"></td>
 		</tr>
 	</table>
-	
-	 <table class="board_list" width="80%">
+
+
+	<table class="board_list">
+
 		<colgroup>
 			<col width="10%" />
 			<col width="*" />
@@ -31,15 +39,13 @@
 		</colgroup>
 		<thead>
 			<tr>
-				<th scope="col">NO</th>
-				<th scope="col">IMG</th>
-				<th scope="col">NAME</th>
-				<th scope="col">COLOR</th>
-				<th scope="col">PRICE</th>
-				<th scope="col">CATEGORY</th>
-				<th scope="col">TOTALCNT</th>
+
+				<th scope="col">FAQ_NO</th>
+				<th scope="col">MEMBER_ID</th>
+				<th scope="col">TITLE</th>
+				<th scope="col">CONTENT</th>
 				<th scope="col">REGDATE</th>
-				<th scope="col">READCNT</th>
+
 			</tr>
 		</thead>
 		<tbody>
@@ -47,21 +53,17 @@
 				<c:when test="${fn:length(list) > 0}">
 					<c:forEach items="${list }" var="row">
 						<tr>
-							<td>${row.GOODS_NO }</td>
-							<td ><img width="50" height="50"
-								src="/3T/resources/upload/${row.GOODS_FILE_SAVNAME.split(',')[0] }" />
+
+							<td>${row.FAQ_NO }</td>
+							<td>${row.MEMBER_ID }</td>
+							<td><a href="#this" name="title">${row.TITLE }</a> <input
+								type="hidden" id="FAQ_NO" value="${row.FAQ_NO }">
 							</td>
-							<td>
-								<%-- <a href="#this" name="title">${row.GOODS_NAME }</a> --%>
-								<a href="/3T/goods/detail?GOODS_NO=${row.GOODS_NO }" name="title">${row.GOODS_NAME }</a>
-								<input type="hidden" id="GOODS_NO" name="GOODS_NO" value="${row.GOODS_NO }">
-							</td>
-							<td>${row.GOODS_COLOR }</td>
-							<td>${row.GOODS_PRICE }</td>
-							<td>${row.GOODS_CATEGORY }</td>
-							<td>${row.GOODS_TOTALCOUNT }</td>
-							<td>${row.GOODS_REGDATE }</td>
-							<td>${row.GOODS_READCNT }</td>
+
+							<td>${row.CONTENT }</td>
+							<td>${row.REGDATE }</td>
+
+
 						</tr>
 					</c:forEach>
 				</c:when>
@@ -72,17 +74,16 @@
 				</c:otherwise>
 			</c:choose>
 		</tbody>
-	</table> 
+	</table>
+
 
 	<c:if test="${not empty paginationInfo}">
 		<ui:pagination paginationInfo="${paginationInfo}" type="text"
 			jsFunction="fn_search" />
 	</c:if>
 	<input type="hidden" id="currentPageNo" name="currentPageNo" />
-
-
 	<br />
-	<a href="#this" class="btn" id="write">글쓰기</a>
+	<a href="write" class="btn" >FAQ 작성</a>
 
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	<script type="text/javascript">
@@ -92,7 +93,8 @@
 				fn_WriteForm();
 			});
 
-			$("a[name='title']").on("click", function(e) { //제목 
+			$("a[name='title']").on("click", function(e) { //상세보기
+
 				e.preventDefault();
 				fn_Detail($(this));
 			});
@@ -100,19 +102,20 @@
 
 		function fn_WriteForm() {
 			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/goods/Writeform' />");
+			comSubmit.setUrl("<c:url value='/faq/write' />");
 			comSubmit.submit();
 		}
 
 		function fn_Detail(obj) {
 			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/goods/detail' />");
-			comSubmit.addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
+			comSubmit.setUrl("<c:url value='/faq/detail' />");
+			comSubmit.addParam("FAQ_NO", obj.parent().find("#FAQ_NO")
+					.val());
 			comSubmit.submit();
 		}
 		function fn_search(pageNo) {
 			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/goods/list' />");
+			comSubmit.setUrl("<c:url value='/faq/list' />");
 			comSubmit.addParam("currentPageNo", pageNo);
 			comSubmit.submit();
 		}

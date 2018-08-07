@@ -16,13 +16,6 @@ public class NoticeServiceImpl implements NoticeService {
 	@Resource(name = "noticeDAO")
 	private NoticeDAO noticeDAO;
 
-	/*
-	 * @Override public List<Map<String, Object>> selectBoardList(Map<String,
-	 * Object> map) throws Exception { return sampleDAO.selectBoardList(map);
-	 * 
-	 * }
-	 */
-	// 위에꺼 대신에
 	@Override
 	public Map<String, Object> NoticeList(Map<String, Object> map) throws Exception {
 		return noticeDAO.NoticeList(map);
@@ -52,7 +45,6 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public void NoticeReadCntUp(Map<String, Object> map) throws Exception {
-		// 트랜잭션으로 처리 해야 할 거 같은데?
 		noticeDAO.UpdateReadCnt(map);
 	}
 

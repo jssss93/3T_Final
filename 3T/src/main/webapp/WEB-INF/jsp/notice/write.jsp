@@ -5,7 +5,7 @@
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
 </head>
 <body>
-	<form id="frm">
+	<form id="frm" action="/notice/write" method="POST">
 		<table class="board_view">
 			<colgroup>
 				<col width="15%">
@@ -15,15 +15,17 @@
 			<tbody>
 				<tr>
 					<th scope="row">제목</th>
-					<td><input type="text" id="NOTICE_SUBJECT" name="NOTICE_SUBJECT" class="wdp_90"></input></td>
+					<td><input type="text" id="TITLE" name="TITLE" class="wdp_90"></input></td>
 				</tr>
 				<tr>
 					<td colspan="2" class="view_text">
-						<textarea rows="20" cols="100" title="내용" id="NOTICE_CONTENT" name="NOTICE_CONTENT"></textarea>
+						<textarea rows="20" cols="100" title="내용" id="CONTENT" name="CONTENT"></textarea>
 					</td>
 				</tr>
 			</tbody>
 		</table>
+		
+		<input type="submit" value="작성하기!!!">
 		
 		<a href="#this" class="btn" id="write">작성하기</a>
 		<a href="#this" class="btn" id="list">목록으로</a>
@@ -45,13 +47,13 @@
 		
 		function fn_List(){
 			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/Notice/List.do' />");
+			comSubmit.setUrl("<c:url value='/notice/list' />");
 			comSubmit.submit();
 		}
 		
 		function fn_Write(){
 			var comSubmit = new ComSubmit("frm");
-			comSubmit.setUrl("<c:url value='/Notice/Write.do' />");
+			comSubmit.setUrl("<c:url value='/notice/write' />");
 			comSubmit.submit();
 		}
 	</script>

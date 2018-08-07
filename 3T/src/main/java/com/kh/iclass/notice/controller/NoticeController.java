@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.iclass.common.map.CommandMap;
@@ -35,16 +36,16 @@ public class NoticeController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/notice/writeForm")
+	@RequestMapping(value = "/notice/write",  method = RequestMethod.GET)
 	public ModelAndView noticeWrtieForm(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("notice/write");
 
 		return mv;
 	}
 
-	@RequestMapping(value = "/notice/write")
+	@RequestMapping(value = "/notice/write", method = RequestMethod.POST)
 	public ModelAndView noticeWrite(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:notice/ist");
+		ModelAndView mv = new ModelAndView("redirect:list");
 
 		noticeService.NoticeInsert(commandMap.getMap());
 
@@ -77,7 +78,7 @@ public class NoticeController {
 	
 	@RequestMapping(value = "/notice/update")
 	public ModelAndView noticeUpdate(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:notice/detail");
+		ModelAndView mv = new ModelAndView("redirect:detail");
 
 		noticeService.NoticeUpdate(commandMap.getMap());
 
@@ -88,7 +89,7 @@ public class NoticeController {
 	
 	@RequestMapping(value = "/notice/delete")
 	public ModelAndView noticeDelete(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:notice/list");
+		ModelAndView mv = new ModelAndView("redirect:list");
 
 		noticeService.NoticeDelete(commandMap.getMap());
 
