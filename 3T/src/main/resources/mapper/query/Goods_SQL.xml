@@ -5,27 +5,65 @@
 
 	<select id="selectList" parameterType="hashmap"
 		resultType="hashmap">
+		
 		<include refid="common.pagingPre" /> 
 		<![CDATA[
-			SELECT
-			    GOODS_NO,
-			    GOODS_NAME,
-			    GOODS_CONTENT,
-			    GOODS_READCNT,
-			    GOODS_REGDATE,
-			    GOODS_COLOR,
-			    GOODS_PRICE,
-			    GOODS_SIZE,
-			    GOODS_CATEGORY,
-			    GOODS_RECOMMEND,
-			    GOODS_TOTALCOUNT,
-			    GOODS_RELATED_PRODUCT,
-			    GOODS_FILE_ORGNAME,
-			    GOODS_FILE_SAVNAME,
-			    ROW_NUMBER() OVER (ORDER BY GOODS_NO DESC) RNUM
-
-			FROM
-			    GOODS   
+			select 
+				GOODS_NO,
+				NAME,
+				CONTENT, 
+				READCNT,
+				REGDATE,
+				PRICE,
+				RELATED,
+				KEYWORD,
+				CATEGORY,
+				WM_CONCAT(DISTINCT GOODS_SIZE) GOODS_SIZE,
+				WM_CONCAT(DISTINCT COLOR) GOODS_COLOR,
+			 	WM_CONCAT(DISTINCT SAV_NAME) IMAGE,
+			 	ROW_NUMBER() OVER (ORDER BY GOODS_NO DESC) RNUM
+			from
+				(
+				SELECT 
+					a.GOODS_NO,
+					a.NAME,
+					a.CONTENT,
+					a.READCNT,
+					a.REGDATE,
+					a.PRICE,
+					a.RELATED,
+					a.KEYWORD,
+					a.CATEGORY,
+					b.ATTRIBUTE_NO,
+					b.GOODS_SIZE,
+					b.COLOR,
+					b.COUNT,
+			    	c.SAV_NAME
+				FROM
+					GOODS a 
+					INNER JOIN 
+					GOODS_ATTRIBUTE b 
+				ON 
+					a.GOODS_NO = b.GOODS_NO 
+					
+			    INNER JOIN 
+			    UPLOAD c
+				ON 
+					a.GOODS_NO = c.GOODS_NO  
+			      
+		ORDER BY 
+			a.GOODS_NO DESC 
+		)
+		GROUP BY
+			GOODS_NO,
+			NAME,
+	    	CONTENT, 
+			READCNT,
+			REGDATE,
+			PRICE,
+			RELATED,
+			KEYWORD,
+			CATEGORY 
 			
 		]]>
 		<include refid="common.pagingPost" />
@@ -34,7 +72,7 @@
 
 	<insert id="insert" parameterType="hashmap"
 		useGeneratedKeys="true" keyProperty="GOODS_NO">
-		<selectKey keyProperty="GOODS_NO" resultType="string"
+		<selectKey keyProperty="GOODS_NO" resultType="java.lang.Integer"
 			order="BEFORE">
 			SELECT GOODS_NO_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
@@ -43,25 +81,88 @@
         INSERT INTO GOODS
         (
             GOODS_NO,
-            GOODS_NAME,
-            GOODS_CONTENT,
-            GOODS_REGDATE
+            NAME,
+            CONTENT,
+            REGDATE,
+            PRICE,
+            RELATED,
+            KEYWORD,
+            CATEGORY
         )
         VALUES
         (
             #{GOODS_NO},
-            #{GOODS_NAME},
-            #{GOODS_CONTENT},
-            SYSDATE
+            #{NAME},
+            #{CONTENT},
+            SYSDATE,
+            #{PRICE},
+            #{RELATED},
+            #{KEYWORD},
+            #{CATEGORY}
         )
     ]]>
 	</insert>
+	
+	<insert id="insertAttribute" parameterType="hashmap"
+		useGeneratedKeys="true" keyProperty="ATTRIBUTE_NO">
+		<selectKey keyProperty="ATTRIBUTE_NO" resultType="java.lang.Integer"
+			order="BEFORE">
+			SELECT ATTRIBUTE_NO_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+    <![CDATA[
+        INSERT INTO GOODS_ATTRIBUTE
+        (
+            ATTRIBUTE_NO,
+            GOODS_SIZE,
+            COLOR,
+            COUNT,
+            GOODS_NO
+        )
+        VALUES
+        (
+            #{ATTRIBUTE_NO},
+            #{GOODS_SIZE},
+            #{COLOR},
+            #{COUNT},
+            #{GOODS_NO}
+        )
+    ]]>
+	</insert>	
+	
 
-
+	<insert id="insertUpload" parameterType="hashmap"
+		useGeneratedKeys="true" keyProperty="UPLOAD_NO">
+		<selectKey keyProperty="UPLOAD_NO" resultType="java.lang.Integer"
+			order="BEFORE">
+			SELECT UPLOAD_NO_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+    	<![CDATA[
+        INSERT INTO UPLOAD
+        (
+            UPLOAD_NO,
+            ORG_NAME,
+            SAV_NAME,
+            FILE_SIZE,
+            DEL,
+            GOODS_NO
+        )
+        VALUES
+        (
+           	#{UPLOAD_NO},
+            #{ORG_NAME},
+            #{SAV_NAME},
+            #{FILE_SIZE},
+            'N',
+            #{GOODS_NO}
+        )
+    	]]>
+	</insert>
+	
+	
 
 	
 
-	<update id="updateReadCnt" parameterType="hashmap">
+	<!-- <update id="updateReadCnt" parameterType="hashmap">
 		<![CDATA[
 			UPDATE 
 				GOODS 
@@ -133,32 +234,13 @@
         
     	]]>
 	</select>
-
+ -->
 
 	
-	<insert id="insertFile" parameterType="hashmap">
-    	<![CDATA[
-        INSERT INTO FILE_3T
-        (
-            FILE_NO,
-            GOODS_NO,
-            FILE_ORG_NAME,
-            FILE_SAV_NAME,
-            FILE_SIZE
-        )
-        VALUES
-        (
-            FILE_NO_SEQ.NEXTVAL,
-            #{GOODS_NO},
-            #{FILE_ORG_NAME},
-            #{FILE_SAV_NAME},
-            #{FILE_SIZE}
-        )
-    	]]>
-	</insert>
+	
 	
 
-	<update id="deleteFileList" parameterType="hashmap">
+	<!-- <update id="deleteFileList" parameterType="hashmap">
     	<![CDATA[
         UPDATE
         	FILE_3T
@@ -178,7 +260,7 @@
         WHERE
             GOODS_NO = #{GOODS_NO}  
    		]]>
-	</update>
+	</update> -->
 
 
 </mapper>

@@ -7,16 +7,20 @@
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 
 
+
 </head>
 <body>
 	<h2>FAQ 게시판 목록</h2>
+
 	<table width="80%" border="0" cellspacing="0" cellpadding="2">
 
 		<tr>
 			<td height="30"></td>
 		</tr>
 		<tr>
+
 			<td align="center" class="text01 formbar"><h2>FAQ List.</h2></td>
+
 		</tr>
 
 		<tr>
@@ -24,7 +28,9 @@
 		</tr>
 	</table>
 
+
 	<table class="board_list">
+
 		<colgroup>
 			<col width="10%" />
 			<col width="*" />
@@ -33,11 +39,13 @@
 		</colgroup>
 		<thead>
 			<tr>
+
 				<th scope="col">FAQ_NO</th>
 				<th scope="col">MEMBER_ID</th>
 				<th scope="col">TITLE</th>
 				<th scope="col">CONTENT</th>
 				<th scope="col">REGDATE</th>
+
 			</tr>
 		</thead>
 		<tbody>
@@ -45,6 +53,7 @@
 				<c:when test="${fn:length(list) > 0}">
 					<c:forEach items="${list }" var="row">
 						<tr>
+
 							<td>${row.FAQ_NO }</td>
 							<td>${row.MEMBER_ID }</td>
 							<td><a href="#this" name="title">${row.TITLE }</a> <input
@@ -53,6 +62,7 @@
 
 							<td>${row.CONTENT }</td>
 							<td>${row.REGDATE }</td>
+
 
 						</tr>
 					</c:forEach>
@@ -66,13 +76,12 @@
 		</tbody>
 	</table>
 
+
 	<c:if test="${not empty paginationInfo}">
 		<ui:pagination paginationInfo="${paginationInfo}" type="text"
 			jsFunction="fn_search" />
 	</c:if>
 	<input type="hidden" id="currentPageNo" name="currentPageNo" />
-
-
 	<br />
 	<a href="write" class="btn" >FAQ 작성</a>
 
@@ -85,11 +94,12 @@
 			});
 
 			$("a[name='title']").on("click", function(e) { //상세보기
+
 				e.preventDefault();
 				fn_Detail($(this));
 			});
 		});
-	
+
 		function fn_WriteForm() {
 			var comSubmit = new ComSubmit();
 			comSubmit.setUrl("<c:url value='/faq/write' />");

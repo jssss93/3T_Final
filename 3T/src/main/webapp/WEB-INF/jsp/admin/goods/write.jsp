@@ -54,8 +54,7 @@
 		<!-- 상품 파일 입력 -->
 		<div id="fileDiv">
 			<p>
-				<input type="file"  name="file_0"> 
-				<a href="#this"	class="btn" id="deleteF" name="deleteF">파일삭제</a>
+				<input type="file"  name="file_0"><a href="#this" class="btn" id="deleteF" name="deleteF">이미지삭제</a>
 			</p>
 		</div>
 		<a href="#this" class="btn" id="addFile">파일 추가</a> 
@@ -66,7 +65,7 @@
 				사이즈  : <input type="text" name="size">
 				색상 : <input type="text" name="color"> 
 				개수 : <input type="text" name="count">  
-				<a href="#this"	class="btn" id="deleteA" name="deleteA">속성삭제</a>
+				<a href="#this"	class="btn" id="deleteA" name="deleteA">삭제</a>
 			</p>
 		</div>
 		<a href="#this" class="btn" id="addAttribute">속성 추가</a> 
@@ -123,7 +122,7 @@
 			comSubmit.submit();
 		}
 		function fn_addFile(){
-            var str = "<p><input type='file' name='file_"+(gfv_count++)+"'><a href='#this' class='btn' name='deleteF'>삭제</a></p>";
+            var str = "<p><input type='file' name='file_"+(gfv_count++)+"'><a href='#this' class='btn' name='deleteF'>이미지삭제</a></p>";
             $("#fileDiv").append(str);
             $("a[name='deleteF']").on("click", function(e){ //삭제 버튼
                 e.preventDefault();
@@ -131,17 +130,11 @@
             });
         }
 		function fn_addAttribute(){
-            /* var str = "<p><input type='text' name='attribute_"+(gat_count++)+"'><a href='#this' class='btn' name='deleteA'>삭제</a></p>"; */
-            /* var str = "";
-            str=str+"<p> 사이즈  : <input type='text' name='size_"+(gat_count)+"'>"
-            str=str+"색상 : <input type='text' name='color_"+(gat_count)+"'>"
-			str=str+"개수 : <input type='text' name='count_"+(gat_count++)+"'>"
-            str=str+"<a href='#this' class='btn' name='deleteA'>삭제</a></p>"; */
             var str = "";
-            str=str+"<p> 사이즈  : <input type='text' name='size'>"
-            str=str+"색상 : <input type='text' name='color'>"
-			str=str+"개수 : <input type='text' name='count'>"
-            str=str+"<a href='#this' class='btn' name='deleteA'>삭제</a></p>";
+            str=+"<p> 사이즈  : <input type='text' name='size'>"
+            str=+"색상 : <input type='text' name='color'>"
+			str=+"개수 : <input type='text' name='count'>"
+            str=+"<a href='#this' class='btn' name='deleteA'>삭제</a></p>";
 			
             $("#AttributeDiv").append(str);
             $("a[name='deleteA']").on("click", function(e){ //삭제 버튼

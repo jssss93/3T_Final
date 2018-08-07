@@ -28,12 +28,12 @@
 		resultType="hashmap">
     <![CDATA[
         SELECT
-            FILE_SAV_NAME,
-            FILE_ORG_NAME
+            SAV_NAME,
+            ORG_NAME
         FROM
-            FILE_3T
+            UPLOAD
         WHERE
-            FILE_NO = #{FILE_NO}
+            UPLOAD_NO = #{UPLOAD_NO}
     ]]>
 	</select>
 
