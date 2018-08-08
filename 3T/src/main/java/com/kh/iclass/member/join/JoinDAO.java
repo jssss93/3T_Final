@@ -26,9 +26,9 @@ public class JoinDAO extends AbstractDAO {
 		return selectMemberId("member.checkMember", map);
 	*/
 	
-	//회원가입시 적립금 부여
+	/*//회원가입시 적립금 부여
 	public void joinPoint(Map<String, Object> map) throws Exception{
 		insert("member.joinPoint",map);
-	}
+	}*/
 	
 }

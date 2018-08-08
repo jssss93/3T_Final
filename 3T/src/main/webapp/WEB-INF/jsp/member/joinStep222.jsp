@@ -16,9 +16,9 @@
 		var f = document.Reg_form; 
 	
 
-		if (f.M_ID.value == "") {
+		if (f.MEMBER_ID.value == "") {
 			alert("아이디를 입력해주십시오");
-			f.M_ID.focus();
+			f.MEMBER_ID.focus();
 			return false;
 		}
 
@@ -28,65 +28,61 @@
 			
 			return false;
 		} */
-		if (f.M_PASSWD.value == "") {
+		if (f.PASSWD.value == "") {
 			alert("비밀번호를 입력해주십시오");
-			f.M_PASSWD.focus();
+			f.PASSWD.focus();
 			
 			return false;
 		}
 
-		if (f.M_PASSWD.value != f.M_PASSWD2.value) {
+		if (f.PASSWD.value != f.PASSWD2.value) {
 			alert("비빌번호를 다르게 입력했습니다.");
-			f.M_PASSWD2.select();
+			f.PASSWD2.select();
 			return false;
 		}
 
-		if (f.M_NAME.value == "") {
+		if (f.NAME.value == "") {
 			alert("이름을 입력해주십시오");
-			f.M_NAME.focus();
+			f.NAME.focus();
 			return false;
 		}
 
-		if (f.M_JUMIN1.value == "") {
+		if (f.BRITH.value == "") {
 			alert("주민등록번호를 입력해주십시오");
-			f.M_JUMIN1.focus();
+			f.BIRTH.focus();
 			return false;
 		}
 
-		if (f.M_JUMIN2.value == "") {
-			alert("주민등록번호를 입력해주십시오");
-			f.M_JUMIN2.focus();
-			return false;
-		}
 
-		if (f.M_ZIPCODE.value == "") {
+
+		if (f.ZIPCODE.value == "") {
 			alert("우편번호를 검색하여 입력해주십시오");
-			f.M_ZIPCODE.focus();
+			f.ZIPCODE.focus();
 			return false;
 		}
 
-		if (f.M_ADDR1.value == "") {
+		if (f.ADDR1.value == "") {
 			alert("기본주소를 입력해주십시오");
-			f.M_ADDR1.focus();
+			f.ADDR1.focus();
 			return false;
 		}
 
-		if (f.M_ADDR2.value == "") {
+		if (f.ADDR2.value == "") {
 			alert("상세주소를 입력해주십시오");
-			f.M_ADDR2.focus();
+			f.ADDR2.focus();
 			return false;
 		}
 
-		if (f.M_PHONE.value == "") {
+		if (f.PHONE.value == "") {
 			alert("전화번호를 입력해주십시오");
-			f.phone.focus();
+			f.PHONE.focus();
 			return false;
 		}
 
 
-		if (f.M_EMAIL.value == "") {
+		if (f.EMAIL.value == "") {
 			alert("이메일을 입력해주십시오");
-			f.M_EMAIL.focus();
+			f.EMAIL.focus();
 			return false;
 		}
 		
@@ -96,16 +92,16 @@
 	}   
 
 	  function openConfirmId(){
-			var url="CheckIdAction.action?M_ID="+ document.Reg_form.M_ID.value;
+			var url="/checkId?MEMBER_ID="+ document.Reg_form.MEMBER_ID.value;
 			var chk=document.Reg_form;
-			if(chk.M_ID.value==""){
+			if(chk.MEMBER_ID.value==""){
 				alert("ID를 입력하세요");
-				chk.M_ID.focus();
+				chk.MEMBER_ID.focus();
 				return false;
 			}
-			if (chk.M_ID.value.length < 2) {
+			if (chk.MEMBER_ID.value.length < 2) {
 				alert("최소 2자리 이상 입력해주세요!");
-				chk.M_ID.focus();
+				chk.MEMBER_ID.focus();
 				return false;
 			}
 			open(url, "confirm", "toolbar=no,location=no,status=no,menubar=no,"+
@@ -117,12 +113,12 @@
 <script language="Javascript">
 	function checkemailaddy() {
 		if (Reg_form.email3.value == '1') {
-			Reg_form.M_EMAIL2.readonly = false;
-			Reg_form.M_EMAIL2.value = '';
-			Reg_form.M_EMAIL2.focus();
+			Reg_form.EMAIL2.readonly = false;
+			Reg_form.EMAIL2.value = '';
+			Reg_form.EMAIL2.focus();
 		} else {
-			Reg_form.M_EMAIL2.readonly = true;
-			Reg_form.M_EMAIL2.value = Reg_form.email3.value;
+			Reg_form.EMAIL2.readonly = true;
+			Reg_form.EMAIL2.value = Reg_form.email3.value;
 		}
 	}
 </script>
@@ -189,13 +185,13 @@
 
 						// 우편번호와 주소 정보를 해당 필드에 넣는다.
 
-						document.getElementById('M_ZIPCODE').value = data.zonecode; //5자리 새우편번호 사용
+						document.getElementById('ZIPCODE').value = data.zonecode; //5자리 새우편번호 사용
 
-						document.getElementById('M_ADDR1').value = fullAddr;
+						document.getElementById('ADDR1').value = fullAddr;
 
 						// 커서를 상세주소 필드로 이동한다.
 
-						document.getElementById('M_ADDR2').focus();
+						document.getElementById('ADDR2').focus();
 
 					}
 
@@ -209,7 +205,7 @@
 </head>
 <body>
 <% request.setCharacterEncoding("UTF-8"); %>
-	<form name="Reg_form" action="joinAction.action" method="post" onsubmit="return check()">
+	<form name="Reg_form" action="/3T/joinComplete" method="post" onsubmit="return check()">
 
 
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -231,66 +227,65 @@
 						<tr>
 							<td class="tdstyle1">아이디<img
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
-							<td valign="middle"><input type="text" name="M_ID" maxlength="20"
-								size="28"> <input type="button" name="confirm_id"
+							<td valign="middle"><input type="text" name="MEMBER_ID" maxlength="20"
+								size="28"> <input type="button" name="confirMEMBER_ID"
 								value="중복확인" onclick="openConfirmId()" >
-								<input type="hidden" name="confirm_id" value=""> 영문/숫자를
+								<input type="hidden" name="confirMEMBER_ID" value=""> 영문/숫자를
 								이용하여 4~12자로 입력하세요</td>
 						</tr>
 						<tr>
 							<td class="tdstyle1">비밀번호<img
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
 							<td valign="middle"><input type="password" maxlength="14"
-								name="M_PASSWD" size="30"> 영문/숫자를 이용하여 4~12자로 입력하세요</td>
+								name="PASSWD" size="30"> 영문/숫자를 이용하여 4~12자로 입력하세요</td>
 						</tr>
 						<tr>
 							<td class="tdstyle1">비밀번호확인<img
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
 							<td valign="middle"><input type="password"  maxlength="14"
-								name="M_PASSWD2" size="30"> 비밀번호를 재입력 해주세요</td>
+								name="PASSWD2" size="30"> 비밀번호를 재입력 해주세요</td>
 						</tr>
 						<tr>
 							<td class="tdstyle1">이 름<img
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
-							<td valign="middle"><input type="text" name="M_NAME"
+							<td valign="middle"><input type="text" name="NAME"
 								size="28"> 회원가입 후 수정이 불가능합니다</td>
 						</tr>
 						<tr>
 							<td class="tdstyle1">주민등록번호<img
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
-							<td valign="middle"><input type="text" name="M_JUMIN1" 
-								size="6" maxlength="6"> - <input type="password" name="M_JUMIN2"
-								size="7"maxlength="7"></td>
+							<td valign="middle"><input type="text" name="BIRTH" 
+								size="16" maxlength="8">
 						</tr>
 						<tr>
 							<td class="tdstyle1">우편번호<img
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
-							<td valign="middle"><input type="text" id="M_ZIPCODE"
-								name="M_ZIPCODE" size="28" placeholder="검색버튼이용해주세요">
+							<td valign="middle"><input type="text" id="ZIPCODE"
+								name="ZIPCODE" size="28" placeholder="검색버튼이용해주세요">
 								<input type="button" value="검색" onclick="DaumPostcode()"
 								class="hreflink2"> <br></td>
 						</tr>
 						<tr>
 							<td class="tdstyle1">주 소<img
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
-							<td valign="middle"><input type="text" id="M_ADDR1"
-								name="M_ADDR1" placeholder="자동기입" size="60"> <br>
-								<input type="text" id="M_ADDR2" name="M_ADDR2" placeholder="상제주소를 입력해주세요"size="60"></td>
+							<td valign="middle"><input type="text" id="ADDR1"
+								name="ADDR1" placeholder="자동기입" size="60"> <br>
+								<input type="text" id="ADDR2" name="ADDR2" placeholder="상제주소를 입력해주세요"size="60"></td>
 						</tr>
 
 						<tr>
 							<td class="tdstyle1">휴대폰번호<img
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
-							<td valign="middle"><input type="text" name="M_PHONE" maxlength="11"
+							<td valign="middle"><input type="text" name="PHONE" maxlength="11"
 								size="28" placeholder="ex)01055551111"> "-" 없이 숫자만 입력하세요</td>
 						</tr>
 						<tr>
 							<td class="tdstyle1">이메일<img
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
 							<td valign="middle">
-									<input name="M_EMAIL1" type="text" class="box" id="M_EMAIL1"
-										size="15"> @ <input name="M_EMAIL2" type="text"
-										class="box" id="M_EMAIL2" size="20"> <select
+									<input name="EMAIL1" type="text" class="box" id="EMAIL1"
+										size="15"> @ <input name="EMAIL2" type="text"
+										class="box" id="EMAIL2" size="20"> <select
 										name="email3"  id="email_select"
 										onChange="checkemailaddy();">
 										<option value="" selected>선택하세요</option>
@@ -300,40 +295,24 @@
 										<option value="yahoo.co.kr">yahoo.co.kr</option>
 										<option value="1">직접입력</option>
 									</select>
+							
 
-
+						</table>
 								
 						</tr>
-
-
-					</table>
-					<table width="700" border="0" cellspacing="0" cellpadding="0"
-						id="form">
-
-						<tr>
-							<td align="left" class="tdstyle2" colspan="2">회원추가정보</td>
-						</tr>
-						<tr>
-							<td class="tdstyle1">환불계좌 정보<img
-								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
-							<td valign="middle">예금주<input type="text"
-								name="M_DEPOSITOR" size="28"><br> <br>
-								은행명<input type="text" name="M_NAME_BANK" size="28"><br>
-								<br> 계좌번호<input type="text" name="ACCOUNT_NO" size="28"
-								placeholder="ex)111-212-555000"><br>
-							</td>
-
-						</tr>
-
-						</td>
-						</tr>
+						
+						<p><p><p>
+						
 						<tr>
 							<td colspan="2" align="center" style="border: 0px;"><input
 								type="submit" value="회원가입" class="submit"> <input
 								type="button" value="취 소"
 								onclick="location.href='main.action'" class="hreflink"></td>
 						</tr>
+
 					</table>
+					
+					
 
 
 					</form>
