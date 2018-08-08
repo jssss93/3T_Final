@@ -38,11 +38,11 @@ public class JoinServiceImpl implements JoinService{
 		return joinDAO.checkId(mem_id);
 	}
 	
-	//회원가입시 적립금 부여
+/*	//회원가입시 적립금 부여
 	@Override
 	public void joinPoint(Map<String, Object> map) throws Exception{
 		joinDAO.joinPoint(map);
-	}
+	}*/
 
 	
 }
