@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-<div class="row" style="padding-left: 15px; width: 900px;">
+<div class="row" style="padding-left: 15px; width: 500px;">
    <h1 class="page-header">관리자페이지에 오신걸 환영합니다</h1>
 </div>
 <div class="panel panel-default">

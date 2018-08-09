@@ -11,15 +11,14 @@
                         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
                         http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
      
-    <context:component-scan base-package="com.kh.iclass">
-        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-    </context:component-scan>
+    <context:component-scan base-package="com.kh.iclass"/>
                          
     <!-- MultipartResolver 설정 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="10000000" />
         <property name="maxInMemorySize" value="100000000" />
     </bean>
+    
 </beans>
 
 

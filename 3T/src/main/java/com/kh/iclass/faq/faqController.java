@@ -1,4 +1,4 @@
-package com.kh.iclass.faq;
+/*package com.kh.iclass.faq;
 
 import java.util.Map;
 
@@ -52,7 +52,7 @@ public class faqController {
 		return mv;
 	}
 
-	/*@RequestMapping(value = "/goods/detail")
+	@RequestMapping(value = "/goods/detail")
 	public ModelAndView goodsDetail(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("goods/detail");
 
@@ -95,5 +95,6 @@ public class faqController {
 
 		return mv;
 	}
-*/
+
 }
+*/
