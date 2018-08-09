@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="review">
+
+     <select id="REVIEW_selectList" parameterType="hashmap" resultType="hashmap">
+      <![CDATA[
+         SELECT
+           	REVIEW_NO,
+           	TITLE,
+           	MEMBER_ID,
+           	CONTENT,
+           	REGDATE,
+			READCNT,
+			GOODS_NO,
+			REF,
+			RE_STEP,
+			RE_LEVEL
+			
+           		
+         FROM 
+           	REVIEW
+           	ORDER BY REVIEW_NO DESC
+           		
+      ]]>
+</select>
+   <insert id="REVIEW_insert" parameterType="hashmap">
+      <![CDATA[
+      
+         INSERT INTO
+		REVIEW (
+			REVIEW_NO,
+			TITLE,
+			PASSWD,
+			CONTENT,
+			REGDATE,
+			READCNT,
+
+			REF,
+			RE_STEP,
+			RE_LEVEL,
+			
+			MEMBER_ID,
+			GOODS_NO
+
+		)
+		VALUES (
+			QA_NO_SEQ.NEXTVAL,
+			#{TITLE},
+			#{PASSWD},
+			#{CONTENT},
+			SYSDATE,
+			0,
+		
+		
+			0,
+			0,
+			0,
+		
+			#{MEMBER_ID},
+			1
+		)
+    ]]>
+</insert>
+
+<select id="REVIEW_selectDetail" parameterType="hashmap" resultType="hashmap">
+      <![CDATA[
+        SELECT
+            REVIEW_NO,
+            TITLE,
+            MEMBER_ID,
+            REGDATE,
+            CONTENT,
+			READCNT
+
+        FROM
+            REVIEW
+        WHERE
+            REVIEW_NO = #{REVIEW_NO}       
+      ]]>
+</select>
+
+<update id="REVIEW_update" parameterType="hashmap">
+    <![CDATA[
+        UPDATE 
+			REVIEW
+        SET
+            TITLE = #{TITLE},
+            CONTENT = #{CONTENT}
+			
+        WHERE
+            REVIEW_NO = #{REVIEW_NO}   
+    ]]>
+</update>
+
+<delete id="REVIEW_delete" parameterType="hashmap">
+	 <![CDATA[
+        delete FROM
+            REVIEW
+        WHERE
+            REVIEW_NO = #{REVIEW_NO}   
+    ]]>
+</delete>
+
+
+</mapper>
+
+
