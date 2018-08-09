@@ -6,6 +6,21 @@
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 </head>
 <body>
+
+<table width="60%" border="0" cellspacing="1" cellpadding="1">
+
+		<tr>
+			<td height="30"></td>
+		</tr>
+		<tr>
+			<td align="left" class="text01 formbar"><h3><font color="#555555">FAQ UPDATE</font></h3></td>
+		</tr>
+
+		<tr>
+			<td height="30"></td>
+		</tr>
+	</table>
+
 	<form id="frm">
 		<table class="board_view">
 			<colgroup>
@@ -14,32 +29,37 @@
 				<col width="15%" />
 				<col width="35%" />
 			</colgroup>
-			<caption>게시글 상세</caption>
 			<tbody>
 				<tr>
-					<th scope="row">글 번호</th>
+					<th scope="row">NO</th>
 					<td>${map.FAQ_NO }</td>
-					<th scope="row">작성자</th>
+					</tr>
+					<tr>
+					<th scope="row">NAME</th>
 					<td>${map.MEMBER_ID }</td>
 				</tr>
 				<tr>
-					<th scope="row">작성시간</th>
+					<th scope="row">CREATION TIME</th>
 					<td>${map.REGDATE }</td>
 				</tr>
 				<tr>
-					<th scope="row">제목</th>
-					<td colspan="3"><input type="text" id="TITLE" name="TITLE"
+					<th scope="row">SUBJECT</th>
+					<td><input type="text" id="TITLE" name="TITLE"
 						class="wdp_90" value="${map.TITLE }" /></td>
 				</tr>
+				
+				<table class="wdp_80">
+				<br><br/>
 				<tr>
-					<th scope="row">내용</th>
-					<td colspan="4"><input type="text" id="CONTENT" name="CONTENT"
+					<td><input type="text" id="CONTENT" name="CONTENT"
 						class="wdp_90" value="${map.CONTENT }" /></td>
 				</tr>
+				</table>
 
 			</tbody>
 		</table>
 	</form>
+	<br><br/>
 
 	<input type="hidden" id="FAQ_NO" name="FAQ_NO"
 		value="${map.FAQ_NO }">

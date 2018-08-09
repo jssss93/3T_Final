@@ -7,20 +7,39 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+
 #Left_layer_fixed {
-	height: 100%;
-	width: 6%;
+    /* display: none !important; */
+    float:right;
+    right:0px;
+    width:140px;
+    top: 0px;
+	height: 80%;
+	z-index: 9;
+	width: 12%;
 	color: #555;
-	font-size: 12px;
+	font-size: 18px;
 	position: fixed;
-	z-index: 999;
-	top: 0px;
 	left: 0px;
 	-webkit-box-shadow: 0 1px 2px 0 #777;
-	box-shadow: 0 1px 2px 0 #777;
+ 	box-shadow: 0 1px 2px 0 #777;
 	background-color: white;
 	opacity: 0.5;
 }
+
+
+#Left_layer_fixed ul{
+font-family: FontAwesome;
+    list-style:none;
+}
+
+/* #Left_layer_fixed ul li{
+    background-color: white;
+    border:1px solid #fff;
+
+} */
+
+
 
 #Right_layer_fixed {
 	height: 100%;
@@ -64,7 +83,7 @@
 				<div id="left" >
 					<h1 class="xans-element- xans-layout xans-layout-logotop ">
 						<a href="/index.html"><img
-							src="/web/upload/designfixy/images/toplogo.png"></a>
+							src="/3T/src/main/webapp/resources/images/3T.JPG"></a>
 					</h1>
 
 					<!--로그인메뉴-->
@@ -73,7 +92,8 @@
 					<div class="left_login">
 						<div class="xans-element- xans-layout xans-layout-statelogoff ">
 							<a href="/3T/member/login" class="log">login</a> / 
-							<a href="/3T/member/joinStep1">join</a> 
+							<a href="/3T/member/joinStep1">join</a>
+							<br> 
 							<a href="/3T/myshop/order/list.html">order</a> /
 							<a href="/3T/myshop/index.html">mypage</a>
 						</div>
