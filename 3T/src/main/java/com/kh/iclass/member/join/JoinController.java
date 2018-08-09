@@ -211,7 +211,7 @@ public class JoinController {
 		memberMap=commandMap.getMap();
 		joinService.insertMember(memberMap, request);
 /*		joinService.joinPoint(memberMap);*/
-		mv.setViewName("loginForm");
+		mv.setViewName("member/loginForm");
 		return mv;
 		
 	}

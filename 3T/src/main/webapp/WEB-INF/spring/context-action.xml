@@ -36,11 +36,6 @@
 		
 		<mvc:interceptor>
 			<mvc:mapping path="/goods/*" />
-			<!-- 여러개 컨트롤러 추가 가능 -->
-<!-- 			<mvc:mapping path="/admin_write"/>
-			<mvc:mapping path="/admin_update"/> 
-			<mvc:mapping path="/admin_delete"/> -->
-			<!-- 로그인체크 인터셉터 클래스 -->
 			<bean class="com.kh.iclass.member.login.LoginInterceptor" />
 		</mvc:interceptor>
 		

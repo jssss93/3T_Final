@@ -307,7 +307,7 @@
 							<td colspan="2" align="center" style="border: 0px;"><input
 								type="submit" value="회원가입" class="submit"> <input
 								type="button" value="취 소"
-								onclick="location.href='main.action'" class="hreflink"></td>
+								onclick='location.href="/3T/main"' class="hreflink"></td>
 						</tr>
 
 					</table>
