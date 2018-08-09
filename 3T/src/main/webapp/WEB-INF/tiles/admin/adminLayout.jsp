@@ -12,11 +12,33 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
 <title>MODA 관리자페이지</title>
+<link href="<%=cp%>/resources/admincss/bootstrapadmin.min.css" rel="stylesheet" type="text/css">
+<!-- Custom CSS -->
+<link href="<%=cp%>/resources/admincss/sb-admin-2.css" rel="stylesheet">
+<!-- jQuery -->
 
+<script src="<%=cp%>/resources/admincss/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="<%=cp%>/resources/admincss/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="<%=cp%>/resources/admincss/sb-admin-2.js"></script>
+
+<style type="text/css">
+@media ( min-width :768px) {
+	#page-wrapper {
+		margin: 0 0 0 250px !important;
+	}
+}
+</style>
 </head>
 <body>
-	<div id="wrapper" >
+	<div id="wrapper"  >
 		<!-- Navigation -->
 		
 		
@@ -28,13 +50,13 @@
 					<span class="icon-bar"></span> 
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" style="color: #fff;" href="/3T/admin/main"><strong>MODA 관리자페이지</strong></a>
+				<a class="navbar-brand" style="color: #fff;" href="/3T/admin/main"><strong>3T 관리자페이지</strong></a>
 			</div>
 			<!-- /.navbar-header -->
 			
 			
 			
-			<div class="navbar-default sidebar">
+			<div class="navbar-default sidebar" role="navigation">
 				<div class="sidebar-nav navbar-collapse">
 					<ul class="nav" id="side-menu">
 						<li>

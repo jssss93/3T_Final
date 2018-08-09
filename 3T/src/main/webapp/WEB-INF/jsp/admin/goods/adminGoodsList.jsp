@@ -137,7 +137,7 @@ function delchk(){
 								</c:url>									
 									<tr class="gradeA even" role="row">
 										<td style="text-align:center;vertical-align:middle;">${goodsList.GOODS_NO}</td>										
-										<td style="text-align:center;vertical-align:middle;"><img src="/MODA/file/goodsFile/${goodsList.GOODS_THUMBNAIL}" width="60" height="60" alt=""  onerror="this.src='/MODA/file/noimg_130.gif'" /></td>
+										<td style="text-align:center;vertical-align:middle;"><img src="/3T/resources/upload/${goodsList.IMAGE}" width="60" height="60" alt=""  onerror="상품 이미지가 없습니다." /></td>
 										<td style="text-align:center;vertical-align:middle;">${goodsList.CATEGORY}</td>
 										<td style="text-align:center;vertical-align:middle;">${goodsList.NAME}</td>
 										<td style="text-align:center;vertical-align:middle;">${goodsList.PRICE}</td>

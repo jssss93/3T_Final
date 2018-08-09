@@ -14,9 +14,7 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<!-- <annotation-driven /> -->
 
-	<context:component-scan base-package="com.kh.iclass" use-default-filters="false">
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-    </context:component-scan>
+	<context:component-scan base-package="com.kh.iclass" />
 
 
 	<!-- 맵 객체로 받기위한 CustomMapArgumentResolver 클래스 등록 -->
@@ -56,10 +54,8 @@
 	<mvc:resources mapping="/summernote/**" location="/summernote/" />
 
 	<!-- 페이징관련 전자정부프레임워크 bean 추가 -->
-	<bean id="textRenderer"
-		class="egovframework.rte.ptl.mvc.tags.ui.pagination.DefaultPaginationRenderer" />
-	<bean id="paginationManager"
-		class="egovframework.rte.ptl.mvc.tags.ui.pagination.DefaultPaginationManager">
+	<bean id="textRenderer"	class="egovframework.rte.ptl.mvc.tags.ui.pagination.DefaultPaginationRenderer" />
+	<bean id="paginationManager" class="egovframework.rte.ptl.mvc.tags.ui.pagination.DefaultPaginationManager">
 		<property name="rendererType">
 			<map>
 				<entry key="text" value-ref="textRenderer" />
@@ -67,26 +63,21 @@
 		</property>
 	</bean>
 
-
-	<bean
-		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
-
-	<bean
-		class="org.springframework.web.servlet.view.BeanNameViewResolver"
-		p:order="1" />
-		
+	<!-- JSON Parsing -->
 	<bean id="jsonView"
 		class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
 
+	<!-- AOP -->
+	<aop:aspectj-autoproxy/>
+    <bean id="loggerAspect" class="com.kh.iclass.common.logger.LoggerAspect" />
 	
 	<!-- tiles 빈 등록 -->
-	<bean id="tilesViewResolver"
-		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.tiles3.TilesView" />
 		<property name="order" value="0" /><!-- 순서를 우선으로 지정 -->
 	</bean>
-
+	
 	<bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">
@@ -95,13 +86,10 @@
 			</list>
 		</property>
 	</bean>
-
-	<!-- AOP -->
-	<aop:aspectj-autoproxy/>
-    <bean id="loggerAspect" class="com.kh.iclass.common.logger.LoggerAspect" />
-
-
-
+	
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver"
+		p:order="1" />
+		
 	<!-- ViewResolver 설정 -->
 	<bean
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver"

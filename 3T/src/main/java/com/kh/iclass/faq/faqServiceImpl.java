@@ -1,4 +1,4 @@
-package com.kh.iclass.faq;
+/*package com.kh.iclass.faq;
 
 import java.util.Map;
 
@@ -20,11 +20,11 @@ public class faqServiceImpl implements faqService {
 	@Resource(name = "faqDAO")
 	private faqDAO faqDAO;
 
-	/*
+	
 	 * @Override public List<Map<String, Object>> selectBoardList(Map<String,
 	 * Object> map) throws Exception { return goodsDAO.selectBoardList(map);
 	 * }
-	 */
+	 
 	// 위에꺼 대신에
 	@Override
 	public Map<String, Object> faqList(Map<String, Object> map) throws Exception {
@@ -34,7 +34,7 @@ public class faqServiceImpl implements faqService {
 	@Override
 	public void faqWrite(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		faqDAO.insertFaq(map);
-		/*// HttpServletRequest 그 자체로는 Multipart형식의 데이터를 조작하는데 어려움이 있기 때문에,
+		// HttpServletRequest 그 자체로는 Multipart형식의 데이터를 조작하는데 어려움이 있기 때문에,
 		// MultipartHttpServletRequset 형식으로 형변환을 하였다.
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
 		// 이터레이터(Iterator) 패턴을 이용하여 request에 전송된 모든 name을 이용
@@ -49,14 +49,14 @@ public class faqServiceImpl implements faqService {
 				log.debug("size : " + multipartFile.getSize());
 				log.debug("-------------- file end --------------\n");
 			}
-		}*/
-		/*List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(map, request);
+		}
+		List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(map, request);
 		for(int i=0, size=list.size(); i<size; i++){
 			faqDAO.insertFile(list.get(i));
-		}*/
+		}
 	}
 	
-	/*@Override
+	@Override
 	public Map<String, Object> goodsDetail(Map<String, Object> map) throws Exception {
 		// 트랜잭션으로 처리 해야 할 거 같은데?
 		goodsDAO.updateReadCnt(map);
@@ -97,7 +97,8 @@ public class faqServiceImpl implements faqService {
 	public void goodsDelete(Map<String, Object> map) throws Exception {
 		goodsDAO.deleteGoods(map);
 	}
-*/
+
 	
 
 }
+*/
