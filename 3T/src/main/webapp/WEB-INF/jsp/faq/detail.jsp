@@ -6,6 +6,20 @@
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 </head>
 <body>
+<table width="100%" border="0" cellspacing="0" cellpadding="1" colspan="1">
+
+		<tr>
+			<td height="50"></td>
+		</tr>
+		<tr>
+			<td align="left"><h3><font color="#555555">FAQ</font></h3></td>
+		</tr>
+
+		<tr>
+			<td height="50"></td>
+		</tr>
+	</table>
+	
 	<table class="board_view">
 		<colgroup>
 			<col width="15%" />
@@ -13,27 +27,33 @@
 			<col width="15%" />
 			<col width="35%" />
 		</colgroup>
-		<caption>게시글 상세</caption>
 		<tbody>
-			<tr>
+			<%-- <tr>
 				<th scope="row">글 번호</th>
 				<td>${Detail.FAQ_NO }</td>
 			</tr>
 			<tr>
 				<th scope="row">작성시간</th>
 				<td>${Detail.REGDATE }</td>
-			</tr>
+			</tr> --%>
 			<tr>
-				<th scope="row">제목</th>
+				<th scope="row">SUBJECT</th>
 				<td colspan="3">${Detail.TITLE }</td>
 			</tr>
 			<tr>
-				<th scope="row">내용</th>
-				<td colspan="4">${Detail.CONTENT }</td>
+				<th scope="row">NAME</th>
+				<td colspan="3">${Detail.MEMBER_ID }</td>
 			</tr>
+			<table class="board_content">
+			<br><br/>
+			<tr>
+				<td style="text-align: center; ">${Detail.CONTENT }</td>
+				<!-- style="text-align: center; -->
+			</tr>
+			</table>
 		</tbody>
 	</table>
-
+<br><br/>
 	<input type="hidden" id="FAQ_NO" value="${Detail.FAQ_NO}">
 
 	<a href="#this" class="btn" id="list">목록으로</a>

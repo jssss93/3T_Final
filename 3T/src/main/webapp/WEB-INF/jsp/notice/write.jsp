@@ -5,16 +5,30 @@
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
 </head>
 <body>
+
+<table width="60%" border="0" cellspacing="1" cellpadding="1">
+
+		<tr>
+			<td height="30"></td>
+		</tr>
+		<tr>
+			<td align="left" class="text01 formbar"><h3><font color="#555555">NOTICE WRITE</font></h3></td>
+		</tr>
+
+		<tr>
+			<td height="30"></td>
+		</tr>
+	</table>
+	
 	<form id="frm" action="/notice/write" method="POST">
-		<table class="board_view">
-			<colgroup>
+		<table>
+<!-- 			<colgroup>
 				<col width="15%">
 				<col width="*"/>
-			</colgroup>
-			<caption>게시글 작성</caption>
+			</colgroup> -->
 			<tbody>
 				<tr>
-					<th scope="row">제목</th>
+					<th scope="row">SUBJECT</th>
 					<td><input type="text" id="TITLE" name="TITLE" class="wdp_90"></input></td>
 				</tr>
 				<tr>
@@ -24,8 +38,9 @@
 				</tr>
 			</tbody>
 		</table>
+		<br>
 		
-		<input type="submit" value="작성하기!!!">
+<!-- 		<input type="submit" value="작성하기!!!"> -->
 		
 		<a href="#this" class="btn" id="write">작성하기</a>
 		<a href="#this" class="btn" id="list">목록으로</a>
