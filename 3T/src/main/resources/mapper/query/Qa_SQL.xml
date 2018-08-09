@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="qa">
+     
+    <select id="QA_selectList" parameterType="hashmap" resultType="hashmap">
+        <![CDATA[
+           SELECT
+           		QA_NO,
+           		TITLE,
+           		MEMBER_ID,
+           		CONTENT,
+           		REGDATE,
+           		GOODS_NO,
+				REF,
+				RE_STEP,
+				RE_LEVEL
+           		
+           	FROM 
+           		QA
+           		ORDER BY ref DESC, re_step ASC
+           		
+           		
+        ]]>
+    </select>
+    <!-- ORDER BY QA_NO DESC -->
+    <insert id="QA_insert" parameterType="hashmap">
+      <![CDATA[
+      
+         INSERT INTO
+		QA (
+			QA_NO,
+			TITLE,
+			PASSWD,
+			CONTENT,
+			REGDATE,
+			CATEGORY,
+
+			REF,
+		
+			
+			MEMBER_ID,
+			GOODS_NO
+
+		)
+		VALUES (
+			QA_NO_SEQ.NEXTVAL,
+			#{TITLE},
+			#{PASSWD},
+			#{CONTENT},
+			SYSDATE,
+			'0',
+		
+			QA_NO_SEQ.CURRVAL,
+			
+			
+			#{MEMBER_ID},
+			1
+		 	
+		)
+    ]]>
+  <!--#{CATEGORY}   
+  #{REF},
+			#{REF_STEP},
+			#{RE_LEVEL},
+		
+			#{GOODS_NO}  -->
+</insert>
+    <select id="QA_selectDetail" parameterType="hashmap" resultType="hashmap">
+      <![CDATA[
+        SELECT
+            QA_NO,
+            TITLE,
+            MEMBER_ID,
+            REGDATE,
+            CONTENT,
+			CATEGORY
+        FROM
+            QA
+        WHERE
+            QA_NO = #{QA_NO}       
+      ]]>
+</select>
+    
+    <update id="QA_update" parameterType="hashmap">
+    <![CDATA[
+        UPDATE 
+			QA
+        SET
+            TITLE = #{TITLE},
+            CONTENT = #{CONTENT}
+			
+        WHERE
+            QA_NO = #{QA_NO}   
+    ]]>
+</update>
+    
+    <update id="QA_delete" parameterType="hashmap">
+		<![CDATA[
+			DELETE
+			 	
+			FROM
+				QA
+			WHERE
+				QA_NO = #{QA_NO}
+		]]>
+	</update>
+    
+     <select id="QA_selectSearchList" parameterType="hashmap" resultType="hashmap">
+		SELECT 
+			QA_NO,
+           	TITLE,
+           	MEMBER_ID,
+           	CONTENT,
+           	REGDATE,
+           	GOODS_NO
+		FROM 
+			QA
+		WHERE 
+			
+			
+			<if test='SearchNum.equals("TITLE")'> 
+			
+			(TITLE LIKE '%' || #{SearchKeyword} || '%')
+			
+			</if>
+			
+			 <if test='SearchNum.equals("MEMBER_ID")'> 
+			  
+			(MEMBER_ID LIKE '%' || #{SearchKeyword} || '%')
+			
+			</if> 
+			
+			<if test='SearchNum.equals("CONTENT")'>
+		
+			(CONTENT LIKE '%' || #{SearchKeyword} || '%')
+			</if>
+			
+			ORDER BY QA_NO DESC
+
+		
+</select>
+
+   <insert id="QaInsertReply" parameterType="hashmap">
+      <![CDATA[
+      
+         INSERT INTO
+		QA (
+			QA_NO,
+			TITLE,
+			PASSWD,
+			CONTENT,
+			REGDATE,
+			CATEGORY,
+
+			REF,
+			RE_STEP,
+			
+			MEMBER_ID,
+			GOODS_NO
+
+		)
+		VALUES (
+			QA_NO_SEQ.NEXTVAL,
+			#{TITLE},
+			#{PASSWD},
+			#{CONTENT},
+			SYSDATE,
+			'0',
+		
+			#{REF},
+			#{RE_STEP},
+				
+			#{MEMBER_ID},
+			1
+		 	
+		)
+    ]]>
+     </insert>
+     
+     <update id="QaUpdateReplyStep" parameterType="hashmap">
+    <![CDATA[
+        UPDATE 
+        QA 
+        SET 
+        
+        	RE_STEP=RE_STEP+1 
+        WHERE 
+        
+        	REF = #{REF},
+        	
+       
+    ]]>
+</update>
+</mapper>
+
+
