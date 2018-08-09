@@ -1,4 +1,5 @@
-package com.kh.iclass.notice.controller;
+package com.kh.iclass.admin.notice;
+
 
 import java.util.Map;
 
@@ -16,8 +17,8 @@ import com.kh.iclass.notice.service.NoticeService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @Controller
-
-public class NoticeController {
+@RequestMapping("/admin")
+public class AdminNoticeController {
 	Logger log = Logger.getLogger(this.getClass());
 
 	@Resource(name = "noticeService")
@@ -25,7 +26,7 @@ public class NoticeController {
 
 	@RequestMapping("/notice/list")
 	public ModelAndView noticeList(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("notice/list");
+		ModelAndView mv = new ModelAndView("notice.list");
 
 		Map<String, Object> resultMap = noticeService.NoticeList(commandMap.getMap());
 
@@ -38,7 +39,7 @@ public class NoticeController {
 
 	@RequestMapping(value = "/notice/write",  method = RequestMethod.GET)
 	public ModelAndView noticeWrtieForm(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("notice/write");
+		ModelAndView mv = new ModelAndView("notice.write");
 
 		return mv;
 	}

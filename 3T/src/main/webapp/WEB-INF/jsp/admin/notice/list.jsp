@@ -8,10 +8,10 @@
 $( document ).ready(function() {
 	$('#dataTables-example').rowspan(0);
 	$('#dataTables-example').rowspan(1);
-	$('#dataTables-example').rowspan(2);
+	/* $('#dataTables-example').rowspan(2); */
 	$('#dataTables-example').rowspan(3);
 	$('#dataTables-example').rowspan(4);
-	$('#dataTables-example').rowspan(5);
+	/* $('#dataTables-example').rowspan(5); */
 	$('#dataTables-example').rowspan(9);
 	$('#dataTables-example').rowspan(10);
 });
@@ -72,20 +72,19 @@ function delchk(){
 </head>
 
 <div class="row" style="padding-left:15px;width:900px;">    
-	<h1 class="page-header">상품목록</h1>
+	<h1 class="page-header">공지사항 목록</h1>
 </div>
 <div class="row">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-                         [상품목록페이지] 상품을 검색, 수정, 삭제 기능하는 페이지입니다.
+                         [공지사항 목록페이지] 공지사항을 관리 하는 페이지입니다.
         </div>
         <div class="panel-body">
 			<div class="dataTable_wrapper">
 				<div id="dataTables-example_wrapper"
 					class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-					<div class="row" style="margin-bottom:5px;">
+					<!-- <div class="row" style="margin-bottom:5px;">
 						<div class="col-sm-6">
-							<a href="/MODA/goods/goodsList"><button type="button" class="btn btn-outline btn-default">전체</button></a>
 							<select class="form-control" name="select" onchange="window.open(value,'_self');">
 								<option value ="">--카테고리--</option>
 								<option value ="/MODA/goods/goodsList?searchNum=2&isSearch=OUTER">OUTER</option>
@@ -108,54 +107,45 @@ function delchk(){
 						</div>
 						
 						
-					</div>
+					</div> -->
 					<div class="row">
 						<div class="col-sm-12">
-							<table
-								class="table  table-bordered table-hover dataTable no-footer"
-								id="dataTables-example" role="grid"
-								aria-describedby="dataTables-example_info">
+							<table class="table  table-bordered table-hover dataTable no-footer"id="dataTables-example" role="grid"	aria-describedby="dataTables-example_info">
 								<thead>
 									<tr role="row" style="vertical-align:middle;">
-										<th style="width: 5%; text-align:center;vertical-align:middle;">상품번호</th>
-										<th style="width: 8%; text-align:center;vertical-align:middle;">상품 사진</th>										
-										<th style="width: 7%; text-align:center;vertical-align:middle;">카테고리</th>
-										<th style="width: 20%; text-align:center;vertical-align:middle;">상품명</th>
-										<th style="width: 8%; text-align:center;vertical-align:middle;">가격</th>
-										<th style="width: 7%; text-align:center;vertical-align:middle;">색상</th>
-										<th style="width: 6%; text-align:center;vertical-align:middle;">사이즈</th>
-										<th style="width: 6%; text-align:center;vertical-align:middle;">수량</th>
-										<th style="width: 12%; text-align:center;vertical-align:middle;">등록일자</th>									
-										<th style="width: 13%; text-align:center;vertical-align:middle;">관리</th>
+										<th style="width: 5%; text-align:center;vertical-align:middle;">NO</th>
+										<th style="width: 8%; text-align:center;vertical-align:middle;">TITLE</th>										
+										<th style="width: 7%; text-align:center;vertical-align:middle;">WRITER</th>
+										<th style="width: 20%; text-align:center;vertical-align:middle;">DATE</th>
+										<th style="width: 8%; text-align:center;vertical-align:middle;">READCNT</th>
+										<th style="width: 13%; text-align:center;vertical-align:middle;">SETTING</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="goodsList"  items="${list}" varStatus="stat">
+									<c:forEach var="list"  items="${list}" varStatus="stat">
 									
 										<tr class="gradeA even" role="row">
-											<td style="text-align:center;vertical-align:middle;">${goodsList.GOODS_NO}</td>										
-											<td style="text-align:center;vertical-align:middle;"><img src="/3T/resources/upload/${goodsList.IMAGE}" width="60" height="60" alt=""  onerror="상품 이미지가 없습니다." /></td>
-											<td style="text-align:center;vertical-align:middle;">${goodsList.CATEGORY}</td>
-											<td style="text-align:center;vertical-align:middle;">${goodsList.NAME}</td>
-											<td style="text-align:center;vertical-align:middle;">${goodsList.PRICE}</td>
-											<td style="text-align:center;vertical-align:middle;">${goodsList.COLOR}</td>
-											<td style="text-align:center;vertical-align:middle;">${goodsList.GOODS_SIZE}</td>
-											<td style="text-align:center;vertical-align:middle;">${goodsList.COUNT}</td>
-											<td style="text-align:center;vertical-align:middle;"><fmt:formatDate value="${goodsList.REGDATE}" pattern="YY.MM.dd HH:mm" /></td>										
+											<td style="text-align:center;vertical-align:middle;">${list.NOTICE_NO}</td>
+											<td style="text-align:center;vertical-align:middle;">${list.TITLE}</td>										
+											<td style="text-align:center;vertical-align:middle;">${list.MEMBER_ID}</td>
+											<td style="text-align:center;vertical-align:middle;"><fmt:formatDate value="${list.REGDATE}" pattern="YY.MM.dd HH:mm" /></td>										
+											<td style="text-align:center;vertical-align:middle;">${list.READCNT}</td>
 											<td style="text-align:center;vertical-align:middle;">
 											<a href="/3T/admin/goods/updateForm"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;
-											<a href="/3T/admin/goods/delete"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png"></a>
+											<a href="/3T/admin/goods/delete"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png"></a>&nbsp;&nbsp;
+											<a href="공지/미공지 스왑해주는 매핑경로"><input type="button" value="미공지"></a>
 										</tr>
 										
 									</c:forEach>
 								<!--  등록된 상품이 없을때 -->
-									<c:if test="${fn:length(goodsList) le 0}">
-										<tr><td colspan="11" style="text-align:center;">등록된 상품이 없습니다</td></tr>
+									<c:if test="${fn:length(list) le 0}">
+										<tr><td colspan="11" style="text-align:center;">등록된 공지사항이 없습니다</td></tr>
 									</c:if> 
 								</tbody>
 							</table>
 						</div>
 					</div>
+					<a href="/3T/admin/notice/write"><button type="submit" class="btn btn-default">공지사항 작성</button></a>
 					<div class="paging">
 						${pagingHtml}
 					</div>
