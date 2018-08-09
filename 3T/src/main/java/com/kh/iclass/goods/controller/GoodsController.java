@@ -1,5 +1,6 @@
 package com.kh.iclass.goods.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -23,6 +24,29 @@ public class GoodsController {
 
 	@Resource(name = "goodsService")
 	private GoodsService goodsService;
+	
+	@RequestMapping(value="/main")
+    public ModelAndView mainList(Map<String,Object> commandMap) throws Exception{
+        ModelAndView mv = new ModelAndView("goods/main");
+         
+        List<Map<String,Object>> list = goodsService.selectMainList(commandMap);
+        mv.addObject("list", list);
+         
+        return mv;
+    }
+	
+	@RequestMapping(value="goods/catelist")
+    public ModelAndView goodsCateList(Map<String,Object> commandMap, CommandMap commandMap2) throws Exception{
+        ModelAndView mv = new ModelAndView("goods/categorylist");
+        
+      
+		String isCategory = (String) commandMap2.getMap().get("CATEGORY");
+         
+        List<Map<String,Object>> list = goodsService.selectGoodsCategory(commandMap);
+        mv.addObject("list", list);
+         
+        return mv;
+    }
 
 	@RequestMapping(value = "/goods/list")
 	public ModelAndView goodsList(CommandMap commandMap) throws Exception {
@@ -36,6 +60,35 @@ public class GoodsController {
 
 		return mv;
 	}
+	
+	@RequestMapping(value = "/goods/detail")
+	public ModelAndView goodsDetail(CommandMap commandMap) throws Exception {
+
+	      ModelAndView mv = new ModelAndView("goods/goodsdetail");
+
+	      // 조회수 올리기
+	      /*goodsService.updateHitcnt(commandMap.getMap());*/
+	      // 상품정보 가져오기
+	      List<Map<String, Object>> goodsDetail = goodsService.selectGoodsDetail(commandMap.getMap());
+
+	      // 기본정보를 보여줄 객체는 goodsBasic , 상품종류 쪾에는 goodsDetail 사용
+	      Map<String, Object> goodsBasic = goodsDetail.get(0); // goodsDetail은 20번이여도 goodsKind가 여러개면 여러줄
+
+	      mv.addObject("goodsDetail", goodsDetail);
+	     
+	      mv.addObject("goodsBasic", goodsBasic);
+
+	      List<Map<String, Object>> goodsImage = goodsService.selectGoodsImage(commandMap.getMap());
+	      
+	      Map<String, Object> goodsoneImage = goodsImage.get(0);
+	      
+	      mv.addObject("goodsoneImage", goodsoneImage);
+	      
+	      mv.addObject("goodsImage", goodsImage);
+
+	      
+	      return mv;
+	   }
 
 	
 	

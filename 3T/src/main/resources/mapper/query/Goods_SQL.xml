@@ -69,6 +69,214 @@
 		<include refid="common.pagingPost" />
 
 	</select>
+	
+	<select id="selectGoodsList" parameterType="hashmap" resultType="hashmap">
+      <![CDATA[
+         select 
+            GOODS_NO,
+            NAME,
+            CONTENT, 
+            READCNT,
+            REGDATE,
+            PRICE,
+            RELATED,
+            KEYWORD,
+            CATEGORY,
+            WM_CONCAT(DISTINCT GOODS_SIZE) GOODS_SIZE,
+            WM_CONCAT(DISTINCT COLOR) GOODS_COLOR,
+            WM_CONCAT(DISTINCT SAV_NAME) IMAGE,
+            ROW_NUMBER() OVER (ORDER BY GOODS_NO DESC) RNUM
+         from
+            (
+            SELECT 
+               a.GOODS_NO,
+               a.NAME,
+               a.CONTENT,
+               a.READCNT,
+               a.REGDATE,
+               a.PRICE,
+               a.RELATED,
+               a.KEYWORD,
+               a.CATEGORY,
+               b.ATTRIBUTE_NO,
+               b.GOODS_SIZE,
+               b.COLOR,
+               b.COUNT,
+                c.SAV_NAME
+            FROM
+               GOODS a 
+               INNER JOIN 
+               GOODS_ATTRIBUTE b 
+            ON 
+               a.GOODS_NO = b.GOODS_NO 
+               
+            INNER JOIN 
+            UPLOAD c
+            ON 
+               a.GOODS_NO = c.GOODS_NO  
+               
+      ORDER BY 
+         a.GOODS_NO DESC 
+      )
+      GROUP BY
+         GOODS_NO,
+         NAME,
+         CONTENT, 
+         READCNT,
+         REGDATE,
+         PRICE,
+         RELATED,
+         KEYWORD,
+         CATEGORY 
+         
+      ]]>
+</select>
+
+<select id="selectGoodsCategory" resultType="hashmap" parameterType="hashmap">
+<![CDATA[
+select 
+            GOODS_NO,
+            NAME,
+            CONTENT, 
+            READCNT,
+            REGDATE,
+            PRICE,
+            RELATED,
+            KEYWORD,
+            CATEGORY,
+            WM_CONCAT(DISTINCT GOODS_SIZE) GOODS_SIZE,
+            WM_CONCAT(DISTINCT COLOR) GOODS_COLOR,
+            WM_CONCAT(DISTINCT SAV_NAME) IMAGE,
+            ROW_NUMBER() OVER (ORDER BY GOODS_NO DESC) RNUM
+         from
+            (
+            SELECT 
+               a.GOODS_NO,
+               a.NAME,
+               a.CONTENT,
+               a.READCNT,
+               a.REGDATE,
+               a.PRICE,
+               a.RELATED,
+               a.KEYWORD,
+               a.CATEGORY,
+               b.ATTRIBUTE_NO,
+               b.GOODS_SIZE,
+               b.COLOR,
+               b.COUNT,
+                c.SAV_NAME
+            FROM
+               GOODS a 
+               INNER JOIN 
+               GOODS_ATTRIBUTE b 
+            ON 
+               a.GOODS_NO = b.GOODS_NO 
+               
+            INNER JOIN 
+            UPLOAD c
+            ON 
+               a.GOODS_NO = c.GOODS_NO  
+               
+      ORDER BY 
+         a.GOODS_NO DESC 
+      )
+      WHERE
+      	CATEGORY = #{CATEGORY}
+      GROUP BY
+         GOODS_NO,
+         NAME,
+         CONTENT, 
+         READCNT,
+         REGDATE,
+         PRICE,
+         RELATED,
+         KEYWORD,
+         CATEGORY 
+]]>
+</select>
+
+<update id="updateHitcnt" parameterType="hashmap">
+<![CDATA[
+	UPDATE
+		GOODS
+	SET
+		READCNT = READCNT + 1
+	WHERE 
+		GOODS_NO = #{GOODS_NO}
+]]>
+</update>
+
+<select id="selectGoodsDetail" resultType="hashmap" parameterType="hashmap">
+<![CDATA[
+SELECT
+	GOODS_NO,
+	NAME,
+	CONTENT, 
+	READCNT,
+	REGDATE,
+	PRICE,
+	RELATED,
+	KEYWORD,
+    CATEGORY,
+    ATTRIBUTE_NO,
+	WM_CONCAT(GOODS_SIZE) AS GOODS_SIZE,
+	WM_CONCAT(COLOR) AS COLOR,
+	WM_CONCAT(COUNT) AS COUNT
+FROM
+	(
+	SELECT 
+		a.GOODS_NO,
+		a.NAME,
+		a.CONTENT,
+		a.READCNT,
+		a.REGDATE,
+		a.PRICE,
+		a.RELATED,
+		a.KEYWORD,
+		a.CATEGORY,
+		b.ATTRIBUTE_NO,
+		b.GOODS_SIZE,
+		b.COLOR,
+		b.COUNT
+	FROM
+		GOODS a INNER JOIN GOODS_ATTRIBUTE b 
+	ON 
+		a.GOODS_NO = b.GOODS_NO 
+    WHERE 
+    	ROWNUM < 15
+	ORDER BY 
+		b.ATTRIBUTE_NO ASC
+	)
+  WHERE
+        GOODS_NO = #{GOODS_NO}
+  GROUP BY
+		GOODS_NO,
+		NAME,CONTENT, 
+		READCNT,
+		REGDATE,
+		PRICE,
+		RELATED,
+		KEYWORD,
+        ATTRIBUTE_NO,
+		CATEGORY
+]]>
+</select>
+
+<select id="selectGoodsImage" resultType="hashmap" parameterType="hashmap">
+<![CDATA[
+ SELECT 
+ 	GOODS_NO,
+ 	UPLOAD_NO,
+ 	SAV_NAME 
+ FROM 
+ 	UPLOAD 
+ WHERE 
+ 	GOODS_NO = #{GOODS_NO}
+ ORDER BY
+ 	UPLOAD_NO ASC
+]]>
+</select>
+
 
 	<insert id="insert" parameterType="hashmap"
 		useGeneratedKeys="true" keyProperty="GOODS_NO">
