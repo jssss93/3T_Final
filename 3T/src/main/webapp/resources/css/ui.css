@@ -44,3 +44,52 @@ a:link, a:visited {text-decoration: none; color: #656565;}
 .wdp_80 {width:100%;}
 .wdp_90 {width:100%}
 .btn {border-radius:3px;padding:5px 11px;color:#000000 !important; display:inline-block; background-color:#f7f7f7; border:1px solid #c8c8c8;vertical-align:middle}
+
+
+.mySlides {
+	display: none;
+}
+
+.w3-animate-opacit{animation:opac 0.9s}@keyframes opac{from{opacity:0.5} to{opacity:1}}
+
+.w3-left, .w3-right, .w3-badge {
+	cursor: pointer
+}
+
+.w3-badge {
+	height: 13px;
+	width: 13px;
+	padding: 0
+}
+
+.w3-animate-righ {
+	position: relative;
+	animation: animateright 0.5s
+
+
+}@
+keyframes animateright {
+	from {right: -500px;
+	opacity: 1
+}
+
+to {
+	right: 0;
+	opacity: 1
+}
+
+}
+#myImg {
+	border-radius: 5px;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+#myImg:hover {
+	opacity: 0.7;
+}
+
+#myimg2:hover {
+	opacity: 1;
+}
+.abc {  font-size: 24px; color: #000000;}

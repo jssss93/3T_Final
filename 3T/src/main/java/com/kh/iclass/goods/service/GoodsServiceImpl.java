@@ -53,6 +53,27 @@ public class GoodsServiceImpl implements GoodsService {
 		}
 	}
 	
+	@Override
+	public List<Map<String, Object>> selectGoodsDetail(Map<String, Object> map) throws Exception {
+		goodsDAO.updateHitcnt(map);
+		return goodsDAO.selectGoodsDetail(map);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectGoodsImage(Map<String, Object> map) throws Exception {
+		return goodsDAO.selectGoodsImage(map);
+	}
+	
+	@Override
+	public List<Map<String, Object>> selectMainList(Map<String, Object> map) throws Exception {
+		return goodsDAO.selectMainList(map);
+	}
+	
+	@Override
+	public List<Map<String, Object>> selectGoodsCategory(Map<String, Object> map) throws Exception {
+		return goodsDAO.selectGoodsCategory(map);
+	}
+	
 	/*@Override
 	public Map<String, Object> goodsDetail(Map<String, Object> map) throws Exception {
 		// 트랜잭션으로 처리 해야 할 거 같은데?

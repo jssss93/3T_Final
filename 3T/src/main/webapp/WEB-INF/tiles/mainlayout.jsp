@@ -58,14 +58,14 @@ font-family: FontAwesome;
 </style>
 </head>
 <body>
-<br><br><br><br><br>
+
 
 
 	<div id="header" style="margin: 0 auto; height: 500">
 		<tiles:insertAttribute name="header" ignore="true" />
 	</div>
 
-	<div style="width: 1500px; margin: 0 auto;">
+	<div style="width: 1900px; margin: 0 auto;">
 		<div id="body" align="center">
 			<tiles:insertAttribute name="body" ignore="true" />
 		</div>
@@ -111,11 +111,9 @@ font-family: FontAwesome;
 							<div class="position">
 								<ul>
 									<li class="xans-record-"><a
-										href="/3T/goods/catelist?CATEGORY=OUTER">OUTER
-										
-										</a></li>
+										href="/3T/goods/catelist">OUTER</a></li>
 									<li class="xans-record-"><a
-										href="/3T/goods/catelist?CATEGORY=TOP">SUIT</a></li>
+										href="/3T/goods/list?cate_no=213">SUIT</a></li>
 									<li class="xans-record-"><a
 										href="/3T/goods/list?cate_no=57">TOP</a></li>
 									<li class="xans-record-"><a
