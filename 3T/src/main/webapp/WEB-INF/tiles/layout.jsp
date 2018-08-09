@@ -91,7 +91,7 @@ font-family: FontAwesome;
 
 					<div class="left_login">
 						<div class="xans-element- xans-layout xans-layout-statelogoff ">
-							<a href="/3T/member/login" class="log">login</a> / 
+							<a href="/3T/member/loginForm" class="log">login</a> / 
 							<a href="/3T/member/joinStep1">join</a>
 							<br> 
 							<a href="/3T/myshop/order/list.html">order</a> /

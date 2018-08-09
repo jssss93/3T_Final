@@ -32,10 +32,21 @@ public class LoginController {
 
    // 로그인 폼
    // 로그인 폼
-   @RequestMapping(value = "/loginForm")
+   @RequestMapping(value = "/member/loginForm")
    public ModelAndView loginForm() {
       ModelAndView mv = new ModelAndView();
-      mv.setViewName("loginForm");
+      mv.setViewName("member/loginForm");
+      return mv;
+   }
+   
+
+   @RequestMapping(value = "/member/logout")		//로그아웃
+   public ModelAndView logout(HttpServletRequest request, CommandMap commandMap) {
+      HttpSession session = request.getSession(false);
+      if (session != null)
+         session.invalidate();
+      ModelAndView mv = new ModelAndView();
+      mv.setViewName("redirect:/main");
       return mv;
    }
  
@@ -70,7 +81,15 @@ public class LoginController {
          if (chk.get("PASSWD").equals(commandMap.get("PASSWD"))) {
             session.setAttribute("MEMBER_ID", commandMap.get("MEMBER_ID"));	//세션에 아이디를 넣어라
             mv.addObject("MEMBER", chk);	//
-            mv.setViewName("redirect:/loginForm");
+            if(request.getSession().getAttribute("MEMBER_ID").equals("ADMIN"))
+            {
+            	mv.setViewName("redirect:/admin/main");
+            }
+            else
+            {
+            	mv.setViewName("redirect:/main");
+            }
+            
             
             session.setAttribute("NAME", chk.get("NAME"));
             session.setAttribute("MEMBER_NO", chk.get("MEMBER_NO"));
@@ -135,14 +154,4 @@ public class LoginController {
     }
       
 
-   @RequestMapping(value = "/logout")		//로그아웃
-   public ModelAndView logout(HttpServletRequest request, CommandMap commandMap) {
-	   System.out.println("들어오냐?");
-      HttpSession session = request.getSession(false);
-      if (session != null)
-         session.invalidate();
-      ModelAndView mv = new ModelAndView();
-      mv.setViewName("redirect:/loginForm");
-      return mv;
-   }
 }
