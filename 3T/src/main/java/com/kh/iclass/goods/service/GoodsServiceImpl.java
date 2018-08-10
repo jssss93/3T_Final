@@ -73,6 +73,12 @@ public class GoodsServiceImpl implements GoodsService {
 	public List<Map<String, Object>> selectGoodsCategory(Map<String, Object> map) throws Exception {
 		return goodsDAO.selectGoodsCategory(map);
 	}
+
+	/*@Override
+	public List<Object> selectRelatedList(List<Object> list) throws Exception {
+		return goodsDAO.selectRelatedList(list);
+		
+	}*/
 	
 	/*@Override
 	public Map<String, Object> goodsDetail(Map<String, Object> map) throws Exception {

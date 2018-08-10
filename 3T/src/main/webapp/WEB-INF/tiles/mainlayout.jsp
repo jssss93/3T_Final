@@ -110,22 +110,25 @@ font-family: FontAwesome;
 							class="xans-element- xans-layout xans-layout-category">
 							<div class="position">
 								<ul>
+									<c:url var="OUTER" value="/goods/catelist">
+										<c:param name="CATEGORY" value="OUTER" />
+									</c:url>
+									
+									<li class="xans-record-"><a href="/3T/goods/catelist?CATEGORY=OUTER">OUTER</a></li>
 									<li class="xans-record-"><a
-										href="/3T/goods/catelist">OUTER</a></li>
+										href="/3T/goods/catelist?CATEGORY=SUIT">SUIT</a></li>
 									<li class="xans-record-"><a
-										href="/3T/goods/list?cate_no=213">SUIT</a></li>
+										href="/3T/goods/catelist?CATEGORY=TOP">TOP</a></li>
 									<li class="xans-record-"><a
-										href="/3T/goods/list?cate_no=57">TOP</a></li>
+										href="/3T/goods/catelist?CATEGORY=SHIRT">SHIRT</a></li>
 									<li class="xans-record-"><a
-										href="/3T/goods/list?cate_no=58">SHIRT</a></li>
+										href="/3T/goods/catelist?CATEGORY=KNIT">KNIT</a></li>
 									<li class="xans-record-"><a
-										href="/3T/goods/list?cate_no=190">KNIT</a></li>
+										href="/3T/goods/catelist?CATEGORY=BOTTOM">BOTTOM</a></li>
 									<li class="xans-record-"><a
-										href="/3T/goods/list?cate_no=59">BOTTOM</a></li>
+										href="/3T/goods/catelist?CATEGORY=SHOES">SHOES</a></li>
 									<li class="xans-record-"><a
-										href="/3T/goods/list?cate_no=194">SHOES</a></li>
-									<li class="xans-record-"><a
-										href="/3T/goods/list?cate_no=60">ACC</a></li>
+										href="/3T/goods/catelist?CATEGORY=ACC">ACC</a></li>
 								</ul>
 							</div>
 						</div>

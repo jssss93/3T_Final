@@ -247,8 +247,28 @@
 <table width="200" border="0" height="0" align="center" cellpadding="10"
 	cellspacing="10">
 	<tr>
-		<td colspan=1 align="center"><h2 id="REVIEW" ></h2></td>
-		<td>${goodsBasic.RELATED }</td>
+		<td>
+		
+		<c:forEach items="${goodsRelatedList }" var="list" varStatus="stat" begin="0" end="15">
+				
+				<c:if test="stat.index == 3">
+					<tr></tr>
+				</c:if>
+				
+				
+				<td width="150" height="400" align="center">
+				<a href="#this" name="title" >
+
+						<img id="myImg"
+							src="/3T/resources/images/${list.IMAGE.split(',')[0] }"
+							width="500" height="570">
+							<input type="hidden" id="GOODS_NO" name="GOODS_NO" value="${list.GOODS_NO }">
+					</a><br> <br> ${list.NAME }<br>
+					&nbsp;${list.PRICE }</td>			
+			
+		
+			</c:forEach>
+			</td>
 	</tr>
 		
 		

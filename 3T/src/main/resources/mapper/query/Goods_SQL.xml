@@ -195,6 +195,41 @@ select
 ]]>
 </select>
 
+<!-- <select id="selectGoodsRelatedList" parameterType="hashmap" resultType="hashmap">
+      <![CDATA[
+      select 
+  goods_no,
+  name,
+  price,
+  WM_CONCAT(sav_name) IMAGE
+    
+    from
+    (select 
+            a.GOODS_NO,
+            a.NAME,
+            a.PRICE,
+            b.SAV_NAME 
+       from
+       		GOODS a INNER JOIN UPLOAD b
+       ON
+       		a.GOODS_NO = b.GOODS_NO
+          )
+         
+      
+    where 
+    goods_no 
+    IN <foreach collection="list" item="item" open="(" close=")" separator=",">
+  
+   #{item}
+
+    </foreach>
+
+    
+    group by goods_no,name,price;
+         
+      ]]>
+</select> -->
+
 <update id="updateHitcnt" parameterType="hashmap">
 <![CDATA[
 	UPDATE

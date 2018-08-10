@@ -65,10 +65,9 @@
 
 			<c:forEach items="${list }" var="list" varStatus="stat">
 
-				<c:if test="list.index  3 div 0">
+				<c:if test="${stat.index%3==0}">
 					<tr></tr>
 				</c:if>
-
 
 
 				
@@ -110,7 +109,7 @@
         
         function fn_openBoardDetail(obj){
             var comSubmit = new ComSubmit();
-            comSubmit.setUrl("<c:url value='/goods/Detail' />");
+            comSubmit.setUrl("<c:url value='/goods/detail' />");
             comSubmit.addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
             comSubmit.submit();
         }
