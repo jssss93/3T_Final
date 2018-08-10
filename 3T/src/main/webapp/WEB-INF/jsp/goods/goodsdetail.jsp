@@ -13,7 +13,7 @@
 			document.form.action = 'Buy';
 		}
 		if (index == 2) {
-			document.form.action = 'AddCart';
+			document.form.action = '/3T/cart/addCart';
 		}
 		if (index == 3) {
 			alert('로그인 후 이용해주세요.');

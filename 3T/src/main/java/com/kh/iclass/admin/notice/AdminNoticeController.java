@@ -68,7 +68,7 @@ public class AdminNoticeController {
 	
 	@RequestMapping(value = "/notice/updateForm")
 	public ModelAndView noticeUpdateForm(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("notice/update");
+		ModelAndView mv = new ModelAndView("notice.write");
 		
 		Map<String, Object> map = noticeService.NoticeDetail(commandMap.getMap());
 		mv.addObject("map", map);
