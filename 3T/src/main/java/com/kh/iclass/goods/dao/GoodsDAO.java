@@ -80,6 +80,11 @@ public class GoodsDAO extends AbstractDAO{
 	public void updateFile(Map<String, Object> map) throws Exception{
 	    update("goods.updateFile", map);
 	}*/
+	/*@SuppressWarnings("unchecked")
+	public List<Object> selectRelatedList(List<Object> list) {
+		// TODO Auto-generated method stub
+		return selectList("goods.selectGoodsRelatedList",list);
+	}*/
 
 
 

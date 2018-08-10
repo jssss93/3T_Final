@@ -67,7 +67,7 @@
 			<c:when test="${fn:length(list) > 0}">
 				<c:forEach items="${list }" var="list" varStatus="stat" begin="0" end="15">
 				
-				<c:if test="stat.index == 3">
+				<c:if test="${stat.index%3==0}">
 					<tr></tr>
 				</c:if>
 				
