@@ -2,7 +2,16 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
+
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+
+<!-- include summernote css/js-->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 </head>
 <body>
 
@@ -16,7 +25,7 @@
 		</tr>
 
 		<tr>
-			<td height="30"></td>
+			<td height="30">${map.CONTENT }</td>
 		</tr>
 	</table>
 	
@@ -33,7 +42,7 @@
 				</tr>
 				<tr>
 					<td colspan="2" class="view_text">
-						<textarea rows="20" cols="100" title="내용" id="CONTENT" name="CONTENT"></textarea>
+						<textarea rows="20" cols="100" title="내용" id="CONTENT" name="CONTENT" value="${map.CONTENT }"></textarea>
 					</td>
 				</tr>
 			</tbody>
@@ -47,7 +56,7 @@
 	</form>
 	
 	<%@ include file="/WEB-INF/include/include-body.jspf" %>
-	<script type="text/javascript">
+	<script type="text/javascript"> 
 		$(document).ready(function(){
 			$("#list").on("click", function(e){ //목록으로 버튼
 				e.preventDefault();
@@ -71,6 +80,14 @@
 			comSubmit.setUrl("<c:url value='/notice/write' />");
 			comSubmit.submit();
 		}
+		<textarea name="content" id="summernote" value=""></textarea>
+		$('#summernote').summernote({
+			lang: 'ko-KR',
+		  	height: 600,                 // set editor height
+		  	minHeight: null,             // set minimum height of editor
+		 	maxHeight: null,             // set maximum height of editor
+		 	focus: true                  // set focus to editable area after initializing summernote
+		});
 	</script>
 </body>
 </html>

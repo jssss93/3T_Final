@@ -74,6 +74,7 @@ function delchk(){
 <div class="row" style="padding-left:15px;width:900px;">    
 	<h1 class="page-header">공지사항 목록</h1>
 </div>
+
 <div class="row">
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -123,7 +124,7 @@ function delchk(){
 								</thead>
 								<tbody>
 									<c:forEach var="list"  items="${list}" varStatus="stat">
-									
+										<input type="hidden" name="NOTICE_NO" value="${list.NOTICE_NO }">
 										<tr class="gradeA even" role="row">
 											<td style="text-align:center;vertical-align:middle;">${list.NOTICE_NO}</td>
 											<td style="text-align:center;vertical-align:middle;">${list.TITLE}</td>										
@@ -131,8 +132,17 @@ function delchk(){
 											<td style="text-align:center;vertical-align:middle;"><fmt:formatDate value="${list.REGDATE}" pattern="YY.MM.dd HH:mm" /></td>										
 											<td style="text-align:center;vertical-align:middle;">${list.READCNT}</td>
 											<td style="text-align:center;vertical-align:middle;">
-											<a href="/3T/admin/goods/updateForm"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;
-											<a href="/3T/admin/goods/delete"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png"></a>&nbsp;&nbsp;
+											<input type="hidden" name="NOTICE_NO" value="${list.NOTICE_NO }">
+											
+											<c:url var="update" value="/admin/notice/updateForm">
+													<c:param name="NOTICE_NO" value="${list.NOTICE_NO }" />
+											</c:url>
+											<c:url var="delete" value="/admin/notice/delete">
+													<c:param name="NOTICE_NO" value="${list.NOTICE_NO }" />
+											</c:url>
+											
+											<a href="${update}"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;
+											<a href="${delete}"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png"></a>&nbsp;&nbsp;
 											<a href="공지/미공지 스왑해주는 매핑경로"><input type="button" value="미공지"></a>
 										</tr>
 										
