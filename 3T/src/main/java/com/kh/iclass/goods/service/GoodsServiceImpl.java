@@ -19,39 +19,40 @@ public class GoodsServiceImpl implements GoodsService {
 
 	@Resource(name = "fileUtils")
 	private FileUtils fileUtils;
-
+	
 	@Resource(name = "attributeUtils")
 	private AttributeUtils attributeUtils;
-
+	
 	@Resource(name = "goodsDAO")
 	private GoodsDAO goodsDAO;
 
 	/*
 	 * @Override public List<Map<String, Object>> selectBoardList(Map<String,
-	 * Object> map) throws Exception { return goodsDAO.selectBoardList(map); }
+	 * Object> map) throws Exception { return goodsDAO.selectBoardList(map);
+	 * }
 	 */
 	// 위에꺼 대신에
 	@Override
 	public Map<String, Object> goodsList(Map<String, Object> map) throws Exception {
 		return goodsDAO.selectGoodsList(map);
 	}
-
+	
 	@Override
 	public void goodsWrite(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		goodsDAO.insertGoods(map);
-
-		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(map, request);
-		for (int i = 0, size = list.size(); i < size; i++) {
+		
+		List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(map, request);
+		for(int i=0, size=list.size(); i<size; i++){
 			goodsDAO.insertFile(list.get(i));
 		}
-
-		List<Map<String, Object>> listAttribute = AttributeUtils.parseInsertAttribute(map, request);
-		for (int i = 0, size = listAttribute.size(); i < size; i++) {
+		
+		List<Map<String,Object>> listAttribute = AttributeUtils.parseInsertAttribute(map, request);
+		for(int i=0, size=listAttribute.size(); i<size; i++){
 			goodsDAO.insertAttribute(listAttribute.get(i));
-
+			
 		}
 	}
-
+	
 	@Override
 	public List<Map<String, Object>> selectGoodsDetail(Map<String, Object> map) throws Exception {
 		goodsDAO.updateHitcnt(map);
@@ -62,12 +63,12 @@ public class GoodsServiceImpl implements GoodsService {
 	public List<Map<String, Object>> selectGoodsImage(Map<String, Object> map) throws Exception {
 		return goodsDAO.selectGoodsImage(map);
 	}
-
+	
 	@Override
 	public List<Map<String, Object>> selectMainList(Map<String, Object> map) throws Exception {
 		return goodsDAO.selectMainList(map);
 	}
-
+	
 	@Override
 	public List<Map<String, Object>> selectNewList(Map<String, Object> map) throws Exception {
 		return goodsDAO.selectNewList(map);
@@ -87,56 +88,54 @@ public class GoodsServiceImpl implements GoodsService {
 		return goodsDAO.selectGoodsBestCategory(map);
 	}
 
-	/*
-	 * @Override public List<Object> selectRelatedList(List<Object> list) throws
-	 * Exception { return goodsDAO.selectRelatedList(list);
-	 * 
-	 * }
-	 */
-
-	/*
-	 * @Override public Map<String, Object> goodsDetail(Map<String, Object> map)
-	 * throws Exception { // 트랜잭션으로 처리 해야 할 거 같은데? goodsDAO.updateReadCnt(map);
-	 * 
-	 * Map<String, Object> resultMap = new HashMap<String,Object>(); Map<String,
-	 * Object> tempMap = goodsDAO.selectGoodsDetail(map);
-	 * 
-	 * resultMap.put("map", tempMap);
-	 * 
-	 * List<Map<String,Object>> list = goodsDAO.selectFileList(map);
-	 * 
-	 * resultMap.put("list", list);
-	 * 
-	 * return resultMap; }
-	 * 
-	 * @Override public void goodsUpdate(Map<String, Object> map, HttpServletRequest
-	 * request) throws Exception { goodsDAO.updateGoods(map);
-	 * 
-	 * goodsDAO.deleteFileList(map); List<Map<String,Object>> list =
-	 * fileUtils.parseUpdateFileInfo(map, request); Map<String,Object> tempMap =
-	 * null; for(int i=0, size=list.size(); i<size; i++){ tempMap = list.get(i);
-	 * if(tempMap.get("IS_NEW").equals("Y")){ goodsDAO.insertFile(tempMap); } else{
-	 * goodsDAO.updateFile(tempMap); } }
-	 * 
-	 * 
-	 * }
-	 * 
-	 * @Override public void goodsDelete(Map<String, Object> map) throws Exception {
-	 * goodsDAO.deleteGoods(map); }
-	 */
-
-	// 상품리뷰
-	@Override
-	public List<Map<String, Object>> selectGoodsDetail1(Map<String, Object> map) throws Exception {
-		/* goodsDAO.updateHitcnt(map); */
-		return goodsDAO.selectGoodsDetail1(map);
+	/*@Override
+	public List<Object> selectRelatedList(List<Object> list) throws Exception {
+		return goodsDAO.selectRelatedList(list);
+		
+	}*/
+	
+	/*@Override
+	public Map<String, Object> goodsDetail(Map<String, Object> map) throws Exception {
+		// 트랜잭션으로 처리 해야 할 거 같은데?
+		goodsDAO.updateReadCnt(map);
+		
+		Map<String, Object> resultMap = new HashMap<String,Object>();
+	    Map<String, Object> tempMap = goodsDAO.selectGoodsDetail(map);
+	   
+	    resultMap.put("map", tempMap);
+	     
+	    List<Map<String,Object>> list = goodsDAO.selectFileList(map);
+	    
+	    resultMap.put("list", list);
+	     
+	    return resultMap;
 	}
 
-	// 상품QA
 	@Override
-	public List<Map<String, Object>> selectGoodsDetail2(Map<String, Object> map) throws Exception {
-		/* goodsDAO.updateHitcnt(map); */
-		return goodsDAO.selectGoodsDetail2(map);
+	public void goodsUpdate(Map<String, Object> map, HttpServletRequest request) throws Exception {
+		goodsDAO.updateGoods(map);
+		
+		goodsDAO.deleteFileList(map);
+	    List<Map<String,Object>> list = fileUtils.parseUpdateFileInfo(map, request);
+	    Map<String,Object> tempMap = null;
+	    for(int i=0, size=list.size(); i<size; i++){
+	        tempMap = list.get(i);
+	        if(tempMap.get("IS_NEW").equals("Y")){
+	            goodsDAO.insertFile(tempMap);
+	        }
+	        else{
+	            goodsDAO.updateFile(tempMap);
+	        }
+	    }
+
+
 	}
+
+	@Override
+	public void goodsDelete(Map<String, Object> map) throws Exception {
+		goodsDAO.deleteGoods(map);
+	}*/
+
+	
 
 }
