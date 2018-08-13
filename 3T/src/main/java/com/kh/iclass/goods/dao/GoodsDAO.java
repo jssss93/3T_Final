@@ -54,7 +54,7 @@ public class GoodsDAO extends AbstractDAO{
 		return selectList("goods.selectGoodsImage",map);
 	}
 	//조회수증가
-	public void updateHitcnt(Map<String, Object> map) throws Exception{
+	public void  updateHitcnt(Map<String, Object> map) throws Exception{
 		update("goods.updateHitcnt",map);
 	}
 		/*
@@ -95,6 +95,12 @@ public class GoodsDAO extends AbstractDAO{
 	public void updateFile(Map<String, Object> map) throws Exception{
 	    update("goods.updateFile", map);
 	}*/
+
+	@SuppressWarnings("unchecked")
+	public List<Map<String,Object>> selectRelatedList(Map<String, Object> map) {
+		return selectList("goods.selectGoodsRelatedList",map);
+	}
+
 	/*@SuppressWarnings("unchecked")
 	public List<Object> selectRelatedList(List<Object> list) {
 		// TODO Auto-generated method stub

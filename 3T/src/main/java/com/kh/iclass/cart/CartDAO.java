@@ -69,4 +69,11 @@ public class CartDAO extends AbstractDAO {
 		return (Map<String, Object>) selectOne("cart.buyInCart", map);
 	}
 
+
+	public Map<String, Object> cartNo(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return (Map<String, Object>) selectOne("cart.selectCartNo", map);
+	}
+
+
 }

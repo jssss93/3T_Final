@@ -320,6 +320,9 @@ select
 ]]>
 </select>
 
+
+
+
 <select id="selectGoodsBestCategory" resultType="hashmap" parameterType="hashmap">
 <![CDATA[
 select 
@@ -385,40 +388,40 @@ select
 ]]>
 </select>
 
-<!-- <select id="selectGoodsRelatedList" parameterType="hashmap" resultType="hashmap">
+<select id="selectGoodsRelatedList" parameterType="java.util.Map" resultType="java.util.Map">
+
       <![CDATA[
-      select 
-  goods_no,
-  name,
-  price,
-  WM_CONCAT(sav_name) IMAGE
-    
-    from
-    (select 
-            a.GOODS_NO,
-            a.NAME,
-            a.PRICE,
-            b.SAV_NAME 
-       from
-       		GOODS a INNER JOIN UPLOAD b
-       ON
-       		a.GOODS_NO = b.GOODS_NO
-          )
-         
+	      SELECT
+	      		GOODS_NO,
+	      		NAME,
+	      		PRICE,
+	      		WM_CONCAT(SAV_NAME) IMAGE
+	      FROM
+	      		(SELECT
+	      			a.GOODS_NO,
+	      			a.NAME,
+	      			a.PRICE,	
+	      			b.SAV_NAME
+	      		FROM
+	      			GOODS a INNER JOIN UPLOAD b
+	      		ON
+	      			a.GOODS_NO = b.GOODS_NO
+	      		)
+	      WHERE
+	      		GOODS_NO
+	      IN		
+	      ]]>
+	      			<foreach collection="relGoodsNo_List" item="item" index="index" separator="," open="(" close=")" >
+	      				#{item}
+	      			</foreach>
+	      				
+	      GROUP BY
+	      		GOODS_NO,
+	      		NAME,
+	      		PRICE
+			  
       
-    where 
-    goods_no 
-    IN <foreach collection="list" item="item" open="(" close=")" separator=",">
-  
-   #{item}
-
-    </foreach>
-
-    
-    group by goods_no,name,price;
-         
-      ]]>
-</select> -->
+</select> 
 
 <update id="updateHitcnt" parameterType="hashmap">
 <![CDATA[
