@@ -25,6 +25,12 @@ public interface GoodsService {
 	
 	public List<Map<String, Object>> selectGoodsCategory(Map<String, Object> map) throws Exception;
 	
+	List<Map<String, Object>> selectGoodsBestCategory(Map<String, Object> map) throws Exception;
+	
+	List<Map<String, Object>> selectNewList(Map<String, Object> map) throws Exception;
+	
+	List<Map<String, Object>> selectBestList(Map<String, Object> map) throws Exception;
+	
 	//상품정보가져오기
 	public List<Map<String, Object>> selectGoodsDetail(Map<String, Object> map) throws Exception;
 		

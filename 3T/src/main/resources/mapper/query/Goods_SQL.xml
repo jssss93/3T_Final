@@ -131,6 +131,132 @@
       ]]>
 </select>
 
+<select id="selectGoodsNewList" parameterType="hashmap" resultType="hashmap">
+      <![CDATA[
+		select 
+            GOODS_NO,
+            NAME,
+            CONTENT, 
+            READCNT,
+            REGDATE,
+            PRICE,
+            RELATED,
+            KEYWORD,
+            CATEGORY,
+            WM_CONCAT(DISTINCT GOODS_SIZE) GOODS_SIZE,
+            WM_CONCAT(DISTINCT COLOR) GOODS_COLOR,
+            WM_CONCAT(DISTINCT SAV_NAME) IMAGE,
+            ROW_NUMBER() OVER (ORDER BY GOODS_NO DESC) RNUM
+         from
+            (
+            SELECT 
+               a.GOODS_NO,
+               a.NAME,
+               a.CONTENT,
+               a.READCNT,
+               a.REGDATE,
+               a.PRICE,
+               a.RELATED,
+               a.KEYWORD,
+               a.CATEGORY,
+               b.ATTRIBUTE_NO,
+               b.GOODS_SIZE,
+               b.COLOR,
+               b.COUNT,
+               c.SAV_NAME
+            FROM
+               GOODS a 
+               INNER JOIN 
+               GOODS_ATTRIBUTE b 
+            ON 
+               a.GOODS_NO = b.GOODS_NO 
+               
+            INNER JOIN 
+            UPLOAD c
+            ON 
+               a.GOODS_NO = c.GOODS_NO  
+               
+      ORDER BY 
+         a.GOODS_NO DESC 
+      )
+      GROUP BY
+         GOODS_NO,
+         NAME,
+         CONTENT, 
+         READCNT,
+         REGDATE,
+         PRICE,
+         RELATED,
+         KEYWORD,
+         CATEGORY 
+      ORDER BY
+        REGDATE ASC
+]]>
+</select>
+
+<select id="selectGoodsBestList" parameterType="hashmap" resultType="hashmap">
+      <![CDATA[
+		select 
+            GOODS_NO,
+            NAME,
+            CONTENT, 
+            READCNT,
+            REGDATE,
+            PRICE,
+            RELATED,
+            KEYWORD,
+            CATEGORY,
+            WM_CONCAT(DISTINCT GOODS_SIZE) GOODS_SIZE,
+            WM_CONCAT(DISTINCT COLOR) GOODS_COLOR,
+            WM_CONCAT(DISTINCT SAV_NAME) IMAGE,
+            ROW_NUMBER() OVER (ORDER BY GOODS_NO DESC) RNUM
+         from
+            (
+            SELECT 
+               a.GOODS_NO,
+               a.NAME,
+               a.CONTENT,
+               a.READCNT,
+               a.REGDATE,
+               a.PRICE,
+               a.RELATED,
+               a.KEYWORD,
+               a.CATEGORY,
+               b.ATTRIBUTE_NO,
+               b.GOODS_SIZE,
+               b.COLOR,
+               b.COUNT,
+               c.SAV_NAME
+            FROM
+               GOODS a 
+               INNER JOIN 
+               GOODS_ATTRIBUTE b 
+            ON 
+               a.GOODS_NO = b.GOODS_NO 
+               
+            INNER JOIN 
+            UPLOAD c
+            ON 
+               a.GOODS_NO = c.GOODS_NO  
+               
+      ORDER BY 
+         a.GOODS_NO DESC 
+      )
+      GROUP BY
+         GOODS_NO,
+         NAME,
+         CONTENT, 
+         READCNT,
+         REGDATE,
+         PRICE,
+         RELATED,
+         KEYWORD,
+         CATEGORY 
+      ORDER BY
+        READCNT DESC
+]]>
+</select>
+
 <select id="selectGoodsCategory" resultType="hashmap" parameterType="hashmap">
 <![CDATA[
 select 
@@ -191,6 +317,71 @@ select
          RELATED,
          KEYWORD,
          CATEGORY 
+]]>
+</select>
+
+<select id="selectGoodsBestCategory" resultType="hashmap" parameterType="hashmap">
+<![CDATA[
+select 
+            GOODS_NO,
+            NAME,
+            CONTENT, 
+            READCNT,
+            REGDATE,
+            PRICE,
+            RELATED,
+            KEYWORD,
+            CATEGORY,
+            WM_CONCAT(DISTINCT GOODS_SIZE) GOODS_SIZE,
+            WM_CONCAT(DISTINCT COLOR) GOODS_COLOR,
+            WM_CONCAT(DISTINCT SAV_NAME) IMAGE,
+            ROW_NUMBER() OVER (ORDER BY GOODS_NO DESC) RNUM
+         from
+            (
+            SELECT 
+               a.GOODS_NO,
+               a.NAME,
+               a.CONTENT,
+               a.READCNT,
+               a.REGDATE,
+               a.PRICE,
+               a.RELATED,
+               a.KEYWORD,
+               a.CATEGORY,
+               b.ATTRIBUTE_NO,
+               b.GOODS_SIZE,
+               b.COLOR,
+               b.COUNT,
+                c.SAV_NAME
+            FROM
+               GOODS a 
+               INNER JOIN 
+               GOODS_ATTRIBUTE b 
+            ON 
+               a.GOODS_NO = b.GOODS_NO 
+               
+            INNER JOIN 
+            UPLOAD c
+            ON 
+               a.GOODS_NO = c.GOODS_NO  
+               
+      ORDER BY 
+         a.GOODS_NO DESC 
+      )
+      WHERE
+      	CATEGORY = #{CATEGORY}
+      GROUP BY
+         GOODS_NO,
+         NAME,
+         CONTENT, 
+         READCNT,
+         REGDATE,
+         PRICE,
+         RELATED,
+         KEYWORD,
+         CATEGORY 
+      ORDER BY
+      	READCNT DESC
 ]]>
 </select>
 

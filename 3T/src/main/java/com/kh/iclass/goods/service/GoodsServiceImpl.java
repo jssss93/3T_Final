@@ -70,8 +70,22 @@ public class GoodsServiceImpl implements GoodsService {
 	}
 	
 	@Override
+	public List<Map<String, Object>> selectNewList(Map<String, Object> map) throws Exception {
+		return goodsDAO.selectNewList(map);
+	}
+	
+	@Override
+	public List<Map<String, Object>> selectBestList(Map<String, Object> map) throws Exception {
+		return goodsDAO.selectBestList(map);
+	}
+	
+	@Override
 	public List<Map<String, Object>> selectGoodsCategory(Map<String, Object> map) throws Exception {
 		return goodsDAO.selectGoodsCategory(map);
+	}
+	@Override
+	public List<Map<String, Object>> selectGoodsBestCategory(Map<String, Object> map) throws Exception {
+		return goodsDAO.selectGoodsBestCategory(map);
 	}
 
 	/*@Override
