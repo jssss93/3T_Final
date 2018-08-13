@@ -62,7 +62,7 @@ font-family: FontAwesome;
 
 
 
-	<div id="header" style="margin: 0 auto; height: 500">
+	<div id="header" style="margin: 0 auto; height: 880">
 		<tiles:insertAttribute name="header" ignore="true" />
 	</div>
 
@@ -168,9 +168,40 @@ font-family: FontAwesome;
 					style="vertical-align: middle; padding-left: 20px; padding-right: 20px; top: 0px;">
 					오른쪽 고정 메뉴바</td>
 			</tr>
+			<tr>
+			<td>
+			<button type="button" id="moveupBtn">맨위로</button>
+			<button type="button" id="movedownBtn">아래로</button>
+			</td>
+			</tr>
 		</table>
 	</div>
-
-
+<script type="text/javascript">
+      $(document).ready(function(){
+        $("#moveupBtn").on("click",function(event){
+          // 이동 버튼을 클릭시 태그로 스크롤의 위치가 이동되도록 한다.
+ 
+          // 1. 태그의 위치를 가지고 있는 객체를 얻어온다. => offset 객체
+          var offset = $("#header").offset();
+ 
+          // offset은 절대 위치를 가져온다. offset.top을 통해 상단의 좌표를 가져온다.
+          // position은 부모를 기준으로한 상대위치를 가져온다.
+          $("html body").animate({scrollTop:offset.top},0);
+ 
+        });
+        
+        $("#movedownBtn").on("click",function(event){
+            // 이동 버튼을 클릭시 태그로 스크롤의 위치가 이동되도록 한다.
+   
+            // 1. 태그의 위치를 가지고 있는 객체를 얻어온다. => offset 객체
+            var offset = $("#footer").offset();
+   
+            // offset은 절대 위치를 가져온다. offset.top을 통해 상단의 좌표를 가져온다.
+            // position은 부모를 기준으로한 상대위치를 가져온다.
+            $("html body").animate({scrollTop:offset.top},0);
+   
+          });
+      }); // end of ready()
+    </script>
 </body>
 </html>
