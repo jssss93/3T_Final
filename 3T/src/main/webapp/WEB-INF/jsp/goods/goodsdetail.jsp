@@ -254,56 +254,121 @@
 		
 			
 </table>
-<!-- 리뷰 게시판 -->
-<br><br><br>
- <table width="1000" border="0" cellspacing="0" cellpadding="2">
+<!-- 상세보기REVIEW -->
+
+
+ <br><br><br>
+   <table width="55%" border="0" cellspacing="0" cellpadding="0" class="board_top">
  <tr>
 			<td height="50"></td>
 		</tr>
 		<tr>
-        <td align="center" class="text01 formbar"><h2>Review</h2></td>
+			<td align="center" class="text01 formbar"><h3><font color="#000000">REVIEW</font><span> : WRITE YOUR REVIEWS~!</span></h3></td>
+		</tr>
+
 		<tr>
 			<td height="50"></td>
 		</tr>
 		</table>
-		<table width="1000" border="0" cellspacing="0" cellpadding="1">
-        
-         <tr>
-               <td align="right" colspan="5">
-                <!-- 작성버튼 -->
-                       
-               </td>
+		<table width="70%" align="center" border="0" cellspacing="0" cellpadding="1" class="board_review2">
+       									
+          <tr>
+               <td valign="middle"><strong>NO</strong></td>
+               <td valign="middle"><strong>TITLE</strong></td>
+               <td valign="middle"><strong>CONTENT</strong></td>
+               <td valign="middle"><strong>NAME</strong></td>
+               <td valign="middle"><strong>DATE</strong></td>
+               <td valign="middle"><strong>HIT</strong></td>
             </tr>
+            
+            <c:if test="${fn:length(goodsDetail1) le 0}">
+			<tr><td colspan="6" style="text-align:center;">등록된 리뷰가 없습니다</td></tr>
+		</c:if>
+		
+             <c:forEach var="goodsDetail1" items="${goodsDetail1}" varStatus="stat">
+               <tr>
+                 
+                  <td align="center">${goodsDetail1.REVIEW_NO}</td>
+                    
+                  <td><a href="#this" name="title2">${goodsDetail1.TITLE }</a> <input
+								type="hidden" id="REVIEW_NO" value="${goodsDetail1.REVIEW_NO }">
+                  <!-- <details> <summary>내용보기</summary> -->
+                  <td align="center">${goodsDetail1.CONTENT}</td>
+                 
+                  <td align="center">${goodsDetail1.MEMBER_ID}</td>
+                 
+                  <td align="center">${goodsDetail1.REGDATE}</td>
+                  
+                  <td align="center">${goodsDetail1.READCNT}</td>
+
+               </tr> 
+
+             </c:forEach>
+        
       </table>
+      
    
-   <br></br>
+ <br></br>
 <!-- Q & A 게시판 -->
-<br>
-<br>
-<br>
-        <table width="1000" border="0" cellspacing="0" cellpadding="2">
-		<tr>
+<br><br><br>
+   <table width="50%" border="0" cellspacing="0" cellpadding="0" class="board_top">
+ <tr>
 			<td height="50"></td>
 		</tr>
 		<tr>
-		 <td align="center" class="text01 formbar"><h2>Q&A</h2></td>
-		 </tr>
+			<td align="center"><h3><font color="#000000">Q & A</font><span> : HAVE A QUESTION ?</span></h3></td>
+		</tr>
+
 		<tr>
 			<td height="50"></td>
 		</tr>
 		</table>
-
-         <table width="1000" border="0" cellspacing="0" cellpadding="1">
-        
-         <tr>
-               <td align="right" colspan="5">
-                <!-- 작성버튼 -->
-                        
-               </td>
+		<table width="70%" align="center" border="0" cellspacing="0" cellpadding="0" class="board_review2">
+       
+       <tr>
+               <td valign="middle"><strong>NO</strong></td>
+               <td valign="middle"><strong>TITLE</strong></td>
+               <td valign="middle"><strong>CONTENT</strong></td>
+               <td valign="middle"><strong>NAME</strong></td>
+               <td valign="middle"><strong>DATE</strong></td>
+               <td valign="middle"><strong>HIT</strong></td>
             </tr>
+          
+          <c:if test="${fn:length(goodsDetail2) le 0}">
+			<tr><td colspan="6" style="text-align:center;">등록된 QA가 없습니다</td></tr>
+		</c:if> 
+          
+          <c:forEach var="goodsDetail2" items="${goodsDetail2}" varStatus="stat">
+               <tr>
+                 
+                  <td align="center">${goodsDetail2.QA_NO}</td>
+                 
+                 <td><a href="#this" name="title">${goodsDetail2.TITLE }</a> <input
+								type="hidden" id="QA_NO" value="${goodsDetail2.QA_NO }"> 
+                  <!-- <details> <summary>내용보기</summary> -->
+                  <td align="center">${goodsDetail2.CONTENT}</td>
+                 
+                  <td align="center">${goodsDetail2.MEMBER_ID}</td>
+                 
+                  <td align="center">${goodsDetail2.REGDATE}</td>
+                  
+                  <td align="center">${goodsDetail2.READCNT}</td>
 
-	</center>
-</table>
+               </tr> 
+               
+              
+
+             </c:forEach>
+						
+														
+	</table>
+               
+    
+   
+<br><br>
+<br><br>
+<br><br>
+
 <script>
 		var totprice = 0;
 		var r_optno = [];
