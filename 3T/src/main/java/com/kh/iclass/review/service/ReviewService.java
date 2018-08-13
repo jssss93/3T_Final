@@ -15,7 +15,13 @@ public interface ReviewService {
 		void ReviewUpdate(Map<String, Object> map) throws Exception;
 
 		void ReviewDelete(Map<String, Object> map) throws Exception;
-
 		
-
+		//리뷰 댓글
+		void ReviewCommentWrite(Map<String, Object> map) throws Exception;
+		//리뷰댓글 리스트
+		List<Map<String, Object>> ReviewCommentList(Map<String, Object> map) throws Exception;
+		
+		//리뷰 코멘트 삭제
+		void ReviewDeleteComment (Map<String, Object> map) throws Exception;
+		
 }

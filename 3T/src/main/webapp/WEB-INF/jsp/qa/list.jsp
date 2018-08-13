@@ -29,38 +29,37 @@
                <td valign="middle"><strong>CONTENT</strong></td>
                <td valign="middle"><strong>DATE</strong></td>
 			</tr>			
-	<!-- <table width="74%" align="center" border="0" cellspacing="2" cellpadding="2" class="board_no">
-	   <colgroup>
-			  <col width="10%"/>
-              <col width="10%"/>
-              <col width="15%"/>
-              <col width="20%"/>
-              <col width="20%"/>
-		</colgroup>
-		 <thead>
-			<tr>
-				<th scope="col">NO</th>
-				<th scope="col">TITLE</th>
-				<th scope="col">NAME</th>
-				<th scope="col">CONTENT</th>
-				<th scope="col">DATE</th>
-
-			</tr>
-		</thead>
-		</table> -->
 		<tbody>
 			<c:choose>
 				<c:when test="${fn:length(list) > 0}">
 					<c:forEach items="${list }" var="row">
 						<tr>
-							<td>${row.QA_NO }</td>
-							<td><c:if test="${row.RE_STEP ==1 }">
+							<td align="center">${row.QA_NO }</td>
+							
+							<td align="center"><img width="50" height="50"
+								src="/3T/resources/upload/${row.SAV_NAME.split(',')[0] }" /></td>
+							<td align="center">
+							<c:if test="${row.CATEGORY == 1 }">
+								상품문의
+							</c:if>
+							<c:if test="${row.CATEGORY == 2 }">
+								배송문의
+							</c:if>
+							<c:if test="${row.CATEGORY == 3 }">
+								입금확인문의
+							</c:if>
+							<c:if test="${row.CATEGORY == 4 }">
+								기타문의
+							</c:if>
+							</td>
+							<td class="title"><c:if test="${row.RE_STEP ==1 }">
 												→[답변] &nbsp;
 												</c:if><a href="#this" name="title">${row.TITLE }</a>
-								<input type="hidden" id="QA_NO" value="${row.QA_NO }"></td>
-							<td>${row.MEMBER_ID }</td>
-							<td>${row.CONTENT }</td>
-							<td>${row.REGDATE }</td>
+								<input type="hidden" id="QA_NO" value="${row.QA_NO }">
+								<input type="hidden" id="GOODS_NO" value="${row.GOODS_NO }"></td>
+							<td align="center">${row.CONTENT }</td>
+							<td align="center">${row.MEMBER_ID }</td>
+							<td align="center">${row.REGDATE }</td>
 						</tr>
 					</c:forEach>
 				</c:when>
@@ -89,7 +88,14 @@
 							
 	
 	<br />
-	<a href="#this" class="btn" id="write">글쓰기</a>
+	<!-- <a href="#this" class="btn" id="write">글쓰기</a> -->
+	
+	<!-- 상품 디테일에서 GOODS_NO 보내서 쓰기 -->
+	 
+	<form action="/3T/qa/writeForm">
+	<input type="hidden" id="GOODS_NO" NAME="GOODS_NO" VALUE="99">
+	<input type="submit" value="쓴당">
+	</form>
 
 
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
@@ -121,12 +127,14 @@
             function fn_openBoardWrite(){
             var comSubmit = new ComSubmit();
             comSubmit.setUrl("<c:url value='/qa/writeForm' />");
+            
             comSubmit.submit();
         	}
             function fn_openBoardDetail(obj){
                 var comSubmit = new ComSubmit();
                 comSubmit.setUrl("<c:url value='/qa/detail' />");
                 comSubmit.addParam("QA_NO", obj.parent().find("#QA_NO").val());
+                comSubmit.addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
                 comSubmit.submit();
             }
          

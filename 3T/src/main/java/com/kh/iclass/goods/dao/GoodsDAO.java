@@ -21,11 +21,32 @@ public class GoodsDAO extends AbstractDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectMainList(Map<String, Object> map) throws Exception {
-		return (List<Map<String, Object>>) selectList("goods.selectGoodsList", map);
-	}
 
 	// 카테고리 리스트
+	public List<Map<String, Object>> selectMainList(Map<String, Object> map) throws Exception{
+	    return (List<Map<String, Object>>)selectList("goods.selectGoodsList",map);
+	}
+	//NEW리스트
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectNewList(Map<String, Object> map) throws Exception{
+	    return (List<Map<String, Object>>)selectList("goods.selectGoodsNewList",map);
+	}
+	//BEST리스트
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectBestList(Map<String, Object> map) throws Exception{
+		return (List<Map<String, Object>>)selectList("goods.selectGoodsBestList",map);
+	}
+	//카테고리 리스트
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectGoodsCategory(Map<String, Object> map) throws Exception{
+		return selectList("goods.selectGoodsCategory",map);
+	}
+	//카테고리별 BEST리스트
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectGoodsBestCategory(Map<String, Object> map) throws Exception{
+		return selectList("goods.selectGoodsBestCategory",map);
+	}
+	//상품정보
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectGoodsCategory(Map<String, Object> map) throws Exception {
 		return selectList("goods.selectGoodsCategory", map);

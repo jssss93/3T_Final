@@ -24,8 +24,19 @@ public interface GoodsService {
 	List<Map<String, Object>> selectMainList(Map<String, Object> map) throws Exception;
 
 	public List<Map<String, Object>> selectGoodsCategory(Map<String, Object> map) throws Exception;
+<<<<<<< HEAD
 
 	// 상품정보가져오기
+=======
+	
+	List<Map<String, Object>> selectGoodsBestCategory(Map<String, Object> map) throws Exception;
+	
+	List<Map<String, Object>> selectNewList(Map<String, Object> map) throws Exception;
+	
+	List<Map<String, Object>> selectBestList(Map<String, Object> map) throws Exception;
+	
+	//상품정보가져오기
+>>>>>>> 5415e0777da33634e9993fa2277d4c45f263455d
 	public List<Map<String, Object>> selectGoodsDetail(Map<String, Object> map) throws Exception;
 
 	// 상품이미지가져오기

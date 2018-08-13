@@ -31,6 +31,12 @@ public class GoodsController {
 		ModelAndView mv = new ModelAndView("goods/main");
 
 		List<Map<String, Object>> list = goodsService.selectMainList(commandMap);
+		
+		List<Map<String, Object>> New = goodsService.selectNewList(commandMap);
+		
+		List<Map<String, Object>> best = goodsService.selectBestList(commandMap);
+		mv.addObject("best", best);
+		mv.addObject("New", New);
 		mv.addObject("list", list);
 
 		return mv;
@@ -43,6 +49,13 @@ public class GoodsController {
 		/* String isCategory = (String) commandMap2.getMap().get("CATEGORY"); */
 
 		List<Map<String, Object>> list = goodsService.selectGoodsCategory(commandMap.getMap());
+		
+		List<Map<String, Object>> bestlist = goodsService.selectGoodsBestCategory(commandMap.getMap());
+		
+		mv.addObject("CATEGORY", commandMap.get("CATEGORY"));
+		
+		mv.addObject("bestlist", bestlist);
+		
 		mv.addObject("list", list);
 
 		return mv;

@@ -32,4 +32,16 @@ public class ReviewDAO extends AbstractDAO{
 	public void ReviewDelete(Map<String, Object> map) throws Exception{
 		update("review.REVIEW_delete", map);
 	}
+	
+	public void ReviewCommentWrite(Map<String, Object> map) throws Exception{
+		insert("review.ReviewInsertComment", map);
+	}
+	@SuppressWarnings("unchecked")
+    public List<Map<String, Object>> ReviewCommentList(Map<String, Object> map) throws Exception{
+        return (List<Map<String, Object>>)selectList("review.ReviewCommentSelectList", map);//selectList는 Mybatis기본 기능으로 리스트를 조회할때 사용
+    }
+	public void ReviewCommentDelete(Map<String, Object> map) throws Exception{
+		update("review.REVIEW_Commentdelete", map);
+	}
+	
 }

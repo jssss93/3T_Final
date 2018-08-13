@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +21,7 @@
 			<td height="50"></td>
 		</tr>
 	</table>
+
 	<table width="65%" align="center" border="0" cellspacing="0" cellpadding="2" class="board_review1">
                <tr>
 			   <td valign="middle"><strong>NO</strong></td>
@@ -28,25 +30,7 @@
                <td valign="middle"><strong>CONTENT</strong></td>
                <td valign="middle"><strong>DATE</strong></td>
 			</tr>
-<!-- <table width="60%" border="0" cellspacing="0" cellpadding="2" class="board_no">
-    <colgroup>
-        <col width="10%"/>
-        <col width="*"/>
-        <col width="15%"/>
-        <col width="20%"/>
-        <col width="20%"/>
-    </colgroup>
-    <thead>
-        <tr>
-            <th scope="col">글번호</th>
-            <th scope="col">제목</th>
-            <th scope="col">작성자</th>
-            <th scope="col">내용</th>
-            <th scope="col">작성일</th>
-         
-        </tr>
-    </thead>
-    </table> -->
+
     <tbody>
         <c:choose>
             <c:when test="${fn:length(list) > 0}">
@@ -77,6 +61,7 @@
     
     <%@ include file="/WEB-INF/include/include-body.jspf" %>
     <script type="text/javascript">
+
         $(document).ready(function(){
             $("#write").on("click", function(e){ //글쓰기 버튼
                 e.preventDefault();
@@ -89,7 +74,7 @@
             });
         });
              
-       
+
             function fn_openBoardWrite(){
             var comSubmit = new ComSubmit();
             comSubmit.setUrl("<c:url value='/review/writeForm' />");
