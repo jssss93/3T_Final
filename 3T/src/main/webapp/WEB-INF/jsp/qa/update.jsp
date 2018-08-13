@@ -20,7 +20,11 @@
                     <td>
                         ${map.QA_NO }
                         <input type="hidden" id="QA_NO" name="QA_NO" value="${map.QA_NO}">
-                    </td>
+                        <input type="hidden" id="GOODS_NO" name="GOODS_NO" value="${map.GOODS_NO }">
+                        
+                  <%--   </td>
+                    <td>${map.GOODS_NO }
+                    </td> --%>
               <%--       <th scope="row">조회수</th>
                     <td>${map.REV_READCNT }</td> --%>
                 </tr>
@@ -105,6 +109,8 @@
         function fn_updateBoard(){
             var comSubmit = new ComSubmit("frm");
             comSubmit.setUrl("<c:url value='/qa/update' />");
+            /* comSubmit.addParam("QA_NO", $("#QA_NO").val());
+            comSubmit.addParam("GOODS_NO", $("#GOODS_NO").val()); */
             comSubmit.submit();
         }
          

@@ -4,26 +4,47 @@
 <mapper namespace="qa">
      
     <select id="QA_selectList" parameterType="hashmap" resultType="hashmap">
+   <!--  select 
+ 				A.QA_NO,
+      			A.TITLE,
+      		    A.MEMBER_ID,
+        		A.CONTENT,
+        		A.REGDATE,
+        		A.CATEGORY,
+				A.REF,
+				A.RE_STEP,
+				A.RE_LEVEL,
+				A.GOODS_NO,
+       			B.SAV_NAME
+		  from
+                QA A
+          INNER JOIN 
+                UPLOAD B 
+          ON 
+               A.GOODS_NO = B.GOODS_NO 
+         ORDER BY 
+               
+               A.ref DESC, A.re_step ASC  
+           		 -->
         <![CDATA[
-           SELECT
+           		SELECT
            		QA_NO,
            		TITLE,
            		MEMBER_ID,
            		CONTENT,
            		REGDATE,
-           		GOODS_NO,
+           		CATEGORY,
 				REF,
 				RE_STEP,
-				RE_LEVEL
+				RE_LEVEL,
+				GOODS_NO
            		
            	FROM 
            		QA
            		ORDER BY ref DESC, re_step ASC
-           		
-           		
         ]]>
     </select>
-    <!-- ORDER BY QA_NO DESC -->
+    
     <insert id="QA_insert" parameterType="hashmap">
       <![CDATA[
       
@@ -49,13 +70,13 @@
 			#{PASSWD},
 			#{CONTENT},
 			SYSDATE,
-			'0',
+			#{CATEGORY},
 		
 			QA_NO_SEQ.CURRVAL,
 			
 			
 			#{MEMBER_ID},
-			1
+			#{GOODS_NO}
 		 	
 		)
     ]]>
@@ -74,14 +95,14 @@
             MEMBER_ID,
             REGDATE,
             CONTENT,
-			CATEGORY
+			CATEGORY,
+			GOODS_NO
         FROM
             QA
         WHERE
             QA_NO = #{QA_NO}       
       ]]>
-</select>
-    
+    </select>
     <update id="QA_update" parameterType="hashmap">
     <![CDATA[
         UPDATE 
@@ -91,7 +112,7 @@
             CONTENT = #{CONTENT}
 			
         WHERE
-            QA_NO = #{QA_NO}   
+            QA_NO = #{QA_NO}
     ]]>
 </update>
     
@@ -151,13 +172,12 @@
 			PASSWD,
 			CONTENT,
 			REGDATE,
-			CATEGORY,
 
 			REF,
 			RE_STEP,
 			
-			MEMBER_ID,
-			GOODS_NO
+			MEMBER_ID
+			
 
 		)
 		VALUES (
@@ -166,13 +186,12 @@
 			#{PASSWD},
 			#{CONTENT},
 			SYSDATE,
-			'0',
 		
 			#{REF},
 			#{RE_STEP},
 				
-			#{MEMBER_ID},
-			1
+			#{MEMBER_ID}
+		
 		 	
 		)
     ]]>
@@ -192,6 +211,64 @@
        
     ]]>
 </update>
-</mapper>
+<select id="QA_GoodsSelectList" parameterType="hashmap" resultType="hashmap">
+        <![CDATA[
+          select 
+ 				A.GOODS_NO,
+           		A.NAME,
+           		A.PRICE,
+                B.SAV_NAME
+		  from
+                GOODS A
+          INNER JOIN 
+                UPLOAD B 
+          ON 
+               A.GOODS_NO = B.GOODS_NO 
+               
+         ORDER BY 
+               A.GOODS_NO DESC 
+           		
+        ]]>
+    </select>
+    <!-- QA 상품검색 -->
+       <select id="QA_GoodsSearch" parameterType="hashmap" resultType="hashmap">
+		SELECT 
+				A.GOODS_NO,
+           		A.NAME,
+           		A.PRICE,
+                B.SAV_NAME
+		FROM 
+			 	GOODS A
+         		INNER JOIN 
+                UPLOAD B 
+        ON 
+                A.GOODS_NO = B.GOODS_NO 	
+                
+		WHERE 
+			<if test='SearchNum.equals("NAME")'> 	
+			(NAME LIKE '%' || #{SearchKeyword} || '%')	
+			</if>
+			ORDER BY GOODS_NO DESC
 
+		
+</select>
+
+ <select id="QA_GoodsSelect" parameterType="hashmap" resultType="hashmap">
+      <![CDATA[
+        SELECT
+        	    A.GOODS_NO,
+           		A.NAME,
+           		A.PRICE,
+                B.SAV_NAME
+          FROM
+                GOODS A
+          INNER JOIN 
+                UPLOAD B 
+          ON 
+               A.GOODS_NO = B.GOODS_NO 
+          WHERE
+               A.GOODS_NO = #{GOODS_NO}       
+      ]]>
+</select>
+</mapper>
 
