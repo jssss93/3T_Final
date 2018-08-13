@@ -32,7 +32,7 @@ public class QaDAO extends AbstractDAO{
 	public void QaDelete(Map<String, Object> map) throws Exception{
 		update("qa.QA_delete", map);
 	}
-	
+	//QA 검색
 	@SuppressWarnings("unchecked")
     public List<Map<String, Object>> QaSearchList(Map<String, Object> map) throws Exception{
         return (List<Map<String, Object>>)selectList("qa.QA_selectSearchList", map);
@@ -42,6 +42,19 @@ public class QaDAO extends AbstractDAO{
 	}
 	public void QaReplyStep(Map<String, Object> map) throws Exception{
 		update("qa.QaUpdateReplyStep", map);
+	}
+	@SuppressWarnings("unchecked")
+    public List<Map<String, Object>> QaGoodsList(Map<String, Object> map) throws Exception{
+        return (List<Map<String, Object>>)selectList("qa.QA_GoodsSelectList", map);
+    }
+	//QA 상품검색
+	@SuppressWarnings("unchecked")
+    public List<Map<String, Object>> QaGoodsSearch(Map<String, Object> map) throws Exception{
+        return (List<Map<String, Object>>)selectList("qa.QA_GoodsSearch", map);
+    }
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> QaGoods(Map<String, Object> map) throws Exception{
+		return (Map<String, Object>) selectOne("qa.QA_GoodsSelect", map);
 	}
 	
 }

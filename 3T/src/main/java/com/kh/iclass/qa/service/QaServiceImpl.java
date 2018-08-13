@@ -44,6 +44,7 @@ public class QaServiceImpl implements QaService{
 		// TODO Auto-generated method stub
 		QaDAO.QaDelete(map);
 	}
+	//qa 검색
 	@Override
 	public List<Map<String, Object>> QaSearchList(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
@@ -59,8 +60,23 @@ public class QaServiceImpl implements QaService{
 		// TODO Auto-generated method stub
 		QaDAO.QaReplyStep(map);
 	}
-	
-	
+	@Override
+	public List<Map<String, Object>> QaGoodsList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return QaDAO.QaGoodsList(map);
+	}
+	@Override
+	public List<Map<String, Object>> QaGoodsSearch(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return QaDAO.QaGoodsSearch(map);
+	}
+	@Override
+	public Map<String, Object> QaGoods(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		Map<String, Object> resultMap = QaDAO.QaGoods(map);
+		
+		return resultMap;
+	}
 	
 	
 

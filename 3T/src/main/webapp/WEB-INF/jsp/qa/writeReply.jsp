@@ -29,7 +29,7 @@
                     <td><input type="text" id="PASSWD" name="PASSWD" class="wdp_90"></input></td>
                 </tr>
                 
-                
+              
                 <tr>
                     <td colspan="2" class="view_text">
                         <textarea rows="20" cols="100" title="내용" id="CONTENT" name="CONTENT"></textarea>
@@ -38,13 +38,13 @@
                 <tr>
                <%-- <td> <input type="text" id="REF" name="REF" class="wdp_90" value="${REF.QA_NO }"></input></td> --%>
               <td> <input type="hidden" id="REF" name="REF" value="${REF.QA_NO }"></td>
+              		<%-- <input type="hidden" id="GOODS_NO" name="GOODS_NO" value="${list.GOODS_NO }"> --%>
              <%--  <td><input type="hidden" id="QA_NO" name="QA_NO" value="${map.QA_NO }"></td> --%>
                 </tr> 
 			</tbody>
 		</table>
 		
 		<a href="#this" class="btn" id="write">작성하기</a>
-		
 		<a href="#this" class="btn" id="list">목록으로</a>
 	</form>
 	
