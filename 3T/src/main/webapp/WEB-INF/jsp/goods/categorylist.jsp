@@ -52,6 +52,10 @@
 
 
 				<td width="300" height="300" align="center">
+				
+				
+				
+				
 				<a href="#this" name="title">
 
 						<img name="bestimg"
@@ -138,6 +142,13 @@
             autoscroll: "no",
             interval: 3000
         });*/
+        
+        $('.autoplay').slick({
+        	  slidesToShow: 3,
+        	  slidesToScroll: 1,
+        	  autoplay: true,
+        	  autoplaySpeed: 2000,
+        	});
         
     </script> 
 

@@ -114,16 +114,8 @@ public class GoodsController {
 		mv.addObject("goodsRelatedList",goodsRelatedList);
 		*/
 		
-		//상품리뷰띄우기
-	    List<Map<String, Object>> goodsDetail1 = goodsService.selectGoodsDetail1(commandMap.getMap());
-	      
-	    //상품QA띄우기
-	    List<Map<String, Object>> goodsDetail2 = goodsService.selectGoodsDetail2(commandMap.getMap());
-		
 		
 		mv.addObject("goodsDetail", goodsDetail);
-		mv.addObject("goodsDetail1", goodsDetail1); //REVIEW 상세보기
-	    mv.addObject("goodsDetail2", goodsDetail2); //Q&A 상세보기
 
 		mv.addObject("goodsBasic", goodsBasic);
 

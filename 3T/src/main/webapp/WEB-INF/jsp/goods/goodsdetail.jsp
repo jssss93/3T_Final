@@ -10,10 +10,15 @@
 	
 	function BuyCheck(index) {
 		if (index == 1) {
-			document.form.action = 'Buy';
+			
+			document.form.action = '/3T/order';
+			
+			
 		}
 		if (index == 2) {
+			
 			document.form.action = '/3T/cart/addCart';
+			
 		}
 		if (index == 3) {
 			alert('로그인 후 이용해주세요.');
@@ -59,65 +64,57 @@
 							<td style="text-align: left; font-size: 18pt;" colspan="2">
 								<!-- 상품 이름 --> ${goodsBasic.NAME }
 							</td>
-							</tr>
+						</tr>
 
 						<!-- 상품가격 텍스트 -->
 						<tr>
 							<td style="width: 280; font-size: 13pt;" colspan="2"><br>
-								<p></p> <!--상품 가격  --> KRW&nbsp;  ${goodsBasic.PRICE }
-								</td>				
+								<p></p> 
+								<!--상품 가격  -->
+								KRW&nbsp; ${goodsBasic.PRICE }
+							</td>				
 						</tr>
-						<!-- TOTAL -->
 						
-					<tr>
-						<td>
-						
-								<select id="option" onchange="setOption(this)" style="width:225px">
-                     <option value="">-옵션 선택-</option>
-				<c:forEach var="goodsDetail" items="${goodsDetail}" varStatus="stat">
-				<c:if test="${goodsDetail.COUNT ne 0}">
+			<tr>
+				<td>
+						<!-- 색상, 사이즈, 개수 선택옵션 -->
+					<select id="option" onchange="setOption(this)" style="width:225px">
+               		<option value="">-옵션 선택-</option>
+					<c:forEach var="goodsDetail" items="${goodsDetail}" varStatus="stat">
+					<c:if test="${goodsDetail.COUNT ne 0}">
 
 							 <option
 							 value="${goodsDetail.COLOR }-${goodsDetail.GOODS_SIZE }"
-							 optnm="${goodsDetail.COLOR }-${goodsDetail.GOODS_SIZE }"
-							 
+							 optnm="${goodsDetail.COLOR }-${goodsDetail.GOODS_SIZE }" 
 							 stock="${goodsDetail.COUNT }"
 							 price="${goodsBasic.PRICE }"
-							 kinds="${goodsDetail.ATTRIBUTE_NO }">
-							 ${goodsDetail.COLOR } - ${goodsDetail.GOODS_SIZE }
-							 (${goodsDetail.COUNT }개)</option>	
-                </c:if>
+							 attributeno="${goodsDetail.ATTRIBUTE_NO }">
+							 ${goodsDetail.COLOR } - ${goodsDetail.GOODS_SIZE }(${goodsDetail.COUNT }개)
+							 </option>	
+							 
+              		</c:if>
                      
        
-               <c:if test="${goodsDetail.COUNT eq 0}">
-						 <option
-						 value="${goodsDetail.COLOR }-${goodsDetail.GOODS_SIZE }"
-						 optnm="${goodsDetail.COLOR }-${goodsDetail.GOODS_SIZE }"
-						 stock="0" price="0" disabled=""
-						 kinds="${goodsDetail.ATTRIBUTE_NO }">
-						 ${goodsDetail.COLOR } - ${goodsDetail.GOODS_SIZE }
-						 (품절)</option>
-              </c:if>
+					<c:if test="${goodsDetail.COUNT eq 0}">
+							 <option
+							 value="${goodsDetail.COLOR }-${goodsDetail.GOODS_SIZE }"
+							 optnm="${goodsDetail.COLOR }-${goodsDetail.GOODS_SIZE }"
+							 stock="0" 
+							 price="0" 
+							 disabled=""
+							 attributeno="${goodsDetail.ATTRIBUTE_NO }">
+							 ${goodsDetail.COLOR } - ${goodsDetail.GOODS_SIZE }(품절)
+							 </option>
+             		</c:if>
 				
-               </c:forEach>
-               </select>  
+            	   </c:forEach>
+             	  </select>  
                </td>
-						<td>
-								<!-- +,-버튼 -->
-								
-						</td>
-								  
-								  
-								   <!--  카운트 0이되면 품절이되는 카운트 추가해야됨
-							 -----------------------------------
-							 ----------------------------------
-							 ---------------------------------- -->
-
-							
-					</tr>
+			</tr>
 						
-						<!-- SIZE 텍스트, 텍스트박스 -->
-						<tr><td>
+						<!-- 사이즈, 색상, 개수출력 -->
+			<tr>
+				<td>
 					<div id="attribute">
 							<ul class="MK_inner-opt-cm" id="MK_innerOpt_01"></ul>
                   	    <div id="MK_innerOptTotal" class="">
@@ -127,88 +124,71 @@
                      		  </p>
                     	</div>
 					</div>
-			</td>
-						</tr>
+				</td>
+			</tr>
 						
-						
-						<!-- color -->
-						<tr>
-							
-						</tr>
 						
 						
 						
 						<!-- BUY,ADD CART추가하기 -->
-						<tr>
+			<tr>
+				<td colspan="2"> 
+				<br/>
+					<!-- 상품구매버튼 -->
 
-								</tr>
-								<tr>
-									<td colspan="2"> 
-									<br/>
-										<!-- 상품구매버튼 --> <!-- 로그인 o --> 
-
-											<input name="Buy" style="" src="/3T/resources/images/buy.PNG"
-												onmouseover="this.src='/3T/resources/images/buy1.png'"
-												onmouseout="this.src='/3T/resources/images/buy.PNG'"
-												onclick="BuyCheck(1);" type="image" src="/3T/resources/images/buy.PNG"
-												 />
+						<input name="Buy" style="" src="/3T/resources/images/buy.PNG"
+						onmouseover="this.src='/3T/resources/images/buy1.png'"
+						onmouseout="this.src='/3T/resources/images/buy.PNG'"
+						onclick="BuyCheck(1);" type="image" src="/3T/resources/images/buy.PNG" />
+						<input type="hidden" name="GOODS_NO" id="GOODS_NO" value="${goodsBasic.GOODS_NO }"/>
 										
-									</td>
+				</td>
 
-									<tr>
-									<td colspan="2">
-									<br>
-										<!-- 장바구니버튼 --> <!-- 로그인 o --> 
+					<tr>
+						<td colspan="2">
+							<br>
+							<!-- 장바구니버튼 -->  
 											
-												<input name="BuyCart"
-													onmouseover="this.src='/3T/resources/images/cart.PNG'"
-													onmouseout="this.src='/3T/resources/images/cart.PNG'"
-													onclick="BuyCheck(2);" type="image"
-
-													src="/3T/resources/images/cart.PNG" value="장바구니 추가" />
-											
-											
-											
-									
-
-								</tr>
+							<input name="BuyCart"
+							onmouseover="this.src='/3T/resources/images/cart.PNG'"
+							onmouseout="this.src='/3T/resources/images/cart.PNG'"
+							onclick="BuyCheck(2);" type="image"
+							src="/3T/resources/images/cart.PNG" />
+					</tr>
 								
-								<tr>
-								<td colspan="2">
-								<!-- wishlist버튼  로그인 o-->
+					<tr>
+						<td colspan="2">
+							<!-- wishlist버튼 -->
 								
-								<input name="WishList" onclick="BuyCheck(4);" type="image" src="/3T/resources/images/wishlist.PNG"
-								value="WishList"/>
-								
-								<!-- wishlist --> <!-- 로그인 x -->
-								
-							
-								</td>
-								<tr>
-								<td colspan="2">
+							<input name="WishList" onclick="BuyCheck(4);" 
+							type="image" src="/3T/resources/images/wishlist.PNG"
+							value="WishList"/>
+							</td>
+						<tr>
+							<td colspan="2">
 								<!-- 리뷰,q&a 하이퍼링크 추가 -->
 								<a href='Review_list.action?Goods_no=${resultClass.goods_no}'>REVIEW&nbsp;( 0 )</a>
 								&nbsp;&nbsp;&nbsp;&nbsp;
 								<a href='qa_listAction.action?Goods_no=${resultClass.goods_no}'>QA&nbsp;( 0 )</a>
-								</td>
-								</tr>
-								
-								<tr>
-									<td align="left" colspan="2">
-									<br>
-										<!-- 옷 정보 --> <pre>
+							</td>
+						</tr>
+						<!-- 옷 정보 content -->	
+						<tr>
+							<td align="left" colspan="2">
+							<br>
+							 <pre>
 	                    <font color="#de1616">INFO</font>
                         ${goodsBasic.CONTENT }
 
                              
-								</tr>
-							</td>
-							</body>
+						</tr>
+							
+							
 					</table>
 				</form>
 			</td>
 		</tr>
-		</body>
+		
 	</table>
 
 	<!-- 상품 상세 이미지 -->
@@ -274,224 +254,66 @@
 		
 			
 </table>
-<!-- 상세보기REVIEW -->
-
-
- <br><br><br>
-   <table width="55%" border="0" cellspacing="0" cellpadding="0" class="board_top">
- <tr>
-			<td height="50"></td>
-		</tr>
-		<tr>
-			<td align="center" class="text01 formbar"><h3><font color="#000000">REVIEW</font><span> : WRITE YOUR REVIEWS~!</span></h3></td>
-		</tr>
-
-		<tr>
-			<td height="50"></td>
-		</tr>
-		</table>
-		<table width="70%" align="center" border="0" cellspacing="0" cellpadding="1" class="board_review2">
-       									
-          <tr>
-               <td valign="middle"><strong>NO</strong></td>
-               <td valign="middle"><strong>TITLE</strong></td>
-               <td valign="middle"><strong>CONTENT</strong></td>
-               <td valign="middle"><strong>NAME</strong></td>
-               <td valign="middle"><strong>DATE</strong></td>
-               <td valign="middle"><strong>HIT</strong></td>
-            </tr>
-            
-            <c:if test="${fn:length(goodsDetail1) le 0}">
-			<tr><td colspan="6" style="text-align:center;">등록된 리뷰가 없습니다</td></tr>
-		</c:if>
-		
-             <c:forEach var="goodsDetail1" items="${goodsDetail1}" varStatus="stat">
-               <tr>
-                 
-                  <td align="center">${goodsDetail1.REVIEW_NO}</td>
-                    
-                  <td><a href="#this" name="title2">${goodsDetail1.TITLE }</a> <input
-								type="hidden" id="REVIEW_NO" value="${goodsDetail1.REVIEW_NO }">
-                  <!-- <details> <summary>내용보기</summary> -->
-                  <td align="center">${goodsDetail1.CONTENT}</td>
-                 
-                  <td align="center">${goodsDetail1.MEMBER_ID}</td>
-                 
-                  <td align="center">${goodsDetail1.REGDATE}</td>
-                  
-                  <td align="center">${goodsDetail1.READCNT}</td>
-
-               </tr> 
-
-             </c:forEach>
-        
-      </table>
-      
-   
- <br></br>
-<!-- Q & A 게시판 -->
+<!-- 리뷰 게시판 -->
 <br><br><br>
-   <table width="50%" border="0" cellspacing="0" cellpadding="0" class="board_top">
+ <table width="1000" border="0" cellspacing="0" cellpadding="2">
  <tr>
 			<td height="50"></td>
 		</tr>
 		<tr>
-			<td align="center"><h3><font color="#000000">Q & A</font><span> : HAVE A QUESTION ?</span></h3></td>
-		</tr>
-
+        <td align="center" class="text01 formbar"><h2>Review</h2></td>
 		<tr>
 			<td height="50"></td>
 		</tr>
 		</table>
-<!-- 		<table border="1" summary="" class="board_review2 ">
-<caption>상품사용후기</caption>
-                    <colgroup>
-<col style="width:70px;">
-<col style="width:auto">
-<col style="width:100px;">
-<col style="width:80px;">
-<col style="width:50px;">
-<col style="width:80px;" class="displaynone">
-</colgroup>
-<thead><tr>
-                            <th scope="col">no</th>
-                            <th scope="col"></th>
-                            <th scope="col">name</th>
-                            <th scope="col">date</th>
-                            <th scope="col">hit</th>
-                            <th scope="col" class="displaynone">grade</th>
-                        </tr></thead>
-<tbody>
-<tr class="xans-record-">
-<td>4</td>
-                            <td class="subject"> <a href="/product/provider/review_read.xml?no=318897&amp;board_no=4&amp;spread_flag=T">좋음</a> <img src="/web/upload/icon_201602021908260300.jpg" alt="NEW"><img src="/web/upload/icon_201602021908415400.jpg" alt="파일첨부" onmouseover="BOARD.load_attached_image('afile_318897','1','4');" onmouseout="BOARD.load_attached_image('afile_318897','0','4');"><span id="afile_318897" style="position: absolute;"><img src="//asclo.com/file_data/hi880515//2018/08/12/22ecea0038baa3cfc0a92902860f9c45.jpeg" height="80" alt=""></span></td>
-                            <td> 윤현진</td>
-                            <td class="txtLess">2018-08-12</td>
-                            <td class="txtLess">14</td>
-                            <td class="displaynone"><img src="/images/ico_point5.gif" alt="5점"></td>
-                        </tr>
-<tr class="xans-record-">
-<td>3</td>
-                            <td class="subject"> <a href="/product/provider/review_read.xml?no=318834&amp;board_no=4&amp;spread_flag=T">ghkd570</a> <img src="/web/upload/icon_201602021908415400.jpg" alt="파일첨부" onmouseover="BOARD.load_attached_image('afile_318834','1','4');" onmouseout="BOARD.load_attached_image('afile_318834','0','4');"><span id="afile_318834" style="display:none;"></span></td>
-                            <td> 황주영</td>
-                            <td class="txtLess">2018-08-11</td>
-                            <td class="txtLess">36</td>
-                            <td class="displaynone"><img src="/images/ico_point5.gif" alt="5점"></td>
-                        </tr>
-<tr class="xans-record-">
-<td>2</td>
-                            <td class="subject"> <a href="/product/provider/review_read.xml?no=318802&amp;board_no=4&amp;spread_flag=T">ㅎㅎ</a> <img src="/web/upload/icon_201602021908415400.jpg" alt="파일첨부" onmouseover="BOARD.load_attached_image('afile_318802','1','4');" onmouseout="BOARD.load_attached_image('afile_318802','0','4');"><span id="afile_318802" style="display:none;"></span></td>
-                            <td> 김종구</td>
-                            <td class="txtLess">2018-08-11</td>
-                            <td class="txtLess">50</td>
-                            <td class="displaynone"><img src="/images/ico_point5.gif" alt="5점"></td>
-                        </tr>
-<tr class="xans-record-">
-<td>1</td>
-                            <td class="subject"> <a href="/product/provider/review_read.xml?no=318528&amp;board_no=4&amp;spread_flag=T">역시 갓즈클로</a> <img src="/web/upload/icon_201602021908210200.jpg" alt="HIT"><img src="/web/upload/icon_201602021908415400.jpg" alt="파일첨부" onmouseover="BOARD.load_attached_image('afile_318528','1','4');" onmouseout="BOARD.load_attached_image('afile_318528','0','4');"><span id="afile_318528" style="display:none;"></span></td>
-                            <td> 도상현</td>
-                            <td class="txtLess">2018-08-08</td>
-                            <td class="txtLess">117</td>
-                            <td class="displaynone"><img src="/images/ico_point5.gif" alt="5점"></td>
-                        </tr>
-</tbody>
-</table> -->
-		<table width="70%" align="center" border="0" cellspacing="0" cellpadding="0" class="board_review2">
-       
-       <tr>
-               <td valign="middle"><strong>NO</strong></td>
-               <td valign="middle"><strong>TITLE</strong></td>
-               <td valign="middle"><strong>CONTENT</strong></td>
-               <td valign="middle"><strong>NAME</strong></td>
-               <td valign="middle"><strong>DATE</strong></td>
-               <td valign="middle"><strong>HIT</strong></td>
-            </tr>
-          
-          <c:if test="${fn:length(goodsDetail2) le 0}">
-			<tr><td colspan="6" style="text-align:center;">등록된 QA가 없습니다</td></tr>
-		</c:if> 
-          
-          <c:forEach var="goodsDetail2" items="${goodsDetail2}" varStatus="stat">
-               <tr>
-                 
-                  <td align="center">${goodsDetail2.QA_NO}</td>
-                 
-                 <td><a href="#this" name="title">${goodsDetail2.TITLE }</a> <input
-								type="hidden" id="QA_NO" value="${goodsDetail2.QA_NO }"> 
-                  <!-- <details> <summary>내용보기</summary> -->
-                  <td align="center">${goodsDetail2.CONTENT}</td>
-                 
-                  <td align="center">${goodsDetail2.MEMBER_ID}</td>
-                 
-                  <td align="center">${goodsDetail2.REGDATE}</td>
-                  
-                  <td align="center">${goodsDetail2.READCNT}</td>
-
-               </tr> 
-               
-              
-
-             </c:forEach>
-						
-														
-              <%--  <tbody>
-			<c:choose>
-				<c:when test="${fn:length(list) > 0}">
-					<c:forEach var="goodsDetail2" items="${goodsDetail2}" varStatus="stat">
-						<tr>
-							<td>${goodsDetail2.QA_NO }</td>
-							<td>${goodsDetail2.TITLE }</td>
-						    <td>${goodsDetail2.CONTENT }"></td>
-							<td>${goodsDetail2.MEMBER_ID }</td>
-							<td>${goodsDetail2.REGDATE }</td>
-							<td>${goodsDetail2.READCNT }</td>
-						</tr>
-					</c:forEach>
-				</c:when>
-				<c:otherwise>
-					<tr>
-						<td colspan="4">조회된 결과가 없습니다.</td>
-					</tr>
-				</c:otherwise>
-			</c:choose>
-
-		</tbody> --%>
-	</table>
-               
-               
-		<%-- <c:if test="${fn:length(goodsDetail2) le 0}">
-			<tr><td  style="text-align:center;">등록된 리뷰가 없습니다</td></tr>
-		</c:if>  --%>
-   
-      <!-- <table> -->
-      <%-- <tr>
+		<table width="1000" border="0" cellspacing="0" cellpadding="1">
+        
+         <tr>
                <td align="right" colspan="5">
                 <!-- 작성버튼 -->
-                        <a href=/qa/writeForm/?GOODS_NO=<c:property value="GOODS_NO" />&currentPage=<c:property value="currentPage" />">
-                           <img src="\3T FI\3T\src\main\webapp\resources\images\btn_close.gif" border="0" />
-                        </a>
+                       
                </td>
             </tr>
-            </table>--%>
+      </table>
    
-<br><br>
-<br><br>
-<br><br>
+   <br></br>
+<!-- Q & A 게시판 -->
+<br>
+<br>
+<br>
+        <table width="1000" border="0" cellspacing="0" cellpadding="2">
+		<tr>
+			<td height="50"></td>
+		</tr>
+		<tr>
+		 <td align="center" class="text01 formbar"><h2>Q&A</h2></td>
+		 </tr>
+		<tr>
+			<td height="50"></td>
+		</tr>
+		</table>
 
+         <table width="1000" border="0" cellspacing="0" cellpadding="1">
+        
+         <tr>
+               <td align="right" colspan="5">
+                <!-- 작성버튼 -->
+                        
+               </td>
+            </tr>
 
+	</center>
+</table>
 <script>
 		var totprice = 0;
 		var r_optno = [];
 		
 		function setOption(obj) {
 			 var optno = $("#option option:selected").val();
-			 console.log(optno);
-			 if (!optno || in_array(optno,r_optno)) return;
-			 var li = "<li class='MK_li_1_1'><span class='MK_p-name'>" + $("#option option:selected").attr("optnm") + "</span><input type='hidden' name='optno[]' value='" + optno +"'><input type='hidden' name='kinds[]' value='" + $("option:selected",$(obj)).attr("kinds") + "'><input type='hidden' class='mstock' value='" +$("option:selected",$(obj)).attr("stock") + "'><div class='MK_qty-ctrl' style='height:50px'><input type='text' name='ea[]' value='1' class='input_ea' size='2' maxlength='3'><span class='ea'><a class='MK_btn-up'><img src='/3T/resources/images/btn_num_up.gif' alt='' /></a><a class='MK_btn-dw'><img src='/3T/resources/images/btn_num_down.gif' alt='' /></a></span></div><span class='MK_price' data-price='"+$("option:selected",$(obj)).attr("price")+"'>" +($("option:selected",$(obj)).attr("price")) + "원</span><a href='#' optno='" + optno + "'class='MK_btn-del'><img src='/3T/resources/images/btn_close.gif' alt='' /></a></li>";
 			
-			 
-			 
-			 
+			 if (!optno || in_array(optno,r_optno)) return;
+			 var li = "<li class='MK_li_1_1'><span class='MK_p-name'>" + $("#option option:selected").attr("optnm") + "</span><input type='hidden' name='optno[]' value='" + optno +"'><input type='hidden' name='attributeno[]' value='" + $("option:selected",$(obj)).attr("attributeno") + "'><input type='hidden' class='mstock' value='" +$("option:selected",$(obj)).attr("stock") + "'><div class='MK_qty-ctrl' style='height:50px'><input type='text' name='ea[]' value='1' class='input_ea' size='2' maxlength='3'><span class='ea'><a class='MK_btn-up'><img src='/3T/resources/images/btn_num_up.gif' alt='' /></a><a class='MK_btn-dw'><img src='/3T/resources/images/btn_num_down.gif' alt='' /></a></span></div><span class='MK_price' data-price='"+$("option:selected",$(obj)).attr("price")+"'>" +($("option:selected",$(obj)).attr("price")) + "원</span><a href='#' optno='" + optno + "'class='MK_btn-del'><img src='/3T/resources/images/btn_close.gif' alt='' /></a></li>";
+			
 			 $("#MK_innerOpt_01").append(li);
 			 r_optno.push(optno);
 			 var thisIdx = $(".input_ea").index(this);
@@ -602,8 +424,7 @@
 				
 			
 				</script>
-				<%@ include file="/WEB-INF/include/include-body.jspf"%>
-	            <script type="text/javascript">
+				<script>
 				
 				
 				function change_ea(obj,idx){
@@ -618,8 +439,8 @@
 			 
 			 
 			 
-			 
-			 
+			 //attributeno는 attribute_no
+			 //inputEa는 count개수
 			 
 			 
 			 
@@ -627,46 +448,6 @@
 		    document.getElementById("attribute").innerHTML = "You selected: " + x;
 		  */ 
 		
-		  
-		  
-		  //review 작성버튼 스크립트
-				 $("a[name='title2']").on("click", function(e) { //상세보기
-					e.preventDefault();
-					fn_Detail2($(this));
-				}); 
-
-			function fn_Detail2(obj) {
-				var comSubmit = new ComSubmit();
-				comSubmit.setUrl("<c:url value='/review/detail' />");
-				comSubmit.addParam("REVIEW_NO", obj.parent().find("#REVIEW_NO")
-						.val());
-				comSubmit.submit();
-			}
-			function fn_search2(pageNo) {
-				var comSubmit = new ComSubmit();
-				comSubmit.setUrl("<c:url value='/goods/goodsdetail' />");
-				comSubmit.addParam("currentPageNo", pageNo);
-				comSubmit.submit();
-			}
-		  //qa 작성버튼 스크립트
-			 $("a[name='title']").on("click", function(e) { //상세보기
-				e.preventDefault();
-				fn_Detail($(this));
-			}); 
-		function fn_Detail(obj) {
-			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/qa/detail' />");
-			comSubmit.addParam("QA_NO", obj.parent().find("#QA_NO")
-					.val());
-			comSubmit.submit();
-		}
-		function fn_search(pageNo) {
-			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/goods/goodsdetail' />");
-			comSubmit.addParam("currentPageNo", pageNo);
-			comSubmit.submit();
-		}
-		  
 
 		
 		 
