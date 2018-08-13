@@ -9,7 +9,7 @@
 
 </head>
 <body>
-	<table width="60%" border="0" cellspacing="1" cellpadding="1" class="board_top">
+	<table width="70%" align="center" border="0" cellspacing="1" cellpadding="1" class="board_top">
 
 		<tr>
 			<td height="50"></td>
@@ -23,43 +23,25 @@
 		</tr>
 	</table>
 	
-	<table width="60%" border="0" cellspacing="0" cellpadding="2" class="board_no">
+	<table width="74%" align="center" border="0" cellspacing="0" cellpadding="2" class="board_no">
                <tr align="center">
 				<td width="50"><h4>NO</h4></td>
-			    <td width="500"><strong></strong></td>
+			    <td width="370"><strong></strong></td>
 				</tr>			
 </table>
 
-	<table width="60%" border="0" cellspacing="0" cellpadding="2" class="board_list">
-		<!-- <colgroup>
-			<col width="10%" />
-			<col width="*" />
-			<col width="15%" />
-			<col width="20%" />
-		</colgroup> -->
-		<!-- <thead>
-			<tr>
-				<th scope="col">FAQ_NO</th>
-				<th scope="col">MEMBER_ID</th>
-				<th scope="col">TITLE</th>
-				<th scope="col">CONTENT</th>
-				<th scope="col">REGDATE</th>
-			</tr>
-		</thead> -->
+	<table width="80%" align="center" border="0" cellspacing="0" cellpadding="2" class="board_list">
 		<tbody>
 			<c:choose>
 				<c:when test="${fn:length(list) > 0}">
 					<c:forEach items="${list }" var="row">
 						<tr>
 							<td>${row.FAQ_NO }</td>
-							<td><a href="#this" name="title">${row.TITLE }</a> <input
+							<td class="title"><a href="#this" name="title">${row.TITLE }</a> <input
 								type="hidden" id="FAQ_NO" value="${row.FAQ_NO }">
 							</td>
 							<td align=right>${row.MEMBER_ID }</td>
 
-							<%-- <td>${row.CONTENT }</td>
-							<td>${row.REGDATE }</td>
- --%>
 						</tr>
 					</c:forEach>
 				</c:when>
@@ -79,8 +61,13 @@
 	<input type="hidden" id="currentPageNo" name="currentPageNo" />
 
 
+<table class="notice_button">
 	<br />
-	<a href="write" class="btn" >작성</a>
+	<tr>
+	<td><a href="write" class="btn" >작성</a></tr>
+	</tr>
+	</table>
+	
 
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	<script type="text/javascript">

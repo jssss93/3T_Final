@@ -274,56 +274,211 @@
 		
 			
 </table>
-<!-- 리뷰 게시판 -->
-<br><br><br>
- <table width="1000" border="0" cellspacing="0" cellpadding="2">
+<!-- 상세보기REVIEW -->
+
+
+ <br><br><br>
+   <table width="55%" border="0" cellspacing="0" cellpadding="0" class="board_top">
  <tr>
 			<td height="50"></td>
 		</tr>
 		<tr>
-        <td align="center" class="text01 formbar"><h2>Review</h2></td>
+			<td align="center" class="text01 formbar"><h3><font color="#000000">REVIEW</font><span> : WRITE YOUR REVIEWS~!</span></h3></td>
+		</tr>
+
 		<tr>
 			<td height="50"></td>
 		</tr>
 		</table>
-		<table width="1000" border="0" cellspacing="0" cellpadding="1">
-        
-         <tr>
-               <td align="right" colspan="5">
-                <!-- 작성버튼 -->
-                       
-               </td>
+		<table width="70%" align="center" border="0" cellspacing="0" cellpadding="1" class="board_review2">
+       									
+          <tr>
+               <td valign="middle"><strong>NO</strong></td>
+               <td valign="middle"><strong>TITLE</strong></td>
+               <td valign="middle"><strong>CONTENT</strong></td>
+               <td valign="middle"><strong>NAME</strong></td>
+               <td valign="middle"><strong>DATE</strong></td>
+               <td valign="middle"><strong>HIT</strong></td>
             </tr>
+            
+            <c:if test="${fn:length(goodsDetail1) le 0}">
+			<tr><td colspan="6" style="text-align:center;">등록된 리뷰가 없습니다</td></tr>
+		</c:if>
+		
+             <c:forEach var="goodsDetail1" items="${goodsDetail1}" varStatus="stat">
+               <tr>
+                 
+                  <td align="center">${goodsDetail1.REVIEW_NO}</td>
+                    
+                  <td><a href="#this" name="title2">${goodsDetail1.TITLE }</a> <input
+								type="hidden" id="REVIEW_NO" value="${goodsDetail1.REVIEW_NO }">
+                  <!-- <details> <summary>내용보기</summary> -->
+                  <td align="center">${goodsDetail1.CONTENT}</td>
+                 
+                  <td align="center">${goodsDetail1.MEMBER_ID}</td>
+                 
+                  <td align="center">${goodsDetail1.REGDATE}</td>
+                  
+                  <td align="center">${goodsDetail1.READCNT}</td>
+
+               </tr> 
+
+             </c:forEach>
+        
       </table>
+      
    
-   <br></br>
+ <br></br>
 <!-- Q & A 게시판 -->
-<br>
-<br>
-<br>
-        <table width="1000" border="0" cellspacing="0" cellpadding="2">
-		<tr>
+<br><br><br>
+   <table width="50%" border="0" cellspacing="0" cellpadding="0" class="board_top">
+ <tr>
 			<td height="50"></td>
 		</tr>
 		<tr>
-		 <td align="center" class="text01 formbar"><h2>Q&A</h2></td>
-		 </tr>
+			<td align="center"><h3><font color="#000000">Q & A</font><span> : HAVE A QUESTION ?</span></h3></td>
+		</tr>
+
 		<tr>
 			<td height="50"></td>
 		</tr>
 		</table>
+<!-- 		<table border="1" summary="" class="board_review2 ">
+<caption>상품사용후기</caption>
+                    <colgroup>
+<col style="width:70px;">
+<col style="width:auto">
+<col style="width:100px;">
+<col style="width:80px;">
+<col style="width:50px;">
+<col style="width:80px;" class="displaynone">
+</colgroup>
+<thead><tr>
+                            <th scope="col">no</th>
+                            <th scope="col"></th>
+                            <th scope="col">name</th>
+                            <th scope="col">date</th>
+                            <th scope="col">hit</th>
+                            <th scope="col" class="displaynone">grade</th>
+                        </tr></thead>
+<tbody>
+<tr class="xans-record-">
+<td>4</td>
+                            <td class="subject"> <a href="/product/provider/review_read.xml?no=318897&amp;board_no=4&amp;spread_flag=T">좋음</a> <img src="/web/upload/icon_201602021908260300.jpg" alt="NEW"><img src="/web/upload/icon_201602021908415400.jpg" alt="파일첨부" onmouseover="BOARD.load_attached_image('afile_318897','1','4');" onmouseout="BOARD.load_attached_image('afile_318897','0','4');"><span id="afile_318897" style="position: absolute;"><img src="//asclo.com/file_data/hi880515//2018/08/12/22ecea0038baa3cfc0a92902860f9c45.jpeg" height="80" alt=""></span></td>
+                            <td> 윤현진</td>
+                            <td class="txtLess">2018-08-12</td>
+                            <td class="txtLess">14</td>
+                            <td class="displaynone"><img src="/images/ico_point5.gif" alt="5점"></td>
+                        </tr>
+<tr class="xans-record-">
+<td>3</td>
+                            <td class="subject"> <a href="/product/provider/review_read.xml?no=318834&amp;board_no=4&amp;spread_flag=T">ghkd570</a> <img src="/web/upload/icon_201602021908415400.jpg" alt="파일첨부" onmouseover="BOARD.load_attached_image('afile_318834','1','4');" onmouseout="BOARD.load_attached_image('afile_318834','0','4');"><span id="afile_318834" style="display:none;"></span></td>
+                            <td> 황주영</td>
+                            <td class="txtLess">2018-08-11</td>
+                            <td class="txtLess">36</td>
+                            <td class="displaynone"><img src="/images/ico_point5.gif" alt="5점"></td>
+                        </tr>
+<tr class="xans-record-">
+<td>2</td>
+                            <td class="subject"> <a href="/product/provider/review_read.xml?no=318802&amp;board_no=4&amp;spread_flag=T">ㅎㅎ</a> <img src="/web/upload/icon_201602021908415400.jpg" alt="파일첨부" onmouseover="BOARD.load_attached_image('afile_318802','1','4');" onmouseout="BOARD.load_attached_image('afile_318802','0','4');"><span id="afile_318802" style="display:none;"></span></td>
+                            <td> 김종구</td>
+                            <td class="txtLess">2018-08-11</td>
+                            <td class="txtLess">50</td>
+                            <td class="displaynone"><img src="/images/ico_point5.gif" alt="5점"></td>
+                        </tr>
+<tr class="xans-record-">
+<td>1</td>
+                            <td class="subject"> <a href="/product/provider/review_read.xml?no=318528&amp;board_no=4&amp;spread_flag=T">역시 갓즈클로</a> <img src="/web/upload/icon_201602021908210200.jpg" alt="HIT"><img src="/web/upload/icon_201602021908415400.jpg" alt="파일첨부" onmouseover="BOARD.load_attached_image('afile_318528','1','4');" onmouseout="BOARD.load_attached_image('afile_318528','0','4');"><span id="afile_318528" style="display:none;"></span></td>
+                            <td> 도상현</td>
+                            <td class="txtLess">2018-08-08</td>
+                            <td class="txtLess">117</td>
+                            <td class="displaynone"><img src="/images/ico_point5.gif" alt="5점"></td>
+                        </tr>
+</tbody>
+</table> -->
+		<table width="70%" align="center" border="0" cellspacing="0" cellpadding="0" class="board_review2">
+       
+       <tr>
+               <td valign="middle"><strong>NO</strong></td>
+               <td valign="middle"><strong>TITLE</strong></td>
+               <td valign="middle"><strong>CONTENT</strong></td>
+               <td valign="middle"><strong>NAME</strong></td>
+               <td valign="middle"><strong>DATE</strong></td>
+               <td valign="middle"><strong>HIT</strong></td>
+            </tr>
+          
+          <c:if test="${fn:length(goodsDetail2) le 0}">
+			<tr><td colspan="6" style="text-align:center;">등록된 QA가 없습니다</td></tr>
+		</c:if> 
+          
+          <c:forEach var="goodsDetail2" items="${goodsDetail2}" varStatus="stat">
+               <tr>
+                 
+                  <td align="center">${goodsDetail2.QA_NO}</td>
+                 
+                 <td><a href="#this" name="title">${goodsDetail2.TITLE }</a> <input
+								type="hidden" id="QA_NO" value="${goodsDetail2.QA_NO }"> 
+                  <!-- <details> <summary>내용보기</summary> -->
+                  <td align="center">${goodsDetail2.CONTENT}</td>
+                 
+                  <td align="center">${goodsDetail2.MEMBER_ID}</td>
+                 
+                  <td align="center">${goodsDetail2.REGDATE}</td>
+                  
+                  <td align="center">${goodsDetail2.READCNT}</td>
 
-         <table width="1000" border="0" cellspacing="0" cellpadding="1">
-        
-         <tr>
+               </tr> 
+               
+              
+
+             </c:forEach>
+						
+														
+              <%--  <tbody>
+			<c:choose>
+				<c:when test="${fn:length(list) > 0}">
+					<c:forEach var="goodsDetail2" items="${goodsDetail2}" varStatus="stat">
+						<tr>
+							<td>${goodsDetail2.QA_NO }</td>
+							<td>${goodsDetail2.TITLE }</td>
+						    <td>${goodsDetail2.CONTENT }"></td>
+							<td>${goodsDetail2.MEMBER_ID }</td>
+							<td>${goodsDetail2.REGDATE }</td>
+							<td>${goodsDetail2.READCNT }</td>
+						</tr>
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<tr>
+						<td colspan="4">조회된 결과가 없습니다.</td>
+					</tr>
+				</c:otherwise>
+			</c:choose>
+
+		</tbody> --%>
+	</table>
+               
+               
+		<%-- <c:if test="${fn:length(goodsDetail2) le 0}">
+			<tr><td  style="text-align:center;">등록된 리뷰가 없습니다</td></tr>
+		</c:if>  --%>
+   
+      <!-- <table> -->
+      <%-- <tr>
                <td align="right" colspan="5">
                 <!-- 작성버튼 -->
-                        
+                        <a href=/qa/writeForm/?GOODS_NO=<c:property value="GOODS_NO" />&currentPage=<c:property value="currentPage" />">
+                           <img src="\3T FI\3T\src\main\webapp\resources\images\btn_close.gif" border="0" />
+                        </a>
                </td>
             </tr>
+            </table>--%>
+   
+<br><br>
+<br><br>
+<br><br>
 
-	</center>
-</table>
+
 <script>
 		var totprice = 0;
 		var r_optno = [];
@@ -447,7 +602,8 @@
 				
 			
 				</script>
-				<script>
+				<%@ include file="/WEB-INF/include/include-body.jspf"%>
+	            <script type="text/javascript">
 				
 				
 				function change_ea(obj,idx){
@@ -471,6 +627,46 @@
 		    document.getElementById("attribute").innerHTML = "You selected: " + x;
 		  */ 
 		
+		  
+		  
+		  //review 작성버튼 스크립트
+				 $("a[name='title2']").on("click", function(e) { //상세보기
+					e.preventDefault();
+					fn_Detail2($(this));
+				}); 
+
+			function fn_Detail2(obj) {
+				var comSubmit = new ComSubmit();
+				comSubmit.setUrl("<c:url value='/review/detail' />");
+				comSubmit.addParam("REVIEW_NO", obj.parent().find("#REVIEW_NO")
+						.val());
+				comSubmit.submit();
+			}
+			function fn_search2(pageNo) {
+				var comSubmit = new ComSubmit();
+				comSubmit.setUrl("<c:url value='/goods/goodsdetail' />");
+				comSubmit.addParam("currentPageNo", pageNo);
+				comSubmit.submit();
+			}
+		  //qa 작성버튼 스크립트
+			 $("a[name='title']").on("click", function(e) { //상세보기
+				e.preventDefault();
+				fn_Detail($(this));
+			}); 
+		function fn_Detail(obj) {
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("<c:url value='/qa/detail' />");
+			comSubmit.addParam("QA_NO", obj.parent().find("#QA_NO")
+					.val());
+			comSubmit.submit();
+		}
+		function fn_search(pageNo) {
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("<c:url value='/goods/goodsdetail' />");
+			comSubmit.addParam("currentPageNo", pageNo);
+			comSubmit.submit();
+		}
+		  
 
 		
 		 

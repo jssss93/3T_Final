@@ -503,6 +503,45 @@ FROM
             GOODS_NO = #{GOODS_NO}  
    		]]>
 	</update> -->
+	
+	<!-- RIVIEW 상세보기 리스트-->
+	<select id="selectGoodsReviewList" resultType="hashmap" parameterType="hashmap">
+	<![CDATA[
+		SELECT
+		    REVIEW_NO,
+           	TITLE,
+           	MEMBER_ID,
+           	CONTENT,
+           	REGDATE,
+			READCNT,
+			GOODS_NO
+		FROM 
+		    REVIEW 
+		WHERE 
+		    GOODS_NO = #{GOODS_NO}
+		ORDER BY 
+		    REVIEW_NO
+		    ]]>
+	</select>
+	
+<!-- QA 상세보기 리스트-->
+	<select id="selectQaViewList" resultType="hashmap" parameterType="hashmap">
+	<![CDATA[
+		select 
+		    QA_NO,
+           	TITLE,
+           	MEMBER_ID,
+           	CONTENT,
+           	REGDATE,
+			GOODS_NO
+		FROM 
+		    QA 
+		WHERE 
+		    GOODS_NO = #{GOODS_NO} 
+		ORDER BY 
+		    QA_NO
+		    ]]>
+	</select>
 
 
 </mapper>

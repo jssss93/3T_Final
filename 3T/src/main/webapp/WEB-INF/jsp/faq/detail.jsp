@@ -6,7 +6,7 @@
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 </head>
 <body>
-<table width="100%" border="0" cellspacing="0" cellpadding="1" colspan="1">
+<table width="70%" align="center" border="0" cellspacing="0" cellpadding="1" colspan="1" class="board_top">
 
 		<tr>
 			<td height="50"></td>
@@ -20,7 +20,7 @@
 		</tr>
 	</table>
 	
-	<table class="board_view">
+	<table align="center" class="board_view">
 		<colgroup>
 			<col width="15%" />
 			<col width="35%" />
@@ -54,11 +54,15 @@
 		</tbody>
 	</table>
 <br><br/>
-	<input type="hidden" id="FAQ_NO" value="${Detail.FAQ_NO}">
-
-	<a href="#this" class="btn" id="list">목록으로</a>
+	<input type="hidden" id="FAQ_NO" name="FAQ_NO" value="${Detail.FAQ_NO}">
+    
+    <table class="notice_button">
+    <tr>
+	<td><a href="#this" class="btn" id="list">목록으로</a>
 	<a href="#this" class="btn" id="update">수정하기</a>
-	<a href="#this" class="btn" id="delete">삭제하기</a>
+	<a href="#this" class="btn" id="delete">삭제하기</a></td>
+	</tr>
+	</table>
 
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	<script type="text/javascript">
