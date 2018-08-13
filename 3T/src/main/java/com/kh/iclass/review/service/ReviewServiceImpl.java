@@ -42,8 +42,29 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public void ReviewDelete(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		ReviewDAO.ReviewUpdate(map);
+		ReviewDAO.ReviewDelete(map);
 	}
+	@Override
+	public void ReviewCommentWrite(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		ReviewDAO.ReviewCommentWrite(map);
+	}
+	@Override
+	public List<Map<String, Object>> ReviewCommentList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return ReviewDAO.ReviewCommentList(map);
+		
+	}
+	@Override
+	public void ReviewDeleteComment(Map<String, Object> map) throws Exception {
+		ReviewDAO.ReviewCommentDelete(map);
+		
+	}
+	
+	
+
+		
+	
 	
 
 }

@@ -21,21 +21,28 @@
 </head>
 
 <body>
-	<table width="80%" border="0" height="300" align="center"
+	<table  width="80%" border="0" height="300" align="center" 
 		cellpadding="0" cellspacing="10">
-	
-		<tr>
 		
-			<td width="80%" colspan=6 align="center"><h1 class="abc">BEST</h1></td>
+		<tr height="60">
+			<td align="left" valign="top"><strong>${CATEGORY}</strong></td>
 		</tr>
 	
 		<tr>
-		<td width="50"></td>
-			<%-- <c:forEach items="${list }" var="row">
+		
+			<td width="80%" colspan=6 align="center"><h1 class="abc">B&nbsp;E&nbsp;S&nbsp;T</h1></td>
+		</tr>
+		<tr height="40">
+		
+		</tr>
+	
+		<tr>
+		<td width="50"></td><div id="rolling">
+			<c:forEach items="${bestlist }" var="row">
 
-				<c:if test="#stat1.index 4 eq 0">
+				<%-- <c:if test="#stat1.index 4 eq 0">
 
-				</c:if>
+				</c:if> --%>
 
 
 
@@ -45,13 +52,20 @@
 
 
 				<td width="300" height="300" align="center">
+				
+				
+				
+				
+				<a href="#this" name="title">
 
-						<img id="myImg"
-							src="/3T/resources/images/${list.IMAGE.split(',')[0] }"
+						<img name="bestimg"
+							src="/3T/resources/images/${row.IMAGE.split(',')[0] }"
 							width="300" height="300">
+							<input type="hidden" id="GOODS_NO" name="GOODS_NO" value="${row.GOODS_NO }"></a>
+							<br> ${row.NAME }<br> KRW&nbsp;${row.PRICE }</td>
 
 
-			</c:forEach> --%>
+			</c:forEach></div>
 			<td width="50"></td>
 		</tr>
 	</table>
@@ -60,9 +74,8 @@
 	<br>
 	<table width="1100" border="0" align="center" cellpadding="0"
 		cellspacing="30">
-
-		
-
+		<tr height="100">
+		</tr>
 			<c:forEach items="${list }" var="list" varStatus="stat">
 
 				<c:if test="${stat.index%3==0}">
@@ -81,7 +94,7 @@
 							src="/3T/resources/images/${list.IMAGE.split(',')[0] }"
 							width="500" height="500">
 						<input type="hidden" id="GOODS_NO" name="GOODS_NO" value="${list.GOODS_NO }"></a>
-					<br> ${list.NAME }<br> &nbsp;${list.PRICE }</td>
+					<br> ${list.NAME }<br> KRW&nbsp;${list.PRICE }</td>
 
 			</c:forEach>
 			
@@ -113,6 +126,30 @@
             comSubmit.addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
             comSubmit.submit();
         }
+        
+         /*$(document).ready(function(){
+        	
+        	setInterval(function(){
+        		$("body[name='bestimg']").append($('img').first());
+        	}, 2000);
+        }); 
+
+        $("#rolling").als({
+            visible_items: 4,
+            scrolling_items: 1,
+            orientation: "horizontal",
+            circular: "yes",
+            autoscroll: "no",
+            interval: 3000
+        });*/
+        
+        $('.autoplay').slick({
+        	  slidesToShow: 3,
+        	  slidesToScroll: 1,
+        	  autoplay: true,
+        	  autoplaySpeed: 2000,
+        	});
+        
     </script> 
 
 	

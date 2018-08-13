@@ -102,7 +102,57 @@
     ]]>
 </delete>
 
+<delete id="REVIEW_Commentdelete" parameterType="hashmap">
+	 <![CDATA[
+        delete FROM
+            REVIEW_COMMENT
+        WHERE
+            REVIEW_COMMENT_NO = #{REVIEW_COMMENT_NO}   
+    ]]>
+</delete>
 
+<insert id="ReviewInsertComment" parameterType="hashmap">
+      <![CDATA[
+      
+         INSERT INTO
+		REVIEW_COMMENT (
+			REVIEW_COMMENT_NO,
+			REVIEW_ORIGIN_NO,
+			NAME,
+			PASSWD,
+			CONTENT,
+			REGDATE
+
+		)
+		VALUES (
+			REVIEW_COMMENT_NO_SEQ.NEXTVAL,
+			#{REVIEW_ORIGIN_NO},
+			#{NAME},
+			#{PASSWD},
+			#{CONTENT},
+			SYSDATE
+		
+		)
+    ]]>
+</insert>
+    <select id="ReviewCommentSelectList" parameterType="hashmap" resultType="hashmap">
+      <![CDATA[
+         SELECT
+           	REVIEW_COMMENT_NO,
+           	REVIEW_ORIGIN_NO,
+           	NAME,
+           	CONTENT,
+           	REGDATE
+				
+           		
+         FROM 
+           	REVIEW_COMMENT
+         WHERE
+         	REVIEW_ORIGIN_NO = #{REVIEW_NO }
+           	ORDER BY REVIEW_COMMENT_NO DESC
+           		
+      ]]>
+</select>
 </mapper>
 
 

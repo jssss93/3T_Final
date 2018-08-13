@@ -7,22 +7,22 @@
 </head>
 <body>
 
-<table width="60%" border="0" cellspacing="1" cellpadding="1">
+<table width="70%" align="center" border="0" cellspacing="0" cellpadding="1" colspan="1" class="board_top">
 
 		<tr>
-			<td height="30"></td>
+			<td height="50"></td>
 		</tr>
 		<tr>
 			<td align="left" class="text01 formbar"><h3><font color="#555555">FAQ UPDATE</font></h3></td>
 		</tr>
 
 		<tr>
-			<td height="30"></td>
+			<td height="50"></td>
 		</tr>
 	</table>
 
 	<form id="frm">
-		<table class="board_view">
+		<table align="center" class="board_view">
 			<colgroup>
 				<col width="15%" />
 				<col width="35%" />
@@ -47,14 +47,11 @@
 					<td><input type="text" id="TITLE" name="TITLE"
 						class="wdp_90" value="${map.TITLE }" /></td>
 				</tr>
-				
-				<table class="wdp_80">
-				<br><br/>
 				<tr>
-					<td><input type="text" id="CONTENT" name="CONTENT"
-						class="wdp_90" value="${map.CONTENT }" /></td>
+					<td colspan="4" class="view_text">
+					<textarea rows="20" cols="100" title="내용" id="CONTENT" name="CONTENT">${map.CONTENT }</textarea>
+					</td>
 				</tr>
-				</table>
 
 			</tbody>
 		</table>
@@ -63,10 +60,14 @@
 
 	<input type="hidden" id="FAQ_NO" name="FAQ_NO"
 		value="${map.FAQ_NO }">
-
-	<a href="#this" class="btn" id="list">목록으로</a>
+		
+	<table class="notice_button">
+    <tr>
+	<td><a href="#this" class="btn" id="list">목록으로</a>
 	<a href="#this" class="btn" id="update">저장하기</a>
-	<a href="#this" class="btn" id="delete">삭제하기</a>
+	<a href="#this" class="btn" id="delete">삭제하기</a></td>
+	</tr>
+	</table>
 
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	<script type="text/javascript">

@@ -70,8 +70,22 @@ public class GoodsServiceImpl implements GoodsService {
 	}
 	
 	@Override
+	public List<Map<String, Object>> selectNewList(Map<String, Object> map) throws Exception {
+		return goodsDAO.selectNewList(map);
+	}
+	
+	@Override
+	public List<Map<String, Object>> selectBestList(Map<String, Object> map) throws Exception {
+		return goodsDAO.selectBestList(map);
+	}
+	
+	@Override
 	public List<Map<String, Object>> selectGoodsCategory(Map<String, Object> map) throws Exception {
 		return goodsDAO.selectGoodsCategory(map);
+	}
+	@Override
+	public List<Map<String, Object>> selectGoodsBestCategory(Map<String, Object> map) throws Exception {
+		return goodsDAO.selectGoodsBestCategory(map);
 	}
 
 	@Override
@@ -121,6 +135,20 @@ public class GoodsServiceImpl implements GoodsService {
 	public void goodsDelete(Map<String, Object> map) throws Exception {
 		goodsDAO.deleteGoods(map);
 	}*/
+	
+	// 상품리뷰
+	@Override
+	public List<Map<String, Object>> selectGoodsDetail1(Map<String, Object> map) throws Exception {
+			/* goodsDAO.updateHitcnt(map); */
+			return goodsDAO.selectGoodsDetail1(map);
+		}
+
+		// 상품QA
+	@Override
+	public List<Map<String, Object>> selectGoodsDetail2(Map<String, Object> map) throws Exception {
+			/* goodsDAO.updateHitcnt(map); */
+			return goodsDAO.selectGoodsDetail2(map);
+		}
 
 	
 

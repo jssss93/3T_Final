@@ -6,22 +6,22 @@
 </head>
 <body>
 
-<table width="60%" border="0" cellspacing="1" cellpadding="1">
+<table width="70%" align="center" border="0" cellspacing="0" cellpadding="1" colspan="1" class="board_top">
 
 		<tr>
-			<td height="30"></td>
+			<td height="50"></td>
 		</tr>
 		<tr>
 			<td align="left" class="text01 formbar"><h3><font color="#555555">FAQ WRITE</font></h3></td>
 		</tr>
 
 		<tr>
-			<td height="30"></td>
+			<td height="50"></td>
 		</tr>
 	</table>
 
 	<form id="frm">
-		<table>
+		<table align="center" class="board_view">
 			<!-- <colgroup>
 				<col width="15%">
 				<col width="*"/>
@@ -29,10 +29,10 @@
 			<tbody>
 				<tr>
 					<th scope="row">SUBJECT</th>
-					<td><input type="text" id="TITLE" name="TITLE" class="wdp_90"></input></td>
+					<td><input type="text" id="TITLE" name="TITLE" class="board_content2"></input></td>
 				</tr>
 				<tr>
-					<td colspan="2" class="view_text">
+					<td colspan="2" class="board_content2">
 						<textarea rows="20" cols="100" title="내용" id="CONTENT" name="CONTENT"></textarea>
 					</td>
 				</tr>
@@ -41,8 +41,12 @@
 		<br>
 		<!-- <input type="submit" value="작성하기!!!"> -->
 		
-		<a href="#this" class="btn" id="write">작성하기</a>
-		<a href="#this" class="btn" id="list">목록으로</a>
+		<table class="notice_button">
+		<tr>
+		<td><a href="#this" class="btn" id="write">작성하기</a>
+		<a href="#this" class="btn" id="list">목록으로</a></td>
+		</tr>
+		</table>
 	</form>
 	
 	<%@ include file="/WEB-INF/include/include-body.jspf" %>

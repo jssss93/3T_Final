@@ -23,7 +23,7 @@ public class NoticeController {
 	@Resource(name = "noticeService")
 	private NoticeService noticeService;
 
-	@RequestMapping("/notice/list")
+	@RequestMapping(value = "/notice/list")
 	public ModelAndView noticeList(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("notice/list");
 
@@ -79,9 +79,10 @@ public class NoticeController {
 	@RequestMapping(value = "/notice/update")
 	public ModelAndView noticeUpdate(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:detail");
-
+		commandMap.put("NOTICE_NO", commandMap.get("NOTICE_NO"));
+		System.out.println(commandMap.getMap());
 		noticeService.NoticeUpdate(commandMap.getMap());
-
+		
 		mv.addObject("NOTICE_NO", commandMap.get("NOTICE_NO"));
 		return mv;
 	}

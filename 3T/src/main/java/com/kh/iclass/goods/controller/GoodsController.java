@@ -32,6 +32,12 @@ public class GoodsController {
 		ModelAndView mv = new ModelAndView("goods/main");
 
 		List<Map<String, Object>> list = goodsService.selectMainList(commandMap);
+		
+		List<Map<String, Object>> New = goodsService.selectNewList(commandMap);
+		
+		List<Map<String, Object>> best = goodsService.selectBestList(commandMap);
+		mv.addObject("best", best);
+		mv.addObject("New", New);
 		mv.addObject("list", list);
 
 		return mv;
@@ -44,6 +50,13 @@ public class GoodsController {
 		/* String isCategory = (String) commandMap2.getMap().get("CATEGORY"); */		
 
 		List<Map<String, Object>> list = goodsService.selectGoodsCategory(commandMap.getMap());
+		
+		List<Map<String, Object>> bestlist = goodsService.selectGoodsBestCategory(commandMap.getMap());
+		
+		mv.addObject("CATEGORY", commandMap.get("CATEGORY"));
+		
+		mv.addObject("bestlist", bestlist);
+		
 		mv.addObject("list", list);
 
 		return mv;
@@ -125,8 +138,22 @@ public class GoodsController {
 
 		Map<String, Object> goodsoneImage = goodsImage.get(0);
 
+
+		mv.addObject("goodsRelatedList",goodsRelatedList);
+		
+		//상품리뷰띄우기
+	    List<Map<String, Object>> goodsDetail1 = goodsService.selectGoodsDetail1(commandMap.getMap());
+	      
+	    //상품QA띄우기
+	    List<Map<String, Object>> goodsDetail2 = goodsService.selectGoodsDetail2(commandMap.getMap());
+	    
+	    mv.addObject("goodsDetail1", goodsDetail1); //REVIEW 상세보기
+	    mv.addObject("goodsDetail2", goodsDetail2); //Q&A 상세보기
+
 		
 		mv.addObject("goodsDetail", goodsDetail);
+		
+		
 
 		mv.addObject("goodsBasic", goodsBasic);
 

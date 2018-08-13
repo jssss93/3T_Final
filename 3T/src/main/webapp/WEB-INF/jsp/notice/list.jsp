@@ -9,13 +9,13 @@
 
 </head>
 <body>
-	<table width="60%" border="0" cellspacing="0" cellpadding="1" colspan="1" class="board_top">
+	<table width="70%" align="center" border="0" cellspacing="0" cellpadding="1" colspan="1" class="board_top">
 
 		<tr>
 			<td height="50"></td>
 		</tr>
 		<tr>
-			<td align="left" class="text01 formbar"><h3><font color="#555555">NOTICE</font></h3><p>3T의 공지사항입니다 :) 확인해주세요!</p></td>
+			<td align="left" class="text01 formbar"><h3><font color="#000000">NOTICE</font><span> ㅣ 애즈클로의 공지사항입니다 :) 확인해주세요</span></h3></td>
 		</tr>
 
 		<tr>
@@ -23,39 +23,23 @@
 		</tr>
 	</table>
 
-<table width="60%" border="0" cellspacing="0" cellpadding="2" class="board_no">
+<table width="74%" align="center" border="0" cellspacing="0" cellpadding="2" class="board_no">
                <tr align="center">
 				<td width="50"><h4>NO</h4></td>
 			    <td width="370"><strong></strong></td>
 				</tr>			
 </table>
-	<table width="60%" border="0" cellspacing="0" cellpadding="2" class="board_list">
- 		<!-- <colgroup>
-			<col width="10%" />
-			<col width="*" />
-			<col width="15%" />
-			<col width="20%" />
-		</colgroup> -->
-<!-- 		<thead> -->
-<!-- 				<tr> -->
-<!-- 				<th scope="col">NOTICE_NO</th> -->
-<!-- 				<th scope="col">TITLE</th> -->
-<!-- 				<th scope="col">MEMBER_ID</th> -->
-<!-- 				<tr bgcolor="#777777"> -->
-<!-- 			<td height="1" colspan="3"></td> -->
-<!-- 			</tr> -->
-<!-- 		</thead> -->
+	<table width="80%" align="center" border="0" cellspacing="0" cellpadding="2" class="board_list">
 		<tbody>
 			<c:choose>
 				<c:when test="${fn:length(list) > 0}">
 					<c:forEach items="${list }" var="row">
 						<tr>
 							<td>${row.NOTICE_NO }</td>							
-							<td><a href="#this" name="title">${row.TITLE }</a> <input
+							<td class="title"><a href="#this" name="title">${row.TITLE }</a> <input
 								type="hidden" id="NOTICE_NO" value="${row.NOTICE_NO }">
 							</td>
 							<td align=right>${row.MEMBER_ID }</td>
-
 						</tr>
 					</c:forEach>
 				</c:when>
@@ -67,16 +51,28 @@
 			</c:choose>
 		</tbody>
 	</table>
-
+    
 	<c:if test="${not empty paginationInfo}">
 		<ui:pagination paginationInfo="${paginationInfo}" type="text"
 			jsFunction="fn_search" />
 	</c:if>
 	<input type="hidden" id="currentPageNo" name="currentPageNo" />
 
+<br />
+<br>
 
+ 
 	<br />
-	 <a href="write" class="btn" >작성</a>
+	
+	<input type="hidden" id="NOTICE_NO" name="NOTICE_NO" value="${Detail.NOTICE_NO}">
+	 
+	 <table class="notice_button">
+    
+    <tr>
+	<td><a href="write" class="btn" >작성</a></td>
+	</tr>
+    </table>
+
 
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	<script type="text/javascript">
