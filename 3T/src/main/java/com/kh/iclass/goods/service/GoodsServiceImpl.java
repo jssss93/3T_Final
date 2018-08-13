@@ -74,11 +74,11 @@ public class GoodsServiceImpl implements GoodsService {
 		return goodsDAO.selectGoodsCategory(map);
 	}
 
-	/*@Override
-	public List<Object> selectRelatedList(List<Object> list) throws Exception {
-		return goodsDAO.selectRelatedList(list);
+	@Override
+	public List<Map<String,Object>> selectRelatedList(Map<String, Object> map) throws Exception {
+		return goodsDAO.selectRelatedList(map);
 		
-	}*/
+	}
 	
 	/*@Override
 	public Map<String, Object> goodsDetail(Map<String, Object> map) throws Exception {

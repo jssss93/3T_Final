@@ -35,19 +35,29 @@ public class CartController {
 	public ModelAndView addCart(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:/cart/List");
+		mv.setViewName("redirect:/goods/list");
 		HttpSession session = request.getSession();
 
 		Map<String, Object> cartMap = new HashMap<String, Object>();
 		
 		// 회원 장바구니 등록
+		//장바구니에 하나 들어간다.
+	      
 		if (session.getAttribute("MEMBER_ID") != null) { 
 			commandMap.put("GOODS_NO", commandMap.get("GOODS_NO"));
-			commandMap.put("ATTRIBUTE_NO", commandMap.get("ATTRIBUTE_NO"));
-			commandMap.put("COUNT", commandMap.get("COUNT"));
+			commandMap.put("ATTRIBUTE_NO", commandMap.get("attribute_no[]"));
+			commandMap.put("COUNT", commandMap.get("ea[]"));
 			commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
-			cartService.cartInsert(commandMap.getMap());
-			cartService.insertCartDetail(commandMap.getMap());
+			System.out.println("commandMap.getMap():"+commandMap.getMap());
+			
+			//장바구니생성
+			/*cartService.cartInsert(commandMap.getMap());
+			System.out.println("cartInsert 실행됨.");
+			*/
+			//장바구니 에 상품 속성 추가
+			System.out.println("commandMap.getMap():"+commandMap.getMap());
+			cartService.insertCart(commandMap.getMap());
+			
 		} 
 		
 		

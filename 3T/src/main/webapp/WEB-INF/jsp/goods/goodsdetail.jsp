@@ -83,7 +83,7 @@
 							 
 							 stock="${goodsDetail.COUNT }"
 							 price="${goodsBasic.PRICE }"
-							 kinds="${goodsDetail.ATTRIBUTE_NO }">
+							 attribute_no="${goodsDetail.ATTRIBUTE_NO }">
 							 ${goodsDetail.COLOR } - ${goodsDetail.GOODS_SIZE }
 							 (${goodsDetail.COUNT }개)</option>	
                 </c:if>
@@ -152,6 +152,7 @@
 												onmouseout="this.src='/3T/resources/images/buy.PNG'"
 												onclick="BuyCheck(1);" type="image" src="/3T/resources/images/buy.PNG"
 												 />
+												 <input type="hidden" value="${goodsBasic.GOODS_NO }" name="GOODS_NO" id="GOODS_NO">
 										
 									</td>
 
@@ -249,7 +250,7 @@
 	<tr>
 		<td>
 		
-		<c:forEach items="${goodsRelatedList }" var="list" varStatus="stat" begin="0" end="15">
+		<c:forEach items="${goodsRel }" var="list" varStatus="stat" begin="0" end="15">
 				
 				<c:if test="stat.index == 3">
 					<tr></tr>
@@ -332,7 +333,7 @@
 			 var optno = $("#option option:selected").val();
 			 console.log(optno);
 			 if (!optno || in_array(optno,r_optno)) return;
-			 var li = "<li class='MK_li_1_1'><span class='MK_p-name'>" + $("#option option:selected").attr("optnm") + "</span><input type='hidden' name='optno[]' value='" + optno +"'><input type='hidden' name='kinds[]' value='" + $("option:selected",$(obj)).attr("kinds") + "'><input type='hidden' class='mstock' value='" +$("option:selected",$(obj)).attr("stock") + "'><div class='MK_qty-ctrl' style='height:50px'><input type='text' name='ea[]' value='1' class='input_ea' size='2' maxlength='3'><span class='ea'><a class='MK_btn-up'><img src='/3T/resources/images/btn_num_up.gif' alt='' /></a><a class='MK_btn-dw'><img src='/3T/resources/images/btn_num_down.gif' alt='' /></a></span></div><span class='MK_price' data-price='"+$("option:selected",$(obj)).attr("price")+"'>" +($("option:selected",$(obj)).attr("price")) + "원</span><a href='#' optno='" + optno + "'class='MK_btn-del'><img src='/3T/resources/images/btn_close.gif' alt='' /></a></li>";
+			 var li = "<li class='MK_li_1_1'><span class='MK_p-name'>" + $("#option option:selected").attr("optnm") + "</span><input type='hidden' name='optno[]' value='" + optno +"'><input type='hidden' name='attribute_no[]' value='" + $("option:selected",$(obj)).attr("attribute_no") + "'><input type='hidden' class='mstock' value='" +$("option:selected",$(obj)).attr("stock") + "'><div class='MK_qty-ctrl' style='height:50px'><input type='text' name='ea[]' value='1' class='input_ea' size='2' maxlength='3'><span class='ea'><a class='MK_btn-up'><img src='/3T/resources/images/btn_num_up.gif' alt='' /></a><a class='MK_btn-dw'><img src='/3T/resources/images/btn_num_down.gif' alt='' /></a></span></div><span class='MK_price' data-price='"+$("option:selected",$(obj)).attr("price")+"'>" +($("option:selected",$(obj)).attr("price")) + "원</span><a href='#' optno='" + optno + "'class='MK_btn-del'><img src='/3T/resources/images/btn_close.gif' alt='' /></a></li>";
 			
 			 
 			 

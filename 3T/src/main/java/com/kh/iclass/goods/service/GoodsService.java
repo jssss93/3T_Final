@@ -1,11 +1,9 @@
 package com.kh.iclass.goods.service;
 
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-
-import com.kh.iclass.common.map.CommandMap;
 
 public interface GoodsService {
 
@@ -30,6 +28,8 @@ public interface GoodsService {
 		
 	//상품이미지가져오기
 	public List<Map<String, Object>> selectGoodsImage(Map<String, Object> map) throws Exception;
+	
+	List<Map<String, Object>> selectRelatedList(Map<String, Object> map) throws Exception;
 
 	/*List<Object> selectRelatedList(List<Object> list) throws Exception;
 */

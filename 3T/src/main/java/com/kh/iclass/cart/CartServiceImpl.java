@@ -1,6 +1,5 @@
 package com.kh.iclass.cart;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,12 +15,13 @@ public class CartServiceImpl implements CartService {
 	private CartDAO cartDAO;
 
 	// 장바구니 등록
-	public void cartInsert(Map<String, Object> map) throws Exception {
+	public void insertCart(Map<String, Object> map) throws Exception {
 
-		Map<String, Object> cart = new HashMap<String, Object>();
-		System.out.println("optno[] : " + map.get("optno[]"));
+		
+		cartDAO.cartInsert(map);
+		/*System.out.println("optno[] : " + map.get("optno[]"));
 		System.out.println("kinds[] : " + map.get("kinds[]"));
-		System.out.println("ea[] : " + map.get("ea[]"));
+		System.out.println("ea[] : " + map.get("ea[]"));*/
 
 		/*if (map.get("optno[]") instanceof String[]) {
 			String[] goodsKind = (String[]) map.get("kinds[]"); // 옷 종류 번호
@@ -37,9 +37,9 @@ public class CartServiceImpl implements CartService {
 					cartDAO.cartInsert(cart);
 			}
 		} else {*/ // 하나일때?
-			String goodsKind = (String) map.get("kinds[]"); // 옷 종류 번호
+			/*String goodsKind = (String) map.get("kinds[]"); // 옷 종류 번호
 			String goodsAmount = (String) map.get("ea[]"); // 옷 수량
-			cart.put("GOODS_NUMBER", Integer.parseInt(map.get("GOODS_NUMBER").toString()));
+*/			/*cart.put("GOODS_NUMBER", Integer.parseInt(map.get("GOODS_NUMBER").toString()));
 			cart.put("MEMBER_NUMBER", map.get("MEMBER_NUMBER"));
 			cart.put("GOODS_KIND_NUMBER", goodsKind);
 			cart.put("CART_AMOUNT", goodsAmount);
@@ -47,7 +47,7 @@ public class CartServiceImpl implements CartService {
 			if (cartDAO.confirmCart(cart) != null)
 				return;
 			else
-				cartDAO.cartInsert(cart);
+				cartDAO.cartInsert(cart);*/
 
 		/*}*/
 
@@ -58,7 +58,10 @@ public class CartServiceImpl implements CartService {
 	public List<Map<String, Object>> cartList(Map<String, Object> map) throws Exception {
 		return cartDAO.cartList(map);
 	}
-	
+	@Override
+	public Map<String, Object> cartNo(Map<String, Object> map)throws Exception{
+		return cartDAO.cartNo(map);
+	}
 	@Override
 	public void cartInsert2(Map<String, Object> map) throws Exception {
 		if (cartDAO.confirmCart(map) != null)

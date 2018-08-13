@@ -21,16 +21,32 @@
 				( 
 					CART_NO,
 					MEMBER_ID,
-					REGDATE
+					REGDATE,
+					ATTRIBUTE_NO,
+					GOODS_NO,
+					COUNT
 			 	)
 			 VALUES 
 			 	( 
 					#{CART_NO},
 					#{MEMBER_ID},
-					#{REGDATE}
+					SYSDATE,
+					#{ATTRIBUTE_NO},
+					#{GOODS_NO},
+					#{COUNT}
 				)
 		]]>
 	</insert>
+	<select id="selectCartNo" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT 
+				CART_NO
+			FROM
+				CART
+			WHERE
+				MEMBER_ID=#{MEMBER_ID}
+		]]>
+	</select>
 	
 	<insert id="insertCartDetail" useGeneratedKeys="true" keyProperty="CART_DETAIL_NO">
 		<selectKey keyProperty="CART_DETAIL_NO" resultType="java.lang.Integer" order="BEFORE">
@@ -48,7 +64,7 @@
 			 VALUES 
 			 	( 
 					#{CART_DETAIL_NO},
-					#{CART_NO},
+					#{MEMBER_ID},
 					#{ATTRIBUTE_NO},
 					#{GOODS_NO},
 					#{COUNT}
