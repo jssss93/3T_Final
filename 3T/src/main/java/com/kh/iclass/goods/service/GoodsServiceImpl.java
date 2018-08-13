@@ -135,6 +135,20 @@ public class GoodsServiceImpl implements GoodsService {
 	public void goodsDelete(Map<String, Object> map) throws Exception {
 		goodsDAO.deleteGoods(map);
 	}*/
+	
+	// 상품리뷰
+	@Override
+	public List<Map<String, Object>> selectGoodsDetail1(Map<String, Object> map) throws Exception {
+			/* goodsDAO.updateHitcnt(map); */
+			return goodsDAO.selectGoodsDetail1(map);
+		}
+
+		// 상품QA
+	@Override
+	public List<Map<String, Object>> selectGoodsDetail2(Map<String, Object> map) throws Exception {
+			/* goodsDAO.updateHitcnt(map); */
+			return goodsDAO.selectGoodsDetail2(map);
+		}
 
 	
 
