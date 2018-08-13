@@ -47,7 +47,11 @@ public interface GoodsService {
 
 	void goodsDelete(Map<String, Object> map) throws Exception;*/
 
-	
+	// 상품리뷰
+	public List<Map<String, Object>> selectGoodsDetail1(Map<String, Object> map) throws Exception;
+
+	// 상품QA
+	public List<Map<String, Object>> selectGoodsDetail2(Map<String, Object> map) throws Exception;
 
 	
 }

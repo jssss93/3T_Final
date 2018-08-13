@@ -100,6 +100,19 @@ public class GoodsDAO extends AbstractDAO{
 		// TODO Auto-generated method stub
 		return selectList("goods.selectGoodsRelatedList",list);
 	}*/
+	
+	// 상품리뷰
+		@SuppressWarnings("unchecked")
+		public List<Map<String, Object>> selectGoodsDetail1(Map<String, Object> map) throws Exception {
+			return selectList("goods.selectGoodsReviewList", map);
+		}
+
+	// 상품QA
+		@SuppressWarnings("unchecked")
+		public List<Map<String, Object>> selectGoodsDetail2(Map<String, Object> map) throws Exception {
+			return selectList("goods.selectQaViewList", map);
+		}
+
 
 
 
