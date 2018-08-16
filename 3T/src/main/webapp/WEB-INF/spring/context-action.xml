@@ -39,6 +39,13 @@
 			<bean class="com.kh.iclass.member.login.LoginInterceptor" />
 		</mvc:interceptor>
 		
+				<mvc:interceptor>
+			<mvc:mapping path="/admin/*" />
+			<bean class="com.kh.iclass.member.login.AdminLoginInterceptor" />
+		</mvc:interceptor>
+		
+		
+		
 	</mvc:interceptors>
 
 	<!-- 정적자원 경로 설정 -->
