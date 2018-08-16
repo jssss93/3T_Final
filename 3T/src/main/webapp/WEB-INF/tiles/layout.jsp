@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ include file="/WEB-INF/include/include-header.jspf"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -162,10 +163,16 @@ font-variant-ligatures: normal;
 
 					<div class="left_login">
 						<div class="xans-element- xans-layout xans-layout-statelogoff ">
-							<a href="/3T/member/login" class="log">LOGIN</a> /
-							<a href="/3T/member/joinStep1">JOIN</a> <br> <a
-								href="/3T/myshop/order/list.html">ORDER</a> / <a
-								href="/3T/myshop/index.html">MYPAGE</a> <br>
+							<c:if test="${sessionScope.MEMBER_ID == null}">
+								<a href="/3T/member/loginForm" class="log">login</a> / 
+							</c:if>
+							<c:if test="${sessionScope.MEMBER_ID != null}">
+								<a href="/3T/member/logout" class="log">logout</a> / 
+							</c:if>
+							<a href="/3T/member/joinStep1">join</a>
+							<br> 
+							<a href="/3T/csstest/csstest">order</a> /
+							<a href="/3T/mypage/mypage">mypage</a>
 						</div>
 
 

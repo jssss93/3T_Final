@@ -74,6 +74,7 @@
 									<tr role="row">
 										<th style="width: 5%; text-align: center;">번호</th>
 										<th style="width: 8%; text-align: center;">아이디</th>
+										<th style="width: 20%; text-align: center;">쿠폰</th>
 										<th style="width: 7%; text-align: center;">이름</th>
 										<th style="width: 10%; text-align: center;">생년월일</th>
 										<th style="width: 9%; text-align: center;">전화번호</th>
@@ -82,6 +83,7 @@
 										<th style="width: 5%; text-align: center;">포인트</th>
 										<th style="width: 13%; text-align: center;">가입날짜</th>
 									</tr>
+									
 								</thead>
 								<tbody>
 									<c:forEach var="memberList" items="${memberList}" varStatus="stat">
@@ -91,6 +93,13 @@
 										<tr class="gradeA even" role="row">
 											<td style="text-align: center; vertical-align: middle;">${memberList.MEMBER_NO}</td>
 											<td style="text-align: center; vertical-align: middle;">${memberList.MEMBER_ID}</td>
+											<td style="text-align: center; vertical-align: middle;">
+												<form action="/3T/GiftCoupon">
+													<input type="text" id="CONTENT" name="CONTENT" style="width: 130px; text-align: center;">
+													<input type="submit" value="주기">
+													<input type="hidden" id="MEMBER_ID" name="MEMBER_ID" value="${memberList.MEMBER_ID}">
+												</form>
+											</td>
 											<td style="text-align: center; vertical-align: middle;">${memberList.NAME}</td>
 											<td style="text-align: center; vertical-align: middle;">${memberList.BIRTH}</td>
 											<td style="text-align: center; vertical-align: middle;">${memberList.PHONE}</td>
