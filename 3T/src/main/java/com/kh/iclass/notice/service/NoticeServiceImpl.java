@@ -48,4 +48,11 @@ public class NoticeServiceImpl implements NoticeService {
 		noticeDAO.UpdateReadCnt(map);
 	}
 
+	@Override
+	public Map<String, Object> NoticeSearchList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return noticeDAO.NoticeSearchList(map);
+	}
+	
+
 }

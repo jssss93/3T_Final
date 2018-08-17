@@ -45,7 +45,7 @@
 
 		)
 		VALUES (
-			QA_NO_SEQ.NEXTVAL,
+			REVIEW_NO_SEQ.NEXTVAL,
 			#{TITLE},
 			#{PASSWD},
 			#{CONTENT},
@@ -152,6 +152,40 @@
            	ORDER BY REVIEW_COMMENT_NO DESC
            		
       ]]>
+</select>
+
+ <select id="ReveiwSelectSearchList" parameterType="hashmap" resultType="hashmap">
+		SELECT 
+			REVIEW_NO,
+           	TITLE,
+           	MEMBER_ID,
+           	CONTENT,
+           	REGDATE,
+           	GOODS_NO
+		FROM 
+			REVIEW
+		WHERE 
+				
+			<if test='SearchNum.equals("TITLE")'> 
+			
+			(TITLE LIKE '%' || #{SearchKeyword} || '%')
+			
+			</if>
+			
+			 <if test='SearchNum.equals("MEMBER_ID")'> 
+			  
+			(MEMBER_ID LIKE '%' || #{SearchKeyword} || '%')
+			
+			</if> 
+			
+			<if test='SearchNum.equals("CONTENT")'>
+		
+			(CONTENT LIKE '%' || #{SearchKeyword} || '%')
+			</if>
+			
+			ORDER BY REVIEW_NO DESC
+
+		
 </select>
 </mapper>
 

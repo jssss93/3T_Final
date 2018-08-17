@@ -90,4 +90,35 @@
 				FAQ_NO = #{FAQ_NO}
 		]]>
 	</update>
+	
+	<select id="selectSearchList" parameterType="hashmap" resultType="hashmap">
+		<include refid="common.pagingPre"/> 
+		
+			SELECT
+			    FAQ_NO,
+			    TITLE,
+			    MEMBER_ID,
+			    CONTENT,
+			    REGDATE,
+			    ROW_NUMBER() OVER (ORDER BY FAQ_NO DESC) RNUM
+			FROM
+			    FAQ
+			WHERE
+			<if test='SearchNum.equals("TITLE")'> 
+			
+			(TITLE LIKE '%' || #{SearchKeyword} || '%')
+			
+			</if>
+			
+			<if test='SearchNum.equals("MEMBER_ID")'>
+		
+			(MEMBER_ID LIKE '%' || #{SearchKeyword} || '%')
+			</if>
+		
+			
+		
+		<include refid="common.pagingPost"/> 
+
+	</select>
+	
 </mapper>

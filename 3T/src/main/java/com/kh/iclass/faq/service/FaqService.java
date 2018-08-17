@@ -16,7 +16,7 @@ public interface FaqService {
 
 	/*void FaqReadCntUp(Map<String, Object> map) throws Exception;*/
 	
-
+	Map<String, Object> FaqSearchList(Map<String, Object> map) throws Exception;
 	
 
 }

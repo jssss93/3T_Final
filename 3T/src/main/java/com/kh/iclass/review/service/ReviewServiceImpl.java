@@ -60,6 +60,12 @@ public class ReviewServiceImpl implements ReviewService{
 		ReviewDAO.ReviewCommentDelete(map);
 		
 	}
+	//리뷰 검색
+	@Override
+	public List<Map<String, Object>> ReviewSearchList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return ReviewDAO.ReviewSearchList(map);
+	}
 	
 	
 

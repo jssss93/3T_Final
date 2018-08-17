@@ -27,7 +27,7 @@ public class QaController {
 
 	@RequestMapping(value = "/qa/list")
 	public ModelAndView qaBoardList(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("qa/list");
+		ModelAndView mv = new ModelAndView("/qa/list");
 		List<Map<String, Object>> list = null;
 
 		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
@@ -42,7 +42,7 @@ public class QaController {
 
 	@RequestMapping(value = "/qa/writeForm")
 	public ModelAndView qaWrite(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("qa/write");
+		ModelAndView mv = new ModelAndView("/qa/write");
 		
 		System.out.println("qaWriteForm : " + commandMap.getMap());
 		
@@ -72,24 +72,18 @@ public class QaController {
 	//qa 답변 폼
 	@RequestMapping(value = "/qa/writeReplyForm")
 	public ModelAndView qaReplyWrite(HttpServletRequest request,CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("qa/writeReply");
+		ModelAndView mv = new ModelAndView("/qa/writeReply");
 		
+		System.out.println("qaUpdateForm : " + commandMap.getMap());
 
 		mv.addObject("REF", commandMap.getMap());
 	/*	String REF = (String)request.getParameter("QA_NO");
 		int REF = Integer.parseInt(request.getParameter("QA_NO"));
 		
-		
 		commandMap.put("REF", REF);
 		
 		mv.addObject("REF", commandMap.get(REF));*/
-		
-		
-		System.out.println("qaUpdateForm : " + commandMap.getMap());
-		
-		
-		
-		
+
 		return mv;
 	}
 	//qa답변
@@ -100,7 +94,10 @@ public class QaController {
 			commandMap.put("REF", REF);
 		
 		mv.addObject("REF", commandMap.get(REF));*/
+		Map<String, Object> map = QaService.QaSel(commandMap.getMap());
 		System.out.println("qaWriteReply : " + commandMap.getMap());
+		
+		commandMap.putAll(map);
 		commandMap.put("RE_STEP", 1);
 		
 		QaService.QaReplyInsert(commandMap.getMap());	
@@ -137,6 +134,7 @@ public class QaController {
 	@RequestMapping(value = "/qa/update")
 	public ModelAndView qaUpdate(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/qa/detail");
+		
 		System.out.println("qaUpdate : " + commandMap.getMap());
 		QaService.QaUpdate(commandMap.getMap());
 	
@@ -158,7 +156,7 @@ public class QaController {
 	
 	@RequestMapping(value = "/qa/qaGoodsSelect")
 	public ModelAndView qaGoodsBoardList(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("qa/qaGoodsList");
+		ModelAndView mv = new ModelAndView("/qa/qaGoodsList");
 		
 		List<Map<String, Object>> list = null;
 		System.out.println("qaGoodsBoardList : " + commandMap.getMap());
@@ -188,5 +186,28 @@ public class QaController {
 
 		return mv;
 	}
+	@RequestMapping(value = "/qa/passwdCheckForm")
+	public ModelAndView qaPasswdCheckForm(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("/qa/passwdCheckForm");
+		
+		System.out.println("qaPasswdCheckForm : " + commandMap.getMap());
+		
+		mv.addObject("list", commandMap.getMap());
+	
+		return mv;
+	}
 
+	@RequestMapping(value = "/qa/passwdCheckSuccess")
+	public ModelAndView qaPasswdCheck(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:/qa/detail");
+		
+		System.out.println("qaPasswdCheck : " + commandMap.getMap());
+		  
+			Map<String, Object> map = QaService.QaPasswdCheck(commandMap.getMap());
+		
+			mv.addObject("GOODS_NO", map.get("GOODS_NO"));
+			mv.addObject("QA_NO", commandMap.get("QA_NO"));
+			mv.addObject("list", map);
+		return mv;
+	}
 }

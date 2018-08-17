@@ -106,9 +106,12 @@
 				</tr>
 				<tr>
 					<th scope="row">비밀글 설정</th>
-					<td><input type="radio" name="open" value="open" />공개글 <input
-						type="radio" name="open" value="open" />비밀글</td>
+					<td><input type="radio" name="STATUS" value="0" checked="checked"/>비밀글 <input
+						type="radio" name="STATUS" value="1" />공개글</td>
 				</tr>
+				 
+  
+  
 				<tr>
 					<th scope="row">개인정보수집 및 <br />이용 동의
 					</th>
@@ -158,5 +161,10 @@
 			comSubmit.submit();
 		} */
 	</script>
+	<script type="text/javascript">
+$(document).ready(function(){
+   console.log($("input[name=STATUS]:checked").val());
+});
+</script>
 </body>
 </html>

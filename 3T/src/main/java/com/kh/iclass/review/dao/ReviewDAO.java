@@ -43,5 +43,10 @@ public class ReviewDAO extends AbstractDAO{
 	public void ReviewCommentDelete(Map<String, Object> map) throws Exception{
 		update("review.REVIEW_Commentdelete", map);
 	}
+	//리뷰 검색
+	@SuppressWarnings("unchecked")
+    public List<Map<String, Object>> ReviewSearchList(Map<String, Object> map) throws Exception{
+        return (List<Map<String, Object>>)selectList("review.ReveiwSelectSearchList", map);
+    }
 	
 }

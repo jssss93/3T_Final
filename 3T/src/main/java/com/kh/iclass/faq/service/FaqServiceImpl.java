@@ -43,9 +43,15 @@ public class FaqServiceImpl implements FaqService {
 		faqDAO.FaqInsert(map);
 	}
 
+	@Override
+	public Map<String, Object> FaqSearchList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return faqDAO.FaqSearchList(map);
+	}
+
 	/*@Override
 	public void FaqReadCntUp(Map<String, Object> map) throws Exception {
 		faqDAO.UpdateReadCnt(map);
 	}*/
-
+	
 }
