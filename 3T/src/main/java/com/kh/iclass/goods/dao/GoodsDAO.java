@@ -54,8 +54,8 @@ public class GoodsDAO extends AbstractDAO{
 		return selectList("goods.selectGoodsImage",map);
 	}
 	//조회수증가
-	public void  updateHitcnt(Map<String, Object> map) throws Exception{
-		update("goods.updateHitcnt",map);
+	public int  updateHitcnt(Map<String, Object> map) throws Exception{
+		return (int) update("goods.updateHitcnt",map);
 	}
 		/*
 	public void updateReadCnt(Map<String, Object> map) throws Exception{
@@ -66,11 +66,29 @@ public class GoodsDAO extends AbstractDAO{
 	public Map<String, Object> selectGoodsDetail(Map<String, Object> map) throws Exception{
 		return (Map<String, Object>) selectOne("goods.selectDetail", map);
 	}
-	
+	*/
 	public void updateGoods(Map<String, Object> map) throws Exception{
-		update("goods.update", map);
+		update("goods.updateGoods", map);
 	}
-
+	//상품 속성 개별 삭제
+	public void deleteAttribute(Map<String, Object>map) throws Exception{
+		delete("goods.deleteAttribute", map);
+	}
+	//상품 이미지 개별 삭제
+	public void deleteUpload(Map<String, Object>map) throws Exception{
+		delete("goods.deleteUpload", map);
+	}
+	//상품(속성,이미지) 삭제
+	public void deleteGoods(Map<String, Object> map) throws Exception{
+		delete("goods.deleteGoods", map);
+	}
+	public void deleteA(Map<String, Object> map) throws Exception{
+		delete("goods.deleteA", map);
+	}
+	public void deleteU(Map<String, Object> map) throws Exception{
+		delete("goods.deleteU", map);
+	}
+	/*0
 	public void deleteGoods(Map<String, Object> map) throws Exception{
 		update("goods.delete", map);
 	}*/
@@ -100,7 +118,7 @@ public class GoodsDAO extends AbstractDAO{
 	public List<Map<String,Object>> selectRelatedList(Map<String, Object> map) {
 		return selectList("goods.selectGoodsRelatedList",map);
 	}
-
+	
 	/*@SuppressWarnings("unchecked")
 	public List<Object> selectRelatedList(List<Object> list) {
 		// TODO Auto-generated method stub

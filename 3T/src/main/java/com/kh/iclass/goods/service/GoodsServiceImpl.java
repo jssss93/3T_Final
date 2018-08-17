@@ -55,7 +55,7 @@ public class GoodsServiceImpl implements GoodsService {
 	
 	@Override
 	public List<Map<String, Object>> selectGoodsDetail(Map<String, Object> map) throws Exception {
-		goodsDAO.updateHitcnt(map);
+		/*goodsDAO.updateHitcnt(map);*/
 		return goodsDAO.selectGoodsDetail(map);
 	}
 
@@ -130,11 +130,22 @@ public class GoodsServiceImpl implements GoodsService {
 
 
 	}
-
+	*/
 	@Override
-	public void goodsDelete(Map<String, Object> map) throws Exception {
+	public void deleteAttribute(Map<String, Object> map) throws Exception {
+		goodsDAO.deleteAttribute(map);
+	}
+	
+	@Override
+	public void deleteUpload(Map<String, Object> map) throws Exception {
+		goodsDAO.deleteUpload(map);
+	}
+	@Override
+	public void deleteGoods(Map<String, Object> map) throws Exception {
 		goodsDAO.deleteGoods(map);
-	}*/
+		goodsDAO.deleteA(map);
+		goodsDAO.deleteU(map);
+	}
 	
 	// 상품리뷰
 	@Override
@@ -149,6 +160,31 @@ public class GoodsServiceImpl implements GoodsService {
 			/* goodsDAO.updateHitcnt(map); */
 			return goodsDAO.selectGoodsDetail2(map);
 		}
+
+	//조회수 증가
+	@Override
+	public int updateHitcnt(Map<String, Object> map) throws Exception {
+			// TODO Auto-generated method stub
+			return goodsDAO.updateHitcnt(map);
+		}
+
+	@Override
+	public void updateGoods(Map<String, Object> map, HttpServletRequest request) throws Exception {
+		// TODO Auto-generated method stub
+		goodsDAO.updateGoods(map);
+		
+		List<Map<String,Object>> listAttribute = AttributeUtils.parseInsertAttribute(map, request);
+		for(int i=0, size=listAttribute.size(); i<size; i++){
+			goodsDAO.insertAttribute(listAttribute.get(i));
+			
+		}
+		List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(map, request);
+		for(int i=0, size=list.size(); i<size; i++){
+			goodsDAO.insertFile(list.get(i));
+		}
+		
+		
+	}
 
 	
 

@@ -17,7 +17,7 @@ public interface GoodsService {
 	void goodsWrite(Map<String, Object> map, HttpServletRequest request) throws Exception;
 	
 	//조회수증가
-	/*public void updateHitcnt(Map<String, Object> map) throws Exception;*/
+	public int updateHitcnt(Map<String, Object> map) throws Exception;
 	
 	List<Map<String, Object>> selectMainList(Map<String, Object> map) throws Exception;
 	
@@ -41,11 +41,15 @@ public interface GoodsService {
 */
 	
 	
-	/*Map<String, Object> goodsDetail(Map<String, Object> map) throws Exception;
+	/*Map<String, Object> goodsDetail(Map<String, Object> map) throws Exception;*/
 
-	void goodsUpdate(Map<String, Object> map, HttpServletRequest request) throws Exception;
+	void updateGoods(Map<String, Object> map, HttpServletRequest request) throws Exception;
 
-	void goodsDelete(Map<String, Object> map) throws Exception;*/
+	void deleteAttribute(Map<String, Object> map) throws Exception;
+	
+	void deleteUpload(Map<String, Object> map) throws Exception;
+	
+	void deleteGoods(Map<String, Object>map) throws Exception;
 
 	// 상품리뷰
 	public List<Map<String, Object>> selectGoodsDetail1(Map<String, Object> map) throws Exception;
