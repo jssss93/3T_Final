@@ -12,11 +12,10 @@
 
 a:link, a:visited {text-decoration: none; color: #656565;}
 
-
-.board_top {font-family: FontAwesome;color: #b4b4b4;line-height:18px;}
-.board_no td {padding:6px 0 4px;border-bottom:1px solid #ffffff;font-family:'FontAwesome';font-size:15px;text-transform: uppercase;border-right:1px solid #ffffff;background:#fff;font-weight:normal; }
-.board_no th {padding:6px 0 4px;border-bottom:1px solid #ffffff;font-family:'FontAwesome';font-size:15px;text-transform: uppercase;border-right:1px solid #ffffff;background:#fff;font-weight:normal;}
-.board_list {width:70%;font-family: FontAwesome;border-top:2px solid #eeeeee;border-bottom:1px solid #eeeeee}
+.board_top {margin:0;padding:0;display:inline-block;clear:both;overflow:hidden;}
+.board_top h6 {display:inline-block;margin:0;font-size:12px;color:#2b2b2b;text-transform:uppercase;letter-spacing:0.5px;}
+.board_top p {display:inline-block;margin:0 0 0 6px;padding:0 0 0 10px;color:#bbb;letter-spacing:0.5px;background:url("http://img.echosting.cafe24.com/skin/base_ko_KR/common/ico_title.gif") no-repeat 0 2px;*display:inline;*zoom:1;}
+.board_list {width:100%;font-family: FontAwesome;border-top:2px solid #eeeeee;border-bottom:1px solid #eeeeee}
 .board_list thead th:first-child{font-family: FontAwesome; background-image:none}
 .board_list thead th {font-family: FontAwesome; border-bottom:1px solid #ccc;padding:12px 0 13px 0;color:#3b3a3a;vertical-align:middle}
 .board_list tbody td {font-family: FontAwesome; font-style: normal; font-weight: normal; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; border-top:1px solid #ccc;padding:10px 0;text-align:center;vertical-align:middle}
@@ -24,13 +23,21 @@ a:link, a:visited {text-decoration: none; color: #656565;}
 .board_list tbody td.title {font-family: FontAwesome; text-align:left; padding-left:20px}
 .board_list tbody td a {font-family: FontAwesome; display:inline-block}
 
-.board_view {width:70%;font-family: FontAwesome;border-top:2px solid #ffffff;border-bottom:1px solid #eeeeee}
+.board_view {width:100%;font-family: FontAwesome;border-top:2px solid #ffffff;border-bottom:1px solid #eeeeee}
 .board_view tbody th {font-family: FontAwesome;text-align:left;background:#ffffff;color:#3b3a3a}
 .board_view tbody th.list_tit {font-family: FontAwesome;font-size:13px;color:#656565;letter-spacing:0.1px}
 .board_view tbody .no_line_b th, .board_view tbody .no_line_b td {font-family: FontAwesome;border-bottom:none}
 .board_view tbody th, .board_view tbody td {font-family: FontAwesome; padding:15px 0 16px 16px;border-bottom:1px solid #ccc}
 .board_view tbody td.view_text {font-family: FontAwesome;border-top:1px solid #ccc; border-bottom:1px solid #ffffff;padding:45px 18px 45px 18px}
 .board_view tbody th.th_file {font-family: FontAwesome;padding:0 0 0 15px; vertical-align:middle}
+
+.board_view2 {width:100%;font-family: FontAwesome;border-top:1px solid #eeeeee;border-bottom:1px solid #eeeeee;border-left:1px solid #eeeeee;border-right:1px solid #eeeeee}
+.board_view2 tbody th {font-family: FontAwesome;text-align:left;background:#ffffff;color:#3b3a3a}
+.board_view2 tbody th.list_tit {font-family: FontAwesome;font-size:13px;color:#656565;letter-spacing:0.1px}
+.board_view2 tbody .no_line_b th, .board_view tbody .no_line_b td {font-family: FontAwesome;border-bottom:none}
+.board_view2 tbody th, .board_view tbody td {font-family: FontAwesome; padding:15px 0 16px 16px;border-bottom:1px solid #eeeeee}
+.board_view2 tbody td.view_text {font-family: FontAwesome;border-top:1px solid #eee; border-bottom:1px solid #eee;padding:45px 18px 45px 18px}
+.board_view2 tbody th.th_file {font-family: FontAwesome;padding:0 0 0 15px; vertical-align:middle}
 
 .board_faq {width:100%;font-family: FontAwesome;border-top:2px solid #eeeeee;border-bottom:1px solid #eeeeee}
 .board_faq thead th {font-family: FontAwesome; border-bottom:1px solid #ccc;padding:10px 0 13px 0;color:#3b3a3a;vertical-align:middle}
@@ -39,7 +46,7 @@ a:link, a:visited {text-decoration: none; color: #656565;}
 .board_faq tbody td a {font-family: FontAwesome; display:inline-block}
 
 
-.board_qa {width:100%;font-family: FontAwesome;border-top:2px solid #eeeeee;border-bottom:1px solid #eeeeee}
+.board_qa {width:100%;font-family: FontAwesome;border-top:2px solid #eeeeee;border-bottom:1px solid #eeeeee;}
 .board_qa thead th {font-family: FontAwesome; border-bottom:1px solid #ccc;padding:10px 0 13px 0;color:#3b3a3a;vertical-align:middle}
 .board_qa tbody td {font-family: FontAwesome; font-style: normal; font-weight: normal; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; border-top:1px solid #ccc;padding:10px 0;text-align:center;vertical-align:middle}
 .board_qa tbody td.title {font-family: FontAwesome; text-align:center; padding-left:20px}
@@ -51,7 +58,7 @@ a:link, a:visited {text-decoration: none; color: #656565;}
 .board_review tbody td.title {font-family: FontAwesome; text-align:center; padding-left:20px}
 .board_review tbody td a {font-family: FontAwesome; display:inline-block}
 
-.board_review1 {width:70%;font-family: FontAwesome; valign: middle; border-top:2px solid #ffffff;border-bottom:1px solid #eeeeee}
+.board_review1 {width:100%;font-family: FontAwesome; valign: middle; border-top:2px solid #ffffff;border-bottom:1px solid #eeeeee}
 .board_review1 th {font-family: FontAwesome; border-bottom:1px solid #eeeeee;padding:10px 0 13px 0;color:#3b3a3a;vertical-align:middle}
 .board_review1 td {font-family: FontAwesome; font-style: normal; font-weight: normal; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; border-top:1px solid #ccc;padding:10px 0;text-align:center;vertical-align:middle}
 .board_review1 td.title {font-family: FontAwesome; text-align:center; padding-left:20px}
@@ -64,18 +71,38 @@ a:link, a:visited {text-decoration: none; color: #656565;}
 .board_review2 td a {font-family: FontAwesome; display:inline-block}
 .board_review2 .subject {padding-left:8px;color:#8f98f2;text-align:left;word-break:break-all;}
 
+.board_review3 {width:100%;font-family: FontAwesome; valign: middle; border-top:2px solid #ffffff;border-bottom:1px solid #eeeeee}
+.board_review3 th {padding:6px 0 6px;border-right:0px solid #e3e3e3;font-weight:normal;font-size:10px;letter-spacing:1px;font-family: 'Lato','Nanum Gothic';text-transform: uppercase;}
+.board_review3 td {font-family: 'Lato';font-size:11px; font-style: normal; font-weight: normal; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; border-top:1px solid #ccc;padding:10px 0;text-align:center;vertical-align:middle}
+.board_review3 td.title {font-family: FontAwesome; text-align:left; padding-left:20px}
+.board_review3 td a {font-family: FontAwesome; display:inline-block}
+.board_review3 table .subject {word-break:break-all;font-size:12px;text-align:left;padding-left:8px;}
+
+.board_img {}
+.board_img td {padding: 10px 0 8px 10px;text-transform: uppercase;background-color: #fff;text-align: left;
+font-weight: normal;vertical-align: middle;  border-top: 4px solid #eee;border-bottom: 4px solid #eee;
+border-right:4px solid #eeeeee;border-left: 4px solid #eee; font-size: 14px;}
+
+
+.board_title {}
+.board_title #TITLE {height: 25px; padding: 3px; width: 300px; border-top: 1px solid #eee; border-right:1px solid #eeeeee;
+border-left: 1px solid #eee;border-bottom: 1px solid #eee; font-size: 12px;}
+.board_title td {width: auto; padding: 10px 0 8px 10px;text-transform: uppercase;background-color: #fff;text-align: left;
+font-weight: normal;vertical-align: middle; border-right:1px solid #eeeeee; font-size: 12px; }
+.board_title th {font-size: 12px; width: 110px; padding: 10px 0 8px 20px; border-right: 1px solid #eeeeee;}
 .board_content {width:70%;}
-.board_content td {font-family: FontAwesome;padding:0 0 0 400px; vertical-align:middle;}
-.board_content2 {width:70%;}
-.board_content2 td {font-family: FontAwesome;padding:0px 0 0 0px;}
+.board_content td {font-family: FontAwesome;padding:0 0 0 400px; vertical-align:middle; font-size: 14px;}
+.board_content2 {width:100%;}
+.board_content2 td {font-family: FontAwesome;}
 
 
 .notice_button td {padding:0px 0 0 230px; vertical-align:middle;}
 
-.wdp_80 {width:70%;}
 .wdp_90 {width:100%}
-.btn {border-radius:3px;padding:5px 11px;color:#000000 !important; display:inline-block; background-color:#f7f7f7; border:1px solid #c8c8c8;vertical-align:middle }
-
+.btn {
+/* font-family: 'Lato';font-size: 9px; border-radius:3px;padding:5px 12px;color:#000000 !important; display:inline-block; background-color:#ffffff; border:1px solid #ccc;vertical-align:middle */
+font-family:'Lato';border:1px solid #ccc;padding:5px 12px;text-transform: uppercase;font-size:9px;line-height:20px;letter-spacing:1px;
+ }
 
 .mySlides {
 	display: none;

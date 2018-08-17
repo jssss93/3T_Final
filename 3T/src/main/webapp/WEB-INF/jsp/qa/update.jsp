@@ -4,18 +4,32 @@
 <head>
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
 </head>
+
+<table width="70%" align="center" border="0" cellspacing="0" cellpadding="1" colspan="1" class="board_top">
+        <br>
+		<tr>
+			<td height="50"></td>
+		</tr>
+		<tr>
+			<td align="left" class="text01 formbar"><h6><font color="#000000">Q&A</font></h6></td>
+		</tr>
+
+		<tr>
+			<td height="50"></td>
+		</tr>
+	</table>
+
 <body>
     <form id="frm" name="frm">
-        <table class="board_view">
+        <table border="1" align="center" class="board_view2">
             <colgroup>
                 <col width="15%"/>
                 <col width="35%"/>
                 <col width="15%"/>
                 <col width="35%"/>
             </colgroup>
-            <caption>게시글 상세</caption>
             <tbody>
-                <tr>
+                <tr class="board_title">
                     <th scope="row">글 번호</th>
                     <td>
                         ${map.QA_NO }
@@ -28,21 +42,23 @@
               <%--       <th scope="row">조회수</th>
                     <td>${map.REV_READCNT }</td> --%>
                 </tr>
-                <tr>
+                <tr class="board_title">
                     <th scope="row">작성자</th>
                     <td>${map.MEMBER_ID }</td>
+                </tr>
+                <tr class="board_title">
                     <th scope="row">작성시간</th>
                     <td>${map.REGDATE }</td>
                 </tr>
-                <tr>
+                <tr class="board_title">
                     <th scope="row">제목</th>
                     <td colspan="3">
                         <input type="text" id="TITLE" name="TITLE" class="wdp_90" value="${map.TITLE}"/>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="4" class="view_text">
-                        <textarea rows="20" cols="100" title="내용" id="CONTENT" name="CONTENT">${map.CONTENT }</textarea>
+                    <td colspan="4" class="board_content2">
+                        <textarea rows="20" cols="145" title="내용" id="CONTENT" name="CONTENT">${map.CONTENT }</textarea>
                     </td>
                 </tr>
               <%--   <tr>
@@ -64,11 +80,18 @@
             </tbody>
         </table>
     </form>
+     <br>
      
+     <table class="notice_button">
+     <tr>
+     <td>
     <!-- <a href="#this" class="btn" id="addFile">파일 추가</a> -->
-    <a href="#this" class="btn" id="list">목록으로</a>
-    <a href="#this" class="btn" id="update">저장하기</a>
-    <a href="#this" class="btn" id="delete">삭제하기</a>
+    <a href="#this" class="btn" id="list">LIST</a>
+    <a href="#this" class="btn" id="update">UPDATE</a>
+    <a href="#this" class="btn" id="delete">DELETE</a>
+    </td>
+    </tr>
+    </table>
      
     <%@ include file="/WEB-INF/include/include-body.jspf" %>
     <script type="text/javascript">

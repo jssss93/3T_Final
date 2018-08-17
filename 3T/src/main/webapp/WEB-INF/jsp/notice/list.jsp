@@ -9,13 +9,13 @@
 
 </head>
 <body>
-	<table width="70%" align="center" border="0" cellspacing="0" cellpadding="1" colspan="1" class="board_top">
-
+	<table width="70%" align="center" border="0" cellspacing="1" cellpadding="1" class="board_top">
+	<br>
 		<tr>
 			<td height="50"></td>
 		</tr>
 		<tr>
-			<td align="left" class="text01 formbar"><h3><font color="#000000">NOTICE</font><span> ㅣ 애즈클로의 공지사항입니다 :) 확인해주세요</span></h3></td>
+			<td align="left" class="text01 formbar"><h6><font color="#000000">NOTICE</font><span><p>ㅣ 3T의 공지사항입니다 :) 확인해주세요</p></span></h6></td>
 		</tr>
 
 		<tr>
@@ -23,20 +23,17 @@
 		</tr>
 	</table>
 
-<table width="74%" align="center" border="0" cellspacing="0" cellpadding="2" class="board_no">
-               <tr align="center">
-				<td width="50"><h4>NO</h4></td>
-			    <td width="370"><strong></strong></td>
-				</tr>			
-</table>
-	<table width="80%" align="center" border="0" cellspacing="0" cellpadding="2" class="board_list">
+	<table width="80%" align="center" border="0" cellspacing="0" cellpadding="2" class="board_review3">
+	 <tr>
+			   <td valign="middle"><strong>NO</strong></td>
+			   </tr>
 		<tbody>
 			<c:choose>
 				<c:when test="${fn:length(list) > 0}">
 					<c:forEach items="${list }" var="row">
 						<tr>
-							<td>${row.NOTICE_NO }</td>							
-							<td class="title"><a href="#this" name="title">${row.TITLE }</a> <input
+							<td>${row.NOTICE_NO }</td>
+							<td class="subject"><a href="#this" name="title">${row.TITLE }</a> <input
 								type="hidden" id="NOTICE_NO" value="${row.NOTICE_NO }">
 							</td>
 							<td align=right>${row.MEMBER_ID }</td>
@@ -57,34 +54,15 @@
 			jsFunction="fn_search" />
 	</c:if>
 	<input type="hidden" id="currentPageNo" name="currentPageNo" />
-
-<br />
-<br>
-
- 
-	<br />
 	
 	<input type="hidden" id="NOTICE_NO" name="NOTICE_NO" value="${Detail.NOTICE_NO}">
-	 
+	 <br>
 	 <table class="notice_button">
     
     <tr>
-	<td><a href="write" class="btn" >작성</a></td>
+	<td><a href="write" class="btn" >WRITE</a></td>
 	</tr>
     </table>
-    <br />
-	<form action="/3T/notice/list">
-		<select name="SearchNum" id="SearchNum"
-			style="width: 100px; height: 30px;">
-			<option value="TITLE">제목</option>
-			<option value="CONTENT">내용</option>
-		</select> <input type="text" name="SearchKeyword" id="SearchKeyword"
-			style="margin-left: 15px; width: 200px; height: 36px; border-radius: 5px 5px 5px 5px;" />
-		<input type="submit" value="검색">
-	</form>
-
-
-	<br />
 
 
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
