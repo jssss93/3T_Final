@@ -100,8 +100,8 @@ font-family: FontAwesome;
 							</c:if>
 							<a href="/3T/member/joinStep1">join</a>
 							<br> 
-							<a href="/3T/myshop/order/list.html">order</a> /
-							<a href="/3T/myshop/index.html">mypage</a>
+							<a href="/3T/csstest/csstest">order</a> /
+							<a href="/3T/mypage/mypage">mypage</a>
 						</div>
 
 

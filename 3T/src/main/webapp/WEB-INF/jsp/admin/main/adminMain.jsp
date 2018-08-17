@@ -57,6 +57,7 @@
                </div>
                <div class="timeline-body">
                   <p>회원목록 이동 - 회원목록을 볼 수 있습니다</p>
+                  <p>메세지 - 회원에게 메세지를보낼수있습니다</p>
                </div>
             </div>
          </li>

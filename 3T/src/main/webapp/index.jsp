@@ -4,6 +4,6 @@
 <title>메인넘기기</title>
 </head>
 <body>
-<jsp:forward page="/3T/main"/>
+<jsp:forward page="/main"/>
 </body>
 </html>
