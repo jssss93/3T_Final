@@ -15,12 +15,12 @@ align-center: text-align: center;
 </head>
 <body>
 <table width="70%" align="center" border="0" cellspacing="0" cellpadding="1" colspan="1" class="board_top">
-
+        <br>
 		<tr>
 			<td height="50"></td>
 		</tr>
 		<tr>
-			<td align="left"><h3><font color="#555555">NOTICE</font></h3><p>3T의 공지사항입니다 :) 확인해주세요!</p></td>
+			<td align="left" class="text01 formbar"><h6><font color="#000000">NOTICE</font><span> ㅣ 3T의 공지사항입니다 :) 확인해주세요</span></h6></td>
 		</tr>
 
 		<tr>
@@ -28,7 +28,7 @@ align-center: text-align: center;
 		</tr>
 	</table>
 
-	<table align="center" class="board_view">
+	<table border="1" align="center" class="board_view2">
 		<colgroup>
 			<col width="15%" />
 			<col width="35%" />
@@ -36,13 +36,13 @@ align-center: text-align: center;
 			<col width="35%" />
 		</colgroup>
 		<tbody>
-			<tr>
+			<tr class="board_title">
 				<th scope="row">SUBJECT</th>
-				<td colspan="3">${Detail.TITLE }</td>
+				<td >${Detail.TITLE }</td>
 			</tr>
-			<tr>
+			<tr class="board_title">
 				<th scope="row">NAME</th>
-				<td colspan="3">${Detail.MEMBER_ID }</td>
+				<td >${Detail.MEMBER_ID }</td>
 			</tr>
 			<table class="board_content">
 			<br><br/>
@@ -60,9 +60,9 @@ align-center: text-align: center;
     <table class="notice_button">
     
     <tr>
-	<td><a href="#this" class="btn" id="list">list</a>
- 	<a href="#this" class="btn" id="update">수정하기</a>
-	<a href="#this" class="btn" id="delete">삭제하기</a></td>
+	<td><a href="#this" class="btn" id="list">LIST</a>
+ 	<a href="#this" class="btn" id="update">UPDATE</a>
+	<a href="#this" class="btn" id="delete">DELETE</a></td>
 	</tr>
     </table>
 

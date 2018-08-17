@@ -8,12 +8,12 @@
 <body>
 
 <table width="70%" align="center" border="0" cellspacing="0" cellpadding="1" colspan="1" class="board_top">
-
+        <br>
 		<tr>
 			<td height="50"></td>
 		</tr>
 		<tr>
-			<td align="left" class="text01 formbar"><h3><font color="#555555">FAQ UPDATE</font></h3></td>
+			<td align="left" class="text01 formbar"><h6><font color="#000000">FAQ</font><span> ㅣ </span></h6></td>
 		</tr>
 
 		<tr>
@@ -22,7 +22,7 @@
 	</table>
 
 	<form id="frm">
-		<table align="center" class="board_view">
+		<table border="1" align="center" class="board_view2">
 			<colgroup>
 				<col width="15%" />
 				<col width="35%" />
@@ -30,26 +30,26 @@
 				<col width="35%" />
 			</colgroup>
 			<tbody>
-				<tr>
+				<tr class="board_title">
 					<th scope="row">NO</th>
 					<td>${map.FAQ_NO }</td>
 					</tr>
-					<tr>
+			    <tr class="board_title">
 					<th scope="row">NAME</th>
 					<td>${map.MEMBER_ID }</td>
 				</tr>
-				<tr>
+				<tr class="board_title">
 					<th scope="row">CREATION TIME</th>
 					<td>${map.REGDATE }</td>
 				</tr>
-				<tr>
+				<tr class="board_title">
 					<th scope="row">SUBJECT</th>
 					<td><input type="text" id="TITLE" name="TITLE"
 						class="wdp_90" value="${map.TITLE }" /></td>
 				</tr>
 				<tr>
-					<td colspan="4" class="view_text">
-					<textarea rows="20" cols="100" title="내용" id="CONTENT" name="CONTENT">${map.CONTENT }</textarea>
+					<td colspan="4" class="board_content2">
+					<textarea rows="20" cols="145" title="내용" id="CONTENT" name="CONTENT">${map.CONTENT }</textarea>
 					</td>
 				</tr>
 
@@ -63,9 +63,9 @@
 		
 	<table class="notice_button">
     <tr>
-	<td><a href="#this" class="btn" id="list">목록으로</a>
-	<a href="#this" class="btn" id="update">저장하기</a>
-	<a href="#this" class="btn" id="delete">삭제하기</a></td>
+	<td><a href="#this" class="btn" id="list">LIST</a>
+	<a href="#this" class="btn" id="update">UPDATE</a>
+	<a href="#this" class="btn" id="delete">DELETE</a></td>
 	</tr>
 	</table>
 

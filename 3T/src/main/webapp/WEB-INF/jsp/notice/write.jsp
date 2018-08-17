@@ -7,12 +7,12 @@
 <body>
 
 <table width="70%" align="center" border="0" cellspacing="0" cellpadding="1" colspan="1" class="board_top">
-
+        <br>
 		<tr>
 			<td height="50"></td>
 		</tr>
 		<tr>
-			<td align="left" class="text01 formbar"><h3><font color="#555555">NOTICE WRITE</font></h3></td>
+			<td align="left" class="text01 formbar"><h6><font color="#555555">NOTICE</font></h6></td>
 		</tr>
 
 		<tr>
@@ -21,21 +21,23 @@
 	</table>
 	
 	<form id="frm" action="/notice/write" method="POST">
-		<table align="center" class="board_view">
+		<table align="center" border="0" style="width: 70%; height: 400px; display: block;" class="board_view2">
 			<tbody>
-				<tr>
-					<th scope="row">SUBJECT</th>
-					<td><input type="text" id="TITLE" name="TITLE" class="board_content2"></input></td>
+				<tr class="board_title">
+					<th>SUBJECT</th>
+					<td><input type="text" id="TITLE" name="TITLE"></input></td>
 				</tr>
 				<tr>
 					<td colspan="2" class="board_content2">
-						<textarea rows="20" cols="100" title="내용" id="CONTENT" name="CONTENT"></textarea>
+						<textarea rows="20" cols="145" title="내용" id="CONTENT" name="CONTENT"></textarea>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 		</form>
-		<br>
+		<br><br>
+		<br><br>
+		<br><br>
 		
 <input type="hidden" id="NOTICE_NO" name="NOTICE_NO" value="${Detail.NOTICE_NO}">
 

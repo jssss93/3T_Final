@@ -5,29 +5,35 @@
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
 </head>
 <body>
-<table width="600" border="0" cellspacing="0" cellpadding="2">
+<table width="70%" align="center" border="0" cellspacing="0" cellpadding="1" colspan="1" class="board_top">
+        <br>
 		<tr>
-			<td align="center" class="text01 formbar"><h2>Q&A</h2></td>
+			<td height="50"></td>
 		</tr>
 		<tr>
-          <td height="20" colspan="2"></td>
-        </tr>
+			<td align="left" class="text01 formbar"><h6><font color="#000000">Q&A</font></h6></td>
+		</tr>
+
+		<tr>
+			<td height="50"></td>
+		</tr>
 	</table>
-	<table width="600" border="1" cellspacing="0" cellpadding="0" height="120" >
+	<table width="70%" align="center" border="0" cellspacing="0" cellpadding="1" colspan="1" height="120" class="board_img">
 				<tr>
 					<td align="center" width="120"><img width="100" height="100"
 						src="/3T/resources/upload/${list.SAV_NAME.split(',')[0] }" /></td>
 					<td>${list.NAME }<br /> KRW&nbsp;${list.PRICE } <br /> <br /> <input
-						type="button" name="button" value="상품정보 선택 ▶"
+						class="btn" type="button" name="button" value="상품정보 선택 ▶"
 						onclick="javascript:open_win_noresizable('qaGoodsSelect', write)" />&nbsp;
-						 <input type="button" name="button" value="상품 상세보기▶">
+						 <input class="btn" type="button" name="button" value="상품 상세보기▶">
 						<input type="hidden" id="GOODS_NO" name="GOODS_NO" value="${list.GOODS_NO }" />
 						
 					</td>
 					
 				</tr>
 		</table>
-    <table class="board_view">
+		<br>
+    <table border="1" align="center" class="board_view2">
         <colgroup>
             <col width="15%"/>
             <col width="35%"/>
@@ -35,27 +41,34 @@
             <col width="35%"/>
         </colgroup>
         <tbody>
-        <tr>
-                <th scope="row">제목</th>
-                <td colspan="3">${map.TITLE }</td>
+        	<tr class="board_title">
+                <th scope="row">SUBJECT</th>
+                <td >${map.TITLE }</td>
             </tr>
-            <tr>
-                <th scope="row">이름</th>
+            <tr class="board_title">
+                <th scope="row">NAME</th>
                 <td>${map.MEMBER_ID }</td>
                
             </tr>
-            
-            <tr>
-                <td colspan="4">${map.CONTENT }</td>
-            </tr>
+            	<table class="board_content">
+				<br><br/>
+			<tr>
+				<td align="center">${map.CONTENT }</td>
+			</tr>
         </tbody>
     </table>
-     
-    <a href="#this" class="btn" id="list">목록으로</a>
-    <a href="#this" class="btn" id="update">수정하기</a>
-    <a href="#this" class="btn" id="delete">삭제하기</a>
-    <a href="#this"  name="writeReply">답변달기</a>
+    <br><br/>
+    
+    <table class="notice_button">
+    <tr>
+    <td><a href="#this" class="btn" id="list">LIST</a>
+    <a href="#this" class="btn" id="update">UPDATE</a>
+    <a href="#this" class="btn" id="delete">DELETE</a>
+    <a href="#this" class="btn" name="writeReply">REPLY</a>
     <input type="hidden" id="QA_NO" value="${map.QA_NO }">
+    </td>
+    </tr>
+    </table>
      
     <%@ include file="/WEB-INF/include/include-body.jspf" %>
     <script type="text/javascript">
