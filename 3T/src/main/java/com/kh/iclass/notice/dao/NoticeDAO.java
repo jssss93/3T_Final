@@ -34,7 +34,10 @@ public class NoticeDAO extends AbstractDAO{
 	public void NoticeInsert(Map<String, Object> map) throws Exception{
 		insert("notice.insert", map);
 	}
-
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> NoticeSearchList(Map<String, Object> map) throws Exception{
+	    return (Map<String, Object>)selectPagingList("notice.NoticeSelectSearchList", map);
+	}
 
 
 }

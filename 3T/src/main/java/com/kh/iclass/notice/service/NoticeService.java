@@ -16,7 +16,7 @@ public interface NoticeService {
 
 	void NoticeReadCntUp(Map<String, Object> map) throws Exception;
 	
-
+	Map<String, Object> NoticeSearchList(Map<String, Object> map) throws Exception;
 	
 
 }

@@ -27,8 +27,12 @@ public class FaqController {
 	@RequestMapping(value = "/faq/list")
 	public ModelAndView faqList(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("faq/list");
+		Map<String, Object> resultMap = null;
+		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
 
-		Map<String, Object> resultMap = faqService.FaqList(commandMap.getMap());
+			resultMap = faqService.FaqList(commandMap.getMap());
+		else
+			resultMap = faqService.FaqSearchList(commandMap.getMap());
 
 		mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
 

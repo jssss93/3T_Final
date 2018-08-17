@@ -34,7 +34,11 @@ public class FaqDAO extends AbstractDAO{
 	public void FaqInsert(Map<String, Object> map) throws Exception{
 		insert("faq.insert", map);
 	}
-
+	
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> FaqSearchList(Map<String, Object> map) throws Exception{
+	    return (Map<String, Object>)selectPagingList("faq.selectSearchList", map);
+	}
 
 
 }

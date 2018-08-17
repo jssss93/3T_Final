@@ -24,10 +24,14 @@ public class ReviewController {
 	public ModelAndView reviewBoardList(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("review/list");
 
-		List<Map<String, Object>> list = ReviewService.ReviewList(commandMap.getMap());
+		List<Map<String, Object>> list = null;
+
+		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
+			list = ReviewService.ReviewList(commandMap.getMap());
+		else
+			list = ReviewService.ReviewSearchList(commandMap.getMap());
 
 		mv.addObject("list", list);
-
 		return mv;
 	}
 
@@ -72,7 +76,7 @@ public class ReviewController {
 	}
 
 	@RequestMapping(value = "/review/update")
-	public ModelAndView qaUpdate(CommandMap commandMap) throws Exception {
+	public ModelAndView reviewUpdate(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/review/detail");
 
 		ReviewService.ReviewUpdate(commandMap.getMap());

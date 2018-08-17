@@ -24,9 +24,12 @@
 	<table width="65%" align="center" border="0" cellspacing="0" cellpadding="2" class="board_review1">
                <tr>
 			   <td valign="middle"><strong>NO</strong></td>
+			   <td valign="middle"><strong>ITEM</strong></td>
+			   <td valign="middle"><strong>CATEGORY</strong></td>
                <td valign="middle"><strong>TITLE</strong></td>
                <td valign="middle"><strong>NAME</strong></td>
-               <td valign="middle"><strong>CONTENT</strong></td>
+               <td valign="middle"><strong>STATUS</strong></td>
+              <!--  <td valign="middle"><strong>CONTENT</strong></td> -->
                <td valign="middle"><strong>DATE</strong></td>
 			</tr>			
 		<tbody>
@@ -52,13 +55,29 @@
 								기타문의
 							</c:if>
 							</td>
-							<td class="title"><c:if test="${row.RE_STEP ==1 }">
+							<c:if test="${row.STATUS == 0 }"> 
+							<td class="title"> <c:if test="${row.RE_STEP ==1 }">
 												→[답변] &nbsp;
-												</c:if><a href="#this" name="title">${row.TITLE }</a>
-								<input type="hidden" id="QA_NO" value="${row.QA_NO }">
-								<input type="hidden" id="GOODS_NO" value="${row.GOODS_NO }"></td>
-							<td align="center">${row.CONTENT }</td>
+												</c:if> 
+												
+												<a href="#this" name="checkpasswd">${row.TITLE }</a>
+												<input type="hidden" id="QA_NO" value="${row.QA_NO }">
+												<input type="hidden" id="GOODS_NO" value="${row.GOODS_NO }">
+												</td></c:if> 
+								
+												<c:if test="${row.STATUS == 1 }">
+												<td class="title"> <c:if test="${row.RE_STEP ==1 }">
+												→[답변] &nbsp;
+												</c:if> 
+												<a href="#this" name="title">${row.TITLE }</a>
+												<input type="hidden" id="QA_NO" value="${row.QA_NO }">
+												<input type="hidden" id="GOODS_NO" value="${row.GOODS_NO }">
+												</td> </c:if>
+							<%-- <td align="center">${row.CONTENT }</td> --%>
 							<td align="center">${row.MEMBER_ID }</td>
+							
+							<c:if test="${row.STATUS ==1 }"><td align="center">공개글</td> </c:if>
+							<c:if test="${row.STATUS ==0 }"><td align="center">비밀글</td> </c:if>
 							<td align="center">${row.REGDATE }</td>
 						</tr>
 					</c:forEach>
@@ -74,19 +93,19 @@
 	</table>
 	<br />
 	<form action="/3T/qa/list">
-		<select name="SearchNum" id="SearchNum" style="width: 100px; height: 30px;" >
-					<option value="MEMBER_ID">작성자</option>
-					<option value="TITLE">제목</option>
-					<option value="CONTENT">내용</option>
-				</select>
-				
-				<input type="text" name="SearchKeyword" id="SearchKeyword" style="margin-left:15px;width:200px;height:36px;border-radius :5px 5px 5px 5px;"/>            
-                                 
-            
-                                    <input type="submit" value="검색">
-                                    </form>
-							
-	
+		<select name="SearchNum" id="SearchNum"
+			style="width: 100px; height: 30px;">
+			<option value="MEMBER_ID">작성자</option>
+			<option value="TITLE">제목</option>
+			<option value="CONTENT">내용</option>
+		</select> <input type="text" name="SearchKeyword" id="SearchKeyword"
+			style="margin-left: 15px; width: 200px; height: 36px; border-radius: 5px 5px 5px 5px;" />
+
+
+		<input type="submit" value="검색">
+	</form>
+
+
 	<br />
 	<!-- <a href="#this" class="btn" id="write">글쓰기</a> -->
 	
@@ -114,6 +133,10 @@
                 e.preventDefault();
                 fn_openSearchList();
             }); 
+            $("a[name='checkpasswd']").on("click", function(e){ //제목 
+                e.preventDefault();
+                fn_openPasswdCheck($(this));
+            });
         });
              
         function fn_openSearchList(){
@@ -137,7 +160,13 @@
                 comSubmit.addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
                 comSubmit.submit();
             }
-         
+            function fn_openPasswdCheck(obj){
+                var comSubmit = new ComSubmit();
+                comSubmit.setUrl("<c:url value='/qa/passwdCheckForm' />");
+                comSubmit.addParam("QA_NO", obj.parent().find("#QA_NO").val());
+                comSubmit.addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
+                comSubmit.submit();
+            }
         
     </script>
 </body>

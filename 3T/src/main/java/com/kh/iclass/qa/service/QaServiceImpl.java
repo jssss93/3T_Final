@@ -77,6 +77,21 @@ public class QaServiceImpl implements QaService{
 		
 		return resultMap;
 	}
+	@Override
+	public Map<String, Object> QaPasswdCheck(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		Map<String, Object> resultMap = QaDAO.QaPasswdCheck(map);
+		
+		return resultMap;
+	}
+	
+	@Override
+	public Map<String, Object> QaSel(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		Map<String, Object> resultMap = QaDAO.QaSel(map);
+		return resultMap;
+	}
+	
 	
 	
 

@@ -98,4 +98,34 @@
 				NOTICE_NO = #{NOTICE_NO}
 		]]>
 	</update>
+	
+	 <select id="NoticeSelectSearchList" parameterType="hashmap" resultType="hashmap">
+	 <include refid="common.pagingPre"/> 
+		SELECT 
+			NOTICE_NO,
+           	TITLE,
+           	CONTENT,
+           	REGDATE,
+			READCNT,
+			ROW_NUMBER() OVER (ORDER BY NOTICE_NO DESC) RNUM
+			
+		FROM 
+			NOTICE
+		WHERE 
+				
+			<if test='SearchNum.equals("TITLE")'> 
+			
+			(TITLE LIKE '%' || #{SearchKeyword} || '%')
+			
+			</if>
+			
+			<if test='SearchNum.equals("CONTENT")'>
+		
+			(CONTENT LIKE '%' || #{SearchKeyword} || '%')
+			</if>
+		
+		<include refid="common.pagingPost"/> 
+
+		
+</select>
 </mapper> 

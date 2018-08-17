@@ -56,5 +56,12 @@ public class QaDAO extends AbstractDAO{
 	public Map<String, Object> QaGoods(Map<String, Object> map) throws Exception{
 		return (Map<String, Object>) selectOne("qa.QA_GoodsSelect", map);
 	}
-	
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> QaPasswdCheck(Map<String, Object> map) throws Exception{
+		return (Map<String, Object>) selectOne("qa.QaPasswdCheck", map);
+	}
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> QaSel(Map<String, Object> map) throws Exception{
+		return (Map<String, Object>) selectOne("qa.QaReplySel", map);
+	}
 }
