@@ -82,50 +82,29 @@ public class GoodsController {
 
 		ModelAndView mv = new ModelAndView("goods/goodsdetail");
 
-		// 조회수 올리기
 		/* goodsService.updateHitcnt(commandMap.getMap()); */
-		// 상품정보 가져오기
 		List<Map<String, Object>> goodsDetail = goodsService.selectGoodsDetail(commandMap.getMap());
 
-		// 기본정보를 보여줄 객체는 goodsBasic , 상품종류 쪾에는 goodsDetail 사용
 		Map<String, Object> goodsBasic = goodsDetail.get(0);
 		
 		System.out.println(goodsBasic.get("RELATED").toString().split(",")[0]);
 		System.out.println(goodsBasic.get("RELATED"));
 		System.out.println(goodsBasic.get("RELATED").toString());
-		
-		
-		
-	
-		/* 연관 상품 GOODS_NO 받아 리스트 출력하기 */
+		System.out.println(goodsBasic.get("RELATED").toString().length());
 		
 		Map<String, Object> param=new HashMap<String,Object>();
 		
-		/*자료형을 Integer 로 한 relatedGoodsNoList 에 넘버 삽입.
-		List<Integer> relatedGoodsNoList = new ArrayList<Integer>();
-		
-		for(int i=0;i<4;i++) {
-			relatedGoodsNoList.add(Integer.parseInt(((String) goodsBasic.get("RELATED")).split(",")[i]));
-		}
-		*/
-		
-		//자료형을 String 로 한 relatedGoodsNoList 에 넘버 삽입.
 		List<String> relatedGoodsNoList = new ArrayList<String>();
-		List<String> relatedGoodsNoList2 = new ArrayList<String>();
+		String[] relatedGoodsNoList_Length =goodsBasic.get("RELATED").toString().split(",");
 		
-		for(int i=0;i<4;i++) {
+		for(int i=0;i<relatedGoodsNoList_Length.length;i++) {
 			relatedGoodsNoList.add(goodsBasic.get("RELATED").toString().split(",")[i]);
 		}
-		relatedGoodsNoList2.add("99");
-		String []value= {"99"};
-		System.out.println("relatedGoodsNoList : "+ relatedGoodsNoList);
+		
 		
 		param.put("relGoodsNo_List", relatedGoodsNoList);
-		param.put("relGoodsNo_List2", relatedGoodsNoList2);
-		param.put("arr", value);
 		
 		System.out.println(param.get("relGoodsNo_List"));
-		System.out.println("relGoodsNo_List2 : "+ relatedGoodsNoList2	);
 		
 		
 		
@@ -139,7 +118,6 @@ public class GoodsController {
 		Map<String, Object> goodsoneImage = goodsImage.get(0);
 
 
-		mv.addObject("goodsRelatedList",goodsRelatedList);
 		
 		//상품리뷰띄우기
 	    List<Map<String, Object>> goodsDetail1 = goodsService.selectGoodsDetail1(commandMap.getMap());
@@ -149,11 +127,8 @@ public class GoodsController {
 	    
 	    mv.addObject("goodsDetail1", goodsDetail1); //REVIEW 상세보기
 	    mv.addObject("goodsDetail2", goodsDetail2); //Q&A 상세보기
-
 		
 		mv.addObject("goodsDetail", goodsDetail);
-		
-		
 
 		mv.addObject("goodsBasic", goodsBasic);
 

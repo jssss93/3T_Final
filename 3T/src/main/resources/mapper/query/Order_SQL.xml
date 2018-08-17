@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="order">
+
+	<!-- 주문 인서트 -->
+	<insert id="insertOrder" parameterType="hashmap" useGeneratedKeys="true" keyProperty="ORDER_NO">
+		<selectKey keyProperty="ORDER_NO" resultType="java.lang.Integer" order="BEFORE">
+			SELECT ORDER_NO_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		<![CDATA[
+		INSERT INTO ORDER_3T
+			(ORDER_NO,
+		 	RECIPIENT_NAME,
+		 	RECIPIENT_ZIPCODE,
+		 	RECIPIENT_ADDR1,
+		 	RECIPIENT_ADDR2,
+		 	RECIPIENT_PHONE,
+		 	REGDATE,
+		 	TOTALPRICE,
+		 	PAYMENT,
+		 	DEPOSIT_NAME,
+		 	DEPOSIT_BANK,
+		 	MEMBER_ID
+		 	) 
+		VALUES
+			(#{ORDER_NO},
+			#{RECIPIENT_NAME},
+			#{RECIPIENT_ZIPCODE},
+			#{RECIPIENT_ADDR1},	
+			#{RECIPIENT_ADDR2},
+			#{RECIPIENT_PHONE},
+			SYSDATE,
+			#{TOTALPRICE},
+			#{PAYMENT},
+			#{DEPOSIT_NAME},
+			#{DEPOSIT_BANK},
+			#{MEMBER_ID}
+			)
+		]]>
+		
+		
+	</insert>
+
+	<insert id="insertOrderDetail" parameterType="hashmap" useGeneratedKeys="true" keyProperty="ORDER_DETAIL_NO">
+		<selectKey keyProperty="ORDER_DETAIL_NO" resultType="java.lang.Integer" order="BEFORE">
+			SELECT ORDER_DETAIL_NO_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		<![CDATA[
+		INSERT INTO ORDER_DETAIL
+			(ORDER_DETAIL_NO,
+		 	ORDER_NO,
+		 	
+		 	ATTRIBUTE_NO,
+		 	GOODS_NO,
+		 	
+		 	COUNT
+		 	)
+		VALUES
+			(#{ORDER_DETAIL_NO},
+			#{ORDER_NO},
+			
+			#{ATTRIBUTE_NO},
+			#{GOODS_NO},
+			
+			#{COUNT}
+			
+			)
+			
+		]]>
+		
+		
+	</insert>
+
+	<!-- 로그인, 회원정보수정 -->
+ 	<select id="selectMemberList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT 
+			MEMBER_NO, 
+			MEMBER_ID, 
+			PASSWD, 
+			NAME,
+			BIRTH, 
+			ZIPCODE, 
+			ADDR1, 
+			ADDR2, 
+			PHONE, 
+			EMAIL, 
+			REGDATE
+		FROM
+			MEMBER
+		ORDER BY
+			MEMBER_NO DESC
+	]]>
+	</select>
+	
+	<select id="selectMemberDetail" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT 
+			MEMBER_NO, 
+			MEMBER_ID, 
+			PASSWD, 
+			NAME,
+			BIRTH, 
+			ZIPCODE, 
+			ADDR1, 
+			ADDR2, 
+			PHONE, 
+			EMAIL, 
+			REGDATE
+		FROM
+			MEMBER
+		WHERE
+			MEMBER_ID=#{MEMBER_ID}		
+		
+	]]>
+	</select>
+
+	<!-- 회원가입 -->
+	<insert id="insertMember" parameterType="hashmap" useGeneratedKeys="true" keyProperty="MEMBER_NO">
+		<selectKey keyProperty="MEMBER_NO" resultType="java.lang.Integer" order="BEFORE">
+			SELECT MEMBER_NO_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		<![CDATA[
+		INSERT INTO MEMBER
+		(MEMBER_NO, MEMBER_ID, PASSWD, NAME, BIRTH, ZIPCODE, ADDR1, ADDR2, PHONE, EMAIL, REGDATE)
+		VALUES
+		(#{MEMBER_NO}, #{MEMBER_ID}, #{PASSWD}, #{NAME}, #{BIRTH}, #{ZIPCODE}, #{ADDR1}, #{ADDR2}, #{PHONE}, #{EMAIL}, SYSDATE)
+		]]>
+		
+		
+	</insert>
+<!-- 	
+	아이디 중복확인
+	<select id="checkId" parameterType="String" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*) FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID}
+	]]>
+	</select> -->
+
+	
+	
+</mapper>

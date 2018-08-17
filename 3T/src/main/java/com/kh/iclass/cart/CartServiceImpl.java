@@ -59,6 +59,12 @@ public class CartServiceImpl implements CartService {
 		return cartDAO.cartList(map);
 	}
 	@Override
+	public List<Map<String, Object>> checkedCartList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return cartDAO.checkedCartList(map);
+	}
+
+	@Override
 	public Map<String, Object> cartNo(Map<String, Object> map)throws Exception{
 		return cartDAO.cartNo(map);
 	}
@@ -114,4 +120,5 @@ public class CartServiceImpl implements CartService {
 		
 	}
 
+	
 }

@@ -1,4 +1,4 @@
-package com.kh.iclass.admin.goods.controller;
+package com.kh.iclass.admin.goods;
 
 import java.util.List;
 import java.util.Map;

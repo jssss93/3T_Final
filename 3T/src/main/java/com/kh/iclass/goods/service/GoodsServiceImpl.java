@@ -39,6 +39,7 @@ public class GoodsServiceImpl implements GoodsService {
 	
 	@Override
 	public void goodsWrite(Map<String, Object> map, HttpServletRequest request) throws Exception {
+		
 		goodsDAO.insertGoods(map);
 		
 		List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(map, request);

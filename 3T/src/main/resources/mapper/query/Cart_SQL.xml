@@ -37,16 +37,6 @@
 				)
 		]]>
 	</insert>
-	<select id="selectCartNo" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[
-			SELECT 
-				CART_NO
-			FROM
-				CART
-			WHERE
-				MEMBER_ID=#{MEMBER_ID}
-		]]>
-	</select>
 	
 	<insert id="insertCartDetail" useGeneratedKeys="true" keyProperty="CART_DETAIL_NO">
 		<selectKey keyProperty="CART_DETAIL_NO" resultType="java.lang.Integer" order="BEFORE">
@@ -72,20 +62,116 @@
 		]]>
 	</insert>
 
-	<!-- 회원 장바구니 조회  on되어있는 상품만 등록시간이 3일 이하인 상품만-->
-	<select id="selectMyCart" parameterType="hashmap" resultType="hashmap">
+	
+	<select id="selectCartList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT DISTINCT A.GOODS_NUMBER, A.CART_NUMBER, A.MEMBER_NUMBER,
-			A.CART_REG_DATE, A.CART_AMOUNT, A.GOODS_KIND_NUMBER, E.GOODS_AMOUNT,
-			E.GOODS_SIZE, E.GOODS_COLOR, E.GOODS_KIND_NUMBER,
-			D.GOODS_NAME, D.GOODS_PRICE, D.GOODS_DISPRICE, D.GOODS_SALEDATE,
-			D.GOODS_THUMBNAIL,D.GOODS_CATEGORY1, D.GOODS_CATEGORY2
-			FROM CART A, GOODS D, GOODS_KIND E WHERE A.MEMBER_NUMBER=${MEMBER_NUMBER}
-		    AND A.CART_REG_DATE>SYSDATE-3
-        	AND A.GOODS_KIND_NUMBER=E.GOODS_KIND_NUMBER
-			AND A.GOODS_NUMBER=D.GOODS_NUMBER AND D.GOODS_ONOFF=0
-			ORDER BY A.CART_REG_DATE DESC, A.GOODS_NUMBER ASC
+			SELECT 
+			  	CART_NO,
+			  	MEMBER_ID,
+			 	GOODS_NO,
+			 	CONTENT,
+			 	NAME,
+				PRICE,
+			 	COLOR,
+			 	GOODS_SIZE,
+			 	COUNT,
+			 	WM_CONCAT(SAV_NAME) AS IMAGE
+			FROM
+			
+				(SELECT 
+					a.CONTENT,
+					a.PRICE,
+					a.NAME,	
+				    b.COLOR,
+				    b.GOODS_SIZE,
+				    c.SAV_NAME,
+				    d.CART_NO,
+				    d.MEMBER_ID,
+				    d.GOODS_NO,
+				    d.COUNT	
+			 	FROM
+			    	GOODS a, GOODS_ATTRIBUTE b, UPLOAD c, CART d 
+				WHERE
+				    d.GOODS_NO=a.GOODS_NO AND
+				    d.ATTRIBUTE_NO=b.ATTRIBUTE_NO AND
+				    b.GOODS_NO=a.GOODS_NO AND
+				    c.GOODS_NO = d.GOODS_NO AND
+				    d.MEMBER_ID = #{MEMBER_ID}
+			  	ORDER BY
+			    	CART_NO DESC)
+			    	
+			GROUP BY
+				CART_NO,
+				MEMBER_ID,
+				GOODS_NO,
+				CONTENT,
+				PRICE,
+				COLOR,
+				NAME,
+				GOODS_SIZE,
+				COUNT
 		]]>
+	</select>
+	
+	<!-- 체크박스에 선택된 카트리스트 불러오기 -->
+	
+	<select id="selectCheckedCartList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT 
+			  	CART_NO,
+			  	MEMBER_ID,
+			 	GOODS_NO,
+			 	CONTENT,
+			 	ATTRIBUTE_NO,
+			 	NAME,
+				PRICE,
+			 	COLOR,
+			 	GOODS_SIZE,
+			 	COUNT,
+			 	WM_CONCAT(SAV_NAME) AS IMAGE
+			FROM
+			
+				(SELECT 
+					a.CONTENT,
+					a.PRICE,
+					a.NAME,
+					b.ATTRIBUTE_NO,	
+				    b.COLOR,
+				    b.GOODS_SIZE,
+				    c.SAV_NAME,
+				    d.CART_NO,
+				    d.MEMBER_ID,
+				    d.GOODS_NO,
+				    d.COUNT	
+			 	FROM
+			    	GOODS a, GOODS_ATTRIBUTE b, UPLOAD c, CART d 
+				WHERE
+				    d.GOODS_NO=a.GOODS_NO AND
+				    d.ATTRIBUTE_NO=b.ATTRIBUTE_NO AND
+				    b.GOODS_NO=a.GOODS_NO AND
+				    c.GOODS_NO = d.GOODS_NO AND
+				    d.MEMBER_ID = #{MEMBER_ID} AND
+				    d.CART_NO 
+				    	IN
+				    	]]>
+				    		<foreach collection="cart_No" item="item" index="index" separator="," open="(" close=")" >
+	      						#{item}
+	      					</foreach>
+			  	ORDER BY
+			    	CART_NO DESC)
+			    	
+			GROUP BY
+				CART_NO,
+				MEMBER_ID,
+				GOODS_NO,
+				CONTENT,
+				PRICE,
+				ATTRIBUTE_NO,
+				COLOR,
+				NAME,
+				GOODS_SIZE,
+				COUNT
+		
 	</select>
 
 	<!-- 세션에서 장바구니 목록 불러오기(비회원 인서트는 SESSION에 저장하고

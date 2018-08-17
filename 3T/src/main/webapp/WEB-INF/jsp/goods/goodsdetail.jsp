@@ -144,13 +144,13 @@
 									<br/>
 										<!-- 상품구매버튼 --> <!-- 로그인 o --> 
 
-											<input name="Buy" style="" src="/3T/resources/images/buy.PNG"
+										<%-- 	<input name="Buy" style="" src="/3T/resources/images/buy.PNG"
 												onmouseover="this.src='/3T/resources/images/buy1.png'"
 												onmouseout="this.src='/3T/resources/images/buy.PNG'"
 												onclick="BuyCheck(1);" type="image" src="/3T/resources/images/buy.PNG"
 												 />
 												 <input type="hidden" value="${goodsBasic.GOODS_NO }" name="GOODS_NO" id="GOODS_NO">
-
+ --%>
 						<input name="Buy" style="" src="/3T/resources/images/buy.PNG"
 						onmouseover="this.src='/3T/resources/images/buy1.png'"
 						onmouseout="this.src='/3T/resources/images/buy.PNG'"
@@ -258,7 +258,7 @@
 						<img id="myImg"
 							src="/3T/resources/images/${list.IMAGE.split(',')[0] }"
 							width="500" height="570">
-							<input type="hidden" id="GOODS_NO" name="GOODS_NO" value="${list.GOODS_NO }">
+							<input type="hidden" id="GOODS_NO" name="	" value="${list.GOODS_NO }">
 					</a><br> <br> ${list.NAME }<br>
 					&nbsp;${list.PRICE }</td>			
 			
