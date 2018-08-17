@@ -15,78 +15,154 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.iclass.admin.member.AdminMemberService;
+import com.kh.iclass.cart.CartService;
 import com.kh.iclass.common.map.CommandMap;
 
 @Controller
 public class OrderController {
-	
-	@Resource(name="orderService")
+
+	@Resource(name = "orderService")
 	private OrderService orderService;
 	
-	private int currentPage = 1;
-	private int totalCount;
-	private int blockCount = 10;
-	private int blockPage = 10;
-	private String pagingHtml;
-	//페이징 숫자
-	 
+	@Resource(name = "cartService")
+	private CartService cartService;
+	
+	@Resource(name = "adminMemberService")
+	private AdminMemberService adminMemberService;
 
-	//상세보기에서 바로구매
-	@RequestMapping(value = "order")
-	public ModelAndView orderFormLoginAop(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		//회원구매 AND 비회원구매
-
+	
+	@RequestMapping(value = "order/add")
+	public ModelAndView addOrder(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("order/write");
 		HttpSession session = request.getSession();
 		
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 		
-		//바로구매시작
-		System.out.println("바로 구매 넘어오는 값들 :" +commandMap.getMap());
+		Map<String, Object> memberInfo = new HashMap<String, Object>();
+		memberInfo=adminMemberService.memberDetail(commandMap.getMap());
+		
+		String cart_No[]=request.getParameterValues("CART_NO");
+		
+		for(int i=0;i<cart_No.length;i++) {
+			System.out.println("cart_No"+i+":"+cart_No[i]);
+		}
+		commandMap.put("cart_No", cart_No);
+		
+		List<Map<String, Object>> checkedCartList = new ArrayList<Map<String, Object>>();
+		
+		checkedCartList=cartService.checkedCartList(commandMap.getMap());
+		
+		mv.addObject("checkedCartList", checkedCartList);
+		mv.addObject("memberInfo", memberInfo);
+		return mv;
+	
+	}
+	
+	@RequestMapping(value = "order/insert")		
+	public ModelAndView addInsert(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:list");
+		
+		HttpSession session = request.getSession();
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		
+		orderService.insertOrder(commandMap.getMap(),request);
+		
+		return mv;
+	
+	}
+	
+	@RequestMapping(value = "order/list")		
+	public ModelAndView orderList(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("order/list");
+		HttpSession session = request.getSession();
+		
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		
+		
+		
+		/*commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		System.out.println("commandMap.getMap():"+commandMap.getMap());
+		
+		Map<String, Object> memberInfo = new HashMap<String, Object>();
+		memberInfo=adminMemberService.memberDetail(commandMap.getMap());
+		
+		orderService.insertOrder(commandMap.getMap());
+		
+		
+		String cart_No[]=request.getParameterValues("CART_NO");
+		
+		for(int i=0;i<cart_No.length;i++) {
+			System.out.println("cart_No"+i+":"+cart_No[i]);
+		}
+		commandMap.put("cart_No", cart_No);
+		
+		List<Map<String, Object>> checkedCartList = new ArrayList<Map<String, Object>>();
+		
+		checkedCartList=cartService.checkedCartList(commandMap.getMap());
+		
+		System.out.println("memberInfo.toString() : "+memberInfo.toString());
+		
+		
+		
+		
+		
+		mv.addObject("memberInfo", memberInfo);*/
+		return mv;
+	
+	}
+	
+	
+	
+	// 상세보기에서 바로구매
+	@RequestMapping(value = "order")
+	public ModelAndView orderFormLoginAop(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		// 회원구매 AND 비회원구매
+
+		HttpSession session = request.getSession();
+
+		// 바로구매시작
+		System.out.println("바로 구매 넘어오는 값들 :" + commandMap.getMap());
 		ModelAndView mv = new ModelAndView("orderForm");
 
 		commandMap.put("GOODS_NUMBER", session.getAttribute("GOODS_NUMBER"));
 
 		System.out.println(session.getAttribute("GOODS_NUMBER"));
-		
-		//주문자정보뽑아주기 회원,비회원 구분//
+
+		// 주문자정보뽑아주기 회원,비회원 구분//
 		if (session.getAttribute("MEMBER_NUMBER") != null || commandMap.get("guestEmail") == null) {
 			System.out.println("회원 바로 구매 시작");
-			
 
 			commandMap.put("MEMBER_NUMBER", session.getAttribute("MEMBER_NUMBER"));
-			System.out.println("Member_Number :"  +session.getAttribute("MEMBER_NUMBER"));
-			
-			//회원정보
+			System.out.println("Member_Number :" + session.getAttribute("MEMBER_NUMBER"));
+
+			// 회원정보
 			Map<String, Object> orderMember = orderService.orderMember(commandMap.getMap());
 
 			mv.addObject("orderMember", orderMember);
 
-		}else if (session.getAttribute("MEMBER_NUMBER") == null || commandMap.get("guestEmail") != null) {
+		} else if (session.getAttribute("MEMBER_NUMBER") == null || commandMap.get("guestEmail") != null) {
 			System.out.println("비회원 바로구매시작");
 			mv.addObject("guestEmail", commandMap.get("guestEmail"));
 		}
-		//주문자정보뽑아주기 끝//
-		
+		// 주문자정보뽑아주기 끝//
 
-		
-		//주문상품정보뽑아주기 회원,비회원 동일//
-		String[] goods_kinds_number = request.getParameterValues("kinds[]"); 
+		// 주문상품정보뽑아주기 회원,비회원 동일//
+		String[] goods_kinds_number = request.getParameterValues("kinds[]");
 		String[] ea = request.getParameterValues("ea[]");
-			
-		List<Map<String, Object>> goods = new ArrayList<Map<String, Object>>();
-		
 
-		
+		List<Map<String, Object>> goods = new ArrayList<Map<String, Object>>();
+
 		for (int i = 0; i < goods_kinds_number.length; i++) {
 
 			System.out.println("ea[" + i + "] = " + ea[i]);
 			commandMap.put("GOODS_NUMBER", request.getParameter("goodsno"));
 			commandMap.put("GOODS_KIND_NUMBER", goods_kinds_number[i]);
 			commandMap.put("EA", ea[i]);
-			System.out.println("CommandMap!! :" +commandMap.getMap());
+			System.out.println("CommandMap!! :" + commandMap.getMap());
 			Map<String, Object> orderGoods = orderService.orderGoods(commandMap.getMap());
 
 			System.out.println("orderGoods : " + orderGoods);
@@ -108,164 +184,153 @@ public class OrderController {
 
 		return mv;
 	}
-	
-	
-	
-	   //포인트 금액 차감 ajax 요청 받을 메서드 (db값저장은 아직없음)
-    @RequestMapping(value = "orderPoint")
-    @ResponseBody
-    public Map<String, Object> orderPoint(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
-       
-       String[] goods_kinds_number = request.getParameterValues("GOODS_KIND_NUMBER");
-       String[] ea = request.getParameterValues("EA");
-             
-       int myPoint = Integer.parseInt((String) commandMap.getMap().get("myPoint"));
-       int usePoint = Integer.parseInt((String) commandMap.getMap().get("usePoint"));
-       int TOTALPRICE =0;
-       
-       int nowPoint = myPoint - usePoint;
-       System.out.println("포인트계산 : " + myPoint + "-" + usePoint + "=" + nowPoint);
+	// 포인트 금액 차감 ajax 요청 받을 메서드 (db값저장은 아직없음)
+	@RequestMapping(value = "orderPoint")
+	@ResponseBody
+	public Map<String, Object> orderPoint(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
-       for (int i = 0; i < goods_kinds_number.length; i++) {
-       commandMap.put("GOODS_NUMBER", commandMap.getMap().get("GOODS_NUMBER"));
-       commandMap.put("GOODS_KIND_NUMBER", goods_kinds_number[i]);
-       commandMap.put("EA", ea[i]);
-       Map<String, Object> orderGoods = orderService.orderGoods(commandMap.getMap());
-       
-       
-       //할인상품 구분
-       if(orderGoods.get("TOTALPRICE") != orderGoods.get("TOTALDISPRICE")) {
-          orderGoods.put("TOTALPRICE", orderGoods.get("TOTALDISPRICE"));
-       }
-       
-       TOTALPRICE += ((BigDecimal)orderGoods.get("TOTALPRICE")).intValue();
-       
-             
-       }
-       Map<String,Object> param = new HashMap<String,Object>();
-       param.put("TOTALPRICE", TOTALPRICE);
-       param.put("usePoint", usePoint);
-       
-       return param;
+		String[] goods_kinds_number = request.getParameterValues("GOODS_KIND_NUMBER");
+		String[] ea = request.getParameterValues("EA");
 
-    }
+		int myPoint = Integer.parseInt((String) commandMap.getMap().get("myPoint"));
+		int usePoint = Integer.parseInt((String) commandMap.getMap().get("usePoint"));
+		int TOTALPRICE = 0;
 
- @RequestMapping(value = "orderDetail")
- public ModelAndView orderDetail(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		int nowPoint = myPoint - usePoint;
+		System.out.println("포인트계산 : " + myPoint + "-" + usePoint + "=" + nowPoint);
 
-    ModelAndView mv = new ModelAndView("orderDetail");
+		for (int i = 0; i < goods_kinds_number.length; i++) {
+			commandMap.put("GOODS_NUMBER", commandMap.getMap().get("GOODS_NUMBER"));
+			commandMap.put("GOODS_KIND_NUMBER", goods_kinds_number[i]);
+			commandMap.put("EA", ea[i]);
+			Map<String, Object> orderGoods = orderService.orderGoods(commandMap.getMap());
 
-    HttpSession session = request.getSession();
-    System.out.println("commandMap!! :"+commandMap.getMap());
-    
-    
-    
-    String guestPhone;
-    guestPhone = (String)commandMap.getMap().get("guestPhone1")+"-"+commandMap.getMap().get("guestPhone2")+"-"+commandMap.getMap().get("guestPhone3");
-    System.out.println("guestPhone :"+guestPhone);
-    commandMap.put("guestPhone", guestPhone);
-    
-    String receiverPhone;
-    receiverPhone = (String) commandMap.getMap().get("emergency31")+"-"+commandMap.getMap().get("emergency32")+"-"+commandMap.getMap().get("emergency33");
-    System.out.println("receiverPhone :"+receiverPhone);
-    commandMap.put("RECEIVER_PHONE", receiverPhone);
-    
-    commandMap.put("GOODS_NUMBER", session.getAttribute("GOODS_NUMBER"));
+			// 할인상품 구분
+			if (orderGoods.get("TOTALPRICE") != orderGoods.get("TOTALDISPRICE")) {
+				orderGoods.put("TOTALPRICE", orderGoods.get("TOTALDISPRICE"));
+			}
 
-    System.out.println(session.getAttribute("GOODS_NUMBER"));
+			TOTALPRICE += ((BigDecimal) orderGoods.get("TOTALPRICE")).intValue();
 
-    if (session.getAttribute("MEMBER_NUMBER") != null) {
+		}
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("TOTALPRICE", TOTALPRICE);
+		param.put("usePoint", usePoint);
 
-       commandMap.put("MEMBER_NUMBER", session.getAttribute("MEMBER_NUMBER"));
+		return param;
 
-       System.out.println(session.getAttribute("MEMBER_NUMBER"));
+	}
 
-       Map<String, Object> orderMember = orderService.orderMember(commandMap.getMap());
+	@RequestMapping(value = "orderDetail")
+	public ModelAndView orderDetail(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
-       mv.addObject("orderMember", orderMember);
+		ModelAndView mv = new ModelAndView("orderDetail");
 
-    }
+		HttpSession session = request.getSession();
+		System.out.println("commandMap!! :" + commandMap.getMap());
 
-    List<Map<String, Object>> goods = new ArrayList<Map<String, Object>>();
+		String guestPhone;
+		guestPhone = (String) commandMap.getMap().get("guestPhone1") + "-" + commandMap.getMap().get("guestPhone2")
+				+ "-" + commandMap.getMap().get("guestPhone3");
+		System.out.println("guestPhone :" + guestPhone);
+		commandMap.put("guestPhone", guestPhone);
 
-    String[] goods_kinds_number = request.getParameterValues("kinds[]");
-    String[] ea = request.getParameterValues("ea[]");
-    String[] goods_number = request.getParameterValues("GOODS_NUMBER");
+		String receiverPhone;
+		receiverPhone = (String) commandMap.getMap().get("emergency31") + "-" + commandMap.getMap().get("emergency32")
+				+ "-" + commandMap.getMap().get("emergency33");
+		System.out.println("receiverPhone :" + receiverPhone);
+		commandMap.put("RECEIVER_PHONE", receiverPhone);
 
-    for (int i = 0; i < goods_kinds_number.length; i++) {
+		commandMap.put("GOODS_NUMBER", session.getAttribute("GOODS_NUMBER"));
 
-       commandMap.put("GOODS_KIND_NUMBER", goods_kinds_number[i]);
-       commandMap.put("EA", ea[i]);
-       commandMap.put("GOODS_NUMBER", goods_number[i]);
+		System.out.println(session.getAttribute("GOODS_NUMBER"));
 
-       Map<String, Object> orderGoods = orderService.orderGoods(commandMap.getMap());
-       
-       //할인상품 구분
-       if(orderGoods.get("TOTALPRICE") != orderGoods.get("TOTALDISPRICE")) {
-          orderGoods.put("TOTALPRICE", orderGoods.get("TOTALDISPRICE"));
-       }
-       
+		if (session.getAttribute("MEMBER_NUMBER") != null) {
 
-       orderGoods.put("EA", ea[i]);
+			commandMap.put("MEMBER_NUMBER", session.getAttribute("MEMBER_NUMBER"));
 
-       goods.add(orderGoods);
+			System.out.println(session.getAttribute("MEMBER_NUMBER"));
 
-    
+			Map<String, Object> orderMember = orderService.orderMember(commandMap.getMap());
 
-       System.out.println("goods : " + goods);
+			mv.addObject("orderMember", orderMember);
 
-       mv.addObject("goods_kind_number", goods_kinds_number[i]);
-       mv.addObject("ea", ea[i]);
-       mv.addObject("GOODS_NUMBER", goods_number[i]);
+		}
 
-       System.out.println("goods_kind_number : " + goods_kinds_number[i]);
-       System.out.println("ea : " + ea[i]);
-       System.out.println("GOODS_NUMBER : " + goods_number[i]);
-    }
-    
-    
- if(commandMap.getMap().get("POINT_POINT") != null) {
-    if (((String)commandMap.getMap().get("POINT_POINT")).equals("")) {
-       System.out.println("야호1" + commandMap.getMap().get("POINT_POINT"));
-       mv.addObject("usePoint", 0);
-    }else {
-       mv.addObject("usePoint", commandMap.getMap().get("POINT_POINT"));
-    }
- 
- }else {
-    mv.addObject("usePoint", 0);
- }
-    
-    //비회원구매시 
-    mv.addObject("guestEmail", commandMap.get("guestEmail"));
-    mv.addObject("guestName", commandMap.get("guestName"));
-    mv.addObject("guestPhone", commandMap.get("guestPhone"));
+		List<Map<String, Object>> goods = new ArrayList<Map<String, Object>>();
 
-    // 추가 포인트 넘겨야됨
-    System.out.println(commandMap.get("POINT_POINT"));
-    System.out.println("guestEmail : " + commandMap.get("guestEmail"));
-    System.out.println("guestName : " + commandMap.get("guestName"));
-    System.out.println("guestPhone : " + commandMap.get("guestPhone"));
+		String[] goods_kinds_number = request.getParameterValues("kinds[]");
+		String[] ea = request.getParameterValues("ea[]");
+		String[] goods_number = request.getParameterValues("GOODS_NUMBER");
 
-    /*
-     * mv.addObject("GOODS_NUMBER", session.getAttribute("GOODS_NUMBER"));
-     */
-    mv.addObject("goods", goods);
-      // sale조건 충족하는지 볼것
- 
+		for (int i = 0; i < goods_kinds_number.length; i++) {
 
-     //회원이든 비회원이던 동일
-    mv.addObject("RECEIVER_NAME", commandMap.get("RECEIVER_NAME"));
-    mv.addObject("RECEIVER_ZIPCODE", commandMap.get("RECEIVER_ZIPCODE"));
-    mv.addObject("RECEIVER_ADDRESS1", commandMap.get("RECEIVER_ADDRESS1"));
-    mv.addObject("RECEIVER_ADDRESS2", commandMap.get("RECEIVER_ADDRESS2"));
-    mv.addObject("RECEIVER_PHONE", commandMap.get("RECEIVER_PHONE"));
-    mv.addObject("DELIVERY_MESSAGE", commandMap.get("DELIVERY_MESSAGE"));
+			commandMap.put("GOODS_KIND_NUMBER", goods_kinds_number[i]);
+			commandMap.put("EA", ea[i]);
+			commandMap.put("GOODS_NUMBER", goods_number[i]);
 
-    return mv;
- }
- 
+			Map<String, Object> orderGoods = orderService.orderGoods(commandMap.getMap());
+
+			// 할인상품 구분
+			if (orderGoods.get("TOTALPRICE") != orderGoods.get("TOTALDISPRICE")) {
+				orderGoods.put("TOTALPRICE", orderGoods.get("TOTALDISPRICE"));
+			}
+
+			orderGoods.put("EA", ea[i]);
+
+			goods.add(orderGoods);
+
+			System.out.println("goods : " + goods);
+
+			mv.addObject("goods_kind_number", goods_kinds_number[i]);
+			mv.addObject("ea", ea[i]);
+			mv.addObject("GOODS_NUMBER", goods_number[i]);
+
+			System.out.println("goods_kind_number : " + goods_kinds_number[i]);
+			System.out.println("ea : " + ea[i]);
+			System.out.println("GOODS_NUMBER : " + goods_number[i]);
+		}
+
+		if (commandMap.getMap().get("POINT_POINT") != null) {
+			if (((String) commandMap.getMap().get("POINT_POINT")).equals("")) {
+				System.out.println("야호1" + commandMap.getMap().get("POINT_POINT"));
+				mv.addObject("usePoint", 0);
+			} else {
+				mv.addObject("usePoint", commandMap.getMap().get("POINT_POINT"));
+			}
+
+		} else {
+			mv.addObject("usePoint", 0);
+		}
+
+		// 비회원구매시
+		mv.addObject("guestEmail", commandMap.get("guestEmail"));
+		mv.addObject("guestName", commandMap.get("guestName"));
+		mv.addObject("guestPhone", commandMap.get("guestPhone"));
+
+		// 추가 포인트 넘겨야됨
+		System.out.println(commandMap.get("POINT_POINT"));
+		System.out.println("guestEmail : " + commandMap.get("guestEmail"));
+		System.out.println("guestName : " + commandMap.get("guestName"));
+		System.out.println("guestPhone : " + commandMap.get("guestPhone"));
+
+		/*
+		 * mv.addObject("GOODS_NUMBER", session.getAttribute("GOODS_NUMBER"));
+		 */
+		mv.addObject("goods", goods);
+		// sale조건 충족하는지 볼것
+
+		// 회원이든 비회원이던 동일
+		mv.addObject("RECEIVER_NAME", commandMap.get("RECEIVER_NAME"));
+		mv.addObject("RECEIVER_ZIPCODE", commandMap.get("RECEIVER_ZIPCODE"));
+		mv.addObject("RECEIVER_ADDRESS1", commandMap.get("RECEIVER_ADDRESS1"));
+		mv.addObject("RECEIVER_ADDRESS2", commandMap.get("RECEIVER_ADDRESS2"));
+		mv.addObject("RECEIVER_PHONE", commandMap.get("RECEIVER_PHONE"));
+		mv.addObject("DELIVERY_MESSAGE", commandMap.get("DELIVERY_MESSAGE"));
+
+		return mv;
+	}
 
 	@RequestMapping(value = "orderEnd")
 	public ModelAndView orderEnd(CommandMap commandMap, HttpServletRequest request) throws Exception {
@@ -374,7 +439,6 @@ public class OrderController {
 		commandMap.put("DELIVERY_MESSAGE", request.getParameter("DELIVERY_MESSAGE"));
 		commandMap.put("RECEIVER_NUMBER", request.getParameter("RECEIVER_PHONE"));
 		commandMap.put("TOTALPRICE", request.getParameter("TOTALPRICE"));
-	
 
 		orderService.createDeliveryList(commandMap.getMap());
 
@@ -390,9 +454,9 @@ public class OrderController {
 			System.out.println("ORDER_AMOUNT : " + commandMap.get("ORDER_AMOUNT"));
 			System.out.println("ORDER_CODE : " + commandMap.get("ORDER_CODE"));
 			System.out.println("모가안나옵니까~ " + commandMap.getMap());
-			
+
 			orderService.createOrderList(commandMap.getMap());
-			System.out.println(i+"번 돌았음");
+			System.out.println(i + "번 돌았음");
 			orderService.goodsCountDown(commandMap.getMap());
 
 		}
@@ -418,28 +482,28 @@ public class OrderController {
 		}
 
 		if (commandMap.getMap().get("usePoint") != null) {
-			if(!((String)commandMap.getMap().get("usePoint")).isEmpty()){
-			int usePoint = Integer.parseInt((String) commandMap.getMap().get("usePoint"));
-			System.out.println("야야" + usePoint);
-			// int totalpoint =Integer.parseInt(goods_total[0]);
+			if (!((String) commandMap.getMap().get("usePoint")).isEmpty()) {
+				int usePoint = Integer.parseInt((String) commandMap.getMap().get("usePoint"));
+				System.out.println("야야" + usePoint);
+				// int totalpoint =Integer.parseInt(goods_total[0]);
 
-			if (usePoint != 0) {
-				System.out.println("포인트가 0이 아닌것들만 적립내역DB에 들어가거라");
+				if (usePoint != 0) {
+					System.out.println("포인트가 0이 아닌것들만 적립내역DB에 들어가거라");
 
-				int POINT_POINT = -(usePoint);
+					int POINT_POINT = -(usePoint);
 
-				System.out.println("POINT_POINT" + POINT_POINT);
+					System.out.println("POINT_POINT" + POINT_POINT);
 
-				commandMap.getMap().put("POINT_POINT", POINT_POINT);
-				commandMap.getMap().put("POINT_CONTENT", "상품 구매");
+					commandMap.getMap().put("POINT_POINT", POINT_POINT);
+					commandMap.getMap().put("POINT_CONTENT", "상품 구매");
 
-				orderService.insertPoint(commandMap.getMap());
+					orderService.insertPoint(commandMap.getMap());
 
+				}
+
+				mv.addObject("usePoint", usePoint);
 			}
 
-			mv.addObject("usePoint", usePoint);
-		  }
-			
 		}
 		mv.addObject("ORDER_CODE", ORDER_CODE);
 		mv.addObject("BUYER_NUMBER", commandMap.get("BUYER_NUMBER"));
@@ -456,54 +520,5 @@ public class OrderController {
 
 		return mv;
 	}
-	
-	@RequestMapping(value = "/noMemberOrderList", method = RequestMethod.POST)
-	public ModelAndView noMemberOrderList(CommandMap commandMap, HttpServletRequest request) throws Exception {
-
-		ModelAndView mv = new ModelAndView();
-		System.out.println("비회원넘어오는값:" + commandMap.getMap().toString());
-		List<Map<String, Object>> list = orderService.selectOrderList2(commandMap.getMap());
-		
-		for (int i = 0; list.size() > i; i++) {
-			
-			System.out.println("리스트" + i + "번째" + list.get(i).toString());
-			
-		}
-		System.out.println("비회원구매리스트:" + list);
-		if (request.getParameter("currentPage") == null || request.getParameter("currentPage").trim().isEmpty()
-				|| request.getParameter("currentPage").equals("0")) {
-			currentPage = 1;
-		} else {
-			currentPage = Integer.parseInt(request.getParameter("currentPage"));
-			System.out.println("ㅋㅋ"+currentPage);
-		}
-		System.out.println("ㅋㅋ2"+currentPage);
-		
-		totalCount = list.size();
-		
-
-		
-		
-		
-		mv.addObject("totalCount", totalCount);
-		mv.addObject("pagingHtml", pagingHtml);
-		mv.addObject("currentPage", currentPage);	
-		
-		mv.addObject("BUYER_EMAIL",commandMap.getMap().get("BUYER_EMAIL"));
-		mv.addObject("BUYER_NUMBER",commandMap.getMap().get("BUYER_NUMBER"));
-		if(commandMap.getMap().get("paging")!=null) {
-		if(commandMap.getMap().get("paging").equals("on")) {
-			System.out.println("들어옴?");
-			mv.setViewName("order/noMemberOrderList");
-			return mv;
-		}
-		}
-		mv.setViewName("noMemberOrderList");
-		
-		return mv;
-	}
-
-
-
 
 }
