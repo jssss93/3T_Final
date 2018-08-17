@@ -57,13 +57,74 @@ public class adminGoodsController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/goods/updateForm")
+	//상품 수정 폼
+	@RequestMapping(value = "/goods/updateForm", method = RequestMethod.GET)
 	public ModelAndView goodsUpdateForm(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("goods.update");
-		List<Map<String, Object>> goodsDetail = adminGoodsService.modifyGoodsForm(commandMap.getMap());
+		mv.addObject("GOODS_NO", commandMap.get("GOODS_NO"));
+		
+		List<Map<String, Object>> goodsDetail = goodsService.selectGoodsDetail(commandMap.getMap());
+		Map<String, Object> goodsBasic = goodsDetail.get(0);
+		
+		List<Map<String, Object>> goodsImage = goodsService.selectGoodsImage(commandMap.getMap());
+		
+		mv.addObject("goodsDetail", goodsDetail);
+
+	    mv.addObject("goodsBasic", goodsBasic);
+	    
+	    mv.addObject("goodsImage", goodsImage);
+		
+		return mv;
+	}
+	
+	//상품 수정
+	@RequestMapping(value = "/goods/update", method = RequestMethod.POST)
+	public ModelAndView goodsUpdate(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:/admin/goods/list");
+		System.out.println("commandMap.getMap():"+commandMap.getMap());
+		goodsService.updateGoods(commandMap.getMap(), request);
+		
+		return mv;
+	}
+	
+	//상품 속성 개별 삭제
+	@RequestMapping(value = "/goods/deleteAttribute")
+	public ModelAndView goodsDeleteAttribute(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:/admin/goods/updateForm");
+		
+		mv.addObject("GOODS_NO", commandMap.get("GOODS_NO"));
+		System.out.println(commandMap.getMap());
+		goodsService.deleteAttribute(commandMap.getMap());
+		
+		return mv;
+	}
+	
+	//상품 이미지 개별 삭제
+	@RequestMapping(value = "/goods/deleteUpload")
+	public ModelAndView goodsDeleteUpload(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:/admin/goods/updateForm");
+		
+		mv.addObject("GOODS_NO", commandMap.get("GOODS_NO"));
+		
+		goodsService.deleteUpload(commandMap.getMap());
+		
+		return mv;
+	}
+	
+	//상품 삭제
+	@RequestMapping(value = "/goods/deleteGoods")
+	public ModelAndView goodsDelete(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:/admin/goods/list");
+		
+		goodsService.deleteGoods(commandMap.getMap());
+		
+		return mv;
+	}
+		
+		/*List<Map<String, Object>> goodsDetail = adminGoodsService.modifyGoodsForm(commandMap.getMap());
 		mv.addObject("goodsDetail", goodsDetail);
 		Map<String, Object> goodsBasic = goodsDetail.get(0);
 		mv.addObject("goodsBasic", goodsBasic);
-		return mv;
-	}
+		return mv;*/
 }
+

@@ -8,8 +8,6 @@
 		
 		<include refid="common.pagingPre" /> 
 		<![CDATA[
-			
-		
 			SELECT
 			   GOODS_NO,
 			   NAME,
@@ -50,8 +48,7 @@
 			   ORDER BY 
 			      b.ATTRIBUTE_NO ASC
 			   )
-			  
-			  GROUP BY
+		  	   GROUP BY
 			      GOODS_NO,
 			      NAME,CONTENT, 
 			      READCNT,
@@ -61,9 +58,6 @@
 			      KEYWORD,
 			      ATTRIBUTE_NO,
 			      CATEGORY
-			
-			
-	
 		]]>
 		<include refid="common.pagingPost" />
 
@@ -101,7 +95,7 @@
                b.GOODS_SIZE,
                b.COLOR,
                b.COUNT,
-                c.SAV_NAME
+               c.SAV_NAME
             FROM
                GOODS a 
                INNER JOIN 
@@ -190,7 +184,7 @@
          KEYWORD,
          CATEGORY 
       ORDER BY
-        REGDATE ASC
+         REGDATE ASC
 ]]>
 </select>
 
@@ -495,7 +489,8 @@ FROM
  SELECT 
  	GOODS_NO,
  	UPLOAD_NO,
- 	SAV_NAME 
+ 	SAV_NAME,
+ 	ORG_NAME 
  FROM 
  	UPLOAD 
  WHERE 
@@ -594,9 +589,106 @@ FROM
     	]]>
 	</insert>
 	
-	
+	<update id="updateGoods" parameterType="hashmap">
+		<![CDATA[
+			UPDATE 
+				GOODS 
+			SET 
+				NAME = #{NAME},
+				CONTENT = #{CONTENT},
+				PRICE = #{PRICE},
+				RELATED = #{RELATED},
+				KEYWORD = #{KEYWORD},
+				CATEGORY = #{CATEGORY}
+			WHERE 
+				GOODS_NO = #{GOODS_NO}
+		]]>
+	</update>
 
+	<!-- 상품 종류 수정 -->
+	<update id="updateGoodsAttribute" parameterType="hashmap">
+		<![CDATA[
+			UPDATE 
+				GOODS_ATTRIBUTE
+			SET 
+				GOODS_SIZE = #{GOODS_SIZE},
+				COLOR = #{COLOR},
+				COUNT = #{COUNT}
+			WHERE 
+				GOODS_NO = #{GOODS_NO }
+		]]>
+	</update>
+
+	<!-- 상품 이미지 수정 -->
+	<update id="updateGoodsImage" parameterType="hashmap">
+		<![CDATA[
+			UPDATE 
+				UPLOAD 
+			SET 
+				ORG_NAME = #{ORG_NAME},
+				SAV_NAME = #{SAV_NAME},
+				FILE_SIZE = #{FILE_SIZE},
+				DEL = 'N'
+			WHERE 
+				GOODS_NO = #{GOODS_NO}
+		]]>
+	</update>
 	
+	<!-- 속성 개별 삭제 -->
+	<update id="deleteAttribute" parameterType="hashmap">
+		<![CDATA[
+			DELETE
+			FROM
+				GOODS_ATTRIBUTE
+			WHERE
+				ATTRIBUTE_NO = #{ATTRIBUTE_NO}
+		]]>
+	</update>
+	
+	<!-- 사진 개별 삭제 -->
+	<update id="deleteUpload" parameterType="hashmap">
+		<![CDATA[
+			DELETE
+			FROM
+				UPLOAD
+			WHERE
+				UPLOAD_NO = #{UPLOAD_NO}
+		]]>
+	</update>
+	
+	<!--↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 상품 삭제 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->
+	
+	<delete id="deleteGoods" parameterType="hashmap">
+	 <![CDATA[
+        delete
+        FROM
+            GOODS
+        WHERE
+            GOODS_NO = #{GOODS_NO}   
+    ]]>
+	</delete>
+	
+	<delete id="deleteA" parameterType="hashmap">
+	 <![CDATA[
+        delete
+        FROM
+            GOODS_ATTRIBUTE
+        WHERE
+            GOODS_NO = #{GOODS_NO}   
+    ]]>
+	</delete>
+	
+	<delete id="deleteU" parameterType="hashmap">
+	 <![CDATA[
+        delete
+        FROM
+            UPLOAD
+        WHERE
+            GOODS_NO = #{GOODS_NO}   
+    ]]>
+	</delete>
+
+	<!-- ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ 상품 삭제 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ -->
 
 	<!-- <update id="updateReadCnt" parameterType="hashmap">
 		<![CDATA[

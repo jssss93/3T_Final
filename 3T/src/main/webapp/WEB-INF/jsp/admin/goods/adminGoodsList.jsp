@@ -11,7 +11,7 @@ $( document ).ready(function() {
 	$('#dataTables-example').rowspan(2);
 	$('#dataTables-example').rowspan(3);
 	$('#dataTables-example').rowspan(4);
-	$('#dataTables-example').rowspan(5);
+	$('#dataTables-example').rowspan(8);
 	$('#dataTables-example').rowspan(9);
 	$('#dataTables-example').rowspan(10);
 });
@@ -48,6 +48,30 @@ $.fn.rowspan = function(colIdx, isStats) {
 		});    
 	});  
 }; 
+
+$.fn.colspan = function(rowIdx) {
+	return this.each(function(){
+		
+		var that;
+		$('tr', this).filter(":eq("+rowIdx+")").each(function(row) {
+			$(this).find('th').filter(':visible').each(function(col) {
+				if ($(this).html() == $(that).html()) {
+					colspan = $(that).attr("colSpan") || 1;
+					colspan = Number(colspan)+1;
+					
+					$(that).attr("colSpan",colspan);
+					$(this).hide(); // .remove();
+				} else {
+					that = this;
+				}
+				
+				// set the that if not already set
+				that = (that == null) ? this : that;
+				
+			});
+		});
+	});
+}
 function delchk(){
     return confirm("삭제하시겠습니까?");
     
@@ -130,11 +154,13 @@ function delchk(){
 									</tr>
 								</thead>
 								<tbody>
+								<c:choose>
+									<c:when test="${fn:length(list) > 0 }">
 									<c:forEach var="goodsList"  items="${list}" varStatus="stat">
 									
 										<tr class="gradeA even" role="row">
 											<td style="text-align:center;vertical-align:middle;">${goodsList.GOODS_NO}</td>										
-											<td style="text-align:center;vertical-align:middle;"><img src="/3T/resources/upload/${goodsList.IMAGE}" width="60" height="60" alt=""  onerror="상품 이미지가 없습니다." /></td>
+											<td style="text-align:center;vertical-align:middle;"><img src="/3T/resources/upload/${goodsList.IMAGE.split(',')[0]}" width="60" height="60" alt=""  onerror="상품 이미지가 없습니다." /></td>
 											<td style="text-align:center;vertical-align:middle;">${goodsList.CATEGORY}</td>
 											<td style="text-align:center;vertical-align:middle;">${goodsList.NAME}</td>
 											<td style="text-align:center;vertical-align:middle;">${goodsList.PRICE}</td>
@@ -142,16 +168,20 @@ function delchk(){
 											<td style="text-align:center;vertical-align:middle;">${goodsList.GOODS_SIZE}</td>
 											<td style="text-align:center;vertical-align:middle;">${goodsList.COUNT}</td>
 											<td style="text-align:center;vertical-align:middle;"><fmt:formatDate value="${goodsList.REGDATE}" pattern="YY.MM.dd HH:mm" /></td>										
-											<td style="text-align:center;vertical-align:middle;">
-											<a href="/3T/admin/goods/updateForm"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;
-											<a href="/3T/admin/goods/delete"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png"></a>
+											<td style="text-align:center;vertical-align:middle;"><input type="hidden" value="${goodsList.GOODS_NO }" />
+											<a href="/3T/admin/goods/updateForm?GOODS_NO=${goodsList.GOODS_NO }"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;
+											<a href="/3T/admin/goods/deleteGoods?GOODS_NO=${goodsList.GOODS_NO }"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png"></a>
 										</tr>
 										
 									</c:forEach>
+								</c:when>
+								<c:otherwise>
 								<!--  등록된 상품이 없을때 -->
-									<c:if test="${fn:length(goodsList) le 0}">
+									
 										<tr><td colspan="11" style="text-align:center;">등록된 상품이 없습니다</td></tr>
-									</c:if> 
+									
+								</c:otherwise>
+							</c:choose>
 								</tbody>
 							</table>
 						</div>
