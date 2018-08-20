@@ -19,7 +19,7 @@ public class AdminMemberDAO extends AbstractDAO {
 	// 회원 상세정보
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> memberDetail(Map<String, Object> map) throws Exception {
-		return (Map<String, Object>) selectOne("adminMember.selectMemberDetail", map);
+		return (Map<String, Object>) selectOne("member.loginGo", map);
 	}
 	
 	// 회원 정보 수정

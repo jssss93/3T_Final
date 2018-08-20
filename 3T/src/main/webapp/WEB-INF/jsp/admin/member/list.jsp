@@ -87,12 +87,15 @@
 								</thead>
 								<tbody>
 									<c:forEach var="memberList" items="${memberList}" varStatus="stat">
-										<c:url var="viewURL" value="/member/adminMemberDetail">
-											<c:param name="MEMBER_NO" value="${memberList.MEMBER_NO }" />
+										<c:url var="viewURL" value="/admin/member/Detail">
+											<input type="hidden" id="MEMBER_ID" name="MEMBER_ID" value="${memberList.MEMBER_ID}">
+											<c:param name="MEMBER_ID" value="${memberList.MEMBER_ID }" />
 										</c:url>
 										<tr class="gradeA even" role="row">
 											<td style="text-align: center; vertical-align: middle;">${memberList.MEMBER_NO}</td>
-											<td style="text-align: center; vertical-align: middle;">${memberList.MEMBER_ID}</td>
+											<td style="text-align: center; vertical-align: middle;">${memberList.MEMBER_ID}
+											
+											</td>
 											<td style="text-align: center; vertical-align: middle;">
 												<form action="/3T/GiftCoupon">
 													<input type="text" id="CONTENT" name="CONTENT" style="width: 130px; text-align: center;">
