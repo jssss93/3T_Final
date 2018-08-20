@@ -21,7 +21,7 @@ public interface QaService {
 		void QaReplyInsert(Map<String, Object> map) throws Exception;
 		
 		void QaUpdateReplyStep(Map<String, Object> map) throws Exception;
-
+		//상품 리스트
 		List<Map<String, Object>> QaGoodsList(Map<String, Object> map) throws Exception;
 		//QA상품검색
 		List<Map<String, Object>> QaGoodsSearch(Map<String, Object>map)throws Exception;
