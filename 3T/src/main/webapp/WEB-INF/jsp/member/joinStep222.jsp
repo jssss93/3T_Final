@@ -225,13 +225,12 @@
 							<td align="left" class="tdstyle2" colspan="2">기본정보</td>
 						</tr>
 						<tr>
-							<td class="tdstyle1">아이디<img
-								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
-							<td valign="middle"><input type="text" name="MEMBER_ID" maxlength="20"
-								size="28"> <input type="button" name="confirMEMBER_ID"
-								value="중복확인" onclick="openConfirmId()" >
-								<input type="hidden" name="confirMEMBER_ID" value=""> 영문/숫자를
-								이용하여 4~12자로 입력하세요</td>
+							<td class="tdstyle1">아이디<img src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"></td>
+							<td valign="middle">
+								<input type="text" name="MEMBER_ID" id="MEMBER_ID" maxlength="20"size="28" onkeyup="javascript:keyevent(this);">
+								<input type="button" name="confirMEMBER_ID"	value="중복확인" onclick="over()" >
+								<input type="hidden" name="confirMEMBER_ID" value=""> 영문/숫자를이용하여 4~12자로 입력하세요
+							</td>
 						</tr>
 						<tr>
 							<td class="tdstyle1">비밀번호<img
@@ -317,4 +316,46 @@
 
 					</form>
 </body>
+<script type="text/javascript">
+function over() {
+	var f = document.Reg_form;
+	var member_id = f.MEMBER_ID.value;
+
+	if (member_id == "") {
+		alert("아이디를 입력하세요.");
+	}  else {
+		console.log("ajaxtest1");
+		console.log("member_id:"+member_id);
+		$.ajax({ 
+			type : "POST",
+			url : "/3T/member/joinStep2/checkId",
+			data : ({
+				mode : "member_id",
+				id : member_id
+			}),
+			success : function(data) {
+				console.log(data);
+				if (data != 0) {
+					alert("이미 가입된 ID입니다 .다른 ID를 입력해주세요");
+				} else {
+					alert("사용가능합니다.");
+				}
+
+				if (data != null) {
+					console.log("로그 내용2" + data);
+				}
+			},
+			error : function(error, a, b) {
+				console.log(error);
+				console.log(a);
+				console.log(b);
+			}
+		});
+	}
+
+}
+
+
+
+</script>
 </html>

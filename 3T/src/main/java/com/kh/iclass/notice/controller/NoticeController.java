@@ -47,10 +47,10 @@ public class NoticeController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/notice/write", method = RequestMethod.POST)
+	@RequestMapping(value = "/notice/write2", method = RequestMethod.POST)
 	public ModelAndView noticeWrite(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:list");
-
+		
 		noticeService.NoticeInsert(commandMap.getMap());
 
 		return mv;

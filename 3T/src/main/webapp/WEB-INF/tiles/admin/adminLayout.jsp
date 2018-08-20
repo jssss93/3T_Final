@@ -52,7 +52,6 @@
 				</button>
 				<a class="navbar-brand" style="color: #fff;" href="/3T/admin/main"><strong>3T 관리자페이지</strong></a>
 			</div>
-			<!-- /.navbar-header -->
 			
 			
 			
@@ -89,6 +88,15 @@
 								<li><a href="/3T/admin/member/message">- 메시지보내기</a></li>
 							</ul> <!-- /.nav-second-level -->
 						</li>
+						<li class="active">
+							<a href="#" style="background: #e7e7e7;">
+								<b class="fa fa-bar-chart-o fa-fw">메출관리</b>
+								<span class="fa arrow">▼</span>
+							</a>
+							<ul class="nav nav-second-level">
+								<li><a href="/3T/admin/order/chartBasic">- 매출그래프</a></li>
+							</ul>
+						</li>
 
 						<li class="active">
 							<a href="#" style="background: #e7e7e7;">
@@ -122,13 +130,13 @@
 			<!-- /.navbar-static-side -->
 		</nav>
 		
-		<!-- /#page-wrapper -->
 	</div>
-	<div id="page-wrapper">
-			<!-- 메인container-->
-			<tiles:insertAttribute name="body" />
-			<!-- // container -->
-		</div>
-	<!-- /#wrapper -->
+	
+	 
+	<div id="page-wrapper" >
+		<tiles:insertAttribute name="body" />
+	</div>
+	
+	
 </body>
 </html>

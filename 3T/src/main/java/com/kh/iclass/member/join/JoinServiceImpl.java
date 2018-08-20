@@ -29,7 +29,7 @@ public class JoinServiceImpl implements JoinService{
 	@Override
 	public int checkMember(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return joinDAO.checkMember(map);
 	}
 	
 	@Override

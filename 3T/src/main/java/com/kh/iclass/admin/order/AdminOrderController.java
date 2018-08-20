@@ -1,4 +1,4 @@
-package com.kh.iclass.order;
+package com.kh.iclass.admin.order;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,9 +22,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.iclass.admin.member.AdminMemberService;
 import com.kh.iclass.cart.CartService;
 import com.kh.iclass.common.map.CommandMap;
+import com.kh.iclass.common.util.ParseListToJson;
+import com.kh.iclass.order.OrderService;
+
 
 @Controller
-public class OrderController {
+@RequestMapping(value = "/admin/")
+public class AdminOrderController {
 
 	@Resource(name = "orderService")
 	private OrderService orderService;
@@ -35,84 +40,64 @@ public class OrderController {
 	private AdminMemberService adminMemberService;
 
 	
-	@RequestMapping(value = "order/add")
-	public ModelAndView addOrder(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("order/write");
-		HttpSession session = request.getSession();
+
+	
+	@RequestMapping(value = "/order/list")		
+	public ModelAndView orderList(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("order.list");
 		
+		HttpSession session = request.getSession();
 		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 		
-		Map<String, Object> memberInfo = new HashMap<String, Object>();
-		memberInfo=adminMemberService.memberDetail(commandMap.getMap());
+		List<Map<String, Object>> orderList = new ArrayList<Map<String, Object>>();
 		
-		String cart_No[]=request.getParameterValues("CART_NO");
+		orderList=orderService.selectOrderListAll(commandMap.getMap());
 		
-		for(int i=0;i<cart_No.length;i++) {
-			System.out.println("cart_No"+i+":"+cart_No[i]);
-		}
-		commandMap.put("cart_No", cart_No);
-		
-		List<Map<String, Object>> checkedCartList = new ArrayList<Map<String, Object>>();
-		
-		checkedCartList=cartService.checkedCartList(commandMap.getMap());
-		
-		mv.addObject("checkedCartList", checkedCartList);
-		mv.addObject("memberInfo", memberInfo);
+		mv.addObject("list", orderList);
 		return mv;
 	
 	}
 	
-	@RequestMapping(value = "order/insert")		
-	public ModelAndView addInsert(CommandMap commandMap, HttpServletRequest request) throws Exception {
+	@RequestMapping(value = "/order/chartBasic")		
+	public ModelAndView chartBasic(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("order.chartBasic");
+		
+		List<Map<String, Object>> saleListMap = new ArrayList<Map<String, Object>>();
+		saleListMap=orderService.getSale2(commandMap.getMap());
+		
+		org.json.simple.JSONArray json=ParseListToJson.convertListToJson(saleListMap);
+		
+		System.out.println("json:"+json);
+		
+		ObjectMapper mapper = new ObjectMapper();  
+		mapper.writerWithDefaultPrettyPrinter().writeValue(System.out, json);
+		
+		mv.addObject("json", json);
+		
+		return mv;
+	}
+	
+	
+	@RequestMapping(value = "/order/chart")		
+	public ModelAndView chart(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("order.chart");
+		
+		HttpSession session = request.getSession();
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		
+		return mv;
+	
+	}
+	
+	
+	@RequestMapping(value = "/order/stateup")		
+	public ModelAndView changeState1(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:list");
 		
 		HttpSession session = request.getSession();
 		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
-		
-		orderService.insertOrder(commandMap.getMap(),request);
-		
-		return mv;
-	
-	}
-	
-	@RequestMapping(value = "order/list")		
-	public ModelAndView orderList(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("order/list");
-		
-		HttpSession session = request.getSession();
-		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
-		System.out.println("commandMap.getMap():"+commandMap.getMap());
-		List<Map<String, Object>> orderList = new ArrayList<Map<String, Object>>();
-		
-		orderList=orderService.selectList(commandMap.getMap());
-		
-		/*commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
-		System.out.println("commandMap.getMap():"+commandMap.getMap());
-		
-		Map<String, Object> memberInfo = new HashMap<String, Object>();
-		memberInfo=adminMemberService.memberDetail(commandMap.getMap());
-		
-		orderService.insertOrder(commandMap.getMap());
-		
-		
-		String cart_No[]=request.getParameterValues("CART_NO");
-		
-		for(int i=0;i<cart_No.length;i++) {
-			System.out.println("cart_No"+i+":"+cart_No[i]);
-		}
-		commandMap.put("cart_No", cart_No);
-		
-		List<Map<String, Object>> checkedCartList = new ArrayList<Map<String, Object>>();
-		
-		checkedCartList=cartService.checkedCartList(commandMap.getMap());
-		
-		System.out.println("memberInfo.toString() : "+memberInfo.toString());
-		*/
-		
-		
-		
-		
-		mv.addObject("orderList", orderList);
+		System.out.println(commandMap.getMap());
+		orderService.changeState1(commandMap.getMap());
 		return mv;
 	
 	}

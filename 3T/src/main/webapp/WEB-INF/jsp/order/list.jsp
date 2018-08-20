@@ -12,13 +12,9 @@
 <body>
 <table width="1000" border="1" cellspacing="0" cellpadding="2">
 		<tr>
-			<td width="50" rowspan="2" align="center">해택 정보</td>
-			<td width="400">&nbsp;&nbsp;${memberInfo.MEMBER_ID} 회원님의 주문 신청서입니다.</td>
+			<td width="400">&nbsp;&nbsp;${MEMBER_ID} 회원님의 주문 신청서입니다.</td>
 		</tr>
-		<tr>
-			<td width="400">&nbsp;&nbsp;보유쿠폰 : <font color="#FF0000">$
-					개</font></td>
-		</tr>
+		
 	</table>
 	
 	<form id="frm">
@@ -32,37 +28,35 @@
 			</tr>
 
 			<tr align="center" bgcolor="#F9F9F9">
-			<td width="50"><input type="checkbox" id="chkBox" onclick=checkAll()  /></td>
+			<td width="50"><strong>ORDER_NO[ORDER_DATE]</strong></td>
 			<td width="130"><strong>IMAGE</strong></td>
 			<td width="130"><strong>TITLE</strong></td>
 			<td width="400"><strong>PRODUCT INFO</strong></td>
 			<td width="80"><strong>PRICE</strong></td>
 			<td width="80"><strong>QUANTITY</strong></td>
 			<td width="80"><strong>배송구분</strong></td>
+			<td width="80"><strong>STATE</strong></td>
 			<td width="80"><strong>TOTAL</strong></td>
 		</tr>
 		
 		<c:choose>
-			<c:when test="${fn:length(checkedCartList) > 0}">
-				<c:forEach items="${checkedCartList }" var="row" varStatus="stat">
+			<c:when test="${fn:length(orderList) > 0}">
+				<c:forEach items="${orderList }" var="row" varStatus="stat">
 					<tr>
 						<td align="center">
-							<input type="checkbox" id="checkbox${stat.index}" name="CART_NO" value="${row.CART_NO}"
-								onclick="javascript:checkedRows(${stat.index});">
+							${row.ORDER_NO } [${row.REGDATE}]
 						</td>
 						
 						<td align="center">
-							<img width="50" height="50"
-								src="/3T/resources/upload/${row.IMAGE.split(',')[0] }" />
+							<img width="50" height="50" src="/3T/resources/upload/${row.IMAGE.split(',')[0] }" />
 						</td>
 							
 						<td align="center">
 							<table>	
 								<tr>
 									<td>
-										<a href="/3T/goods/detail?GOODS_NO=${row.NAME }" name="title">${row.NAME }(${row.COLOR })</a>
+										<a href="/3T/goods/detail?GOODS_NO=${row.GOODS_NO }" name="title">${row.NAME }(${row.COLOR })</a>
 										<input type="hidden" id="GOODS_NO" name="GOODS_NO" value="${row.GOODS_NO }">
-										<input type="hidden" id="CART_NO" name="CART_NO" value="${row.CART_NO }">
 									</td>
 								</tr>
 								<tr>
@@ -77,6 +71,7 @@
 						<td align="center" ><span class="price" value="${row.PRICE}">${row.PRICE} </span></td>
 						<td align="center">${row.COUNT }</td>
 						<td align="center">기본배송</td>
+						<td align="center">${row.STATE }</td>
 						<td align="center" ><span class="totprice" value="${row.PRICE*row.COUNT}">${row.PRICE*row.COUNT}</span></td>
 					</tr>
 				</c:forEach>

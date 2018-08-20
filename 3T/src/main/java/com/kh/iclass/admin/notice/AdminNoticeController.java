@@ -1,9 +1,9 @@
 package com.kh.iclass.admin.notice;
 
-
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -45,9 +45,15 @@ public class AdminNoticeController {
 	}
 
 	@RequestMapping(value = "/notice/write", method = RequestMethod.POST)
-	public ModelAndView noticeWrite(CommandMap commandMap) throws Exception {
+	public ModelAndView noticeWrite(CommandMap commandMap,HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:list");
-
+		
+		String[] contents=request.getParameterValues("content");
+		String content=contents[0];
+		System.out.println("content1 : "+content);
+		System.out.println("commandMap.getMap():"+commandMap.getMap());
+		
+		
 		noticeService.NoticeInsert(commandMap.getMap());
 
 		return mv;
@@ -79,8 +85,8 @@ public class AdminNoticeController {
 	
 	@RequestMapping(value = "/notice/update")
 	public ModelAndView noticeUpdate(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:detail");
-
+		ModelAndView mv = new ModelAndView("redirect:/admin/notice/list");
+		System.out.println("commandMap.getMap():"+commandMap.getMap());
 		noticeService.NoticeUpdate(commandMap.getMap());
 
 		mv.addObject("NOTICE_NO", commandMap.get("NOTICE_NO"));

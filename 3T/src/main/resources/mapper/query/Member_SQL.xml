@@ -24,13 +24,29 @@
 		
 		
 	</insert>
-<!-- 	
-	아이디 중복확인
+	
+	<select id="checkMember" parameterType="hashmap" resultType="java.lang.Integer">
+	<![CDATA[
+		select 
+			count(email) 
+		from 
+			member
+		where 
+			email = #{MEMBER_EMAIL}
+	]]>
+	</select>
+
+	
 	<select id="checkId" parameterType="String" resultType="int">
 	<![CDATA[
-		SELECT COUNT(*) FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID}
+		SELECT 
+			COUNT(*) 
+		FROM 
+			MEMBER
+		WHERE 
+			MEMBER_ID = #{MEMBER_ID}
 	]]>
-	</select> -->
+	</select>
 
 	
 	

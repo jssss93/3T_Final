@@ -68,7 +68,7 @@
 	top: 0px;
 	height: 100%;
 	z-index: 9;
-	width: 15%;
+	width: 10%;
 	color: #000000;
 	font-size: 12px;
 	position: fixed;
@@ -90,7 +90,7 @@
 	top: 0px;
 	height: 100%;
 	z-index: 9;
-	width: 15%;
+	width: 10%;
 	color: #000000;
 	font-size: 12px;
 	position: fixed;
@@ -111,7 +111,7 @@
 <body>
 
 	<div>
-		<div id="body" style="width: 80%; margin: 0 auto;">
+		<div id="body" style="width: 75%; margin: 0 auto;">
 			<tiles:insertAttribute name="body" ignore="true" />
 		</div>
 		<div id="footer">

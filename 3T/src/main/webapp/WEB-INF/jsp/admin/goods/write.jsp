@@ -13,11 +13,11 @@
 	<h1 class="page-header">상품등록</h1>
 </div>
 	<form id="frm"  enctype="multipart/form-data">
-		<table class="board_view">
-			<colgroup>
+		<table class="board_view2"> 
+			<!-- <colgroup>
 				<col width="15%">
 				<col width="*"/>
-			</colgroup>
+			</colgroup> -->
 			<caption>상품 등록</caption>
 			<tbody>
 				<tr>

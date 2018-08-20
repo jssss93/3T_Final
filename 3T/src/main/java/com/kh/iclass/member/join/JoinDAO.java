@@ -22,10 +22,9 @@ public class JoinDAO extends AbstractDAO {
 		return (int)selectOne("member.checkId", mem_id);
 	}
 	
-	/*public int checkMember(Map<String, Object> map) throws Exception{
+	public int checkMember(Map<String, Object> map) throws Exception{
 		return selectMemberId("member.checkMember", map);
-	*/
-	
+	}
 	/*//회원가입시 적립금 부여
 	public void joinPoint(Map<String, Object> map) throws Exception{
 		insert("member.joinPoint",map);

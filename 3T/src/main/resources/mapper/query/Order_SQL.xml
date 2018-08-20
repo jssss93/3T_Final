@@ -72,72 +72,92 @@
 		
 	</insert>
 
-	<!-- 로그인, 회원정보수정 -->
- 	<select id="selectMemberList" parameterType="hashmap" resultType="hashmap">
+		<!-- 주문리스트 -->
+ 	<select id="selectList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
-		SELECT 
-			MEMBER_NO, 
-			MEMBER_ID, 
-			PASSWD, 
+		select
+			REGDATE,
+			ORDER_NO,
+			STATE,
+			COUNT,
+			ATTRIBUTE_NO,
+			GOODS_NO,
 			NAME,
-			BIRTH, 
-			ZIPCODE, 
-			ADDR1, 
-			ADDR2, 
-			PHONE, 
-			EMAIL, 
-			REGDATE
-		FROM
-			MEMBER
-		ORDER BY
-			MEMBER_NO DESC
+			PRICE,
+			CONTENT,
+			COLOR,
+			GOODS_SIZE,
+			WM_CONCAT(SAV_NAME) AS IMAGE
+		from
+		  	(
+		  	select 
+		    	a.REGDATE,
+		    	a.ORDER_NO,
+			    a.STATE,
+			    b.COUNT,
+			    b.ATTRIBUTE_NO,
+			    b.GOODS_NO,
+			    c.NAME,
+			    c.PRICE,
+			    c.CONTENT,
+			    d.color,
+			    d.GOODS_SIZE,
+			    e.sav_name
+			from
+		    	ORDER_3T a, ORDER_DETAIL b, GOODS c , GOODS_ATTRIBUTE d , UPLOAD e
+		  	where
+			    a.ORDER_NO=b.ORDER_NO AND
+			    b.GOODS_NO=c.GOODS_NO AND
+			    b.ATTRIBUTE_NO=d.ATTRIBUTE_NO AND
+			    b.GOODS_NO=e.GOODS_NO AND
+			    member_id=#{MEMBER_ID}
+		  	ORDER BY
+		    	a.ORDER_NO desc
+		    	)
+		GROUP BY
+			  REGDATE,
+			  ORDER_NO,
+			  STATE,
+			  COUNT,
+			  NAME,
+			  ATTRIBUTE_NO,
+			  GOODS_NO,
+			  PRICE,
+			  CONTENT,
+			  COLOR,
+			  GOODS_SIZE
 	]]>
 	</select>
 	
-	<select id="selectMemberDetail" parameterType="hashmap" resultType="hashmap">
+ 	<select id="selectSale" parameterType="hashmap" resultType="map">
 	<![CDATA[
-		SELECT 
-			MEMBER_NO, 
-			MEMBER_ID, 
-			PASSWD, 
-			NAME,
-			BIRTH, 
-			ZIPCODE, 
-			ADDR1, 
-			ADDR2, 
-			PHONE, 
-			EMAIL, 
-			REGDATE
+		SELECT
+			to_char(REGDATE,'YYYY-MM-DD') as REGDATE,
+			SUM(TOTALPRICE) as TOTAL
 		FROM
-			MEMBER
+			ORDER_3T
 		WHERE
-			MEMBER_ID=#{MEMBER_ID}		
-		
+			STATE =3
+		GROUP BY
+			to_char(REGDATE,'YYYY-MM-DD')
+		ORDER BY
+			REGDATE
 	]]>
 	</select>
-
-	<!-- 회원가입 -->
-	<insert id="insertMember" parameterType="hashmap" useGeneratedKeys="true" keyProperty="MEMBER_NO">
-		<selectKey keyProperty="MEMBER_NO" resultType="java.lang.Integer" order="BEFORE">
-			SELECT MEMBER_NO_SEQ.NEXTVAL FROM DUAL
-		</selectKey>
+	
+	
+	<update id="changeState1" parameterType="hashmap">
 		<![CDATA[
-		INSERT INTO MEMBER
-		(MEMBER_NO, MEMBER_ID, PASSWD, NAME, BIRTH, ZIPCODE, ADDR1, ADDR2, PHONE, EMAIL, REGDATE)
-		VALUES
-		(#{MEMBER_NO}, #{MEMBER_ID}, #{PASSWD}, #{NAME}, #{BIRTH}, #{ZIPCODE}, #{ADDR1}, #{ADDR2}, #{PHONE}, #{EMAIL}, SYSDATE)
+			UPDATE 
+				order_3t 
+			SET
+				state = state+1
+			WHERE
+				ORDER_NO = #{ORDER_NO}	
 		]]>
-		
-		
-	</insert>
-<!-- 	
-	아이디 중복확인
-	<select id="checkId" parameterType="String" resultType="int">
-	<![CDATA[
-		SELECT COUNT(*) FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID}
-	]]>
-	</select> -->
+	</update>
 
+	
 	
 	
 </mapper>

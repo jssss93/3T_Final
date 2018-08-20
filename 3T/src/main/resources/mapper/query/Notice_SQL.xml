@@ -18,6 +18,7 @@
 			FROM
 			    NOTICE
 			
+			
 		]]>
 		<include refid="common.pagingPost"/> 
 
@@ -40,8 +41,8 @@
 				NOTICE_NO_SEQ.NEXTVAL,
 			    0, 
 			    0, 
-			    #{TITLE},
-			    #{CONTENT},
+			    #{title},
+			    #{content},
 			    0,
 			    SYSDATE		    
 			)
@@ -81,8 +82,8 @@
 			UPDATE 
 				NOTICE 
 			SET
-			    TITLE = #{TITLE},
-			    CONTENT = #{CONTENT}
+			    TITLE = #{title},
+			    CONTENT = #{content}
 			WHERE
 				NOTICE_NO = #{NOTICE_NO}	
 		]]>

@@ -60,7 +60,28 @@ public class AbstractDAO {
 		printQueryId(queryId);
 		return sqlSession.selectList(queryId, params);
 	}
+	// 가입한 회원 아이디 중복 확인
+	@SuppressWarnings("rawtypes")
+	public int selectMemberId(String queryId, Object params) {
+		printQueryId(queryId);
+		return sqlSession.selectOne(queryId, params);
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public Map selectMap(String queryId,String mapKey) {
+		printQueryId(queryId);
+		return sqlSession.selectMap(queryId, mapKey);
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public Map selectMap(String queryId,Object params,String mapKey) {
+		printQueryId(queryId);
+		return sqlSession.selectMap(queryId,params, mapKey);
+	}
 
+	
+	
+	
 	//페이징처리부분
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Map selectPagingList(String queryId, Object params) {
