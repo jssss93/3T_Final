@@ -58,7 +58,7 @@
 			0,
 		
 			#{MEMBER_ID},
-			1
+			#{GOODS_NO}
 		)
     ]]>
 </insert>
@@ -71,7 +71,8 @@
             MEMBER_ID,
             REGDATE,
             CONTENT,
-			READCNT
+			READCNT,
+			GOODS_NO
 
         FROM
             REVIEW
@@ -187,6 +188,81 @@
 
 		
 </select>
+
+<select id="Review_GoodsSelectList" parameterType="hashmap" resultType="hashmap">
+        <![CDATA[
+          select 
+ 				A.GOODS_NO,
+           		A.NAME,
+           		A.PRICE,
+                B.SAV_NAME
+		  from
+                GOODS A
+          INNER JOIN 
+                UPLOAD B 
+          ON 
+               A.GOODS_NO = B.GOODS_NO 
+               
+         ORDER BY 
+               A.GOODS_NO DESC 
+           		
+        ]]>
+    </select>
+    <!-- QA 상품검색 -->
+       <select id="Review_GoodsSearch" parameterType="hashmap" resultType="hashmap">
+		SELECT 
+				A.GOODS_NO,
+           		A.NAME,
+           		A.PRICE,
+                B.SAV_NAME
+		FROM 
+			 	GOODS A
+         		INNER JOIN 
+                UPLOAD B 
+        ON 
+                A.GOODS_NO = B.GOODS_NO 	
+                
+		WHERE 
+			<if test='SearchNum.equals("NAME")'> 	
+			(NAME LIKE '%' || #{SearchKeyword} || '%')	
+			</if>
+			ORDER BY GOODS_NO DESC
+
+		
+</select>
+
+ <select id="Review_GoodsSelect" parameterType="hashmap" resultType="hashmap">
+      <![CDATA[
+        SELECT
+        	    A.GOODS_NO,
+           		A.NAME,
+           		A.PRICE,
+                B.SAV_NAME
+          FROM
+                GOODS A
+          INNER JOIN 
+                UPLOAD B 
+          ON 
+               A.GOODS_NO = B.GOODS_NO 
+          WHERE
+               A.GOODS_NO = #{GOODS_NO}       
+      ]]>
+</select>
+
+<select id="ReviewPasswdCheck" parameterType="hashmap" resultType="hashmap">
+        <![CDATA[
+           SELECT
+           		REVIEW_COMMENT_NO,
+           		PASSWD
+           	FROM 
+           		REVIEW_COMMENT
+           	WHERE 
+           		REVIEW_COMMENT_NO =#{REVIEW_COMMENT_NO}
+           	AND
+           	PASSWD = #{PASSWD}
+           		
+        ]]>
+    </select>
 </mapper>
 
 

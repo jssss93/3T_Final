@@ -48,5 +48,24 @@ public class ReviewDAO extends AbstractDAO{
     public List<Map<String, Object>> ReviewSearchList(Map<String, Object> map) throws Exception{
         return (List<Map<String, Object>>)selectList("review.ReveiwSelectSearchList", map);
     }
+	@SuppressWarnings("unchecked")
+    public List<Map<String, Object>> ReviewGoodsList(Map<String, Object> map) throws Exception{
+        return (List<Map<String, Object>>)selectList("review.Review_GoodsSelectList", map);
+    }
+	//QA 상품검색
+	@SuppressWarnings("unchecked")
+    public List<Map<String, Object>> ReviewGoodsSearch(Map<String, Object> map) throws Exception{
+        return (List<Map<String, Object>>)selectList("review.Review_GoodsSearch", map);
+    }
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> ReviewGoods(Map<String, Object> map) throws Exception{
+		return (Map<String, Object>) selectOne("review.Review_GoodsSelect", map);
+	}
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> ReviewPasswdCheck(Map<String, Object> map) throws Exception{
+		return (Map<String, Object>) selectOne("review.ReviewPasswdCheck", map);
+	}
+	
+	
 	
 }
