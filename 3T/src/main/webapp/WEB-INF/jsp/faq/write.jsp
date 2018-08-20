@@ -20,24 +20,21 @@
 		</tr>
 	</table>
 
-	<form id="frm">
-		<table align="center" border="0"; style="width: 70%; height: 400px; display: block;" class="board_view2">
-			<!-- <colgroup>
-				<col width="15%">
-				<col width="*"/>
-			</colgroup> -->
+	<form id="frm" action="/faq/write" method="POST">
+		<table border="1" align="center" class="board_view2">
 			<tbody>
 				<tr class="board_title">
-					<th scope="row">SUBJECT</th>
+					<th>SUBJECT</th>
 					<td><input type="text" id="TITLE" name="TITLE"></input></td>
 				</tr>
 				<tr>
 					<td colspan="2" class="board_content2">
-						<textarea rows="20" cols="145" title="내용" id="CONTENT" name="CONTENT"></textarea>
+						<textarea rows="25" cols="248" title="내용" id="CONTENT" name="CONTENT"></textarea>
 					</td>
 				</tr>
 			</tbody>
 		</table>
+		</form>
 		<br><br>
 		<br><br>
 		<br><br>
@@ -48,7 +45,6 @@
 		<a href="#this" class="btn" id="list">LIST</a></td>
 		</tr>
 		</table>
-	</form>
 	
 	<%@ include file="/WEB-INF/include/include-body.jspf" %>
 	<script type="text/javascript">

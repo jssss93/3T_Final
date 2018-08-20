@@ -30,8 +30,8 @@
 		<tr>
 			<td valign="middle"><strong>NO</strong></td>
 			<td valign="middle"><strong>SUBJECT</strong></td>
-			<td valign="middle"><strong>NAME</strong></td>
 			<td valign="middle"><strong>CONTENT</strong></td>
+			<td valign="middle"><strong>NAME</strong></td>
 			<td valign="middle"><strong>DATE</strong></td>
 		</tr>
 
@@ -44,8 +44,8 @@
 							<td><a href="#this" name="title">${row.TITLE }</a> <input
 								type="hidden" id="REVIEW_NO" value="${row.REVIEW_NO }">
 							</td>
-							<td>${row.MEMBER_ID }</td>
 							<td>${row.CONTENT }</td>
+							<td>${row.MEMBER_ID }</td>
 							<td>${row.REGDATE }</td>
 						</tr>
 					</c:forEach>
@@ -69,33 +69,30 @@
 
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#write").on("click", function(e) { //글쓰기 버튼
+				e.preventDefault();
+				fn_openBoardWrite();
+			});
 
-        $(document).ready(function(){
-            $("#write").on("click", function(e){ //글쓰기 버튼
-                e.preventDefault();
-                fn_openBoardWrite();
-            }); 
-            
-            $("a[name='title']").on("click", function(e){ //제목 
-                e.preventDefault();
-                fn_openBoardDetail($(this));
-            });
-        });
-             
+			$("a[name='title']").on("click", function(e) { //제목 
+				e.preventDefault();
+				fn_openBoardDetail($(this));
+			});
+		});
 
-            function fn_openBoardWrite(){
-            var comSubmit = new ComSubmit();
-            comSubmit.setUrl("<c:url value='/review/writeForm' />");
-            comSubmit.submit();
-        }
-            function fn_openBoardDetail(obj){
-                var comSubmit = new ComSubmit();
-                comSubmit.setUrl("<c:url value='/review/detail' />");
-                comSubmit.addParam("REVIEW_NO", obj.parent().find("#REVIEW_NO").val());
-                comSubmit.submit();
-            }
-         
-        
-    </script>
+		function fn_openBoardWrite() {
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("<c:url value='/review/writeForm' />");
+			comSubmit.submit();
+		}
+		function fn_openBoardDetail(obj) {
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("<c:url value='/review/detail' />");
+			comSubmit.addParam("REVIEW_NO", obj.parent().find("#REVIEW_NO")
+					.val());
+			comSubmit.submit();
+		}
+	</script>
 </body>
 </html>

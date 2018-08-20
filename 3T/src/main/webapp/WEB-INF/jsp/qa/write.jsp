@@ -7,43 +7,48 @@
 </head>
 <body>
 	<script type="text/javascript">
-	function open_win_noresizable(url, name)
-	{
-		var oWin = window.open(url, name, "scrollbars=no, status=no, resizable=no, width=600, height=500");
-		
-	}
-</script>
-<form action="/3T/qa/write">
-	<table width="70%" align="center" border="0" cellspacing="0" cellpadding="1" colspan="1" class="board_top">
-	    <br>
-		<tr>
-			<td height="50"></td>
-		</tr>
-		<tr>
-			<td align="left" class="text01 formbar"><h6><font color="#000000">Q&A</font></h6></td>
-		</tr>
+		function open_win_noresizable(url, name) {
+			var oWin = window
+					.open(url, name,
+							"scrollbars=no, status=no, resizable=no, width=600, height=500");
 
-		<tr>
-			<td height="50"></td>
-		</tr>
-	</table>
+		}
+	</script>
+	<form action="/3T/qa/write">
+		<table width="70%" align="center" border="0" cellspacing="0"
+			cellpadding="1" colspan="1" class="board_top">
+			<br>
+			<tr>
+				<td height="50"></td>
+			</tr>
+			<tr>
+				<td align="left" class="text01 formbar"><h6>
+						<font color="#000000">Q&A</font>
+					</h6></td>
+			</tr>
 
-	<table width="70%" align="center" border="0" cellspacing="0" cellpadding="1" colspan="1" height="120" class="board_img">
-		 <c:choose>
-					  <c:when test="${list.GOODS_NO > 0 }"> 
-						<tr>
-					<td align="center" width="120"><img width="100" height="100"
-						src="/3T/resources/upload/${list.SAV_NAME.split(',')[0] }" /></td>
-					<td>${list.NAME }<br /> KRW&nbsp;${list.PRICE } <br /> <br /> <input
-						type="button" name="button" value="상품정보 선택 ▶"
-						onclick="javascript:open_win_noresizable('qaGoodsSelect', write)" />&nbsp;
-						 <input type="button" name="button" value="상품 상세보기▶">
-						<input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
-						
-					</td>
-					
-				</tr> 
-				<%-- <c:when test="${GOODS_NO > 0 }">
+			<tr>
+				<td height="50"></td>
+			</tr>
+		</table>
+
+		<table width="70%" align="center" border="0" cellspacing="0"
+			cellpadding="1" colspan="1" height="120" class="board_img">
+			<c:choose>
+				<c:when test="${list.GOODS_NO > 0 }">
+					<tr>
+						<td align="center" width="120"><img width="100" height="100"
+							src="/3T/resources/upload/${list.SAV_NAME.split(',')[0] }" /></td>
+						<td>${list.NAME }<br /> KRW&nbsp;${list.PRICE } <br /> <br />
+							<input type="button" name="button" value="상품정보 선택 ▶"
+							onclick="javascript:open_win_noresizable('qaGoodsSelect', write)" />&nbsp;
+							<input type="button" name="button" value="상품 상세보기▶"> <input
+							type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
+
+						</td>
+
+					</tr>
+					<%-- <c:when test="${GOODS_NO > 0 }">
 				<tr>
 					<td align="center" width="120"><img width="100" height="100"
 						src="/3T/resources/upload/${SAV_NAME.split(',')[0] }" /></td>
@@ -56,49 +61,45 @@
 					</td>
 					
 				</tr> --%>
-			 </c:when>
-			<c:otherwise>
-				<!-- <input type="hidden" name="GOODS_NO" value="GOODS_NO" /> -->
-				<tr>
-					<td align="center" width="120">기본 이미지</td>
-					<td>
-						<br> <input type="button" name="button" value="상품정보 선택 ▶"
-						onclick="javascript:open_win_noresizable('qaGoodsSelect', write)" />
-						<input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
-						
-					</td>
-				</tr>
-			</c:otherwise>
-			</c:choose>
-		
-	</table>
+				</c:when>
+				<c:otherwise>
+					<!-- <input type="hidden" name="GOODS_NO" value="GOODS_NO" /> -->
+					<tr>
+						<td align="center" width="120">기본 이미지</td>
+						<td><br> <input type="button" name="button"
+							value="상품정보 선택 ▶"
+							onclick="javascript:open_win_noresizable('qaGoodsSelect', write)" />
+							<input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
 
-	
+						</td>
+					</tr>
+				</c:otherwise>
+			</c:choose>
+
+		</table>
+		<br>
+		<br>
+
 		<table border="1" align="center" class="board_view2">
-			<colgroup>
-				<col width="15%">
-				<col width="*" />
-			</colgroup>
 			<tbody>
 				<tr class="board_title">
 					<th scope="row">SUBJECT</th>
-					<td>
-					<select name="CATEGORY" id="CATEGORY">
-						<option value="1">상품문의</option>
-						<option value="2">배송문의</option>
-						<option value="3">입금확인문의</option>
-						<option value="4">기타문의</option>					
-					</select>
-					<input type="text" id="TITLE" name="TITLE" class="wdp_90"></input></td>
+					<td><select name="CATEGORY" id="CATEGORY">
+							<option value="1">상품문의</option>
+							<option value="2">배송문의</option>
+							<option value="3">입금확인문의</option>
+							<option value="4">기타문의</option>
+					</select> <input type="text" id="TITLE" name="TITLE" class="wdp_90"></input></td>
 				</tr>
 
 				<tr class="board_title">
 					<th scope="row">NAME</th>
-					<td><input type="text" id="MEMBER_ID" name="MEMBER_ID" class="board_title"></input></td>
+					<td><input type="text" id="MEMBER_ID" name="MEMBER_ID"
+						class="board_title"></input></td>
 				</tr>
 				<tr>
-					<td colspan="2" class="board_content2">
-					<textarea rows="20" cols="145" title="내용" id="CONTENT" name="CONTENT"></textarea></td>
+					<td colspan="2" class="board_content2"><textarea rows="25"
+							cols="248" title="내용" id="CONTENT" name="CONTENT"></textarea></td>
 				</tr>
 
 
@@ -129,44 +130,45 @@
 				</tr>
 			</tbody>
 		</table>
-		<br><br>
-		
-		 <table class="notice_button">
-		 <tr>
-		 <td>
-		<!-- <a href="#this" class="btn" id="write">작성하기</a>  -->
-		<a href="#this"class="btn" id="list">LIST</a>
-			<input class="btn" type="submit" value="WRITE" >
-			</td>
+		<br>
+		<br>
+
+		<table class="notice_button">
+			<tr>
+				<td>
+					<!-- <a href="#this" class="btn" id="write">작성하기</a>  --> <a
+					href="#this" class="btn" id="list">LIST</a> <input class="btn"
+					type="submit" value="WRITE">
+				</td>
 			</tr>
-		</form>
+			</form>
 		</table>
 
-	<%@ include file="/WEB-INF/include/include-body.jspf"%>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#list").on("click", function(e){ //목록으로 버튼
-				e.preventDefault();
-				fn_List();
+		<%@ include file="/WEB-INF/include/include-body.jspf"%>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#list").on("click", function(e) { //목록으로 버튼
+					e.preventDefault();
+					fn_List();
+				});
+
+				/* 	$("#write").on("click", function(e){ //작성하기 버튼
+						e.preventDefault();
+						fn_Write();
+					}); */
 			});
-			
-		/* 	$("#write").on("click", function(e){ //작성하기 버튼
-				e.preventDefault();
-				fn_Write();
-			}); */
-		});
-		
-		function fn_List(){
-			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/qa/list' />");
-			comSubmit.submit();
-		}
-		
-		/* function fn_Write(){
-			var comSubmit = new ComSubmit("frm");
-			comSubmit.setUrl("<c:url value='/qa/write' />");
-			comSubmit.submit();
-		} */
-	</script>
+
+			function fn_List() {
+				var comSubmit = new ComSubmit();
+				comSubmit.setUrl("<c:url value='/qa/list' />");
+				comSubmit.submit();
+			}
+
+			/* function fn_Write(){
+				var comSubmit = new ComSubmit("frm");
+				comSubmit.setUrl("<c:url value='/qa/write' />");
+				comSubmit.submit();
+			} */
+		</script>
 </body>
 </html>

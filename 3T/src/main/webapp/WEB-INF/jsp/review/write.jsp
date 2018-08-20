@@ -38,20 +38,16 @@
 
 			<td colspan="2"><s:property value="goods_resultClass.goods_name" /><br>KRW
 				<s:property value="goods_resultClass.goods_price" />
-				<hr align="center" width="470" color="#8C8C8C">
-				<br> <s:a href="%{viewURL}">
+				<hr align="center" width="470" color="#8C8C8C"> <br> <s:a
+					href="%{viewURL}">
 					<input type="button" name="button" value="상품 상세보기 ▶" />
 				</s:a></td>
 		</tr>
 	</table>
-
+	<br>
+	<br>
 	<form id="frm">
 		<table border="1" align="center" class="board_view2">
-			<colgroup>
-				<col width="15%">
-				<col width="*" />
-			</colgroup>
-
 			<tbody>
 				<tr class="board_title">
 					<th scope="row">SUBJECT</th>
@@ -64,8 +60,8 @@
 						class="board_title"></input></td>
 				</tr>
 				<tr>
-					<td colspan="2" class="board_content2"><textarea rows="20"
-							cols="145" title="내용" id="CONTENT" name="CONTENT"></textarea></td>
+					<td colspan="2" class="board_content2"><textarea rows="25"
+							cols="248" title="내용" id="CONTENT" name="CONTENT"></textarea></td>
 				</tr>
 				<tr class="board_title">
 					<td><input type="button" value="파일 선택">파일 이름</td>
@@ -104,25 +100,25 @@
 
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#list").on("click", function(e){ //목록으로 버튼
+		$(document).ready(function() {
+			$("#list").on("click", function(e) { //목록으로 버튼
 				e.preventDefault();
 				fn_List();
 			});
-			
-			$("#write").on("click", function(e){ //작성하기 버튼
+
+			$("#write").on("click", function(e) { //작성하기 버튼
 				e.preventDefault();
 				fn_Write();
 			});
 		});
-		
-		function fn_List(){
+
+		function fn_List() {
 			var comSubmit = new ComSubmit();
 			comSubmit.setUrl("<c:url value='/review/list' />");
 			comSubmit.submit();
 		}
-		
-		function fn_Write(){
+
+		function fn_Write() {
 			var comSubmit = new ComSubmit("frm");
 			comSubmit.setUrl("<c:url value='/review/write' />");
 			comSubmit.submit();

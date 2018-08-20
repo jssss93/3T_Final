@@ -24,12 +24,7 @@
 <body>
 	<form id="frm">
 		<table border="1" align="center" class="board_view2">
-			<colgroup>
-				<col width="15%" />
-				<col width="35%" />
-				<col width="15%" />
-				<col width="35%" />
-			</colgroup>
+
 			<tbody>
 				<tr class="board_title">
 					<th scope="row">NO</th>
@@ -81,8 +76,8 @@
 					<td><input type="text" id="PASSWD" name="PASSWD"></input></td>
 				</tr>
 				<tr>
-					<td colspan="2" class="board_content2"><textarea rows="20"
-							cols="145" title="내용" id="CONTENT" name="CONTENT"></textarea></td>
+					<td colspan="2" class="board_content2"><textarea rows="25"
+							cols="248" title="내용" id="CONTENT" name="CONTENT"></textarea></td>
 				</tr>
 				<input type="hidden" id="REVIEW_ORIGIN_NO" name="REVIEW_ORIGIN_NO"
 					value="${map.REVIEW_NO }">
@@ -108,11 +103,10 @@
 						<form action="/3T/review/commentDelete">
 							<td>${row.NAME }<br /> ${row.REGDATE }
 							</td>
-							<td>${row.CONTENT }<br />
-							<br /></td> <input type="hidden" id="REVIEW_COMMENT_NO"
-								name="REVIEW_COMMENT_NO" value="${row.REVIEW_COMMENT_NO }">
-							<input type="hidden" id="REVIEW_NO" name="REVIEW_NO"
-								value="${map.REVIEW_NO }">
+							<td>${row.CONTENT }<br /> <br /></td> <input type="hidden"
+								id="REVIEW_COMMENT_NO" name="REVIEW_COMMENT_NO"
+								value="${row.REVIEW_COMMENT_NO }"> <input type="hidden"
+								id="REVIEW_NO" name="REVIEW_NO" value="${map.REVIEW_NO }">
 					</tr>
 	</table>
 	<table class="notice_button">
@@ -135,54 +129,53 @@
 
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	<script type="text/javascript">
-        $(document).ready(function(){
-            $("#list").on("click", function(e){ //목록으로 버튼
-                e.preventDefault();
-                fn_openBoardList();
-            });
-             
-            $("#update").on("click", function(e){
-                e.preventDefault();
-                fn_openBoardUpdate();
-            });
-            $("#delete").on("click", function(e) { //삭제하기 버튼
+		$(document).ready(function() {
+			$("#list").on("click", function(e) { //목록으로 버튼
+				e.preventDefault();
+				fn_openBoardList();
+			});
+
+			$("#update").on("click", function(e) {
+				e.preventDefault();
+				fn_openBoardUpdate();
+			});
+			$("#delete").on("click", function(e) { //삭제하기 버튼
 				e.preventDefault();
 				fn_Delete();
 			});
-           /*  $("#WriteComment").on("click", function(e) { //댓글 작성 버튼
+			/*  $("#WriteComment").on("click", function(e) { //댓글 작성 버튼
 				e.preventDefault();
 				fn_ReviewInsertComment();
 			}); */
-            
+
 		});
-         
-        function fn_openBoardList(){
-            var comSubmit = new ComSubmit();
-            comSubmit.setUrl("<c:url value='/review/list' />");
-            comSubmit.submit();
-        }
-         
-        function fn_openBoardUpdate(){
-            var REVIEW_NO = "${map.REVIEW_NO}";
-            var comSubmit = new ComSubmit();
-            comSubmit.setUrl("<c:url value='/review/updateForm' />");
-            comSubmit.addParam("REVIEW_NO", REVIEW_NO);
-            comSubmit.submit();
-        }
-        
-        function fn_Delete() {
+
+		function fn_openBoardList() {
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("<c:url value='/review/list' />");
+			comSubmit.submit();
+		}
+
+		function fn_openBoardUpdate() {
+			var REVIEW_NO = "${map.REVIEW_NO}";
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("<c:url value='/review/updateForm' />");
+			comSubmit.addParam("REVIEW_NO", REVIEW_NO);
+			comSubmit.submit();
+		}
+
+		function fn_Delete() {
 			var REVIEW_NO = "${map.REVIEW_NO}";
 			var comSubmit = new ComSubmit();
 			comSubmit.setUrl("<c:url value='/review/delete' />");
 			comSubmit.addParam("REVIEW_NO", REVIEW_NO);
 			comSubmit.submit();
 		}
-        /* function fn_ReviewInsertComment(){
-        	var comSubmit = new ComSubmit("frm");	 
+		/* function fn_ReviewInsertComment(){
+			var comSubmit = new ComSubmit("frm");	 
 			comSubmit.setUrl("<c:url value='/review/comment' />");
 			comSubmit.submit();
-        } */
-        
-    </script>
+		} */
+	</script>
 </body>
 </html>
