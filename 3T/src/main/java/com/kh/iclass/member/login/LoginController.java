@@ -1,6 +1,5 @@
 ﻿package com.kh.iclass.member.login;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /*import kh.spring.cart.CartService;*/
-import com.kh.iclass.common.map.CommandMap;;
+import com.kh.iclass.common.map.CommandMap;
+import com.kh.iclass.mypage.MypageService;;
 
 /* -1- import spring.siroragi.cart.CartService;
 import spring.siroragi.member.MemberService;
@@ -29,6 +29,9 @@ public class LoginController {
     */
    @Resource(name = "loginService")
    private LoginService loginService;
+   
+   @Resource(name="mypageService")
+   private MypageService mypageService;
 
    // 로그인 폼
    // 로그인 폼
@@ -87,7 +90,15 @@ public class LoginController {
             }
             else
             {
-            	mv.setViewName("redirect:/main");
+            	List<Map<String, Object>> list = null;
+            	commandMap.put("MEMBER_ID", request.getSession().getAttribute("MEMBER_ID"));
+            	
+            	list = mypageService.myCoupon(commandMap.getMap());
+            	System.out.println("list size? :"+ list.size());
+            	mv.addObject("msg", list.size());
+            	session.setAttribute("coupon", list.size());
+            	
+            	mv.setViewName("member/loginCoupon");
             }
             
             
