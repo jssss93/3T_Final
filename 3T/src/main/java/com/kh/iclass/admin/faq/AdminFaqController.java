@@ -1,4 +1,5 @@
-package com.kh.iclass.faq.controller;
+package com.kh.iclass.admin.faq;
+
 
 import java.util.Map;
 
@@ -15,10 +16,9 @@ import com.kh.iclass.faq.service.FaqService;
 
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
-
 @Controller
-
-public class FaqController {
+@RequestMapping(value = "/admin")
+public class AdminFaqController {
 	Logger log = Logger.getLogger(this.getClass());
 
 	@Resource(name = "faqService")
@@ -26,8 +26,7 @@ public class FaqController {
 
 	@RequestMapping(value = "/faq/list")
 	public ModelAndView faqList(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("faq/list");
-		
+		ModelAndView mv = new ModelAndView("faq.list");
 		Map<String, Object> resultMap = null;
 		
 		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
@@ -43,7 +42,7 @@ public class FaqController {
 
 	@RequestMapping(value = "/faq/write", method = RequestMethod.GET)
 	public ModelAndView faqWrtieForm(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("faq/write");
+		ModelAndView mv = new ModelAndView("faq.write");
 
 		return mv;
 	}
@@ -57,22 +56,9 @@ public class FaqController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/faq/detail")
-	public ModelAndView faqDetail(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("faq/detail");
-		
-		/*faqService.FaqReadCntUp(commandMap.getMap());*/
-		
-		Map<String, Object> map = faqService.FaqDetail(commandMap.getMap());
-		mv.addObject("Detail", map);
-
-		return mv;
-	}
-
-	
 	@RequestMapping(value = "/faq/updateForm")
 	public ModelAndView faqUpdateForm(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("faq/update");
+		ModelAndView mv = new ModelAndView("faq.update");
 		
 		Map<String, Object> map = faqService.FaqDetail(commandMap.getMap());
 		mv.addObject("map", map);
@@ -100,5 +86,5 @@ public class FaqController {
 
 		return mv;
 	}
-
+	
 }

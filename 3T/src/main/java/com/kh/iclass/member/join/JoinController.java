@@ -27,11 +27,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.iclass.common.map.CommandMap;
 
 
-
-
-
-
-
 @Controller
 
 public class JoinController {
@@ -62,6 +57,7 @@ public class JoinController {
 		String email1 = (String) Map.getMap().get("email1");
 		String email2 = (String) Map.getMap().get("email2");
 		System.out.println(email1 +"@"+email2);
+		
 		mv.setViewName("member/joinStep222");
 		session.setAttribute("email1",email1);
 		session.setAttribute("email2",email2);
@@ -70,21 +66,22 @@ public class JoinController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/member/join/step2/checkId")
+	@RequestMapping(value="/member/joinStep2/checkId")
 	@ResponseBody
 	public void checkId(HttpServletRequest request, HttpServletResponse response, CommandMap commandMap) throws Exception{
-		PrintWriter out = response.getWriter();
-		String paramId= (request.getParameter("MEMBER_ID") == null)?"":String.valueOf(request.getParameter("MEMBER_ID"));
-		int checkId = joinService.chekcId(paramId);
+		PrintWriter writer = response.getWriter();
+		/*String id= (request.getParameter("MEMBER_ID") == null)?"":String.valueOf(request.getParameter("MEMBER_ID"));*/
+		String id= commandMap.getMap().get("id").toString();
+		int checkId = joinService.chekcId(id);
 		
-		out.print(checkId);
-		out.flush();
-		out.close();
+		writer.print(checkId);
+		writer.flush();
+		writer.close();
 	}
 
-	@RequestMapping(value="member/join/step1/authEmail")
-	public ModelAndView email_auth(HttpServletResponse response, HttpServletRequest request,CommandMap Map)throws Exception{
-		
+	@RequestMapping(value = "/joinStep1/modal_email_auth")
+	public ModelAndView email_auth(HttpServletResponse response, HttpServletRequest request,CommandMap Map) throws Exception{
+		System.out.println("접속?");
 		
 		String email = (String) Map.getMap().get("email");
 		System.out.println("email = " + email);
@@ -92,13 +89,11 @@ public class JoinController {
 		
 		int checkNum = joinService.checkMember(Map.getMap());
 		System.out.println("checkNum="+checkNum);
-		//System.out.println("mode"+Map.getMap().get("mode"));
 		
-		if(checkNum==0)
-		{
-		authNum = RandomNum();
-		sendEmail(email.toString(),authNum);
-		System.out.println("메일보냄");
+		if(checkNum==0){
+			authNum = RandomNum();
+			sendEmail(email.toString(),authNum);
+			System.out.println("메일보냄");
 		}
 		String checkNumString=String.valueOf(checkNum);
 		PrintWriter writer =response.getWriter();
@@ -116,38 +111,18 @@ public class JoinController {
 		return mv;
 	}
 	
-/*	@RequestMapping(value = "/sample/ajax/test.jws", method=RequestMethod.GET )
-	 public ModelAndView ajaxTestMethod(HttpServletRequest req, HttpServletResponse res ) throws Exception {
-	  return new ModelAndView("sample/ajaxtest");
-	 }
-	 */
-	  /**
-	     * Ajax - @ResponseBody 어노테이션을 이용해 보자.
-	     * @param request
-	     * @returnf
-	     * @throws Exception
-	     */
-	    @RequestMapping(value="/joinStep1/modal_email_auth_success", method=RequestMethod.POST)
-	    public @ResponseBody String clickMethod (HttpServletRequest request) throws Exception   {
+	@RequestMapping(value="/joinStep1/modal_email_auth_success", method=RequestMethod.POST)
+	public @ResponseBody String clickMethod (HttpServletRequest request) throws Exception   {
 	         
-	        String str = authNum;
-	         System.out.println("authNum뭐냐?"+authNum);
-	        return str;
-	    }
-	     /*
-		    @RequestMapping(value="sample/ajax/click.jws", method=RequestMethod.POST)
-		    public @ResponseBody String clickMethod (HttpServletRequest request) throws Exception   {
-		         
-		        String str = authNum;
-		         System.out.println("authNum뭐냐 ?"+authNum);
-		        return str;
-		    }
-	*/
+		String str = authNum;
+		System.out.println("authNum뭐냐?"+authNum);
+		return str;
+	}
 
 	private void sendEmail(String email,String authNum){
 		String host ="smtp.gmail.com";
-		String subject = "MODA 인증 번호 전달";
-		String fromName ="MODA 관리자";
+		String subject = "3T 인증 번호 전달";
+		String fromName ="3T 관리자";
 		String from="khiclass@gmail.com";//보내는메일
 		String to1 = email;
 		

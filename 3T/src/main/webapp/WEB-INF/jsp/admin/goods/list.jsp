@@ -51,7 +51,7 @@
 						<tr>
 							<td>${row.GOODS_NO }</td>
 							<td ><img width="50" height="50"
-								src="/3T/resources/upload/${row.GOODS_FILE_SAVNAME.split(',')[0] }" />
+								src="/3T/resources/upload/${row.IMAGE.split(',')[0] }" />
 							</td>
 							<td>
 								<%-- <a href="#this" name="title">${row.GOODS_NAME }</a> --%>

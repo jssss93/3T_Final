@@ -20,8 +20,7 @@
 	<!-- 맵 객체로 받기위한 CustomMapArgumentResolver 클래스 등록 -->
 	<mvc:annotation-driven>
 		<mvc:argument-resolvers>
-			<bean
-				class="com.kh.iclass.common.resolver.CustomMapArgumentResolver"></bean>
+			<bean class="com.kh.iclass.common.resolver.CustomMapArgumentResolver"></bean>
 		</mvc:argument-resolvers>
 	</mvc:annotation-driven>
 
@@ -49,12 +48,12 @@
 	</mvc:interceptors>
 
 	<!-- 정적자원 경로 설정 -->
+	<mvc:resources mapping="/js/**" location="/resources/js/" />
+	<mvc:resources mapping="/css/**" location="/resources/css/" />
+	<mvc:resources mapping="/images/**" location="/resources/images/" />
+	<mvc:resources mapping="/summernote/**" location="/resources/summernote/" />
 	<mvc:resources mapping="/resources/**"	location="/resources/" />
-	<mvc:resources mapping="/js/**" location="/js/" />
-	<mvc:resources mapping="/css/**" location="/css/" />
-	<mvc:resources mapping="/images/**" location="/images/" />
-	<mvc:resources mapping="/summernote/**" location="/summernote/" />
-
+	
 	<!-- 페이징관련 전자정부프레임워크 bean 추가 -->
 	<bean id="textRenderer"	class="egovframework.rte.ptl.mvc.tags.ui.pagination.DefaultPaginationRenderer" />
 	<bean id="paginationManager" class="egovframework.rte.ptl.mvc.tags.ui.pagination.DefaultPaginationManager">
@@ -66,8 +65,7 @@
 	</bean>
 
 	<!-- JSON Parsing -->
-	<bean id="jsonView"
-		class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
+	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
 
 	<!-- AOP -->
 	<aop:aspectj-autoproxy/>

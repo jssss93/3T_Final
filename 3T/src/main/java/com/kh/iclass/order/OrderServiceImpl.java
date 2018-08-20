@@ -88,6 +88,36 @@ public class OrderServiceImpl implements OrderService {
 		return orderDAO.selectOrderList2(map);
 	}
 
+	@Override
+	public List<Map<String, Object>> selectOrderListAll(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return orderDAO.selectOrderListAll(map);
+	}
+
+	@Override
+	public void changeState1(Map<String, Object> map) throws Exception {
+		orderDAO.changeState1(map);
+		
+	}
+
+	
+	
+	
+	
+	
+	
+	@Override
+	public Map<String, Map<String, Object>> getSale(Map<String, Object> map,String mapKey) throws Exception {
+		// TODO Auto-generated method stub
+		return orderDAO.getSale(map,mapKey);
+	}
+
+	@Override
+	public List<Map<String, Object>> getSale2(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return orderDAO.getSale2(map);
+	}
+
 	
 
 }

@@ -63,4 +63,23 @@ public class OrderDAO extends AbstractDAO {
 		return selectList("member.selectOrderList2", map);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectOrderListAll(Map<String, Object> map) throws Exception {
+		return selectList("order.selectOrderListAll", map);
+	}
+	
+	public void changeState1(Map<String, Object> map) throws Exception {
+		update("order.changeState1", map);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Map<String,Map<String, Object>> getSale(Map<String, Object> map,String mapKey) throws Exception {
+		System.out.println("쿼리에서 나오자마자 값:"+selectMap("order.selectSale", map,mapKey));
+		return selectMap("order.selectSale", map,mapKey);
+	}
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> getSale2(Map<String, Object> map) throws Exception {
+		return selectList("order.selectSale", map);
+	}
+	
 }
