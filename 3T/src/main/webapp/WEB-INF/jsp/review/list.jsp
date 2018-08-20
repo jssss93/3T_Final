@@ -22,16 +22,7 @@
 		</tr>
 	</table>
 
-<<<<<<< HEAD
-	<table width="65%" align="center" border="0" cellspacing="0" cellpadding="2" class="board_review1">
-               <tr>
-			   <td valign="middle"><strong>NO</strong></td>
-               <td valign="middle"><strong>TITLE</strong></td>
-               <td valign="middle"><strong>NAME</strong></td>
-               <!-- <td valign="middle"><strong>CONTENT</strong></td> -->
-               <td valign="middle"><strong>DATE</strong></td>
-			</tr>
-=======
+
 
 
 	<table width="65%" align="center" border="0" cellspacing="0" cellpadding="2" class="board_review1">
@@ -103,7 +94,7 @@
 					</tr>
 				</c:otherwise>
 			</c:choose>
->>>>>>> master
+
 
     <tbody>
         <c:choose>
@@ -143,19 +134,7 @@
 		<input type="submit" value="검색">
 	</form>
 
-<<<<<<< HEAD
 
-	<br />
-  <!--   <a href="#this" class="btn" id="write">글쓰기</a> -->
-   <!-- 상품 디테일에서 GOODS_NO 보내서 쓰기 -->
-    <form action="/3T/review/writeForm">
-	<input type="hidden" id="GOODS_NO" NAME="GOODS_NO" VALUE="99">
-	<input type="submit" value="쓴당">
-	</form>
-    
-    <%@ include file="/WEB-INF/include/include-body.jspf" %>
-    <script type="text/javascript">
-=======
   <!--   <a href="#this" class="btn" id="write">글쓰기</a> -->
    <!-- 상품 디테일에서 GOODS_NO 보내서 쓰기 -->
     <form action="/3T/review/writeForm">
@@ -181,7 +160,7 @@
 				fn_openBoardDetail($(this));
 			});
 		});
->>>>>>> master
+
 
 
             function fn_openBoardWrite(){
