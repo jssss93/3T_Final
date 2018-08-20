@@ -22,7 +22,7 @@ public class ReviewController {
 
 	@RequestMapping(value = "/review/list")
 	public ModelAndView reviewBoardList(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("/review/list");
+		ModelAndView mv = new ModelAndView("review/list");
 
 		List<Map<String, Object>> list = null;
 
@@ -37,7 +37,7 @@ public class ReviewController {
 
 	@RequestMapping(value = "/review/writeForm")
 	public ModelAndView reviewWrite(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("/review/write");
+		ModelAndView mv = new ModelAndView("review/write");
 		System.out.println("reviewWriteForm : " + commandMap.getMap());
 
 		if (commandMap.get("GOODS_NO") != null);
@@ -62,7 +62,7 @@ public class ReviewController {
 
 	@RequestMapping(value = "/review/detail")
 	public ModelAndView reviewDetail(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("/review/detail");
+		ModelAndView mv = new ModelAndView("review/detail");
 		System.out.println("reviewDetail : " + commandMap.getMap());
 		Map<String, Object> map1 = ReviewService.ReviewGoods(commandMap.getMap());
 		Map<String, Object> map = ReviewService.ReviewDetail(commandMap.getMap());
@@ -78,7 +78,7 @@ public class ReviewController {
 
 	@RequestMapping(value = "/review/updateForm")
 	public ModelAndView reviewUpdateForm(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("/review/update");
+		ModelAndView mv = new ModelAndView("review/update");
 		
 		System.out.println("reviewUpdateForm : " + commandMap.getMap());
 		
@@ -111,7 +111,7 @@ public class ReviewController {
 
 	@RequestMapping(value = "/review/comment")
 	public ModelAndView reviewCommentInsert(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("/review/detail");
+		ModelAndView mv = new ModelAndView("review/detail");
 
 		System.out.println("reviewCommentInsert : " + commandMap.getMap());
 		ReviewService.ReviewCommentWrite(commandMap.getMap());
