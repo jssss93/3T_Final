@@ -20,6 +20,7 @@
                     <td>
                         ${map.REVIEW_NO }
                         <input type="hidden" id="REVIEW_NO" name="REVIEW_NO" value="${map.REVIEW_NO}">
+                        <input type="hidden" id="GOODS_NO" name="GOODS_NO" value="${map.GOODS_NO }">
                     </td>
               <%--       <th scope="row">조회수</th>
                     <td>${map.REV_READCNT }</td> --%>

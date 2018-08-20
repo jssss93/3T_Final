@@ -5,15 +5,57 @@
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
 </head>
 <body>
+<script type="text/javascript">
+	function open_win_noresizable(url, name)
+	{
+		var oWin = window.open(url, name, "scrollbars=no, status=no, resizable=no, width=600, height=500");
+		
+	}
+</script>
+<form action="/3T/review/write">
 <table width="600" border="0" cellspacing="0" cellpadding="2">
 		<tr>
-			<td align="center" class="text01 formbar"><h2>Q&A</h2></td>
+			<td align="center" class="text01 formbar"><h2>Review</h2></td>
 		</tr>
 		<tr>
           <td height="20" colspan="2"></td>
         </tr>
 	</table>
-	<table width="600" border="1" cellspacing="0" cellpadding="0" height="120" >
+	
+	<table width="600" border="1" cellspacing="0" cellpadding="0"
+		height="120">
+		 <c:choose>
+					  <c:when test="${list.GOODS_NO > 0 }"> 
+						<tr>
+					<td align="center" width="120"><img width="100" height="100"
+						src="/3T/resources/upload/${list.SAV_NAME.split(',')[0] }" /></td>
+					<td>${list.NAME }<br /> KRW&nbsp;${list.PRICE } <br /> <br /> <input
+						type="button" name="button" value="상품정보 선택 ▶"
+						onclick="javascript:open_win_noresizable('reviewGoodsSelect', write)" />&nbsp;
+						 <input type="button" name="button" value="상품 상세보기▶">
+						<input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
+						
+					</td>
+					
+				</tr> 
+			 </c:when>
+			<c:otherwise>
+				<!-- <input type="hidden" name="GOODS_NO" value="GOODS_NO" /> -->
+				<tr>
+					<td align="center" width="120">기본 이미지</td>
+					<td>
+						<br> <input type="button" name="button" value="상품정보 선택 ▶"
+						onclick="javascript:open_win_noresizable('reviewGoodsSelect', write)" />
+						<input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
+						
+					</td>
+				</tr>
+			</c:otherwise>
+			</c:choose>
+		
+	</table>
+	
+<!-- 	<table width="600" border="1" cellspacing="0" cellpadding="0" height="120" >
 			<tr >
 				<td colspan="2" height="1"></td>
 			</tr>
@@ -34,9 +76,9 @@
 						<s:a href="%{viewURL}"><input type="button" name="button" value="상품 상세보기 ▶"/></s:a>
 					</td>
 			</tr>
-		</table>
+		</table> -->
 	
-	<form id="frm">
+	
 		<table class="board_view">
 			<colgroup>
 				<col width="15%">
@@ -87,8 +129,9 @@
 		</table>
 		 
 		
-		<a href="#this" class="btn" id="write">작성하기</a>
+		<!-- <a href="#this" class="btn" id="write">작성하기</a> -->
 		<a href="#this" class="btn" id="list">목록으로</a>
+		<input type="submit" value="작성완료" >
 	</form>
 	
 	<%@ include file="/WEB-INF/include/include-body.jspf" %>
