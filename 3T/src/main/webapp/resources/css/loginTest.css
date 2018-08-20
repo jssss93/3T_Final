@@ -753,6 +753,7 @@ body.eMobilePopup {
 	opacity: 1;
 }
 
+}
 .xans-member-login .login fieldset .security input {
 	width: 13px;
 	height: 13px;
@@ -806,7 +807,7 @@ body.eMobilePopup {
 	color: #757575;
 }
 
-.xans-member-login .login fieldset .link span.loginbtn a {
+.xans-member-login .login fieldset .link input {
 	position: absolute;
 	top: 7px;
 	right: 139px;
@@ -1358,27 +1359,6 @@ table .subject a:hover {
 	border: 0px solid #eee;
 	border-top: 0;
 	border-bottom: 0;
-}
-
-#left {
-	position: fixed;
-	float: left;
-	width: 13%;
-	top: 0px;
-	height: 100%;
-	z-index: 9;
-	background: none;
-}
-
-#right {
-	position: fixed;
-	float: right;
-	right: 0px;
-	width: 140px;;
-	top: 0px;
-	height: 90%;
-	z-index: 9;
-	background: none;
 }
 
 #container {
