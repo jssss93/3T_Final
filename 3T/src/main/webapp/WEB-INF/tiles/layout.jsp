@@ -6,15 +6,15 @@
 <html>
 <head>
 <!-- 왼쪽 카테고리 -->
-<link href="<c:url value='/resources/css/left category.css'/>"
+<link href="<c:url value='/resources/css/leftCategory.css'/>"
 	rel="stylesheet" type="text/css" />
 
 <!-- 오른쪽 카테고리 -->
-<link href="<c:url value='/resources/css/right category.css'/>"
+<link href="<c:url value='/resources/css/rightCategory.css'/>"
 	rel="stylesheet" type="text/css" />
 
 <!-- 로그인 -->
-<link href="<c:url value='/resources/css/login category.css'/>"
+<link href="<c:url value='/resources/css/loginCategory.css'/>"
 	rel="stylesheet" type="text/css" />
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -64,10 +64,13 @@
 	type="text/css" />
 <style type="text/css">
 #Left {
-	/* display: none !important; */
+	position: fixed;
+	float: left;
+	width: 13%;
 	top: 0px;
 	height: 100%;
 	z-index: 9;
+
 	width: 10%;
 	color: #000000;
 	font-size: 12px;
@@ -83,12 +86,16 @@
 	/* letter-spacing: 5px; 글자간격 */
 	/* word-spacing: 3px; 단어간격*/
 	line-height: 50%;
+
 }
 
 #Right {
-	/* display: none !important; */
+	position: fixed;
+	float: right;
+	right: 0px;
+	width: 140px;
 	top: 0px;
-	height: 100%;
+	height: 90%;
 	z-index: 9;
 	width: 10%;
 	color: #000000;
@@ -105,6 +112,7 @@
 	/* letter-spacing: 5px; 글자간격 */
 	/* word-spacing: 3px; 단어간격*/
 	line-height: 50%;
+
 }
 </style>
 </head>
@@ -123,7 +131,7 @@
 	<!--  왼쪽 메뉴 고정 바 -->
 	<div id="left">
 		<h1 class="xans-element- xans-layout xans-layout-logotop ">
-			<a href="\3T\main"><img src="/3T/resources/images/3T.png"></a>
+			<a href="\3T\main"><img src="/3T/resources/images/3T.PNG"></a>
 		</h1>
 		<br>
 
@@ -138,17 +146,12 @@
 				<c:if test="${sessionScope.MEMBER_ID != null}">
 					<a href="/3T/member/logout" class="log">logout</a> / 
 							</c:if>
-				<a href="/3T/member/joinStep1">join</a> <br> <a
+				<a href="/3T/member/joinStep1">join</a> <a
 					href="/3T/csstest/csstest">order</a> / <a href="/3T/mypage/mypage">mypage</a>
 			</div>
 
 
 		</div>
-		<br> <br> <br> <br>
-		<!-- //left_login -->
-
-
-
 
 		<div>
 			<div id="category"
@@ -158,7 +161,6 @@
 						<c:url var="OUTER" value="/goods/catelist">
 							<c:param name="CATEGORY" value="OUTER" />
 						</c:url>
-
 						<li class="xans-record-"><a
 							href="/3T/goods/catelist?CATEGORY=OUTER">OUTER</a></li>
 						<li class="xans-record-"><a
@@ -179,8 +181,6 @@
 				</div>
 			</div>
 
-			<br> <br> <br> <br>
-
 			<div class="xans-element- xans-layout xans-layout-boardinfo">
 				<ul>
 					<li class="xans-record-"><a href="/3T/notice/list">NOTICE</a></li>
@@ -196,9 +196,16 @@
 		</div>
 
 	</div>
-	</tr>
-	</table>
-	</div>
+
+
+
+
+
+
+
+
+
+
 
 
 	<!-- 오른쪽 메뉴 고정 바 -->
@@ -249,12 +256,6 @@
 											<caption>공지사항</caption>
 											<tbody
 												class="xans-element- xans-board xans-board-list-1 xans-board-list xans-board-1">
-												<!--
-                                    $count = 3              
-                                    $subject_cut = 14
-                                    $main_list = yes
-                                    $main_list_reply_view = no
-                                -->
 												<tr class="xans-record-">
 													<td class="title"><a
 														href="/board/free/read.html?no=248265&amp;board_no=1">교환
@@ -292,7 +293,5 @@
 				</ul>
 		</div>
 	</div>
-
-
 </body>
 </html>
