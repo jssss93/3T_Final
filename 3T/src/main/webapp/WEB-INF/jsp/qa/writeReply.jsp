@@ -4,35 +4,47 @@
 <head>
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
 </head>
+	<table width="70%" align="center" border="0" cellspacing="0" cellpadding="1" colspan="1" class="board_top">
+	    <br>
+		<tr>
+			<td height="50"></td>
+		</tr>
+		<tr>
+			<td align="left" class="text01 formbar"><h6><font color="#000000">Q&A</font></h6></td>
+		</tr>
+
+		<tr>
+			<td height="50"></td>
+		</tr>
+	</table>
 <body>
 	<form id="frm">
-		<table class="board_view">
+		<table border="1" align="center" class="board_view2">
 			<colgroup>
 				<col width="15%">
 				<col width="*"/>
 			</colgroup>
-			<caption>게시글 작성</caption>
 			<tbody>
-				<tr>
-                    <th scope="row">제목</th>
+				<tr class="board_title">
+                    <th scope="row">SUBJECT</th>
                     <td>
                     <input type="text" id="TITLE" name="TITLE" class="wdp_90" ></input></td>
                 </tr>
                 
-                <tr>
-                    <th scope="row">이름</th>
-                    <td><input type="text" id="MEMBER_ID" name="MEMBER_ID" class="wdp_90"></input></td>
+                <tr class="board_title">
+                    <th scope="row">NAME</th>
+                    <td><input type="text" id="MEMBER_ID" name="MEMBER_ID"></input></td>
                 </tr>
                 
-                <tr>
-                    <th scope="row">비밀번호</th>
-                    <td><input type="text" id="PASSWD" name="PASSWD" class="wdp_90"></input></td>
+                <tr class="board_title">
+                    <th scope="row">PASSWORD</th>
+                    <td><input type="text" id="PASSWD" name="PASSWD"></input></td>
                 </tr>
                 
               
                 <tr>
-                    <td colspan="2" class="view_text">
-                        <textarea rows="20" cols="100" title="내용" id="CONTENT" name="CONTENT"></textarea>
+                    <td colspan="2" class="board_content2">
+                        <textarea rows="20" cols="145" title="내용" id="CONTENT" name="CONTENT"></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -44,8 +56,14 @@
 			</tbody>
 		</table>
 		
-		<a href="#this" class="btn" id="write">작성하기</a>
-		<a href="#this" class="btn" id="list">목록으로</a>
+		<table class="notice_button">
+		<tr>
+		<td>
+		<a href="#this" class="btn" id="write">WRITE</a>
+		<a href="#this" class="btn" id="list">LIST</a>
+		</td>
+		</tr>
+		</table>
 	</form>
 	
 	<%@ include file="/WEB-INF/include/include-body.jspf" %>

@@ -35,7 +35,7 @@ public class CartController {
 	public ModelAndView addCart(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:/goods/list");
+		mv.setViewName("redirect:/cart/list");
 		HttpSession session = request.getSession();
 
 		Map<String, Object> cartMap = new HashMap<String, Object>();
@@ -147,13 +147,17 @@ public class CartController {
 
 	// 장바구니 리스트 불러오기
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/cart/List")
+	@RequestMapping(value = "/cart/list")
 	public ModelAndView cartList(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
 
+		HttpSession session = request.getSession();
 		List<Map<String, Object>> cartList = new ArrayList<Map<String, Object>>();
-
-		Calendar today = Calendar.getInstance();
+		
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		cartList=cartService.cartList(commandMap.getMap());
+		
+		/*Calendar today = Calendar.getInstance();
 		Date d = new Date(today.getTimeInMillis());
 
 		HttpSession session = request.getSession();
@@ -163,7 +167,7 @@ public class CartController {
 		if (session.getAttribute("MEMBER_ID") != null) {
 			commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 			cartList = cartService.cartList(commandMap.getMap());
-		} /*else {
+		}*/ /*else {
 			if (session.getAttribute("cartSession") != null) {
 				cartSession = (List<Map<String, Object>>) session.getAttribute("cartSession");
 				for (int i = 0; i < cartSession.size(); i++) {

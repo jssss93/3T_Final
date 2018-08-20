@@ -4,78 +4,55 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="<c:url value='/resources/css/footer.css'/>" rel="stylesheet" type="text/css"/>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-
-#main_footer a{
-font-style: normal;
-	font-variant-ligatures: normal;
-	font-variant-caps: normal;
-	font-variant-numeric: normal;
-	font-variant-east-asian: normal;
-	font-weight: normal;
-	font-stretch: normal;
-	font-size: 15px;
-	line-height: normal;
-	font-family: 맑은 고딕;
-	color: #000000;
-	/* font-weight: bold; */
-}
-
-#main_footer span{
-font-style: normal;
-	font-variant-ligatures: normal;
-	font-variant-caps: normal;
-	font-variant-numeric: normal;
-	font-variant-east-asian: normal;
-	font-weight: normal;
-	font-stretch: normal;
-	font-size: 17px;
-	line-height: normal;
-	font-family: 맑은 고딕;
-	color: #5D5D5D;
-}
-
 </style>
 </head>
 <body>
-<br>
-<br>
+	<br>
+	<br>
 	<div id="main_footer">
 
-        
-		<div id="footer" align="center">
+
+		<div id="footer">
 			<div class="xans-element- xans-layout xans-layout-footer ">
 				<p class="utilMenu">
-					<a href="/?" class="home">HOME ㅣ</a>
-					<a href="/?">ABOUT ㅣ</a1> 
-					<a href="/?">TERMS OF USE ㅣ</a> 
-					<a href="/?">PRIVACY POLISH ㅣ</a> 
-					<a href="/3T/src/main/webapp/WEB-INF/tiles/guide">USER GUIDE ㅣ</a>
-					<a href="https://www.doortodoor.co.kr/parcel/pa_004.jsp" target="_blank">DELIVERY</a>
+					<a href="/index.html" class="home">home</a> <a
+						href="/shopinfo/company.html">about</a> <a
+						href="/member/agreement.html">terms of use</a> <a
+						href="/member/privacy.html">privacy policy</a> <a
+						href="/shopinfo/guide.html">user guide</a> <a
+						href="https://www.doortodoor.co.kr/parcel/pa_004.jsp"
+						target="_blank">DELIVERY</a>
 				</p>
-				<br>
-				<br>
 				<p class="address">
-					<span>회사명: 3T &nbsp </span> <span>대표이사: 3T &nbsp</span> <span>e-mail:
-						KHiclass@naver.com &nbsp</span><span>tel: 070-0000-0000 &nbsp</span> <span>개인정보보호
-						책임자: <td href="mailto:KHiclass@naver.com">3T
-							&nbsp;KHiclass@naver.com</td>
+					<span>회사명: 3T </span> <span>대표이사: 서홍일,서지우</span> <span>e-mail:
+						hi880515@naver.com</span><span>tel: 070-4477-9922</span> <span>개인정보보호
+						책임자: <a href="mailto:hi880515@naver.com">서홍일
+							&nbsp;hi880515@naver.com</a>
 					</span> <br>
-					<span>사업자등록번호 : 000-00-000000<td
+					<span>사업자등록번호 : 204-29-34817 <a
 						href="http://ftc.go.kr/info/bizinfo/communicationList.jsp"
-						target="_blank"> [사업자정보확인] &nbsp</td></span> <span>통신판매신고번호:
+						target="_blank"> [사업자정보확인]</a></span> <span>통신판매신고번호:
 						2016-서울동대문-0071호</span><br>
-					<span>주소: 서울특별시 강남구 테헤란로 10길 9 그랑프리빌딩 3T &nbsp</span><br>
-					<span>반품주소: 서울특별시 강남구 테헤란로 10길 9 그랑프리빌딩 내 3T</span> <span>호스팅
+					<span>주소: 133854 서울특별시 성동구 하왕십리동 301-3 신일금속빌딩 5층</span><br>
+					<span>반품주소: 서울특별시 성북구 보문동5가 116-2번지 1층 CJ대한통운 청계점 내 애즈클로</span> <span>호스팅
 						: 심플렉스인터넷(주)</span>
 				</p>
-				<br><br>
+				<a href="#"><img
+					onclick="window.open('https://mark.inicis.com/mark/popup_v1.php?mid=CAEhi88ba9', '', 'scrollbars=yes, width=500, height=580, left=100, top=100')"
+					src="/3T/resources/images/3T.png" alt="에스크로"
+					title="에스크로"></a>
+				<p class="copy">copyright © 3T all right reserved.</p>
 			</div>
 
 			<a name="footer_down"></a>
 		</div>
+
+
+	</div>
 
 
 	</div>

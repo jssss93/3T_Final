@@ -1,9 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<%@ include file="/WEB-INF/include/include-header.jspf" %>
+<%@ include file="/WEB-INF/include/include-header.jspf"%>
 </head>
+
 
 <table width="600" border="0" cellspacing="0" cellpadding="2">
 		<tr>
@@ -61,9 +63,14 @@
     <tr bgcolor="#777777">
 			<td colspan="2" height="1"></td>
 		</tr>
+
+
 		<tr>
-			<td colspan="2" height="10"></td>
+			<td><a href="#this" class="btn" id="list">LIST</a> <a
+				href="#this" class="btn" id="update">UPDATE</a> <a href="#this"
+				class="btn" id="delete">DELETE</a></td>
 		</tr>
+
 	
 			<form id="frm" action="/3T/review/comment" method="post">
 				<table>
@@ -87,10 +94,43 @@
 						
 					</tbody>	
 				
+
 	</table>
-	<input type="submit" name="리뷰" id="리뷰" value="리뷰작성">
+	<br>
+
+
+	<form id="frm" action="/3T/review/comment" method="post">
+		<table border="1" align="center" class="board_view2">
+			<tbody>
+				<tr class="board_title">
+					<th scope="row">NAME</th>
+					<td><input type="text" id="NAME" name="NAME"></input></td>
+				</tr>
+				<tr class="board_title">
+					<th scope="row">PASSWORD</th>
+					<td><input type="text" id="PASSWD" name="PASSWD"></input></td>
+				</tr>
+				<tr>
+					<td colspan="2" class="board_content2"><textarea rows="20"
+							cols="145" title="내용" id="CONTENT" name="CONTENT"></textarea></td>
+				</tr>
+				<input type="hidden" id="REVIEW_ORIGIN_NO" name="REVIEW_ORIGIN_NO"
+					value="${map.REVIEW_NO }">
+				<input type="hidden" id="REVIEW_NO" name="REVIEW_NO"
+					value="${map.REVIEW_NO }">
+			</tbody>
+
+		</table>
+		<br>
+		<table class="notice_button">
+			<tr>
+				<td><input type="submit" class="btn" name="리뷰" id="리뷰"
+					value="RIVEW ANSWER"></td>
+			</tr>
+		</table>
 	</form>
 	<table>
+
 	 <c:choose>
             <c:when test="${fn:length(list) > 0}">
                 <c:forEach items="${list }" var="row">
@@ -116,11 +156,12 @@
             </c:otherwise>
         </c:choose>
         </table>
+
 	<!-- <a href="#this" class="btn" id="writeComment">리뷰작성</a> -->
-	<!-- <a href="#this" class="btn" id="deleteComment">리뷰삭제</a> -->	
-     
-    <%@ include file="/WEB-INF/include/include-body.jspf" %>
-    <script type="text/javascript">
+	<!-- <a href="#this" class="btn" id="deleteComment">리뷰삭제</a> -->
+
+	<%@ include file="/WEB-INF/include/include-body.jspf"%>
+	<script type="text/javascript">
         $(document).ready(function(){
             $("#list").on("click", function(e){ //목록으로 버튼
                 e.preventDefault();

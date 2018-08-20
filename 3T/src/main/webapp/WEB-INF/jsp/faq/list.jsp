@@ -10,12 +10,12 @@
 </head>
 <body>
 	<table width="70%" align="center" border="0" cellspacing="1" cellpadding="1" class="board_top">
-
+        <br>
 		<tr>
 			<td height="50"></td>
 		</tr>
 		<tr>
-			<td align="left" class="text01 formbar"><h3><font color="#555555">FAQ</font></h3></td>
+			<td align="left" class="text01 formbar"><h6><font color="#000000">FAQ</font><span> ㅣ </span></h6></td>
 		</tr>
 
 		<tr>
@@ -23,25 +23,20 @@
 		</tr>
 	</table>
 	
-	<table width="74%" align="center" border="0" cellspacing="0" cellpadding="2" class="board_no">
-               <tr align="center">
-				<td width="50"><h4>NO</h4></td>
-			    <td width="370"><strong></strong></td>
-				</tr>			
-</table>
-
-	<table width="80%" align="center" border="0" cellspacing="0" cellpadding="2" class="board_list">
+	<table width="80%" align="center" border="0" cellspacing="0" cellpadding="2" class="board_review3">
+	 <tr>
+			   <td valign="middle"><strong>NO</strong></td>
+			   </tr>
 		<tbody>
 			<c:choose>
 				<c:when test="${fn:length(list) > 0}">
 					<c:forEach items="${list }" var="row">
 						<tr>
 							<td>${row.FAQ_NO }</td>
-							<td class="title"><a href="#this" name="title">${row.TITLE }</a> <input
+							<td><a href="#this" name="title">${row.TITLE }</a> <input
 								type="hidden" id="FAQ_NO" value="${row.FAQ_NO }">
 							</td>
 							<td align=right>${row.MEMBER_ID }</td>
-
 						</tr>
 					</c:forEach>
 				</c:when>
@@ -60,26 +55,12 @@
 	</c:if>
 	<input type="hidden" id="currentPageNo" name="currentPageNo" />
 
-
+<br>
 <table class="notice_button">
-	<br />
 	<tr>
-	<td><a href="write" class="btn" >작성</a></tr>
+	<td><a href="write" class="btn" >WRITE</a></td>
 	</tr>
 	</table>
-	<br />
-	<form action="/3T/faq/list">
-		<select name="SearchNum" id="SearchNum"
-			style="width: 100px; height: 30px;">
-			<option value="TITLE">제목</option>
-			<option value="MEMBER_ID">작성자</option>
-		</select> <input type="text" name="SearchKeyword" id="SearchKeyword"
-			style="margin-left: 15px; width: 200px; height: 36px; border-radius: 5px 5px 5px 5px;" />
-		<input type="submit" value="검색">
-	</form>
-
-
-	<br />
 	
 
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>

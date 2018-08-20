@@ -14,17 +14,21 @@
 	}
 </script>
 <form action="/3T/qa/write">
-	<table width="600" border="0" cellspacing="0" cellpadding="2">
+	<table width="70%" align="center" border="0" cellspacing="0" cellpadding="1" colspan="1" class="board_top">
+	    <br>
 		<tr>
-			<td align="center" class="text01 formbar"><h2>Q&A</h2></td>
+			<td height="50"></td>
 		</tr>
 		<tr>
-			<td height="20" colspan="2"></td>
+			<td align="left" class="text01 formbar"><h6><font color="#000000">Q&A</font></h6></td>
+		</tr>
+
+		<tr>
+			<td height="50"></td>
 		</tr>
 	</table>
 
-	<table width="600" border="1" cellspacing="0" cellpadding="0"
-		height="120">
+	<table width="70%" align="center" border="0" cellspacing="0" cellpadding="1" colspan="1" height="120" class="board_img">
 		 <c:choose>
 					  <c:when test="${list.GOODS_NO > 0 }"> 
 						<tr>
@@ -70,14 +74,14 @@
 	</table>
 
 	
-		<table class="board_view">
+		<table border="1" align="center" class="board_view2">
 			<colgroup>
 				<col width="15%">
 				<col width="*" />
 			</colgroup>
 			<tbody>
-				<tr>
-					<th scope="row">제목</th>
+				<tr class="board_title">
+					<th scope="row">SUBJECT</th>
 					<td>
 					<select name="CATEGORY" id="CATEGORY">
 						<option value="1">상품문의</option>
@@ -88,35 +92,31 @@
 					<input type="text" id="TITLE" name="TITLE" class="wdp_90"></input></td>
 				</tr>
 
-				<tr>
-					<th scope="row">작성자</th>
-					<td><input type="text" id="MEMBER_ID" name="MEMBER_ID"
-						class="wdp_90"></input></td>
+				<tr class="board_title">
+					<th scope="row">NAME</th>
+					<td><input type="text" id="MEMBER_ID" name="MEMBER_ID" class="board_title"></input></td>
 				</tr>
 				<tr>
-					<td colspan="2" class="view_text"><textarea rows="10"
-							cols="70" title="내용" id="CONTENT" name="CONTENT"></textarea></td>
+					<td colspan="2" class="board_content2">
+					<textarea rows="20" cols="145" title="내용" id="CONTENT" name="CONTENT"></textarea></td>
 				</tr>
 
 
-				<tr>
-					<th scope="row">비밀번호</th>
+				<tr class="board_title">
+					<th scope="row">PASSWORD</th>
 					<td><input type="text" id="PASSWD" name="PASSWD"
-						class="wdp_90"></input></td>
+						class="board_title"></input></td>
 				</tr>
-				<tr>
+				<tr class="board_title">
 					<th scope="row">비밀글 설정</th>
-					<td><input type="radio" name="STATUS" value="0" checked="checked"/>비밀글 <input
-						type="radio" name="STATUS" value="1" />공개글</td>
+					<td><input type="radio" name="open" value="open" />공개글 <input
+						type="radio" name="open" value="open" />비밀글</td>
 				</tr>
-				 
-  
-  
-				<tr>
+				<tr class="board_title">
 					<th scope="row">개인정보수집 및 <br />이용 동의
 					</th>
-					<td colspan="2" class="view_text"><textarea rows="10"
-							cols="50" title="내용" id="AGREE" name="AGREE">■ 개인정보의 수집·이용 목적
+					<td colspan="2" class="board_content2"><textarea rows="10"
+							cols="80" title="내용" id="AGREE" name="AGREE">■ 개인정보의 수집·이용 목적
 서비스 제공 및 계약의 이행, 구매 및 대금결제, 물품배송 또는 청구지 발송, 회원관리 등을 위한 목적
 ■ 수집하려는 개인정보의 항목
 이름, 주소, 연락처 등
@@ -129,11 +129,18 @@
 				</tr>
 			</tbody>
 		</table>
-
+		<br><br>
+		
+		 <table class="notice_button">
+		 <tr>
+		 <td>
 		<!-- <a href="#this" class="btn" id="write">작성하기</a>  -->
-		<a href="#this"class="btn" id="list">목록으로</a>
-			<input type="submit" value="작성완료" >
+		<a href="#this"class="btn" id="list">LIST</a>
+			<input class="btn" type="submit" value="WRITE" >
+			</td>
+			</tr>
 		</form>
+		</table>
 
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	<script type="text/javascript">
@@ -161,10 +168,5 @@
 			comSubmit.submit();
 		} */
 	</script>
-	<script type="text/javascript">
-$(document).ready(function(){
-   console.log($("input[name=STATUS]:checked").val());
-});
-</script>
 </body>
 </html>

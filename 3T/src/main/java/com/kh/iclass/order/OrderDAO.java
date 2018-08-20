@@ -10,6 +10,19 @@ import com.kh.iclass.common.dao.AbstractDAO;
 @Repository("orderDAO")
 public class OrderDAO extends AbstractDAO {
 	
+	public void insertOrder(Map<String, Object> map) throws Exception {
+		  insert("order.insertOrder", map);
+	}
+	
+	public void insertOrderDetail(Map<String, Object> map) throws Exception {
+		  insert("order.insertOrderDetail", map);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectList(Map<String, Object> map) throws Exception {
+		return selectList("order.selectList", map);
+	}
+	
 	
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> orderMember(Map<String, Object> map) throws Exception {
