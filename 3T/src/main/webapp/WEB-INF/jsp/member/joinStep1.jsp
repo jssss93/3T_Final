@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 <div class="container">
 	<section class="step-panels">
 		<ol>
@@ -51,15 +51,47 @@
 					<div class="section-body">
 						<p>이메일 인증은 따로 정보를 저장하지 않습니다. 해당 이메일로 전송받은 인증 번호를 입력해서 인증을 받는
 							방법입니다.</p>
-						<a href="/3T/member/joinStep1Email" class="button"
-							target="modal" data-size="sm" data-label="이메일 인증"> <span
-							class="button-label">이메일 인증</span>
+						<a href="/3T/member/joinStep1Email" class="button"	 target="modal" data-size="sm" data-label="이메일 인		증"> 
+						
+						<span class="button-label">이메일 인증</span>
 						</a>
+						<button class="btn btn-toggle" data-toggle="modal" data-target="#myModal">Show / Hide<button>
 					</div>
 				</div>
 			</section>
 		</div>
 	</div>
+	
+	<div class="modal fade" id="myModal">
+		<form name="frm" method="post" class="form-horizontal">
+		<input name="agreement" value="o" type="hidden">
+	<section style="padding:30px 20px;">
+		<div class="form-group">
+			<label for="inputEmail3" class="col-xs-4 col-lg-4 control-label">이메일</label>
+			<div class="col-xs-20 col-lg-20 form-inline">
+				<input name="email1" id="email1" class="form-control" size="10" type="text"> @ 
+				<input name="email2" id="email2" class="form-control" size="10" type="text">  
+				<a href="javascript:email_code();" class="btn btn-default form-control">인증번호받기</a>
+				 
+			</div>
+		</div>
+	 <div class="form-group">
+			<label for="inputEmail3" class="col-sm-4 control-label">인증번호</label>
+			<div class="col-sm-20">
+				 <input name="sing_code" class="form-control" type="password">
+			</div>
+		</div>
+	
+		<div class="text-center" style="padding-top:10px">
+			  <a href="javascript:member_send();" class="btn btn-default">회원가입하기(AJAX TEST)</a> 
+			 <a href="/3T/member/joinStep2" class="btn btn-default">회원가입하기(AJAX 후에 기능 추가)</a> 
+		</div> 
+	
+	</section>
+</form></div>
+
+<div class="modal-foot">
+</div>
 
 	<script>
 		function email_code() {
@@ -70,16 +102,16 @@
 				alert("이메일을 입력하세요.");
 			} else if (f.email1.value == "" || f.email2.value == "") {
 				alert("이메일을 정확히 입력하세요.");
-				console.log("로그 내용1");
+				console.log("로그 내용1+eamil:"+email);
 			} else {
-				$.ajax({
+				console.log("들어가?1");
+				$.ajax({ 
 					type : "POST",
-					url : "./joinStep1/modal_email_auth",
+					url : "/3T/joinStep1/modal_email_auth",
 					data : ({
 						mode : "email_code",
 						email : email
 					}),
-					//contentType: "text/plain; charset=euc-kr",
 					success : function(data) {
 						console.log(data);
 						if (data != 0) {
@@ -92,8 +124,10 @@
 							console.log("로그 내용2" + data);
 						}
 					},
-					error : function(e) {
-						alert('error' + e);
+					error : function(error, a, b) {
+						console.log(error);
+						console.log(a);
+						console.log(b);
 					}
 				});
 			}
@@ -113,11 +147,8 @@
 			} else {
 				$.ajax({
 					type : "POST",
-					url : "./joinStep1/modal_email_auth_success",
-					//data: ({Id:$("#Id").val(), Pwd:$("#Pwd").val()}),
-					//contentType: "text/plain; charset=euc-kr",
+					url : "/3T/joinStep1/modal_email_auth_success",
 					success : function(data) {
-						/* alert("auth값받음"+data); */
 						console.log("로그 내용1");
 						if (data != null) {
 							if (!f.sing_code.value) {
@@ -127,7 +158,6 @@
 								alert("인증번호가 맞지 않습니다.");
 
 							} else {
-								//alert("인증번호가 맞습니다.");
 								f.action = "./joinStep2";
 								f.submit();
 							}

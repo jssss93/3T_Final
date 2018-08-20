@@ -5,6 +5,7 @@
 <html>
 <head>
 
+
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
@@ -20,23 +21,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:choose>
-		<c:when test="${map.TITLE==NULL }"><form action="write"method="post" ></c:when>
-		<c:otherwise><form action="update"method="post" ></c:otherwise>
-	</c:choose>
-	<input type="hidden" name="NOTICE_NO" value="${map.NOTICE_NO }">
-	<br/>
+	<form action="write"method="post" ><br/>
 	<input type="text" class="form-control" name="title" placeholder="제목을 입력해주세요" value="${map.TITLE }"><br/>
 	<div id="summernote" value="4">${map.CONTENT }</div>
 	<textarea id="noteArea" name="content"  style="display: none;"></textarea>
-	<c:choose>
-		<c:when test="${map.TITLE == NULL }"><input type="submit" class="btn btn-default" id="submitBtn" value="등록" />	</c:when>
-		<c:when test="${map.TITLE != NULL }"><input type="submit" class="btn btn-default" id="submitBtn" value="수정" /></c:when>
-	</c:choose>
 	
+	<input type="submit" class="btn btn-default" id="submitBtn" value="등록" />
 	</form>
 </body>
-<script>	
+<script>
 $(document).ready(function() {
 
 	

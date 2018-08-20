@@ -8,15 +8,19 @@
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 </head>
 <body>
+
 	<table width="100%" align="center" border="0" cellspacing="1"
 		cellpadding="1" class="board_top">
+
 		<tr>
 			<td height="50"></td>
 		</tr>
 		<tr>
+
 			<td align="left" class="text01 formbar"><h6>
 					<font color="#000000">REVIEW</font>
 				</h6></td>
+
 		</tr>
 
 		<tr>
@@ -33,6 +37,7 @@
 			<!-- <td valign="middle"><strong>CONTENT</strong></td> -->
 			<td valign="middle"><strong>DATE</strong></td>
 		</tr>
+
 
 		<tbody>
 			<c:choose>
@@ -57,19 +62,23 @@
 				</c:otherwise>
 			</c:choose>
 
+
 		</tbody>
 	</table>
 	<br />
 	<form action="/3T/review/list">
 		<select name="SearchNum" class="btn" id="SearchNum"
+
 			style="width: 100px; height: 30px;">
 			<option value="MEMBER_ID">작성자</option>
 			<option value="TITLE">제목</option>
 			<option value="CONTENT">내용</option>
+
 		</select> <input type="text" class="btn" name="SearchKeyword"
 			id="SearchKeyword"
 			style="margin-left: 15px; width: 200px; height: 36px; border-radius: 5px 5px 5px 5px;" />
 		<input type="submit" class="btn" value="검색">
+
 	</form>
 
 
@@ -102,6 +111,7 @@
             });
         });
              
+
 
             function fn_openBoardWrite(){
             var comSubmit = new ComSubmit();

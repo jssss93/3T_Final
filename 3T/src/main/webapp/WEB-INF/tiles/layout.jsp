@@ -70,7 +70,23 @@
 	top: 0px;
 	height: 100%;
 	z-index: 9;
-	background: none;
+
+	width: 10%;
+	color: #000000;
+	font-size: 12px;
+	position: fixed;
+	/*  -webkit-box-shadow: 0 1px 2px 0 #777;
+	box-shadow: 0 1px 2px 0 #777;   */
+	background-color: rgba(255, 255, 255, 0.5);
+	-ms-filter: alpha(opacity = 0.5);
+	filter: alpha(opacity = 0.5);
+	/* 	opacity: 0.5; */
+	padding: 40px 0 0 30px;
+	/* font-weight: bold; */
+	/* letter-spacing: 5px; 글자간격 */
+	/* word-spacing: 3px; 단어간격*/
+	line-height: 50%;
+
 }
 
 #Right {
@@ -81,14 +97,29 @@
 	top: 0px;
 	height: 90%;
 	z-index: 9;
-	background: none;
+	width: 10%;
+	color: #000000;
+	font-size: 12px;
+	position: fixed;
+	/*  -webkit-box-shadow: 0 1px 2px 0 #777;
+	box-shadow: 0 1px 2px 0 #777;   */
+	background-color: rgba(255, 255, 255, 0.5);
+	-ms-filter: alpha(opacity = 0.5);
+	filter: alpha(opacity = 0.5);
+	/* 	opacity: 0.5; */
+	padding: 40px 0 0 30px;
+	/* font-weight: bold; */
+	/* letter-spacing: 5px; 글자간격 */
+	/* word-spacing: 3px; 단어간격*/
+	line-height: 50%;
+
 }
 </style>
 </head>
 <body>
 
 	<div>
-		<div id="body" style="width: 80%; margin: 0 auto;">
+		<div id="body" style="width: 75%; margin: 0 auto;">
 			<tiles:insertAttribute name="body" ignore="true" />
 		</div>
 		<div id="footer">
@@ -225,12 +256,6 @@
 											<caption>공지사항</caption>
 											<tbody
 												class="xans-element- xans-board xans-board-list-1 xans-board-list xans-board-1">
-												<!--
-                                    $count = 3              
-                                    $subject_cut = 14
-                                    $main_list = yes
-                                    $main_list_reply_view = no
-                                -->
 												<tr class="xans-record-">
 													<td class="title"><a
 														href="/board/free/read.html?no=248265&amp;board_no=1">교환

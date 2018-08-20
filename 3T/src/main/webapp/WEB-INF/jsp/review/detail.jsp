@@ -1,15 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<%@ include file="/WEB-INF/include/include-header.jspf"%>
+<%@ include file="/WEB-INF/include/include-header.jspf" %>
 </head>
+
 
 <body>
 	<table width="70%" align="center" border="0" cellspacing="0"
 		cellpadding="1" colspan="1" class="board_top">
 		<br>
+
 		<tr>
 			<td height="50"></td>
 		</tr>
@@ -18,6 +19,7 @@
 					<font color="#000000">REVIEW</font>
 				</h6></td>
 		</tr>
+
 
 		<tr>
 			<td height="50"></td>
@@ -185,5 +187,6 @@
 							 comSubmit.submit();
 							} */
 						</script>
+
 </body>
 </html>
