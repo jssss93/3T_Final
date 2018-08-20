@@ -64,47 +64,24 @@
 	type="text/css" />
 <style type="text/css">
 #Left {
-	/* display: none !important; */
+	position: fixed;
+	float: left;
+	width: 13%;
 	top: 0px;
 	height: 100%;
 	z-index: 9;
-	width: 15%;
-	color: #000000;
-	font-size: 12px;
-	position: fixed;
-	/*  -webkit-box-shadow: 0 1px 2px 0 #777;
-	box-shadow: 0 1px 2px 0 #777;   */
-	background-color: rgba(255, 255, 255, 0.5);
-	-ms-filter: alpha(opacity = 0.5);
-	filter: alpha(opacity = 0.5);
-	/* 	opacity: 0.5; */
-	padding: 40px 0 0 30px;
-	/* font-weight: bold; */
-	/* letter-spacing: 5px; 글자간격 */
-	/* word-spacing: 3px; 단어간격*/
-	line-height: 50%;
+	background: none;
 }
 
 #Right {
-	/* display: none !important; */
-	top: 0px;
-	height: 100%;
-	z-index: 9;
-	width: 15%;
-	color: #000000;
-	font-size: 12px;
 	position: fixed;
-	/*  -webkit-box-shadow: 0 1px 2px 0 #777;
-	box-shadow: 0 1px 2px 0 #777;   */
-	background-color: rgba(255, 255, 255, 0.5);
-	-ms-filter: alpha(opacity = 0.5);
-	filter: alpha(opacity = 0.5);
-	/* 	opacity: 0.5; */
-	padding: 40px 0 0 30px;
-	/* font-weight: bold; */
-	/* letter-spacing: 5px; 글자간격 */
-	/* word-spacing: 3px; 단어간격*/
-	line-height: 50%;
+	float: right;
+	right: 0px;
+	width: 140px;
+	top: 0px;
+	height: 90%;
+	z-index: 9;
+	background: none;
 }
 </style>
 </head>
@@ -130,7 +107,7 @@
 	<!--  왼쪽 메뉴 고정 바 -->
 	<div id="left">
 		<h1 class="xans-element- xans-layout xans-layout-logotop ">
-			<a href="\3T\main"><img src="/3T/resources/images/3T.png"></a>
+			<a href="\3T\main"><img src="/3T/resources/images/3T.PNG"></a>
 		</h1>
 		<br>
 
@@ -300,8 +277,8 @@
 		</div>
 		<tr>
 			<td>
-				<button type="button" id="moveupBtn">맨위로</button>
-				<button type="button" id="movedownBtn">아래로</button>
+				<button class="btn4" type="button" id="moveupBtn"><img src="/3T/resources/images/버튼1.png"></button>
+				<button class="btn5" type="button" id="movedownBtn"><img src="/3T/resources/images/버튼2.png"></button>
 			</td>
 		</tr>
 	</div>

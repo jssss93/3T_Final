@@ -31,7 +31,7 @@
 		</tr>
 	</table>
 
-	
+
 	<table width="600" border="1" cellspacing="0" cellpadding="0"
 		height="120">
 		 <c:choose>
@@ -71,6 +71,7 @@
 				<col width="*" />
 			</colgroup>
 
+
 			<tbody>
 				<tr class="board_title">
 					<th scope="row">SUBJECT</th>
@@ -83,8 +84,8 @@
 						class="board_title"></input></td>
 				</tr>
 				<tr>
-					<td colspan="2" class="board_content2"><textarea rows="20"
-							cols="145" title="내용" id="CONTENT" name="CONTENT"></textarea></td>
+					<td colspan="2" class="board_content2"><textarea rows="25"
+							cols="248" title="내용" id="CONTENT" name="CONTENT"></textarea></td>
 				</tr>
 				<tr class="board_title">
 					<td><input type="button" value="파일 선택">파일 이름</td>
@@ -127,25 +128,25 @@
 
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#list").on("click", function(e){ //목록으로 버튼
+		$(document).ready(function() {
+			$("#list").on("click", function(e) { //목록으로 버튼
 				e.preventDefault();
 				fn_List();
 			});
-			
-			$("#write").on("click", function(e){ //작성하기 버튼
+
+			$("#write").on("click", function(e) { //작성하기 버튼
 				e.preventDefault();
 				fn_Write();
 			});
 		});
-		
-		function fn_List(){
+
+		function fn_List() {
 			var comSubmit = new ComSubmit();
 			comSubmit.setUrl("<c:url value='/review/list' />");
 			comSubmit.submit();
 		}
-		
-		function fn_Write(){
+
+		function fn_Write() {
 			var comSubmit = new ComSubmit("frm");
 			comSubmit.setUrl("<c:url value='/review/write' />");
 			comSubmit.submit();

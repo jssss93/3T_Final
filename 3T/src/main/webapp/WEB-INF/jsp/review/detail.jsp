@@ -7,6 +7,7 @@
 </head>
 
 
+
 <table width="600" border="0" cellspacing="0" cellpadding="2">
 		<tr>
 			<td align="center" class="text01 formbar"><h2>Review</h2></td>
@@ -27,6 +28,7 @@
 						
 					</td>
 					
+
 				</tr>
 		</table>
 		
@@ -111,8 +113,8 @@
 					<td><input type="text" id="PASSWD" name="PASSWD"></input></td>
 				</tr>
 				<tr>
-					<td colspan="2" class="board_content2"><textarea rows="20"
-							cols="145" title="내용" id="CONTENT" name="CONTENT"></textarea></td>
+					<td colspan="2" class="board_content2"><textarea rows="25"
+							cols="248" title="내용" id="CONTENT" name="CONTENT"></textarea></td>
 				</tr>
 				<input type="hidden" id="REVIEW_ORIGIN_NO" name="REVIEW_ORIGIN_NO"
 					value="${map.REVIEW_NO }">
@@ -130,6 +132,7 @@
 		</table>
 	</form>
 	<table>
+
 
 	 <c:choose>
             <c:when test="${fn:length(list) > 0}">
@@ -157,31 +160,33 @@
         </c:choose>
         </table>
 
+
 	<!-- <a href="#this" class="btn" id="writeComment">리뷰작성</a> -->
 	<!-- <a href="#this" class="btn" id="deleteComment">리뷰삭제</a> -->
 
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	<script type="text/javascript">
-        $(document).ready(function(){
-            $("#list").on("click", function(e){ //목록으로 버튼
-                e.preventDefault();
-                fn_openBoardList();
-            });
-             
-            $("#update").on("click", function(e){
-                e.preventDefault();
-                fn_openBoardUpdate();
-            });
-            $("#delete").on("click", function(e) { //삭제하기 버튼
+		$(document).ready(function() {
+			$("#list").on("click", function(e) { //목록으로 버튼
+				e.preventDefault();
+				fn_openBoardList();
+			});
+
+			$("#update").on("click", function(e) {
+				e.preventDefault();
+				fn_openBoardUpdate();
+			});
+			$("#delete").on("click", function(e) { //삭제하기 버튼
 				e.preventDefault();
 				fn_Delete();
 			});
-           /*  $("#WriteComment").on("click", function(e) { //댓글 작성 버튼
+			/*  $("#WriteComment").on("click", function(e) { //댓글 작성 버튼
 				e.preventDefault();
 				fn_ReviewInsertComment();
 			}); */
-            
+
 		});
+
          
         function fn_openBoardList(){
             var comSubmit = new ComSubmit();
@@ -198,18 +203,18 @@
         }
         
         function fn_Delete() {
+
 			var REVIEW_NO = "${map.REVIEW_NO}";
 			var comSubmit = new ComSubmit();
 			comSubmit.setUrl("<c:url value='/review/delete' />");
 			comSubmit.addParam("REVIEW_NO", REVIEW_NO);
 			comSubmit.submit();
 		}
-        /* function fn_ReviewInsertComment(){
-        	var comSubmit = new ComSubmit("frm");	 
+		/* function fn_ReviewInsertComment(){
+			var comSubmit = new ComSubmit("frm");	 
 			comSubmit.setUrl("<c:url value='/review/comment' />");
 			comSubmit.submit();
-        } */
-        
-    </script>
+		} */
+	</script>
 </body>
 </html>

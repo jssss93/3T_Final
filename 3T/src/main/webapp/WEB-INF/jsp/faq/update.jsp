@@ -49,7 +49,7 @@
 				</tr>
 				<tr>
 					<td colspan="4" class="board_content2">
-					<textarea rows="20" cols="145" title="내용" id="CONTENT" name="CONTENT">${map.CONTENT }</textarea>
+					<textarea rows="25" cols="248" title="내용" id="CONTENT" name="CONTENT">${map.CONTENT }</textarea>
 					</td>
 				</tr>
 

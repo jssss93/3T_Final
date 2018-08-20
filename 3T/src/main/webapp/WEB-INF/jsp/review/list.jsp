@@ -26,6 +26,7 @@
 	</table>
 
 
+
 	<table width="65%" align="center" border="0" cellspacing="0" cellpadding="2" class="board_review1">
                <tr>
 			         <td valign="middle"><strong>NO</strong></td>
@@ -73,6 +74,7 @@
 	</form>
 
 
+
 		<tbody>
 			<c:choose>
 				<c:when test="${fn:length(list) > 0}">
@@ -82,8 +84,8 @@
 							<td><a href="#this" name="title">${row.TITLE }</a> <input
 								type="hidden" id="REVIEW_NO" value="${row.REVIEW_NO }">
 							</td>
-							<td>${row.MEMBER_ID }</td>
 							<td>${row.CONTENT }</td>
+							<td>${row.MEMBER_ID }</td>
 							<td>${row.REGDATE }</td>
 						</tr>
 					</c:forEach>
@@ -110,18 +112,21 @@
     <script type="text/javascript">
 
 
-        $(document).ready(function(){
-            $("#write").on("click", function(e){ //글쓰기 버튼
-                e.preventDefault();
-                fn_openBoardWrite();
-            }); 
-            
-            $("a[name='title']").on("click", function(e){ //제목 
-                e.preventDefault();
-                fn_openBoardDetail($(this));
-            });
-        });
-             
+	<%@ include file="/WEB-INF/include/include-body.jspf"%>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#write").on("click", function(e) { //글쓰기 버튼
+				e.preventDefault();
+				fn_openBoardWrite();
+			});
+
+
+			$("a[name='title']").on("click", function(e) { //제목 
+				e.preventDefault();
+				fn_openBoardDetail($(this));
+			});
+		});
+
 
             function fn_openBoardWrite(){
             var comSubmit = new ComSubmit();
@@ -138,5 +143,6 @@
          
         
     </script>
+
 </body>
 </html>

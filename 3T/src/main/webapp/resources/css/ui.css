@@ -4,7 +4,6 @@
   font-family: 'FontAwesome';
   src: url('fontawesome-webfontba72.html?v=4.0.3');
   src: url('fontawesome-webfontd41d.html?#iefix&v=4.0.3') format('embedded-opentype'), url('fontawesome-webfontba72-2.html?v=4.0.3') format('woff'), url('fontawesome-webfontba72-3.html?v=4.0.3') format('truetype'), url('fontawesome-webfontba72-4.html?v=4.0.3#fontawesomeregular') format('svg');
-/*   src: url('/main/webapp/web-inf/tiles/layout.jsp) format('embedded-opentype'); */
   font-weight: normal;
   font-style: normal;
 }
@@ -32,11 +31,12 @@ a:link, a:visited {text-decoration: none; color: #656565;}
 .board_view tbody th.th_file {font-family: FontAwesome;padding:0 0 0 15px; vertical-align:middle}
 
 .board_view2 {width:100%;font-family: FontAwesome;border-top:1px solid #eeeeee;border-bottom:1px solid #eeeeee;border-left:1px solid #eeeeee;border-right:1px solid #eeeeee}
-.board_view2 tbody th {font-family: FontAwesome;text-align:left;background:#ffffff;color:#3b3a3a}
+.board_view2 tbody th {font-family: FontAwesome;text-align:left;background:#ffffff;color:#3b3a3a; border-left:1px solid #eeeeee;}
 .board_view2 tbody th.list_tit {font-family: FontAwesome;font-size:13px;color:#656565;letter-spacing:0.1px}
 .board_view2 tbody .no_line_b th, .board_view tbody .no_line_b td {font-family: FontAwesome;border-bottom:none}
 .board_view2 tbody th, .board_view tbody td {font-family: FontAwesome; padding:15px 0 16px 16px;border-bottom:1px solid #eeeeee}
 .board_view2 tbody td.view_text {font-family: FontAwesome;border-top:1px solid #eee; border-bottom:1px solid #eee;padding:45px 18px 45px 18px}
+.board_view2 tbody td {font-family: FontAwesome;border-top:1px solid #eee; border-bottom:1px solid #eee;}
 .board_view2 tbody th.th_file {font-family: FontAwesome;padding:0 0 0 15px; vertical-align:middle}
 
 .board_faq {width:100%;font-family: FontAwesome;border-top:2px solid #eeeeee;border-bottom:1px solid #eeeeee}
@@ -96,12 +96,40 @@ font-weight: normal;vertical-align: middle; border-right:1px solid #eeeeee; font
 .board_content2 td {font-family: FontAwesome;}
 
 
-.notice_button td {padding:0px 0 0 230px; vertical-align:middle;}
+.notice_button td {padding:0px 0 0 5px; vertical-align:middle;}
 
 .wdp_90 {width:100%}
 .btn {
-/* font-family: 'Lato';font-size: 9px; border-radius:3px;padding:5px 12px;color:#000000 !important; display:inline-block; background-color:#ffffff; border:1px solid #ccc;vertical-align:middle */
-font-family:'Lato';border:1px solid #ccc;padding:5px 12px;text-transform: uppercase;font-size:9px;line-height:20px;letter-spacing:1px;
+width: 80px; font-weight: bold; letter-spacing: 0.05em; font-family:'Lato';border:1px solid #ccc;padding:5px 12px;text-transform: uppercase;font-size:9px;line-height:20px;letter-spacing:1px;
+ }
+ 
+ .btn2{
+ padding: 7px 70px;
+	margin: 0 5px;
+	font-size: 12px;
+	color: #fff;
+	background: #111;
+	line-height: 30px;
+	border: 1px solid #333;
+ }
+ 
+ .btn3{
+    padding: 7px 70px;
+	margin: 0 5px;
+	border: 1px solid #333;
+	text-decoration: none;
+ }
+ 
+  .btn4{
+    position:fixed;right:-1px;bottom:30%;clear:both;height:40px;border:1px #eee solid;border-right:0px #eee solid;z-index:99;text-align:center;
+    display:inline-block;letter-spacing:1px;text-transform:uppercase;font-size:13px; background-color: rgba(255, 255, 255, 0.1);
+	-ms-filter:alpha(opacity=0.5);
+ }
+ 
+ .btn5{
+    position:fixed;right:-1px;bottom:26%;clear:both;height:40px;border:1px #eee solid;border-right:0px #eee solid;z-index:99;text-align:center;
+    display:inline-block;letter-spacing:1px;text-transform:uppercase;font-size:13px; background-color: rgba(255, 255, 255, 0.1);
+	-ms-filter:alpha(opacity=0.5);
  }
 
 .mySlides {

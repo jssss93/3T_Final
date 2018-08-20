@@ -9,13 +9,17 @@
 
 </head>
 <body>
-	<table width="70%" align="center" border="0" cellspacing="1" cellpadding="1" class="board_top">
-	<br>
+	<table width="70%" align="center" border="0" cellspacing="1"
+		cellpadding="1" class="board_top">
+		<br>
 		<tr>
 			<td height="50"></td>
 		</tr>
 		<tr>
-			<td align="left" class="text01 formbar"><h6><font color="#000000">NOTICE</font><span><p>ㅣ 3T의 공지사항입니다 :) 확인해주세요</p></span></h6></td>
+			<td align="left" class="text01 formbar"><h6>
+					<font color="#000000">NOTICE</font><span><p>ㅣ 3T의
+							공지사항입니다 :) 확인해주세요</p></span>
+				</h6></td>
 		</tr>
 
 		<tr>
@@ -23,20 +27,22 @@
 		</tr>
 	</table>
 
-	<table width="80%" align="center" border="0" cellspacing="0" cellpadding="2" class="board_review3">
-	 <tr>
-			   <td valign="middle"><strong>NO</strong></td>
-			   </tr>
+	<table width="80%" align="center" border="0" cellspacing="0"
+		cellpadding="2" class="board_review3">
+		<tr>
+			<td valign="middle"><strong>NO</strong>
+			</th>
+		</tr>
 		<tbody>
 			<c:choose>
 				<c:when test="${fn:length(list) > 0}">
 					<c:forEach items="${list }" var="row">
 						<tr>
 							<td>${row.NOTICE_NO }</td>
-							<td class="subject"><a href="#this" name="title">${row.TITLE }</a> <input
-								type="hidden" id="NOTICE_NO" value="${row.NOTICE_NO }">
+							<td class="subject"><a href="#this" name="title">${row.TITLE }</a>
+								<input type="hidden" id="NOTICE_NO" value="${row.NOTICE_NO }">
 							</td>
-							<td align=right>${row.MEMBER_ID }</td>
+							<td>${row.MEMBER_ID }</td>
 						</tr>
 					</c:forEach>
 				</c:when>
@@ -48,21 +54,22 @@
 			</c:choose>
 		</tbody>
 	</table>
-    
+
 	<c:if test="${not empty paginationInfo}">
 		<ui:pagination paginationInfo="${paginationInfo}" type="text"
 			jsFunction="fn_search" />
 	</c:if>
 	<input type="hidden" id="currentPageNo" name="currentPageNo" />
-	
-	<input type="hidden" id="NOTICE_NO" name="NOTICE_NO" value="${Detail.NOTICE_NO}">
-	 <br>
-	 <table class="notice_button">
-    
-    <tr>
-	<td><a href="write" class="btn" >WRITE</a></td>
-	</tr>
-    </table>
+
+	<input type="hidden" id="NOTICE_NO" name="NOTICE_NO"
+		value="${Detail.NOTICE_NO}">
+	<br>
+	<table class="notice_button">
+
+		<tr>
+			<td><a href="write" class="btn">WRITE</a></td>
+		</tr>
+	</table>
 
 
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
@@ -78,7 +85,7 @@
 				fn_Detail($(this));
 			});
 		});
-	
+
 		function fn_WriteForm() {
 			var comSubmit = new ComSubmit();
 			comSubmit.setUrl("<c:url value='/notice/write' />");
