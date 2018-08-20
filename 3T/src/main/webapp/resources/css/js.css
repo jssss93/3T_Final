@@ -1613,27 +1613,6 @@ table .subject a:hover {
 	border-bottom: 0;
 }
 
-#left {
-	position: fixed;
-	float: left;
-	width: 13%;
-	top: 0px;
-	height: 100%;
-	z-index: 9;
-	background: none;
-}
-
-#right {
-	position: fixed;
-	float: right;
-	right: 0px;
-	width: 140px;;
-	top: 0px;
-	height: 90%;
-	z-index: 9;
-	background: none;
-}
-
 #container {
 	position: relative;
 	float: right;
