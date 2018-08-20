@@ -7,38 +7,25 @@
 </head>
 <body>
 
-	<table width="70%" align="center" border="0" cellspacing="0"
-		cellpadding="1" colspan="1" class="board_top">
-		<br>
-		<tr>
-			<td height="50"></td>
-		</tr>
-		<tr>
-			<td align="left" class="text01 formbar"><h6>
-					<font color="#000000">REVIEW</font><span> ㅣ </span>
-				</h6></td>
-		</tr>
+    <form id="frm" name="frm">
+        <table class="board_view">
+            <colgroup>
+                <col width="15%"/>
+                <col width="35%"/>
+                <col width="15%"/>
+                <col width="35%"/>
+            </colgroup>
+            <caption>게시글 상세</caption>
+            <tbody>
+                <tr>
+                    <th scope="row">글 번호</th>
+                    <td>
+                        ${map.REVIEW_NO }
+                        <input type="hidden" id="REVIEW_NO" name="REVIEW_NO" value="${map.REVIEW_NO}">
+                        <input type="hidden" id="GOODS_NO" name="GOODS_NO" value="${map.GOODS_NO }">
+                    </td>
+              <%--       <th scope="row">조회수</th>
 
-		<tr>
-			<td height="50"></td>
-		</tr>
-	</table>
-
-	<form id="frm" name="frm">
-		<table border="1" align="center" class="board_view2">
-			<colgroup>
-				<col width="15%" />
-				<col width="35%" />
-				<col width="15%" />
-				<col width="35%" />
-			</colgroup>
-			<tbody>
-				<tr class="board_title">
-					<th scope="row">NO</th>
-					<td>${map.REVIEW_NO }<input type="hidden" id="REVIEW_NO"
-						name="REVIEW_NO" value="${map.REVIEW_NO}">
-					</td>
-					<%--       <th scope="row">조회수</th>
                     <td>${map.REV_READCNT }</td> --%>
 				</tr>
 				<tr class="board_title">

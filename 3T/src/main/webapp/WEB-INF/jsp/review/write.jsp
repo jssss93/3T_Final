@@ -6,11 +6,19 @@
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 </head>
 <body>
-	<table width="70%" align="center" border="0" cellspacing="0"
-		cellpadding="1" colspan="1" class="board_top">
-		<br>
+
+<script type="text/javascript">
+	function open_win_noresizable(url, name)
+	{
+		var oWin = window.open(url, name, "scrollbars=no, status=no, resizable=no, width=600, height=500");
+		
+	}
+</script>
+<form action="/3T/review/write">
+<table width="600" border="0" cellspacing="0" cellpadding="2">
 		<tr>
-			<td height="50"></td>
+			<td align="center" class="text01 formbar"><h2>Review</h2></td>
+
 		</tr>
 		<tr>
 			<td align="left" class="text01 formbar"><h6>
@@ -22,32 +30,48 @@
 			<td height="50"></td>
 		</tr>
 	</table>
-	<table width="70%" align="center" border="0" cellspacing="0"
-		cellpadding="1" colspan="1" height="120" class="board_img">
 
-		<s:url id="viewURL" action="GoodsView">
-			<s:param name="goods_no">
-				<s:property value="goods_resultClass.goods_no" />
-			</s:param>
-			<s:param name="currentPage">
-				<s:property value="currentPage" />
-			</s:param>
-		</s:url>
-		<tr>
-			<td align="center" width="120">>이미지</td>
 
-			<td colspan="2"><s:property value="goods_resultClass.goods_name" /><br>KRW
-				<s:property value="goods_resultClass.goods_price" />
-				<hr align="center" width="470" color="#8C8C8C"> <br> <s:a
-					href="%{viewURL}">
-					<input type="button" name="button" value="상품 상세보기 ▶" />
-				</s:a></td>
-		</tr>
+	<table width="600" border="1" cellspacing="0" cellpadding="0"
+		height="120">
+		 <c:choose>
+					  <c:when test="${list.GOODS_NO > 0 }"> 
+						<tr>
+					<td align="center" width="120"><img width="100" height="100"
+						src="/3T/resources/upload/${list.SAV_NAME.split(',')[0] }" /></td>
+					<td>${list.NAME }<br /> KRW&nbsp;${list.PRICE } <br /> <br /> <input
+						type="button" name="button" value="상품정보 선택 ▶"
+						onclick="javascript:open_win_noresizable('reviewGoodsSelect', write)" />&nbsp;
+						 <input type="button" name="button" value="상품 상세보기▶">
+						<input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
+						
+					</td>
+					
+				</tr> 
+			 </c:when>
+			<c:otherwise>
+				<!-- <input type="hidden" name="GOODS_NO" value="GOODS_NO" /> -->
+				<tr>
+					<td align="center" width="120">기본 이미지</td>
+					<td>
+						<br> <input type="button" name="button" value="상품정보 선택 ▶"
+						onclick="javascript:open_win_noresizable('reviewGoodsSelect', write)" />
+						<input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
+						
+					</td>
+				</tr>
+			</c:otherwise>
+			</c:choose>
+		
 	</table>
-	<br>
-	<br>
-	<form id="frm">
-		<table border="1" align="center" class="board_view2">
+		<table class="board_view">
+
+			<colgroup>
+				<col width="15%">
+				<col width="*" />
+			</colgroup>
+
+
 			<tbody>
 				<tr class="board_title">
 					<th scope="row">SUBJECT</th>
@@ -96,6 +120,10 @@
 					href="#this" class="btn" id="list">LIST</a></td>
 			</tr>
 		</table>
+		
+		<a href="#this" class="btn" id="list">목록으로</a>
+		<input type="submit" value="작성완료" >
+
 	</form>
 
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>

@@ -66,8 +66,35 @@ public class ReviewServiceImpl implements ReviewService{
 		// TODO Auto-generated method stub
 		return ReviewDAO.ReviewSearchList(map);
 	}
+
+	@Override
+	public List<Map<String, Object>> ReviewGoodsList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return ReviewDAO.ReviewGoodsList(map);
+	}
+
+	@Override
+	public List<Map<String, Object>> ReviewGoodsSearch(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return ReviewDAO.ReviewGoodsSearch(map);
+
+	}
+
+	@Override
+	public Map<String, Object> ReviewGoods(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		Map<String, Object> resultMap = ReviewDAO.ReviewGoods(map);
+
+		return resultMap;
+	}
 	
-	
+	@Override
+	public Map<String, Object> ReviewPasswdCheck(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		Map<String, Object> resultMap = ReviewDAO.ReviewPasswdCheck(map);
+		
+		return resultMap;
+	}
 
 		
 	
