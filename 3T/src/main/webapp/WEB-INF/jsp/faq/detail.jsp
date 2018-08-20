@@ -36,11 +36,11 @@
 				<th scope="row">작성시간</th>
 				<td>${Detail.REGDATE }</td>
 			</tr> --%>
-			<tr>
+			<tr class="board_title">
 				<th scope="row">SUBJECT</th>
 				<td colspan="3">${Detail.TITLE }</td>
 			</tr>
-			<tr>
+			<tr class="board_title">
 				<th scope="row">NAME</th>
 				<td colspan="3">${Detail.MEMBER_ID }</td>
 			</tr>
