@@ -9,3 +9,5 @@
 <link href="<c:url value='/resources/css/loginTest.css'/>" rel="stylesheet" type="text/css" />
 
 <link href="<c:url value='/resources/css/cartTest.css'/>" rel="stylesheet" type="text/css" />
+
+<link href="<c:url value='/resources/css/rightCategory.css'/>" rel="stylesheet" type="text/css" />

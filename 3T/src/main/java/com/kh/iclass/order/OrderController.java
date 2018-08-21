@@ -35,8 +35,35 @@ public class OrderController {
 	private AdminMemberService adminMemberService;
 
 	
-	@RequestMapping(value = "order/add")
-	public ModelAndView addOrder(CommandMap commandMap, HttpServletRequest request) throws Exception {
+	@RequestMapping(value = "order/addSelected")
+	public ModelAndView addOrderSelected(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("order/write");
+		HttpSession session = request.getSession();
+		
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		
+		Map<String, Object> memberInfo = new HashMap<String, Object>();
+		memberInfo=adminMemberService.memberDetail(commandMap.getMap());
+		
+		String cart_No[]=request.getParameterValues("CART_NO");
+		
+		for(int i=0;i<cart_No.length;i++) {
+			System.out.println("cart_No"+i+":"+cart_No[i]);
+		}
+		commandMap.put("cart_No", cart_No);
+		
+		List<Map<String, Object>> checkedCartList = new ArrayList<Map<String, Object>>();
+		
+		checkedCartList=cartService.checkedCartList(commandMap.getMap());
+		
+		mv.addObject("checkedCartList", checkedCartList);
+		mv.addObject("memberInfo", memberInfo);
+		return mv;
+	
+	}
+	
+	@RequestMapping(value = "order/addAll")
+	public ModelAndView addOrderAll(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("order/write");
 		HttpSession session = request.getSession();
 		

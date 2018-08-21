@@ -71,6 +71,9 @@ public class OrderDAO extends AbstractDAO {
 	public void changeState1(Map<String, Object> map) throws Exception {
 		update("order.changeState1", map);
 	}
+	public void changeState2(Map<String, Object> map) throws Exception {
+		update("order.changeState2", map);
+	}
 	
 	@SuppressWarnings("unchecked")
 	public Map<String,Map<String, Object>> getSale(Map<String, Object> map,String mapKey) throws Exception {

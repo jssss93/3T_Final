@@ -179,13 +179,13 @@ public class CartController {
 					cartMap.put("CART_AMOUNT", cartSession.get(i).get("CART_AMOUNT"));
 
 					cartList.add(cartMap);
-				}
+				}	
 			}
 		}*/
 		
 		mv.addObject("cartList", cartList);
 		System.out.println("CARTLIST :" + cartList);
-		mv.setViewName("cart/list");
+		mv.setViewName("cart/list-hanbyul");
 		return mv;
 	}
 
