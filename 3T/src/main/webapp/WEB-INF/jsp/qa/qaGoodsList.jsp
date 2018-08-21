@@ -9,10 +9,10 @@
 </head>
 <body>
 	<form action="/3T/qa/qaGoodsSelect">
-		<select name="SearchNum" id="SearchNum" style="width: 100px; height: 30px;">
+		<select name="SearchNum" id="SearchNum"
+			style="width: 100px; height: 30px;">
 			<option value="NAME">상품명</option>
-		</select> 
-		<input type="text" name="SearchKeyword" id="SearchKeyword"
+		</select> <input type="text" name="SearchKeyword" id="SearchKeyword"
 			style="margin-left: 15px; width: 200px; height: 36px; border-radius: 5px 5px 5px 5px;" />
 
 
@@ -33,33 +33,33 @@
 			</tr>
 		</thead>
 		<c:forEach items="${list }" var="row">
-		
+
 			<tr>
-			<td><img width="50" height="50"
-								src="/3T/resources/upload/${row.SAV_NAME.split(',')[0] }" /></td>
-				<td>${row.NAME }<br/>
-				KRW&nbsp;
-				${row.PRICE }</td>
+				<td><img width="50" height="50"
+					src="/3T/resources/upload/${row.IMAGE.split(',')[0] }" /></td>
+				<td>${row.NAME }<br /> KRW&nbsp; ${row.PRICE }
+				</td>
 				<form action="/3T/qa/qaGoodsSuccess">
-					<td><input type="submit" value="선택"></td> 
+					<td><input type="submit" value="선택"></td>
 					<%-- <input type="hidden" id="NAME" name="NAME" value="${row.NAME }">
 					<input type="hidden" id="PRICE" NAME="PRICE" value="${row.PRICE }"> --%>
-					<input type="hidden" id="GOODS_NO" NAME="GOODS_NO" value="${row.GOODS_NO }">
-				<%-- 	<input type="hidden" id="SAV_NAME" NAME="SAV_NAME" value="${row.SAV_NAME }"> --%>
+					<input type="hidden" id="GOODS_NO" NAME="GOODS_NO"
+						value="${row.GOODS_NO }">
+					<%-- 	<input type="hidden" id="SAV_NAME" NAME="SAV_NAME" value="${row.SAV_NAME }"> --%>
 				</form>
 			</tr>
 		</c:forEach>
 		<c:if test="${list == null}">
-				<!-- list에 들어있는게 없다면 -->
+			<!-- list에 들어있는게 없다면 -->
 
-				<tr bgcolor="#FFFFFF" align="center">
-					<td colspan="5">등록된 게시물이 없습니다.</td>
-				</tr>
-				<tr bgcolor="#777777">
-					<td height="1" colspan="5"></td>
-				</tr>
+			<tr bgcolor="#FFFFFF" align="center">
+				<td colspan="5">등록된 게시물이 없습니다.</td>
+			</tr>
+			<tr bgcolor="#777777">
+				<td height="1" colspan="5"></td>
+			</tr>
 
-			</c:if>
+		</c:if>
 
 	</table>
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>

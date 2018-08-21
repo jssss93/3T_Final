@@ -47,11 +47,10 @@
 							cols="248" title="내용" id="CONTENT" name="CONTENT"></textarea></td>
 				</tr>
 				<tr>
-					<%-- <td> <input type="text" id="REF" name="REF" class="wdp_90" value="${REF.QA_NO }"></input></td> --%>
+
 					<td><input type="hidden" id="REF" name="REF"
 						value="${REF.QA_NO }"></td>
-					<%-- <input type="hidden" id="GOODS_NO" name="GOODS_NO" value="${list.GOODS_NO }"> --%>
-					<%--  <td><input type="hidden" id="QA_NO" name="QA_NO" value="${map.QA_NO }"></td> --%>
+
 				</tr>
 			</tbody>
 		</table>

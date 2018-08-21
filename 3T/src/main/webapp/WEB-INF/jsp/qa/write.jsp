@@ -14,71 +14,58 @@
 
 		}
 	</script>
-	<form action="/3T/qa/write">
-		<table width="70%" align="center" border="0" cellspacing="0"
-			cellpadding="1" colspan="1" class="board_top">
-			<br>
-			<tr>
-				<td height="50"></td>
-			</tr>
-			<tr>
-				<td align="left" class="text01 formbar"><h6>
-						<font color="#000000">Q&A</font>
-					</h6></td>
-			</tr>
 
-			<tr>
-				<td height="50"></td>
-			</tr>
-		</table>
+	<table width="70%" align="center" border="0" cellspacing="0"
+		cellpadding="1" colspan="1" class="board_top">
+		<br>
+		<tr>
+			<td height="50"></td>
+		</tr>
+		<tr>
+			<td align="left" class="text01 formbar"><h6>
+					<font color="#000000">Q&A</font>
+				</h6></td>
+		</tr>
 
-		<table width="70%" align="center" border="0" cellspacing="0"
-			cellpadding="1" colspan="1" height="120" class="board_img">
-			<c:choose>
-				<c:when test="${list.GOODS_NO > 0 }">
-					<tr>
-						<td align="center" width="120"><img width="100" height="100"
-							src="/3T/resources/upload/${list.SAV_NAME.split(',')[0] }" /></td>
-						<td>${list.NAME }<br /> KRW&nbsp;${list.PRICE } <br /> <br />
-							<input type="button" name="button" value="상품정보 선택 ▶"
-							onclick="javascript:open_win_noresizable('qaGoodsSelect', write)" />&nbsp;
-							<input type="button" name="button" value="상품 상세보기▶"> <input
-							type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
+		<tr>
+			<td height="50"></td>
+		</tr>
+	</table>
 
-						</td>
-
-					</tr>
-					<%-- <c:when test="${GOODS_NO > 0 }">
+	<table width="70%" align="center" border="0" cellspacing="0"
+		cellpadding="1" colspan="1" height="120" class="board_img">
+		<c:choose>
+			<c:when test="${list.GOODS_NO > 0 }">
 				<tr>
 					<td align="center" width="120"><img width="100" height="100"
-						src="/3T/resources/upload/${SAV_NAME.split(',')[0] }" /></td>
-					<td>${NAME }<br /> KRW&nbsp;${PRICE } <br /> <br /> <input
-						type="button" name="button" value="상품정보 선택 ▶"
+						src="/3T/resources/upload/${list.IMAGE.split(',')[0] }" /></td>
+					<td>${list.NAME }<br /> KRW&nbsp;${list.PRICE } <br /> <br />
+						<input type="button" name="button" class="btn" value="상품정보 선택 ▶"
 						onclick="javascript:open_win_noresizable('qaGoodsSelect', write)" />&nbsp;
-						 <input type="button" name="button" value="상품 상세보기▶">
-						<input type="hidden" name="GOODS_NO" value="${GOODS_NO }" />
-						
+						<form action="/3T/goods/detail">
+							<input type="submit" class="btn" value="상품 상세보기▶"> <input
+								type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
+						</form>
 					</td>
-					
-				</tr> --%>
-				</c:when>
-				<c:otherwise>
-					<!-- <input type="hidden" name="GOODS_NO" value="GOODS_NO" /> -->
-					<tr>
-						<td align="center" width="120">기본 이미지</td>
-						<td><br> <input type="button" name="button"
-							value="상품정보 선택 ▶"
-							onclick="javascript:open_win_noresizable('qaGoodsSelect', write)" />
-							<input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
+				</tr>
+			</c:when>
+			<c:otherwise>
+				<tr>
+					<td align="center" width="120">기본 이미지</td>
+					<td><br> <input type="button" name="button" class="btn"
+						value="상품정보 선택 ▶"
+						onclick="javascript:open_win_noresizable('qaGoodsSelect', write)" />
+						<input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
 
-						</td>
-					</tr>
-				</c:otherwise>
-			</c:choose>
+					</td>
+				</tr>
+			</c:otherwise>
+		</c:choose>
 
-		</table>
-		<br>
-		<br>
+	</table>
+	<br />
+	<br />
+	<form action="/3T/qa/write">
 
 		<table border="1" align="center" class="board_view2">
 			<tbody>
@@ -110,8 +97,9 @@
 				</tr>
 				<tr class="board_title">
 					<th scope="row">비밀글 설정</th>
-					<td><input type="radio" name="open" value="open" />공개글 <input
-						type="radio" name="open" value="open" />비밀글</td>
+					<td><input type="radio" name="STATUS" value="0"
+						checked="checked" />비밀글 <input type="radio" name="STATUS"
+						value="1" />공개글</td>
 				</tr>
 				<tr class="board_title">
 					<th scope="row">개인정보수집 및 <br />이용 동의
@@ -130,8 +118,7 @@
 				</tr>
 			</tbody>
 		</table>
-		<br>
-		<br>
+		<br> <br>
 
 		<table class="notice_button">
 			<tr>
@@ -141,21 +128,18 @@
 					type="submit" value="WRITE">
 				</td>
 			</tr>
-			</form>
+			<input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
 		</table>
-
-		<%@ include file="/WEB-INF/include/include-body.jspf"%>
-		<script type="text/javascript">
+	</form>
+	<%@ include file="/WEB-INF/include/include-body.jspf"%>
+	<script type="text/javascript">
 			$(document).ready(function() {
 				$("#list").on("click", function(e) { //목록으로 버튼
 					e.preventDefault();
 					fn_List();
 				});
 
-				/* 	$("#write").on("click", function(e){ //작성하기 버튼
-						e.preventDefault();
-						fn_Write();
-					}); */
+			
 			});
 
 			function fn_List() {
@@ -164,11 +148,7 @@
 				comSubmit.submit();
 			}
 
-			/* function fn_Write(){
-				var comSubmit = new ComSubmit("frm");
-				comSubmit.setUrl("<c:url value='/qa/write' />");
-				comSubmit.submit();
-			} */
+			
 		</script>
 </body>
 </html>
