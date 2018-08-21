@@ -115,7 +115,9 @@ public class ReviewController {
 
 	@RequestMapping(value = "/review/comment")
 	public ModelAndView reviewCommentInsert(CommandMap commandMap) throws Exception {
+
 		ModelAndView mv = new ModelAndView("redirect:/review/detail");
+
 
 		System.out.println("reviewCommentInsert : " + commandMap.getMap());
 		ReviewService.ReviewCommentWrite(commandMap.getMap());

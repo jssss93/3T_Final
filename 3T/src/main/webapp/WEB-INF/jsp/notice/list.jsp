@@ -27,7 +27,7 @@
 		</tr>
 	</table>
 
-	<table width="80%" align="center" border="0" cellspacing="0"
+	<table width="80%" border="0" cellspacing="0"
 		cellpadding="2" class="board_review3">
 		<tr>
 			<td valign="middle"><strong>NO</strong>

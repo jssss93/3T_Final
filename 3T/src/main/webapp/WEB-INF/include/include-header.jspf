@@ -23,5 +23,7 @@
 <!-- 메인페이지 css -->
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-<link href="<c:url value='/resources/css/right category.css'/>" rel="stylesheet" type="text/css" />
+<link href="<c:url value='/resources/css/rightCategory.css'/>" rel="stylesheet" type="text/css" />
+
+<link href="<c:url value='/resources/css/mediaScreen.css'/>" rel="stylesheet" type="text/css" />
 

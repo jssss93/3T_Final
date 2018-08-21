@@ -109,22 +109,16 @@
 
 						<div class="xans-element- xans-myshop xans-myshop-bankbook">
 							<ul>
-								<li class=" "><span class="title">가용 적립금</span> <span
-									class="data use">0원</span> <a
-									href="/myshop/mileage/historyList.html"><img
-										src="/images/btn_result.gif" alt="조회" /></a></li>
-								<li class=""><span class="title">총 적립금</span> <span
-									class="data">0원</span></li>
-								<li class=""><span class="title">사용 적립금</span> <span
-									class="data">0원</span></li>
 								<li class=""><span class="title">예치금</span> <span
 									class="data use">0원</span> <a
 									href="/myshop/deposits/historyList.html"><img
 										src="/images/btn_result.gif" alt="조회" /></a></li>
 								<li class="etc"><span class="title">총주문</span> <span
 									class="data">0 (0 회)</span></li>
+									
 								<li class="etc "><span class="title">쿠폰</span> <span
-									class="data">0<span>개</span></span> <a
+									class="data">${sessionScope.coupon}<span>개</span></span> 
+									<a
 									href="/myshop/coupon/coupon.html"><img
 										src="/images/btn_result.gif" alt="조회" /></a></li>
 							</ul>
@@ -163,24 +157,12 @@
 								<a href="/3T/mypage/myboard"><strong>my board</strong>고객님께서
 									작성하신 게시물을 관리하는 공간입니다.<br />고객님께서 작성하신 글을 한눈에 관리하실 수 있습니다.</a>
 							</div>
-							<div class="shopMain address">
-								<a href="/myshop/addr/list.html"><strong>address</strong>자주
-									사용하는 배송지를 등록하고 관리하실 수 있습니다.</a>
-							</div>
-							<div class="shopMain deposits ">
-								<a href="/myshop/deposits/historyList.html"><strong>deposits</strong>예치금은
-									현금과 동일하게 상품 구매시 사용하실 수 있습니다.<br />예치된 금액은 현금으로 환불이 가능합니다. (예치금
-									적립: 주문취소 등의 환불금액 발생 시 예치금으로 적립이 가능합니다.)</a>
-							</div>
+					
 							<div class="shopMain consult displaynone">
 								<a href="/board/consult/list.html"><strong>consult</strong>고객님의
 									궁금하신 문의사항에 대하여 1:1맞춤상담 내용을 확인하실 수 있습니다.</a>
 							</div>
-							<div
-								class="xans-element- xans-myshop xans-myshop-inquirydash shopMain inquiry ">
-								<a href="/board/inquiry/list.html"><strong>Inquiry</strong>요청한
-									대량구매문의 내역을 확인하고 관리하실 수 있습니다.</a>
-							</div>
+
 						</div>
 
 
