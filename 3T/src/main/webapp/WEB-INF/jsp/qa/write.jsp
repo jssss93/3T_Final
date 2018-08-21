@@ -15,7 +15,7 @@
 		}
 	</script>
 	<form action="/3T/qa/write">
-		<table width="70%" align="center" border="0" cellspacing="0"
+		<table align="center" border="0" cellspacing="0"
 			cellpadding="1" colspan="1" class="board_top">
 			<br>
 			<tr>
@@ -32,7 +32,7 @@
 			</tr>
 		</table>
 
-		<table width="70%" align="center" border="0" cellspacing="0"
+		<table align="center" border="0" cellspacing="0"
 			cellpadding="1" colspan="1" height="120" class="board_img">
 			<c:choose>
 				<c:when test="${list.GOODS_NO > 0 }">
@@ -80,7 +80,7 @@
 		<br>
 		<br>
 
-		<table border="1" align="center" class="board_view2">
+		<table border="1" class="board_view2">
 			<tbody>
 				<tr class="board_title">
 					<th scope="row">SUBJECT</th>
@@ -89,7 +89,7 @@
 							<option value="2">배송문의</option>
 							<option value="3">입금확인문의</option>
 							<option value="4">기타문의</option>
-					</select> <input type="text" id="TITLE" name="TITLE" class="wdp_90"></input></td>
+					</select> <input type="text" id="TITLE" name="TITLE" class="wdp_20"></input></td>
 				</tr>
 
 				<tr class="board_title">
