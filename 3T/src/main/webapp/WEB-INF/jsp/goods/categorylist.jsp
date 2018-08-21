@@ -27,7 +27,7 @@
 		<tr height="60">
 			<td align="left" valign="top"><strong>${CATEGORY}</strong></td>
 		</tr>
-	
+		
 		<tr>
 		
 			<td width="80%" colspan=6 align="center"><h1 class="abc">B&nbsp;E&nbsp;S&nbsp;T</h1></td>
@@ -35,14 +35,14 @@
 		<tr height="40">
 		
 		</tr>
-	
+		
 		<tr>
-		<td width="50"></td><div id="rolling">
-			<c:forEach items="${bestlist }" var="row">
+		<td width="50"></td>
+			<c:forEach items="${bestlist }" var="row" varStatus="stat" begin="0" end="3">
 
-				<%-- <c:if test="#stat1.index 4 eq 0">
-
-				</c:if> --%>
+				<c:if test="${stat.index%4==0}">
+					<tr></tr>
+				</c:if>
 
 
 
@@ -65,7 +65,7 @@
 							<br> ${row.NAME }<br> KRW&nbsp;${row.PRICE }</td>
 
 
-			</c:forEach></div>
+			</c:forEach>
 			<td width="50"></td>
 		</tr>
 	</table>
