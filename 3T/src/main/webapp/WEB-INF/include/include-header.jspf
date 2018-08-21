@@ -25,3 +25,5 @@
 
 <link href="<c:url value='/resources/css/rightCategory.css'/>" rel="stylesheet" type="text/css" />
 
+<link href="<c:url value='/resources/css/mediaScreen.css'/>" rel="stylesheet" type="text/css" />
+
