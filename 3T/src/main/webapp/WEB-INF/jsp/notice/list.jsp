@@ -70,7 +70,19 @@
 			<td><a href="write" class="btn">WRITE</a></td>
 		</tr>
 	</table>
+ <br />
+	<form action="/3T/notice/list">
+		<select name="SearchNum" id="SearchNum"
+			style="width: 100px; height: 30px;">
+			<option value="TITLE">제목</option>
+			<option value="CONTENT">내용</option>
+		</select> <input type="text" name="SearchKeyword" id="SearchKeyword"
+			style="margin-left: 15px; width: 200px; height: 36px; border-radius: 5px 5px 5px 5px;" />
+		<input type="submit" value="검색">
+	</form>
 
+
+	<br />
 
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	<script type="text/javascript">

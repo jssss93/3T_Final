@@ -30,8 +30,8 @@
 			<td valign="middle"><strong>ITEM</strong></td>
 			<td valign="middle"><strong>CATEGORY</strong></td>
 			<td valign="middle"><strong>SUBJECT</strong></td>
-			<td valign="middle"><strong>CONTENT</strong></td>
 			<td valign="middle"><strong>NAME</strong></td>
+			<td valign="middle"><strong>STATUS</strong></td>
 			<td valign="middle"><strong>DATE</strong></td>
 		</tr>
 		<tbody>
@@ -52,13 +52,32 @@
 							</c:if> <c:if test="${row.CATEGORY == 4 }">
 								기타문의
 							</c:if></td>
-							<td><c:if test="${row.RE_STEP ==1 }">
+							<c:if test="${row.STATUS == 0 }">
+								<td><c:if test="${row.RE_STEP ==1 }">
 												→[답변] &nbsp;
-												</c:if><a href="#this" name="title">${row.TITLE }</a> <input
-								type="hidden" id="QA_NO" value="${row.QA_NO }"> <input
-								type="hidden" id="GOODS_NO" value="${row.GOODS_NO }"></td>
-							<td align="center">${row.CONTENT }</td>
+												</c:if> ${row.NAME }<br />
+								<br /> <a href="#this" name="checkpasswd">${row.TITLE }</a> <input
+									type="hidden" id="QA_NO" value="${row.QA_NO }"> <input
+									type="hidden" id="GOODS_NO" value="${row.GOODS_NO }"></td>
+							</c:if>
+
+							<c:if test="${row.STATUS == 1 }">
+								<td>${row.NAME }<br />
+								<br /> <c:if test="${row.RE_STEP ==1 }">
+												→[답변] &nbsp;
+												</c:if> <a href="#this" name="title">${row.TITLE }</a> <input
+									type="hidden" id="QA_NO" value="${row.QA_NO }"> <input
+									type="hidden" id="GOODS_NO" value="${row.GOODS_NO }">
+								</td>
+							</c:if>
 							<td align="center">${row.MEMBER_ID }</td>
+
+							<c:if test="${row.STATUS ==1 }">
+								<td align="center">공개글</td>
+							</c:if>
+							<c:if test="${row.STATUS ==0 }">
+								<td align="center">비밀글</td>
+							</c:if>
 							<td align="center">${row.REGDATE }</td>
 						</tr>
 					</c:forEach>
@@ -90,20 +109,14 @@
 
 
 	<br />
-	<!-- <a href="#this" class="btn" id="write">글쓰기</a> -->
-
 	<!-- 상품 디테일에서 GOODS_NO 보내서 쓰기 -->
-
-	<table class="notice_button">
-		<form action="/3T/qa/writeForm">
+	<form action="/3T/qa/writeForm">
+		<table class="notice_button">
 			<tr>
-				<td><input type="hidden" id="GOODS_NO" NAME="GOODS_NO"
-					VALUE="99"> <input type="submit" class="btn" value="WRITE">
-				</td>
+				<td><input type="submit" class="btn" value="WRITE"></td>
 			</tr>
-		</form>
-	</table>
-
+		</table>
+	</form>
 
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	<script type="text/javascript">
@@ -121,15 +134,18 @@
 				e.preventDefault();
 				fn_openSearchList();
 			});
+			 $("a[name='checkpasswd']").on("click", function(e){ //제목 
+	                e.preventDefault();
+	                fn_openPasswdCheck($(this));
+	            });
 		});
 
+		
 		function fn_openSearchList() {
 			var comSubmit = new ComSubmit();
 			comSubmit.setUrl("<c:url value='/qa/list' />");
-			comSubmit.addParam("SearchNum", obj.parent().find("#SearchNum")
-					.val());
-			comSubmit.addParam("SearchKeyword", obj.parent().find(
-					"#SearchKeyword").val());
+			comSubmit.addParam("SearchNum", obj.parent().find("#SearchNum").val());
+			comSubmit.addParam("SearchKeyword", obj.parent().find("#SearchKeyword").val());
 			comSubmit.submit();
 		}
 
@@ -142,6 +158,14 @@
 		function fn_openBoardDetail(obj) {
 			var comSubmit = new ComSubmit();
 			comSubmit.setUrl("<c:url value='/qa/detail' />");
+			comSubmit.addParam("QA_NO", obj.parent().find("#QA_NO").val());
+			comSubmit
+					.addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
+			comSubmit.submit();
+		}
+		function fn_openPasswdCheck(obj) {
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("<c:url value='/qa/passwdCheckForm' />");
 			comSubmit.addParam("QA_NO", obj.parent().find("#QA_NO").val());
 			comSubmit
 					.addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());

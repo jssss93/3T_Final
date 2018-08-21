@@ -4,7 +4,9 @@
 <mapper namespace="qa">
      
     <select id="QA_selectList" parameterType="hashmap" resultType="hashmap">
-   <!--  select 
+        <![CDATA[
+           		
+           SELECT 
  				A.QA_NO,
       			A.TITLE,
       		    A.MEMBER_ID,
@@ -15,34 +17,24 @@
 				A.RE_STEP,
 				A.RE_LEVEL,
 				A.GOODS_NO,
-       			B.SAV_NAME
+				A.STATUS,
+       			B.SAV_NAME,
+       			C.NAME
 		  from
                 QA A
           INNER JOIN 
                 UPLOAD B 
           ON 
                A.GOODS_NO = B.GOODS_NO 
+               
+          INNER JOIN 
+                GOODS C 
+          ON 
+               A.GOODS_NO = C.GOODS_NO 
+               
          ORDER BY 
                
                A.ref DESC, A.re_step ASC  
-           		 -->
-        <![CDATA[
-           		SELECT
-           		QA_NO,
-           		TITLE,
-           		MEMBER_ID,
-           		CONTENT,
-           		REGDATE,
-           		CATEGORY,
-				REF,
-				RE_STEP,
-				RE_LEVEL,
-				GOODS_NO,
-				STATUS
-           		
-           	FROM 
-           		QA
-           		ORDER BY ref DESC, re_step ASC
         ]]>
     </select>
     
@@ -83,12 +75,6 @@
 		 	
 		)
     ]]>
-  <!--#{CATEGORY}   
-  #{REF},
-			#{REF_STEP},
-			#{RE_LEVEL},
-		
-			#{GOODS_NO}  -->
 </insert>
     <select id="QA_selectDetail" parameterType="hashmap" resultType="hashmap">
       <![CDATA[
@@ -206,37 +192,6 @@
 			#{STATUS}	
 		)
     ]]>
-       <!--  INSERT INTO
-		QA (
-			QA_NO,
-			TITLE,
-			PASSWD,
-			CONTENT,
-			REGDATE,
-			STATUS,
-
-			REF,
-			RE_STEP,
-			
-			MEMBER_ID
-			
-
-		)
-		VALUES (
-			QA_NO_SEQ.NEXTVAL,
-			#{TITLE},
-			#{PASSWD},
-			#{CONTENT},
-			SYSDATE,
-			#{STATUS}
-		
-			#{REF},
-			#{RE_STEP},
-				
-			#{MEMBER_ID}
-		
-		 	
-		) -->
      </insert>
      
      <update id="QaUpdateReplyStep" parameterType="hashmap">
@@ -255,61 +210,93 @@
 </update>
 <select id="QA_GoodsSelectList" parameterType="hashmap" resultType="hashmap">
         <![CDATA[
-          select 
- 				A.GOODS_NO,
-           		A.NAME,
-           		A.PRICE,
-                B.SAV_NAME
-		  from
-                GOODS A
-          INNER JOIN 
-                UPLOAD B 
-          ON 
-               A.GOODS_NO = B.GOODS_NO 
-               
-         ORDER BY 
-               A.GOODS_NO DESC 
+        
+        select 
+        	GOODS_NO,
+        	NAME,
+        	PRICE,
+        	WM_CONCAT(SAV_NAME) AS IMAGE
+        from
+	          (select 
+	 				A.GOODS_NO,
+	           		A.NAME,
+	           		A.PRICE,
+	                B.SAV_NAME
+			  from
+	                GOODS A
+	          INNER JOIN 
+	                UPLOAD B 
+	          ON 
+	               A.GOODS_NO = B.GOODS_NO 
+	          ORDER BY 
+	               A.GOODS_NO DESC )
+	    GROUP BY
+	    	GOODS_NO,
+	    	NAME,
+	    	PRICE
+	               
            		
         ]]>
     </select>
     <!-- QA 상품검색 -->
        <select id="QA_GoodsSearch" parameterType="hashmap" resultType="hashmap">
-		SELECT 
-				A.GOODS_NO,
-           		A.NAME,
-           		A.PRICE,
-                B.SAV_NAME
-		FROM 
-			 	GOODS A
-         		INNER JOIN 
-                UPLOAD B 
-        ON 
-                A.GOODS_NO = B.GOODS_NO 	
-                
-		WHERE 
+		select 
+        	GOODS_NO,
+        	NAME,
+        	PRICE,
+        	WM_CONCAT(SAV_NAME) AS IMAGE
+        from
+	          (select 
+	 				A.GOODS_NO,
+	           		A.NAME,
+	           		A.PRICE,
+	                B.SAV_NAME
+			  from
+	                GOODS A
+	          INNER JOIN 
+	                UPLOAD B 
+	          ON 
+	               A.GOODS_NO = B.GOODS_NO 
+	               
+	          WHERE 
 			<if test='SearchNum.equals("NAME")'> 	
 			(NAME LIKE '%' || #{SearchKeyword} || '%')	
 			</if>
-			ORDER BY GOODS_NO DESC
-
-		
+			
+	          ORDER BY 
+	               A.GOODS_NO DESC )
+	    GROUP BY
+	    	GOODS_NO,
+	    	NAME,
+	    	PRICE	
 </select>
 
  <select id="QA_GoodsSelect" parameterType="hashmap" resultType="hashmap">
       <![CDATA[
-        SELECT
-        	    A.GOODS_NO,
-           		A.NAME,
-           		A.PRICE,
-                B.SAV_NAME
-          FROM
-                GOODS A
-          INNER JOIN 
-                UPLOAD B 
-          ON 
-               A.GOODS_NO = B.GOODS_NO 
-          WHERE
-               A.GOODS_NO = #{GOODS_NO}       
+      	select
+      		GOODS_NO,
+      		NAME,
+      		PRICE,
+      		WM_CONCAT(SAV_NAME) AS IMAGE
+      	from
+	       ( SELECT
+	        	    A.GOODS_NO,
+	           		A.NAME,
+	           		A.PRICE,
+	                B.SAV_NAME
+	          FROM
+	                GOODS A
+	          INNER JOIN 
+	                UPLOAD B 
+	          ON 
+	               A.GOODS_NO = B.GOODS_NO 
+	          WHERE
+	               A.GOODS_NO = #{GOODS_NO} )
+	     GROUP BY
+	     		GOODS_NO,
+	     		NAME,
+	     		PRICE
+                     
       ]]>
 </select>
 

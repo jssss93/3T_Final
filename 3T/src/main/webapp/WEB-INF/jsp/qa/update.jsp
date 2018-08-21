@@ -35,12 +35,9 @@
 			<tbody>
 				<tr class="board_title">
 					<th scope="row">글 번호</th>
-					<td>${map.QA_NO } <input type="hidden" id="QA_NO" name="QA_NO"
+					<td>${map.QA_NO }<input type="hidden" id="QA_NO" name="QA_NO"
 						value="${map.QA_NO}"> <input type="hidden" id="GOODS_NO"
-						name="GOODS_NO" value="${map.GOODS_NO }"> <%--   </td>
-                    <td>${map.GOODS_NO }
-                    </td> --%> <%--       <th scope="row">조회수</th>
-                    <td>${map.REV_READCNT }</td> --%>
+						name="GOODS_NO" value="${map.GOODS_NO }">
 				</tr>
 				<tr class="board_title">
 					<th scope="row">작성자</th>
@@ -60,22 +57,7 @@
 							cols="248" title="내용" id="CONTENT" name="CONTENT">${map.CONTENT }</textarea>
 					</td>
 				</tr>
-				<%--   <tr>
-                    <th scope="row">첨부파일</th>
-                    <td colspan="3">
-                        <div id="fileDiv">               
-                            <c:forEach var="row" items="${list }" varStatus="var">
-                                <p>
-                                    <input type="hidden" id="IDX" name="IDX_${var.index }" value="${row.IDX }">
-                                    <a href="#this" id="name_${var.index }" name="name_${var.index }">${row.ORIGINAL_FILE_NAME }</a>
-                                    <input type="file" id="file_${var.index }" name="file_${var.index }">
-                                    (${row.FILE_SIZE }kb)
-                                    <a href="#this" class="btn" id="delete_${var.index }" name="delete_${var.index }">삭제</a>
-                                </p>
-                            </c:forEach>
-                        </div>
-                    </td>
-                </tr> --%>
+
 			</tbody>
 		</table>
 	</form>
@@ -111,15 +93,7 @@
 				fn_deleteBoard();
 			});
 
-			/*   $("#addFile").on("click", function(e){ //파일 추가 버튼
-			      e.preventDefault();
-			      fn_addFile();
-			  });
-			   
-			  $("a[name^='delete']").on("click", function(e){ //삭제 버튼
-			      e.preventDefault();
-			      fn_deleteFile($(this));
-			  }); */
+			
 		});
 
 		function fn_openBoardList() {
@@ -131,8 +105,6 @@
 		function fn_updateBoard() {
 			var comSubmit = new ComSubmit("frm");
 			comSubmit.setUrl("<c:url value='/qa/update' />");
-			/* comSubmit.addParam("QA_NO", $("#QA_NO").val());
-			comSubmit.addParam("GOODS_NO", $("#GOODS_NO").val()); */
 			comSubmit.submit();
 		}
 
@@ -144,21 +116,6 @@
 
 		}
 
-		/*  function fn_addFile(){
-		     var str = "<p>" +
-		             "<input type='file' id='file_"+(gfv_count)+"' name='file_"+(gfv_count)+"'>"+
-		             "<a href='#this' class='btn' id='delete_"+(gfv_count)+"' name='delete_"+(gfv_count)+"'>삭제</a>" +
-		         "</p>";
-		     $("#fileDiv").append(str);
-		     $("#delete_"+(gfv_count++)).on("click", function(e){ //삭제 버튼
-		         e.preventDefault();
-		         fn_deleteFile($(this));
-		     });
-		 }
-		  
-		 function fn_deleteFile(obj){
-		     obj.parent().remove();
-		 } */
 	</script>
 </body>
 </html>

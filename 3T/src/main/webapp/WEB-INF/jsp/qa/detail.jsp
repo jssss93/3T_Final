@@ -17,7 +17,6 @@
 					<font color="#000000">Q&A</font>
 				</h6></td>
 		</tr>
-
 		<tr>
 			<td height="50"></td>
 		</tr>
@@ -26,14 +25,14 @@
 		cellpadding="1" colspan="1" height="120" class="board_img">
 		<tr>
 			<td align="center" width="120"><img width="100" height="100"
-				src="/3T/resources/upload/${list.SAV_NAME.split(',')[0] }" /></td>
+				src="/3T/resources/upload/${list.IMAGE.split(',')[0] }" /></td>
 			<td>${list.NAME }<br /> KRW&nbsp;${list.PRICE } <br /> <br />
-				<input class="btn" type="button" name="button" value="상품정보 선택 ▶"
-				onclick="javascript:open_win_noresizable('qaGoodsSelect', write)" />&nbsp;
-				<input class="btn" type="button" name="button" value="상품 상세보기▶">
-				<input type="hidden" id="GOODS_NO" name="GOODS_NO"
-				value="${list.GOODS_NO }" />
-
+				&nbsp;
+				<form action="/3T/goods/detail">
+					<input class="btn" type="submit" value="상품 상세보기▶"> <input
+						type="hidden" id="GOODS_NO" name="GOODS_NO"
+						value="${list.GOODS_NO }" />
+				</form>
 			</td>
 
 		</tr>
