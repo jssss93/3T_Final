@@ -21,7 +21,7 @@
 	</table>
 
 	<form id="frm" action="/faq/write" method="POST">
-		<table border="1" align="center" class="board_view2">
+		<table border="1" class="board_list2">
 			<tbody>
 				<tr class="board_title">
 					<th>SUBJECT</th>
@@ -29,14 +29,12 @@
 				</tr>
 				<tr>
 					<td colspan="2" class="board_content2">
-						<textarea rows="25" cols="248" title="내용" id="CONTENT" name="CONTENT"></textarea>
+						<textarea rows="20" cols="177" title="내용" id="CONTENT" name="CONTENT"></textarea>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 		</form>
-		<br><br>
-		<br><br>
 		<br><br>
 		
 		<table class="notice_button">

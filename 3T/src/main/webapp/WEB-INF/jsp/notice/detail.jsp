@@ -31,7 +31,7 @@ board_view CONTENT {
 		</tr>
 	</table>
 
-	<table border="1" align="center" class="board_view2">
+	<table border="1" align="center" class="board_notice">
 		<tbody>
 			<tr class="board_title">
 				<th scope="row">SUBJECT</th>

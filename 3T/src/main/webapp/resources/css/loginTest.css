@@ -34,7 +34,7 @@
 	{
 	overflow: hidden;
 	display: block;
-	width: 320px;
+	width: auto;
 	margin: 0 0 5px;
 	border: 1px solid #d9d9d9;
 	border-radius: 2px;
@@ -48,16 +48,17 @@
 	color: #000;
 	margin: 10px 0 2px 0;
 	letter-spacing: 1px;
+	text-align: left;
 }
 
 .xans-member-login .login fieldset input {
 	float: left;
 	width: auto;
-	height: 20px;
+	height: 25px;
 	padding: 2px 2px 2px 3px;
 	border: 0 none;
 	color: #111;
-	margin: -2px 0 0;
+	margin: -6px 0 7;
 }
 
 .xans-member-login .login fieldset .security {
@@ -79,7 +80,7 @@
 }
 
 .xans-member-login .login fieldset .security label {
-	margin: 0 10px 0 1px;
+	margin: -1 50px 0 1px;
 }
 
 .xans-member-login .login fieldset .security img {
@@ -126,7 +127,7 @@
 .xans-member-login .login fieldset .link input.loginbtn {
 	position: absolute;
 	top: 7px;
-	right: 139px;
+	right: 103px;
 	padding: 6px 105px;
 	letter-spacing: 1px;
 	text-transform: uppercase;
@@ -134,18 +135,16 @@
 	color: #fff;
 	line-height: 12px;
 	background: #111;
-	border: 0px solid #333;
-	text-align-center;
-	width: 100px;
-    height: auto;
-    margin: 0px 0 0;
-    
+	border: 0px solid #333; text-align-center;
+	width: auto;
+	height: auto;
+	margin: 0px 0 0;
 }
 
 .xans-member-login .login fieldset .link span.joinusbtn a {
 	position: absolute;
 	top: 7px;
-	right: 32px;
+	right: -5px;
 	padding: 5px 29px;
 	letter-spacing: 1px;
 	text-transform: uppercase;

@@ -50,7 +50,7 @@
 
                      <p class="link">
                         
-                        <span class="loginbtn"><input type="submit" value="Login"></span>
+                        <span class="loginbtn"><input class="loginbtn" type="submit" value="Login"></span>
                         <span class="joinusbtn"><a href="/3T/member/joinStep1">Join
                               us</a></span>
                      </p>
