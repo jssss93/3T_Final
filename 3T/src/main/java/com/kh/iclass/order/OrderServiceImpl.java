@@ -100,7 +100,10 @@ public class OrderServiceImpl implements OrderService {
 		
 	}
 
-	
+	@Override
+	public void changeState2(Map<String, Object> map) throws Exception {
+		orderDAO.changeState2(map);
+	}
 	
 	
 	
@@ -117,6 +120,8 @@ public class OrderServiceImpl implements OrderService {
 		// TODO Auto-generated method stub
 		return orderDAO.getSale2(map);
 	}
+
+	
 
 	
 

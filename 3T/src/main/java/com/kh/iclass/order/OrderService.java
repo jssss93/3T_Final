@@ -31,6 +31,7 @@ public interface OrderService {
 	public List<Map<String, Object>> selectOrderList2(Map<String, Object> map) throws Exception;
 	public List<Map<String, Object>> selectOrderListAll(Map<String, Object> map) throws Exception;
 	public void changeState1(Map<String, Object> map) throws Exception;
+	public void changeState2(Map<String, Object> map) throws Exception;
 	public Map<String, Map<String, Object>> getSale(Map<String, Object> map,String mapKey) throws Exception;
 	public List<Map<String, Object>> getSale2(Map<String, Object> map) throws Exception;
 }

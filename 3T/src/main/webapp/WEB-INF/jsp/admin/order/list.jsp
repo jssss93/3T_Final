@@ -137,7 +137,7 @@ function delchk(){
 												<input type="hidden" name="ORDER_NO" value="${list.ORDER_NO }">
 												<c:url var="update" value="/admin/order/updateForm"><c:param name="ORDER_NO" value="${list.ORDER_NO }"/></c:url>
 												<c:url var="delete" value="/admin/order/delete"><c:param name="ORDER_NO" value="${list.ORDER_NO }" /></c:url>
-												<c:url var="stateup" value="/admin/order/stateup"><c:param name="ORDER_NO" value="${list.ORDER_NO }" /></c:url>
+												<c:url var="stateup" value="/admin/order/stateup"><c:param name="ORDER_NO" value="${list.ORDER_NO }" /><c:param name="STATE" value="${list.STATE }" /></c:url>
 												<a href="${update}"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;
 												<a href="${delete}"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png"></a>&nbsp;&nbsp;
 												<c:choose>

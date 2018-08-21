@@ -184,12 +184,14 @@
 		var tagName = "#checkbox"+index;
 		
 		//price 클래스의 value 값을 가져온다.
-		var price = $(".price").eq(index).attr("value");
-		var totprice = $(".totprice").eq(index).attr("value");
+		var price = $(".price2").eq(index).attr("value");
+		var totprice = $(".totprice2").eq(index).attr("value");
 		
 		price = parseInt(price);
 		totprice = parseInt(totprice);
-	     if($(tagName).is(":checked")){
+	    
+		
+		if($(tagName).is(":checked")){
 	    	
 	       	sum += totprice;
 	       	
@@ -229,7 +231,8 @@
 	var chkCount = $("input[type=checkbox]").length ;
 	
 	function checkAll(){    
-		if($("#chkBox").is(":checked")) {
+		
+		if($("#chkBox2").is(":checked")) {
 			for(i=0;i<$("input[type=checkbox]").length-1;i++){
 				if($("#checkbox"+i).is(":checked")){
 				}
@@ -238,7 +241,9 @@
 					checkedRows(i); 
 				}
 			}
-		} else{
+		} 
+		
+		else{
 			for(i=0;i<$("input[type=checkbox]").length-1;i++){
 				if($("#checkbox"+i).is(":checked")){
 					$("#checkbox"+i).prop("checked",false);
@@ -300,7 +305,7 @@
 			</tr>
 
 			<tr align="center" bgcolor="#F9F9F9">
-			<td width="50"><input type="checkbox" id="chkBox" onclick=checkAll()  /></td>
+			<td width="50"><input type="checkbox" id="chkBox2" onclick=checkAll()  /></td>
 			<td width="130"><strong>IMAGE</strong></td>
 			<td width="130"><strong>TITLE</strong></td>
 			<td width="400"><strong>PRODUCT INFO</strong></td>
@@ -343,10 +348,10 @@
 						</td>
 						
 						<td align="center">${row.CONTENT} ${row.ATTRIBUTE_NO}</td>
-						<td align="center" ><span class="price" value="${row.PRICE}">${row.PRICE} </span></td>
+						<td align="center" ><span class="price2" value="${row.PRICE}">${row.PRICE} </span></td>
 						<td align="center">${row.COUNT }</td>
 						<td align="center">기본배송</td>
-						<td align="center" ><span class="totprice" value="${row.PRICE*row.COUNT}">${row.PRICE*row.COUNT}</span></td>
+						<td align="center" ><span class="totprice2" value="${row.PRICE*row.COUNT}">${row.PRICE*row.COUNT}</span></td>
 					</tr>
 				</c:forEach>
 			</c:when>
@@ -543,7 +548,7 @@
 						</tr>
 				
 						<tr>
-							<td align="center"><input type="checkbox" name="checkbox_agree" id="checkbox_agree" /></td>
+							<!-- <td align="center"><input type="checkbox" name="checkbox_agree" id="checkbox_agree" /></td> -->
 							<td align="left"><font style="font-weight: bold;">
 								<h4>결제정보를 확인하였으며, 구매진행에 동의합니다.</h4></font>
 							</td>

@@ -3388,8 +3388,8 @@ html {
 }
 
 body, code {
-	font: 11px 'Open Sans', 'Lato', arial, "¸¼Àº °íµñ", 'Malgun Gothic', ³ª´®°íµñ,
-		'Nanum Gothic', "µ¸¿ò", Dutum, san-serif;
+	font: 11px 'Open Sans', 'Lato', arial, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½", 'Malgun Gothic', ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,
+		'Nanum Gothic', "ï¿½ï¿½ï¿½ï¿½", Dutum, san-serif;
 	color: #555;
 	background: #fff;
 }
@@ -3429,8 +3429,8 @@ th, td {
 
 input, select, textarea {
 	font-size: 12px;
-	font-family: 'Open Sans', 'Roboto', arial, "¸¼Àº °íµñ", 'Malgun Gothic',
-		³ª´®°íµñ, 'Nanum Gothic', "µ¸¿ò", Dutum, san-serif;
+	font-family: 'Open Sans', 'Roboto', arial, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½", 'Malgun Gothic',
+		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, 'Nanum Gothic', "ï¿½ï¿½ï¿½ï¿½", Dutum, san-serif;
 	color: #555;
 	vertical-align: middle;
 }
@@ -4076,7 +4076,7 @@ table .subject a:hover {
 	src: url('/fonts/NanumGothic.eot?#iefix') format('embedded-opentype'),
 		url('/fonts/NanumGothic.woff') format('woff'),
 		url('/fonts/NanumGothic.ttf') format('truetype');
-	src: local(¡Ø), url('/fonts/NanumGothic.woff') format('woff');
+	src: local(ï¿½ï¿½), url('/fonts/NanumGothic.woff') format('woff');
 }
 
 @font-face {
@@ -4085,7 +4085,7 @@ table .subject a:hover {
 	src: url('/fonts/NanumBarunGothic.eot?#iefix')
 		format('embedded-opentype'), url('/fonts/NanumBarunGothic.woff')
 		format('woff'), url('/fonts/NanumBarunGothic.ttf') format('truetype');
-	src: local(¡Ø), url('/fonts/NanumBarunGothic.woff') format('woff');
+	src: local(ï¿½ï¿½), url('/fonts/NanumBarunGothic.woff') format('woff');
 }
 
 @font-face {
@@ -4094,7 +4094,7 @@ table .subject a:hover {
 	src: url('/fonts/Lato-Regular.eot?#iefix') format('embedded-opentype'),
 		url('/fonts/Lato-Regular.woff') format('woff'),
 		url('/fonts/Lato-Regular.ttf') format('truetype');
-	src: local(¡Ø), url('/Lato-Regular.woff') format('woff');
+	src: local(ï¿½ï¿½), url('/Lato-Regular.woff') format('woff');
 }
 
 li {
@@ -6003,8 +6003,8 @@ nav ul li a:hover {
 	margin-left: -60px !important;
 	padding-left: 0px;
 	text-align: center;
-	font-family: 'Lato', "¸¼Àº °íµñ", 'Malgun Gothic', ³ª´®°íµñ, 'Nanum Gothic',
-		"µ¸¿ò";
+	font-family: 'Lato', "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½", 'Malgun Gothic', ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, 'Nanum Gothic',
+		"ï¿½ï¿½ï¿½ï¿½";
 	font-size: 33px;
 	color: #fff;
 	font-weight: 400;
@@ -9040,8 +9040,8 @@ html {
 }
 
 body, code {
-	font: 11px 'Open Sans', 'Lato', arial, "¸¼Àº °íµñ", 'Malgun Gothic', ³ª´®°íµñ,
-		'Nanum Gothic', "µ¸¿ò", Dutum, san-serif;
+	font: 11px 'Open Sans', 'Lato', arial, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½", 'Malgun Gothic', ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,
+		'Nanum Gothic', "ï¿½ï¿½ï¿½ï¿½", Dutum, san-serif;
 	color: #555;
 	background: #fff;
 }
@@ -9081,8 +9081,8 @@ th, td {
 
 input, select, textarea {
 	font-size: 12px;
-	font-family: 'Open Sans', 'Roboto', arial, "¸¼Àº °íµñ", 'Malgun Gothic',
-		³ª´®°íµñ, 'Nanum Gothic', "µ¸¿ò", Dutum, san-serif;
+	font-family: 'Open Sans', 'Roboto', arial, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½", 'Malgun Gothic',
+		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, 'Nanum Gothic', "ï¿½ï¿½ï¿½ï¿½", Dutum, san-serif;
 	color: #555;
 	vertical-align: middle;
 }
@@ -9503,13 +9503,6 @@ table .subject a:hover {
 	display: table;
 }
 
-#contentwrap {
-	position: relative;
-	float: left;
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
-}
 
 #contents_main {
 	position: relative;
@@ -9728,7 +9721,7 @@ table .subject a:hover {
 	src: url('/fonts/NanumGothic.eot?#iefix') format('embedded-opentype'),
 		url('/fonts/NanumGothic.woff') format('woff'),
 		url('/fonts/NanumGothic.ttf') format('truetype');
-	src: local(¡Ø), url('/fonts/NanumGothic.woff') format('woff');
+	src: local(ï¿½ï¿½), url('/fonts/NanumGothic.woff') format('woff');
 }
 
 @font-face {
@@ -9737,7 +9730,7 @@ table .subject a:hover {
 	src: url('/fonts/NanumBarunGothic.eot?#iefix')
 		format('embedded-opentype'), url('/fonts/NanumBarunGothic.woff')
 		format('woff'), url('/fonts/NanumBarunGothic.ttf') format('truetype');
-	src: local(¡Ø), url('/fonts/NanumBarunGothic.woff') format('woff');
+	src: local(ï¿½ï¿½), url('/fonts/NanumBarunGothic.woff') format('woff');
 }
 
 @font-face {
@@ -9746,7 +9739,7 @@ table .subject a:hover {
 	src: url('/fonts/Lato-Regular.eot?#iefix') format('embedded-opentype'),
 		url('/fonts/Lato-Regular.woff') format('woff'),
 		url('/fonts/Lato-Regular.ttf') format('truetype');
-	src: local(¡Ø), url('/Lato-Regular.woff') format('woff');
+	src: local(ï¿½ï¿½), url('/Lato-Regular.woff') format('woff');
 }
 
 li {
@@ -11655,8 +11648,8 @@ nav ul li a:hover {
 	margin-left: -60px !important;
 	padding-left: 0px;
 	text-align: center;
-	font-family: 'Lato', "¸¼Àº °íµñ", 'Malgun Gothic', ³ª´®°íµñ, 'Nanum Gothic',
-		"µ¸¿ò";
+	font-family: 'Lato', "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½", 'Malgun Gothic', ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, 'Nanum Gothic',
+		"ï¿½ï¿½ï¿½ï¿½";
 	font-size: 33px;
 	color: #fff;
 	font-weight: 400;

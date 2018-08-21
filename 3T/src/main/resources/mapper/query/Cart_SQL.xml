@@ -173,6 +173,122 @@
 				COUNT
 		
 	</select>
+	
+	<!-- 카트리스트 모두 불러오기 -->
+	<select id="selectAllCartList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT 
+			  	CART_NO,
+			  	MEMBER_ID,
+			 	GOODS_NO,
+			 	CONTENT,
+			 	ATTRIBUTE_NO,
+			 	NAME,
+				PRICE,
+			 	COLOR,
+			 	GOODS_SIZE,
+			 	COUNT,
+			 	WM_CONCAT(SAV_NAME) AS IMAGE
+			FROM
+			
+				(SELECT 
+					a.CONTENT,
+					a.PRICE,
+					a.NAME,
+					b.ATTRIBUTE_NO,	
+				    b.COLOR,
+				    b.GOODS_SIZE,
+				    c.SAV_NAME,
+				    d.CART_NO,
+				    d.MEMBER_ID,
+				    d.GOODS_NO,
+				    d.COUNT	
+			 	FROM
+			    	GOODS a, GOODS_ATTRIBUTE b, UPLOAD c, CART d 
+				WHERE
+				    d.GOODS_NO=a.GOODS_NO AND
+				    d.ATTRIBUTE_NO=b.ATTRIBUTE_NO AND
+				    b.GOODS_NO=a.GOODS_NO AND
+				    c.GOODS_NO = d.GOODS_NO AND
+				    d.MEMBER_ID = #{MEMBER_ID} 
+			  	ORDER BY
+			    	CART_NO DESC)
+			    	
+			GROUP BY
+				CART_NO,
+				MEMBER_ID,
+				GOODS_NO,
+				CONTENT,
+				PRICE,
+				ATTRIBUTE_NO,
+				COLOR,
+				NAME,
+				GOODS_SIZE,
+				COUNT
+		]]>
+	</select>
+	
+	<!-- 카트 총 개수 -->
+	<select id="selectAllCartListCnt" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				COUNT(*) as CNT
+			FROM
+				(
+				
+				SELECT 
+				  	CART_NO,
+				  	MEMBER_ID,
+				 	GOODS_NO,
+				 	CONTENT,
+				 	ATTRIBUTE_NO,
+				 	NAME,
+					PRICE,
+				 	COLOR,
+				 	GOODS_SIZE,
+				 	COUNT,
+				 	WM_CONCAT(SAV_NAME) AS IMAGE
+				FROM
+				
+					(SELECT 
+						a.CONTENT,
+						a.PRICE,
+						a.NAME,
+						b.ATTRIBUTE_NO,	
+					    b.COLOR,
+					    b.GOODS_SIZE,
+					    c.SAV_NAME,
+					    d.CART_NO,
+					    d.MEMBER_ID,
+					    d.GOODS_NO,
+					    d.COUNT	
+				 	FROM
+				    	GOODS a, GOODS_ATTRIBUTE b, UPLOAD c, CART d 
+					WHERE
+					    d.GOODS_NO=a.GOODS_NO AND
+					    d.ATTRIBUTE_NO=b.ATTRIBUTE_NO AND
+					    b.GOODS_NO=a.GOODS_NO AND
+					    c.GOODS_NO = d.GOODS_NO AND
+					    d.MEMBER_ID = #{MEMBER_ID} 
+				  	ORDER BY
+				    	CART_NO DESC)
+				    	
+				GROUP BY
+					CART_NO,
+					MEMBER_ID,
+					GOODS_NO,
+					CONTENT,
+					PRICE,
+					ATTRIBUTE_NO,
+					COLOR,
+					NAME,
+					GOODS_SIZE,
+					COUNT
+					
+					)
+		]]>
+	</select>
+	
 
 	<!-- 세션에서 장바구니 목록 불러오기(비회원 인서트는 SESSION에 저장하고
 	비회원 장바구니 조회는 SESSION에서 GOODS_NUMBER, GOODS_KINDSNUMBER,  CART_AMOUNT 를 가지고 셀렉트문 실행) -->

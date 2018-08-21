@@ -105,7 +105,6 @@
 	float: left;
 	width: 100%;
 	height: 100%;
-	overflow: hidden;
 }
 
 #contents_main {
@@ -325,7 +324,7 @@
 	src: url('/fonts/NanumGothic.eot?#iefix') format('embedded-opentype'),
 		url('/fonts/NanumGothic.woff') format('woff'),
 		url('/fonts/NanumGothic.ttf') format('truetype');
-	src: local(¡Ø), url('/fonts/NanumGothic.woff') format('woff');
+	src: local(ï¿½ï¿½), url('/fonts/NanumGothic.woff') format('woff');
 }
 
 @font-face {
@@ -334,7 +333,7 @@
 	src: url('/fonts/NanumBarunGothic.eot?#iefix')
 		format('embedded-opentype'), url('/fonts/NanumBarunGothic.woff')
 		format('woff'), url('/fonts/NanumBarunGothic.ttf') format('truetype');
-	src: local(¡Ø), url('/fonts/NanumBarunGothic.woff') format('woff');
+	src: local(ï¿½ï¿½), url('/fonts/NanumBarunGothic.woff') format('woff');
 }
 
 @font-face {
@@ -343,7 +342,7 @@
 	src: url('/fonts/Lato-Regular.eot?#iefix') format('embedded-opentype'),
 		url('/fonts/Lato-Regular.woff') format('woff'),
 		url('/fonts/Lato-Regular.ttf') format('truetype');
-	src: local(¡Ø), url('/Lato-Regular.woff') format('woff');
+	src: local(ï¿½ï¿½), url('/Lato-Regular.woff') format('woff');
 }
 
 li {
@@ -2252,8 +2251,8 @@ nav ul li a:hover {
 	margin-left: -60px !important;
 	padding-left: 0px;
 	text-align: center;
-	font-family: 'Lato', "¸¼Àº °íµñ", 'Malgun Gothic', ³ª´®°íµñ, 'Nanum Gothic',
-		"µ¸¿ò";
+	font-family: 'Lato', "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½", 'Malgun Gothic', ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, 'Nanum Gothic',
+		"ï¿½ï¿½ï¿½ï¿½";
 	font-size: 33px;
 	color: #fff;
 	font-weight: 400;
@@ -2992,8 +2991,8 @@ nav ul li a:hover {
 	margin-left: -60px !important;
 	padding-left: 0px;
 	text-align: center;
-	font-family: 'Lato', "¸¼Àº °íµñ", 'Malgun Gothic', ³ª´®°íµñ, 'Nanum Gothic',
-		"µ¸¿ò";
+	font-family: 'Lato', "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½", 'Malgun Gothic', ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, 'Nanum Gothic',
+		"ï¿½ï¿½ï¿½ï¿½";
 	font-size: 33px;
 	color: #fff;
 	font-weight: 400;
@@ -3689,7 +3688,7 @@ nav ul li a:hover {
 #quick_menu .menu a {
 	display: inline-block;
 	line-height: 30px;
-	font-family: arial, dotum, µ¸¿ò;
+	font-family: arial, dotum, ï¿½ï¿½ï¿½ï¿½;
 	letter-spacing: 1px;
 	text-transform: uppercase;
 }
@@ -3844,7 +3843,7 @@ nav ul li a:hover {
 .xans-instagramwidget-display h2 a {
 	font-size: 26px;
 	color: #2e2e2e;
-	font-family: "³ª´® °íµñ", 'Nanum Gothic';
+	font-family: "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½", 'Nanum Gothic';
 	text-decoration: none;
 }
 

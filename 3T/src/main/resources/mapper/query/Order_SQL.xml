@@ -72,13 +72,14 @@
 		
 	</insert>
 
-		<!-- 주문리스트 -->
- 	<select id="selectList" parameterType="hashmap" resultType="hashmap">
+		<!-- 관리자 주문리스트 -->
+ 	<select id="selectOrderListAll" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
 		select
 			REGDATE,
 			ORDER_NO,
 			STATE,
+			MEMBER_ID,
 			COUNT,
 			ATTRIBUTE_NO,
 			GOODS_NO,
@@ -94,6 +95,7 @@
 		    	a.REGDATE,
 		    	a.ORDER_NO,
 			    a.STATE,
+			    a.MEMBER_ID,
 			    b.COUNT,
 			    b.ATTRIBUTE_NO,
 			    b.GOODS_NO,
@@ -109,8 +111,7 @@
 			    a.ORDER_NO=b.ORDER_NO AND
 			    b.GOODS_NO=c.GOODS_NO AND
 			    b.ATTRIBUTE_NO=d.ATTRIBUTE_NO AND
-			    b.GOODS_NO=e.GOODS_NO AND
-			    member_id=#{MEMBER_ID}
+			    b.GOODS_NO=e.GOODS_NO
 		  	ORDER BY
 		    	a.ORDER_NO desc
 		    	)
@@ -118,6 +119,7 @@
 			  REGDATE,
 			  ORDER_NO,
 			  STATE,
+			  MEMBER_ID,
 			  COUNT,
 			  NAME,
 			  ATTRIBUTE_NO,
@@ -128,6 +130,60 @@
 			  GOODS_SIZE
 	]]>
 	</select>
+	
+	
+	<select id="selectList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	
+		select
+		  REGDATE,
+		  ORDER_NO,
+		  STATE,
+		  COUNT,
+		  ATTRIBUTE_NO,
+		  GOODS_NO,
+		  PRICE,
+		  CONTENT,
+		  COLOR,
+		  GOODS_SIZE,
+		  WM_CONCAT(SAV_NAME) AS IMAGE
+		from
+		  (select 
+		    a.REGDATE,
+		    a.ORDER_NO,
+		    a.STATE,
+		    b.COUNT,
+		    b.ATTRIBUTE_NO,
+		    b.GOODS_NO,
+		    c.PRICE,
+		    c.CONTENT,
+		    d.color,
+		    d.GOODS_SIZE,
+		    e.sav_name
+		  from
+		    ORDER_3T a,ORDER_DETAIL b,GOODS c ,GOODS_ATTRIBUTE d, UPLOAD e
+		  where
+		    a.ORDER_NO=b.ORDER_NO AND
+		    b.GOODS_NO=c.GOODS_NO AND
+		    b.ATTRIBUTE_NO=d.ATTRIBUTE_NO AND
+		    b.GOODS_NO=e.GOODS_NO
+		  ORDER BY
+		    a.ORDER_NO desc)
+		GROUP BY
+		  REGDATE,
+		  ORDER_NO,
+		  STATE,
+		  COUNT,
+		  ATTRIBUTE_NO,
+		  GOODS_NO,
+		  PRICE,
+		  CONTENT,
+		  COLOR,
+		  GOODS_SIZE
+	
+	]]>
+	</select>
+	
 	
  	<select id="selectSale" parameterType="hashmap" resultType="map">
 	<![CDATA[
@@ -147,17 +203,29 @@
 	
 	
 	<update id="changeState1" parameterType="hashmap">
-		<![CDATA[
+		
 			UPDATE 
 				order_3t 
 			SET
 				state = state+1
+				<if test='STATE.equals("2")'>
+					,REGDATE=SYSDATE
+				</if>
 			WHERE
 				ORDER_NO = #{ORDER_NO}	
-		]]>
+		
 	</update>
 
-	
+	<update id="changeState2" parameterType="hashmap">
+		
+			UPDATE 
+				order_3t 
+			SET
+				state = state-1
+			WHERE
+				ORDER_NO = #{ORDER_NO}	
+		
+	</update>
 	
 	
 </mapper>

@@ -102,6 +102,18 @@ public class AdminOrderController {
 	
 	}
 	
+	@RequestMapping(value = "/order/statedown")		
+	public ModelAndView changeState2(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:list");
+		
+		HttpSession session = request.getSession();
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		System.out.println(commandMap.getMap());
+		orderService.changeState2(commandMap.getMap());
+		return mv;
+	
+	}
+	
 	
 	
 	// 상세보기에서 바로구매

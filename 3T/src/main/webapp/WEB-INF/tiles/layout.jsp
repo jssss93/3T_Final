@@ -16,6 +16,7 @@
 <!-- 로그인 -->
 <link href="<c:url value='/resources/css/loginCategory.css'/>"
 	rel="stylesheet" type="text/css" />
+	
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -147,7 +148,7 @@
 					<a href="/3T/member/logout" class="log">logout</a> / 
 							</c:if>
 				<a href="/3T/member/joinStep1">join</a> <a
-					href="/3T/csstest/csstest">order</a> / <a href="/3T/mypage/mypage">mypage</a>
+					href="/3T/order/list">order</a> / <a href="/3T/mypage/mypage">mypage</a>
 			</div>
 
 
@@ -213,9 +214,9 @@
 		<div class="right_menu">
 
 			<ul>
-				<li class="cart_menu"><a href="/order/basket.html"
+				<li class="cart_menu"><a href="/3T/cart/list"
 					class="xans-element- xans-layout xans-layout-orderbasketcount ">CART
-						<span> 0 </span>
+						<span>  </span>
 				</a></li>
 			</ul>
 			<ul>
