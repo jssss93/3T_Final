@@ -20,7 +20,7 @@
 		</tr>
 	</table>
 	
-	<table border="1" align="center" class="board_view2">
+	<table border="1" align="center" class="board_notice">
 		<colgroup>
 			<col width="15%" />
 			<col width="35%" />

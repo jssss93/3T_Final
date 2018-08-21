@@ -36,7 +36,13 @@ public class JoinController {
 	@Resource(name="joinService")
 	private JoinService joinService;
 
-		
+	@RequestMapping(value="/1/1")
+	public ModelAndView joinStep11(){
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member/joinStep222-hanbyul");
+		return mv;
+	}	
+	
 	@RequestMapping(value="/member/joinStep1")
 	public ModelAndView joinStep1(){
 		ModelAndView mv = new ModelAndView();
@@ -180,6 +186,7 @@ public class JoinController {
 	@RequestMapping(value="/joinComplete", method=RequestMethod.POST)
 	public ModelAndView joinComplete(CommandMap commandMap, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		System.out.println("들어옴?");
 		String EMAIL = request.getParameter("EMAIL1")+"@"+request.getParameter("EMAIL2");
 		Map<String, Object> memberMap=new HashMap<String, Object>();
 		commandMap.getMap().put("EMAIL", EMAIL);

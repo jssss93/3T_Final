@@ -39,7 +39,11 @@ public class ReviewController {
 	public ModelAndView reviewWrite(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("review/write");
 		System.out.println("reviewWriteForm : " + commandMap.getMap());
-
+		
+		if(commandMap.get("GOODS_NO") == null)
+			
+			return mv;
+		
 		if (commandMap.get("GOODS_NO") != null);
 		Map<String, Object> map = ReviewService.ReviewGoods(commandMap.getMap());
 
@@ -111,19 +115,22 @@ public class ReviewController {
 
 	@RequestMapping(value = "/review/comment")
 	public ModelAndView reviewCommentInsert(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("review/detail");
+
+		ModelAndView mv = new ModelAndView("redirect:/review/detail");
+
 
 		System.out.println("reviewCommentInsert : " + commandMap.getMap());
 		ReviewService.ReviewCommentWrite(commandMap.getMap());
 
 		System.out.println("reviewDetail : " + commandMap.getMap());
-		Map<String, Object> map = ReviewService.ReviewDetail(commandMap.getMap());
+		ReviewService.ReviewDetail(commandMap.getMap());
 
 		// 리뷰 댓글
-		List<Map<String, Object>> list = ReviewService.ReviewCommentList(commandMap.getMap());
-
-		mv.addObject("map", map);
-		mv.addObject("list", list);
+		ReviewService.ReviewCommentList(commandMap.getMap());
+		
+		mv.addObject("REVIEW_NO", commandMap.get("REVIEW_NO"));
+		mv.addObject("GOODS_NO", commandMap.get("GOODS_NO"));
+		mv.addObject("REVIEW_COMMENT_NO", commandMap.get("REVIEW_COMMENT_NO"));
 
 		return mv;
 	}
@@ -132,15 +139,11 @@ public class ReviewController {
 	public ModelAndView reviewCommentDelete(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/review/detail");
 		System.out.println("reviewCommentDelete : " + commandMap.getMap());
+		
+		
 		ReviewService.ReviewDeleteComment(commandMap.getMap());
 
-		/*Map<String, Object> map = ReviewService.ReviewDetail(commandMap.getMap());*/
-
-		// 리뷰 댓글
-		/*List<Map<String, Object>> list = ReviewService.ReviewCommentList(commandMap.getMap());*/
 		mv.addObject("GOODS_NO",commandMap.get("GOODS_NO"));
-		/*mv.addObject("map", map);
-		mv.addObject("list", list);*/
 		mv.addObject("REVIEW_NO", commandMap.get("REVIEW_NO"));
 		
 
@@ -170,10 +173,9 @@ public class ReviewController {
 		System.out.println("reviewGoodsSuccess : " + commandMap.getMap());
 	
 		
-	/*mv.addObject("PRICE", commandMap.get("PRICE"));
-	mv.addObject("NAME",commandMap.get("NAME"));*/
+
 	mv.addObject("GOODS_NO", commandMap.get("GOODS_NO"));
-	/*mv.addObject("SAV_NAME", commandMap.get("SAV_NAME"));*/
+	
 	
 
 		return mv;
@@ -181,7 +183,7 @@ public class ReviewController {
 	
 	@RequestMapping(value = "/review/passwdCheckForm")
 	public ModelAndView qaPasswdCheckForm(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("/review/passwdCheckForm");
+		ModelAndView mv = new ModelAndView("review/passwdCheckForm");
 		
 		System.out.println("qaPasswdCheckForm : " + commandMap.getMap());
 		
@@ -189,19 +191,5 @@ public class ReviewController {
 	
 		return mv;
 	}
-	/*@RequestMapping(value = "/review/passwdCheckSuccess")
-	public ModelAndView qaPasswdCheck(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("/review/passwdCheckForm");
-		
-		System.out.println("reviewPasswdCheck : " + commandMap.getMap());
-		  
-			Map<String, Object> map = ReviewService.ReviewPasswdCheck(commandMap.getMap());
-		
-			mv.addObject("GOODS_NO", map.get("GOODS_NO"));
-			mv.addObject("REVIEW_NO", commandMap.get("REVIEW_NO"));
-			mv.addObject("list", map);
-		return mv;
-	}*/
-	
 
 }

@@ -46,24 +46,6 @@
 							cols="248" title="내용" id="CONTENT" name="CONTENT">${map.CONTENT }</textarea>
 					</td>
 				</tr>
-				<%--   <tr>
-
-                    <th scope="row">첨부파일</th>
-                    <td colspan="3">
-                        <div id="fileDiv">               
-                            <c:forEach var="row" items="${list }" varStatus="var">
-                                <p>
-                                    <input type="hidden" id="IDX" name="IDX_${var.index }" value="${row.IDX }">
-                                    <a href="#this" id="name_${var.index }" name="name_${var.index }">${row.ORIGINAL_FILE_NAME }</a>
-                                    <input type="file" id="file_${var.index }" name="file_${var.index }">
-                                    (${row.FILE_SIZE }kb)
-                                    <a href="#this" class="btn" id="delete_${var.index }" name="delete_${var.index }">삭제</a>
-                                </p>
-                            </c:forEach>
-                        </div>
-                    </td>
-                </tr> --%>
-
 			</tbody>
 		</table>
 	</form>
@@ -99,15 +81,6 @@
 				fn_deleteBoard();
 			});
 
-			/*   $("#addFile").on("click", function(e){ //파일 추가 버튼
-			      e.preventDefault();
-			      fn_addFile();
-			  });
-			   
-			  $("a[name^='delete']").on("click", function(e){ //삭제 버튼
-			      e.preventDefault();
-			      fn_deleteFile($(this));
-			  }); */
 		});
 
 		function fn_openBoardList() {
@@ -129,22 +102,6 @@
 			comSubmit.submit();
 
 		}
-
-		/*  function fn_addFile(){
-		     var str = "<p>" +
-		             "<input type='file' id='file_"+(gfv_count)+"' name='file_"+(gfv_count)+"'>"+
-		             "<a href='#this' class='btn' id='delete_"+(gfv_count)+"' name='delete_"+(gfv_count)+"'>삭제</a>" +
-		         "</p>";
-		     $("#fileDiv").append(str);
-		     $("#delete_"+(gfv_count++)).on("click", function(e){ //삭제 버튼
-		         e.preventDefault();
-		         fn_deleteFile($(this));
-		     });
-		 }
-		  
-		 function fn_deleteFile(obj){
-		     obj.parent().remove();
-		 } */
 	</script>
 
 </body>

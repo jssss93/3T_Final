@@ -71,23 +71,7 @@
 	top: 0px;
 	height: 100%;
 	z-index: 9;
-
-	width: 10%;
-	color: #000000;
-	font-size: 12px;
-	position: fixed;
-	/*  -webkit-box-shadow: 0 1px 2px 0 #777;
-	box-shadow: 0 1px 2px 0 #777;   */
-	background-color: rgba(255, 255, 255, 0.5);
-	-ms-filter: alpha(opacity = 0.5);
-	filter: alpha(opacity = 0.5);
-	/* 	opacity: 0.5; */
-	padding: 40px 0 0 30px;
-	/* font-weight: bold; */
-	/* letter-spacing: 5px; 글자간격 */
-	/* word-spacing: 3px; 단어간격*/
-	line-height: 50%;
-
+	background: none;
 }
 
 #Right {
@@ -98,29 +82,16 @@
 	top: 0px;
 	height: 90%;
 	z-index: 9;
-	width: 10%;
-	color: #000000;
-	font-size: 12px;
-	position: fixed;
-	/*  -webkit-box-shadow: 0 1px 2px 0 #777;
-	box-shadow: 0 1px 2px 0 #777;   */
-	background-color: rgba(255, 255, 255, 0.5);
-	-ms-filter: alpha(opacity = 0.5);
-	filter: alpha(opacity = 0.5);
-	/* 	opacity: 0.5; */
-	padding: 40px 0 0 30px;
-	/* font-weight: bold; */
-	/* letter-spacing: 5px; 글자간격 */
-	/* word-spacing: 3px; 단어간격*/
-	line-height: 50%;
-
+	background: none;
 }
 </style>
 </head>
 <body>
 
+
 	<div>
-		<div id="body" style="width: 75%; margin: 0 auto;">
+
+		<div id="body" align="center" style="width: 80%; margin: 0 auto;">
 			<tiles:insertAttribute name="body" ignore="true" />
 		</div>
 		<div id="footer">
@@ -134,7 +105,7 @@
 		<h1 class="xans-element- xans-layout xans-layout-logotop ">
 			<a href="\3T\main"><img src="/3T/resources/images/3T.PNG"></a>
 		</h1>
-		<br>
+	
 
 		<!--로그인메뉴-->
 
@@ -147,12 +118,18 @@
 				<c:if test="${sessionScope.MEMBER_ID != null}">
 					<a href="/3T/member/logout" class="log">logout</a> / 
 							</c:if>
+
 				<a href="/3T/member/joinStep1">join</a> <a
 					href="/3T/order/list">order</a> / <a href="/3T/mypage/mypage">mypage</a>
+
 			</div>
 
 
 		</div>
+		<!-- //left_login -->
+
+
+
 
 		<div>
 			<div id="category"
@@ -162,6 +139,7 @@
 						<c:url var="OUTER" value="/goods/catelist">
 							<c:param name="CATEGORY" value="OUTER" />
 						</c:url>
+
 						<li class="xans-record-"><a
 							href="/3T/goods/catelist?CATEGORY=OUTER">OUTER</a></li>
 						<li class="xans-record-"><a
@@ -182,31 +160,24 @@
 				</div>
 			</div>
 
+
 			<div class="xans-element- xans-layout xans-layout-boardinfo">
 				<ul>
 					<li class="xans-record-"><a href="/3T/notice/list">NOTICE</a></li>
-					<br>
+
 					<li class="xans-record-"><a href="/3T/faq/list">FAQ</a></li>
-					<br>
+
 					<li class="xans-record-"><a href="/3T/qa/list">Q&amp;A</a></li>
-					<br>
 					<li class="xans-record-"><a href="/3T/review/list">REVIEW</a></li>
-					<br>
+
 				</ul>
 			</div>
 		</div>
 
 	</div>
-
-
-
-
-
-
-
-
-
-
+	</tr>
+	</table>
+	</div>
 
 
 	<!-- 오른쪽 메뉴 고정 바 -->
@@ -257,6 +228,12 @@
 											<caption>공지사항</caption>
 											<tbody
 												class="xans-element- xans-board xans-board-list-1 xans-board-list xans-board-1">
+												<!--
+                                    $count = 3              
+                                    $subject_cut = 14
+                                    $main_list = yes
+                                    $main_list_reply_view = no
+                                -->
 												<tr class="xans-record-">
 													<td class="title"><a
 														href="/board/free/read.html?no=248265&amp;board_no=1">교환
@@ -274,7 +251,7 @@
 												</tr>
 											</tbody>
 										</table>
-									</div>
+									</div> <!-- // 공지사항 -->
 								</li>
 							</ul></li>
 					</ul>
@@ -293,6 +270,48 @@
 							src="/3T/resources/images/4.png"></a></li>
 				</ul>
 		</div>
+		<tr>
+			<td>
+				<button class="btn4" type="button" id="moveupBtn">
+					<img src="/3T/resources/images/버튼1.png">
+				</button>
+				<button class="btn5" type="button" id="movedownBtn">
+					<img src="/3T/resources/images/버튼2.png">
+				</button>
+			</td>
+		</tr>
 	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#moveupBtn").on("click", function(event) {
+				// 이동 버튼을 클릭시 태그로 스크롤의 위치가 이동되도록 한다.
+
+				// 1. 태그의 위치를 가지고 있는 객체를 얻어온다. => offset 객체
+				var offset = $("#suk").offset();
+
+				// offset은 절대 위치를 가져온다. offset.top을 통해 상단의 좌표를 가져온다.
+				// position은 부모를 기준으로한 상대위치를 가져온다.
+				$("html body").animate({
+					scrollTop : offset.top
+				}, 0);
+
+			});
+
+			$("#movedownBtn").on("click", function(event) {
+				// 이동 버튼을 클릭시 태그로 스크롤의 위치가 이동되도록 한다.
+
+				// 1. 태그의 위치를 가지고 있는 객체를 얻어온다. => offset 객체
+				var offset = $("#footer").offset();
+
+				// offset은 절대 위치를 가져온다. offset.top을 통해 상단의 좌표를 가져온다.
+				// position은 부모를 기준으로한 상대위치를 가져온다.
+				$("html body").animate({
+					scrollTop : offset.top
+				}, 0);
+
+			});
+		}); // end of ready()
+	</script>
 </body>
 </html>

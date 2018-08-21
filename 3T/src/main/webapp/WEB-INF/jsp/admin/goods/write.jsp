@@ -9,11 +9,11 @@
 </head>
 <body>
 
-<div class="row" style="padding-left:15px;width:900px;">    
+<div class="row" style="padding-left:15px;width:900px;">
 	<h1 class="page-header">상품등록</h1>
 </div>
 	<form id="frm"  enctype="multipart/form-data">
-		<table class="board_view2"> 
+		<table class="board_view3">
 			<!-- <colgroup>
 				<col width="15%">
 				<col width="*"/>
@@ -22,11 +22,11 @@
 			<tbody>
 				<tr>
 					<th scope="row">상품명</th>
-					<td><input type="text" name="NAME" class="wdp_90"></input></td>
+					<td><input type="text" name="NAME"></input></td>
 				</tr>
 				<tr>
 					<th scope="row">가격</th>
-					<td><input type="text" name="PRICE" class="wdp_90"></input></td>
+					<td><input type="text" name="PRICE"></input></td>
 				</tr>
 				<tr>
 					<th scope="row">카테고리</th>
@@ -43,24 +43,24 @@
 						</select>
 					</td>
 				</tr>
-				<tr>
+				<tr class="board_title">
 					<th scope="row">관련상품번호</th>
-					<td><input type="text" name="RELATED"	class="wdp_90"></input></td>
+					<td><input type="text" name="RELATED"	class="wdp_20"></input></td>
 				</tr>
-				<tr>
+				<tr class="board_title">
 					<th scope="row">상품 키워드</th>
 					<td><input type="text" name="KEYWORD"
-						class="wdp_90" placeholder="ex) 바지,반바지,긴바지,팬츠,하의,"></input></td>
+						class="wdp_20" placeholder="ex) 바지,반바지,긴바지,팬츠,하의,"></input></td>
 				</tr>
 				<tr>
-					<td colspan="2" class="view_text">
-						<textarea rows="10" cols="170" title="내용" name="CONTENT" placeholder="상세 설명"></textarea>
+					<td colspan="2" class="board_content2">
+						<textarea rows="20" cols="203" title="내용" name="CONTENT" placeholder="상세 설명"></textarea>
 					</td>
 				</tr> 
 				<tr>
 					<td>
 						<!--속성 -->
-						<div id="AttributeDiv">
+						<div id="AttributeDiv" class="board_view4">
 							<p>
 								사이즈  : <input type="text" name="size">
 								색상 : <input type="text" name="color"> 
@@ -112,13 +112,13 @@
 				<tr>
 					<td colspan="2">
 					
-					<a href="#this" class="btn" id="addFile">이미지 추가</a>
-						<div id="fileDiv">
+						<div id="fileDiv" class="board_view4">
 							<p>
 							<input type="file" id="IMAGE" name="IMAGE">
 							<a href="#this" class="btn" id="delete" name="delete">삭제</a>
 							</p>
 						</div>
+						<a href="#this" class="btn" id="addFile">이미지 추가</a>
 					</td>
 				</tr>
 			</tbody>

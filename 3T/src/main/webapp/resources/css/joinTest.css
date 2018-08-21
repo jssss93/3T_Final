@@ -227,14 +227,15 @@
 	text-decoration: none;
 }
 
-.xans-member-join .btnArea a:nth-child(2) {
-	padding: 7px 70px;
+.xans-member-join .btnArea input {
+	padding: 1px 60px;
 	margin: 0 5px;
 	font-size: 12px;
 	color: #fff;
 	background: #111;
 	line-height: 30px;
 	border: 1px solid #333;
+	margin: -3 0px 0 0px;
 }
 
 .xans-member-join .btnArea a:nth-child(2) {
@@ -844,7 +845,7 @@ caption {
 
 h1, h3 {
 	margin: 0;
-	padding:50px 0 10px;
+	padding:30px 0 10px;
 	font-size:20px;
 	color:#2e2e2e;
 	font-weight: bold;

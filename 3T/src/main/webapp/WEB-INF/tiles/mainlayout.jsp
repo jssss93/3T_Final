@@ -109,7 +109,7 @@
 		<h1 class="xans-element- xans-layout xans-layout-logotop ">
 			<a href="\3T\main"><img src="/3T/resources/images/3T.PNG"></a>
 		</h1>
-		<br>
+	
 
 		<!--로그인메뉴-->
 
@@ -128,7 +128,6 @@
 
 
 		</div>
-		<br> <br> <br> <br>
 		<!-- //left_login -->
 
 
@@ -163,18 +162,16 @@
 				</div>
 			</div>
 
-			<br> <br> <br> <br>
 
 			<div class="xans-element- xans-layout xans-layout-boardinfo">
 				<ul>
 					<li class="xans-record-"><a href="/3T/notice/list">NOTICE</a></li>
-					<br>
+
 					<li class="xans-record-"><a href="/3T/faq/list">FAQ</a></li>
-					<br>
+
 					<li class="xans-record-"><a href="/3T/qa/list">Q&amp;A</a></li>
-					<br>
 					<li class="xans-record-"><a href="/3T/review/list">REVIEW</a></li>
-					<br>
+
 				</ul>
 			</div>
 		</div>
@@ -277,8 +274,12 @@
 		</div>
 		<tr>
 			<td>
-				<button class="btn4" type="button" id="moveupBtn"><img src="/3T/resources/images/버튼1.png"></button>
-				<button class="btn5" type="button" id="movedownBtn"><img src="/3T/resources/images/버튼2.png"></button>
+				<button class="btn4" type="button" id="moveupBtn">
+					<img src="/3T/resources/images/버튼1.png">
+				</button>
+				<button class="btn5" type="button" id="movedownBtn">
+					<img src="/3T/resources/images/버튼2.png">
+				</button>
 			</td>
 		</tr>
 	</div>
