@@ -92,8 +92,13 @@ public class adminGoodsController {
 	public ModelAndView goodsDeleteAttribute(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/admin/goods/updateForm");
 		
-		mv.addObject("GOODS_NO", commandMap.get("GOODS_NO"));
+		String ATTRIBUTE_NO=(String) commandMap.getMap().get("ATTRIBUTE_NO");
+		System.out.println("ATTRIBUTE_NO:"+ATTRIBUTE_NO);
+		commandMap.put("ATTRIBUTE_NO", ATTRIBUTE_NO);
 		System.out.println(commandMap.getMap());
+		mv.addObject("ATTRIBUTE_NO", commandMap.get("ATTRIBUTE_NO"));
+		mv.addObject("GOODS_NO", commandMap.get("GOODS_NO"));
+		
 		goodsService.deleteAttribute(commandMap.getMap());
 		
 		return mv;

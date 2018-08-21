@@ -12,7 +12,7 @@
 <div class="row" style="padding-left:15px;width:900px;">    
 	<h1 class="page-header">상품등록</h1>
 </div>
-	<form id="frm"  enctype="multipart/form-data">
+	<form id="frm" name="frm" enctype="multipart/form-data">
 	<input type="hidden" name="GOODS_NO" id="GOODS_NO" value="${goodsBasic.GOODS_NO }">
 		<table class="board_view">
 			<colgroup>
@@ -63,14 +63,16 @@
 					<td>
 						<!--속성 -->
 						<div id="AttributeDiv">
-							<c:forEach items="${goodsDetail }" var="attribute">
+							<c:forEach items="${goodsDetail }" var="attribute" varStatus="stat">
 							<p>
-							 <input type="hidden" id="ATTRIBUTE_NO" name="ATTRIBUTE_NO" value="${attribute.ATTRIBUTE_NO }">
+								<span class="ATTRIBUTE_NO2" value="${attribute.ATTRIBUTE_NO }">${attribute.ATTRIBUTE_NO }</span>
+							 <input type="hidden" id="ATTRIBUTE_NO2" name="ATTRIBUTE_NO2" value="${attribute.ATTRIBUTE_NO }">
 							 <input type="hidden" id="GOODS_NO2" name="GOODS_NO2" value="${attribute.GOODS_NO }">
 							사이즈  : <input type="text" name="size2" value="${attribute.GOODS_SIZE }" disabled>
 							색상 : <input type="text" name="color2" value="${attribute.COLOR }" disabled> 
 							개수 : <input type="text" name="count2" value="${attribute.COUNT }" disabled>  
-							<a href='#this' class='btn' name='deleteB'>삭제</a>
+							<!-- <a href='#this' id="deleteB" class='btn' name='deleteB'>삭제</a> -->
+							<a href="javascript:deleteAttributeB(${stat.index });" class="btn" >삭제</a>
 							</p>
 							</c:forEach>						
 						<p>
@@ -83,44 +85,6 @@
 						<a href="#this" class="btn" id="addAttribute" >속성 추가</a>  
 					</td>
 				</tr>
-				<!-- <tr>
-					<td colspan="2">
-					<a href="#this" class="btn" id="addAttribute">속성 추가</a><br/>
-						<div id="AttributeDiv">
-							<p>
-							<select name="COLOR" size="1">
-								<OPTION value=''>COLOR</OPTION>
-								<OPTION value='BLACK'>BLACK</OPTION>
-								<OPTION value='GRAY'>GRAY</OPTION>
-								<OPTION value='BROWN'>BROWN</OPTION>
-								<OPTION value='BURGUNDY'>BURGUNDY</OPTION>
-								<OPTION value='PINK'>PINK</OPTION>
-								<OPTION value='PURPLE'>PURPLE</OPTION>
-								<OPTION value='WHITE'>WHITE</OPTION>
-								<OPTION value='NAVY'>NAVY</OPTION>
-								<OPTION value='BLUE'>BLUE</OPTION>
-								<OPTION value='GREEN'>GREEN</OPTION>
-								<OPTION value='YELLOW'>YELLOW</OPTION>
-								<OPTION value='RED'>RED</OPTION>
-								<OPTION value='SKYBLUE'>SKYBLUE</OPTION>
-								<OPTION value='BEIGE'>BEIGE</OPTION>
-							</select>
-							
-							<select name="SIZE" size="1">
-								<OPTION value=''>SIZE</OPTION>
-								<OPTION value='M'>M</OPTION>
-								<OPTION value='L'>L</OPTION>
-								<OPTION value='XL'>XL</OPTION>
-								<OPTION value='Free'>Free</OPTION>
-									 
-							</select>
-							
-							<input type="text" placeholder='수량' name="COUNT" size="1">
-							<a href="#this" class="btn" id="deleteA" name="deleteA">삭제</a>
-							</p>
-						</div>
-					</td>
-				</tr> -->
 				<tr>
 					<td colspan="2">
 					
@@ -193,10 +157,10 @@
 	            e.preventDefault();
 	            fn_deleteAttribute($(this));
 	        });
-	        $("a[name='deleteB']").on("click", function(e){ //속성삭제 버튼
+	        /* $("a[name='deleteB']").on("click", function(e){ //속성삭제 버튼
 	            e.preventDefault();
 	            fn_deleteAttributeB($(this));
-	        });
+	        }); */
 	        $("a[name='deleteC']").on("click", function(e){ //속성삭제 버튼
 	            e.preventDefault();
 	            fn_deleteUploadC($(this));
@@ -242,13 +206,13 @@
 	    function fn_deleteFile(obj){
 	        obj.parent().remove();
 	    }
-	    function fn_deleteAttributeB(obj){
+	    /* function fn_deleteAttributeB(obj){
 	    	var comSubmit = new ComSubmit();
 			comSubmit.setUrl("<c:url value='/admin/goods/deleteAttribute' />");
 			comSubmit.addParam("ATTRIBUTE_NO", obj.parent().find("#ATTRIBUTE_NO").val());
 			comSubmit.addParam("GOODS_NO", obj.parent().find("#GOODS_NO2").val());
 			comSubmit.submit();
-       }
+       } */
 	    function fn_deleteUploadC(obj){
 	    	var comSubmit = new ComSubmit();
 			comSubmit.setUrl("<c:url value='/admin/goods/deleteUpload' />");
@@ -256,6 +220,53 @@
 			comSubmit.addParam("GOODS_NO", obj.parent().find("#GOODS_NO3").val());
 			comSubmit.submit();
        }
+       /* function fn_deleteAttributeB(obj){
+	    	$.ajax({
+	        url: "/admin/goods/deleteAttribute",
+	        type:"post", 
+	        data: {"ATTRIBUTE_NO": $("#ATTRIBUTE_NO")},
+	        success: function(){
+	        alert("속성삭제");
+	        }
+	    });
+	  } */
+	  /* $("#deleteB").click(function(){
+		  $.ajax({
+		        url: "/3T/admin/goods/deleteAttribute",
+		        type:"POST", 
+		        data: ({"ATTRIBUTE_NO": $("#ATTRIBUTE_NO")}),
+		        success: function(){
+		        alert("속성삭제");
+		        },
+		        error: function() {
+		            alert("error");
+		        }
+		    });
+		});
+	   */
+	  function deleteAttributeB(index) {
+		var index = index;
+		var f = document.frm;
+		var ATTRIBUTE_NO = $(".ATTRIBUTE_NO2").eq(index).attr("value");
+		console.log(ATTRIBUTE_NO);
+		var GOODS_NO = f.GOODS_NO.value;
+		  $.ajax({
+		        url: "/3T/admin/goods/deleteAttribute",
+		        type:"POST", 
+		        data: ({
+		        	ATTRIBUTE_NO : ATTRIBUTE_NO,
+		        	GOODS_NO : GOODS_NO
+		        	}),
+		        success: function(){
+
+		        alert("속성삭제");
+		        obj.parent().remove();
+		        },
+		        error: function() {
+		            alert("error");
+		        }
+		    });
+	  }
 	</script>
 </body>
 </html>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -78,14 +79,17 @@ public class GoodsController {
    
    
    @RequestMapping(value = "/goods/detail")
+   @Transactional
    public ModelAndView goodsDetail(CommandMap commandMap) throws Exception {
 
       ModelAndView mv = new ModelAndView("goods/goodsdetail");
 
 
       goodsService.updateHitcnt(commandMap.getMap());
-
+      
       List<Map<String, Object>> goodsDetail = goodsService.selectGoodsDetail(commandMap.getMap());
+      
+      
 
       Map<String, Object> goodsBasic = goodsDetail.get(0);
       

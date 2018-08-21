@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.iclass.common.util.AttributeUtils;
 import com.kh.iclass.common.util.FileUtils;
@@ -38,12 +39,15 @@ public class GoodsServiceImpl implements GoodsService {
 	}
 	
 	@Override
+	@Transactional
 	public void goodsWrite(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		goodsDAO.insertGoods(map);
 		
 		List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(map, request);
 		for(int i=0, size=list.size(); i<size; i++){
 			goodsDAO.insertFile(list.get(i));
+			
+		
 		}
 		
 		List<Map<String,Object>> listAttribute = AttributeUtils.parseInsertAttribute(map, request);
@@ -141,6 +145,7 @@ public class GoodsServiceImpl implements GoodsService {
 		goodsDAO.deleteUpload(map);
 	}
 	@Override
+	@Transactional
 	public void deleteGoods(Map<String, Object> map) throws Exception {
 		goodsDAO.deleteGoods(map);
 		goodsDAO.deleteA(map);
@@ -169,6 +174,7 @@ public class GoodsServiceImpl implements GoodsService {
 		}
 
 	@Override
+	@Transactional
 	public void updateGoods(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		// TODO Auto-generated method stub
 		goodsDAO.updateGoods(map);

@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+						http://www.springframework.org/schema/aop 
+						http://www.springframework.org/schema/aop/spring-aop.xsd
+						http://www.springframework.org/schema/tx
+   						http://www.springframework.org/schema/tx/spring-tx.xsd">
 
+	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="dataSourceSpied"
 		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
@@ -40,4 +47,27 @@
 		class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSession" />
 	</bean>
+	
+	
+	<!-- 트랜잭션 처리 -->
+	<!-- Transaction Manager -->
+     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+          <property name="dataSource" ref="dataSource" />
+     </bean>
+     
+   <!-- <tx:advice id="txAdvice" transaction-manager="transactionManager"> 
+     <tx:attributes> 
+     <tx:method name="goods*" read-only="true" /> 
+     </tx:attributes> 
+     </tx:advice> 
+     
+     <aop:config> 
+     <aop:pointcut id="transactionPointcut" expression="execution(* com.kh.iclass.goods.service.GoodsServiceimpl.*(..))"/> 
+     <aop:advisor advice-ref="txAdvice" pointcut-ref="transactionPointcut" /> 
+     </aop:config> -->
+     
+     <!-- <bean id="GoodsServiceimpl" class="com.kh.iclass.admin.controller.adminGoodsController"/> -->
+
+     <tx:annotation-driven transaction-manager="transactionManager" />
+	
 </beans>
