@@ -15,10 +15,8 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="dataSourceSpied"
 		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName"
-			value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url"
-			value="jdbc:oracle:thin:@istudy.iptime.org:7000:ORCL" />
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@istudy.iptime.org:7000:ORCL" />
 		<property name="username" value="KH10003" />
 		<property name="password" value="oracle" />
 	</bean>

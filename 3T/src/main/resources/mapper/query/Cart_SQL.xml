@@ -152,7 +152,7 @@
 				    c.GOODS_NO = d.GOODS_NO AND
 				    d.MEMBER_ID = #{MEMBER_ID} AND
 				    d.CART_NO 
-				    	IN
+				    	IN	
 				    	]]>
 				    		<foreach collection="cart_No" item="item" index="index" separator="," open="(" close=")" >
 	      						#{item}
@@ -289,6 +289,37 @@
 		]]>
 	</select>
 	
+	<delete id="deleteOne" parameterType="hashmap">
+		<![CDATA[
+			DELETE FROM 
+				CART 
+			WHERE 
+			MEMBER_ID=#{MEMBER_ID} AND 
+			CART_NO = #{CART_NO}
+		]]>
+	</delete>
+	
+	<delete id="deleteSelect" parameterType="hashmap">
+		<![CDATA[
+			DELETE FROM 
+				CART 
+			WHERE 
+			MEMBER_ID=#{MEMBER_ID} AND 
+			CART_NO IN ]]>	<foreach collection="cart_No" item="item" index="index" separator="," open="(" close=")" >
+	      						#{item}
+	      					</foreach>
+		
+	</delete>				
+	
+	<delete id="deleteAll" parameterType="hashmap">
+		<![CDATA[
+			DELETE FROM 
+				CART 
+			WHERE 
+			MEMBER_ID=#{MEMBER_ID}  
+			
+		]]>
+	</delete>
 
 	<!-- 세션에서 장바구니 목록 불러오기(비회원 인서트는 SESSION에 저장하고
 	비회원 장바구니 조회는 SESSION에서 GOODS_NUMBER, GOODS_KINDSNUMBER,  CART_AMOUNT 를 가지고 셀렉트문 실행) -->
