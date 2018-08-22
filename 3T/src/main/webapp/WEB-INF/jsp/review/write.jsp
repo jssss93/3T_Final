@@ -62,7 +62,7 @@
 
 	</table>
 	<form action="/3T/review/write">
-		<table class="board_view">
+		<table border="1" align="center" class="board_view2">
 
 
 			<colgroup>
