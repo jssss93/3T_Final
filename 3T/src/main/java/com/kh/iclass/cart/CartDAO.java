@@ -41,7 +41,18 @@ public class CartDAO extends AbstractDAO {
 	public List<Map<String, Object>> allCartList(Map<String, Object> map) throws Exception {
 		return selectList("cart.selectAllCartList", map);
 	}
+	
+	public void deleteOne(Map<String, Object> map) throws Exception {
+		delete("cart.deleteOne", map);
+	}
+	public void deleteSelect(Map<String, Object> map) throws Exception {
+		delete("cart.deleteSelect", map);
+	}
+	public void deleteAll(Map<String, Object> map) throws Exception {
+		delete("cart.deleteAll", map);
+	}
 
+	
 	// 세션에서 장바구니 목록 정보 불러오기
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> sessionCartList(Map<String, Object> map) throws Exception {

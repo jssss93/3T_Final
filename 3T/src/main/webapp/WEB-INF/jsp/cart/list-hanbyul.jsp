@@ -212,9 +212,13 @@
 			checkAll2();
 			fn_addOrderAll();
 		});
-		$("#write").on("click", function(e) { //작성하기 버튼
+		$("#deleteOne").on("click", function(e) { 
 			e.preventDefault();
-			fn_Write();
+			fn_deleteOne();
+		});
+		$("#deleteSelect").on("click", function(e) { //작성하기 버튼
+			e.preventDefault();
+			fn_deleteSelect();
 		});
 		
 	});
@@ -229,10 +233,21 @@
 		comSubmit.setUrl("<c:url value='/order/addAll' />");
 		comSubmit.submit();
 	}
-	
-	function fn_Write() {
+	function fn_deleteOne() {
 		var comSubmit = new ComSubmit("frm");
-		comSubmit.setUrl("<c:url value='/goods/write' />");
+		comSubmit.setUrl("<c:url value='/cart/deleteOne' />");
+		comSubmit.submit();
+	}
+	
+	function fn_deleteSelect() {
+		var comSubmit = new ComSubmit("frm");
+		comSubmit.setUrl("<c:url value='/cart/deleteSelect' />");
+		comSubmit.submit();
+	}
+	function cartDeleteOne() {
+		var comSubmit = new ComSubmit("frm");
+		comSubmit.addParam("CART_NO", obj.parent().find("#CART_NO").val());
+		comSubmit.setUrl("<c:url value='/cart/deleteOne' />");
 		comSubmit.submit();
 	}
 	
@@ -372,7 +387,7 @@
 </head>
 <body>
 <form id="frm">
-	<div id="contentwrap" >
+	<div id="contentwrap" style="vertical-align: middle;" >
 		<div id="contents">
 			<div class="titleArea">
 				<h2>CART</h2>
@@ -434,7 +449,7 @@
 						
 							<tr class="xans-record-">
 								<td>
-									<input type="checkbox" id="checkbox${stat.index}" name="CART_NO" value="${row.CART_NO}"
+									<input type="checkbox" id="checkbox${stat.index}" name="CART_NO" id="CART_NO" value="${row.CART_NO}"
 									onclick="javascript:checkedRows(${stat.index});">
 								</td>
 								<td class="thumb">
@@ -470,16 +485,23 @@
 								<td class="delivery">기본배송</td>
 								<td><span class="totprice" value="${row.PRICE*row.COUNT}">${row.PRICE*row.COUNT}</span></td>
 								<td class="total"><strong>${row.PRICE * row.COUNT }</strong></td>
-								<td class="button"><a href="javascript:;"
-									onclick="Basket.orderBasketItem(0);"><img
-										src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_order.gif"
-										alt="주문하기"></a> <a href="javascript:;"
-									onclick="BasketNew.moveWish(0);"><img
-										src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_wish.gif"
-										alt="관심상품등록"></a> <a href="javascript:;"
-									onclick="Basket.deleteBasketItem(0);"><img
-										src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_delete.gif"
-										alt="삭제"></a></td>
+								<td class="button">
+									<c:url var="deleteOne" value="/cart/deleteOne">
+										<c:param name="CART_NO" value="${row.CART_NO }" />
+									</c:url>
+									<c:url var="addOne" value="/order/addOne">
+										<c:param name="CART_NO" value="${row.CART_NO }" />
+										<c:param name="ATTRIBUTE_NO" value="${row.ATTRIBUTE_NO}" />
+										<c:param name="GOODS_NO" value="${row.GOODS_NO }" />
+										<c:param name="COUNT" value="${row.COUNT}" />
+									</c:url>
+									<a href="${addOne }" >
+									<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_order.gif" alt="주문하기"></a> 
+									<a href="javascript:;" onclick="BasketNew.moveWish(0);">
+									<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_wish.gif" alt="관심상품등록"></a> 
+									<a href="${deleteOne }" >
+									<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_delete.gif" alt="삭제"></a>
+								</td>
 							</tr>
 							
 							</c:forEach>
@@ -492,9 +514,6 @@
 					</c:choose>
 						</tbody>
 					</table>
-					<!-- 일반상품 (업체기본배송) -->
-					<!-- 일반상품 (개별배송) -->
-					<!-- 일반상품 (해외배송) -->
 				</div>
 				
 				<div class="xans-element- xans-order xans-order-basketpriceinfoguide  ">
@@ -503,25 +522,16 @@
 				
 				<!-- 선택상품 제어 버튼 -->
 				<div class="xans-element- xans-order xans-order-selectorder ">
-					<span class="left"> <strong class="ctrlTxt">선택상품을</strong> <a
-						href="#none" onclick="Basket.deleteBasket()"><img
-							src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_delete2.gif"
-							alt="삭제하기"></a> <a href="#none" onclick="Basket.addWishList()"
-						class="displaynone"><img
-							src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_wish.gif"
-							alt="관심상품등록"></a> <a href="#none" onclick="Basket.moveOversea()"
-						class=""><img
-							src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_foreign.gif"
-							alt="해외배송상품 장바구니로 이동"></a> <a href="#none"
-						onclick="Basket.hopeProduct(''); return false;" class="displaynone"><img
-							src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_product.gif"
-							alt="상품조르기"></a>
-					</span> <a href="#none" onclick="Basket.emptyBasket()"><img
-						src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_clear.gif"
-						alt="장바구니비우기"></a> <a href="#none"
-						onclick="Basket.estimatePrint(this)" link="/estimate/userform.html"><img
-						src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_estimate.gif"
-						alt="견적서출력"></a>
+					
+					<c:url var="deleteSelect" value="/cart/deleteSelect">
+					</c:url>
+					<c:url var="deleteAll" value="/cart/deleteAll"></c:url>
+					
+					<span class="left"> <strong class="ctrlTxt">선택상품을</strong> 
+						<a href="#this" id="deleteSelect"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_delete2.gif" alt="삭제하기"></a> 
+					</span> 
+					
+					<a href="${deleteAll }"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_clear.gif" 			alt="장바구니비우기"></a> 
 				</div>
 				<!-- 총 주문금액 : 국내배송상품 -->
 				<div class="xans-element- xans-order xans-order-totalsummary  ">
@@ -564,7 +574,7 @@
 				<!-- 주문 버튼 -->
 				<div class="xans-element- xans-order xans-order-totalorder">
 					<a href="#this" id="addOrderSelected">선택상품주문</a> 
-					<a href="#this#" id="addOrderAll">전체상품주문</a>
+					<a href="#this" id="addOrderAll">전체상품주문</a>
 					<span class="right"> 
 						<a href="/">쇼핑계속하기</a>
 					</span>

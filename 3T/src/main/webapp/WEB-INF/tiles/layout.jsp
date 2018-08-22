@@ -91,7 +91,7 @@
 
 	<div>
 
-		<div id="body" align="center" style="width: 80%; margin: 0 auto;">
+		<div id="body" align="center" style="width:73%; margin: 0 auto;">
 			<tiles:insertAttribute name="body" ignore="true" />
 		</div>
 		<div id="footer">

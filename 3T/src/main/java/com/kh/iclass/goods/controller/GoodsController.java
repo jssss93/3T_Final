@@ -28,14 +28,6 @@ public class GoodsController {
 	@Resource(name = "goodsService")
 	private GoodsService goodsService;
 
-	
-
-	
-	
-	
-
-	
-
    @RequestMapping(value = "/main")
    public ModelAndView mainList(Map<String, Object> commandMap) throws Exception {
       ModelAndView mv = new ModelAndView("goods/main");
@@ -92,59 +84,47 @@ public class GoodsController {
 
       ModelAndView mv = new ModelAndView("goods/goodsdetail");
 
-
       goodsService.updateHitcnt(commandMap.getMap());
       
       List<Map<String, Object>> goodsDetail = goodsService.selectGoodsDetail(commandMap.getMap());
       
-      
-
       Map<String, Object> goodsBasic = goodsDetail.get(0);
       
       System.out.println(goodsBasic.get("RELATED").toString().split(",")[0]);
       System.out.println(goodsBasic.get("RELATED"));
       System.out.println(goodsBasic.get("RELATED").toString());
-      
+      System.out.println(goodsBasic.get("RELATED").toString().length());
+		
       Map<String, Object> param=new HashMap<String,Object>();
-      
+		
       List<String> relatedGoodsNoList = new ArrayList<String>();
-      List<String> relatedGoodsNoList2 = new ArrayList<String>();
-      
-      for(int i=0;i<4;i++) {
-         relatedGoodsNoList.add(goodsBasic.get("RELATED").toString().split(",")[i]);
+      String[] relatedGoodsNoList_Length =goodsBasic.get("RELATED").toString().split(",");
+	
+      for(int i=0;i<relatedGoodsNoList_Length.length;i++) {
+    	 relatedGoodsNoList.add(goodsBasic.get("RELATED").toString().split(",")[i]);
       }
-      relatedGoodsNoList2.add("99");
-      String []value= {"99"};
-      System.out.println("relatedGoodsNoList : "+ relatedGoodsNoList);
-      
+		
       param.put("relGoodsNo_List", relatedGoodsNoList);
-      param.put("relGoodsNo_List2", relatedGoodsNoList2);
-      param.put("arr", value);
-      
+		
       System.out.println(param.get("relGoodsNo_List"));
-      System.out.println("relGoodsNo_List2 : "+ relatedGoodsNoList2   );
-      
-      
-      
+		
+		
       commandMap.put("relGoodsNo_List", relatedGoodsNoList);
-      
+		
       List<Map<String, Object>> goodsRel = goodsService.selectRelatedList(param);
-      
-      
       List<Map<String, Object>> goodsImage = goodsService.selectGoodsImage(commandMap.getMap());
 
       Map<String, Object> goodsoneImage = goodsImage.get(0);
 
-
       
       //상품리뷰띄우기
-       List<Map<String, Object>> goodsDetail1 = goodsService.selectGoodsDetail1(commandMap.getMap());
+      List<Map<String, Object>> goodsDetail1 = goodsService.selectGoodsDetail1(commandMap.getMap());
          
        //상품QA띄우기
-       List<Map<String, Object>> goodsDetail2 = goodsService.selectGoodsDetail2(commandMap.getMap());
+      List<Map<String, Object>> goodsDetail2 = goodsService.selectGoodsDetail2(commandMap.getMap());
        
-       mv.addObject("goodsDetail1", goodsDetail1); //REVIEW 상세보기
-       mv.addObject("goodsDetail2", goodsDetail2); //Q&A 상세보기
+      mv.addObject("goodsDetail1", goodsDetail1); //REVIEW 상세보기
+      mv.addObject("goodsDetail2", goodsDetail2); //Q&A 상세보기
       
       mv.addObject("goodsDetail", goodsDetail);
 
@@ -191,45 +171,4 @@ public class GoodsController {
 
       return mv;
    }
-   /*
-    * @RequestMapping(value = "/goods/detail") public ModelAndView
-    * goodsDetail(CommandMap commandMap) throws Exception { ModelAndView mv = new
-    * ModelAndView("goods/detail");
-    * 
-    * Map<String, Object> map = goodsService.goodsDetail(commandMap.getMap());
-    * mv.addObject("Detail",map.get("map")); //첨�??�일 목록
-    * mv.addObject("list",map.get("list"));
-    * 
-    * return mv; }
-    * 
-    * // ?�데?�트 ?�면 ?�우�?
-    * 
-    * @RequestMapping(value = "/goods/updateForm") public ModelAndView
-    * goodsUpdateForm(CommandMap commandMap) throws Exception { ModelAndView mv =
-    * new ModelAndView("/goods/update");
-    * 
-    * Map<String, Object> map = goodsService.goodsDetail(commandMap.getMap());
-    * mv.addObject("map", map.get("map")); mv.addObject("list", map.get("list"));
-    * 
-    * return mv; }
-    * 
-    * // ?�데?�트 처리
-    * 
-    * @RequestMapping(value = "/goods/update") public ModelAndView
-    * goodsUpdate(CommandMap commandMap, HttpServletRequest request) throws
-    * Exception { ModelAndView mv = new ModelAndView("redirect:/goods/detail");
-    * 
-    * goodsService.goodsUpdate(commandMap.getMap(),request);
-    * 
-    * mv.addObject("GOODS_NO", commandMap.get("GOODS_NO")); return mv; }
-    * 
-    * @RequestMapping(value = "/goods/delete") public ModelAndView
-    * goodsDelete(CommandMap commandMap) throws Exception { ModelAndView mv = new
-    * ModelAndView("redirect:/goods/list");
-    * 
-    * goodsService.goodsDelete(commandMap.getMap());
-    * 
-    * return mv; }
-    */
-
 }
