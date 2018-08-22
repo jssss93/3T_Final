@@ -48,7 +48,7 @@
 							<td align="center"><img width="50" height="50"
 								src="/3T/resources/upload/${row.SAV_NAME.split(',')[0] }" /></td>
 
-							<td>${row.NAME }<br /> <br /> <a href="#this" name="title">${row.TITLE }</a>
+							<td><div>${row.NAME }</div> <br /> <a href="#this" name="title">${row.TITLE }</a>
 								<input type="hidden" id="REVIEW_NO" value="${row.REVIEW_NO }">
 								<input type="hidden" id="GOODS_NO" value="${row.GOODS_NO }">
 							</td>

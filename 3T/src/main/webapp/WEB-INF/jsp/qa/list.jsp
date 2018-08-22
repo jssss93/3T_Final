@@ -53,16 +53,18 @@
 								기타문의
 							</c:if></td>
 							<c:if test="${row.STATUS == 0 }">
-								<td><c:if test="${row.RE_STEP ==1 }">
+								<td><div> ${row.NAME }</div>
+								<br /><c:if test="${row.RE_STEP ==1 }">
 												→[답변] &nbsp;
-												</c:if> ${row.NAME }<br />
-								<br /> <a href="#this" name="checkpasswd">${row.TITLE }</a> <input
+												</c:if>
+								 <a href="#this" name="checkpasswd">${row.TITLE }</a> <input
 									type="hidden" id="QA_NO" value="${row.QA_NO }"> <input
-									type="hidden" id="GOODS_NO" value="${row.GOODS_NO }"></td>
+									type="hidden" id="GOODS_NO" value="${row.GOODS_NO }"> <img width="15" height="20"
+								src="/3T/resources/upload/secret.PNG" /></td>
 							</c:if>
 
 							<c:if test="${row.STATUS == 1 }">
-								<td>${row.NAME }<br />
+								<td><div> ${row.NAME }</div>
 								<br /> <c:if test="${row.RE_STEP ==1 }">
 												→[답변] &nbsp;
 												</c:if> <a href="#this" name="title">${row.TITLE }</a> <input
