@@ -7,13 +7,8 @@
 <body>
 
     <form id="frm" name="frm">
-        <table class="board_view">
-            <colgroup>
-                <col width="15%"/>
-                <col width="35%"/>
-                <col width="15%"/>
-                <col width="35%"/>
-            </colgroup>
+        <table class="board_view2">
+      
             <caption>게시글 상세</caption>
             <tbody>
                 <tr>

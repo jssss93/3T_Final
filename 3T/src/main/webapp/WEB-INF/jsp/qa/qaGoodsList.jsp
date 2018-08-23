@@ -9,22 +9,21 @@
 </head>
 <body>
 	<form action="/3T/qa/qaGoodsSelect">
+	<table border="1" class="board_list2">
+	<tr>
+	<td>
 		<select name="SearchNum" id="SearchNum"
 			style="width: 100px; height: 30px;">
 			<option value="NAME">상품명</option>
-		</select> <input type="text" name="SearchKeyword" id="SearchKeyword"
-			style="margin-left: 15px; width: 200px; height: 36px; border-radius: 5px 5px 5px 5px;" />
-
-
-		<input type="submit" value="검색">
+		</select> <input type="text" name="SearchKeyword" id="SearchKeyword" />
+		<input type="submit" class="btn" value="검색">
+</td>
+</tr>
+</table>
+		
 	</form>
-	<table class="board_list" width="50%">
-		<colgroup>
-			<col width="15%" />
-			<col width="*" />
-			<col width="15%" />
-			<col width="20%" />
-		</colgroup>
+	<table border="1" class="board_list2">
+		
 		<thead>
 			<tr>
 				<th scope="col">상품이미지</th>
@@ -40,12 +39,9 @@
 				<td>${row.NAME }<br /> KRW&nbsp; ${row.PRICE }
 				</td>
 				<form action="/3T/qa/qaGoodsSuccess">
-					<td><input type="submit" value="선택"></td>
-					<%-- <input type="hidden" id="NAME" name="NAME" value="${row.NAME }">
-					<input type="hidden" id="PRICE" NAME="PRICE" value="${row.PRICE }"> --%>
+					<td><input type="submit" class="btn" value="선택"></td>
 					<input type="hidden" id="GOODS_NO" NAME="GOODS_NO"
 						value="${row.GOODS_NO }">
-					<%-- 	<input type="hidden" id="SAV_NAME" NAME="SAV_NAME" value="${row.SAV_NAME }"> --%>
 				</form>
 			</tr>
 		</c:forEach>
