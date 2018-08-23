@@ -47,13 +47,15 @@
 </head>
 
 <center>
-	<table width="1000" height="300" border="0" cellpadding="5" cellspacing="0">
+	<table width="1000" height="300" border="0" cellpadding="5"
+		cellspacing="0">
 		<body>
 		<tr>
 			<!-- 상품 메인 이미지-->
-			
-			<td height="490" align="center" valign="TOP"><img width="490" height="490" src="/3T/resources/images/${goodsoneImage.SAV_NAME}" /></td>
-			
+
+			<td height="490" align="center" valign="TOP"><img width="490"
+				height="490" src="/3T/resources/images/${goodsoneImage.SAV_NAME}" /></td>
+
 
 			<!-- 상품 상세 내용 -->
 			<td>
@@ -69,172 +71,155 @@
 						<!-- 상품가격 텍스트 -->
 						<tr>
 							<td style="width: 280; font-size: 13pt;" colspan="2"><br>
-								<p></p> 
-								<!--상품 가격  -->
-								KRW&nbsp; ${goodsBasic.PRICE }
-							</td>				
+								<p></p> <!--상품 가격  --> KRW&nbsp; ${goodsBasic.PRICE }</td>
 						</tr>
-						
-			<tr>
-				<td>
-						<!-- 색상, 사이즈, 개수 선택옵션 -->
-					<select id="option" onchange="setOption(this)" style="width:225px">
-               		<option value="">-옵션 선택-</option>
-					<c:forEach var="goodsDetail" items="${goodsDetail}" varStatus="stat">
-					<c:if test="${goodsDetail.COUNT ne 0}">
 
-							 <option
-							 value="${goodsDetail.COLOR }-${goodsDetail.GOODS_SIZE }"
-							 optnm="${goodsDetail.COLOR }-${goodsDetail.GOODS_SIZE }" 
-							 stock="${goodsDetail.COUNT }"
-							 price="${goodsBasic.PRICE }"
+						<tr>
+							<td>
+								<!-- 색상, 사이즈, 개수 선택옵션 --> <select id="option"
+								onchange="setOption(this)" style="width: 225px">
+									<option value="">-옵션 선택-</option>
+									<c:forEach var="goodsDetail" items="${goodsDetail}"
+										varStatus="stat">
+										<c:if test="${goodsDetail.COUNT ne 0}">
 
-							 attribute_no="${goodsDetail.ATTRIBUTE_NO }">
-							 ${goodsDetail.COLOR } - ${goodsDetail.GOODS_SIZE }
-							 (${goodsDetail.COUNT }개)</option>	
-                </c:if>
-
-                     
-       
-					<c:if test="${goodsDetail.COUNT eq 0}">
-							 <option
-							 value="${goodsDetail.COLOR }-${goodsDetail.GOODS_SIZE }"
-							 optnm="${goodsDetail.COLOR }-${goodsDetail.GOODS_SIZE }"
-							 stock="0" 
-							 price="0" 
-							 disabled=""
-							 attributeno="${goodsDetail.ATTRIBUTE_NO }">
-							 ${goodsDetail.COLOR } - ${goodsDetail.GOODS_SIZE }(품절)
-							 </option>
-             		</c:if>
-				
-            	   </c:forEach>
-             	  </select>  
-               </td>
-			</tr>
-						
-						<!-- 사이즈, 색상, 개수출력 -->
-			<tr>
-				<td>
-					<div id="attribute">
-							<ul class="MK_inner-opt-cm" id="MK_innerOpt_01"></ul>
-                  	    <div id="MK_innerOptTotal" class="">
-                     		  <p class="totalRight">
-                         		 <span class="MK_txt-total">TOTAL</span> 
-                         		 <span id="MK_txt-won" data-price="">0원</span>
-                     		  </p>
-                    	</div>
-					</div>
-				</td>
-			</tr>
-						
-						
-						
-						
-						<!-- BUY,ADD CART추가하기 -->
-			<tr>
-				<td colspan="2"> 
-				<br/>
-					<!-- 상품구매버튼 -->
+											<option
+												value="${goodsDetail.COLOR }-${goodsDetail.GOODS_SIZE }"
+												optnm="${goodsDetail.COLOR }-${goodsDetail.GOODS_SIZE }"
+												stock="${goodsDetail.COUNT }" price="${goodsBasic.PRICE }"
+												attribute_no="${goodsDetail.ATTRIBUTE_NO }">
+												${goodsDetail.COLOR } - ${goodsDetail.GOODS_SIZE }
+												(${goodsDetail.COUNT }개)</option>
+										</c:if>
 
 
-								</tr>
-								<tr>
-									<td colspan="2"> 
-									<br/>
-										<!-- 상품구매버튼 --> <!-- 로그인 o --> 
 
-										<%-- 	<input name="Buy" style="" src="/3T/resources/images/buy.PNG"
-												onmouseover="this.src='/3T/resources/images/buy1.png'"
-												onmouseout="this.src='/3T/resources/images/buy.PNG'"
-												onclick="BuyCheck(1);" type="image" src="/3T/resources/images/buy.PNG"
-												 />
-												 <input type="hidden" value="${goodsBasic.GOODS_NO }" name="GOODS_NO" id="GOODS_NO">
- --%>
-						<input name="Buy" style="" src="/3T/resources/images/buy.PNG"
-						onmouseover="this.src='/3T/resources/images/buy1.png'"
-						onmouseout="this.src='/3T/resources/images/buy.PNG'"
-						onclick="BuyCheck(1);" type="image" src="/3T/resources/images/buy.PNG" />
-						<input type="hidden" name="GOODS_NO" id="GOODS_NO" value="${goodsBasic.GOODS_NO }"/>
+										<c:if test="${goodsDetail.COUNT eq 0}">
+											<option
+												value="${goodsDetail.COLOR }-${goodsDetail.GOODS_SIZE }"
+												optnm="${goodsDetail.COLOR }-${goodsDetail.GOODS_SIZE }"
+												stock="0" price="0" disabled=""
+												attributeno="${goodsDetail.ATTRIBUTE_NO }">
+												${goodsDetail.COLOR } - ${goodsDetail.GOODS_SIZE }(품절)</option>
+										</c:if>
 
-										
-				</td>
-
-					<tr>
-						<td colspan="2">
-							<br>
-							<!-- 장바구니버튼 -->  
-											
-							<input name="BuyCart"
-							onmouseover="this.src='/3T/resources/images/cart.PNG'"
-							onmouseout="this.src='/3T/resources/images/cart.PNG'"
-							onclick="BuyCheck(2);" type="image"
-							src="/3T/resources/images/cart.PNG" />
-					</tr>
-								
-					<tr>
-						<td colspan="2">
-							<!-- wishlist버튼 -->
-								
-							<input name="WishList" onclick="BuyCheck(4);" 
-							type="image" src="/3T/resources/images/wishlist.PNG"
-							value="WishList"/>
+									</c:forEach>
+							</select>
 							</td>
+						</tr>
+
+						<!-- 사이즈, 색상, 개수출력 -->
+						<tr>
+							<td>
+								<div id="attribute">
+									<ul class="MK_inner-opt-cm" id="MK_innerOpt_01"></ul>
+									<div id="MK_innerOptTotal" class="">
+										<p class="totalRight">
+											<span class="MK_txt-total">TOTAL</span> <span id="MK_txt-won"
+												data-price="">0원</span>
+										</p>
+									</div>
+								</div>
+							</td>
+						</tr>
+
+
+
+
+						<!-- BUY,ADD CART추가하기 -->
+						<tr>
+							<td colspan="2"><br /> <!-- 상품구매버튼 -->
+						</tr>
+						<tr>
+							<td colspan="2"><br /> <a><input name="Buy" style=""
+									src="/3T/resources/images/buy.PNG"
+									onmouseover="this.src='/3T/resources/images/buy1.png'"
+									onmouseout="this.src='/3T/resources/images/buy.PNG'"
+									onclick="BuyCheck(1);" type="image"
+									src="/3T/resources/images/buy.PNG" /> <input type="hidden"
+									name="GOODS_NO" id="GOODS_NO" value="${goodsBasic.GOODS_NO }" /></a>
+
+
+							</td>
+						<tr>
+							<td colspan="2"><br> <!-- 장바구니버튼 --> <a><input
+									name="BuyCart"
+									onmouseover="this.src='/3T/resources/images/cart.PNG'"
+									onmouseout="this.src='/3T/resources/images/cart.PNG'"
+									onclick="BuyCheck(2);" type="image"
+									src="/3T/resources/images/cart.PNG" /></a>
+						</tr>
+						<tr/>
+
 						<tr>
 							<td colspan="2">
-								<!-- 리뷰,q&a 하이퍼링크 추가 -->
-								<a href='Review_list.action?Goods_no=${resultClass.goods_no}'>REVIEW&nbsp;( 0 )</a>
-								&nbsp;&nbsp;&nbsp;&nbsp;
-								<a href='qa_listAction.action?Goods_no=${resultClass.goods_no}'>QA&nbsp;( 0 )</a>
+								<!-- wishlist버튼 --> <a><input name="WishList"
+									onclick="BuyCheck(4);" type="image"
+									src="/3T/resources/images/wishlist.PNG" value="WishList" /></a>
 							</td>
 						</tr>
-						<!-- 옷 정보 content -->	
 						<tr>
-							<td align="left" colspan="2">
-							<br>
-							 <pre>
-	                    <font color="#de1616">INFO</font>
-                        ${goodsBasic.CONTENT }
-
-                             
+							<td colspan="2">
+								<!-- 리뷰,q&a 하이퍼링크 추가 --> <a
+								href='Review_list.action?Goods_no=${resultClass.goods_no}'>REVIEW&nbsp;(
+									0 )</a> &nbsp;&nbsp;&nbsp;&nbsp; <a
+								href='qa_listAction.action?Goods_no=${resultClass.goods_no}'>QA&nbsp;(
+									0 )</a>
+							</td>
 						</tr>
-							
-							
+						<!-- 옷 정보 content -->
+
+						<tr>
+							<td>
+
+								<div
+									class="xans-element- xans-product xans-product-additional product_about ">
+									<pre>
+								<font color="#de1616">INFO</font>
+                                ${goodsBasic.CONTENT }
+                            </pre>
+
+								</div>
+							</td>
+						</tr>
 					</table>
 				</form>
 			</td>
 		</tr>
-		
+
 	</table>
 
 	<!-- 상품 상세 이미지 -->
 	<br> <br> <br>
-	<table width="0" border="0" height="0"
-		cellpadding="0" cellspacing="0">
+	<table width="0" border="0" height="0" cellpadding="0" cellspacing="0">
 		<c:forEach var="row" items="${goodsImage }">
 			<tr>
-			<td colspan="0" align="center">
-						<img width="1000" height="1000" src="/3T/resources/images/${row.SAV_NAME }" />
-			</td>
+				<td colspan="0" align="center"><img width="1000" height="1000"
+					src="/3T/resources/images/${row.SAV_NAME }" /></td>
 			</tr>
-		<tr>
-		<td>
-		<br><br><br>
-		<br><br><br>
+			<tr>
+				<td><br> <br> <br> <br> <br> <br>
 		</c:forEach>
-		
+
 	</table>
 
-	<table width="0" border="0" height="0" align="CENTER"
-		cellpadding="0" cellspacing="0">
+	<table width="0" border="0" height="0" align="CENTER" cellpadding="0"
+		cellspacing="0">
 
-	
+
 	</table>
 </center>
-<br><br><br>
-		<br><br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <table width="500" border="1" height="500" align="CENTER"
-	cellpadding="0" cellspacing="0"><br><br><br>관련상품
+	cellpadding="0" cellspacing="0">
+	<br>
+	<br>
+	<br>관련상품
 
 
 </table>
@@ -243,147 +228,161 @@
 <table width="200" border="0" height="0" align="center" cellpadding="10"
 	cellspacing="10">
 	<tr>
-		<td>
-		
-		<c:forEach items="${goodsRel }" var="list" varStatus="stat" begin="0" end="15">
-				
+		<td><c:forEach items="${goodsRel }" var="list" varStatus="stat"
+				begin="0" end="15">
+
 				<c:if test="stat.index == 3">
 					<tr></tr>
 				</c:if>
-				
-				
-				<td width="150" height="400" align="center">
-				<a href="#this" name="title" >
 
-						<img id="myImg"
-							src="/3T/resources/images/${list.IMAGE.split(',')[0] }"
-							width="500" height="570">
-							<input type="hidden" id="GOODS_NO" name="	" value="${list.GOODS_NO }">
-					</a><br> <br> ${list.NAME }<br>
-					&nbsp;${list.PRICE }</td>			
-			
-		
-			</c:forEach>
-			</td>
+
+				<td width="150" height="400" align="center"><a href="#this"
+					name="title"> <img id="myImg"
+						src="/3T/resources/images/${list.IMAGE.split(',')[0] }"
+						width="500" height="570"> <input type="hidden" id="GOODS_NO"
+						name="	" value="${list.GOODS_NO }">
+				</a><br> <br> ${list.NAME }<br> &nbsp;${list.PRICE }</td>
+
+
+			</c:forEach></td>
 	</tr>
-		
-		
-			
+
+
+
 </table>
 <!-- 상세보기REVIEW -->
 
 
- <br><br><br>
-   <table width="55%" border="0" cellspacing="0" cellpadding="0" class="board_top">
- <tr>
-			<td height="50"></td>
-		</tr>
+<br>
+<br>
+<br>
+<table width="55%" border="0" cellspacing="0" cellpadding="0"
+	class="board_top">
+	<tr>
+		<td height="50"></td>
+	</tr>
+	<tr>
+		<td align="center" class="text01 formbar"><h3>
+				<font color="#000000">REVIEW</font><span> : WRITE YOUR
+					REVIEWS~!</span>
+			</h3></td>
+	</tr>
+
+	<tr>
+		<td height="50"></td>
+	</tr>
+</table>
+<table width="70%" align="center" border="0" cellspacing="0"
+	cellpadding="1" class="board_review2">
+
+	<tr>
+		<td valign="middle"><strong>NO</strong></td>
+		<td valign="middle"><strong>TITLE</strong></td>
+		<td valign="middle"><strong>CONTENT</strong></td>
+		<td valign="middle"><strong>NAME</strong></td>
+		<td valign="middle"><strong>DATE</strong></td>
+		<td valign="middle"><strong>HIT</strong></td>
+	</tr>
+
+	<c:if test="${fn:length(goodsDetail1) le 0}">
 		<tr>
-			<td align="center" class="text01 formbar"><h3><font color="#000000">REVIEW</font><span> : WRITE YOUR REVIEWS~!</span></h3></td>
+			<td colspan="6" style="text-align: center;">등록된 리뷰가 없습니다</td>
 		</tr>
+	</c:if>
 
+	<c:forEach var="goodsDetail1" items="${goodsDetail1}" varStatus="stat">
 		<tr>
-			<td height="50"></td>
+
+			<td align="center">${goodsDetail1.REVIEW_NO}</td>
+
+			<td><a href="#this" name="title2">${goodsDetail1.TITLE }</a> <input
+				type="hidden" id="REVIEW_NO" value="${goodsDetail1.REVIEW_NO }">
+				<!-- <details> <summary>내용보기</summary> -->
+			<td align="center">${goodsDetail1.CONTENT}</td>
+
+			<td align="center">${goodsDetail1.MEMBER_ID}</td>
+
+			<td align="center">${goodsDetail1.REGDATE}</td>
+
+			<td align="center">${goodsDetail1.READCNT}</td>
+
 		</tr>
-		</table>
-		<table width="70%" align="center" border="0" cellspacing="0" cellpadding="1" class="board_review2">
-       									
-          <tr>
-               <td valign="middle"><strong>NO</strong></td>
-               <td valign="middle"><strong>TITLE</strong></td>
-               <td valign="middle"><strong>CONTENT</strong></td>
-               <td valign="middle"><strong>NAME</strong></td>
-               <td valign="middle"><strong>DATE</strong></td>
-               <td valign="middle"><strong>HIT</strong></td>
-            </tr>
-            
-            <c:if test="${fn:length(goodsDetail1) le 0}">
-			<tr><td colspan="6" style="text-align:center;">등록된 리뷰가 없습니다</td></tr>
-		</c:if>
-		
-             <c:forEach var="goodsDetail1" items="${goodsDetail1}" varStatus="stat">
-               <tr>
-                 
-                  <td align="center">${goodsDetail1.REVIEW_NO}</td>
-                    
-                  <td><a href="#this" name="title2">${goodsDetail1.TITLE }</a> <input
-								type="hidden" id="REVIEW_NO" value="${goodsDetail1.REVIEW_NO }">
-                  <!-- <details> <summary>내용보기</summary> -->
-                  <td align="center">${goodsDetail1.CONTENT}</td>
-                 
-                  <td align="center">${goodsDetail1.MEMBER_ID}</td>
-                 
-                  <td align="center">${goodsDetail1.REGDATE}</td>
-                  
-                  <td align="center">${goodsDetail1.READCNT}</td>
 
-               </tr> 
+	</c:forEach>
 
-             </c:forEach>
-        
-      </table>
-      
-   
- <br></br>
+</table>
+
+
+<br></br>
 <!-- Q & A 게시판 -->
-<br><br><br>
-   <table width="50%" border="0" cellspacing="0" cellpadding="0" class="board_top">
- <tr>
-			<td height="50"></td>
-		</tr>
+<br>
+<br>
+<br>
+<table width="50%" border="0" cellspacing="0" cellpadding="0"
+	class="board_top">
+	<tr>
+		<td height="50"></td>
+	</tr>
+	<tr>
+		<td align="center"><h3>
+				<font color="#000000">Q & A</font><span> : HAVE A QUESTION ?</span>
+			</h3></td>
+	</tr>
+
+	<tr>
+		<td height="50"></td>
+	</tr>
+</table>
+<table width="70%" align="center" border="0" cellspacing="0"
+	cellpadding="0" class="board_review2">
+
+	<tr>
+		<td valign="middle"><strong>NO</strong></td>
+		<td valign="middle"><strong>TITLE</strong></td>
+		<td valign="middle"><strong>CONTENT</strong></td>
+		<td valign="middle"><strong>NAME</strong></td>
+		<td valign="middle"><strong>DATE</strong></td>
+		<td valign="middle"><strong>HIT</strong></td>
+	</tr>
+
+	<c:if test="${fn:length(goodsDetail2) le 0}">
 		<tr>
-			<td align="center"><h3><font color="#000000">Q & A</font><span> : HAVE A QUESTION ?</span></h3></td>
+			<td colspan="6" style="text-align: center;">등록된 QA가 없습니다</td>
 		</tr>
+	</c:if>
 
+	<c:forEach var="goodsDetail2" items="${goodsDetail2}" varStatus="stat">
 		<tr>
-			<td height="50"></td>
+
+			<td align="center">${goodsDetail2.QA_NO}</td>
+
+			<td><a href="#this" name="title">${goodsDetail2.TITLE }</a> <input
+				type="hidden" id="QA_NO" value="${goodsDetail2.QA_NO }"> <!-- <details> <summary>내용보기</summary> -->
+			<td align="center">${goodsDetail2.CONTENT}</td>
+
+			<td align="center">${goodsDetail2.MEMBER_ID}</td>
+
+			<td align="center">${goodsDetail2.REGDATE}</td>
+
+			<td align="center">${goodsDetail2.READCNT}</td>
+
 		</tr>
-		</table>
-		<table width="70%" align="center" border="0" cellspacing="0" cellpadding="0" class="board_review2">
-       
-       <tr>
-               <td valign="middle"><strong>NO</strong></td>
-               <td valign="middle"><strong>TITLE</strong></td>
-               <td valign="middle"><strong>CONTENT</strong></td>
-               <td valign="middle"><strong>NAME</strong></td>
-               <td valign="middle"><strong>DATE</strong></td>
-               <td valign="middle"><strong>HIT</strong></td>
-            </tr>
-          
-          <c:if test="${fn:length(goodsDetail2) le 0}">
-			<tr><td colspan="6" style="text-align:center;">등록된 QA가 없습니다</td></tr>
-		</c:if> 
-          
-          <c:forEach var="goodsDetail2" items="${goodsDetail2}" varStatus="stat">
-               <tr>
-                 
-                  <td align="center">${goodsDetail2.QA_NO}</td>
-                 
-                 <td><a href="#this" name="title">${goodsDetail2.TITLE }</a> <input
-								type="hidden" id="QA_NO" value="${goodsDetail2.QA_NO }"> 
-                  <!-- <details> <summary>내용보기</summary> -->
-                  <td align="center">${goodsDetail2.CONTENT}</td>
-                 
-                  <td align="center">${goodsDetail2.MEMBER_ID}</td>
-                 
-                  <td align="center">${goodsDetail2.REGDATE}</td>
-                  
-                  <td align="center">${goodsDetail2.READCNT}</td>
 
-               </tr> 
-               
-              
 
-             </c:forEach>
-						
-														
-	</table>
-               
-    
-   
-<br><br>
-<br><br>
-<br><br>
+
+	</c:forEach>
+
+
+</table>
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <script>
 		var totprice = 0;
@@ -508,7 +507,7 @@
 				
 			
 				</script>
-				<script>
+<script>
 				
 				
 				function change_ea(obj,idx){
