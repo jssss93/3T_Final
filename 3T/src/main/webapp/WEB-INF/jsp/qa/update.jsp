@@ -26,12 +26,7 @@
 <body>
 	<form id="frm" name="frm">
 		<table border="1" align="center" class="board_view2">
-			<colgroup>
-				<col width="15%" />
-				<col width="35%" />
-				<col width="15%" />
-				<col width="35%" />
-			</colgroup>
+			
 			<tbody>
 				<tr class="board_title">
 					<th scope="row">글 번호</th>

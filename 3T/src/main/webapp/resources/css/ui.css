@@ -128,7 +128,7 @@ border-right:4px solid #eeeeee;border-left: 4px solid #eee; font-size: 14px;}
 .board_title {}
 .board_title #TITLE {height: 25px; padding: 3px; width: 200px; border-top: 1px solid #eee; border-right:1px solid #eeeeee;
 border-left: 1px solid #eee;border-bottom: 1px solid #eee; font-size: 12px;}
-.board_title td {width: auto; padding: 10px 0 8px 10px;text-transform: uppercase;background-color: #fff;text-align: left;
+.board_title td { padding: 10px 0 8px 10px;text-transform: uppercase;background-color: #fff;text-align: left;
 font-weight: normal;vertical-align: middle; border-right:1px solid #eeeeee; font-size: 12px; }
 .board_title th {font-size: 12px; width: 110px; padding: 10px 0 8px 20px; border-right: 1px solid #eeeeee;}
 .board_content {width:70%;}
@@ -223,3 +223,4 @@ to {
 .abc {  font-size: 24px; color: #000000;}
 
 .board_review3 tbody td div{margin-bottom:5px;color:#aaa;font-size:11px;.xans-board-listpackage; }
+
