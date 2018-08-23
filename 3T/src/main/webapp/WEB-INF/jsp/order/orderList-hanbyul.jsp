@@ -16,7 +16,12 @@
 			<li title="현재 위치"><strong>주문서작성</strong></li>
 		</ol>
 	</div>
-
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<div class="titleArea">
 		<h2>ORDER</h2>
 	</div>
@@ -139,7 +144,7 @@
 								</div></td>
 							<td>[조건]</td>
 							<td class="right"><strong>KRW 46,000</strong>
-							<div class="displaynone"></div></td>
+								<div class="displaynone"></div></td>
 						</tr>
 					</tbody>
 				</table>

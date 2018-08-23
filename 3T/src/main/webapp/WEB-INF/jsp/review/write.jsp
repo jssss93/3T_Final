@@ -8,16 +8,17 @@
 <body>
 
 	<script type="text/javascript">
-	function open_win_noresizable(url, name)
-	{
-		var oWin = window.open(url, name, "scrollbars=no, status=no, resizable=no, width=700, height=500");
-		
-	}
-</script>
+		function open_win_noresizable(url, name) {
+			var oWin = window
+					.open(url, name,
+							"scrollbars=no, status=no, resizable=no, width=700, height=500");
 
-	<table width="70%" align="center" border="0" cellspacing="0"
+		}
+	</script>
+ 
+	<table width="100%" align="center" border="0" cellspacing="0"
 		cellpadding="1" colspan="1" class="board_top">
-		<br/>
+		<br />
 		<tr>
 			<td height="50"></td>
 		</tr>
@@ -34,62 +35,76 @@
 	<table border="1" align="center" class="board_list2">
 		<c:choose>
 			<c:when test="${list.GOODS_NO > 0 }">
-				<tr class="board_title">
+
+				<tr class="board_subject2">
 					<td align="center" width="120"><img width="100" height="100"
-						src="/3T/resources/upload/${list.IMAGE.split(',')[0] }" /></td>
-					<td>${list.NAME }<br /> KRW&nbsp;${list.PRICE } <br /> 
-					
-						<input type="button" name="button" class="btn" value="상품정보 선택 "
-						onclick="javascript:open_win_noresizable('reviewGoodsSelect', write)" />&nbsp;
-						<form action="/3T/goods/detail">
+						src="/3T/resources/upload/${list.IMAGE.split(',')[0] }" />
+					<td>${list.NAME }<br /> KRW&nbsp;${list.PRICE } <br> <a
+						class="board_subject4" type="button"
+						onclick="javascript:open_win_noresizable('reviewGoodsSelect', write)">
+							<img
+							src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/btn_prd_select.gif"
+							alt="상품정보선택">
+					</a> <input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
+
+
+						<a href="/3T/goods/detail" type="submit"> <img
+							src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/btn_prd_detail.gif"
+							alt="상품상세보기"> <input type="hidden" name="GOODS_NO"
+							value="${list.GOODS_NO }" /></a> 
+							
+							<%-- <form action="/3T/goods/detail">
 							<input type="submit" class="btn" value="상품 상세보기"> <input
 								type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
-						</form>
+						</form> --%>
 					</td>
 
 				</tr>
 			</c:when>
 			<c:otherwise>
-				<tr class="board_title">
+				<tr class="board_subject2">
 					<td align="center" width="120"><img width="100" height="100"
 						src="/3T/resources/upload/QA.PNG" /></td>
-					<td><br> <input type="button" name="button" class="btn"
-						value="상품정보 선택 "
-						onclick="javascript:open_win_noresizable('reviewGoodsSelect', write)" />
-						<input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
-
+					<td class="board_subject"><a type="button"
+						onclick="javascript:open_win_noresizable('reviewGoodsSelect', write)">
+							<img
+							src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/btn_prd_select.gif"
+							alt="상품정보선택">
+					</a> <input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
 					</td>
 				</tr>
 			</c:otherwise>
 		</c:choose>
 
 	</table>
-	
+
 	<br />
 	<br />
 	<form action="/3T/review/write">
 		<table border="1" class="board_list2">
 			<tbody>
-				<tr class="board_title">
-					<th scope="row">제목</th>
-					<td><input type="text" id="TITLE" name="TITLE" class="board_title"></input></td>
+				<tr class="board_title2">
+					<th scope="row">SUBJECT</th>
+					<td><input type="text" id="TITLE" name="TITLE" class="wdp_25"></input></td>
 				</tr>
-				<tr class="board_title">
-					<th scope="row">이름</th>
-					<td><input type="text" id="MEMBER_ID" name="MEMBER_ID" class="board_title"></input></td>
+				<tr>
+					<th scope="row">NAME</th>
+					<td><input type="text" id="MEMBER_ID" name="MEMBER_ID"
+						class="wdp_25"></input></td>
 				</tr>
 
 				<tr>
 
 					<td colspan="2" class="board_content2"><textarea rows="25"
-							cols="200" title="내용" id="CONTENT" name="CONTENT"></textarea></td>
+							cols="168" title="내용" id="CONTENT" name="CONTENT"></textarea></td>
 				</tr>
 				<!-- <tr class="board_title">
 					<td><input type="button" value="파일 선택">파일 이름</td>
 					</tr> -->
 				<tr class="board_title">
 					<th scope="row">PASSWORD</th>
-					<td><input type="text" id="PASSWD" name="PASSWD" class="board_title"></input></td>
+					<td><input type="text" id="PASSWD" name="PASSWD"
+						class="wdp_25"></input></td>
 				</tr>
 				<tr class="board_title">
 					<th scope="row">개인정보수집 및 <br />이용 동의
@@ -112,16 +127,14 @@
 			</tbody>
 
 		</table>
-<br> <br>
-<table class="notice_button">
-<tr>
-				<td>
-		<a href="#this" class="btn" id="list">목록으로</a>
-		 <input type="submit" class="btn" value="작성완료"> <input type="hidden"
-			name="GOODS_NO" value="${list.GOODS_NO }" />
-				</td>
+		<br> <br>
+		<table class="notice_button">
+			<tr>
+				<td><a href="#this" class="btn" id="list">목록으로</a> <input
+					type="submit" class="btn" value="작성완료"> <input
+					type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" /></td>
 			</tr>
-</table>
+		</table>
 	</form>
 
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>

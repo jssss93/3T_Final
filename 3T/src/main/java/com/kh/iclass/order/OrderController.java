@@ -132,7 +132,8 @@ public class OrderController {
 	
 	@RequestMapping(value = "order/list")		
 	public ModelAndView orderList(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("order/list");
+		/*ModelAndView mv = new ModelAndView("order/list");*/
+		ModelAndView mv = new ModelAndView("order/orderList-hanbyul");
 		
 		HttpSession session = request.getSession();
 		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));

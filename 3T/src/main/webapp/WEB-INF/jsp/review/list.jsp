@@ -48,10 +48,10 @@
 							<td align="center"><img width="50" height="50"
 								src="/3T/resources/upload/${row.SAV_NAME.split(',')[0] }" /></td>
 
-							<td><div>${row.NAME }</div> <br /> <a href="#this" name="title">${row.TITLE }</a>
-								<input type="hidden" id="REVIEW_NO" value="${row.REVIEW_NO }">
-								<input type="hidden" id="GOODS_NO" value="${row.GOODS_NO }">
-							</td>
+							<td><div>${row.NAME }</div> <br /> <a href="#this"
+								name="title">${row.TITLE }</a> <input type="hidden"
+								id="REVIEW_NO" value="${row.REVIEW_NO }"> <input
+								type="hidden" id="GOODS_NO" value="${row.GOODS_NO }"></td>
 							<td>${row.MEMBER_ID }</td>
 							<%-- <td>${row.CONTENT }</td> --%>
 							<td>${row.REGDATE }</td>
@@ -68,6 +68,20 @@
 
 		</tbody>
 	</table>
+	<br>
+
+	<!-- 상품 디테일에서 GOODS_NO 보내서 쓰기 -->
+	<table class="notice_button">
+		<tr>
+			<td>
+				<form action="/3T/review/writeForm">
+
+					<input type="submit" class="btn" value="WRITE">
+				</form>
+			</td>
+		</tr>
+	</table>
+
 	<br />
 	<form action="/3T/review/list">
 		<select name="SearchNum" class="btn" id="SearchNum"
@@ -85,18 +99,6 @@
 
 
 	<br />
-
-	<!-- 상품 디테일에서 GOODS_NO 보내서 쓰기 -->
-	<table class="notice_button">
-		<tr>
-			<td>
-				<form action="/3T/review/writeForm">
-
-					<input type="submit" class="btn" value="쓴당">
-				</form>
-			</td>
-		</tr>
-	</table>
 
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	<script type="text/javascript">

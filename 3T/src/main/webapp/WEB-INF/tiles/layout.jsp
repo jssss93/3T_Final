@@ -91,7 +91,7 @@
 
 	<div>
 
-		<div id="body" align="center" style="width:73%; margin: 0 auto;">
+		<div id="body" align="center" style="width: 70%; margin: 0 auto;">
 			<tiles:insertAttribute name="body" ignore="true" />
 		</div>
 		<div id="footer">
@@ -113,15 +113,14 @@
 		<div class="left_login">
 			<div class="xans-element- xans-layout xans-layout-statelogoff ">
 				<c:if test="${sessionScope.MEMBER_ID == null}">
-					<a href="/3T/member/loginForm" class="log">login</a> / 
+					<a href="/3T/member/loginForm" class="log">login</a>/
+					<a href="/3T/member/joinStep1">join</a>
 							</c:if>
 				<c:if test="${sessionScope.MEMBER_ID != null}">
-					<a href="/3T/member/logout" class="log">logout</a> / 
-							</c:if>
-
-				<a href="/3T/member/joinStep1">join</a> <a
-					href="/3T/order/list">order</a> / <a href="/3T/mypage/mypage">mypage</a>
-
+					<a href="/3T/member/logout" class="log">logout</a> 
+							</c:if> 
+							<br>
+		     <a href="/3T/order/list">order</a>/ <a href="/3T/mypage/mypage">mypage</a>
 			</div>
 
 
