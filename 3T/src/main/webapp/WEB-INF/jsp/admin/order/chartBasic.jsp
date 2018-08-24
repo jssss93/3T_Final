@@ -10,7 +10,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div id="container" style="width:700px;height:500px"></div>
+
+	<div id="container" style="width:1000px;height:700px;  float: left;"></div>
 </body>
 
 </html>

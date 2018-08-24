@@ -61,6 +61,21 @@
 		
 		
 	</insert>
+	
+	<!-- 쿠폰주기 -->
+	<insert id="insertCoupon" parameterType="hashmap" useGeneratedKeys="true" keyProperty="COUPON_NO">
+    	<selectKey keyProperty="COUPON_NO" resultType="java.lang.Integer" order="BEFORE">
+			SELECT COUPON_NO_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+    		<![CDATA[
+		INSERT INTO COUPON 
+			(COUPON_NO, CONTENT, MEMBER_ID)
+		VALUES
+			(#{COUPON_NO}, #{CONTENT}, #{MEMBER_ID})
+		]]>
+    </insert>
+    
+    
 <!-- 	
 	아이디 중복확인
 	<select id="checkId" parameterType="String" resultType="int">

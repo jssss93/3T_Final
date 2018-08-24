@@ -14,7 +14,7 @@
 </div>
 	<form id="frm" name="frm" enctype="multipart/form-data">
 	<input type="hidden" name="GOODS_NO" id="GOODS_NO" value="${goodsBasic.GOODS_NO }">
-		<table class="board_view">
+		<table class="board_view3">
 			<colgroup>
 				<col width="15%">
 				<col width="*"/>
@@ -62,9 +62,9 @@
 				<tr>
 					<td>
 						<!--속성 -->
-						<div id="AttributeDiv">
+						<div id="AttributeDiv" class="board_view4">
 							<c:forEach items="${goodsDetail }" var="attribute" varStatus="stat">
-							<p>
+							<p id="deleteB${stat.index }">
 								<span class="ATTRIBUTE_NO2" value="${attribute.ATTRIBUTE_NO }">${attribute.ATTRIBUTE_NO }</span>
 							 <input type="hidden" id="ATTRIBUTE_NO2" name="ATTRIBUTE_NO2" value="${attribute.ATTRIBUTE_NO }">
 							 <input type="hidden" id="GOODS_NO2" name="GOODS_NO2" value="${attribute.GOODS_NO }">
@@ -72,7 +72,7 @@
 							색상 : <input type="text" name="color2" value="${attribute.COLOR }" disabled> 
 							개수 : <input type="text" name="count2" value="${attribute.COUNT }" disabled>  
 							<!-- <a href='#this' id="deleteB" class='btn' name='deleteB'>삭제</a> -->
-							<a href="javascript:deleteAttributeB(${stat.index });" class="btn" >삭제</a>
+							<a href="javascript:deleteAttributeB(${stat.index });" class="btn">삭제</a>
 							</p>
 							</c:forEach>						
 						<p>
@@ -89,27 +89,25 @@
 					<td colspan="2">
 					
 					<a href="#this" class="btn" id="addFile">이미지 추가</a>
-						<div id="fileDiv">
+						<div id="fileDiv" class="board_view4">
 						
-						<c:forEach var="row" items="${goodsImage }" varStatus="var">
-								<p>
+						<c:forEach var="row" items="${goodsImage }" varStatus="stat">
+								<p id="deleteI${stat.index}">
+								<span class="UPLOAD_NO" value="${row.UPLOAD_NO }">${row.UPLOAD_NO }</span>
 								<input type="hidden" id="GOODS_NO3" name="GOODS_NO3" value="${row.GOODS_NO }">
 									<input type="hidden" id="UPLOAD_NO" name="UPLOAD_NO"
 										value="${row.UPLOAD_NO }">${row.ORG_NAME}
 									<input type="file" id="file_${var.index }"
-										name="file_${var.index }" disabled>
-										<a href='#this' class='btn' name='deleteC' id="deleteC">이미지삭제</a>
+										name="file_${stat.index }" disabled>
+									 <a href="javascript:deleteUpload(${stat.index });" class='btn' >이미지삭제</a> 
 										
 								</p>
 							</c:forEach>
 							
 						
+						 
 						
-						
-							<p>
-							<input type="file" id="IMAGE" name="IMAGE">
-							<a href="#this" class="btn" id="deleteF" name="deleteF">삭제</a>
-							</p>
+							
 						</div>
 					</td>
 				</tr>
@@ -129,6 +127,7 @@
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	
 	<script type="text/javascript">
+	
 	var gfv_count = 1;
 	
 		var gat_count = 1;
@@ -157,14 +156,14 @@
 	            e.preventDefault();
 	            fn_deleteAttribute($(this));
 	        });
-	        /* $("a[name='deleteB']").on("click", function(e){ //속성삭제 버튼
-	            e.preventDefault();
-	            fn_deleteAttributeB($(this));
+	        /* $("a[name='deleteB']").on("click", function(){ //속성삭제 버튼
+	        	e.preventDefault();
+	            fn_deleteAttribute($(this));
 	        }); */
-	        $("a[name='deleteC']").on("click", function(e){ //속성삭제 버튼
+	        /* $("a[name='deleteC']").on("click", function(e){ //속성삭제 버튼
 	            e.preventDefault();
 	            fn_deleteUploadC($(this));
-	        });
+	        }); */
 		});
 	
 		function fn_List() {
@@ -180,7 +179,7 @@
 			comSubmit.submit();
 		}
 		function fn_addFile(){
-	        var str = "<p><input type='file' name='file_"+(gfv_count)+"'><a href='#this' class='btn' name='deleteF_"+(gfv_count)+"'>삭제</a></p>";
+	        var str = "<p><tr><td><input type='file' name='file_"+(gfv_count)+"'></td><td><a href='#this' class='btn' name='deleteF_"+(gfv_count)+"'>삭제</a></td></tr></p>";
 	        $("#fileDiv").append(str);
 	        $("a[name='deleteF_"+(gfv_count)+"'").on("click", function(e){ //삭제 버튼
 	            e.preventDefault();
@@ -204,7 +203,7 @@
 	            obj.parent().remove();
 	       }
 	    function fn_deleteFile(obj){
-	        obj.parent().remove();
+	        obj.parent().parent().remove();
 	    }
 	    /* function fn_deleteAttributeB(obj){
 	    	var comSubmit = new ComSubmit();
@@ -213,13 +212,13 @@
 			comSubmit.addParam("GOODS_NO", obj.parent().find("#GOODS_NO2").val());
 			comSubmit.submit();
        } */
-	    function fn_deleteUploadC(obj){
+	     /* function fn_deleteUploadC(obj){
 	    	var comSubmit = new ComSubmit();
 			comSubmit.setUrl("<c:url value='/admin/goods/deleteUpload' />");
 			comSubmit.addParam("UPLOAD_NO", obj.parent().find("#UPLOAD_NO").val());
 			comSubmit.addParam("GOODS_NO", obj.parent().find("#GOODS_NO3").val());
 			comSubmit.submit();
-       }
+       } */
        /* function fn_deleteAttributeB(obj){
 	    	$.ajax({
 	        url: "/admin/goods/deleteAttribute",
@@ -257,16 +256,39 @@
 		        	ATTRIBUTE_NO : ATTRIBUTE_NO,
 		        	GOODS_NO : GOODS_NO
 		        	}),
-		        success: function(){
-
+		        success: function (){
 		        alert("속성삭제");
-		        obj.parent().remove();
+		        $("#deleteB"+index).remove();
 		        },
 		        error: function() {
 		            alert("error");
 		        }
 		    });
+		
 	  }
+		
+	   function deleteUpload(index) {
+			var index = index;
+			var f = document.frm;
+			var UPLOAD_NO = $(".UPLOAD_NO").eq(index).attr("value");
+			console.log(UPLOAD_NO);
+			var GOODS_NO = f.GOODS_NO.value;
+			  $.ajax({
+			        url: "/3T/admin/goods/deleteUpload",
+			        type:"POST", 
+			        data: ({
+			        	UPLOAD_NO : UPLOAD_NO,
+			        	GOODS_NO : GOODS_NO
+			        	}),
+			        success: function (){	
+			        alert("이미지삭제");
+			        $("#deleteI"+index).remove();
+			        },
+			        error: function() {
+			            alert("error");
+			        }
+			    });
+		  }
 	</script>
 </body>
 </html>

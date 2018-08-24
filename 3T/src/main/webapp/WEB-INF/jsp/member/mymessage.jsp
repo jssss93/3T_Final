@@ -54,27 +54,9 @@
          
     </tbody>
 </table>
-	
-		<a href="#this" class="btn" id="write">글쓰기</a>
-		
 	<br />
-	<!-- <form action="/3T/qa/list">
-		<select name="SearchNum" id="SearchNum" style="width: 100px; height: 30px;" >
-					<option value="MEMBER_ID">작성자</option>
-					<option value="TITLE">제목</option>
-					<option value="CONTENT">내용</option>
-				</select>
-				
-				<input type="text" name="SearchKeyword" id="SearchKeyword" style="margin-left:15px;width:200px;height:36px;border-radius :5px 5px 5px 5px;"/>            
-                                 
-            
-                                    <input type="submit" value="검색">
-                                    </form>
-							
-	
-	<br />
-	<a href="#this" class="btn" id="write">글쓰기</a> -->
-
+		<a href="#this" class="btn" id="write">글쓰기</as>
+		<a href="/3T/member/mypage" class="btn">마이페이지로</a> 
 
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	<script type="text/javascript">
@@ -104,7 +86,7 @@
         	
             function fn_openMessageWrite(){
             var comSubmit = new ComSubmit();
-            comSubmit.setUrl("<c:url value='/mypage/messageWrite' />");
+            comSubmit.setUrl("<c:url value='/member/messageWrite' />");
             comSubmit.submit();
         	}
             function fn_openBoardDetail(obj){

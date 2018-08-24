@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
@@ -18,6 +17,41 @@
 
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.btn-group > .btn:first-child {
+   width: 50;
+   height: 26;
+}
+.btn-group .btn + .btn, .btn-group .btn + .btn-group, .btn-group .btn-group + .btn, .btn-group .btn-group + .btn-group {
+  width: 40;
+}
+.note-popover .popover-content, .panel-heading.note-toolbar {
+  height: 40px;
+}
+.note-icon-magic {
+ margin: 0 0 0 10px;
+    height:     32px;
+}
+
+@media(min-width:768px) {
+    #page-wrapper {
+        position: inherit;
+        margin: auto;
+        padding: 0 30px;
+        width: 50%;
+       /*  border-left: 1px solid #e7e7e7; */
+    }
+}
+
+
+
+.note-btn btn btn-default btn-sm dropdown-toggle {
+  height: 40px;
+}
+.note-btn-group btn-group {
+  height: 30px;
+}
+</style>
 </head>
 <body>
 	<c:choose>

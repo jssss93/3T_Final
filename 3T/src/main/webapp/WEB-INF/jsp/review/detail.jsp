@@ -71,32 +71,31 @@
 				<br>
 
 				<form id="frm" action="/3T/review/comment" method="post">
+
 					<table border="1" align="center" class="board_view2">
-						<table>
-							<tbody>
-								<tr class="board_title">
-									<th scope="row">이름</th>
-									<td><input type="text" id="NAME" name="NAME"></input>
-</td>
-	</tr>
-	<tr class="board_title">
-		<th scope="row">비밀번호</th>
-		<td><input type="text" id="PASSWD" name="PASSWD"></input></td>
-	<tr>
-		<td colspan="2" class="board_content2"><textarea rows="25"
-				cols="248" title="내용" id="CONTENT" name="CONTENT"></textarea></td>
-	</tr>
-	</tr>
-	<input type="hidden" id="REVIEW_ORIGIN_NO" name="REVIEW_ORIGIN_NO"
-		value="${map.REVIEW_NO }">
-	<input type="hidden" id="REVIEW_NO" name="REVIEW_NO"
-		value="${map.REVIEW_NO }">
-	<input type="hidden" id="GOODS_NO" name="GOODS_NO"
-		value="${list2.GOODS_NO }" />
+						<tbody>
+							<tr class="board_title">
+								<th scope="row">이름</th>
+								<td><input type="text" id="NAME" name="NAME"></input></td>
+							</tr>
+							<tr class="board_title">
+								<th scope="row">비밀번호</th>
+								<td><input type="text" id="PASSWD" name="PASSWD"></input></td>
+							<tr>
+								<td colspan="2" class="board_content2"><textarea rows="5"
+										cols="70" title="내용" id="CONTENT" name="CONTENT"></textarea></td>
+							</tr>
+							</tr>
+							<input type="hidden" id="REVIEW_ORIGIN_NO"
+								name="REVIEW_ORIGIN_NO" value="${map.REVIEW_NO }">
+							<input type="hidden" id="REVIEW_NO" name="REVIEW_NO"
+								value="${map.REVIEW_NO }">
+							<input type="hidden" id="GOODS_NO" name="GOODS_NO"
+								value="${list2.GOODS_NO }" />
 
-	</tbody>
+						</tbody>
 
-	</table>
+					</table>
 	<br>
 	<table class="notice_button">
 		<tr>

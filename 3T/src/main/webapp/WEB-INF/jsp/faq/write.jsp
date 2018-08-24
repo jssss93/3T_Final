@@ -29,7 +29,7 @@
 				</tr>
 				<tr>
 					<td colspan="2" class="board_content2">
-						<textarea rows="20" cols="177" title="내용" id="CONTENT" name="CONTENT"></textarea>
+						<textarea rows="20" cols="168" title="내용" id="CONTENT" name="CONTENT"></textarea>
 					</td>
 				</tr>
 			</tbody>

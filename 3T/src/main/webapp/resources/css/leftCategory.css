@@ -324,7 +324,7 @@
 	src: url('/fonts/NanumGothic.eot?#iefix') format('embedded-opentype'),
 		url('/fonts/NanumGothic.woff') format('woff'),
 		url('/fonts/NanumGothic.ttf') format('truetype');
-	src: local(��), url('/fonts/NanumGothic.woff') format('woff');
+	src: local(占쏙옙), url('/fonts/NanumGothic.woff') format('woff');
 }
 
 @font-face {
@@ -333,7 +333,7 @@
 	src: url('/fonts/NanumBarunGothic.eot?#iefix')
 		format('embedded-opentype'), url('/fonts/NanumBarunGothic.woff')
 		format('woff'), url('/fonts/NanumBarunGothic.ttf') format('truetype');
-	src: local(��), url('/fonts/NanumBarunGothic.woff') format('woff');
+	src: local(占쏙옙), url('/fonts/NanumBarunGothic.woff') format('woff');
 }
 
 @font-face {
@@ -342,7 +342,7 @@
 	src: url('/fonts/Lato-Regular.eot?#iefix') format('embedded-opentype'),
 		url('/fonts/Lato-Regular.woff') format('woff'),
 		url('/fonts/Lato-Regular.ttf') format('truetype');
-	src: local(��), url('/Lato-Regular.woff') format('woff');
+	src: local(占쏙옙), url('/Lato-Regular.woff') format('woff');
 }
 
 li {
@@ -832,8 +832,8 @@ nav ul li a:hover {
 	margin-left: -60px !important;
 	padding-left: 0px;
 	text-align: center;
-	font-family: 'Lato', "���� ���", 'Malgun Gothic', �������, 'Nanum Gothic',
-		"����";
+	font-family: 'Lato', "占쏙옙占쏙옙 占쏙옙占�", 'Malgun Gothic', 占쏙옙占쏙옙占쏙옙占�, 'Nanum Gothic',
+		"占쏙옙占쏙옙";
 	font-size: 33px;
 	color: #fff;
 	font-weight: 400;
@@ -1256,8 +1256,8 @@ nav ul li a:hover {
 	margin-left: -60px !important;
 	padding-left: 0px;
 	text-align: center;
-	font-family: 'Lato', "���� ���", 'Malgun Gothic', �������, 'Nanum Gothic',
-		"����";
+	font-family: 'Lato', "占쏙옙占쏙옙 占쏙옙占�", 'Malgun Gothic', 占쏙옙占쏙옙占쏙옙占�, 'Nanum Gothic',
+		"占쏙옙占쏙옙";
 	font-size: 33px;
 	color: #fff;
 	font-weight: 400;
@@ -1842,10 +1842,6 @@ nav ul li a:hover {
 	color: #999;
 }
 
-.dep1 strong.xans-layout-footer {
-	text-align: right;
-}
-
 .dep1 .hide {
 	border-top: 0px #ddd solid;
 	display: none;
@@ -1953,7 +1949,7 @@ nav ul li a:hover {
 #quick_menu .menu a {
 	display: inline-block;
 	line-height: 30px;
-	font-family: arial, dotum, ����;
+	font-family: arial, dotum, 占쏙옙占쏙옙;
 	letter-spacing: 1px;
 	text-transform: uppercase;
 }
@@ -2108,7 +2104,7 @@ nav ul li a:hover {
 .xans-instagramwidget-display h2 a {
 	font-size: 26px;
 	color: #2e2e2e;
-	font-family: "���� ���", 'Nanum Gothic';
+	font-family: "占쏙옙占쏙옙 占쏙옙占�", 'Nanum Gothic';
 	text-decoration: none;
 }
 
@@ -2449,98 +2445,6 @@ nav ul li a:hover {
 	background:
 		url("//img.echosting.cafe24.com/apps/instagram-widget/skin1/ico_play.png")
 		no-repeat 0 0;
-}
-
-.xans-layout-footer {
-	position: relative;
-	width: 100%;
-	margin: 0px auto 25px;
-	padding-top: 0px;
-	text-align: center;
-	clear: both;
-	overflow: hidden;
-	*zoom: 1;
-}
-
-.xans-layout-footer .utilMenu {
-	margin-top: 100px;
-	verflow: hidden;
-	*zoom: 1;
-	text-transform: uppercase;
-}
-
-.xans-layout-footer .utilMenu a {
-	display: inline-block;
-	margin: 0 7px 0 0;
-	padding: 0 0 0 10px;
-	height: 25px;
-	line-height: 25px;
-	font-size: 10px;
-	color: #333;
-	background:
-		url("http://img.echosting.cafe24.com/skin/base_ko_KR/layout/ico_util1.gif")
-		no-repeat left 7px;
-}
-
-.xans-layout-footer .utilMenu a.home {
-	background: none;
-}
-
-.xans-layout-footer .utilMenu a:hover {
-	color: #666;
-}
-
-.xans-layout-footer .address {
-	padding: 30px 0 20px;
-	color: #666;
-	line-height: 21px;
-	text-transform: uppercase;
-}
-
-.xans-layout-footer .address span {
-	padding: 0 15px 0 0;
-}
-
-.xans-layout-footer .address span a {
-	color: #666;
-}
-
-.xans-layout-footer .copy {
-	color: #aaa;
-	letter-spacing: 1px;
-	font-size: 10px;
-	margin: 20px 0 0;
-	text-transform: uppercase;
-}
-
-.xans-layout-conversionpc a {
-	display: block;
-	padding: 21px 0 22px;
-	border: 2px solid #9d9db0;
-	border-radius: 4px;
-	font-weight: bold;
-	font-size: 38px;
-	color: #63666e;
-	text-align: center;
-}
-
-.xans-layout-conversionpc a {
-	background: #fff
-		-webkit-gradient(linear, left top, left bottom, from(#fff),
-		to(#f2f2f2));
-	background: #fff -moz-linear-gradient(top, #fff, #f2f2f2);
-}
-
-.xans-layout-conversionpc a:hover {
-	text-decoration: none;
-}
-
-.xans-layout-conversionpc a span {
-	padding: 0 0 0 42px;
-	background:
-		url("http://img.echosting.cafe24.com/skin/base_ko_KR/layout/ico_mobile.png")
-		no-repeat 0 50%;
-	background-size: 27px 35px;
 }
 
 .flexslider {

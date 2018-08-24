@@ -1,5 +1,6 @@
-package com.kh.iclass.mypage;
+package com.kh.iclass.member;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -8,66 +9,81 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
-@Service("mypageService")
-public class MypageServiceImpl implements MypageService{
+@Service("memberService")
+public class MemberServiceImpl implements MemberService{
 
-    @Resource(name="mypageDAO")
-	private MypageDAO mypageDAO  ;
+    @Resource(name="memberDAO")
+	private MemberDAO memberDAO  ;
 	
+
+    
 	@Override
 	public List<Map<String, Object>> mypageInfo(Map<String, Object> map) throws Exception 
 	{
-		return mypageDAO.mypageInfo(map);
+		return memberDAO.memberInfo(map);
 	}
 	
 	@Override
 	public void updateMember(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		mypageDAO.updateMember(map);
+		memberDAO.updateMember(map);
 	
 	}
 	
 	public List<Map<String, Object>> myBoardQna(Map<String, Object> map) throws Exception 
 	{
 		// TODO Auto-generated method stub
-		return mypageDAO.myBoardQna(map);
+		return memberDAO.myBoardQna(map);
 	}
 	
 	public List<Map<String, Object>> myBoardReview(Map<String, Object> map) throws Exception 
 	{
 		// TODO Auto-generated method stub
-		return mypageDAO.myBoardReview(map);
+		return memberDAO.myBoardReview(map);
 	}
 	
-	@Override
-	public void insertCoupon(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		mypageDAO.insertCoupon(map);
-	
-	}
+
 	
 	public List<Map<String, Object>> myCoupon(Map<String, Object> map) throws Exception 
 	{
 		// TODO Auto-generated method stub
-		return mypageDAO.myCoupon(map);
+		return memberDAO.myCoupon(map);
 	}
 	
 	
 	@Override
 	public void insertMessage(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		mypageDAO.insertMessage(map);
+		memberDAO.insertMessage(map);
 	
 	}
 	
 	public List<Map<String, Object>> myMessage(Map<String, Object> map) throws Exception 
 	{
 		// TODO Auto-generated method stub
-		return mypageDAO.myMessage(map);
+		return memberDAO.myMessage(map);
 	}
 	
-/*	// 회원 정보 수정
-		@Override
-		public void modifyMember(Map<String, Object> map) throws Exception {
-			adminMemberDAO.modifyMember(map);
-		}*/
+	public List<Map<String, Object>> state(Map<String, Object> map) throws Exception 
+	{
+		List<Map<String, Object>> stateList = new ArrayList<Map<String, Object>>();
+		for(int i=0;i<10;i++) {          
+			map.put("STATE", i);
+			System.out.println(i+"번째map:"+map);
+			stateList.add(memberDAO.state(map));
+			System.out.println(i+"번째list:"+stateList);
+			
+		}
+		System.out.println("옵니까!?오면 stateList값은?" + stateList);
+		return stateList;
+	}
+	
+	public Map<String, Object> orderAll(Map<String, Object> map) throws Exception {
+		return memberDAO.orderAll(map);
+	}
+	public Map<String, Object> messageAll(Map<String, Object> map) throws Exception {
+		return memberDAO.messageAll(map);
+	}
+
+	
 
 	/*@Override
 	public int checkMember(Map<String, Object> map) throws Exception {
@@ -75,11 +91,7 @@ public class MypageServiceImpl implements MypageService{
 		
 	}*/
 	
-	/*@Override
-	public int checkMember(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	/*
 	
 	@Override
 	public int chekcId(String mem_id) throws Exception {
@@ -87,11 +99,7 @@ public class MypageServiceImpl implements MypageService{
 		return joinDAO.checkId(mem_id);
 	} */
 	
-/*	//회원가입시 적립금 부여
-	@Override
-	public void joinPoint(Map<String, Object> map) throws Exception{
-		joinDAO.joinPoint(map);
-	}*/
+
 
 	
 }

@@ -6,31 +6,31 @@
 <script type="text/javascript">
 function joinValidation(adminModifyMember){
 
-	if(adminModifyMember.MEMBER_PASSWORD.value==""){
+	if(adminModifyMember.PASSWD.value==""){
 		alert("비밀번호를 입력해 주세요.");
 		return false;
 	}
-	else if(adminModifyMember.MEMBER_NAME.value==""){
+	else if(adminModifyMember.NAME.value==""){
 		alert("이름을 입력해 주세요.");
 		return false;
 	}
-	else if(adminModifyMember.MEMBER_ZIPCODE.value==""){
+	else if(adminModifyMember.ZIPCODE.value==""){
 		alert("우편번호를 입력해 주세요.");
 		return false;
 	}
-	else if(adminModifyMember.MEMBER_ADDRESS1.value==""){
+	else if(adminModifyMember.ADDR1.value==""){
 		alert("주소를 입력해 주세요.");
 		return false;
 	}
-	else if(adminModifyMember.MEMBER_ADDRESS2.value==""){
+	else if(adminModifyMember.ADDR2.value==""){
 		alert("상세주소를 입력해 주세요.");
 		return false;
 	}
-	else if(adminModifyMember.MEMBER_PHONE.value==""){
+	else if(adminModifyMember.PHONE.value==""){
 		alert("전화번호를 입력해 주세요.");
 		return false;
 	}
-	else if(adminModifyMember.MEMBER_EMAIL.value==""){
+	else if(adminModifyMember.EMAIL.value==""){
 		alert("이메일을 입력해 주세요.");
 		return false;
 	}
@@ -50,15 +50,15 @@ function joinValidation(adminModifyMember){
 	<div class="panel panel-default">
 		<div class="panel-heading" >회원수정 페이지입니다.</div>
 			<div class="panel-body">
-				<form:form id="adminModifyMember" name="adminModifyMember" action="adminModifyMember" method="post" onsubmit="return joinValidation(this)">	
-					<input type="hidden" id="MEMBER_NO" name="MEMBER_NO" value="${memberDetail.MEMBER_NO}">	
+				<form:form id="adminModifyMember" name="adminModifyMember" action="/3T/admin/member/Update" method="post" onsubmit="return joinValidation(this)">	
+					<input type="hidden" id="MEMBER_MEMBER_ID" name="MEMBER_MEMBER_ID" value="${memberDetail.MEMBER_ID}">	
                         <div class="form-group">
                             <label>아이디</label>                            
-                            <input type="text" class="form-control" value="${memberDetail.MEMBER_ID}" style="width:initial;" readonly/>                            
+                            <input type="text" class="form-control" id="MEMBER_ID" name="MEMBER_ID" value="${memberDetail.MEMBER_ID}" style="width:initial;"/>                            
                         </div>
                         <div class="form-group">
                             <label>비밀번호</label>
-                            <input type="password" class="form-control" id="PASSWD" name="PASSRD" value="${memberDetail.PASSWD}" style="width:initial;"/>
+                            <input type="text" class="form-control" id="PASSWD" name="PASSWD" value="${memberDetail.PASSWD}" style="width:initial;"/>
                         </div>
                         <div class="form-group">
                             <label>이름</label>
@@ -80,7 +80,7 @@ function joinValidation(adminModifyMember){
                         </div>
                         <div class="form-group">
                             <label>상세주소</label>
-                            <input type="text" class="form-control" id="ADDR2" name="ADDR2" value="${memberDetail.ADD2}" style="width:400px;"/>
+                            <input type="text" class="form-control" id="ADDR2" name="ADDR2" value="${memberDetail.ADDR2}" style="width:400px;"/>
                        		<p class="help-block">상세주소를 입력해 주세요.</p>
                         </div>
                         <div class="form-group">
@@ -90,7 +90,7 @@ function joinValidation(adminModifyMember){
                         </div>
                          <div class="form-group">
                             <label>이메일</label>
-                            <input type="text" class="form-control" id="MEMBER_EMAIL" name="EMAIL" value="${memberDetail.EMAIL}" style="width:250px;" />
+                            <input type="text" class="form-control" id="EMAIL" name="EMAIL" value="${memberDetail.EMAIL}" style="width:250px;" />
                         </div>
 						
 						

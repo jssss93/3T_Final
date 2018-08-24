@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<form action="/3T/mypage/sendmessage">
+<form action="/3T/member/sendmessage">
 	<table width="600" border="0" cellspacing="0" cellpadding="2">
 		<tr>
 			<td align="center" class="text01 formbar"><h2>message</h2></td>

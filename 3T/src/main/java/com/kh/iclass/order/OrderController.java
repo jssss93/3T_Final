@@ -27,7 +27,7 @@ import com.kh.iclass.admin.member.AdminMemberService;
 import com.kh.iclass.cart.CartService;
 import com.kh.iclass.common.map.CommandMap;
 import com.kh.iclass.common.util.ParseListToJson;
-import com.kh.iclass.mypage.MypageService;
+import com.kh.iclass.member.MemberService;
 
 @Controller
 public class OrderController {
@@ -43,8 +43,8 @@ public class OrderController {
 	@Resource(name = "adminMemberService")
 	private AdminMemberService adminMemberService;
 	
-	@Resource(name="mypageService")
-	private MypageService mypageService;
+	@Resource(name="memberService")
+	private MemberService memberService;
 
 	
 	@RequestMapping(value = "order/addSelected")
@@ -175,7 +175,8 @@ public class OrderController {
 	
 	@RequestMapping(value = "order/list")		
 	public ModelAndView orderList(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("order/list");
+		/*ModelAndView mv = new ModelAndView("order/list");*/
+		ModelAndView mv = new ModelAndView("order/orderList-hanbyul");
 		
 		HttpSession session = request.getSession();
 		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
@@ -196,7 +197,7 @@ public class OrderController {
 		HttpSession session = request.getSession();
 		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 		
-		List<Map<String, Object>> memberInfo2 =  mypageService.mypageInfo(commandMap.getMap());
+		List<Map<String, Object>> memberInfo2 =  memberService.mypageInfo(commandMap.getMap());
 		JSONArray json=ParseListToJson.convertListToJson(memberInfo2);
 		
 		writer.print(json);

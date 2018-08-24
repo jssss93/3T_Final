@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
@@ -27,14 +28,22 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 	
 	// 회원 정보 수정
 	@Override
-	public void modifyMember(Map<String, Object> map) throws Exception {
-		adminMemberDAO.modifyMember(map);
+	public void updateMember(Map<String, Object> map, HttpServletRequest request) throws Exception 
+	{
+		adminMemberDAO.updateMember(map);
+	
 	}
 	
 	// 회원강제 탈퇴
 	@Override
 	public void deleteMember(Map<String, Object> map) throws Exception {
 		adminMemberDAO.deleteMember(map);
+	}
+	//쿠폰주기
+	@Override
+	public void insertCoupon(Map<String, Object> map, HttpServletRequest request) throws Exception {
+		adminMemberDAO.insertCoupon(map);
+	
 	}
 	
 }

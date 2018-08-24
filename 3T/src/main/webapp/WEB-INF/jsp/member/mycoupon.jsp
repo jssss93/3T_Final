@@ -31,7 +31,7 @@
     </colgroup>
     <thead>
         <tr>
-            <th scope="col">코폰번호</th>
+            <th scope="col">쿠폰번호</th>
             <th scope="col">금액</th>
         </tr>
     </thead>
@@ -51,27 +51,12 @@
                 </tr>
             </c:otherwise>
         </c:choose>
+        
          
     </tbody>
 </table>
-
-	<br />
-	<!-- <form action="/3T/qa/list">
-		<select name="SearchNum" id="SearchNum" style="width: 100px; height: 30px;" >
-					<option value="MEMBER_ID">작성자</option>
-					<option value="TITLE">제목</option>
-					<option value="CONTENT">내용</option>
-				</select>
-				
-				<input type="text" name="SearchKeyword" id="SearchKeyword" style="margin-left:15px;width:200px;height:36px;border-radius :5px 5px 5px 5px;"/>            
-                                 
-            
-                                    <input type="submit" value="검색">
-                                    </form>
-							
-	
-	<br />
-	<a href="#this" class="btn" id="write">글쓰기</a> -->
+	<br/>
+			<a href="/3T/member/mypage" class="btn">마이페이지로</a> 
 
 
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>

@@ -20,7 +20,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
             //admin이라는 세션key를 가진 정보가 널일경우 로그인페이지로 이동
             if(request.getSession().getAttribute("MEMBER_ID") == null )
             {
-                    response.sendRedirect("/3T/member/loginForm"); 
+                    response.sendRedirect("/3T/loginForm"); 
                     return false;
             }
             

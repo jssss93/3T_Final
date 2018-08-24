@@ -9,24 +9,28 @@
 
 </head>
 <body>
-	<table width="70%" align="center" border="0" cellspacing="1" cellpadding="1" class="board_top">
-        <br>
+	<table width="70%" align="center" border="0" cellspacing="1"
+		cellpadding="1" class="board_top">
+		<br>
 		<tr>
 			<td height="50"></td>
 		</tr>
 		<tr>
-			<td align="left" class="text01 formbar"><h6><font color="#000000">FAQ</font><span> ㅣ </span></h6></td>
+			<td align="left" class="text01 formbar"><h6>
+					<font color="#000000">FAQ</font><span> ㅣ </span>
+				</h6></td>
 		</tr>
 
 		<tr>
 			<td height="50"></td>
 		</tr>
 	</table>
-	
-	<table width="80%" align="center" border="0" cellspacing="0" cellpadding="2" class="board_review3">
-	 <tr>
-			   <td valign="middle"><strong>NO</strong></td>
-			   </tr>
+
+	<table width="80%" align="center" border="0" cellspacing="0"
+		cellpadding="2" class="board_review3">
+		<tr>
+			<td valign="middle"><strong>NO</strong></td>
+		</tr>
 		<tbody>
 			<c:choose>
 				<c:when test="${fn:length(list) > 0}">
@@ -34,8 +38,7 @@
 						<tr>
 							<td>${row.FAQ_NO }</td>
 							<td><a href="#this" name="title">${row.TITLE }</a> <input
-								type="hidden" id="FAQ_NO" value="${row.FAQ_NO }">
-							</td>
+								type="hidden" id="FAQ_NO" value="${row.FAQ_NO }"></td>
 							<td align=right>${row.MEMBER_ID }</td>
 						</tr>
 					</c:forEach>
@@ -55,21 +58,22 @@
 	</c:if>
 	<input type="hidden" id="currentPageNo" name="currentPageNo" />
 
-<br>
-<table class="notice_button">
-	<tr>
-	<td><a href="write" class="btn" >WRITE</a></td>
-	</tr>
+	<br>
+	<table class="notice_button">
+		<tr>
+			<td><a href="write" class="btn">WRITE</a></td>
+		</tr>
 	</table>
 	<br />
 	<form action="/3T/faq/list">
-		<select name="SearchNum" id="SearchNum"
+		<select class="btn" name="SearchNum" id="SearchNum"
 			style="width: 100px; height: 30px;">
 			<option value="TITLE">제목</option>
 			<option value="MEMBER_ID">작성자</option>
-		</select> <input type="text" name="SearchKeyword" id="SearchKeyword"
+		</select> <input type="text" class="btn" name="SearchKeyword"
+			id="SearchKeyword"
 			style="margin-left: 15px; width: 200px; height: 36px; border-radius: 5px 5px 5px 5px;" />
-		<input type="submit" value="검색">
+		<input type="submit" class="btn" value="검색">
 	</form>
 
 
@@ -88,7 +92,7 @@
 				fn_Detail($(this));
 			});
 		});
-	
+
 		function fn_WriteForm() {
 			var comSubmit = new ComSubmit();
 			comSubmit.setUrl("<c:url value='/faq/write' />");
@@ -98,8 +102,7 @@
 		function fn_Detail(obj) {
 			var comSubmit = new ComSubmit();
 			comSubmit.setUrl("<c:url value='/faq/detail' />");
-			comSubmit.addParam("FAQ_NO", obj.parent().find("#FAQ_NO")
-					.val());
+			comSubmit.addParam("FAQ_NO", obj.parent().find("#FAQ_NO").val());
 			comSubmit.submit();
 		}
 		function fn_search(pageNo) {

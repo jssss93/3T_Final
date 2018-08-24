@@ -1,29 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<%@ include file="/WEB-INF/include/include-header.jspf" %>
+<%@ include file="/WEB-INF/include/include-header.jspf"%>
 </head>
 <body>
 
-    <form id="frm" name="frm">
-        <table class="board_view">
-            <colgroup>
-                <col width="15%"/>
-                <col width="35%"/>
-                <col width="15%"/>
-                <col width="35%"/>
-            </colgroup>
-            <caption>게시글 상세</caption>
-            <tbody>
-                <tr>
-                    <th scope="row">글 번호</th>
-                    <td>
-                        ${map.REVIEW_NO }
-                        <input type="hidden" id="REVIEW_NO" name="REVIEW_NO" value="${map.REVIEW_NO}">
-                        <input type="hidden" id="GOODS_NO" name="GOODS_NO" value="${map.GOODS_NO }">
-                    </td>
-              <%--       <th scope="row">조회수</th>
+	<form id="frm" name="frm">
+		<table class="board_view2">
+
+			<caption>게시글 상세</caption>
+			<tbody>
+				<tr>
+					<th scope="row">글 번호</th>
+					<td>${map.REVIEW_NO } <input type="hidden" id="REVIEW_NO"
+						name="REVIEW_NO" value="${map.REVIEW_NO}"> <input
+						type="hidden" id="GOODS_NO" name="GOODS_NO"
+						value="${map.GOODS_NO }">
+					</td>
+					<%--       <th scope="row">조회수</th>
 
 
                     <td>${map.REV_READCNT }</td> --%>

@@ -225,7 +225,12 @@ function checkAll2(){
 			<li title="현재 위치"><strong>주문서작성</strong></li>
 		</ol>
 	</div>
-
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<div class="titleArea">
 		<h2>ORDER</h2>
 	</div>
@@ -298,6 +303,103 @@ function checkAll2(){
 									<span id="domestic_ship_fee_sum" class="totalSum" >0 KRW</span>
 								</strong> 
 							</td>
+<<<<<<< HEAD:3T/src/main/webapp/WEB-INF/jsp/order/list-hanbyul.jsp
+=======
+							<td>1</td>
+							<td><span class="txtInfo"><input
+									id="product_mileage_all_8184_000A" name="product_mileage_all"
+									value="400" type="hidden"><img
+									src="//img.echosting.cafe24.com/design/common/icon_cash.gif">
+									400원</span></td>
+							<td><div class="txtInfo">
+									기본배송<br>
+								</div></td>
+							<td>[조건]</td>
+							<td class="right"><strong>KRW 46,000</strong>
+								<div class="displaynone"></div></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<!-- 업체기본배송 -->
+			<div class="ec-base-table typeList displaynone">
+				<table border="1" summary="">
+					<caption>업체기본배송</caption>
+					<colgroup>
+						<col style="width: 27px" class="">
+						<col style="width: 92px">
+						<col style="width: auto">
+						<col style="width: 98px">
+						<col style="width: 75px">
+						<col style="width: 98px">
+						<col style="width: 98px">
+						<col style="width: 85px">
+						<col style="width: 98px">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col" class=""><input type="checkbox" onclick=""
+								disabled=""></th>
+							<th scope="col">이미지</th>
+							<th scope="col">상품정보</th>
+							<th scope="col">판매가</th>
+							<th scope="col">수량</th>
+							<th scope="col">적립금</th>
+							<th scope="col">배송구분</th>
+							<th scope="col">배송비</th>
+							<th scope="col">합계</th>
+						</tr>
+					</thead>
+					<tfoot class="right">
+						<tr>
+							<td class=""></td>
+							<td colspan="8"><span class="gLeft">[업체기본배송]</span> 상품구매금액 <strong><span
+									class="displaynone"> ()</span></strong> + 배송비 <span class="displaynone">
+									- 상품할인금액 </span> = 합계 : <strong class="txtEm gIndent10"><span
+									class="txt18"></span></strong> <span class="displaynone"></span></td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+
+			<!-- 개별배송 -->
+			<div class="ec-base-table typeList displaynone">
+				<table border="1" summary="">
+					<caption>개별배송</caption>
+					<colgroup>
+						<col style="width: 27px" class="">
+						<col style="width: 92px">
+						<col style="width: auto">
+						<col style="width: 98px">
+						<col style="width: 75px">
+						<col style="width: 98px">
+						<col style="width: 98px">
+						<col style="width: 85px">
+						<col style="width: 98px">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col" class=""><input type="checkbox" onclick=""
+								disabled=""></th>
+							<th scope="col">이미지</th>
+							<th scope="col">상품정보</th>
+							<th scope="col">판매가</th>
+							<th scope="col">수량</th>
+							<th scope="col">적립금</th>
+							<th scope="col">배송구분</th>
+							<th scope="col">배송비</th>
+							<th scope="col">합계</th>
+						</tr>
+					</thead>
+					<tfoot class="right">
+						<tr>
+							<td class=""></td>
+							<td colspan="8"><span class="gLeft">[개별배송]</span> 상품구매금액 <strong><span
+									class="displaynone"> ()</span></strong> + 배송비 <span class="displaynone">
+									- 상품할인금액 </span> = 합계 : <strong class="txtEm gIndent10"><span
+									class="txt18"></span></strong> <span class="displaynone"></span></td>
+>>>>>>> c5ed8bdf6ed5fc6df8e85cdf6b2ff97cd1c5b184:3T/src/main/webapp/WEB-INF/jsp/order/orderList-hanbyul.jsp
 						</tr>
 					</tfoot>
 					<form id="frm" action="/3T/order/insert">

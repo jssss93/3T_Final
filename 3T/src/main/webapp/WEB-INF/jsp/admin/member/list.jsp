@@ -97,7 +97,7 @@
 											
 											</td>
 											<td style="text-align: center; vertical-align: middle;">
-												<form action="/3T/GiftCoupon">
+												<form action="/3T/admin/GiftCoupon">
 													<input type="text" id="CONTENT" name="CONTENT" style="width: 130px; text-align: center;">
 													<input type="submit" value="주기">
 													<input type="hidden" id="MEMBER_ID" name="MEMBER_ID" value="${memberList.MEMBER_ID}">

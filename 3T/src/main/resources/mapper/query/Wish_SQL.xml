@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="wish">
+
+<insert id="insertWishlist" useGeneratedKeys="true" keyProperty="WISHLIST_NO">
+		<selectKey keyProperty="WISHLIST_NO" resultType="java.lang.Integer" order="BEFORE">
+			SELECT WISHLIST_NO_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		<![CDATA[
+			INSERT INTO WISHLIST 
+				( 
+					WISHLIST_NO,
+					GOODS_NO,
+					MEMBER_ID,
+					ATTRIBUTE_NO,
+					REGDATE
+			 	)
+			 VALUES 
+			 	( 
+					#{WISHLIST_NO},
+					#{GOODS_NO},
+					#{MEMBER_ID},
+					#{ATTRIBUTE_NO},
+					SYSDATE
+				)
+		]]>
+	</insert>
+	
+	<select id="selectWishlist" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT 
+        		WISHLIST_NO,
+       			MEMBER_ID,
+			 	GOODS_NO,
+			 	CONTENT,
+			 	ATTRIBUTE_NO,
+			 	NAME,
+				PRICE,
+			 	COLOR,
+			 	GOODS_SIZE,
+			 	WM_CONCAT(SAV_NAME) AS IMAGE
+			FROM
+				(
+				SELECT 
+					a.CONTENT,
+					a.PRICE,
+					a.NAME,
+					b.ATTRIBUTE_NO,	
+        			b.COLOR,
+				    b.GOODS_SIZE,
+				    c.SAV_NAME,
+				    d.WISHLIST_NO,
+				    d.MEMBER_ID,
+				    d.GOODS_NO
+			 	FROM
+			    	GOODS a, GOODS_ATTRIBUTE b, UPLOAD c, WISHLIST d 
+				WHERE
+				    d.GOODS_NO=a.GOODS_NO AND
+				    d.ATTRIBUTE_NO=b.ATTRIBUTE_NO AND
+				    b.GOODS_NO=a.GOODS_NO AND
+				    c.GOODS_NO = d.GOODS_NO AND
+				    d.MEMBER_ID = #{MEMBER_ID}
+			  	ORDER BY
+			    	WISHLIST_NO DESC
+			    )	    	
+			GROUP BY
+				WISHLIST_NO,
+				MEMBER_ID,
+				GOODS_NO,
+				CONTENT,
+				PRICE,
+				ATTRIBUTE_NO,
+				COLOR,
+				NAME,
+				GOODS_SIZE
+		]]>
+	</select>
+	
+	<delete id="deleteOneWishlist" parameterType="hashmap">
+		<![CDATA[
+			DELETE 
+				FROM WISHLIST
+			WHERE 
+				WISHLIST_NO = ${WISHLIST_NO}
+		]]>
+	</delete>
+	
+	<delete id="deleteAllWishlist" parameterType="hashmap">
+		<![CDATA[
+			DELETE 
+				FROM WISHLIST
+			WHERE 
+				MEMBER_ID = #{MEMBER_ID}
+		]]>
+	</delete>
+	
+
+</mapper>
