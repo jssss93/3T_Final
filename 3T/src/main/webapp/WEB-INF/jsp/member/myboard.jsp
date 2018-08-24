@@ -25,7 +25,7 @@
 		<tr>
 			<td>
 			
-				<select name="BoardType" id="BoardType" onchange="location.href='/3T/mypage/myboard?sel='+this.value" style="width: 100px; height: 30px;">
+				<select name="BoardType" id="BoardType" onchange="location.href='/3T/member/myboard?sel='+this.value" style="width: 100px; height: 30px;">
 					<option value="0" <c:if test="${sel eq 0}">selected</c:if>>QNA</option>
 					<option value="1" <c:if test="${sel eq 1}">selected</c:if>>Review</option>
 					<option value="2" <c:if test="${sel eq 2 || sel eq null}">selected</c:if>>ALL</option>
@@ -111,24 +111,8 @@
 </table>
 
 	<br />
-	<!-- <form action="/3T/qa/list">
-		<select name="SearchNum" id="SearchNum" style="width: 100px; height: 30px;" >
-					<option value="MEMBER_ID">작성자</option>
-					<option value="TITLE">제목</option>
-					<option value="CONTENT">내용</option>
-				</select>
-				
-				<input type="text" name="SearchKeyword" id="SearchKeyword" style="margin-left:15px;width:200px;height:36px;border-radius :5px 5px 5px 5px;"/>            
-                                 
-            
-                                    <input type="submit" value="검색">
-                                    </form>
-							
+	<a href="/3T/member/mypage" class="btn">마이페이지로</a>
 	
-	<br />
-	<a href="#this" class="btn" id="write">글쓰기</a> -->
-
-
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	<script type="text/javascript">
         $(document).ready(function(){

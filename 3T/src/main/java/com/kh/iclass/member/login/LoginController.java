@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /*import kh.spring.cart.CartService;*/
 import com.kh.iclass.common.map.CommandMap;
-import com.kh.iclass.mypage.MypageService;;
+import com.kh.iclass.member.MemberService;;
 
 /* -1- import spring.siroragi.cart.CartService;
 import spring.siroragi.member.MemberService;
@@ -30,12 +30,11 @@ public class LoginController {
    @Resource(name = "loginService")
    private LoginService loginService;
    
-   @Resource(name="mypageService")
-   private MypageService mypageService;
+   @Resource(name="memberService")
+   private MemberService memberService;
 
    // 로그인 폼
-   // 로그인 폼
-   @RequestMapping(value = "/member/loginForm")
+   @RequestMapping(value = "/loginForm")
    public ModelAndView loginForm() {
       ModelAndView mv = new ModelAndView();
       mv.setViewName("member/loginForm");
@@ -43,7 +42,7 @@ public class LoginController {
    }
    
 
-   @RequestMapping(value = "/member/logout")		//로그아웃
+   @RequestMapping(value = "/logout")		//로그아웃
    public ModelAndView logout(HttpServletRequest request, CommandMap commandMap) {
       HttpSession session = request.getSession(false);
       if (session != null)
@@ -52,14 +51,6 @@ public class LoginController {
       mv.setViewName("redirect:/main");
       return mv;
    }
- 
-   
-  /* @RequestMapping(value = "/loginComplete")
-   public ModelAndView loginComplete() {
-      ModelAndView mv = new ModelAndView();
-      mv.setViewName("loginComplete");
-      return mv;
-   }*/
    
    //로그인 됨
    @SuppressWarnings("unchecked")
@@ -82,24 +73,34 @@ public class LoginController {
          System.out.println("비밀번호 1 : " + chk.get("PASSWD") + "\n비밀번호 2 : " + commandMap.get("PASSWD"));
          			//멤버 비밀번호가 입력한 비밀번호 값이 같으면
          if (chk.get("PASSWD").equals(commandMap.get("PASSWD"))) {
-            session.setAttribute("MEMBER_ID", commandMap.get("MEMBER_ID"));	//세션에 아이디를 넣어라
-            mv.addObject("MEMBER", chk);	//
-            if(request.getSession().getAttribute("MEMBER_ID").equals("ADMIN"))
-            {
-            	mv.setViewName("redirect:/admin/main");
-            }
-            else
-            {
-            	List<Map<String, Object>> list = null;
-            	commandMap.put("MEMBER_ID", request.getSession().getAttribute("MEMBER_ID"));
-            	
-            	list = mypageService.myCoupon(commandMap.getMap());
-            	System.out.println("list size? :"+ list.size());
-            	mv.addObject("msg", list.size());
-            	session.setAttribute("coupon", list.size());
-            	
-            	mv.setViewName("member/loginCoupon");
-            }
+             session.setAttribute("MEMBER_ID", commandMap.get("MEMBER_ID"));	//세션에 아이디를 넣어라
+             mv.addObject("MEMBER", chk);	//
+             if(request.getSession().getAttribute("MEMBER_ID").equals("ADMIN"))
+             {
+             	mv.setViewName("redirect:/admin/main");
+             }
+             else
+             {
+             	List<Map<String, Object>> list = null;
+             	commandMap.put("MEMBER_ID", request.getSession().getAttribute("MEMBER_ID"));
+             	
+             	list = memberService.myCoupon(commandMap.getMap());
+             	System.out.println("list size? :"+ list.size());
+             	mv.addObject("msg", list.size());
+             	session.setAttribute("coupon", list.size());
+             	
+             	System.out.println("사이즈는?" + list.size());
+             	
+             	if(list.size() == 0)
+             	{
+             		mv.setViewName("redirect:/main");
+             	}
+             	else
+             	{
+             		mv.setViewName("member/loginCoupon");            		
+             	}
+             	
+             }
             
             
             session.setAttribute("NAME", chk.get("NAME"));
@@ -108,11 +109,11 @@ public class LoginController {
             session.setAttribute("EMAIL", chk.get("EMAIL"));
             session.setAttribute("ADMIN", chk.get("ADMIN"));
 
-            // 이메일 포맷 변경
+           // 이메일 포맷 변경
             String email = chk.get("EMAIL").toString();
             System.out.println("이메일 : " + email);
             String[] sessionEmail = email.split("@");
-            /*session.setAttribute("MEMBER_EMAIL", sessionEmail.toString());*/
+            session.setAttribute("MEMBER_EMAIL", sessionEmail.toString());
             session.setAttribute("EMAIL1", sessionEmail[0].toString());	//이메일 앞부분
             session.setAttribute("EMAIL2", sessionEmail[1].toString());	//이메일 뒷부분
             
@@ -156,7 +157,8 @@ public class LoginController {
              
             return mv;
             
-         } else {	//비밀번호 틀렸을때
+         } else 
+         {	//비밀번호 틀렸을때
         	mv.setViewName("loginForm");
             mv.addObject("message", "비밀번호를 확인해 주세요.");
             return mv;

@@ -548,7 +548,7 @@
 						</div>
 										
 						<div class="btnArea center">
-							<a href="/3T/mypage/mypage">수정취소</a> 
+							<a href="/3T/member/mypage">수정취소</a> 
 							<input type="submit" value="정보수정">
 						</div>
 						</form>

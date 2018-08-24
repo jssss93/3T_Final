@@ -8,30 +8,31 @@
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 </head>
 <body>
-	<table width="100%" align="center" border="0" cellspacing="1"
-		cellpadding="1" class="board_top">
+	<h2>메세지</h2>
+	<table width="80%" border="0" cellspacing="0" cellpadding="2">
+
 		<tr>
-			<td height="50"></td>
+			<td height="30"></td>
 		</tr>
 		<tr>
-			<td align="left" class="text01 formbar"><h6>
-					<font color="#000000">MY MESSAGE</font>
-				</h6></td>
+			<td align="center" class="text01 formbar"><h2>mymessage</h2></td>
 		</tr>
 
 		<tr>
 			<td height="50"></td>
 		</tr>
+		
+		
 	</table>
-		<table class="coupon_mainlist" width="80%">
+		<table class="board_list" width="80%">
     <colgroup>
         <col width="10%"/>
         <col width="*"/>
     </colgroup>
     <thead>
         <tr>
-            <th scope="col" class="no">메세지번호</th>
-            <th scope="col" class="coupon">내용</th>
+            <th scope="col">메세지번호</th>
+            <th scope="col">내용</th>
         </tr>
     </thead>
     <tbody>
@@ -46,35 +47,16 @@
             </c:when> 
             <c:otherwise>
                 <tr>
-                    <td colspan="4" class="empty">조회된 결과가 없습니다.</td>
+                    <td colspan="4">조회된 결과가 없습니다.</td>
                 </tr>
             </c:otherwise>
         </c:choose>
          
     </tbody>
 </table>
-
-	    <br>
-		<a href="#this" class="btn" id="write">글쓰기</a>
-		
 	<br />
-	<!-- <form action="/3T/qa/list">
-		<select name="SearchNum" id="SearchNum" style="width: 100px; height: 30px;" >
-					<option value="MEMBER_ID">작성자</option>
-					<option value="TITLE">제목</option>
-					<option value="CONTENT">내용</option>
-				</select>
-				
-				<input type="text" name="SearchKeyword" id="SearchKeyword" style="margin-left:15px;width:200px;height:36px;border-radius :5px 5px 5px 5px;"/>            
-                                 
-            
-                                    <input type="submit" value="검색">
-                                    </form>
-							
-	
-	<br />
-	<a href="#this" class="btn" id="write">글쓰기</a> -->
-
+		<a href="#this" class="btn" id="write">글쓰기</as>
+		<a href="/3T/member/mypage" class="btn">마이페이지로</a> 
 
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	<script type="text/javascript">
@@ -104,7 +86,7 @@
         	
             function fn_openMessageWrite(){
             var comSubmit = new ComSubmit();
-            comSubmit.setUrl("<c:url value='/mypage/messageWrite' />");
+            comSubmit.setUrl("<c:url value='/member/messageWrite' />");
             comSubmit.submit();
         	}
             function fn_openBoardDetail(obj){

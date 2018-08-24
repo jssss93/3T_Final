@@ -527,8 +527,8 @@
 											src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"
 											alt="필수"></th>
 										<td><input name="EMAIL1" type="text" class="box" id="EMAIL1"
-										size="15"> @ <input name="EMAIL2" type="text"
-										class="box" id="EMAIL2" size="20"> <select
+										size="15" value="${sessionScope.email1}" readonly> @ <input name="EMAIL2" type="text"
+										class="box" id="EMAIL2" size="20" value="${sessionScope.email2}" readonly> <<!-- select
 										name="email3"  id="email_select"
 										onChange="checkemailaddy();">
 										<option value="" selected>선택하세요</option>
@@ -537,7 +537,7 @@
 										<option value="hanmail.com">hanmail.com</option>
 										<option value="yahoo.co.kr">yahoo.co.kr</option>
 										<option value="1">직접입력</option>
-									</select>
+									</select> -->
 									<span id="emailMsg"></span></td>
 									</tr>
 									
