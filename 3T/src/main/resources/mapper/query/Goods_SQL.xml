@@ -9,55 +9,110 @@
 		<include refid="common.pagingPre" /> 
 		<![CDATA[
 			SELECT
-			   GOODS_NO,
-			   NAME,
-			   CONTENT, 
-			   READCNT,
-			   REGDATE,
-			   PRICE,
-			   RELATED,
-			   KEYWORD,
-			   CATEGORY,
-			   ATTRIBUTE_NO,
-			   WM_CONCAT(GOODS_SIZE) AS GOODS_SIZE,
-			   WM_CONCAT(COLOR) AS COLOR,
-			   WM_CONCAT(COUNT) AS COUNT,
-			   ROW_NUMBER() OVER (ORDER BY GOODS_NO DESC) RNUM
-			FROM
-			   (
-			   SELECT 
-			      a.GOODS_NO,
-			      a.NAME,
-			      a.CONTENT,
-			      a.READCNT,
-			      a.REGDATE,
-			      a.PRICE,
-			      a.RELATED,
-			      a.KEYWORD,
-			      a.CATEGORY,
-			      b.ATTRIBUTE_NO,
-			      b.GOODS_SIZE,
-			      b.COLOR,
-			      b.COUNT
-			   FROM
-			      GOODS a INNER JOIN GOODS_ATTRIBUTE b 
-			   ON 
-			      a.GOODS_NO = b.GOODS_NO 
-			    WHERE 
-			       ROWNUM < 15
-			   ORDER BY 
-			      b.ATTRIBUTE_NO ASC
-			   )
-		  	   GROUP BY
-			      GOODS_NO,
-			      NAME,CONTENT, 
-			      READCNT,
-			      REGDATE,
-			      PRICE,
-			      RELATED,
-			      KEYWORD,
-			      ATTRIBUTE_NO,
-			      CATEGORY
+        GOODS_NO,
+        NAME,
+        CONTENT, 
+        READCNT,
+        REGDATE,
+        PRICE,
+        RELATED,
+        KEYWORD,
+        CATEGORY,
+        ATTRIBUTE_NO,
+        GOODS_SIZE,
+        COLOR,
+        COUNT,
+        RNUM,
+        WM_CONCAT(SAV_NAME) AS IMAGE
+FROM
+(
+select 
+           c.GOODS_NO,
+            c.NAME,
+            c.CONTENT, 
+            c.READCNT,
+            c.REGDATE,
+            c.PRICE,
+            c.RELATED,
+            c.KEYWORD,
+            c.CATEGORY,
+            c.ATTRIBUTE_NO,
+            c.GOODS_SIZE,
+            c.COLOR,
+            c.COUNT,
+            c.RNUM,
+         d.SAV_NAME
+FROM
+
+
+(SELECT
+            GOODS_NO,
+            NAME,
+            CONTENT, 
+            READCNT,
+            REGDATE,
+            PRICE,
+            RELATED,
+            KEYWORD,
+            CATEGORY,
+            ATTRIBUTE_NO,
+            WM_CONCAT(GOODS_SIZE) AS GOODS_SIZE,
+            WM_CONCAT(COLOR) AS COLOR,
+            WM_CONCAT(COUNT) AS COUNT,
+            ROW_NUMBER() OVER (ORDER BY GOODS_NO DESC) RNUM
+         FROM
+            (
+            SELECT 
+               a.GOODS_NO,
+               a.NAME,
+               a.CONTENT,
+               a.READCNT,
+               a.REGDATE,
+               a.PRICE,
+               a.RELATED,
+               a.KEYWORD,
+               a.CATEGORY,
+               b.ATTRIBUTE_NO,
+               b.GOODS_SIZE,
+               b.COLOR,
+               b.COUNT
+            FROM
+               GOODS a INNER JOIN GOODS_ATTRIBUTE b 
+            ON 
+               a.GOODS_NO = b.GOODS_NO 
+             
+            
+            )
+              GROUP BY
+               GOODS_NO,
+               NAME,CONTENT, 
+               READCNT,
+               REGDATE,
+               PRICE,
+               RELATED,
+               KEYWORD,
+               ATTRIBUTE_NO,
+               CATEGORY
+            
+            ) c INNER JOIN UPLOAD d
+            ON 
+            c.GOODS_NO=d.GOODS_NO
+            )
+            GROUP BY
+               GOODS_NO,
+        NAME,
+        CONTENT, 
+        READCNT,
+        REGDATE,
+        PRICE,
+        RELATED,
+        KEYWORD,
+        CATEGORY,
+        ATTRIBUTE_NO,
+        GOODS_SIZE,
+        COLOR,
+        COUNT,
+        RNUM
 		]]>
 		<include refid="common.pagingPost" />
 

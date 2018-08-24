@@ -18,6 +18,31 @@ a:link, a:visited {
 	color: #656565;
 }
 
+
+
+.order_title {
+	font-weight: bold;   
+    width: auto;
+    vertical-align: middle;
+    color: #353535;
+    font-size: 12px;
+    text-align: left !important;
+    margin: 0 0 0 10px;
+}
+.order_title2 {
+	    padding: 7px!important;
+    margin-bottom: 10px;
+    background: none !important;
+    font-size: 9px;
+    text-transform: uppercase;
+    color: #aaa !important;
+    letter-spacing: 1.5px;
+    margin: -15px 0 0;
+    color: #353535;
+    text-align: right;
+}
+
+
 .coupon_mainlist {
 	table-layout: fixed;
 	color: #353535;
@@ -465,8 +490,9 @@ a:link, a:visited {
 
 .board_view3 tbody td {
 	width: 50%;
-	padding: 10px 0 8px 10px;
+	padding: 15px 0 8px 10px;
 	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
 }
 
 .board_view3 tbody th.th_file {
@@ -484,7 +510,6 @@ a:link, a:visited {
 .board_view4 p {
 	width: 500%;
 	padding: 10px 0 8px 20px;
-	border-top: 1px solid #eee;
 	border-right: 1px solid #eee;
 	font-family: 'Lato', 'Nanum Gothic';
 	font-size: 12px;
@@ -872,9 +897,10 @@ a:link, a:visited {
 
 .board_content td {
 	font-family: FontAwesome;
-	padding: 0 0 0 400px;
+	/* padding: 0 0 0 400px; */
 	vertical-align: middle;
 	font-size: 14px;
+	text-align: center;
 }
 
 .board_content2 {
@@ -902,6 +928,11 @@ a:link, a:visited {
 .wdp_25 {
 	width: 18%;
 	height: 20;
+}
+
+.wdp_30 {
+	width: 15%;
+	height: 25;
 }
 
 .btn {
