@@ -35,6 +35,7 @@
 		
 		<mvc:interceptor>
 			<mvc:mapping path="/goods/*" />
+			<mvc:mapping path="/member/*" />
 			<bean class="com.kh.iclass.member.login.LoginInterceptor" />
 		</mvc:interceptor>
 		

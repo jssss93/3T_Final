@@ -62,7 +62,8 @@ public class JoinController {
 		ModelAndView mv = new ModelAndView();
 		String email1 = (String) Map.getMap().get("email1");
 		String email2 = (String) Map.getMap().get("email2");
-		System.out.println(email1 +"@"+email2);
+		System.out.println("이메일받자"+request.getParameter("email1"));
+		System.out.println("이메일받자2"+request.getParameter("email2"));
 		
 		mv.setViewName("member/joinStep222");
 		session.setAttribute("email1",email1);

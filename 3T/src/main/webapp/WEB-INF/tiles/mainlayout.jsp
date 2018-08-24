@@ -116,14 +116,14 @@
 		<div class="left_login">
 			<div class="xans-element- xans-layout xans-layout-statelogoff ">
 				<c:if test="${sessionScope.MEMBER_ID == null}">
-					<a href="/3T/member/loginForm" class="log">login</a>
+					<a href="/3T/loginForm" class="log">login</a>
 					<a href="/3T/member/joinStep1">join</a>
 							</c:if>
 				<c:if test="${sessionScope.MEMBER_ID != null}">
-					<a href="/3T/member/logout" class="log">logout</a> 
+					<a href="/3T/logout" class="log">logout</a> 
 							</c:if> 
 							<br>
-		     <a href="/3T/order/list">order</a> <a href="/3T/mypage/mypage">mypage</a>
+		     <a href="/3T/order/list">order</a> <a href="/3T/member/mypage">mypage</a>
 			</div>
 
 

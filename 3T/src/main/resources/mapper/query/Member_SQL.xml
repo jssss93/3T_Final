@@ -3,11 +3,136 @@
 
 <mapper namespace="member">
 
-	<!-- 로그인, 회원정보수정 -->
- 	<select id="loginGo" parameterType="hashmap" resultType="hashmap">
+
+	<select id="checkMember" parameterType="hashmap"
+		resultType="java.lang.Integer">
 	<![CDATA[
-		SELECT * FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID}
+		select 
+			count(email) 
+		from 
+			member
+		where 
+			email = #{MEMBER_EMAIL}
 	]]>
+	</select>
+	
+	<!-- 회원정보(로그인, 회원정보수정) -->
+	<select id="memberInfo" parameterType="hashmap"
+		resultType="hashmap">
+	<![CDATA[
+		SELECT 
+			MEMBER_NO,
+			MEMBER_ID, 
+			PASSWD, 
+			NAME, 
+			BIRTH, 
+			ZIPCODE, 
+			ADDR1, 
+			ADDR2, 
+			PHONE, 
+			EMAIL, 
+			REGDATE
+		FROM 
+			MEMBER 
+		WHERE 
+			MEMBER_ID = #{MEMBER_ID}
+	]]>
+	</select>
+
+	<!-- mypage-myboard -> Qna -->
+	<select id="myBoardQna" parameterType="hashmap"
+		resultType="hashmap">
+        <![CDATA[
+           SELECT
+           		QA_NO,
+           		TITLE,
+           		MEMBER_ID,
+           		REGDATE
+           	FROM 
+           		QA
+           	WHERE
+           		MEMBER_ID = #{MEMBER_ID}	
+        ]]>
+	</select>
+	
+	<!-- mypage-myboard -> Review -->
+	<select id="myBoardReview" parameterType="hashmap"
+		resultType="hashmap">
+        <![CDATA[
+           SELECT
+           		REVIEW_NO,
+           		TITLE,
+           		MEMBER_ID,
+           		REGDATE
+           	FROM 
+           		REVIEW
+           	WHERE
+           		MEMBER_ID = #{MEMBER_ID}	
+        ]]>
+	</select>
+	
+	<!-- mypage-mycoupon -->
+	<select id="myCoupon" parameterType="hashmap"
+		resultType="hashmap">
+        <![CDATA[
+           SELECT
+           		COUPON_NO,
+           		CONTENT
+           	FROM 
+           		COUPON
+           	WHERE
+           		MEMBER_ID = #{MEMBER_ID}	
+        ]]>
+	</select>
+	
+	<!-- mypage-mymessage -->
+	<select id="myMessage" parameterType="hashmap"
+		resultType="hashmap">
+        <![CDATA[
+           SELECT
+           		MESSAGE_NO,
+           		CONTENT,
+           		SENDMEMBER
+           	FROM 
+           		MESSAGE
+           	WHERE
+           		TOMEMBER = #{TOMEMBER}	
+        ]]>
+	</select>
+	
+	<!-- mypage state값들 -->
+	<select id="state" parameterType="hashmap" resultType="hashmap">
+        <![CDATA[
+           SELECT
+           		COUNT(STATE) as CNT
+           	FROM 
+           		ORDER_3T
+           	WHERE
+           		MEMBER_ID = #{MEMBER_ID} AND
+           		STATE =  #{STATE}
+           		]]>					
+       
+	</select>
+	
+	<!-- mypage 총주문수 -->
+	<select id="orderAll" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			COUNT(MEMBER_ID) as ORDERALL
+		FROM
+			ORDER_3T
+		WHERE
+			MEMBER_ID = #{MEMBER_ID} AND 
+			STATE between 0 and 8
+	</select>
+	
+	<!-- mypage 메세지수 -->
+	<select id="messageAll" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			COUNT(TOMEMBER) as MESSAGEALL
+		FROM
+			MESSAGE
+		WHERE
+			TOMEMBER = #{TOMEMBER}
 	</select>
 
 	<!-- 회원가입 -->
@@ -25,19 +150,26 @@
 		
 	</insert>
 	
-	<select id="checkMember" parameterType="hashmap" resultType="java.lang.Integer">
-	<![CDATA[
-		select 
-			count(email) 
-		from 
-			member
-		where 
-			email = #{MEMBER_EMAIL}
-	]]>
-	</select>
+	<!-- 메세지보내기 -->
+	<insert id="insertMessage" parameterType="hashmap"
+		useGeneratedKeys="true" keyProperty="MESSAGE_NO">
+		<selectKey keyProperty="MESSAGE_NO"
+			resultType="java.lang.Integer" order="BEFORE">
+			SELECT M_MSG_NO_SEQ.NEXTVAL FROM
+			DUAL
+		</selectKey>
+    		<![CDATA[
+		INSERT INTO MESSAGE 
+			(MESSAGE_NO, CONTENT, TOMEMBER, SENDMEMBER)
+		VALUES
+			(#{MESSAGE_NO}, #{CONTENT}, #{TOMEMBER}, #{SENDMEMBER})
+		]]>
+	</insert>
+	
+
 
 	
-	<select id="checkId" parameterType="String" resultType="int">
+<!-- 	<select id="checkId" parameterType="String" resultType="int">
 	<![CDATA[
 		SELECT 
 			COUNT(*) 
@@ -46,7 +178,23 @@
 		WHERE 
 			MEMBER_ID = #{MEMBER_ID}
 	]]>
-	</select>
+	</select> -->
+	
+	<!-- 정보수정 -->
+	<update id="updateMember" parameterType="hashmap">
+		<![CDATA[
+		UPDATE 
+			MEMBER 
+		SET 
+			PASSWD = #{PASSWD}, ZIPCODE = #{ZIPCODE}, ADDR1 = #{ADDR1}, ADDR2 = #{ADDR2}, PHONE = #{PHONE}, EMAIL = #{EMAIL}
+		WHERE 
+			MEMBER_ID = #{MEMBER_ID}
+		]]>
+
+	
+	</update>
+	
+
 
 	
 	
