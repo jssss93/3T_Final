@@ -117,7 +117,7 @@
 			<div class="xans-element- xans-layout xans-layout-statelogoff ">
 				<c:if test="${sessionScope.MEMBER_ID == null}">
 					<a href="/3T/loginForm" class="log">login</a>
-					<a href="/3T/member/joinStep1">join</a>
+					<a href="/3T/joinStep1">join</a>
 							</c:if>
 				<c:if test="${sessionScope.MEMBER_ID != null}">
 					<a href="/3T/logout" class="log">logout</a> 

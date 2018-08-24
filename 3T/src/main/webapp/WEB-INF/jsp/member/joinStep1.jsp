@@ -60,7 +60,7 @@
                         	<a href="javascript:member_send();" class="btn btn-default">회원가입하기(AJAX TEST)</a>
                         </span>
                         <span class="joinusbtn">
-                        	<a href="/3T/member/joinStep2" class="btn btn-default">일단 바로넘어가기</a> 
+                        	<a href="/3T/joinStep2" class="btn btn-default">일단 바로넘어가기</a> 
                         </span>
                      </p>
 
