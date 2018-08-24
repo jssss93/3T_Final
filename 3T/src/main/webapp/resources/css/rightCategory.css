@@ -7178,6 +7178,7 @@ span.ec-base-help, p.ec-base-help, ul.ec-base-help li {
 	background:
 		url('//img.echosting.cafe24.com/skin/base/common/ico_info.gif')
 		no-repeat 0 2px;
+		
 }
 
 div.ec-base-help {
@@ -7911,8 +7912,9 @@ div.ec-base-help ul li {
 }
 
 .ec-base-button {
-	padding: 10px 0;
+	padding: 10px 0 50px;
 	text-align: center;
+	border-bottom: 1px solid #868686;
 }
 
 .ec-base-button.justify {
@@ -8147,6 +8149,7 @@ div.ec-base-help ul li {
 
 .ec-base-table th:first-child {
 	border-left: 0;
+    font-size: 11px;
 }
 
 .ec-base-table td {
@@ -8163,6 +8166,7 @@ div.ec-base-help ul li {
 
 .ec-base-table.typeWrite td {
 	padding: 8px 10px 7px;
+	    font-size: 12;
 }
 
 .ec-base-table.typeList table {

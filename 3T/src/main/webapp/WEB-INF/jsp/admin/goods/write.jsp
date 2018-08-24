@@ -13,7 +13,7 @@
 	<h1 class="page-header">상품등록</h1>
 </div>
 	<form id="frm"  enctype="multipart/form-data">
-		<table class="board_view3">
+		<table class="board_view3" border="1">
 			<!-- <colgroup>
 				<col width="15%">
 				<col width="*"/>
@@ -53,8 +53,8 @@
 						class="wdp_20" placeholder="ex) 바지,반바지,긴바지,팬츠,하의,"></input></td>
 				</tr>
 				<tr>
-					<td colspan="2" class="board_content2">
-						<textarea rows="20" cols="203" title="내용" name="CONTENT" placeholder="상세 설명"></textarea>
+					<td colspan="1" class="board_content2">
+						<textarea rows="20" cols="170" title="내용" name="CONTENT" placeholder="상세 설명"></textarea>
 					</td>
 				</tr> 
 				<tr>
@@ -71,51 +71,13 @@
 						<a href="#this" class="btn" id="addAttribute" >속성 추가</a>  
 					</td>
 				</tr>
-				<!-- <tr>
-					<td colspan="2">
-					<a href="#this" class="btn" id="addAttribute">속성 추가</a><br/>
-						<div id="AttributeDiv">
-							<p>
-							<select name="COLOR" size="1">
-								<OPTION value=''>COLOR</OPTION>
-								<OPTION value='BLACK'>BLACK</OPTION>
-								<OPTION value='GRAY'>GRAY</OPTION>
-								<OPTION value='BROWN'>BROWN</OPTION>
-								<OPTION value='BURGUNDY'>BURGUNDY</OPTION>
-								<OPTION value='PINK'>PINK</OPTION>
-								<OPTION value='PURPLE'>PURPLE</OPTION>
-								<OPTION value='WHITE'>WHITE</OPTION>
-								<OPTION value='NAVY'>NAVY</OPTION>
-								<OPTION value='BLUE'>BLUE</OPTION>
-								<OPTION value='GREEN'>GREEN</OPTION>
-								<OPTION value='YELLOW'>YELLOW</OPTION>
-								<OPTION value='RED'>RED</OPTION>
-								<OPTION value='SKYBLUE'>SKYBLUE</OPTION>
-								<OPTION value='BEIGE'>BEIGE</OPTION>
-							</select>
-							
-							<select name="SIZE" size="1">
-								<OPTION value=''>SIZE</OPTION>
-								<OPTION value='M'>M</OPTION>
-								<OPTION value='L'>L</OPTION>
-								<OPTION value='XL'>XL</OPTION>
-								<OPTION value='Free'>Free</OPTION>
-									 
-							</select>
-							
-							<input type="text" placeholder='수량' name="COUNT" size="1">
-							<a href="#this" class="btn" id="deleteA" name="deleteA">삭제</a>
-							</p>
-						</div>
-					</td>
-				</tr> -->
 				<tr>
 					<td colspan="2">
 					
 						<div id="fileDiv" class="board_view4">
 							<p>
 							<input type="file" id="IMAGE" name="IMAGE">
-							<a href="#this" class="btn" id="delete" name="delete">삭제</a>
+							
 							</p>
 						</div>
 						<a href="#this" class="btn" id="addFile">이미지 추가</a>
@@ -178,7 +140,7 @@
 			comSubmit.submit();
 		}
 		function fn_addFile(){
-	        var str = "<p><input type='file' name='file_"+(gfv_count++)+"'><a href='#this' class='btn' name='deleteF'>이미지삭제</a></p>";
+	        var str = "<p name='file_"+(gfv_count++)+"'><tr><td><input type='file' name='file_"+(gfv_count++)+"'></td><td><a href='#this' class='btn' name='deleteF'>이미지삭제</a></td></tr></p>";
 	        $("#fileDiv").append(str);
 	        $("a[name='deleteF']").on("click", function(e){ //삭제 버튼
 	            e.preventDefault();
@@ -202,7 +164,7 @@
 	            obj.parent().remove();
 	       }
 	    function fn_deleteFile(obj){
-	        obj.parent().remove();
+	        obj.parent().parent().remove();
 	    }
 	</script>
 </body>
