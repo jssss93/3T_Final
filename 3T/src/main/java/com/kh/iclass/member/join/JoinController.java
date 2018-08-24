@@ -35,29 +35,22 @@ public class JoinController {
 
 	@Resource(name="joinService")
 	private JoinService joinService;
-
-	@RequestMapping(value="/1/1")
-	public ModelAndView joinStep11(){
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("member/joinStep222-hanbyul");
-		return mv;
-	}	
 	
-	@RequestMapping(value="/member/joinStep1")
+	@RequestMapping(value="/joinStep1")
 	public ModelAndView joinStep1(){
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("member/joinStep1");
 		return mv;
 	}
 	
-	@RequestMapping(value="/member/joinStep1Email")
+	@RequestMapping(value="/joinStep1Email")
 	public ModelAndView modal_email(){
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("member/joinEmail");
 		return mv;
 	}
 	
-	@RequestMapping(value="/member/joinStep2")
+	@RequestMapping(value="/joinStep2")
 	public ModelAndView joinStep2(HttpSession session,HttpServletResponse response, HttpServletRequest request,CommandMap Map){
 		ModelAndView mv = new ModelAndView();
 		String email1 = (String) Map.getMap().get("email1");
@@ -73,7 +66,7 @@ public class JoinController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/member/joinStep2/checkId")
+	@RequestMapping(value="/joinStep2/checkId")
 	@ResponseBody
 	public void checkId(HttpServletRequest request, HttpServletResponse response, CommandMap commandMap) throws Exception{
 		PrintWriter writer = response.getWriter();

@@ -23,7 +23,7 @@
 
 	<div class="text-center" style="padding-top:10px">
 		  <a href="javascript:member_send();" class="btn btn-default">회원가입하기(AJAX TEST)</a> 
-		 <a href="/3T/member/joinStep2" class="btn btn-default">회원가입하기(AJAX 후에 기능 추가)</a> 
+		 <a href="/3T/joinStep2" class="btn btn-default">회원가입하기(AJAX 후에 기능 추가)</a> 
 	</div> 
 
 </section>
