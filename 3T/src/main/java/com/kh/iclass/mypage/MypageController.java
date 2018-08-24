@@ -22,6 +22,7 @@ public class MypageController {
 
 	@Resource(name="mypageService")
 	private MypageService mypageService;
+	
 	@Resource(name="adminMemberService")
 	private AdminMemberService adminMemberService;
 

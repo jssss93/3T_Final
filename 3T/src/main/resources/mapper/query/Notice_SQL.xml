@@ -41,8 +41,8 @@
 				NOTICE_NO_SEQ.NEXTVAL,
 			    0, 
 			    0, 
-			    #{title},
-			    #{content},
+			    #{TITLE},
+			    #{CONTENT},
 			    0,
 			    SYSDATE		    
 			)
@@ -82,8 +82,8 @@
 			UPDATE 
 				NOTICE 
 			SET
-			    TITLE = #{title},
-			    CONTENT = #{content}
+			    TITLE = #{TITLE},
+			    CONTENT = #{CONTENT}
 			WHERE
 				NOTICE_NO = #{NOTICE_NO}	
 		]]>

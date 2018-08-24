@@ -5,16 +5,17 @@
 <head>
 <script type="text/javascript">
 //주문번호 같은 열 합치는 Jquery
-$( document ).ready(function() {
+/* $( document ).ready(function() {
 	$('#dataTables-example').rowspan(0);
 	$('#dataTables-example').rowspan(1);
-	/* $('#dataTables-example').rowspan(2); */
+	$('#dataTables-example').rowspan(2); 
 	$('#dataTables-example').rowspan(3);
 	$('#dataTables-example').rowspan(4);
-	/* $('#dataTables-example').rowspan(5); */
+	$('#dataTables-example').rowspan(5); 
 	$('#dataTables-example').rowspan(9);
 	$('#dataTables-example').rowspan(10);
 });
+ */
 
 $.fn.rowspan = function(colIdx, isStats) {       
 	return this.each(function(){      
@@ -84,31 +85,6 @@ function delchk(){
 			<div class="dataTable_wrapper">
 				<div id="dataTables-example_wrapper"
 					class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-					<!-- <div class="row" style="margin-bottom:5px;">
-						<div class="col-sm-6">
-							<select class="form-control" name="select" onchange="window.open(value,'_self');">
-								<option value ="">--카테고리--</option>
-								<option value ="/MODA/goods/goodsList?searchNum=2&isSearch=OUTER">OUTER</option>
-								<option value ="/MODA/goods/goodsList?searchNum=2&isSearch=TOP">TOP</option>
-								<option value ="/MODA/goods/goodsList?searchNum=2&isSearch=PANTS">PANTS</option>
-								<option value ="/MODA/goods/goodsList?searchNum=2&isSearch=SHOES">SHOES</option>
-								<option value ="/MODA/goods/goodsList?searchNum=2&isSearch=ACC">ACC</option>
-							</select>
-							<select class="form-control" name="select" onchange="window.open(value,'_self');">
-								<option value ="">--상품구분--</option>
-								<option value ="/MODA/goods/goodsList?searchNum=3&isSearch=0">판매중</option>
-								<option value ="/MODA/goods/goodsList?searchNum=4&isSearch=">품절상품</option>
-								<option value ="/MODA/goods/goodsList?searchNum=3&isSearch=1">비활성화</option>
-							</select>			
-							<select class="form-control" name="select" onchange="window.open(value,'_self');">
-								<option value ="">--상품정렬--</option>
-								<option value ="/MODA/goods/goodsList?searchNum=5&isSearch=GOODS_AMOUNT">판매수량순</option>
-								<option value ="/MODA/goods/goodsList?searchNum=6&isSearch=GOODS_COUNT">조회순</option>
-							</select>											
-						</div>
-						
-						
-					</div> -->
 					<div class="row">
 						<div class="col-sm-12">
 							<table class="table  table-bordered table-hover dataTable no-footer"id="dataTables-example" role="grid"	aria-describedby="dataTables-example_info">
@@ -155,7 +131,7 @@ function delchk(){
 							</table>
 						</div>
 					</div>
-					<a href="/3T/admin/notice/write"><button type="submit" class="btn btn-default">공지사항 작성</button></a>
+					<a href="/3T/admin/notice/write"><button type="submit" class="btn btn-default">작성</button></a>
 					<div class="paging">
 						${pagingHtml}
 					</div>

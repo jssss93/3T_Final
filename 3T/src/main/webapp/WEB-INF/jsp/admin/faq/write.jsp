@@ -21,12 +21,28 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="write"method="post" ><br/>
-	<input type="text" class="form-control" name="title" placeholder="제목을 입력해주세요" value="${map.TITLE }"><br/>
-	<div id="summernote" value="4">${map.CONTENT }</div>
-	<textarea id="noteArea" name="content"  style="display: none;"></textarea>
+	<c:choose>
+		<c:when test="${map.TITLE==NULL }">
+			<form action="write"method="post" >
+		</c:when>
+		<c:otherwise>
+			<form action="update"method="post" >
+		</c:otherwise>
+	</c:choose>
 	
-	<input type="submit" class="btn btn-default" id="submitBtn" value="등록" />
+	<input type="hidden" name="FAQ_NO" value="${map.FAQ_NO }"><br/>
+	
+	<input type="text" class="form-control" name="TITLE" placeholder="제목을 입력해주세요" value="${map.TITLE }"><br/>
+	
+	<div id="summernote" value="4">${map.CONTENT }</div>
+	
+	<textarea id="noteArea" name="CONTENT"  style="display: none;"></textarea>
+	
+	<c:choose>
+		<c:when test="${map.TITLE == NULL }"><input type="submit" class="btn btn-default" id="submitBtn" value="등록" />	</c:when>
+		<c:when test="${map.TITLE != NULL }"><input type="submit" class="btn btn-default" id="submitBtn" value="수정" /></c:when>
+	</c:choose>
+	
 	</form>
 </body>
 <script>
@@ -68,7 +84,6 @@ $(document).ready(function() {
 	        enctype: 'multipart/form-data',
 	        processData: false,
 	        success: function(url) {
-	        	console.log("들어감?");
 	         	$(el).summernote('editor.insertImage', "/3T/resources/upload/" + url, function($image) {
 	         		$image.css('width', '480px');	
 	         		$image.css('height', 'auto');

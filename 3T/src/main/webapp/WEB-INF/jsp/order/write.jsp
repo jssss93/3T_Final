@@ -255,18 +255,7 @@
 		} 
 	}
 	
-	$(document).ready(function() {
-		$("#write2").on("click", function(e) { //작성하기 버튼
-			e.preventDefault();
-			fn_Write2();
-		});
-	});
 	
-	function fn_Write2() {
-		var comSubmit = new ComSubmit("frm");
-		comSubmit.setUrl("<c:url value='/order/insert' />");
-		comSubmit.submit();
-	}
 </script>
 </head>
 <body >
@@ -622,6 +611,21 @@
 				(무통장,휴대폰결제 포함)
 			</td>
 		</tr>
-	</table>
+	</table> 
 </body>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#write2").on("click", function(e) { //작성하기 버튼
+		e.preventDefault();
+		fn_Write2();
+	});
+});
+
+function fn_Write2() {
+	console.log("진입");
+	var comSubmit = new ComSubmit("frm");
+	comSubmit.setUrl("<c:url value='/order/insert' />");
+	comSubmit.submit();
+}
+</script>
 </html>

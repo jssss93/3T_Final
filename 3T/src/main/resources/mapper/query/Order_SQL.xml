@@ -72,7 +72,7 @@
 		
 	</insert>
 
-		<!-- 관리자 주문리스트 -->
+	<!-- 관리자 주문리스트 -->
  	<select id="selectOrderListAll" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
 		select
@@ -111,7 +111,126 @@
 			    a.ORDER_NO=b.ORDER_NO AND
 			    b.GOODS_NO=c.GOODS_NO AND
 			    b.ATTRIBUTE_NO=d.ATTRIBUTE_NO AND
-			    b.GOODS_NO=e.GOODS_NO
+			    b.GOODS_NO=e.GOODS_NO AND
+			    a.STATE IN (0,1,2,3)
+		  	ORDER BY
+		    	a.ORDER_NO desc
+		    	)
+		GROUP BY
+			  REGDATE,
+			  ORDER_NO,
+			  STATE,
+			  MEMBER_ID,
+			  COUNT,
+			  NAME,
+			  ATTRIBUTE_NO,
+			  GOODS_NO,
+			  PRICE,
+			  CONTENT,
+			  COLOR,
+			  GOODS_SIZE
+	]]>
+	</select>
+	<!-- 관리자 교환리스트 -->
+	<select id="selectChangeListAll" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		select
+			REGDATE,
+			ORDER_NO,
+			STATE,
+			MEMBER_ID,
+			COUNT,
+			ATTRIBUTE_NO,
+			GOODS_NO,
+			NAME,
+			PRICE,
+			CONTENT,
+			COLOR,
+			GOODS_SIZE,
+			WM_CONCAT(SAV_NAME) AS IMAGE
+		from
+		  	(
+		  	select 
+		    	a.REGDATE,
+		    	a.ORDER_NO,
+			    a.STATE,
+			    a.MEMBER_ID,
+			    b.COUNT,
+			    b.ATTRIBUTE_NO,
+			    b.GOODS_NO,
+			    c.NAME,
+			    c.PRICE,
+			    c.CONTENT,
+			    d.color,
+			    d.GOODS_SIZE,
+			    e.sav_name
+			from
+		    	ORDER_3T a, ORDER_DETAIL b, GOODS c , GOODS_ATTRIBUTE d , UPLOAD e
+		  	where
+			    a.ORDER_NO=b.ORDER_NO AND
+			    b.GOODS_NO=c.GOODS_NO AND
+			    b.ATTRIBUTE_NO=d.ATTRIBUTE_NO AND
+			    b.GOODS_NO=e.GOODS_NO AND
+			    a.STATE IN (4,5,6,7)
+		  	ORDER BY
+		    	a.ORDER_NO desc
+		    	)
+		GROUP BY
+			  REGDATE,
+			  ORDER_NO,
+			  STATE,
+			  MEMBER_ID,
+			  COUNT,
+			  NAME,
+			  ATTRIBUTE_NO,
+			  GOODS_NO,
+			  PRICE,
+			  CONTENT,
+			  COLOR,
+			  GOODS_SIZE
+	]]>
+	</select>
+	<!-- 관리자 환불리스트 -->
+	<select id="selectRefundListAll" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		select
+			REGDATE,
+			ORDER_NO,
+			STATE,
+			MEMBER_ID,
+			COUNT,
+			ATTRIBUTE_NO,
+			GOODS_NO,
+			NAME,
+			PRICE,
+			CONTENT,
+			COLOR,
+			GOODS_SIZE,
+			WM_CONCAT(SAV_NAME) AS IMAGE
+		from
+		  	(
+		  	select 
+		    	a.REGDATE,
+		    	a.ORDER_NO,
+			    a.STATE,
+			    a.MEMBER_ID,
+			    b.COUNT,
+			    b.ATTRIBUTE_NO,
+			    b.GOODS_NO,
+			    c.NAME,
+			    c.PRICE,
+			    c.CONTENT,
+			    d.color,
+			    d.GOODS_SIZE,
+			    e.sav_name
+			from
+		    	ORDER_3T a, ORDER_DETAIL b, GOODS c , GOODS_ATTRIBUTE d , UPLOAD e
+		  	where
+			    a.ORDER_NO=b.ORDER_NO AND
+			    b.GOODS_NO=c.GOODS_NO AND
+			    b.ATTRIBUTE_NO=d.ATTRIBUTE_NO AND
+			    b.GOODS_NO=e.GOODS_NO AND
+			    a.STATE IN (8,9)
 		  	ORDER BY
 		    	a.ORDER_NO desc
 		    	)
@@ -213,7 +332,6 @@
 				</if>
 			WHERE
 				ORDER_NO = #{ORDER_NO}	
-		
 	</update>
 
 	<update id="changeState2" parameterType="hashmap">
@@ -222,6 +340,28 @@
 				order_3t 
 			SET
 				state = state-1
+			WHERE
+				ORDER_NO = #{ORDER_NO}	
+		
+	</update>
+	
+	<update id="changeState8" parameterType="hashmap">
+		
+			UPDATE 
+				order_3t 
+			SET
+				state = 8
+			WHERE
+				ORDER_NO = #{ORDER_NO}	
+		
+	</update>
+	
+	<update id="changeState9" parameterType="hashmap">
+		
+			UPDATE 
+				order_3t 
+			SET
+				state = 9
 			WHERE
 				ORDER_NO = #{ORDER_NO}	
 		

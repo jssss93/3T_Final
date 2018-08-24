@@ -22,7 +22,7 @@
 		var jsonData = ${json};
 		
 		console.log(jsonData);
-		
+		console.log(typeof(jsonData));
 		
 		var datearr=[]
 		var totalarr=[]

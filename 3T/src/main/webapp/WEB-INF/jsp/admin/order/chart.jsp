@@ -86,6 +86,7 @@ $(function () {
                 enabled: false
             },
             series: [{
+            	
                 name: 'Random data',
                 data: (function() {
                     // generate an array of random data
@@ -102,6 +103,7 @@ $(function () {
                     return data;
                 })()
             },
+            
                     {
                 name: 'Random data',
                 data: (function() {

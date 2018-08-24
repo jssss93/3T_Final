@@ -419,7 +419,7 @@
 						
 						<thead>
 							<tr>
-								<th scope="col" class="chk"><input type="checkbox"	id="chkBox" onclick=checkAll()  ></th>
+								<th scope="col" class="chk"><input type="checkbox"	id="chkBox" onclick="checkAll();"  ></th>
 								<th scope="col" class="thumb">IMAGE</th>
 								<th scope="col" class="product">PRODUCT INFO</th>
 								<th scope="col" class="price">PRICE</th>
@@ -645,14 +645,6 @@
 	</script>
 		</div>
 	</div>
-	
-	
-	
-	
-	
-	
-	
-	
 </form>
 </body>
 </html>

@@ -5,19 +5,11 @@
 <head>
 <script type="text/javascript"> 
 //주문번호 같은 열 합치는 Jquery
-/* $( document ).ready(function() {
+ $( document ).ready(function() {
 	$('#dataTables-example').rowspan(0);
 	$('#dataTables-example').rowspan(1);
-	$('#dataTables-example').rowspan(2); 
-	$('#dataTables-example').rowspan(3);
-	$('#dataTables-example').rowspan(4);
-	$('#dataTables-example').rowspan(5); 
 	$('#dataTables-example').rowspan(9);
-	$('#dataTables-example').rowspan(10);
-	
-
-
-}); */
+}); 
 $(window).load(function () {
     $(".gubun").each(function () {
         var rows = $(".gubun:contains('" + $(this).text() + "')");
@@ -26,7 +18,7 @@ $(window).load(function () {
           rows.not(":eq(0)").remove();
         }
     });
-});
+}); 
 
 $.fn.rowspan = function(colIdx, isStats) {       
 	return this.each(function(){      
@@ -94,8 +86,7 @@ function delchk(){
         </div>
         <div class="panel-body">
 			<div class="dataTable_wrapper">
-				<div id="dataTables-example_wrapper"
-					class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+				<div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 					<div class="row">
 						<div class="col-sm-12">
 							<table class="table  table-bordered table-hover dataTable no-footer"id="dataTables-example" role="grid"	aria-describedby="dataTables-example_info">
@@ -118,18 +109,28 @@ function delchk(){
 										<input type="hidden" name="ORDER_NO" value="${list.ORDER_NO }">
 										<tr class="gradeA even" role="row">
 											<td style="text-align:center;vertical-align:middle;" class="gubun">2018-0${list.ORDER_NO}<br>[${list.REGDATE }]</td>
-											<td style="text-align:center;vertical-align:middle;">${list.MEMBER_ID}</td>
+											<td style="text-align:center;vertical-align:middle;">${list.MEMBER_ID}
+												<input type="hidden" name="ORDER_NO" value="${list.ORDER_NO }">
+											</td>
 											<td style="text-align:center;vertical-align:middle;"><img width="50" height="50" src="/3T/resources/upload/${list.IMAGE.split(',')[0] }" /></td>		
 											<td style="text-align:center;vertical-align:middle;">${list.NAME}</td>										
 											<td style="text-align:center;vertical-align:middle;">${list.CONTENT}</td>	
 											<td style="text-align:center;vertical-align:middle;">${list.PRICE}</td>
 											<td style="text-align:center;vertical-align:middle;">${list.COUNT}</td>
 											<td style="text-align:center;vertical-align:middle;">
+												
 												<c:choose>
 													<c:when test="${list.STATE==0 }">입금확인중	</c:when>
 													<c:when test="${list.STATE==1 }">배송준비중</c:when>
 													<c:when test="${list.STATE==2 }">배송중</c:when>
-													<c:otherwise>배송완료</c:otherwise>
+													<c:when test="${list.STATE==3 }">배송완료</c:when>
+													<c:when test="${list.STATE==4 }">교환확인중</c:when>
+													<c:when test="${list.STATE==5 }">교환준비중</c:when>
+													<c:when test="${list.STATE==6 }">교환중</c:when>
+													<c:when test="${list.STATE==7 }">교환완료</c:when>
+													<c:when test="${list.STATE==8 }">환불물품확인중</c:when>
+													<c:when test="${list.STATE==9 }">환불완료</c:when>
+													
 												</c:choose>
 											</td>
 											<td style="text-align:center;vertical-align:middle;">${list.PRICE*list.COUNT}</td>
@@ -138,12 +139,27 @@ function delchk(){
 												<c:url var="update" value="/admin/order/updateForm"><c:param name="ORDER_NO" value="${list.ORDER_NO }"/></c:url>
 												<c:url var="delete" value="/admin/order/delete"><c:param name="ORDER_NO" value="${list.ORDER_NO }" /></c:url>
 												<c:url var="stateup" value="/admin/order/stateup"><c:param name="ORDER_NO" value="${list.ORDER_NO }" /><c:param name="STATE" value="${list.STATE }" /></c:url>
+												<c:url var="statechange" value="/admin/order/statechange"><c:param name="ORDER_NO" value="${list.ORDER_NO }" /><c:param name="STATE" value="${list.STATE }" /></c:url>
+												<c:url var="staterefund" value="/admin/order/state9"><c:param name="ORDER_NO" value="${list.ORDER_NO }" /><c:param name="STATE" value="${list.STATE }" /></c:url>
+												<c:url var="state8" value="/admin/order/state8"><c:param name="ORDER_NO" value="${list.ORDER_NO }" /></c:url>
+												
 												<a href="${update}"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;
 												<a href="${delete}"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png"></a>&nbsp;&nbsp;
 												<c:choose>
 													<c:when test="${list.STATE==0 }"><a href="${stateup }"> >>배송준비중 </a></c:when>
 													<c:when test="${list.STATE==1 }"><a href="${stateup }"> >>배송중 </a></c:when>
 													<c:when test="${list.STATE==2 }"><a href="${stateup }"> >>배송완료</a></c:when>
+													<c:when test="${list.STATE==3 }">
+														<a href="${state8 }"> 	>>환불처리</a>/
+														<a href="${stateup }"> 	>>교환처리</a>
+													</c:when>
+													
+													<c:when test="${list.STATE==4 }"><a href="${statechange }"> >>교환준비중</a></c:when>
+													<c:when test="${list.STATE==5 }"><a href="${statechange }"> >>교환중</a></c:when>
+													<c:when test="${list.STATE==6 }"><a href="${statechange }"> >>교환완료</a></c:when>
+													
+													<c:when test="${list.STATE==8 }"><a href="${staterefund }"> >>환불완료</a></c:when>
+													
 												</c:choose>
 											</td>
 										</tr>

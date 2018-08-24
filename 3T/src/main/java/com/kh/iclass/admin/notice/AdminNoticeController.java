@@ -48,7 +48,7 @@ public class AdminNoticeController {
 	public ModelAndView noticeWrite(CommandMap commandMap,HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:list");
 		
-		String[] contents=request.getParameterValues("content");
+		String[] contents=request.getParameterValues("CONTENT");
 		String content=contents[0];
 		System.out.println("content1 : "+content);
 		System.out.println("commandMap.getMap():"+commandMap.getMap());
@@ -85,7 +85,7 @@ public class AdminNoticeController {
 	
 	@RequestMapping(value = "/notice/update")
 	public ModelAndView noticeUpdate(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/admin/notice/list");
+		ModelAndView mv = new ModelAndView("redirect:list");
 		System.out.println("commandMap.getMap():"+commandMap.getMap());
 		noticeService.NoticeUpdate(commandMap.getMap());
 

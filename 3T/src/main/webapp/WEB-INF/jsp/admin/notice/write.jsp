@@ -21,14 +21,22 @@
 </head>
 <body>
 	<c:choose>
-		<c:when test="${map.TITLE==NULL }"><form action="write"method="post" ></c:when>
-		<c:otherwise><form action="update"method="post" ></c:otherwise>
+		<c:when test="${map.TITLE==NULL }">
+			<form action="write"method="post" >
+		</c:when>
+		<c:otherwise>
+			<form action="update"method="post" >
+		</c:otherwise>
 	</c:choose>
-	<input type="hidden" name="NOTICE_NO" value="${map.NOTICE_NO }">
-	<br/>
-	<input type="text" class="form-control" name="title" placeholder="제목을 입력해주세요" value="${map.TITLE }"><br/>
+	
+	<input type="hidden" name="NOTICE_NO" value="${map.NOTICE_NO }"><br/>
+	
+	<input type="text" class="form-control" name="TITLE" placeholder="제목을 입력해주세요" value="${map.TITLE }"><br/>
+	
 	<div id="summernote" value="4">${map.CONTENT }</div>
-	<textarea id="noteArea" name="content"  style="display: none;"></textarea>
+	
+	<textarea id="noteArea" name="CONTENT"  style="display: none;"></textarea>
+	
 	<c:choose>
 		<c:when test="${map.TITLE == NULL }"><input type="submit" class="btn btn-default" id="submitBtn" value="등록" />	</c:when>
 		<c:when test="${map.TITLE != NULL }"><input type="submit" class="btn btn-default" id="submitBtn" value="수정" /></c:when>
