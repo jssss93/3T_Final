@@ -138,8 +138,10 @@
 		select
 		  REGDATE,
 		  ORDER_NO,
+    	  MEMBER_ID,
 		  STATE,
 		  COUNT,
+		  NAME,
 		  ATTRIBUTE_NO,
 		  GOODS_NO,
 		  PRICE,
@@ -152,11 +154,13 @@
 		    a.REGDATE,
 		    a.ORDER_NO,
 		    a.STATE,
+        a.MEMBER_ID,
 		    b.COUNT,
 		    b.ATTRIBUTE_NO,
 		    b.GOODS_NO,
 		    c.PRICE,
 		    c.CONTENT,
+		    c.NAME,
 		    d.color,
 		    d.GOODS_SIZE,
 		    e.sav_name
@@ -166,14 +170,17 @@
 		    a.ORDER_NO=b.ORDER_NO AND
 		    b.GOODS_NO=c.GOODS_NO AND
 		    b.ATTRIBUTE_NO=d.ATTRIBUTE_NO AND
-		    b.GOODS_NO=e.GOODS_NO
+		    b.GOODS_NO=e.GOODS_NO AND
+        a.MEMBER_ID = #{MEMBER_ID}
 		  ORDER BY
 		    a.ORDER_NO desc)
 		GROUP BY
+      MEMBER_ID,
 		  REGDATE,
 		  ORDER_NO,
 		  STATE,
 		  COUNT,
+		  NAME,
 		  ATTRIBUTE_NO,
 		  GOODS_NO,
 		  PRICE,
