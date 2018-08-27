@@ -4,18 +4,40 @@
 <html lang="ko">
 <head>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
-</head>
-<body>
-
-	<script type="text/javascript">
+<script type="text/javascript">
 		function open_win_noresizable(url, name) {
 			var oWin = window
 					.open(url, name,
 							"scrollbars=no, status=no, resizable=no, width=700, height=500");
 
 		}
+		
+	</script>	
+</head>
+<body>
+ <script type="text/javascript">
+
+		function validation() {
+
+			var frm = document.forms[0];
+
+			if (frm.TITLE.value == "") {
+				alert("제목을 입력해주세요.");
+				return false;
+			} else if (frm.MEMBER_ID.value == "") {
+				alert("이름을 입력해주세요.");
+				return false;
+			} else if (frm.PASSWD.value == "") {
+				alert("비밀번호를 입력해주세요.");
+				return false;
+			} else if (frm.CONTENT.value == "") {
+				alert("내용을 입력해주세요.");
+				return false;
+			}
+			return true;
+		}
 	</script>
- 
+
 	<table width="100%" align="center" border="0" cellspacing="0"
 		cellpadding="1" colspan="1" class="board_top">
 		<br />
@@ -48,15 +70,15 @@
 					</a> <input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
 
 
-						<a href="/3T/goods/detail" type="submit"> <img
+						<a href="/3T/goods/detail?GOODS_NO=${list.GOODS_NO}" type="submit"> <img
 							src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/btn_prd_detail.gif"
 							alt="상품상세보기"> <input type="hidden" name="GOODS_NO"
-							value="${list.GOODS_NO }" /></a> 
+							value="${list.GOODS_NO }" /></a>  
 							
 							<%-- <form action="/3T/goods/detail">
 							<input type="submit" class="btn" value="상품 상세보기"> <input
 								type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
-						</form> --%>
+						</form>  --%>
 					</td>
 
 				</tr>
@@ -80,7 +102,7 @@
 
 	<br />
 	<br />
-	<form action="/3T/review/write">
+	<form action="/3T/review/write" onsubmit="return validation();" method="post">
 		<table border="1" class="board_list2">
 			<tbody>
 				<tr class="board_title2">
