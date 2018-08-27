@@ -12,6 +12,9 @@ public interface OrderService {
 	public void insertOrderDetail(Map<String, Object> map) throws Exception;
 	
 	List<Map<String, Object>> selectList(Map<String, Object> map) throws Exception;
+	List<Map<String, Object>> orderList(Map<String, Object> map) throws Exception;
+	List<Map<String, Object>> swapList(Map<String, Object> map) throws Exception;
+	List<Map<String, Object>> refundList(Map<String, Object> map) throws Exception;
 	
 	
 	Map<String, Object> orderMember(Map<String, Object> map) throws Exception;

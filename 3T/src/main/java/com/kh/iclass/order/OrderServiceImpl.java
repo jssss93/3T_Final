@@ -42,6 +42,21 @@ public class OrderServiceImpl implements OrderService {
 		// TODO Auto-generated method stub
 		return orderDAO.selectList(map);
 	}
+	@Override
+	public List<Map<String, Object>> orderList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return orderDAO.orderList(map);
+	}
+	@Override
+	public List<Map<String, Object>> swapList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return orderDAO.swapList(map);
+	}
+	@Override
+	public List<Map<String, Object>> refundList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return orderDAO.refundList(map);
+	}
 	
 	//리스트
 	@Override

@@ -14,14 +14,21 @@ public class MemberServiceImpl implements MemberService{
 
     @Resource(name="memberDAO")
 	private MemberDAO memberDAO  ;
-	
 
-    
-	@Override
-	public List<Map<String, Object>> mypageInfo(Map<String, Object> map) throws Exception 
+    public List<Map<String, Object>> memberInfoList(Map<String, Object> map) throws Exception 
 	{
-		return memberDAO.memberInfo(map);
+		return memberDAO.memberInfoList(map);
 	}
+
+	public Map<String, Object> memberInfo(String id) throws Exception {
+		return memberDAO.memberInfo(id);
+	}
+	
+	//회원삭제
+	@Override
+    public void deleteMember(Map<String, Object> map) throws Exception {
+       memberDAO.deleteMember(map);
+    }
 	
 	@Override
 	public void updateMember(Map<String, Object> map, HttpServletRequest request) throws Exception {
@@ -76,6 +83,16 @@ public class MemberServiceImpl implements MemberService{
 		return stateList;
 	}
 	
+	//주문수, 교환수, 환불수, 총주문수, 메세지수 가져오기
+	public Map<String, Object> order(Map<String, Object> map) throws Exception {
+		return memberDAO.order(map);
+	}
+	public Map<String, Object> swap(Map<String, Object> map) throws Exception {
+		return memberDAO.swap(map);
+	}
+	public Map<String, Object> refund(Map<String, Object> map) throws Exception {
+		return memberDAO.refund(map);
+	}
 	public Map<String, Object> orderAll(Map<String, Object> map) throws Exception {
 		return memberDAO.orderAll(map);
 	}
