@@ -4,7 +4,11 @@
 <head>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <title>상품 등록</title>
-
+<style type="text/css">
+.page-header{
+border-bottom: 1px solid #fff;
+}
+</style>
 
 </head>
 <body>
@@ -13,7 +17,7 @@
 	<h1 class="page-header">상품등록</h1>
 </div>
 	<form id="frm"  enctype="multipart/form-data">
-		<table class="board_view3" border="1">
+		<table class="board_view5" border="1">
 			<!-- <colgroup>
 				<col width="15%">
 				<col width="*"/>
@@ -22,11 +26,11 @@
 			<tbody>
 				<tr>
 					<th scope="row">상품명</th>
-					<td><input type="text" name="NAME"></input></td>
+					<td><input type="text" name="NAME" class="wdp_30"></input></td>
 				</tr>
 				<tr>
 					<th scope="row">가격</th>
-					<td><input type="text" name="PRICE"></input></td>
+					<td><input type="text" name="PRICE" class="wdp_30"></input></td>
 				</tr>
 				<tr>
 					<th scope="row">카테고리</th>
@@ -45,7 +49,7 @@
 				</tr>
 				<tr class="board_title">
 					<th scope="row">관련상품번호</th>
-					<td><input type="text" name="RELATED"	class="wdp_20"></input></td>
+					<td><input type="text" name="RELATED"	class="wdp_30"></input></td>
 				</tr>
 				<tr class="board_title">
 					<th scope="row">상품 키워드</th>
@@ -53,10 +57,11 @@
 						class="wdp_20" placeholder="ex) 바지,반바지,긴바지,팬츠,하의,"></input></td>
 				</tr>
 				<tr>
-					<td colspan="1" class="board_content2">
-						<textarea rows="20" cols="170" title="내용" name="CONTENT" placeholder="상세 설명"></textarea>
+					<td colspan="2" class="view_text">
+						<textarea  rows="10" cols="170" title="내용" name="CONTENT" placeholder="상세 설명"></textarea>
 					</td>
 				</tr> 
+				<br>
 				<tr>
 					<td>
 						<!--속성 -->

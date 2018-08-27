@@ -49,6 +49,23 @@
 		href="/ind-script/optimizer.php?filename=tdJBDgIhDAXQA-DWc1QXk4xH8BgIBZqBdkKLxts7egZc__y3-R-KNAQMbih2hULrelmuC-zjUSm4Yq2CRnQRlTKDbsQ3CKrQJI6KUP1bhsFDfI93TnI6sjPMQQv6iH2mqOYNq2RJ6S8sz1Q75WKuIY-ZapQXzzZ_67tKarsPm8_olpl8ErG5PwjCz6NPwnv4uh8&type=css&k=40f8d745a3ef768c9e28f15515a41b168e584117&t=1499901149" />
 	<link href="<c:url value='/resources/css/mypage.css'/>" rel="stylesheet" type="text/css"/>
 	<title>애즈클로</title>
+	<link href="<c:url value='/resources/css/loginTest2.css'/>" rel="stylesheet" type="text/css" />
+	
+	
+<style type="text/css">
+	.modal {
+    position: fixed;
+    top: 50;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    display: none;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+}
+</style>	
 	
 	</head>
 <body>
@@ -118,6 +135,7 @@
 
 
 
+
 						<div id="myshopMain"
 							class="xans-element- xans-myshop xans-myshop-main ">
 							<div class="shopMain order">
@@ -130,6 +148,7 @@
 									고객님의 개인정보를 관리하는 공간입니다.<br />개인정보를 최신 정보로 유지하시면 보다 간편히 쇼핑을 즐기실 수
 									있습니다.</a>
 							</div>
+
 							<div class="shopMain wishlist">
 								<a href="/3T/wish/wishlist"><strong>wish list</strong>관심상품으로
 									등록하신 상품의 목록을 보여드립니다.</a>
@@ -137,6 +156,7 @@
 
 				<div class="shopMain mileage">
 								<a href="/3T/member/messageWrite"><strong>message</strong>적립금은
+
 									상품 구매 시 사용하실 수 있습니다.<br />메세지</a>
 							</div>
 							<div class="shopMain coupon 1">
@@ -156,6 +176,55 @@
 
 					</div>
 				</div>
+				
+				<div class="modal fade" id="myModal">
+	<form action="/3T/member/sendmessage">
+	<table width="70%" align="center" border="0" cellspacing="0"
+		cellpadding="1" colspan="1" class="board_top2">
+		<br>
+		<tr>
+			<td height="50"></td>
+		</tr>
+		<tr>
+			<td align="left" class="text01 formbar"><h6>
+					<font color="#555555">MESSAGE</font>
+				</h6></td>
+		</tr>
+
+		<tr>
+			<td height="50"></td>
+		</tr>
+	</table>
+	
+		<table class="board_view6">
+			<colgroup>
+				<col width="15%">
+				<col width="*" />
+			</colgroup>
+			<tbody>
+				<tr>
+					<!-- <th scope="row">메세지내용</th> -->
+					<td align="center"colspan="2" class="view_text"><textarea rows="16"
+							cols="80" title="내용" id="CONTENT" name="CONTENT"></textarea></td>
+				</tr>
+				
+			</tbody>
+		</table>
+ 
+ <table class="notice_button2">
+ <tr>
+ <td>
+		<!-- <a href="#this" class="btn" id="write">작성하기</a>  -->
+		<a href="#this"class="btn" id="list">목록으로</a>
+			<input class="btn" type="submit" value="작성완료" >
+			</td>
+			</tr>
+			</table>
+		</form>
+
+
+
+</div>
 
 
 </body>

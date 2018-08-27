@@ -68,9 +68,9 @@
 	<input type="text" class="form-control" name="TITLE" placeholder="제목을 입력해주세요" value="${map.TITLE }"><br/>
 	
 	<div id="summernote" value="4">${map.CONTENT }</div>
-	
-	<textarea id="noteArea" name="CONTENT"  style="display: none;"></textarea>
-	
+
+	<textarea rows="25" cols="130" id="noteArea" name="content"  style="display: none;"></textarea>
+
 	<c:choose>
 		<c:when test="${map.TITLE == NULL }"><input type="submit" class="btn btn-default" id="submitBtn" value="등록" />	</c:when>
 		<c:when test="${map.TITLE != NULL }"><input type="submit" class="btn btn-default" id="submitBtn" value="수정" /></c:when>
