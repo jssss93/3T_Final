@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <head>
 <script type="text/javascript">
 	function delchk() {
@@ -113,8 +114,8 @@
 												<a href="${viewURL}">
 													<input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png">
 												</a>&nbsp;&nbsp;
-												<c:url var="viewURL2" value="/member/adminDeleteMember">
-													<c:param name="MEMBER_NO" value="${memberList.MEMBER_NO}" />
+												<c:url var="viewURL2" value="/admin/member/adminDeleteMember">
+													<c:param name="MEMBER_ID" value="${memberList.MEMBER_ID}" />
 												</c:url> 
 												<a href="${viewURL2}">
 													<input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png"
@@ -131,27 +132,29 @@
 									</c:if>
 								</tbody>
 							</table>
+							<c:if test="${not empty paginationInfo}">
+								<ui:pagination paginationInfo="${paginationInfo}" type="text"
+									jsFunction="fn_search" />
+							</c:if>
+							<input type="hidden" id="currentPageNo" name="currentPageNo" />
+							<table class="notice_button">
+							</table>
+							<br />
+							<form action="/3T/admin/member/list">
+								<select name="SearchNum" id="SearchNum"
+									style="width: 100px; height: 30px;">
+									<option value="MEMBER_ID">아이디</option>
+									<option value="NAME">이름</option>
+								</select> <input type="text" name="SearchKeyword" id="SearchKeyword"
+									style="margin-left: 15px; width: 200px; height: 36px; border-radius: 5px 5px 5px 5px;" />
+								<input type="submit" value="검색">
+							</form>
+
+
+							<br />
 						</div>
 					</div>
-					<div class="paging">${pagingHtml}</div>
-					<div class="row">
-						<div style="text-align: center;">
-							<div id="dataTables-example_filter" class="dataTables_filter">
-								<form action="">
-									<select class="form-control" name="searchNum" id="searchNum">
-										<option value="0">아이디</option>
-										<option value="1">이름</option>
-										<option value="2">전화번호</option>
-										<option value="3">이메일</option>
-									</select> 
-									<input class="form-control" type="text" name="isSearch" id="isSearch" /> 
-									<span>
-										<button type="submit" class="btn btn-default">검색</button>
-									</span>
-								</form>
-							</div>
-						</div>
-					</div>
+					
 				</div>
 			</div>
 			<!-- /.table-responsive -->

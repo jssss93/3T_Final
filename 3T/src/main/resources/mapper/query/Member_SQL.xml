@@ -12,12 +12,12 @@
 		from 
 			member
 		where 
-			email = #{MEMBER_EMAIL}
+			email = #{EMAIL}
 	]]>
 	</select>
 	
 	<!-- 회원정보(로그인, 회원정보수정) -->
-	<select id="memberInfo" parameterType="hashmap"
+	<select id="memberInfoList" parameterType="hashmap"
 		resultType="hashmap">
 	<![CDATA[
 		SELECT 
@@ -30,7 +30,29 @@
 			ADDR1, 
 			ADDR2, 
 			PHONE, 
-			EMAIL 
+			EMAIL, 
+			REGDATE
+		FROM 
+			MEMBER 
+		WHERE 
+			MEMBER_ID = #{MEMBER_ID}
+	]]>
+	</select>
+
+	<select id="memberInfo" parameterType="String" resultType="hashmap">
+			<![CDATA[
+		SELECT 
+			MEMBER_NO,
+			MEMBER_ID, 
+			PASSWD, 
+			NAME, 
+			BIRTH, 
+			ZIPCODE, 
+			ADDR1, 
+			ADDR2, 
+			PHONE, 
+			EMAIL, 
+			REGDATE
 		FROM 
 			MEMBER 
 		WHERE 
@@ -113,6 +135,37 @@
        
 	</select>
 	
+	<!-- mypage 주문수(입금확인중,배송준비붕,배송중,배송완료) -->
+	<select id="order" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			COUNT(MEMBER_ID) as ORDER2 
+		FROM
+			ORDER_3T
+		WHERE
+			MEMBER_ID = #{MEMBER_ID} AND 
+			STATE between 0 and 3
+	</select>
+	<!-- mypage 교환수 -->
+	<select id="swap" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			COUNT(MEMBER_ID) as SWAP
+		FROM
+			ORDER_3T
+		WHERE
+			MEMBER_ID = #{MEMBER_ID} AND 
+			STATE between 4 and 7
+	</select>
+	<!-- mypage 환불수 -->
+	<select id="refund" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			COUNT(MEMBER_ID) as REFUND
+		FROM
+			ORDER_3T
+		WHERE
+			MEMBER_ID = #{MEMBER_ID} AND 
+			STATE between 8 and 9
+	</select>
+	
 	<!-- mypage 총주문수 -->
 	<select id="orderAll" parameterType="hashmap" resultType="hashmap">
 		SELECT
@@ -120,8 +173,9 @@
 		FROM
 			ORDER_3T
 		WHERE
-			MEMBER_ID = #{MEMBER_ID} AND 
-			STATE between 0 and 8
+			MEMBER_ID = #{MEMBER_ID} 
+			<!-- AND 
+			STATE between 0 and 8 -->
 	</select>
 	
 	<!-- mypage 메세지수 -->
@@ -164,6 +218,15 @@
 			(#{MESSAGE_NO}, #{CONTENT}, #{TOMEMBER}, #{SENDMEMBER})
 		]]>
 	</insert>
+	
+	<!-- 회원탈퇴 -->
+	<delete id="deleteMember" parameterType="hashmap">
+      	<![CDATA[
+         DELETE
+         FROM MEMBER 
+         WHERE MEMBER_ID = #{MEMBER_ID}
+      	]]>
+	</delete>
 	
 
 

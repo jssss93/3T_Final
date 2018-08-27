@@ -6268,7 +6268,7 @@ div.layerProgress {
 }
 
 .title {
-	border: none !important;
+	/* border: none !important; */
 	text-align: center;
 }
 

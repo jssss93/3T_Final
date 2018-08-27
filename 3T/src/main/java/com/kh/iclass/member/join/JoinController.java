@@ -85,7 +85,7 @@ public class JoinController {
 		
 		String email = (String) Map.getMap().get("email");
 		System.out.println("email = " + email);
-		Map.getMap().put("MEMBER_EMAIL", email);
+		Map.getMap().put("EMAIL", email);
 		
 		int checkNum = joinService.checkMember(Map.getMap());
 		System.out.println("checkNum="+checkNum);

@@ -203,7 +203,6 @@
 
 		var f = document.Reg_form; 
 	
-
 		if (f.MEMBER_ID.value == "") {
 			alert("아이디를 입력해주십시오");
 			f.MEMBER_ID.focus();
@@ -235,7 +234,7 @@
 			return false;
 		}
 
-		if (f.BRITH.value == "") {
+		if (f.BIRTH.value == "") {
 			alert("주민등록번호를 입력해주십시오");
 			f.BIRTH.focus();
 			return false;
@@ -272,12 +271,12 @@
 			alert("이메일을 입력해주십시오");
 			f.EMAIL.focus();
 			return false;
-		}
-		
-		
-
+		}	
+	
+	
 		
 	}   
+	  
 
 	  function openConfirmId(){
 			var url="/checkId?MEMBER_ID="+ document.Reg_form.MEMBER_ID.value;
@@ -296,6 +295,22 @@
 								 "scrollbars=no,resizable=no,width=400,height=200");
 		}
 </script>
+<!--  <script type="text/JavaScript">
+	
+	function check() {
+			if (Reg_form.agree_privacy_check1.checked == false) {
+			alert("이용약관에  동의해 주시기 바랍니다.");
+			return false;
+		}
+		
+
+		 if (Reg_form.agree_privacy_check0.checked == false) {
+			alert("개인정보 수집 및 이용에  동의해 주시기 바랍니다.");
+			return false;
+		} 
+
+	}
+</script>  -->
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script language="Javascript">
@@ -857,7 +872,7 @@
 								</p>
 							</div>
 							<p class="check">
-								<span>이용약관에 동의하십니까?</span> <input id="agree_service_check0"
+								<span>이용약관에 동의하십니까?</span> <input id="agree_service_check1"
 									name="agree_service_check[]" fw-filter="/1/" fw-label="이용약관 동의"
 									fw-msg="이용약관에 동의 하세요" value="1" type="checkbox"><label
 									for="agree_service_check0">동의함</label>

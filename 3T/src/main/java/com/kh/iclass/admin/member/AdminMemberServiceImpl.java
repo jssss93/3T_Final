@@ -16,9 +16,16 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 	
 	// 회원 전체목록 불러오기
 	@Override
-	public List<Map<String, Object>> memberList() throws Exception {
-		return adminMemberDAO.memberList();
+	public Map<String, Object> memberList(Map<String, Object> map) throws Exception {
+		return adminMemberDAO.memberList(map);
 	}
+	
+	@Override
+	public Map<String, Object> memberSearchList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return adminMemberDAO.memberSearchList(map);
+	}
+	
 	
 	// 회원 상세정보
 	@Override

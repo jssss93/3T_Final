@@ -7,26 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>로그인</title>
 <%@ include file="/WEB-INF/include/include-header-hanbyul.jspf"%>
-
-<script type="text/javascript">
-	
-		function validation() {
-
-			var frm = document.forms[0];
-
-			if (frm.MEMBER_ID.value == "") {
-				alert("아이디 항목은 필수 입력값입니다.");
-				return false;
-			} 
-			 else if (frm.PASSWD.value == "") {
-				alert("패스워드 항목은 필수 입력값입니다.");
-				return false;
-			
-			}
-			 
-			return true;
-		}
-	</script>
 </head>
 
 
@@ -40,7 +20,7 @@
       <div id="contents">
 
          <form id="member_form_6149332581" name=""
-            action="/3T/login/" method="post" onsubmit="return validation();">
+            action="/3T/login/" method="post">
             
             <div class="xans-element- xans-member xans-member-login ">
                <!--
@@ -74,6 +54,10 @@
                         <span class="joinusbtn"><a href="/3T/member/joinStep1">Join
                               us</a></span>
                      </p>
+                     
+                     <span class="loginbtn">
+                     	<a href="/3T/order/nomemberLogin">비회원으로 구매</a>
+                     </span>
 
                      
                      

@@ -6,16 +6,21 @@
 <title>first</title>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
+
+
+
 </head>
 <body>
-	<h2>Qa 게시판 목록</h2>
-	<table width="80%" border="0" cellspacing="0" cellpadding="2">
-
+	<body>
+	<table width="100%" align="center" border="0" cellspacing="1"
+		cellpadding="1" class="board_top">
 		<tr>
-			<td height="30"></td>
+			<td height="50"></td>
 		</tr>
 		<tr>
-			<td align="center" class="text01 formbar"><h2>myboard</h2></td>
+			<td align="left" class="text01 formbar"><h6>
+					<font color="#000000">MY BOARD</font>
+				</h6></td>
 		</tr>
 
 		<tr>
@@ -25,7 +30,7 @@
 		<tr>
 			<td>
 			
-				<select name="BoardType" id="BoardType" onchange="location.href='/3T/member/myboard?sel='+this.value" style="width: 100px; height: 30px;">
+				<select name="BoardType" id="BoardType" onchange="location.href='/3T/member/myboard?sel='+this.value" style="width: 100px; height: 30px;" class="btn">
 					<option value="0" <c:if test="${sel eq 0}">selected</c:if>>QNA</option>
 					<option value="1" <c:if test="${sel eq 1}">selected</c:if>>Review</option>
 					<option value="2" <c:if test="${sel eq 2 || sel eq null}">selected</c:if>>ALL</option>
@@ -34,7 +39,15 @@
 		</tr>
 		
 	</table>
-		<table class="board_list" width="80%">
+	<table width="80%" border="0" cellspacing="0"
+		cellpadding="2" class="board_review4">
+		<tr>
+			<td valign="middle"><strong>NO</strong>
+			<td valign="middle"><strong>SUBJECT</strong>
+			<td valign="middle"><strong>NAME</strong>
+			<td valign="middle"><strong>DATE</strong>
+		</tr>
+		<!-- <table class="board_review3" width="80%">
     <colgroup>
         <col width="10%"/>
         <col width="*"/>
@@ -49,14 +62,14 @@
             <th scope="col">작성일</th>
          
         </tr>
-    </thead>
+    </thead> -->
     <tbody>
         <c:choose>
             <c:when test="${sel eq 1}">
                 <c:forEach items="${list2 }" var="row">
                     <tr>
                         <td>${row.REVIEW_NO }</td>
-                         <td class="title">
+                         <td>
                                 <a href="#this" name="title">${row.TITLE }</a>
                                 <input type="hidden" id="REVIEW_NO" value="${row.REVIEW_NO }">
                             </td>
@@ -69,7 +82,7 @@
 					<c:forEach items="${list }" var="row">
 						<tr>
 							<td>${row.QA_NO }</td>
-							<td class="title">
+							<td>
 								<a href="#this" name="title">${row.TITLE }</a>
 								<input type="hidden" id="QA_NO" value="${row.QA_NO }"></td>
 							<td>${row.MEMBER_ID }</td>
@@ -111,7 +124,7 @@
 </table>
 
 	<br />
-	<a href="/3T/member/mypage" class="btn">마이페이지로</a>
+	<a href="/3T/member/mypage" class="btn">MY PAGE</a>
 	
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	<script type="text/javascript">

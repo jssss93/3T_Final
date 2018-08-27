@@ -6,6 +6,7 @@
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <script type="text/javascript">
+
    /* 종합개수 카운트 */
    
    function BuyCheck(index) {
@@ -20,10 +21,10 @@
          document.form.action = '/3T/cart/addCart';
          
       }
-      if (index == 3) {
-         alert('로그인 후 이용해주세요.');
-         document.form.action = 'loginAction';
-      }
+     	if (index == 3) {
+			alert('로그인 후 이용해주세요.');
+			document.form.action = '/3T/nomemberLogin';
+		}
       if (index == 4) {
          alert('관심상품으로 등록되었습니다.');
          document.form.action = 'AddWish';
@@ -43,10 +44,12 @@
     scroll_follow( "#scroll" );
        //스크롤이 생기도록  */
       
+
 </script>
 </head>
 
 <center>
+
    <table width="1000" height="300" border="0" cellpadding="5"
       cellspacing="0">
       <body>
@@ -183,6 +186,152 @@
                            class="xans-element- xans-product xans-product-additional product_about ">
                            <pre>
                         <font color="#de1616">INFO</font>
+
+	/*<table width="1000" height="300" border="0" cellpadding="5"
+		cellspacing="0">
+		<body>
+		<tr>
+			<!-- 상품 메인 이미지-->
+
+			<td height="490" align="center" valign="TOP"><img width="490"
+				height="490" src="/3T/resources/images/${goodsoneImage.SAV_NAME}" /></td>
+
+
+			<!-- 상품 상세 내용 -->
+			<td>
+				<form name="form" id="form" method="post">
+					<table class="font-price" border="0" cellpadding="0"
+						cellspacing="0">
+						<tr>
+							<td style="text-align: left; font-size: 18pt;" colspan="2">
+								<!-- 상품 이름 --> ${goodsBasic.NAME }
+							</td>
+						</tr>
+
+						<!-- 상품가격 텍스트 -->
+						<tr>
+							<td style="width: 280; font-size: 13pt;" colspan="2"><br>
+								<p></p> <!--상품 가격  --> KRW&nbsp; ${goodsBasic.PRICE }</td>
+						</tr>
+
+						<tr>
+							<td>
+								<!-- 색상, 사이즈, 개수 선택옵션 --> <select id="option"
+								onchange="setOption(this)" style="width: 225px">
+									<option value="">-옵션 선택-</option>
+									<c:forEach var="goodsDetail" items="${goodsDetail}"
+										varStatus="stat">
+										<c:if test="${goodsDetail.COUNT ne 0}">
+
+											<option
+												value="${goodsDetail.COLOR }-${goodsDetail.GOODS_SIZE }"
+												optnm="${goodsDetail.COLOR }-${goodsDetail.GOODS_SIZE }"
+												stock="${goodsDetail.COUNT }" price="${goodsBasic.PRICE }"
+												attribute_no="${goodsDetail.ATTRIBUTE_NO }">
+												${goodsDetail.COLOR } - ${goodsDetail.GOODS_SIZE }
+												(${goodsDetail.COUNT }개)</option>
+										</c:if>
+
+
+
+										<c:if test="${goodsDetail.COUNT eq 0}">
+											<option
+												value="${goodsDetail.COLOR }-${goodsDetail.GOODS_SIZE }"
+												optnm="${goodsDetail.COLOR }-${goodsDetail.GOODS_SIZE }"
+												stock="0" price="0" disabled=""
+												attributeno="${goodsDetail.ATTRIBUTE_NO }">
+												${goodsDetail.COLOR } - ${goodsDetail.GOODS_SIZE }(품절)</option>
+										</c:if>
+
+									</c:forEach>
+							</select>
+							</td>
+						</tr>
+
+						<!-- 사이즈, 색상, 개수출력 -->
+						<tr>
+							<td>
+								<div id="attribute">
+									<ul class="MK_inner-opt-cm" id="MK_innerOpt_01"></ul>
+									<div id="MK_innerOptTotal" class="">
+										<p class="totalRight">
+											<span class="MK_txt-total">TOTAL</span> <span id="MK_txt-won"
+												data-price="">0원</span>
+										</p>
+									</div>
+								</div>
+							</td>
+						</tr>
+
+
+
+
+						<!-- BUY,ADD CART추가하기 -->
+						<tr>
+							<td colspan="2"><br /> <!-- 상품구매버튼 -->
+						</tr>
+						<tr>
+							<td colspan="2"><br /> <a>
+								<c:if test="${empty sessionScope.MEMBER_ID}">
+									<input name="Buy" style=""
+									src="/3T/resources/images/buy.PNG"
+									onmouseover="this.src='/3T/resources/images/buy1.png'"
+									onmouseout="this.src='/3T/resources/images/buy.PNG'"
+									onclick="BuyCheck(3);" type="image"
+									src="/3T/resources/images/buy.PNG" /> 
+									<input type="hidden"
+									name="GOODS_NO" id="GOODS_NO" value="${goodsBasic.GOODS_NO }" />
+								</c:if>
+								<c:if test="${not empty sessionScope.MEMBER_ID}">
+									<input name="Buy" style=""
+									src="/3T/resources/images/buy.PNG"
+									onmouseover="this.src='/3T/resources/images/buy1.png'"
+									onmouseout="this.src='/3T/resources/images/buy.PNG'"
+									onclick="BuyCheck(1);" type="image"
+									src="/3T/resources/images/buy.PNG" /> 
+									<input type="hidden"
+									name="GOODS_NO" id="GOODS_NO" value="${goodsBasic.GOODS_NO }" />
+								</c:if>
+								</a>
+
+
+							</td>
+						<tr>
+							<td colspan="2"><br> <!-- 장바구니버튼 --> <a><input
+									name="BuyCart"
+									onmouseover="this.src='/3T/resources/images/cart.PNG'"
+									onmouseout="this.src='/3T/resources/images/cart.PNG'"
+									onclick="BuyCheck(2);" type="image"
+									src="/3T/resources/images/cart.PNG" /></a>
+						</tr>
+						<tr/>
+
+						<tr>
+							<td colspan="2">
+								<!-- wishlist버튼 --> <a><input name="WishList"
+									onclick="BuyCheck(4);" type="image"
+									src="/3T/resources/images/wishlist.PNG" value="WishList" /></a>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<!-- 리뷰,q&a 하이퍼링크 추가 --> <a
+								href='Review_list.action?Goods_no=${resultClass.goods_no}'>REVIEW&nbsp;(
+									0 )</a> &nbsp;&nbsp;&nbsp;&nbsp; <a
+								href='qa_listAction.action?Goods_no=${resultClass.goods_no}'>QA&nbsp;(
+									0 )</a>
+							</td>
+						</tr>
+						<!-- 옷 정보 content -->
+
+						<tr>
+							<td>
+
+								<div
+									class="xans-element- xans-product xans-product-additional product_about ">
+									<pre>
+								<font color="#de1616">INFO</font>*/
+
                                 ${goodsBasic.CONTENT }
                             </pre>
 
@@ -302,10 +451,14 @@
 
          <td align="center">${goodsDetail1.REVIEW_NO}</td>
 
-         <td><a href="#this" name="title2">${goodsDetail1.TITLE }</a> <input
-            type="hidden" id="REVIEW_NO" value="${goodsDetail1.REVIEW_NO }">
-            <!-- <details> <summary>내용보기</summary> -->
-         <td align="center">${goodsDetail1.CONTENT}</td>
+
+			<td><a href="#this" name="title2">${goodsDetail1.TITLE }</a> <input
+				type="hidden" id="REVIEW_NO" value="${goodsDetail1.REVIEW_NO }">
+				<input type="hidden" id="GOODS_NO" value="${goodsDetail1.GOODS_NO }">
+				<!-- <details> <summary>내용보기</summary> -->
+	
+			<td align="center">${goodsDetail1.CONTENT}</td>
+
 
          <td align="center">${goodsDetail1.MEMBER_ID}</td>
 
@@ -363,9 +516,13 @@
 
          <td align="center">${goodsDetail2.QA_NO}</td>
 
-         <td><a href="#this" name="title">${goodsDetail2.TITLE }</a> <input
-            type="hidden" id="QA_NO" value="${goodsDetail2.QA_NO }"> <!-- <details> <summary>내용보기</summary> -->
-         <td align="center">${goodsDetail2.CONTENT}</td>
+
+			<td><a href="#this" name="title">${goodsDetail2.TITLE }</a> <input
+				type="hidden" id="QA_NO" value="${goodsDetail2.QA_NO }"> <!-- <details> <summary>내용보기</summary> -->
+				<input type="hidden" id="GOODS_NO" value="${goodsDetail2.GOODS_NO }">
+				
+			<td align="center">${goodsDetail2.CONTENT}</td>
+
 
          <td align="center">${goodsDetail2.MEMBER_ID}</td>
 
@@ -515,6 +672,7 @@
          
             </script>
 <script>
+
             
             
             function change_ea(obj,idx){
@@ -546,5 +704,34 @@
 <!-- 컨트롤러  -->
 
 
+			function fn_openBoardDetail(obj) {
+				var comSubmit = new ComSubmit();
+				comSubmit.setUrl("<c:url value='/review/detail' />");
+				comSubmit.addParam("REVIEW_NO", obj.parent().find("#REVIEW_NO")
+						.val());
+				comSubmitd
+						.addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
+				comSubmit.submit();
+			}
+			
+			
+			/* 상세보기 q&a */
+
+					$("a[name='title']").on("click", function(e) { //제목 
+						e.preventDefault();
+						fn_openBoardDetail($(this));
+					});
+					
+				function fn_openBoardDetail(obj) {
+					var comSubmit = new ComSubmit();
+					comSubmit.setUrl("<c:url value='/qa/detail' />");
+					comSubmit.addParam("QA_NO", obj.parent().find("#QA_NO").val());
+					comSubmit
+							.addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
+					comSubmit.submit();
+				}
+			
+
+		</script>
 </body>
 </html>

@@ -16,11 +16,21 @@ public class MemberDAO extends AbstractDAO {
 
 	//회원 정보 불러오기
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> memberInfo(Map<String, Object> map) throws Exception
+	public List<Map<String, Object>> memberInfoList(Map<String, Object> map) throws Exception
 	{
-		return selectList("member.memberInfo", map);
+		return selectList("member.memberInfoList", map);
 	}
-
+	
+	@SuppressWarnings("unchecked")
+	 Map<String, Object> memberInfo(String id) throws Exception{
+		 return (Map<String, Object>)selectOne("member.memberInfo", id);
+	 }
+	
+	// 회원강제 탈퇴
+		public void deleteMember(Map<String, Object> map) throws Exception {
+			delete("adminMember.deleteMemberA", map);
+		}
+    
 	//회원수정
 	public void updateMember(Map<String, Object> map) throws Exception
 	{
@@ -74,12 +84,31 @@ public class MemberDAO extends AbstractDAO {
 		return (Map<String,Object>) selectOne("member.state", map);
 	}
 	
+	//mypage 주문수
+	@SuppressWarnings("unchecked")
+	public Map<String,Object> order(Map<String,Object> map) throws Exception
+	{
+		return (Map<String,Object>) selectOne("member.order", map);
+	}
+	//mypage 교환수
+	@SuppressWarnings("unchecked")
+	public Map<String,Object> swap(Map<String,Object> map) throws Exception
+	{
+		return (Map<String,Object>) selectOne("member.swap", map);
+	}
+	//mypage 환불수
+	@SuppressWarnings("unchecked")
+	public Map<String,Object> refund(Map<String,Object> map) throws Exception
+	{
+		return (Map<String,Object>) selectOne("member.refund", map);
+	}
+	//mypage 총주문수
 	@SuppressWarnings("unchecked")
 	public Map<String,Object> orderAll(Map<String,Object> map) throws Exception
 	{
 		return (Map<String,Object>) selectOne("member.orderAll", map);
 	}
-	
+	//mypage 메세지수
 	@SuppressWarnings("unchecked")
 	public Map<String,Object> messageAll(Map<String,Object> map) throws Exception
 	{
@@ -94,9 +123,5 @@ public class MemberDAO extends AbstractDAO {
 		return selectMemberId("member.checkMember", map);
 	*/
 	
-	/*//회원가입시 적립금 부여
-	public void joinPoint(Map<String, Object> map) throws Exception{
-		insert("member.joinPoint",map);
-	}*/
 	
 }
