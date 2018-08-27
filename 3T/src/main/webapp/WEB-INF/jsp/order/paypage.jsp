@@ -1,4 +1,5 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8" --%>
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/include/include-header-hanbyul.jspf"%>
 
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
@@ -224,12 +225,7 @@ function checkAll2(){
 			<li title="현재 위치"><strong>주문서작성</strong></li>
 		</ol>
 	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+
 	<div class="titleArea">
 		<h2>ORDER</h2>
 	</div>
@@ -246,7 +242,12 @@ function checkAll2(){
 				<div class="description">
 					<div class="member ">
 						<p>
-							<strong>${memberInfo.NAME }</strong> 님은,${memberInfo.GRADE } 회원이십니다.
+							<c:if test="${memberInfo.NAME !=null}">
+								<strong>${memberInfo.MEMBER_ID }</strong> 님은,${memberInfo.GRADE } 등급 회원이십니다.
+							</c:if>
+							<c:if test="${memberInfo.NAME ==null}">
+								<strong>${MEMBER_ID }</strong> 님은, 비회원 이십니다.
+							</c:if>							
 						</p>
 					</div>
 					<ul class="mileage">
@@ -302,7 +303,6 @@ function checkAll2(){
 									<span id="domestic_ship_fee_sum" class="totalSum" >0 KRW</span>
 								</strong> 
 							</td>
-
 						</tr>
 					</tfoot>
 					<form id="frm" action="/3T/order/insert">
@@ -407,6 +407,7 @@ function checkAll2(){
 					</tbody>
 					<!-- 국내 배송지 정보 -->
 					<tbody class="">
+						<c:if test="${memberInfo.NAME !=null}">
 						<tr class="">
 							<th scope="row">배송지 선택</th>
 							<td>
@@ -419,6 +420,7 @@ function checkAll2(){
 								</div>
 							</td>
 						</tr>
+						</c:if>
 						<tr>
 							<th scope="row">
 								받으시는 분 	<img src="//img.echosting.cafe24.com/skin/base_ko_KR/order/ico_required.gif" alt="필수">

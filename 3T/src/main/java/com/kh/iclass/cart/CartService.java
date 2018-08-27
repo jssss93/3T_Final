@@ -8,6 +8,8 @@ public interface CartService {
 	// 장바구니 담기
 	public void insertCart(Map<String, Object> map) throws Exception;
 
+	public void insertCartAuto(Object attribute);
+	
 	// 장바구니 디테일추가 담기
 	public void insertCartDetail(Map<String, Object> map) throws Exception;
 
@@ -44,4 +46,5 @@ public interface CartService {
 	Map<String, Object> buyInCart(Map<String, Object> map) throws Exception;
 	
 	Map<String, Object> cartNo(Map<String, Object> map) throws Exception;
+
 }

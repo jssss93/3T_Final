@@ -152,29 +152,14 @@ $.fn.rowspan = function(colIdx, isStats) {
 
 </head>
 <body>
-<div id="contentwrap" >
-		<div id="contents">
-			<div class="titleArea">
-				
-			</div>
-			<!-- 장바구니 모듈 Package -->
-			<div class="xans-element- xans-order xans-order-basketpackage ">
-				<!--<p class="orderStep"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/img_step1.gif" alt="01 장바구니" /></p>-->
-				<!-- 혜택정보 -->
-				<!-- 탭 -->
-				<div class="xans-element- xans-order xans-order-tabinfo ">
-					<ul>
-						<li class=" "><a href="/order/basket.html?delvtype=B">ORDER LIST</a></li>
-					</ul>
-					
-				</div>
-				<!-- 장바구니 비어있을 때 -->
-				<!-- 일반상품 -->
-				<div class="orderListArea row">
-				<div class="col-sm-12">
-					<div class="xans-element- xans-order xans-order-normtitle title ">
-						<h3>${MEMBER_ID}회원님의 주문 목록</h3>
-					</div>
+
+<table width="1000" border="1" cellspacing="0" cellpadding="2">
+		<tr>
+			<td width="400">&nbsp;&nbsp;${MEMBER_ID} 회원님의 주문 신청서입니다.</td>
+		</tr>
+		
+	</table>	
+
 	
 					<!-- 일반상품 (기본배송) -->
 					<table border="1" summary="" class="xans-element- xans-order xans-order-normnormal boardList xans-record-" id="dataTables-example">

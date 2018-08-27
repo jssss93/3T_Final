@@ -38,6 +38,7 @@
 		]]>
 	</insert>
 	
+	
 	<insert id="insertCartDetail" useGeneratedKeys="true" keyProperty="CART_DETAIL_NO">
 		<selectKey keyProperty="CART_DETAIL_NO" resultType="java.lang.Integer" order="BEFORE">
 			SELECT CART_DETAIL_NO_SEQ.NEXTVAL FROM DUAL

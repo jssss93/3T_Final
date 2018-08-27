@@ -1,5 +1,8 @@
 ﻿package com.kh.iclass.member.login;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.iclass.cart.CartService;
 /*import kh.spring.cart.CartService;*/
 import com.kh.iclass.common.map.CommandMap;
+import com.kh.iclass.common.util.SequenceUtils;
 import com.kh.iclass.member.MemberService;;
 
 /* -1- import spring.siroragi.cart.CartService;
@@ -22,24 +27,22 @@ import spring.siroragi.member.MemberService;
 @Controller
 public class LoginController {
 
-/*   @Resource(name = "cartService")
-   private CartService cartService;*/
-   /*
-    * @Resource(name = "memberService") private MemberService memberService;
-    */
-   @Resource(name = "loginService")
-   private LoginService loginService;
-   
-   @Resource(name="memberService")
-   private MemberService memberService;
+	@Resource(name = "cartService")
+	private CartService cartService;
 
-   // 로그인 폼
-   @RequestMapping(value = "/loginForm")
-   public ModelAndView loginForm() {
-      ModelAndView mv = new ModelAndView();
-      mv.setViewName("member/loginForm");
-      return mv;
-   }
+	@Resource(name = "loginService")
+	private LoginService loginService;
+
+	@Resource(name = "memberService")
+	private MemberService memberService;
+
+	// 로그인 폼
+	@RequestMapping(value = "/loginForm")
+	public ModelAndView loginForm() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member/loginForm");
+		return mv;
+	}   
    
 
    @RequestMapping(value = "/logout")		//로그아웃
@@ -53,118 +56,90 @@ public class LoginController {
    }
    
    //로그인 됨
-   @SuppressWarnings("unchecked")
-   @RequestMapping(value = "/login", method = RequestMethod.POST)
-   public ModelAndView loginComplete(CommandMap commandMap, HttpServletRequest request) throws Exception {
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ModelAndView loginComplete(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView();
+
+		HttpSession session = request.getSession();
+
+		System.out.println("아이디" + commandMap.get("MEMBER_ID"));
+
+		// 멤버 정보 가져오고
+		Map<String, Object> chk = loginService.loginGo(commandMap.getMap());
+		// 아이디 값이 없으면
+		if (chk == null) {
+			mv.setViewName("loginForm");
+			mv.addObject("message", "해당 아이디가 없습니다.");
+			return mv;
+		}
+		// 아이디 값이 있으면
+		else {
+
+			// 비밀번호가 같으면
+			if (chk.get("PASSWD").equals(commandMap.get("PASSWD"))) {
+				// 세션에 아이디를 넣어라
+				session.setAttribute("MEMBER_ID", commandMap.get("MEMBER_ID"));
+				mv.addObject("MEMBER", chk); 
+				
+				if (request.getSession().getAttribute("MEMBER_ID").equals("ADMIN")) {
+					mv.setViewName("redirect:/admin/main");
+				} else {
+					List<Map<String, Object>> list = null;
+					commandMap.put("MEMBER_ID", request.getSession().getAttribute("MEMBER_ID"));
+					// 쿠폰개수띄우기위해
+					list = memberService.myCoupon(commandMap.getMap());
+					mv.addObject("msg", list.size());
+
+					session.setAttribute("coupon", list.size());
+
+					if (list.size() == 0) {
+						mv.setViewName("redirect:/main");
+					} else {
+						mv.setViewName("member/loginCoupon");
+					}
+
+				}
+
+				
+				List<Map<String, Object>> sessionCartListMap=new ArrayList<Map<String, Object>>();
+				Map<String, Object> sessionCartMap = new HashMap<String,Object>();
+				//장바구니 자동추가
+				System.out.println("세션장바구니 로그인시 자동추가 시작.");
+				if(session.getAttribute("sessionCartList")!=null) {
+					sessionCartListMap=(List<Map<String, Object>>) session.getAttribute("sessionCartList");
+					for(int i=0;i<sessionCartListMap.size();i++) {
+						commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+						commandMap.put("REGDATE", new Date());
+						commandMap.put("ATTRIBUTE_NO",sessionCartListMap.get(i).get("ATTRIBUTE_NO"));
+						commandMap.put("GOODS_NO",sessionCartListMap.get(i).get("GOODS_NO"));
+						commandMap.put("COUNT",sessionCartListMap.get(i).get("COUNT"));
+						sessionCartMap.put("map"+i, sessionCartListMap.get(i));
+						cartService.insertCart(commandMap.getMap());
+					}
+				}
+				return mv;
+
+			} else { // 비밀번호 틀렸을때
+				mv.setViewName("loginForm");
+				mv.addObject("message", "비밀번호를 확인해 주세요.");
+				return mv;
+			}
+		}
+	}
+    
+   //비회원 장바구니 버튼인데 로그인창부터 띄우고 
+   @RequestMapping(value = "/nonMemberLogin", method = RequestMethod.POST)
+   public ModelAndView nonMemberLogin(CommandMap commandMap, HttpServletRequest request) throws Exception {
       ModelAndView mv = new ModelAndView();
       
+      String n_Id="nonId_"+SequenceUtils.getSeqNumber();
+      System.out.println("n_Id"+n_Id);
       
-      HttpSession session = request.getSession();
+      request.setAttribute("MEMBER_ID",n_Id );
       
-      System.out.println("아이디" + commandMap.get("MEMBER_ID"));
-      
-      Map<String, Object> chk = loginService.loginGo(commandMap.getMap());
-      if (chk == null) {	//아이디 값이 없으면
-         mv.setViewName("loginForm");
-         mv.addObject("message", "해당 아이디가 없습니다.");
-         return mv;
-      } else {	//아이디 값이 있으면
-    	  								//비밀번호 1 = DB에 저장된 해당 아이디 비밀번호,		비밀번호 2 = 로그인시 회원이 입력한 비밀번호 
-         System.out.println("비밀번호 1 : " + chk.get("PASSWD") + "\n비밀번호 2 : " + commandMap.get("PASSWD"));
-         			//멤버 비밀번호가 입력한 비밀번호 값이 같으면
-         if (chk.get("PASSWD").equals(commandMap.get("PASSWD"))) {
-             session.setAttribute("MEMBER_ID", commandMap.get("MEMBER_ID"));	//세션에 아이디를 넣어라
-             mv.addObject("MEMBER", chk);	//
-             if(request.getSession().getAttribute("MEMBER_ID").equals("ADMIN"))
-             {
-             	mv.setViewName("redirect:/admin/main");
-             }
-             else
-             {
-             	List<Map<String, Object>> list = null;
-             	commandMap.put("MEMBER_ID", request.getSession().getAttribute("MEMBER_ID"));
-             	
-             	list = memberService.myCoupon(commandMap.getMap());
-             	System.out.println("list size? :"+ list.size());
-             	mv.addObject("msg", list.size());
-             	session.setAttribute("coupon", list.size());
-             	
-             	System.out.println("사이즈는?" + list.size());
-             	
-             	if(list.size() == 0)
-             	{
-             		mv.setViewName("redirect:/main");
-             	}
-             	else
-             	{
-             		mv.setViewName("member/loginCoupon");            		
-             	}
-             	
-             }
-            
-            
-            session.setAttribute("NAME", chk.get("NAME"));
-            session.setAttribute("MEMBER_NO", chk.get("MEMBER_NO"));
-            session.setAttribute("PHONE", chk.get("PHONE"));
-            session.setAttribute("EMAIL", chk.get("EMAIL"));
-            session.setAttribute("ADMIN", chk.get("ADMIN"));
-
-           // 이메일 포맷 변경
-            String email = chk.get("EMAIL").toString();
-            System.out.println("이메일 : " + email);
-            String[] sessionEmail = email.split("@");
-            session.setAttribute("MEMBER_EMAIL", sessionEmail.toString());
-            session.setAttribute("EMAIL1", sessionEmail[0].toString());	//이메일 앞부분
-            session.setAttribute("EMAIL2", sessionEmail[1].toString());	//이메일 뒷부분
-            
-       
-
-            /*Map<String, Object> cart = new HashMap<String, Object>();*/
-
-            // 로그인하면 등록기간 3일 이상된 상품 지우기
-           /* cart.put("MEMBER_NUMBER", chk.get("MEMBER_NUMBER"));
-            cartService.deleteCarts(cart);
-            cart.remove("MEMBER_NUMBER");
-
-            // 로그인하면 세션에 있던 장바구니 정보넣기
-            if (session.getAttribute("cartSession") != null) {
-               List<Map<String, Object>> cartSession = (List<Map<String, Object>>) session.getAttribute("cartSession");
-
-               for (int i = 0; i < cartSession.size(); i++) {
-                  cart = cartSession.get(i);
-                  System.out.println("장바구니 세션" + i + " : " + cartSession.get(i));
-
-                  cart.put("MEMBER_NUMBER", chk.get("MEMBER_NUMBER"));
-
-                  cartService.cartInsert2(cart);
-               }
-               session.removeAttribute("cartSession");
-            }
-            */
-            
-            //AOP로 비회원으로 구매시 일단 정지
-            if(commandMap.get("viewName") != null) {
-            	String view = (String)commandMap.get("viewName");
-            	if(!view.equals("")) {
-               System.out.println("AOP 로전송된 VIEW NAME = " + commandMap.getMap().get("viewName"));
-               String viewName = (String)commandMap.getMap().get("viewName");    
-               mv.setViewName("redirect:"+viewName);
-               
-               
-               }
-               
-             }
-             
-            return mv;
-            
-         } else 
-         {	//비밀번호 틀렸을때
-        	mv.setViewName("loginForm");
-            mv.addObject("message", "비밀번호를 확인해 주세요.");
-            return mv;
-         }
-      }
-    }
-      
+      mv.setViewName("/goods/detail");
+      return mv;
+   }
 
 }

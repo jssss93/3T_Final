@@ -15,6 +15,10 @@ public class CartDAO extends AbstractDAO {
 		insert("cart.insertCart", map);
 	}
 	
+	public void cartInsertAuto(Object attribute) {
+		insert("cart.insertCartAuto", attribute);
+	}
+	
 	// 장바구니 등록
 	public void insertCartDetail(Map<String, Object> map) throws Exception {
 		insert("cart.insertCartDetail", map);
@@ -59,7 +63,7 @@ public class CartDAO extends AbstractDAO {
 		return (Map<String, Object>) selectOne("cart.sessionCartList", map);
 	}
 
-	// 장바구니 삭제
+	// 장바구니 삭제z
 	public void deleteMyCart(Map<String, Object> map) throws Exception {
 		delete("cart.deleteMyCart", map);
 	}
@@ -95,6 +99,8 @@ public class CartDAO extends AbstractDAO {
 		// TODO Auto-generated method stub
 		return (Map<String, Object>) selectOne("cart.selectCartNo", map);
 	}
+
+	
 
 
 }
