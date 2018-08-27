@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +31,8 @@ import com.kh.iclass.order.OrderService;
 @RequestMapping(value = "/admin/")
 public class AdminOrderController {
 
+	Logger log = Logger.getLogger(this.getClass());
+	
 	@Resource(name = "orderService")
 	private OrderService orderService;
 	
@@ -42,7 +45,7 @@ public class AdminOrderController {
 	
 
 	
-	@RequestMapping(value = "/order/list")		
+	@RequestMapping(value = "/order/orderlist")		
 	public ModelAndView orderList(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("order.list");
 		
@@ -52,6 +55,37 @@ public class AdminOrderController {
 		List<Map<String, Object>> orderList = new ArrayList<Map<String, Object>>();
 		
 		orderList=orderService.selectOrderListAll(commandMap.getMap());
+		
+		mv.addObject("list", orderList);
+		return mv;
+	
+	}
+	
+	@RequestMapping(value = "/order/refundlist")		
+	public ModelAndView orderRefundList(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("order.list");
+		
+		HttpSession session = request.getSession();
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		
+		List<Map<String, Object>> orderList = new ArrayList<Map<String, Object>>();
+		
+		orderList=orderService.selectRefundListAll(commandMap.getMap());
+		
+		mv.addObject("list", orderList);
+		return mv;
+	
+	}
+	@RequestMapping(value = "/order/changelist")		
+	public ModelAndView orderChangeList(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("order.list");
+		
+		HttpSession session = request.getSession();
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		
+		List<Map<String, Object>> orderList = new ArrayList<Map<String, Object>>();
+		
+		orderList=orderService.selectChangeListAll(commandMap.getMap());
 		
 		mv.addObject("list", orderList);
 		return mv;
@@ -85,6 +119,18 @@ public class AdminOrderController {
 		HttpSession session = request.getSession();
 		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 		
+		List<Map<String, Object>> saleListMap = new ArrayList<Map<String, Object>>();
+		saleListMap=orderService.getSale2(commandMap.getMap());
+		
+		org.json.simple.JSONArray json=ParseListToJson.convertListToJson(saleListMap);
+		
+		System.out.println("json:"+json);
+		
+		ObjectMapper mapper = new ObjectMapper();  
+		mapper.writerWithDefaultPrettyPrinter().writeValue(System.out, json);
+		
+		mv.addObject("json", json);
+		
 		return mv;
 	
 	}
@@ -92,7 +138,18 @@ public class AdminOrderController {
 	
 	@RequestMapping(value = "/order/stateup")		
 	public ModelAndView changeState1(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:list");
+		ModelAndView mv = new ModelAndView("redirect:orderlist");
+		
+		HttpSession session = request.getSession();
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		System.out.println(commandMap.getMap());
+		orderService.changeState1(commandMap.getMap());
+		return mv;
+	
+	}
+	@RequestMapping(value = "/order/statechange")		
+	public ModelAndView changeStateUp(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:changelist");
 		
 		HttpSession session = request.getSession();
 		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
@@ -102,9 +159,11 @@ public class AdminOrderController {
 	
 	}
 	
+	
+	
 	@RequestMapping(value = "/order/statedown")		
 	public ModelAndView changeState2(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:list");
+		ModelAndView mv = new ModelAndView("redirect:orderlist");
 		
 		HttpSession session = request.getSession();
 		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
@@ -114,7 +173,29 @@ public class AdminOrderController {
 	
 	}
 	
+	@RequestMapping(value = "/order/state8")		
+	public ModelAndView changeState8(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:refundlist");
+		
+		HttpSession session = request.getSession();
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		System.out.println(commandMap.getMap());
+		orderService.changeState8(commandMap.getMap());
+		return mv;
 	
+	}
+	
+	@RequestMapping(value = "/order/state9")		
+	public ModelAndView changeState9(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:refundlist");
+		
+		HttpSession session = request.getSession();
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		System.out.println(commandMap.getMap());
+		orderService.changeState9(commandMap.getMap());
+		return mv;
+	
+	}
 	
 	// 상세보기에서 바로구매
 	@RequestMapping(value = "order")

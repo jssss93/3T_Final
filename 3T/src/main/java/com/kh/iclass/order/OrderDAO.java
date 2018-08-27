@@ -67,13 +67,16 @@ public class OrderDAO extends AbstractDAO {
 	public List<Map<String, Object>> selectOrderListAll(Map<String, Object> map) throws Exception {
 		return selectList("order.selectOrderListAll", map);
 	}
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectRefundListAll(Map<String, Object> map) {
+		return selectList("order.selectRefundListAll", map);
+	}
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectChangeListAll(Map<String, Object> map) {
+		return selectList("order.selectChangeListAll", map);
+	}
 	
-	public void changeState1(Map<String, Object> map) throws Exception {
-		update("order.changeState1", map);
-	}
-	public void changeState2(Map<String, Object> map) throws Exception {
-		update("order.changeState2", map);
-	}
+	
 	
 	@SuppressWarnings("unchecked")
 	public Map<String,Map<String, Object>> getSale(Map<String, Object> map,String mapKey) throws Exception {
@@ -84,5 +87,20 @@ public class OrderDAO extends AbstractDAO {
 	public List<Map<String, Object>> getSale2(Map<String, Object> map) throws Exception {
 		return selectList("order.selectSale", map);
 	}
+	public void changeState1(Map<String, Object> map) throws Exception {
+		update("order.changeState1", map);
+	}
+	public void changeState2(Map<String, Object> map) throws Exception {
+		update("order.changeState2", map);
+	}
+	public void changeState8(Map<String, Object> map) {
+		update("order.changeState8", map);
+	}
+
+	public void changeState9(Map<String, Object> map) {
+		update("order.changeState9", map);
+	}
+
+	
 	
 }

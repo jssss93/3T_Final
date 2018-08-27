@@ -5,17 +5,17 @@
 <head>
 <script type="text/javascript">
 //주문번호 같은 열 합치는 Jquery
-$( document ).ready(function() {
+/* $( document ).ready(function() {
 	$('#dataTables-example').rowspan(0);
 	$('#dataTables-example').rowspan(1);
-	/* $('#dataTables-example').rowspan(2); */
+	$('#dataTables-example').rowspan(2); 
 	$('#dataTables-example').rowspan(3);
 	$('#dataTables-example').rowspan(4);
-	/* $('#dataTables-example').rowspan(5); */
+	$('#dataTables-example').rowspan(5); 
 	$('#dataTables-example').rowspan(9);
 	$('#dataTables-example').rowspan(10);
 });
-
+ */
 $.fn.rowspan = function(colIdx, isStats) {       
 	return this.each(function(){      
 		var that;     
@@ -128,7 +128,7 @@ function delchk(){
 							</table>
 						</div>
 					</div>
-					<a href="/3T/admin/faq/write"><button type="submit" class="btn btn-default">FAQ 작성</button></a>
+					<a href="/3T/admin/faq/write"><button type="submit" class="btn btn-default">작성</button></a>
 					<div class="paging">
 						${pagingHtml}
 					</div>

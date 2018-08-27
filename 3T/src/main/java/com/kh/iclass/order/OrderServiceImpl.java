@@ -43,6 +43,23 @@ public class OrderServiceImpl implements OrderService {
 		return orderDAO.selectList(map);
 	}
 	
+	//리스트
+	@Override
+	public List<Map<String, Object>> selectOrderListAll(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return orderDAO.selectOrderListAll(map);
+	}
+	
+	@Override
+	public List<Map<String, Object>> selectRefundListAll(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return orderDAO.selectRefundListAll(map);
+	}
+	@Override
+	public List<Map<String, Object>> selectChangeListAll(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return orderDAO.selectChangeListAll(map);
+	}
 	
 	
 	
@@ -89,9 +106,15 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<Map<String, Object>> selectOrderListAll(Map<String, Object> map) throws Exception {
+	public Map<String, Map<String, Object>> getSale(Map<String, Object> map,String mapKey) throws Exception {
 		// TODO Auto-generated method stub
-		return orderDAO.selectOrderListAll(map);
+		return orderDAO.getSale(map,mapKey);
+	}
+
+	@Override
+	public List<Map<String, Object>> getSale2(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return orderDAO.getSale2(map);
 	}
 
 	@Override
@@ -105,20 +128,14 @@ public class OrderServiceImpl implements OrderService {
 		orderDAO.changeState2(map);
 	}
 	
-	
-	
-	
-	
 	@Override
-	public Map<String, Map<String, Object>> getSale(Map<String, Object> map,String mapKey) throws Exception {
-		// TODO Auto-generated method stub
-		return orderDAO.getSale(map,mapKey);
+	public void changeState8(Map<String, Object> map) {
+		orderDAO.changeState8(map);
 	}
 
 	@Override
-	public List<Map<String, Object>> getSale2(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return orderDAO.getSale2(map);
+	public void changeState9(Map<String, Object> map) {
+		orderDAO.changeState9(map);
 	}
 
 	

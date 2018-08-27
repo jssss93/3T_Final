@@ -104,9 +104,9 @@
 								<span class="fa arrow">▼</span>
 							</a>
 							<ul class="nav nav-second-level">
-								<li><a href="/3T/admin/order/list">- 주문목록</a></li>
-								<li><a href="/3T/admin/refund/list">- 주문취소목록</a></li>
-								<li><a href="/3T/admin/change/list">- 교환/반품목록</a></li>
+								<li><a href="/3T/admin/order/orderlist">- 주문목록</a></li>
+								<li><a href="/3T/admin/order/changelist">- 교환목록</a></li>
+								<li><a href="/3T/admin/order/refundlist">- 환불목록</a></li>
 							</ul>
 						</li>
 						<li class="active">

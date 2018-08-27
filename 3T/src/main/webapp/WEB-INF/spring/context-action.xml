@@ -12,17 +12,13 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<!-- <annotation-driven /> -->
+	
 
 	<context:component-scan base-package="com.kh.iclass" />
 
 
-	<!-- 맵 객체로 받기위한 CustomMapArgumentResolver 클래스 등록 -->
-	<mvc:annotation-driven>
-		<mvc:argument-resolvers>
-			<bean class="com.kh.iclass.common.resolver.CustomMapArgumentResolver"></bean>
-		</mvc:argument-resolvers>
-	</mvc:annotation-driven>
+	
+	
 
 	<!-- 인터셉터설정 -->
 	<mvc:interceptors>
@@ -62,13 +58,35 @@
 		<property name="rendererType">
 			<map>
 				<entry key="text" value-ref="textRenderer" />
-			</map>
+			</map> 
 		</property>
 	</bean>
 
 	<!-- JSON Parsing -->
 	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
-
+	
+	<!-- JSON Parsing MSG Converter-->
+	<mvc:annotation-driven>
+	 <!-- 맵 객체로 받기위한 CustomMapArgumentResolver 클래스 등록 -->
+		<mvc:argument-resolvers>
+			<bean class="com.kh.iclass.common.resolver.CustomMapArgumentResolver"></bean>
+		</mvc:argument-resolvers>
+		
+      <!-- <mvc:message-converters> -->
+      <!-- <bean class="x.y.CustomMessageConverter"/> -->
+      <!-- </mvc:message-converters> -->
+      <!-- messageConvertert -->
+         <mvc:message-converters>
+                  <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                           <property name="supportedMediaTypes">
+                                   <list>
+                                            <value>text/html; charset=UTF-8</value>
+                                   </list>
+                           </property>
+                  </bean>
+         </mvc:message-converters>
+   </mvc:annotation-driven>
+   
 	<!-- AOP -->
 	<aop:aspectj-autoproxy/>
     <bean id="loggerAspect" class="com.kh.iclass.common.logger.LoggerAspect" />

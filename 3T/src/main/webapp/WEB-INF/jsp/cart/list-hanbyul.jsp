@@ -445,6 +445,7 @@
 													href="/product/detail.html?product_no=8171&amp;cate_no=1">
 														<strong>${row.NAME }</strong>
 												</a>
+												
 													<ul
 														class="xans-element- xans-order xans-order-optionall option">
 														<li class="xans-record-">[옵션: ${row.COLOR }/${row.GOODS_SIZE }]
@@ -566,6 +567,129 @@
 							href="/">쇼핑계속하기</a>
 						</span>
 					</div>
+<<<<<<< HEAD
+	
+					<!-- 일반상품 (기본배송) -->
+					<table border="1" summary=""
+						class="xans-element- xans-order xans-order-normnormal boardList xans-record-">
+						
+						<thead>
+							<tr>
+								<th scope="col" class="chk"><input type="checkbox"	id="chkBox" onclick="checkAll();"  ></th>
+								<th scope="col" class="thumb">IMAGE</th>
+								<th scope="col" class="product">PRODUCT INFO</th>
+								<th scope="col" class="price">PRICE</th>
+								<th scope="col" class="quantity">QUANTITY</th>
+								<th scope="col" class="mileage">state</th>
+								<th scope="col" class="delivery">배송구분</th>
+								<th scope="col" class="charge">배송비</th>
+								<th scope="col" class="total">total</th>
+								<th scope="col" class="button">select</th>
+							</tr>
+						</thead>
+						<tfoot>
+							<tr>
+								<td colspan="10">
+									<strong class="type">[기본배송]</strong>
+									상품구매금액	<strong id="totalPrice">0 KRW </strong>
+									+ 배송비		<strong id="delivery">3000 KRW </strong>
+									-상품할인금액 0 	<strong id="discount">0 KRW </strong>
+									= 합계 : 		<strong id="totalSum">0 KRW </strong>
+								</td>
+							</tr>
+						</tfoot>
+						<tbody class="xans-element- xans-order xans-order-list">
+						<c:choose>
+					<c:when test="${fn:length(cartList) > 0}">
+						<c:forEach items="${cartList }" var="row" varStatus="stat">
+						
+							<tr class="xans-record-">
+								<td>
+									<input type="checkbox" id="checkbox${stat.index}" name="CART_NO" id="CART_NO" value="${row.CART_NO}"
+									onclick="javascript:checkedRows(${stat.index});">
+								</td>
+								<td class="thumb">
+									<a href="/product/detail.html?product_no=8171&amp;cate_no=1">
+										<img width="50" height="50"
+										src="/3T/resources/upload/${row.IMAGE.split(',')[0] }" />
+									</a>
+								</td>  
+								<td class="product">
+									<a href="/product/detail.html?product_no=8171&amp;cate_no=1">
+									<strong>${row.NAME }</strong> </a>
+									<ul class="xans-element- xans-order xans-order-optionall option">
+										<li class="xans-record-">
+											[옵션: ${row.COLOR }/${row.GOODS_SIZE }] 
+										</li>
+									</ul>
+								</td>
+								<td>
+									<span class="price" value="${row.PRICE}">${row.PRICE} </span>
+								</td> 
+								<td><span class="quantity"><input id="quantity_id_0"
+										name="quantity_name_0" size="2" value="${row.COUNT }" type="text"><a
+										href="javascript:;"
+										onclick="Basket.addQuantityShortcut('quantity_id_0', 0);"><img
+											src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_quantity_up.gif"
+											alt="증가" class="QuantityUp"></a><a href="javascript:;"
+										onclick="Basket.outQuantityShortcut('quantity_id_0', 0);"><img
+											src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_quantity_down.gif"
+											alt="감소" class="QuantityDown"></a></span> <a href="javascript:;"
+									onclick="Basket.modifyQuantity()"><img
+										src="/images/btn_quantity_modify.gif" alt="변경"></a></td>
+								<td class="mileage">-</td>
+								<td class="delivery">기본배송</td>
+								<td><span class="totprice" value="${row.PRICE*row.COUNT}">${row.PRICE*row.COUNT}</span></td>
+								<td class="total"><strong>${row.PRICE * row.COUNT }</strong></td>
+								<td class="button">
+									<c:url var="deleteOne" value="/cart/deleteOne">
+										<c:param name="CART_NO" value="${row.CART_NO }" />
+									</c:url>
+									<c:url var="addOne" value="/order/addOne">
+										<c:param name="CART_NO" value="${row.CART_NO }" />
+										<c:param name="ATTRIBUTE_NO" value="${row.ATTRIBUTE_NO}" />
+										<c:param name="GOODS_NO" value="${row.GOODS_NO }" />
+										<c:param name="COUNT" value="${row.COUNT}" />
+									</c:url>
+									<a href="${addOne }" >
+									<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_order.gif" alt="주문하기"></a> 
+									<a href="javascript:;" onclick="BasketNew.moveWish(0);">
+									<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_wish.gif" alt="관심상품등록"></a> 
+									<a href="${deleteOne }" >
+									<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_delete.gif" alt="삭제"></a>
+								</td>
+							</tr>
+							
+							</c:forEach>
+					</c:when>
+					<c:otherwise>
+					<tr>
+							<td colspan="4">조회된 결과가 없습니다.</td>
+						</tr>
+					</c:otherwise>
+					</c:choose>
+						</tbody>
+					</table>
+				</div>
+				
+				<div class="xans-element- xans-order xans-order-basketpriceinfoguide  ">
+					<p class="info ">할인 적용 금액은 주문서작성의 결제예정금액에서 확인 가능합니다.</p>
+				</div>
+				
+				<!-- 선택상품 제어 버튼 -->
+				<div class="xans-element- xans-order xans-order-selectorder ">
+					
+					<c:url var="deleteSelect" value="/cart/deleteSelect">
+					</c:url>
+					<c:url var="deleteAll" value="/cart/deleteAll"></c:url>
+					
+					<span class="left"> <strong class="ctrlTxt">선택상품을</strong> 
+						<a href="#this" id="deleteSelect"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_delete2.gif" alt="삭제하기"></a> 
+					</span> 
+					
+					<a href="${deleteAll }"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_clear.gif" 			alt="장바구니비우기"></a> 
+=======
+>>>>>>> c5ed8bdf6ed5fc6df8e85cdf6b2ff97cd1c5b184
 				</div>
 				<!-- //장바구니 모듈 Package -->
 
@@ -632,6 +756,10 @@
 	</script>
 			</div>
 		</div>
+<<<<<<< HEAD
+	</div>
+</form>
+=======
 
 
 
@@ -642,5 +770,6 @@
 
 
 	</form>
+>>>>>>> c5ed8bdf6ed5fc6df8e85cdf6b2ff97cd1c5b184
 </body>
 </html>
