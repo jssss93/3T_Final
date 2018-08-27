@@ -6,16 +6,31 @@
 <title>first</title>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
+
+
+<style>
+.board_review3 {
+    width: 80%;
+    font-family: FontAwesome;
+    valign: middle;
+    border-top: 2px solid #ffffff;
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+</style>
+
 </head>
 <body>
-	<h2>메세지</h2>
-	<table width="80%" border="0" cellspacing="0" cellpadding="2">
-
+	<table width="100%" align="center" border="0" cellspacing="1"
+		cellpadding="1" class="board_top">
 		<tr>
-			<td height="30"></td>
+			<td height="50"></td>
 		</tr>
 		<tr>
-			<td align="center" class="text01 formbar"><h2>message</h2></td>
+			<td align="left" class="text01 formbar"><h6>
+					<font color="#000000">MESSAGE</font>
+				</h6></td>
 		</tr>
 
 		<tr>
@@ -24,19 +39,13 @@
 		
 		
 	</table>
-		<table class="board_list" width="80%">
-    <colgroup>
-        <col width="10%"/>
-        <col width="*"/>
-        <col width="15%"/>
-    </colgroup>
-    <thead>
-        <tr>
-            <th scope="col">메세지번호</th>
-            <th scope="col">내용</th>
-            <th scope="col">보낸이</th>
-        </tr>
-    </thead>
+	<table width="80%" border="0" cellspacing="0"
+		cellpadding="2" class="board_review3">
+		<tr>
+			<td valign="middle"><strong>메세지번호</strong>
+			<td valign="middle"><strong>내용</strong>
+			<td valign="middle"><strong>보낸이</strong>
+		</tr>
     <tbody>
         <c:choose>
             <c:when test="${fn:length(list) > 0}">
@@ -65,7 +74,7 @@
          
     </tbody>
 </table>
-	
+	    <br>
 		<a href="#this" class="btn" id="write">글쓰기</a>
 		
 	<br />

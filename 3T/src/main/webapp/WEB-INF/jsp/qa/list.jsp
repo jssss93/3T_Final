@@ -8,14 +8,15 @@
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 </head>
 <body>
-	<table width="100%" align="center" border="0" cellspacing="1"
+	<table width="70%" align="center" border="0" cellspacing="1"
 		cellpadding="1" class="board_top">
+		<br>
 		<tr>
 			<td height="50"></td>
 		</tr>
 		<tr>
 			<td align="left" class="text01 formbar"><h6>
-					<font color="#000000">QA</font>
+					<font color="#000000">QA</font><span></span>
 				</h6></td>
 		</tr>
 

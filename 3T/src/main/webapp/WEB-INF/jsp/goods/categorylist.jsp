@@ -17,9 +17,18 @@
 #myImg:hover {opacity: 0.7;}
 
 .abc {  font-size: 17px; color: #000000;}
+
+
+table {
+    width: 80%;
+    border: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
 </style>
 </head>
-
+<br><br>
+<br><br>
 <body>
 	<table  width="80%" border="0" height="300" align="center" 
 		cellpadding="0" cellspacing="10">
