@@ -297,7 +297,9 @@
 
 			<td><a href="#this" name="title2">${goodsDetail1.TITLE }</a> <input
 				type="hidden" id="REVIEW_NO" value="${goodsDetail1.REVIEW_NO }">
+				<input type="hidden" id="GOODS_NO" value="${goodsDetail1.GOODS_NO }">
 				<!-- <details> <summary>내용보기</summary> -->
+	
 			<td align="center">${goodsDetail1.CONTENT}</td>
 
 			<td align="center">${goodsDetail1.MEMBER_ID}</td>
@@ -358,6 +360,8 @@
 
 			<td><a href="#this" name="title">${goodsDetail2.TITLE }</a> <input
 				type="hidden" id="QA_NO" value="${goodsDetail2.QA_NO }"> <!-- <details> <summary>내용보기</summary> -->
+				<input type="hidden" id="GOODS_NO" value="${goodsDetail2.GOODS_NO }">
+				
 			<td align="center">${goodsDetail2.CONTENT}</td>
 
 			<td align="center">${goodsDetail2.MEMBER_ID}</td>
@@ -530,14 +534,46 @@
 		    /* var x = document.getElementById("option").value;
 		    document.getElementById("attribute").innerHTML = "You selected: " + x;
 		  */ 
-		
+			
+			
+			
+			
+			/* 상세보기 review */
+			<%@ include file="/WEB-INF/include/include-body.jspf"%>
+             <script type="text/javascript">
+				$("a[name='title2']").on("click", function(e) { //제목 
+					e.preventDefault();
+					fn_openBoardDetail($(this));
+				});
 
-		
-		 
-		
-	</script>
-<!-- 컨트롤러  -->
+			function fn_openBoardDetail(obj) {
+				var comSubmit = new ComSubmit();
+				comSubmit.setUrl("<c:url value='/review/detail' />");
+				comSubmit.addParam("REVIEW_NO", obj.parent().find("#REVIEW_NO")
+						.val());
+				comSubmitd
+						.addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
+				comSubmit.submit();
+			}
+			
+			
+			/* 상세보기 q&a */
 
+					$("a[name='title']").on("click", function(e) { //제목 
+						e.preventDefault();
+						fn_openBoardDetail($(this));
+					});
+					
+				function fn_openBoardDetail(obj) {
+					var comSubmit = new ComSubmit();
+					comSubmit.setUrl("<c:url value='/qa/detail' />");
+					comSubmit.addParam("QA_NO", obj.parent().find("#QA_NO").val());
+					comSubmit
+							.addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
+					comSubmit.submit();
+				}
+			
 
+		</script>
 </body>
 </html>

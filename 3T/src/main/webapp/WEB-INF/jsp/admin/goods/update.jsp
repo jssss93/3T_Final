@@ -4,7 +4,11 @@
 <head>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <title>상품 등록</title>
-
+<style type="text/css">
+.page-header{
+border-bottom: 1px solid #fff;
+}
+</style>
 
 </head>
 <body>
@@ -14,7 +18,7 @@
 </div>
 	<form id="frm" name="frm" enctype="multipart/form-data">
 	<input type="hidden" name="GOODS_NO" id="GOODS_NO" value="${goodsBasic.GOODS_NO }">
-		<table class="board_view3">
+		<table class="board_view5" border="1">
 			<colgroup>
 				<col width="15%">
 				<col width="*"/>
@@ -23,11 +27,11 @@
 			<tbody>
 				<tr>
 					<th scope="row">상품명</th>
-					<td><input type="text" name="NAME" id="NAME" class="wdp_90" value="${goodsBasic.NAME }"></input></td>
+					<td><input type="text" name="NAME" id="NAME" class="wdp_30" value="${goodsBasic.NAME }"></input></td>
 				</tr>
 				<tr>
 					<th scope="row">가격</th>
-					<td><input type="text" name="PRICE" id="PRICE" class="wdp_90" value="${goodsBasic.PRICE }"></input></td>
+					<td><input type="text" name="PRICE" id="PRICE" class="wdp_30" value="${goodsBasic.PRICE }"></input></td>
 				</tr>
 				<tr>
 					<th scope="row">카테고리</th>
@@ -46,12 +50,12 @@
 				</tr>
 				<tr>
 					<th scope="row">관련상품번호</th>
-					<td><input type="text" name="RELATED" id="RELATED"	class="wdp_90" value="${goodsBasic.RELATED }"></input></td>
+					<td><input type="text" name="RELATED" id="RELATED"	class="wdp_30" value="${goodsBasic.RELATED }"></input></td>
 				</tr>
 				<tr>
 					<th scope="row">상품 키워드</th>
 					<td><input type="text" name="KEYWORD" id="KEYWORD"
-						class="wdp_90" placeholder="ex) 바지,반바지,긴바지,팬츠,하의," value="${goodsBasic.KEYWORD }"></input></td>
+						class="wdp_20" placeholder="ex) 바지,반바지,긴바지,팬츠,하의," value="${goodsBasic.KEYWORD }"></input></td>
 				</tr>
 				<tr>
 					<td colspan="2" class="view_text">

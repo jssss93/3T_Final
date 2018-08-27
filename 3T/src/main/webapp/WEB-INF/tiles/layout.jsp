@@ -103,7 +103,7 @@
 	<!--  왼쪽 메뉴 고정 바 -->
 	<div id="left">
 		<h1 class="xans-element- xans-layout xans-layout-logotop ">
-			<a href="\3T\main"><img src="/3T/resources/images/3T.PNG"></a>
+			<a href="\3T\"><img src="/3T/resources/images/3T.PNG"></a>
 		</h1>
 	
 
