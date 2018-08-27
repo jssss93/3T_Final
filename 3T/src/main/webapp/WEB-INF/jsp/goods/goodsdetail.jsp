@@ -22,7 +22,7 @@
 		}
 		if (index == 3) {
 			alert('로그인 후 이용해주세요.');
-			document.form.action = 'loginAction';
+			document.form.action = '/3T/nomemberLogin';
 		}
 		if (index == 4) {
 			alert('관심상품으로 등록되었습니다.');
@@ -131,13 +131,28 @@
 							<td colspan="2"><br /> <!-- 상품구매버튼 -->
 						</tr>
 						<tr>
-							<td colspan="2"><br /> <a><input name="Buy" style=""
+							<td colspan="2"><br /> <a>
+								<c:if test="${empty sessionScope.MEMBER_ID}">
+									<input name="Buy" style=""
+									src="/3T/resources/images/buy.PNG"
+									onmouseover="this.src='/3T/resources/images/buy1.png'"
+									onmouseout="this.src='/3T/resources/images/buy.PNG'"
+									onclick="BuyCheck(3);" type="image"
+									src="/3T/resources/images/buy.PNG" /> 
+									<input type="hidden"
+									name="GOODS_NO" id="GOODS_NO" value="${goodsBasic.GOODS_NO }" />
+								</c:if>
+								<c:if test="${not empty sessionScope.MEMBER_ID}">
+									<input name="Buy" style=""
 									src="/3T/resources/images/buy.PNG"
 									onmouseover="this.src='/3T/resources/images/buy1.png'"
 									onmouseout="this.src='/3T/resources/images/buy.PNG'"
 									onclick="BuyCheck(1);" type="image"
-									src="/3T/resources/images/buy.PNG" /> <input type="hidden"
-									name="GOODS_NO" id="GOODS_NO" value="${goodsBasic.GOODS_NO }" /></a>
+									src="/3T/resources/images/buy.PNG" /> 
+									<input type="hidden"
+									name="GOODS_NO" id="GOODS_NO" value="${goodsBasic.GOODS_NO }" />
+								</c:if>
+								</a>
 
 
 							</td>

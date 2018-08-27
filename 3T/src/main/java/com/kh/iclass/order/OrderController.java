@@ -46,6 +46,12 @@ public class OrderController {
 	@Resource(name="memberService")
 	private MemberService memberService;
 
+	@RequestMapping(value = "/nomemberLogin")
+	public ModelAndView loginForm() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("order/nomemberLoginForm");
+		return mv;
+	}
 	
 	@RequestMapping(value = "order/addSelected")
 	public ModelAndView addSelected(CommandMap commandMap, HttpServletRequest request) throws Exception {
@@ -190,6 +196,55 @@ public class OrderController {
 	
 	}
 	
+	@RequestMapping(value = "order/orderList")		
+	public ModelAndView order(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("order/orderList");
+		
+		HttpSession session = request.getSession();
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		
+		mv.addObject("MEMBER_ID", commandMap.get("MEMBER_ID"));
+		System.out.println("commandMap.getMap():"+commandMap.getMap());
+		List<Map<String, Object>> orderList = new ArrayList<Map<String, Object>>();
+		
+		orderList=orderService.orderList(commandMap.getMap());
+		mv.addObject("orderList", orderList);
+		return mv;
+	
+	}
+	@RequestMapping(value = "order/swapList")		
+	public ModelAndView swap(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("order/swapList");
+		
+		HttpSession session = request.getSession();
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		
+		mv.addObject("MEMBER_ID", commandMap.get("MEMBER_ID"));
+		System.out.println("commandMap.getMap():"+commandMap.getMap());
+		List<Map<String, Object>> swapList = new ArrayList<Map<String, Object>>();
+		
+		swapList=orderService.swapList(commandMap.getMap());
+		mv.addObject("swapList", swapList);
+		return mv;
+	
+	}
+	@RequestMapping(value = "order/refundList")		
+	public ModelAndView refund(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("order/refundList");
+		
+		HttpSession session = request.getSession();
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		
+		mv.addObject("MEMBER_ID", commandMap.get("MEMBER_ID"));
+		System.out.println("commandMap.getMap():"+commandMap.getMap());
+		List<Map<String, Object>> refundList = new ArrayList<Map<String, Object>>();
+		
+		refundList=orderService.refundList(commandMap.getMap());
+		mv.addObject("refundList", refundList);
+		return mv;
+	
+	}
+	
 	@RequestMapping(value = "order/getMemberInfo", produces="application/text;charset=UTF-8")
 
 	public @ResponseBody ModelAndView getMemberInfo(CommandMap commandMap, HttpServletRequest request,HttpServletResponse response ) throws Exception {
@@ -198,7 +253,7 @@ public class OrderController {
 		HttpSession session = request.getSession();
 		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 		
-		List<Map<String, Object>> memberInfo2 =  memberService.mypageInfo(commandMap.getMap());
+		List<Map<String, Object>> memberInfo2 =  memberService.memberInfoList(commandMap.getMap());
 		JSONArray json=ParseListToJson.convertListToJson(memberInfo2);
 		
 		writer.print(json);

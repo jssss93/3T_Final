@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.iclass.common.map.CommandMap;
@@ -29,6 +30,10 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("세션 : " + request.getSession().getAttribute("MEMBER_ID"));
 		List<Map<String, Object>> stateList = new ArrayList<Map<String, Object>>();
+		
+		Map<String, Object> order = new HashMap<String, Object>();
+		Map<String, Object> swap = new HashMap<String, Object>();
+		Map<String, Object> refund = new HashMap<String, Object>();
 		Map<String, Object> orderAll = new HashMap<String, Object>();
 		Map<String, Object> messageAll = new HashMap<String, Object>();
 
@@ -36,6 +41,10 @@ public class MemberController {
 		commandMap.put("TOMEMBER", request.getSession().getAttribute("MEMBER_ID"));
 
 		stateList = memberService.state(commandMap.getMap());
+		
+		order = memberService.order(commandMap.getMap());
+		swap = memberService.swap(commandMap.getMap());
+		refund = memberService.refund(commandMap.getMap());
 		orderAll = memberService.orderAll(commandMap.getMap());
 		messageAll = memberService.messageAll(commandMap.getMap());
 
@@ -51,6 +60,10 @@ public class MemberController {
 		System.out.println("반품?" + stateList.get(9));
 
 		System.out.println("총주문수?" + orderAll);
+		
+		mv.addObject("order", order);
+		mv.addObject("swap", swap);
+		mv.addObject("refund", refund);
 		mv.addObject("orderAll", orderAll);
 		mv.addObject("messageAll", messageAll);
 
@@ -68,21 +81,9 @@ public class MemberController {
 		commandMap.put("MEMBER_ID", request.getSession().getAttribute("MEMBER_ID"));
 		System.out.println("아이디" + commandMap.get("MEMBER_ID"));
 		// 상품정보 가져오기
-		List<Map<String, Object>> mypageInfo = memberService.mypageInfo(commandMap.getMap());
+		List<Map<String, Object>> mypageInfo = memberService.memberInfoList(commandMap.getMap());
 
 		mv.addObject("mypageInfo", mypageInfo);
-
-		/*
-		 * String EMAIL = (String)mypageInfo.get(0).get("EMAIL"); String EMAIL1 =
-		 * EMAIL.split("@")[0]; String EMAIL2 = EMAIL.split("@")[1];
-		 * 
-		 * commandMap.put("EMAIL1", EMAIL1); commandMap.put("EMAIL2", EMAIL2);
-		 */
-
-		/*
-		 * String str1 = "${row.EMAIL}"; String EMAIL1 = str1.split("@")[0]; String
-		 * EMAIL2 = str1.split(";")[1];
-		 */
 
 		mv.setViewName("member/update");
 
@@ -104,13 +105,49 @@ public class MemberController {
 		commandMap.getMap().put("MEMBER_ID", request.getSession().getAttribute("MEMBER_ID"));
 		commandMap.getMap().put("EMAIL", EMAIL);
 		mypageMap = commandMap.getMap();
-		System.out.println("맵에에에에" + mypageMap);
 		memberService.updateMember(mypageMap, request);
 		mv.setViewName("member/mypage");
 		return mv;
 
 	}
+	
+	//회원탈퇴
+			@RequestMapping(value = "/member/deleteMember")
+			@ResponseBody
+			public int deleteMember(CommandMap commandMap, HttpServletRequest request) throws Exception {
+				
+				System.out.println("들어옴???");
+				
+				HttpSession session = request.getSession();
+				Map<String, Object> member = new HashMap<String, Object>();
+				int check = 0;
+				System.out.println("비번이 안들어오나?" + commandMap.get("PASSWD"));
+				
+				member = memberService.memberInfo((String)commandMap.get("MEMBER_ID"));
+				System.out.println("member-PASSWD" +member.get("PASSWD"));
+				
+				if(member.get("PASSWD").equals(commandMap.get("PASSWD"))) {
+					memberService.deleteMember(commandMap.getMap());
+					session.invalidate();
+					check = 0;
+					return check;
+								
+				}else {
+					check = 1;
+					return check;
+				}
+						 
+						
+			}
 
+			@RequestMapping(value="/member/deleteMemberForm")
+			public ModelAndView deleteForm(CommandMap map)
+			{
+				ModelAndView mv = new ModelAndView("member/deleteMember");
+				
+				return mv;
+			}
+			
 
 	// mypage -> myboard
 

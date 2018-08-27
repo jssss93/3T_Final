@@ -7,12 +7,18 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface MemberService 
 {	
-	//회원정보가저오기
-	public List<Map<String, Object>> mypageInfo(Map<String, Object> map) throws Exception;
-
+	public List<Map<String, Object>> memberInfoList(Map<String, Object> map) throws Exception;
+	Map<String, Object> memberInfo(String id) throws Exception;
+	
+	//회원 탈퇴
+	public void deleteMember(Map<String, Object> map) throws Exception;
+	
 	List<Map<String, Object>> state(Map<String, Object> map) throws Exception;
 	
-	//총주문수, 메세지수 가져오기
+	//주문수, 교환수, 환불수, 총주문수, 메세지수 가져오기
+	Map<String, Object> order(Map<String, Object> map) throws Exception;
+	Map<String, Object> swap(Map<String, Object> map) throws Exception;
+	Map<String, Object> refund(Map<String, Object> map) throws Exception;
 	Map<String, Object> orderAll(Map<String, Object> map) throws Exception;
 	Map<String, Object> messageAll(Map<String, Object> map) throws Exception;
 	

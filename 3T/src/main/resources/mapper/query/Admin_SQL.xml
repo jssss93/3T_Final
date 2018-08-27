@@ -4,9 +4,10 @@
 <mapper namespace="adminMember">
 
 	<!-- 로그인, 회원정보수정 -->
- 	<select id="selectMemberList" parameterType="hashmap" resultType="hashmap">
-	<![CDATA[
-		SELECT 
+	<select id="selectMemberList" parameterType="hashmap" resultType="hashmap">
+		<include refid="common.pagingPre"/> 
+		<![CDATA[
+			SELECT
 			MEMBER_NO, 
 			MEMBER_ID, 
 			PASSWD, 
@@ -17,14 +18,49 @@
 			ADDR2, 
 			PHONE, 
 			EMAIL, 
-			REGDATE
-		FROM
-			MEMBER
-		ORDER BY
-			MEMBER_NO DESC
-	]]>
+			REGDATE,
+			    ROW_NUMBER() OVER (ORDER BY MEMBER_NO DESC) RNUM
+			FROM
+			    MEMBER
+		]]>
+		<include refid="common.pagingPost"/> 
 	</select>
 	
+	 <select id="selectMemberSearchList" parameterType="hashmap" resultType="hashmap">
+	 <include refid="common.pagingPre"/>  
+		SELECT
+			MEMBER_NO, 
+			MEMBER_ID, 
+			PASSWD, 
+			NAME,
+			BIRTH, 
+			ZIPCODE, 
+			ADDR1, 
+			ADDR2, 
+			PHONE, 
+			EMAIL, 
+			REGDATE,
+			    ROW_NUMBER() OVER (ORDER BY MEMBER_NO DESC) RNUM
+		FROM 
+			MEMBER
+		WHERE 
+				
+			<if test='SearchNum.equals("MEMBER_ID")'> 
+			
+			(MEMBER_ID LIKE '%' || #{SearchKeyword} || '%')
+			
+			</if>
+			
+			<if test='SearchNum.equals("NAME")'>
+		
+			(NAME LIKE '%' || #{SearchKeyword} || '%')
+			</if>
+		
+		<include refid="common.pagingPost"/> 
+
+		
+</select>
+
 	<select id="selectMemberDetail" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[
 		SELECT 
@@ -74,6 +110,15 @@
 			(#{COUPON_NO}, #{CONTENT}, #{MEMBER_ID})
 		]]>
     </insert>
+    
+    <delete id="deleteMemberA" parameterType="hashmap">
+		<![CDATA[
+			DELETE FROM 
+				MEMBER 
+			WHERE 
+			MEMBER_ID = #{MEMBER_ID}
+		]]>
+	</delete>
     
     
 <!-- 	

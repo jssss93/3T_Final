@@ -23,6 +23,20 @@ public class OrderDAO extends AbstractDAO {
 		return selectList("order.selectList", map);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> orderList(Map<String, Object> map) throws Exception {
+		return selectList("order.orderList", map);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> swapList(Map<String, Object> map) throws Exception {
+		return selectList("order.swapList", map);
+	}
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> refundList(Map<String, Object> map) throws Exception {
+		return selectList("order.refundList", map);
+	}
+	
 	
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> orderMember(Map<String, Object> map) throws Exception {

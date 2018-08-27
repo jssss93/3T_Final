@@ -73,63 +73,49 @@
 							</div>
 							<div class="state">
 								<ul class="order">
-									<li><strong>입금전</strong> <a
-										href="/myshop/order/list.html?order_status=shipped_before"
-										class="count"><span
-											id="xans_myshop_orderstate_shppied_before_count">${state0.CNT}</span></a></li>
-									<li><strong>배송준비중</strong> <a
-										href="/myshop/order/list.html?order_status=shipped_standby"
-										class="count"><span
-											id="xans_myshop_orderstate_shppied_standby_count">${state1.CNT}</span></a></li>
-									<li><strong>배송중</strong> <a
-										href="/myshop/order/list.html?order_status=shipped_begin"
-										class="count"><span
-											id="xans_myshop_orderstate_shppied_begin_count">${state2.CNT}</span></a></li>
-									<li><strong>배송완료</strong> <a
-										href="/myshop/order/list.html?order_status=shipped_complate"
-										class="count"><span
-											id="xans_myshop_orderstate_shppied_complate_count">${state3.CNT}</span></a></li>
-								</ul>
-								<ul class="cs">
-									<li><span class="icoDot"></span> <strong>취소</strong> <a
-										href="/myshop/order/list.html?order_status=order_cancel"
-										class="count"><span
-											id="xans_myshop_orderstate_order_cancel_count">${state4.CNT}</span></a></li>
-									<li><span class="icoDot"></span> <strong>교환준비중</strong> <a
-										href="/myshop/order/list.html?order_status=order_exchange"
-										class="count"><span
-											id="xans_myshop_orderstate_order_exchange_count">${state5.CNT}</span></a></li>
-											<li><span class="icoDot"></span> <strong>교환</strong> <a
-										href="/myshop/order/list.html?order_status=order_exchange"
-										class="count"><span
-											id="xans_myshop_orderstate_order_exchange_count">${state6.CNT}</span></a></li>
-											<li><span class="icoDot"></span> <strong>교환완료</strong> <a
-										href="/myshop/order/list.html?order_status=order_exchange"
-										class="count"><span
-											id="xans_myshop_orderstate_order_exchange_count">${state7.CNT}</span></a></li>
-									<li><span class="icoDot"></span> <strong>반품</strong> <a
-										href="/myshop/order/list.html?order_status=order_return"
-										class="count"><span
-											id="xans_myshop_orderstate_order_return_count">${state9.CNT}</span></a></li>
+									<li>
+										<strong>주문</strong>
+										<a href="/3T/order/orderList" class="count">
+											<span id="xans_myshop_orderstate_shppied_before_count">${order.ORDER2}</span>
+										</a>
+									</li>
+									<li>
+										<strong>교환</strong>
+										<a href="/3T/order/swapList" class="count">
+											<span id="xans_myshop_orderstate_shppied_standby_count">${swap.SWAP}</span>
+										</a>
+									</li>
+									<li>
+										<strong>환불</strong>
+										<a href="/3T/order/refundList" class="count">
+											<span id="xans_myshop_orderstate_shppied_begin_count">${refund.REFUND}</span>
+										</a>
+									</li>
+									<li>
+										<strong>총주문수</strong>
+										<a href="/3T/order/list" class="count">
+											<span id="xans_myshop_orderstate_shppied_complate_count">${orderAll.ORDERALL}</span>
+										</a>
+									</li>
+								
+									<li class="etc ">
+										<span class="title">쿠폰</span>
+										<span class="data">
+											<a href="/3T/member/mycoupon">${sessionScope.coupon}개</a>
+										</span> 
+									</li>
+									
+									<li class="etc ">
+										<span class="title">메시지</span>
+										<span class="data">
+											<a href="/3T/member/mymessage">${messageAll.MESSAGEALL}개</a>
+										</span> 
+									</li>
+
 								</ul>
 							</div>
 						</div>
 
-						<div class="xans-element- xans-myshop xans-myshop-bankbook">
-							<ul>
-								
-								<li class="etc"><span class="title">총주문</span> <span
-									class="data">${orderAll.ORDERALL}</span></li>
-									
-								<li class="etc "><span class="title">쿠폰</span> <span
-									class="data">${sessionScope.coupon}<span>개</span></span> 
-									<a
-									href="/3T/member/mycoupon"><img
-										src="/images/btn_result.gif" alt="조회" /></a></li>
-								<li class="etc"><span class="title">메시지</span> <span
-									class="data">${messageAll.MESSAGEALL}</span></li>
-							</ul>
-						</div>
 
 
 						<div id="myshopMain"
@@ -144,8 +130,13 @@
 									고객님의 개인정보를 관리하는 공간입니다.<br />개인정보를 최신 정보로 유지하시면 보다 간편히 쇼핑을 즐기실 수
 									있습니다.</a>
 							</div>
-							<div class="shopMain mileage">
-								<a href="/3T/member/mymessage"><strong>message</strong>적립금은
+							<div class="shopMain wishlist">
+								<a href="/3T/wish/wishlist"><strong>wish list</strong>관심상품으로
+									등록하신 상품의 목록을 보여드립니다.</a>
+							</div>
+
+				<div class="shopMain mileage">
+								<a href="/3T/member/messageWrite"><strong>message</strong>적립금은
 									상품 구매 시 사용하실 수 있습니다.<br />메세지</a>
 							</div>
 							<div class="shopMain coupon 1">
