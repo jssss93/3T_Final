@@ -15,7 +15,7 @@
 			<td width="400">&nbsp;&nbsp;${MEMBER_ID} 회원님의 주문 신청서입니다.</td>
 		</tr>
 		
-	</table>
+	</table>	
 	
 	<form id="frm">
 

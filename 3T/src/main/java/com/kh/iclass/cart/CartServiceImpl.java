@@ -15,44 +15,14 @@ public class CartServiceImpl implements CartService {
 
 	// 장바구니 등록
 	public void insertCart(Map<String, Object> map) throws Exception {
-
-		
 		cartDAO.cartInsert(map);
-		/*System.out.println("optno[] : " + map.get("optno[]"));
-		System.out.println("kinds[] : " + map.get("kinds[]"));
-		System.out.println("ea[] : " + map.get("ea[]"));*/
-
-		/*if (map.get("optno[]") instanceof String[]) {
-			String[] goodsKind = (String[]) map.get("kinds[]"); // 옷 종류 번호
-			String[] goodsAmount = (String[]) map.get("ea[]"); // 옷 수량
-
-			for (int i = 0; i < goodsKind.length; i++) {
-				cart.put("GOODS_NUMBER", Integer.parseInt(map.get("GOODS_NUMBER").toString()));
-				cart.put("MEMBER_NUMBER", map.get("MEMBER_NUMBER"));
-				cart.put("CART_AMOUNT", goodsAmount[i]);
-				cart.put("GOODS_KIND_NUMBER", goodsKind[i]);
-
-				if (cartDAO.confirmCart(cart) == null)
-					cartDAO.cartInsert(cart);
-			}
-		} else {*/ // 하나일때?
-			/*String goodsKind = (String) map.get("kinds[]"); // 옷 종류 번호
-			String goodsAmount = (String) map.get("ea[]"); // 옷 수량
-*/			/*cart.put("GOODS_NUMBER", Integer.parseInt(map.get("GOODS_NUMBER").toString()));
-			cart.put("MEMBER_NUMBER", map.get("MEMBER_NUMBER"));
-			cart.put("GOODS_KIND_NUMBER", goodsKind);
-			cart.put("CART_AMOUNT", goodsAmount);
-
-			if (cartDAO.confirmCart(cart) != null)
-				return;
-			else
-				cartDAO.cartInsert(cart);*/
-
-		/*}*/
-
 	}
-
-	// 회원 장바구니 목록
+	
+	@Override
+	public void insertCartAuto(Object attribute) {
+		cartDAO.cartInsertAuto(attribute);
+		
+	}
 	@Override
 	public List<Map<String, Object>> cartList(Map<String, Object> map) throws Exception {
 		return cartDAO.cartList(map);
@@ -137,6 +107,7 @@ public class CartServiceImpl implements CartService {
 		cartDAO.insertCartDetail(map);
 		
 	}
+
 
 	
 
