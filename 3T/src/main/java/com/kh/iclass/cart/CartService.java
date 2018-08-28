@@ -15,7 +15,7 @@ public interface CartService {
 
 	// 회원 장바구니 목록
 	public List<Map<String, Object>> cartList(Map<String, Object> map) throws Exception;
-	
+	public List<Map<String, Object>> fromDetailOne(Map<String, Object> map) throws Exception;
 	public List<Map<String, Object>> checkedCartList(Map<String, Object> map) throws Exception;
 	public List<Map<String, Object>> allCartList(Map<String, Object> map) throws Exception;
 	public void cartDeleteOne(Map<String, Object> map) throws Exception;

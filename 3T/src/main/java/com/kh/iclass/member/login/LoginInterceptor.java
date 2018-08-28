@@ -1,5 +1,11 @@
 package com.kh.iclass.member.login;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -18,16 +24,36 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 					
 					HttpSession session = request.getSession();
 					
-					System.out.println(request.getAttribute("CART_NO"));
-					request.setAttribute("aa", request.getAttribute("CART_NO"));
 					
 					String cart_No[]=request.getParameterValues("CART_NO");
+					if(cart_No!=null) {
 					request.setAttribute("CART_NO2", request.getParameterValues("CART_NO"));
 					session.putValue("CART_NO2", cart_No);
 					
 					System.out.println("cart_No"+cart_No);
 					
 					response.sendRedirect("/3T/loginForm2");
+					}else {
+						Map<String, Object> cartMap = new HashMap<String, Object>();
+						
+						List<Map<String, Object>> fromDetailOne = new ArrayList<Map<String, Object>>();
+						
+						cartMap.put("REGDATE", 		new Date());
+						//??????
+						cartMap.put("ATTRIBUTE_NO",(String)request.getParameter("attribute_no[]"));
+						cartMap.put("GOODS_NO",		(String)request.getParameter("GOODS_NO"));
+						cartMap.put("COUNT",		(String)request.getParameter("ea[]"));
+						cartMap.put("CONTENT",		(String)request.getParameter("CONTENT"));
+						cartMap.put("IMAGE",		(String)request.getParameter("IMAGE"));
+						cartMap.put("PRICE",		(String)request.getParameter("PRICE"));
+						cartMap.put("NAME",			(String)request.getParameter("NAME"));
+						cartMap.put("COLOR",		(String)request.getParameter("optno[]").toString().split("-")[0]);
+						cartMap.put("GOODS_SIZE",	(String)request.getParameter("optno[]").toString().split("-")[1]);
+						fromDetailOne.add(cartMap);
+						session.setAttribute("fromDetailOne", fromDetailOne);
+						System.out.println("session.getAttribute('fromDetailOne'):"+session.getAttribute("fromDetailOne"));
+						response.sendRedirect("/3T/loginForm3");
+					}
 					return false;
 				}else {
 					return true;
@@ -47,21 +73,4 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
     {
         super.postHandle(request, response, handler, modelAndView);
     }
-
-    //postHandle - controller 호출 후 view 페이지 출력전
-/*    @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception 
-    {
-        super.afterCompletion(request, response, handler, ex);
-    }
-	
-	//afterCompletion - controller + view 페이지 모두 출력 후
-    @Override
-    public void afterConcurrentHandlingStarted(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception 
-    {
-        super.afterConcurrentHandlingStarted(request, response, handler);
-    }
-    */
-    
-
 }

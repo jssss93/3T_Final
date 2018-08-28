@@ -9,54 +9,27 @@
 /* 종합개수 카운트 */
 
 
-
 function BuyCheck(index) {
 
 	if (index == 1) {
-
-		
-
-		document.form.action = '/3T/order';
-
-		
-
-		
-
-	}
-
-	if (index == 2) {
-
-		
-
-		document.form.action = '/3T/cart/addCart';
-
-		
-
-	}
-
+    	document.form.action = '/3T/cart/Add/OnetoPaymentNow';
+    }
+    if (index == 2) {
+       document.form.action = '/3T/cart/addCart';
+    }
 	if (index == 3) {
-
 		alert('로그인 후 이용해주세요.');
-
-		document.form.action = 'loginAction';
-
+	    document.form.action = 'loginAction';
 	}
-
 	if (index == 4) {
-
-		alert('관심상품으로 등록되었습니다.');
-
-		document.form.action = 'AddWish';
-
+	   alert('관심상품으로 등록되었습니다.');
+	   document.form.action = 'AddWish';
 	}
-
-	document.form.submit();
-
+	   document.form.submit();
 }
 
+/*    function scroll_follow( id )
 
-
-/* 	function scroll_follow( id )
 
 {
 
@@ -76,8 +49,10 @@ function BuyCheck(index) {
 
  scroll_follow( "#scroll" );
 
+
 	 //스크롤이 생기도록  */
 		
+
 </script>
 </head>
 
@@ -85,164 +60,175 @@ function BuyCheck(index) {
 <br><br>
 <br>
 <center>
-	<table width="1000" height="300" border="0" cellpadding="5"
-		cellspacing="0">
-		<body>
-		<tr>
-			<!-- 상품 메인 이미지-->
-
-			<td height="490" align="center" valign="TOP"><img width="490"
-				height="490" src="/3T/resources/images/${goodsoneImage.SAV_NAME}" /></td>
 
 
-			<!-- 상품 상세 내용 -->
-			<td>
-				<form name="form" id="form" method="post">
-					<table class="font-price" border="0" cellpadding="0"
-						cellspacing="0">
-						<tr>
-							<td style="text-align: left; font-size: 18pt;" colspan="2">
-								<!-- 상품 이름 --> ${goodsBasic.NAME }
-							</td>
-						</tr>
+   <table width="1000" height="300" border="0" cellpadding="5"
+      cellspacing="0">
+      <body>
+      <tr>
+         <!-- 상품 메인 이미지-->
 
-						<!-- 상품가격 텍스트 -->
-						<tr>
-							<td style="width: 280; font-size: 13pt;" colspan="2"><br>
-								<p></p> <!--상품 가격  --> KRW&nbsp; ${goodsBasic.PRICE }</td>
-						</tr>
-
-						<tr>
-							<td>
-								<!-- 색상, 사이즈, 개수 선택옵션 --> <select id="option"
-								onchange="setOption(this)" style="width: 225px">
-									<option value="">-옵션 선택-</option>
-									<c:forEach var="goodsDetail" items="${goodsDetail}"
-										varStatus="stat">
-										<c:if test="${goodsDetail.COUNT ne 0}">
-
-											<option
-												value="${goodsDetail.COLOR }-${goodsDetail.GOODS_SIZE }"
-												optnm="${goodsDetail.COLOR }-${goodsDetail.GOODS_SIZE }"
-												stock="${goodsDetail.COUNT }" price="${goodsBasic.PRICE }"
-												attribute_no="${goodsDetail.ATTRIBUTE_NO }">
-												${goodsDetail.COLOR } - ${goodsDetail.GOODS_SIZE }
-												(${goodsDetail.COUNT }개)</option>
-										</c:if>
+         <td height="490" align="center" valign="TOP"><img width="490"
+            height="490" src="/3T/resources/images/${goodsoneImage.SAV_NAME}" /></td>
 
 
+         <!-- 상품 상세 내용 -->
+         <td>
+            <form name="form" id="form" method="post">
+            <!------------------------ 이미지 한개 SAV_NAME을 IMAGE란 이름으로 보냄 ----------------------------->
+            <input type="hidden" name="IMAGE" id="IMAGE" value="${goodsoneImage.SAV_NAME }">
+               <table class="font-price" border="0" cellpadding="0"
+                  cellspacing="0">
+                  <tr>
+                     <td style="text-align: left; font-size: 18pt;" colspan="2">
+                     <!------------------------  NAME ----------------------------->
+                     <input type="hidden" name="NAME" id="NAME" value="${goodsBasic.NAME}">
+                        <!-- 상품 이름 --> ${goodsBasic.NAME }
+                     </td>
+                  </tr>
 
-										<c:if test="${goodsDetail.COUNT eq 0}">
-											<option
-												value="${goodsDetail.COLOR }-${goodsDetail.GOODS_SIZE }"
-												optnm="${goodsDetail.COLOR }-${goodsDetail.GOODS_SIZE }"
-												stock="0" price="0" disabled=""
-												attributeno="${goodsDetail.ATTRIBUTE_NO }">
-												${goodsDetail.COLOR } - ${goodsDetail.GOODS_SIZE }(품절)</option>
-										</c:if>
+                  <!-- 상품가격 텍스트 -->
+                  <tr>
+                     <td style="width: 280; font-size: 13pt;" colspan="2"><br>
+                     <!------------------------  PRICE ----------------------------->
+                     <input type="hidden" name="PRICE" id="PRICE" value="${goodsBasic.PRICE }">
+                        <p></p> <!--상품 가격  --> KRW&nbsp; ${goodsBasic.PRICE }</td>
+                  </tr>
 
-									</c:forEach>
-							</select>
-							</td>
-						</tr>
+                  <tr>
+                     <td>
+                     <!------------------------  COUNT는 ea[]로 보내고 COLOR랑 SIZE는 optno[]로 한꺼번에 보냄 ----------------------------->
+                        <!-- 색상, 사이즈, 개수 선택옵션 --> <select id="option"
+                        onchange="setOption(this)" style="width: 225px">
+                           <option value="">-옵션 선택-</option>
+                           <c:forEach var="goodsDetail" items="${goodsDetail}"
+                              varStatus="stat">
+                              <c:if test="${goodsDetail.COUNT ne 0}">
 
-						<!-- 사이즈, 색상, 개수출력 -->
-						<tr>
-							<td>
-								<div id="attribute">
-									<ul class="MK_inner-opt-cm" id="MK_innerOpt_01"></ul>
-									<div id="MK_innerOptTotal" class="good_total">
-										<p class="totalRight">
-											<span class="MK_txt-total">TOTAL</span> <span id="MK_txt-won"
-												data-price="">0원</span>
-										</p>
-									</div>
-								</div>
-							</td>
-						</tr>
+                                 <option
+                                    value="${goodsDetail.COLOR }-${goodsDetail.GOODS_SIZE }"
+                                    optnm="${goodsDetail.COLOR }-${goodsDetail.GOODS_SIZE }"
+                                    stock="${goodsDetail.COUNT }" price="${goodsBasic.PRICE }"
+                                    attribute_no="${goodsDetail.ATTRIBUTE_NO }">
+                                    ${goodsDetail.COLOR } - ${goodsDetail.GOODS_SIZE }
+                                    (${goodsDetail.COUNT }개)</option>
+                              </c:if>
 
 
 
+                              <c:if test="${goodsDetail.COUNT eq 0}">
+                                 <option
+                                    value="${goodsDetail.COLOR }-${goodsDetail.GOODS_SIZE }"
+                                    optnm="${goodsDetail.COLOR }-${goodsDetail.GOODS_SIZE }"
+                                    stock="0" price="0" disabled=""
+                                    attributeno="${goodsDetail.ATTRIBUTE_NO }">
+                                    ${goodsDetail.COLOR } - ${goodsDetail.GOODS_SIZE }(품절)</option>
+                              </c:if>
 
-						<!-- BUY,ADD CART추가하기 -->
-						<tr>
-							<td colspan="2"><br /> <!-- 상품구매버튼 -->
-						</tr>
-						<tr>
-							<td colspan="2"><br /> <a><input name="Buy" style=""
-									src="/3T/resources/images/buy.PNG"
-									onmouseover="this.src='/3T/resources/images/buy1.png'"
-									onmouseout="this.src='/3T/resources/images/buy.PNG'"
-									onclick="BuyCheck(1);" type="image"
-									src="/3T/resources/images/buy.PNG" /> <input type="hidden"
-									name="GOODS_NO" id="GOODS_NO" value="${goodsBasic.GOODS_NO }" /></a>
+                           </c:forEach>
+                     </select>
+                     </td>
+                  </tr>
+
+                  <!-- 사이즈, 색상, 개수출력 -->
+                  <tr>
+                     <td>
+                        <div id="attribute">
+                           <ul class="MK_inner-opt-cm" id="MK_innerOpt_01"></ul>
+                           <div id="MK_innerOptTotal" class="good_total">
+                              <p class="totalRight">
+                                 <span class="MK_txt-total">TOTAL</span> <span id="MK_txt-won"
+                                    data-price="">0원</span>
+                              </p>
+                           </div>
+                        </div>
+                     </td>
+                  </tr>
 
 
-							</td>
-						<tr>
-							<td colspan="2" class="btnArea"><br> <!-- 장바구니버튼 --> <a><input
-									name="BuyCart"
-									onmouseover="this.src='/3T/resources/images/cart.PNG'"
-									onmouseout="this.src='/3T/resources/images/cart.PNG'"
-									onclick="BuyCheck(2);" type="image"
-									src="/3T/resources/images/cart.PNG" /></a>
-						</tr>
-						<tr/>
 
-						<tr>
-							<td colspan="2">
-								<!-- wishlist버튼 --> <a><input name="WishList"
-									onclick="BuyCheck(4);" type="image"
-									src="/3T/resources/images/wishlist.PNG" value="WishList" /></a>
-							</td>
-						</tr>
-						<tr class="board">
-							<td colspan="2">
-								<!-- 리뷰,q&a 하이퍼링크 추가 --> <a
-								href='Review_list.action?Goods_no=${resultClass.goods_no}'>REVIEW&nbsp;(
-									0 )</a> &nbsp;&nbsp;&nbsp;&nbsp; <a
-								href='qa_listAction.action?Goods_no=${resultClass.goods_no}'>QA&nbsp;(
-									0 )</a>
-							</td>
-						</tr>
-						<!-- 옷 정보 content -->
 
-						<tr>
-							<td>
+                  <!-- BUY,ADD CART추가하기 -->
+                  <tr>
+                     <td colspan="2"><br /> <!-- 상품구매버튼 -->
+                  </tr>
+                  <tr>
+                     <td colspan="2"><br /> <a><input name="Buy" style=""
+                           src="/3T/resources/images/buy.PNG"
+                           onmouseover="this.src='/3T/resources/images/buy1.png'"
+                           onmouseout="this.src='/3T/resources/images/buy.PNG'"
+                           onclick="BuyCheck(1);" type="image"
+                           src="/3T/resources/images/buy.PNG" /> <input type="hidden"
+                           name="GOODS_NO" id="GOODS_NO" value="${goodsBasic.GOODS_NO }" /></a>
 
-								<div
-									class="xans-element- xans-product xans-product-additional product_about ">
-									<pre>
-								<font color="#de1616">INFO</font>
+
+                     </td>
+                  <tr>
+                     <td colspan="2" class="btnArea"><br> <!-- 장바구니버튼 --> <a><input
+                           name="BuyCart"
+                           onmouseover="this.src='/3T/resources/images/cart.PNG'"
+                           onmouseout="this.src='/3T/resources/images/cart.PNG'"
+                           onclick="BuyCheck(2);" type="image"
+                           src="/3T/resources/images/cart.PNG" /></a>
+                  </tr>
+                  <tr/>
+
+                  <tr>
+                     <td colspan="2">
+                        <!-- wishlist버튼 --> <a><input name="WishList"
+                           onclick="BuyCheck(4);" type="image"
+                           src="/3T/resources/images/wishlist.PNG" value="WishList" /></a>
+                     </td>
+                  </tr>
+                  <tr class="board">
+                     <td colspan="2">
+                        <!-- 리뷰,q&a 하이퍼링크 추가 --> <a
+                        href='Review_list.action?Goods_no=${resultClass.goods_no}'>REVIEW&nbsp;(
+                           0 )</a> &nbsp;&nbsp;&nbsp;&nbsp; <a
+                        href='qa_listAction.action?Goods_no=${resultClass.goods_no}'>QA&nbsp;(
+                           0 )</a>
+                     </td>
+                  </tr>
+                  <!-- 옷 정보 content -->
+
+                  <tr>
+                     <td>
+						<!---------------------------------- CONTENT ------------------------------------->
+                        <input type="hidden" name="CONTENT" id="CONTENT" value=" ${goodsBasic.CONTENT }">
+                        <div
+                           class="xans-element- xans-product xans-product-additional product_about ">
+                           <pre>
+                        <font color="#de1616">INFO</font>
                                 ${goodsBasic.CONTENT }
                             </pre>
 
-								</div>
-							</td>
-						</tr>
-					</table>
-				</form>
-			</td>
-		</tr>
+                        </div>
+                     </td>
+                  </tr>
+               </table>
+            </form>
+         </td>
+      </tr>
 
-	</table>
+   </table>
 
-	<!-- 상품 상세 이미지 -->
-	<br> <br> <br>
-	<table width="0" border="0" height="0" cellpadding="0" cellspacing="0">
-		<c:forEach var="row" items="${goodsImage }">
-			<tr>
-				<td colspan="0" align="center"><img width="1000" height="1000"
-					src="/3T/resources/images/${row.SAV_NAME }" /></td>
-			</tr>
-			<tr>
-				<td><br> <br> <br> <br> <br> <br>
-		</c:forEach>
+   <!-- 상품 상세 이미지 -->
+   <br> <br> <br>
+   <table width="0" border="0" height="0" cellpadding="0" cellspacing="0">
+      <c:forEach var="row" items="${goodsImage }">
+         <tr>
+            <td colspan="0" align="center"><img width="1000" height="1000"
+               src="/3T/resources/images/${row.SAV_NAME }" /></td>
+         </tr>
+         <tr>
+            <td><br> <br> <br> <br> <br> <br>
+      </c:forEach>
 
-	</table>
+   </table>
 
-	<table width="0" border="0" height="0" align="CENTER" cellpadding="0"
-		cellspacing="0">
+   <table width="0" border="0" height="0" align="CENTER" cellpadding="0"
+      cellspacing="0">
+
 
 
 	</table>
@@ -331,6 +317,7 @@ function BuyCheck(index) {
 	<c:forEach var="goodsDetail1" items="${goodsDetail1}" varStatus="stat">
 		<tr>
 
+
 			<td align="center">${goodsDetail1.REVIEW_NO}</td>
 
 			<td><a href="#this" name="title2">${goodsDetail1.TITLE }</a> <input
@@ -341,6 +328,7 @@ function BuyCheck(index) {
 			<td align="center">${goodsDetail1.CONTENT}</td>
 
 			<td align="center">${goodsDetail1.MEMBER_ID}</td>
+
 
 			<td align="center">${goodsDetail1.REGDATE}</td>
 
@@ -394,6 +382,7 @@ function BuyCheck(index) {
 	<c:forEach var="goodsDetail2" items="${goodsDetail2}" varStatus="stat">
 		<tr>
 
+
 			<td align="center">${goodsDetail2.QA_NO}</td>
 
 			<td><a href="#this" name="title">${goodsDetail2.TITLE }</a> <input
@@ -403,6 +392,7 @@ function BuyCheck(index) {
 			<td align="center">${goodsDetail2.CONTENT}</td>
 
 			<td align="center">${goodsDetail2.MEMBER_ID}</td>
+
 
 			<td align="center">${goodsDetail2.REGDATE}</td>
 
@@ -435,6 +425,7 @@ var r_optno = [];
 
 function setOption(obj) {
 
+
 	 var optno = $("#option option:selected").val();
 
 	
@@ -444,6 +435,7 @@ function setOption(obj) {
 
 
 	 var li = "<li class='MK_li_1_1'><span class='MK_p-name'>" + $("#option option:selected").attr("optnm") + "</span><input type='hidden' name='optno[]' value='" + optno +"'><input type='hidden' name='attribute_no[]' value='" + $("option:selected",$(obj)).attr("attribute_no") + "'><input type='hidden' class='mstock' value='" +$("option:selected",$(obj)).attr("stock") + "'><div class='MK_qty-ctrl' style='height:50px'><input type='text' name='ea[]' value='1' class='input_ea' size='2' maxlength='3'><span class='ea'><a class='MK_btn-up'><img src='/3T/resources/images/btn_num_up.gif' alt='' /></a><a class='MK_btn-dw'><img src='/3T/resources/images/btn_num_down.gif' alt='' /></a></span></div><span class='MK_price' data-price='"+$("option:selected",$(obj)).attr("price")+"'>" +($("option:selected",$(obj)).attr("price")) + "원</span><a href='#' optno='" + optno + "'class='MK_btn-del'><img src='/3T/resources/images/btn_close.gif' alt='' /></a></li>";
+
 
 
 
@@ -491,9 +483,11 @@ function setOption(obj) {
 
 	 var thisIdx = $(".MK_btn-del").index(this); 
 
+
      console.log("음"+thisIdx);
 
      var price = $(".MK_price").eq(thisIdx).data("price");
+
 
 	 console.log("zz"+price);
 
@@ -547,175 +541,179 @@ function setOption(obj) {
 
 
 
-	 // 재고 수량 이상 주문 체크
 
-	 if(inputEa >= mStock) {
 
-	    alert(mStock+"개 이상 주문하실 수 없습니다.");
+    // 재고 수량 이상 주문 체크
 
-	    change_ea(this,-1);
+    if(inputEa >= mStock) {
 
-	      inputEa = parseInt($(".input_ea").eq(thisIdx).val());
+       alert(mStock+"개 이상 주문하실 수 없습니다.");
 
-	      var total = $(".MK_price").eq(thisIdx).html((price*inputEa)+"원");
+       change_ea(this,-1);
 
-	 
+         inputEa = parseInt($(".input_ea").eq(thisIdx).val());
 
-	      
+         var total = $(".MK_price").eq(thisIdx).html((price*inputEa)+"원");
 
-	    return false ;
+    
 
-	 } 
+         
 
-	});
+       return false ;
 
-	$("#MK_innerOpt_01").on("keyup", "li input.input_ea", function(e){
+    } 
 
-		 var thisIdx = $(".input_ea").index(this); 
+   });
 
-		 var mStock = parseInt($(".mstock").eq(thisIdx).val()); 
+   $("#MK_innerOpt_01").on("keyup", "li input.input_ea", function(e){
 
-		 var price = parseInt($("option:selected",$('#option')).attr("price"));
+       var thisIdx = $(".input_ea").index(this); 
 
-		 var totprice = $("#MK_txt-won").data("price");
+       var mStock = parseInt($(".mstock").eq(thisIdx).val()); 
 
+       var price = parseInt($("option:selected",$('#option')).attr("price"));
 
+       var totprice = $("#MK_txt-won").data("price");
 
-		 
 
-		 $(this).val($(this).val().replace(/[^0-9]/g,""));
 
+       
 
+       $(this).val($(this).val().replace(/[^0-9]/g,""));
 
-		 if($(this).val() == "" || parseInt($(this).val()) <= 0) {
 
-		    $(this).val("1");
 
-		    return false ;
+       if($(this).val() == "" || parseInt($(this).val()) <= 0) {
 
-		 }
+          $(this).val("1");
 
+          return false ;
 
+       }
 
-		 if(parseInt($(this).val()) > mStock) {
 
-		    alert(mStock+"개 이상 주문하실 수 없습니다.");
 
-		    $(this).val(mStock);
+       if(parseInt($(this).val()) > mStock) {
 
-		    var total = $(".MK_price").eq(thisIdx).html((price*parseInt($(this).val()))+"원");
+          alert(mStock+"개 이상 주문하실 수 없습니다.");
 
+          $(this).val(mStock);
 
+          var total = $(".MK_price").eq(thisIdx).html((price*parseInt($(this).val()))+"원");
 
-		    return false ;
 
-		 } else{
 
-		      var total = $(".MK_price").eq(thisIdx).html((price*parseInt($(this).val()))+"원");
+          return false ;
 
-		      totprice = totprice + (price*(parseInt($(this).val())-1));
+       } else{
 
-		      $("#MK_txt-won").html((totprice)+"원");
+            var total = $(".MK_price").eq(thisIdx).html((price*parseInt($(this).val()))+"원");
 
-		  }
+            totprice = totprice + (price*(parseInt($(this).val())-1));
 
-		});
+            $("#MK_txt-won").html((totprice)+"원");
 
+        }
 
+      });
 
-		$("#MK_innerOpt_01").on("click", "li a.MK_btn-dw", function(e) {
 
-		 var thisIdx = $(".MK_btn-dw").index(this); 
 
-		 var inputEa = parseInt($(".input_ea").eq(thisIdx).val());
+      $("#MK_innerOpt_01").on("click", "li a.MK_btn-dw", function(e) {
 
-		 
+       var thisIdx = $(".MK_btn-dw").index(this); 
 
-		 if(inputEa == 1){
+       var inputEa = parseInt($(".input_ea").eq(thisIdx).val());
 
-		    alert("1개 이상 주문하셔야 합니다.");
+       
 
-		    $(".input_ea").eq(thisIdx).val() == 1;   
+       if(inputEa == 1){
 
-		    return false;
+          alert("1개 이상 주문하셔야 합니다.");
 
-		 } 
+          $(".input_ea").eq(thisIdx).val() == 1;   
 
-		 change_ea(this,-1);
+          return false;
 
-		  inputEa = parseInt($(".input_ea").eq(thisIdx).val());
+       } 
 
-		  var price = parseInt($("option:selected",$('#option')).attr("price"));
+       change_ea(this,-1);
 
-		  $(".MK_price").eq(thisIdx).data("price",(price*inputEa));
+        inputEa = parseInt($(".input_ea").eq(thisIdx).val());
 
-		  var total = $(".MK_price").eq(thisIdx).html((price*inputEa)+"원");
+        var price = parseInt($("option:selected",$('#option')).attr("price"));
 
-		  var totprice = $("#MK_txt-won").data("price");
+        $(".MK_price").eq(thisIdx).data("price",(price*inputEa));
 
-		  totprice = totprice - price;
+        var total = $(".MK_price").eq(thisIdx).html((price*inputEa)+"원");
 
-		  $("#MK_txt-won").data("price",totprice);
+        var totprice = $("#MK_txt-won").data("price");
 
-		  $("#MK_txt-won").html((totprice)+"원");
+        totprice = totprice - price;
 
-		 return false ;
+        $("#MK_txt-won").data("price",totprice);
 
-		});
+        $("#MK_txt-won").html((totprice)+"원");
 
-		
+       return false ;
 
-		
+      });
 
-	
+      
 
-		</script>
+      
+
+   
+
+      </script>
 
 <script>
 
-		
+      
 
-		
+      
 
-		function change_ea(obj,idx){
+      function change_ea(obj,idx){
 
-			var ea = parseInt($("input.input_ea",$(obj).parent().parent()).val()) + idx;
+         var ea = parseInt($("input.input_ea",$(obj).parent().parent()).val()) + idx;
 
-			if (ea<1){ alert("1개 이상을 주문하셔야 합니다"); return; }
+         if (ea<1){ alert("1개 이상을 주문하셔야 합니다"); return; }
 
-			$("input.input_ea",$(obj).parent().parent()).val(ea);	
+         $("input.input_ea",$(obj).parent().parent()).val(ea);   
 
-		}
+      }
 
-		function in_array(val,arr){
+      function in_array(val,arr){
 
-			for (var i=0;i<arr.length;i++){ if (arr[i]==val) return true; }
+         for (var i=0;i<arr.length;i++){ if (arr[i]==val) return true; }
 
-			return false;
+         return false;
 
-		}
+      }
 
-	 
+    
 
-	 
+    
 
-	 
+    
 
-	 //attributeno는 attribute_no
+    //attributeno는 attribute_no
 
-	 //inputEa는 count개수
+    //inputEa는 count개수
 
-	 
+    
 
-	 
+    
 
-	 
+    
+
 
     /* var x = document.getElementById("option").value;
 
     document.getElementById("attribute").innerHTML = "You selected: " + x;
 
   */ 
+
 			
 			
 			
@@ -757,5 +755,6 @@ function setOption(obj) {
 			
 
 		</script>
+
 </body>
 </html>

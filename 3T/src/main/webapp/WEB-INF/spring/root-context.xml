@@ -53,18 +53,6 @@
           <property name="dataSource" ref="dataSource" />
      </bean>
      
-   <!-- <tx:advice id="txAdvice" transaction-manager="transactionManager"> 
-     <tx:attributes> 
-     <tx:method name="goods*" read-only="true" /> 
-     </tx:attributes> 
-     </tx:advice> 
-     
-     <aop:config> 
-     <aop:pointcut id="transactionPointcut" expression="execution(* com.kh.iclass.goods.service.GoodsServiceimpl.*(..))"/> 
-     <aop:advisor advice-ref="txAdvice" pointcut-ref="transactionPointcut" /> 
-     </aop:config> -->
-     
-     <!-- <bean id="GoodsServiceimpl" class="com.kh.iclass.admin.controller.adminGoodsController"/> -->
 
      <tx:annotation-driven transaction-manager="transactionManager" />
 	

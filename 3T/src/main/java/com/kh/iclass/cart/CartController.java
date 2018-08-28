@@ -36,6 +36,9 @@ public class CartController {
 	String cartArr[];
 	int cartNo=0;
 	
+	
+	
+	
 	// 장바구니 담기
 	@SuppressWarnings({ "unused", "unchecked" })
 	@RequestMapping(value = "/cart/addCart")
@@ -156,8 +159,59 @@ public class CartController {
 		mv.setViewName("redirect:/cart/list");
 		return mv;
 	}
+	//바로구매
+	@RequestMapping(value = "/cart/Add/OnetoPaymentNow")
+	public ModelAndView fromDetailOne(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("order/paypage");
+		HttpSession session = request.getSession();
+		Map<String, Object> cartMap = new HashMap<String, Object>();
+		
+		List<Map<String, Object>> fromDetailOne = new ArrayList<Map<String, Object>>();
+		
+		
+		//회원이면
+		if(session.getAttribute("MEMBER_ID")!=null) {
+			commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+			String GOODS_NO 	= (String) commandMap.get("GOODS_NO");
+			String ATTRIBUTE_NO = (String) commandMap.get("attribute_no[]");
+			String COUNT		= (String) commandMap.get("ea[]");
+			String CONTENT		= (String) commandMap.get("CONTENT");
+			String IMAGE		= (String) commandMap.get("IMAGE");
+			String PRICE		= (String) commandMap.get("PRICE");
+			String NAME			= (String) commandMap.get("NAME");
+			String COLOR		= (String) commandMap.get("optno[]").toString().split("-")[0];
+			String GOODS_SIZE	= (String) commandMap.get("optno[]").toString().split("-")[1];
+			
+			cartMap.put("REGDATE", 		new Date());
+			cartMap.put("ATTRIBUTE_NO",	ATTRIBUTE_NO);
+			cartMap.put("GOODS_NO",		 GOODS_NO);
+			cartMap.put("COUNT",		COUNT);
+			cartMap.put("CONTENT",		CONTENT);
+			cartMap.put("IMAGE",		IMAGE);
+			cartMap.put("PRICE",		PRICE);
+			cartMap.put("NAME",			NAME);
+			cartMap.put("COLOR",		COLOR);
+			cartMap.put("GOODS_SIZE",	GOODS_SIZE);
+			
+			Map<String, Object> memberInfo = new HashMap<String, Object>();
+			memberInfo=adminMemberService.memberDetail(commandMap.getMap());
+			cartMap.put("MEMBER_ID",	commandMap.get("MEMBER_ID"));
+			
+			fromDetailOne.add(cartMap);
+			
+			mv.addObject("list", fromDetailOne);
+			mv.addObject("memberInfo", memberInfo);
+		//비회원이면
+		}else {
+			System.out.println("여기로?");
+			fromDetailOne=(List<Map<String, Object>>) session.getAttribute("fromDetailOne");
+			
+			mv.addObject("list",fromDetailOne);
+		}
+		return mv;
 	
-	//회원,비회원 카트->오더 한개 추가 
+	}
+	//회원,비회원 카트->오더 한개 추가  (장바구니에있는값으로 가져간다.)
 	@RequestMapping(value = "/cart/Add/OnetoPayment")
 	public ModelAndView cartAddtoPayment(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("order/paypage");
@@ -214,6 +268,14 @@ public class CartController {
 		mv.setViewName("member/loginForm2");
 	    return mv;
 	}
+	// 비회원으로 상품 구매시 로그인폼.
+	@RequestMapping(value = "/loginForm3")
+	public ModelAndView loginForm3(HttpServletRequest request,CommandMap commandMap) {
+		HttpSession session = request.getSession();
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member/loginForm3");
+	    return mv;
+	}
 	    
 	// 비회원으로 상품 구매 로그인(세션주기).
 	@RequestMapping(value = "/nonMember2")
@@ -224,6 +286,17 @@ public class CartController {
 	    
 	    session.setAttribute("NON_MEMBER_ID", "nonId_"+SequenceUtils.getSeqNumber());
 	    mv.setViewName("redirect:/cart/Add/OnetoPayment");
+	    return mv;
+	}
+	// 비회원으로 상품 구매 로그인(세션주기).
+	@RequestMapping(value = "/nonMember3")
+	public ModelAndView nonMemLogin2(HttpServletRequest request, CommandMap commandMap) {
+		System.out.println("비회원으로 상품 구매 로그인됨. 비회원ID:"+"nonId_"+SequenceUtils.getSeqNumber());
+	    ModelAndView mv = new ModelAndView();
+	    HttpSession session = request.getSession();
+	    
+	    session.setAttribute("NON_MEMBER_ID", "nonId_"+SequenceUtils.getSeqNumber());
+	    mv.setViewName("redirect:/cart/Add/OnetoPaymentNow");
 	    return mv;
 	}
 	

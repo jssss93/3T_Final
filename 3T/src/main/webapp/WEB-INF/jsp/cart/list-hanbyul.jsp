@@ -212,7 +212,12 @@
 			checkAll2();
 			fn_addOrderAll();
 		});
-		$("#write").on("click", function(e) { //작성하기 버튼
+
+		$("#addOrderOne").on("click", function(e) { 
+			e.preventDefault();
+			fn_addOrderAll();
+		});
+		$("#deleteOne").on("click", function(e) { 
 			e.preventDefault();
 			fn_Write();
 		});
@@ -226,7 +231,18 @@
 	}
 	function fn_addOrderAll() {
 		var comSubmit = new ComSubmit("frm");
-		comSubmit.setUrl("<c:url value='/order/addAll' />");
+		comSubmit.setUrl("<c:url value='/cart/Add/OnetoPayment' />");
+		comSubmit.submit();
+	}
+	function fn_addOrderOne() {
+		var comSubmit = new ComSubmit("frm");
+		comSubmit.setUrl("<c:url value='/cart/Add/OnetoPayment' />");
+		comSubmit.submit();
+	}
+	function fn_deleteOne() {
+		var comSubmit = new ComSubmit("frm");
+		comSubmit.setUrl("<c:url value='/cart/deleteOne' />");
+
 		comSubmit.submit();
 	}
 	
@@ -385,12 +401,10 @@
 			<div id="contents">
 				<div class="titleArea">
 					<h2>CART</h2>
+
 				</div>
-				<!-- 장바구니 모듈 Package -->
+
 				<div class="xans-element- xans-order xans-order-basketpackage ">
-					<!--<p class="orderStep"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/img_step1.gif" alt="01 장바구니" /></p>-->
-					<!-- 혜택정보 -->
-					<!-- 탭 -->
 					<div class="xans-element- xans-order xans-order-tabinfo ">
 						<ul>
 							<li class="selected "><a href="/3T/cart/list">CART
@@ -398,7 +412,7 @@
 							<li class=" "><a href="/3T/order/list">ORDER
 									LIST</a></li>
 						</ul>
-						<p class="displaynone">장바구니에 담긴 상품은 7일 동안 보관됩니다.</p>
+						<p >장바구니에 담긴 상품은 7일 동안 보관됩니다.</p>
 					</div>
 					<!-- 장바구니 비어있을 때 -->
 					<!-- 일반상품 -->
@@ -478,16 +492,35 @@
 												<td><span class="totprice"
 													value="${row.PRICE*row.COUNT}">${row.PRICE*row.COUNT}</span></td>
 												<td class="total"><strong>${row.PRICE * row.COUNT }</strong></td>
-												<td class="button"><a href="javascript:;"
-													onclick="Basket.orderBasketItem(0);"><img
-														src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_order.gif"
-														alt="주문하기"></a> <a href="javascript:;"
-													onclick="BasketNew.moveWish(0);"><img
-														src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_wish.gif"
-														alt="관심상품등록"></a> <a href="javascript:;"
-													onclick="Basket.deleteBasketItem(0);"><img
-														src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_delete.gif"
-														alt="삭제"></a></td>
+
+												<td class="button">
+												
+													<c:url var="deleteOne" value="/cart/deleteOne">
+														<c:param name="CART_NO" value="${row.CART_NO }" />
+													</c:url>
+													
+													<%-- <c:url var="addOne" value="/order/addOne"> --%>
+													<c:url var="addOne" value="/cart/Add/OnetoPayment">
+														<c:param name="CART_NO" value="${row.CART_NO }" />
+														<c:param name="ATTRIBUTE_NO" value="${row.ATTRIBUTE_NO}" />
+														<c:param name="GOODS_NO" value="${row.GOODS_NO }" />
+														<c:param name="COUNT" value="${row.COUNT}" />
+													</c:url>
+													<a href="${addOne }" >
+													<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_order.gif" alt="주문하기"></a> 
+													<a href="javascript:;" onclick="BasketNew.moveWish(0);">
+													<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_wish.gif" alt="관심상품등록"></a> 
+													<c:if test="${memberInfo.MEMBER_ID!=null }">
+														<a href="${deleteOne }" >
+														<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_delete.gif" alt="삭제"></a>
+													</c:if>
+													<c:if test="${memberInfo.MEMBER_ID==null }">
+														<a href="${deleteOne }" >
+														<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_delete.gif" alt="삭제"></a>
+													</c:if>
+													
+												</td>
+
 											</tr>
 
 										</c:forEach>
