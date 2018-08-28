@@ -17,10 +17,20 @@
 		
 	</script>
 	<script type="text/javascript">
+	function chkBox(bool) { // 전체선택/해제 
+		var obj = document.getElementsByName("join");
+		for ( var i = 0; i < obj.length; i++)
+			obj[i].checked = bool;
+	}
 	
 		function validation() {
-
+			
 			var frm = document.forms[0];
+			
+			if (frm.agree.checked == false) {
+				alert("이용약관에  동의해 주시기 바랍니다.");
+				return false;
+			}
 
 			if (frm.TITLE.value == "") {
 				alert("제목을 입력해주세요.");
@@ -58,7 +68,7 @@
 			<td height="50"></td>
 		</tr>
 	</table>
-
+<form action="/3T/qa/write" onsubmit="return validation();" method="post">
 	<table border="1" align="center" class="board_list2">
 		<c:choose>
 			<c:when test="${list.GOODS_NO > 0 }">
@@ -78,22 +88,9 @@
 							src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/btn_prd_detail.gif"
 							alt="상품상세보기"> <input type="hidden" name="GOODS_NO"
 							value="${list.GOODS_NO }" /></a> 
-							
-							<%-- <form action="/3T/goods/detail">
-							<input class="board_subject3"type="submit" class="btn" value="상품 상세보기"> <input
-								type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
-						</form> --%>
 
 					</td>
 				</tr>
-
-
-
-
-
-
-
-
 			</c:when>
 			<c:otherwise>
 				<tr class="board_subject2">
@@ -113,7 +110,7 @@
 	</table>
 	<br />
 	<br />
-	<form action="/3T/qa/write" onsubmit="return validation();" method="post">
+	
 		<table border="1" class="board_list2">
 			<tbody>
 				<tr class="board_title2">
@@ -159,9 +156,8 @@
 ■ 개인정보의 보유 및 이용 기간
 회사는 개인정보 수집 및 이용목적이 달성된 후에는 예외없이 해당정보를 파기합니다.
 #개인정보의 위탁 처리애즈클로는 서비스 향상을 위해 관계법령에 따라 회원의 동의를 얻거나 관련 사항을 공개 또는 고지 후 회원의 개인정보를 외부에 위탁하여 처리하고 있습니다. 애즈클로의 개인정보처리 수탁자와 그 업무의 내용은 다음과 같습니다. - 수탁자 : (주)루나소프트- 위탁 업무 내용 : 카카오 알림톡 발송 업무 직송 등 일부 배송형태에 따라, 전자상거래소비자보호법 제 21조에 의거 협력사에 배송정보가 제공 됩니다.</textarea>
-						<br /> 개인정보 수집 및 이용에 동의 하십니까?<input type="radio" name="open"
-						value="open" />동의함 <input type="radio" name="open" value="open" />동의
-						안함</td>
+						<br /> 개인정보 수집 및 이용에 동의 하십니까?<input id="agree" type="checkbox" name="open"
+						value="open" />동의함 
 				</tr>
 			</tbody>
 		</table>
@@ -169,8 +165,8 @@
 
 		<table class="notice_button">
 			<tr>
-				<td><a href="#this" class="btn" id="list">LIST</a> <input
-					class="btn" type="submit" value="WRITE"></td>
+				<td><a href="#this" class="btn" id="list">LIST</a>
+				 <input	class="btn" type="submit" value="WRITE"></td>
 			</tr>
 			<input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
 		</table>
