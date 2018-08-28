@@ -64,13 +64,15 @@ public class adminGoodsController {
 		mv.addObject("GOODS_NO", commandMap.get("GOODS_NO"));
 		
 		List<Map<String, Object>> goodsDetail = goodsService.selectGoodsDetail(commandMap.getMap());
-		Map<String, Object> goodsBasic = goodsDetail.get(0);
-		
+		if(goodsDetail!=null) {
+			Map<String, Object> goodsBasic = goodsDetail.get(0);
+			mv.addObject("goodsBasic", goodsBasic);
+		}
 		List<Map<String, Object>> goodsImage = goodsService.selectGoodsImage(commandMap.getMap());
 		
 		mv.addObject("goodsDetail", goodsDetail);
 
-	    mv.addObject("goodsBasic", goodsBasic);
+	    
 	    
 	    mv.addObject("goodsImage", goodsImage);
 		

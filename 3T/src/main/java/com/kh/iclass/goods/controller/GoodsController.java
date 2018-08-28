@@ -48,8 +48,6 @@ public class GoodsController {
    public ModelAndView goodsCateList(CommandMap commandMap) throws Exception {
       ModelAndView mv = new ModelAndView("goods/categorylist");
 
-      /* String isCategory = (String) commandMap2.getMap().get("CATEGORY"); */      
-
       List<Map<String, Object>> list = goodsService.selectGoodsCategory(commandMap.getMap());
       
       List<Map<String, Object>> bestlist = goodsService.selectGoodsBestCategory(commandMap.getMap());
@@ -146,7 +144,6 @@ public class GoodsController {
         
         for (int i = 0; i < list.size(); i++) {
             Map<String, Object> map = list.get(i);
-            // map???�긴 data�?꺼내??변�???변??result???�??
             result = map.get("key01").toString() + "/" + map.get("key02");
             resultMap.put("key03", result);
         }

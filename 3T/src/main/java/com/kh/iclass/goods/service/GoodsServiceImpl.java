@@ -27,11 +27,6 @@ public class GoodsServiceImpl implements GoodsService {
 	@Resource(name = "goodsDAO")
 	private GoodsDAO goodsDAO;
 
-	/*
-	 * @Override public List<Map<String, Object>> selectBoardList(Map<String,
-	 * Object> map) throws Exception { return goodsDAO.selectBoardList(map);
-	 * }
-	 */
 	// 위에꺼 대신에
 	@Override
 	public Map<String, Object> goodsList(Map<String, Object> map) throws Exception {

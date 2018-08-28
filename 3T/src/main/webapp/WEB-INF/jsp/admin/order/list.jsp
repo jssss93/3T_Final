@@ -114,7 +114,7 @@ function delchk(){
 											</td>
 											<td style="text-align:center;vertical-align:middle;"><img width="50" height="50" src="/3T/resources/upload/${list.IMAGE.split(',')[0] }" /></td>		
 											<td style="text-align:center;vertical-align:middle;">${list.NAME}</td>										
-											<td style="text-align:center;vertical-align:middle;">${list.CONTENT}</td>	
+											<td style="text-align:center;vertical-align:middle;">${list.CONTENT}...</td>	
 											<td style="text-align:center;vertical-align:middle;">${list.PRICE}</td>
 											<td style="text-align:center;vertical-align:middle;">${list.COUNT}</td>
 											<td style="text-align:center;vertical-align:middle;">

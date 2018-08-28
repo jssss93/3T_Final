@@ -23,7 +23,7 @@ function BuyCheck(index) {
 	}
 	if (index == 4) {
 	   alert('관심상품으로 등록되었습니다.');
-	   document.form.action = 'AddWish';
+	   document.form.action = '/3T/wish/addWish';
 	}
 	   document.form.submit();
 }
