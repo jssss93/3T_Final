@@ -30,8 +30,7 @@
 			ADDR1, 
 			ADDR2, 
 			PHONE, 
-			EMAIL, 
-			REGDATE
+			EMAIL 
 		FROM 
 			MEMBER 
 		WHERE 

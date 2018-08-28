@@ -1,7 +1,5 @@
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8" --%>
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/include/include-header-hanbyul.jspf"%>
-
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html>
@@ -246,7 +244,7 @@ function checkAll2(){
 								<strong>${memberInfo.MEMBER_ID }</strong> 님은,${memberInfo.GRADE } 등급 회원이십니다.
 							</c:if>
 							<c:if test="${memberInfo.NAME ==null}">
-								<strong>${MEMBER_ID }</strong> 님은, 비회원 이십니다.
+								<strong>${session.NON_MEMBER_ID }</strong> 님은, 비회원 이십니다.
 							</c:if>							
 						</p>
 					</div>
@@ -797,9 +795,12 @@ $(document).ready(function()
 		$.ajax({  
 			type : "POST",  
 			url : "/3T/order/getMemberInfo",
+			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+			dataType: 'json', 
 			success : function(json) {
 				
-				var jsonData=JSON.parse(json);
+				/* var jsonData=JSON.parse(json); */
+				var jsonData=json;
 				var PHONE="";  
 				PHONE+=jsonData[0].PHONE;
 				console.log(PHONE);

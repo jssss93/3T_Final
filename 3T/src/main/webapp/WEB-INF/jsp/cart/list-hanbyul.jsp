@@ -212,6 +212,10 @@
 			checkAll2();
 			fn_addOrderAll();
 		});
+		$("#addOrderOne").on("click", function(e) { 
+			e.preventDefault();
+			fn_addOrderAll();
+		});
 		$("#deleteOne").on("click", function(e) { 
 			e.preventDefault();
 			fn_deleteOne();
@@ -229,6 +233,11 @@
 		comSubmit.submit();
 	}
 	function fn_addOrderAll() {
+		var comSubmit = new ComSubmit("frm");
+		comSubmit.setUrl("<c:url value='/cart/Add/OnetoPayment' />");
+		comSubmit.submit();
+	}
+	function fn_addOrderOne() {
 		var comSubmit = new ComSubmit("frm");
 		comSubmit.setUrl("<c:url value='/cart/Add/OnetoPayment' />");
 		comSubmit.submit();
@@ -393,11 +402,7 @@
 				<div class="titleArea">
 					<h2>CART</h2>
 				</div> 
-				<!-- 장바구니 모듈 Package -->
 				<div class="xans-element- xans-order xans-order-basketpackage ">
-					<!--<p class="orderStep"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/img_step1.gif" alt="01 장바구니" /></p>-->
-					<!-- 혜택정보 -->
-					<!-- 탭 -->
 					<div class="xans-element- xans-order xans-order-tabinfo ">
 						<ul>
 							<li class="selected ">
@@ -409,7 +414,7 @@
 								</li>
 							</c:if>
 						</ul>
-						<p class="displaynone">장바구니에 담긴 상품은 7일 동안 보관됩니다.</p>
+						<p >장바구니에 담긴 상품은 7일 동안 보관됩니다.</p>
 					</div>
 					
 					<!-- 장바구니 비어있을 때 -->
@@ -500,7 +505,7 @@
 													</c:url>
 													
 													<%-- <c:url var="addOne" value="/order/addOne"> --%>
-													<c:url var="addOne" value="/cart/AddOnetoPayment">
+													<c:url var="addOne" value="/cart/Add/OnetoPayment">
 														<c:param name="CART_NO" value="${row.CART_NO }" />
 														<c:param name="ATTRIBUTE_NO" value="${row.ATTRIBUTE_NO}" />
 														<c:param name="GOODS_NO" value="${row.GOODS_NO }" />
