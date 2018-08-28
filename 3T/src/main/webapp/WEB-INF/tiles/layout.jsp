@@ -84,10 +84,53 @@
 	z-index: 9;
 	background: none;
 }
+.fixed_quick {position:fixed; right:17px; top:300px;z-index:500; }
+.fixed_quick ul li {width:46px;font-size:0px;border:1px solid #ddd;border-bottom:0px;}
+
+.sm_right_bn {position:absolute; left:-48px; }
+.sm_btn {background-color:#fff; border:1px solid #dbdbdb; border-top:0px; position:relative; width:46px; height:46px; }
+.sm_btn img { opacity:0.3; -moz-transition: all 0.3s linear; -webkit-transition: all 0.3s linear; -o-transition: all 0.3s linear; -ms-transition: all 0.3s linear; transition: all 0.3s linear;  }
+.sm_btn:hover img { opacity:1; }
+.sm_btn .sm_btn_text { top:-1px !important; background-color:#f8f8f8; border:1px solid #dbdbdb; font-size:11px; letter-spacing:-0.5px; padding-left:10px; text-align:left; color:#555; position:absolute; visibility:hidden; left:-130px; top:0px; line-height:46px; opacity:0; width:200px;-moz-transition: all 0.3s linear; -webkit-transition: all 0.3s linear; -o-transition: all 0.3s linear; -ms-transition: all 0.3s linear; transition: all 0.3s linear;}
+.sm_btn:hover .sm_btn_text {left:-212px;opacity:1;visibility:visible;}
 </style>
 </head>
 <body>
 
+<nav>
+			<div class="fullscreen_menu_button">
+				<a class="btn-open" href="#"><img
+					src="/3T/resources/images/search_btn.png"></a>
+			</div>
+		</nav>
+	
+	<div class="overlay" style="display: none;">
+			<div class="wrap">
+
+				<form id="searchBarForm" name="" action="/3T/goods/search" method="get" enctype="multipart/form-data">
+				<input type="hidden" id="CATEGORY" name="CATEGORY" value="">
+				<input type="hidden" id="PRICE1" name="PRICE1" value="">
+				<input type="hidden" id="PRICE2" name="PRICE2" value="">
+				
+					
+					<div class="xans-element- xans-layout xans-layout-searchheader ">
+						<h2>
+							<span
+								class="xans-element- xans-layout xans-layout-logotop fullscreen ">
+								<img src="/3T/resources/images/3T2.png">
+							</span>
+						</h2>
+						<fieldset>
+							<legend>검색</legend>
+							<input id="keyword" name="keyword" class="inputTypeText" placeholder="" value="" type="text">
+								
+							<input type="image" placeholder="SEARCH.." src="/3T/resources/images/btn_search.png" alt="검색">
+							&nbsp;
+						</fieldset>
+					</div>
+				</form>
+			</div>
+		</div>
 
 	<div>
 
@@ -183,105 +226,67 @@
 	<div id="right">
 		<div class="right_menu">
 
-			<ul>
-				<li class="cart_menu"><a href="/3T/cart/list"
-					class="xans-element- xans-layout xans-layout-orderbasketcount ">CART
-						<span>  </span>
-				</a></li>
-			</ul>
-			<ul>
-				<!--<li><a href="/layout/basic/lookbook_01.html"></a></li>
-                <li><a href="/shopinfo/company.html">ABOUT</a></li>-->
-			</ul>
-			<ul>
-				<li class="bookmark"><a
-					onclick="try{window.external.AddFavorite('https://www.asclo.com','ASCLO - エズクロ')} catch(e){alert('이용하시는 브라우져에서는 Ctrl 키와 D 키를 동시에 눌러서 즐겨찾기에 추가할 수 있습니다.')}; return false;">BOOKMARK</a></li>
-				<li><a href="/link/shortcut.html" target="_blank"
-					onclick="winPop(this.href); return false;"
-					class="xans-element- xans-layout xans-layout-shortcut ">DESKTOP
-						ICON </a></li>
-
-				<br>
-				<br>
-				<!--다운메뉴-->
-				<div class="downmenu">
-					<ul>
-						<li class="dep1"><a>CS CENTER<i class="fa fa-angle-down"
-								aria-hidden="true"></i></a>
-							<ul class="hide hideblock">
-								<li><strong
-									class="xans-element- xans-layout xans-layout-footer ">070-4477-9922</strong>
-									<br> mon-fri 10am-4:30pm<br> lunch : 12:30-13:30<br>
-									sat, sun, holiday off<br> <br> 예금주 : 서지우(애즈클로)<br>
-									국민 437201-04-192634<br> <br> 반품배송비 전용계좌<br> 국민
-									352601-01-336244<br></li>
-							</ul></li>
-						<li class="dep1"><a>notice <i class="fa fa-angle-down"
-								aria-hidden="true"></i></a>
-							<ul class="hide">
-								<li>
-									<!-- 공지사항 -->
-									<div
-										class="xans-element- xans-board xans-board-listpackage-1 xans-board-listpackage xans-board-1 ">
-										<table border="1" summary="" class="mainborad">
-											<caption>공지사항</caption>
-											<tbody
-												class="xans-element- xans-board xans-board-list-1 xans-board-list xans-board-1">
-												<!--
-                                    $count = 3              
-                                    $subject_cut = 14
-                                    $main_list = yes
-                                    $main_list_reply_view = no
-                                -->
-												<tr class="xans-record-">
-													<td class="title"><a
-														href="/board/free/read.html?no=248265&amp;board_no=1">교환
-															및 반품과정 안내</a></td>
-												</tr>
-												<tr class="xans-record-">
-													<td class="title"><a
-														href="/board/free/read.html?no=243324&amp;board_no=1">타상품
-															교환 및 묶음배...</a></td>
-												</tr>
-												<tr class="xans-record-">
-													<td class="title"><a
-														href="/board/free/read.html?no=243323&amp;board_no=1">수제화
-															관련해서 안내드...</a></td>
-												</tr>
-											</tbody>
-										</table>
-									</div> <!-- // 공지사항 -->
-								</li>
-							</ul></li>
-					</ul>
+			<div class="fixed_quick">
+				<div class="sm_right_bn">
+					<!-- 퀵메뉴 아이콘 -->
+					
+					<div class="cboth sm_btn" style="border-top: 1px solid #dbdbdb;">
+						<a
+							href="javascript:CreateBookmarkLink(&#39;/MODA/main&#39;, &#39;MODA&#39;);">
+							<img src="/3T/resources/images/quick_fav.gif">
+						</a>
+						<div class="sm_btn_text">즐겨찾기</div>
+					</div>
+					<div class="cboth sm_btn">
+						<a href="https://www.doortodoor.co.kr/" target="_blank&quot;">
+							<img src="/3T/resources/images/r_quick03_on.gif">
+						</a>
+						<div class="sm_btn_text">배송조회</div>
+					</div>
+					<div class="cboth sm_btn">
+						<a href="/3T/cart/list"> <img
+							src="/3T/resources/images/r_quick04_on.gif">
+						</a>
+						<div class="sm_btn_text">장바구니</div>
+					</div>
+					<div class="cboth sm_btn">
+						<a href="/MODA/todayGoods"> <img
+							src="/3T/resources/images/r_quick05_on.gif">
+						</a>
+						<div class="sm_btn_text">오늘 본 상품</div>
+					</div>
+					<div class="cboth sm_btn">
+						<a href="/3T/review/list"> <img
+							src="/3T/resources/images/r_quick06_on.gif">
+						</a>
+						<div class="sm_btn_text">상품 리뷰</div>
+					</div>
 				</div>
+				<!-- //sm_right_bn -->
+			</div>
+			<!-- //fixed_quick -->
+<script type="text/javascript">
+				
+	$(document).ready(function() {
+		var jbOffset = $('#comment_top').offset();
+		$(window).scroll(function() {
+			if ($(document).scrollTop() > jbOffset.top) {
+				$('#comment_top').addClass('fixed');
+			} else {
+				$('#commend_top').removeClass('fixed');
+			}
+		});
+	});
 
+	$(document).ready(function() {
+		$('.fullscreen_menu_button a').click(function() {
+			$('.overlay').fadeToggle(200);
+			$(this).toggleClass('btn-open').toggleClass('btn-close');
+		});
+	});
+</script>
 
-
-				<ul class="right_sns">
-					<li><a href="http://blog.naver.com/asclohi" target="_blank"><img
-							src="/3T/resources/images/1.png"></a></li>
-					<li><a href="https://www.instagram.com/hi880515/"
-						target="_blank"><img src="/3T/resources/images/2.png"></a></li>
-					<li><a href="https://www.facebook.com/asclocom"
-						target="_blank"><img src="/3T/resources/images/3.png"></a></li>
-					<li><a href="http://pf.kakao.com/_muhjE" target="_blank"><img
-							src="/3T/resources/images/4.png"></a></li>
-				</ul>
-		</div>
-		<tr>
-			<td>
-				<button class="btn4" type="button" id="moveupBtn">
-					<img src="/3T/resources/images/버튼1.png">
-				</button>
-				<button class="btn5" type="button" id="movedownBtn">
-					<img src="/3T/resources/images/버튼2.png">
-				</button>
-			</td>
-		</tr>
-	</div>
-
-	<script type="text/javascript">
+			<script type="text/javascript">
 		$(document).ready(function() {
 			$("#moveupBtn").on("click", function(event) {
 				// 이동 버튼을 클릭시 태그로 스크롤의 위치가 이동되도록 한다.
