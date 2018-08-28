@@ -424,6 +424,9 @@
 							<c:if test="${MEMBER_ID!=null }">
 								<h3>${session.MEMBER_ID } 님의 장바구니 목록</h3>
 							</c:if>
+							<c:if test="${MEMBER_ID==null }">
+								<h3>${memberInfo.MEMBER_ID } 님의 장바구니 목록</h3>
+							</c:if>
 						</div>
 
 						<!-- 일반상품 (기본배송) -->
@@ -467,8 +470,7 @@
 												</td>
 												<td class="thumb">
 													<a href="/product/detail.html?product_no=8171&amp;cate_no=1">
-														<img width="50" height="50"
-														src="/3T/resources/upload/${row.IMAGE.split(',')[0] }" />
+														<img width="50" height="50"	src="/3T/resources/upload/${row.IMAGE.split(',')[0] }" />
 													</a>
 												</td>  
 												<td class="product">

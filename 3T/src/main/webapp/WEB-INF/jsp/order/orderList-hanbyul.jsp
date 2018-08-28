@@ -44,29 +44,44 @@
 <script src="/js/jquery-latest.js"></script>
 <script src="/js/jquery.als-1.6.min.js"></script>
 
-<script>
-	!function(f, b, e, v, n, t, s) {
-		if (f.fbq)
-			return;
-		n = f.fbq = function() {
-			n.callMethod ? n.callMethod.apply(n, arguments) : n.queue
-					.push(arguments)
-		};
-		if (!f._fbq)
-			f._fbq = n;
-		n.push = n;
-		n.loaded = !0;
-		n.version = '2.0';
-		n.queue = [];
-		t = b.createElement(e);
-		t.async = !0;
-		t.src = v;
-		s = b.getElementsByTagName(e)[0];
-		s.parentNode.insertBefore(t, s)
-	}(window, document, 'script',
-			'https://connect.facebook.net/en_US/fbevents.js');
-	fbq('init', '829030643890604'); // Insert your pixel ID here.
-	fbq('track', 'PageView');
+<script type="text/javascript">
+
+	$( document ).ready(function() {
+		$('#dataTables-example').rowspan(0);
+	}); 
+	
+	$.fn.rowspan = function(colIdx, isStats) {       
+		return this.each(function(){      
+			var that;     
+			$('tr', this).each(function(row) {      
+				$('td:eq('+colIdx+')', this).filter(':visible').each(function(col) {
+					
+					if ($(this).html() == $(that).html()
+						&& (!isStats 
+								|| isStats && $(this).prev().html() == $(that).prev().html()
+								)
+						) {            
+						rowspan = $(that).attr("rowspan") || 1;
+						rowspan = Number(rowspan)+1;
+
+						$(that).attr("rowspan",rowspan);
+						
+						// do your action for the colspan cell here            
+						$(this).hide();
+						
+						//$(this).remove(); 
+						// do your action for the old cell here
+						
+					} else {            
+						that = this;         
+					}          
+					
+					// set the that if not already set
+					that = (that == null) ? this : that;      
+				});     
+			});    
+		});  
+	}; 
 </script>
 <link rel="canonical" href="http://asclo.com/order/basket.html">
 <link rel="alternate" href="http://m.asclo.com/order/basket.html">
@@ -117,7 +132,7 @@
 							<h3>${MEMBER_ID } 회원님의 주문 목록</h3>
 							<br>
 						</div>
-						<table border="1" summary="" class="xans-element- xans-order xans-order-normnormal boardList xans-record-">
+						<table border="1" summary="" class="xans-element- xans-order xans-order-normnormal boardList xans-record-" id="dataTables-example">
 
 							<thead>
 								<tr>
@@ -131,7 +146,7 @@
 									<th scope="col" class="charge">배송비</th>
 									<th scope="col" class="total">total</th>
 									
-								</tr>
+								</tr> 
 							</thead>
 							<tfoot>
 								<tr>
@@ -194,5 +209,6 @@
 			</div>
 		</div>
 	</form>
+
 </body>
 </html>

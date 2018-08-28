@@ -36,11 +36,8 @@ public class CartController {
 	String cartArr[];
 	int cartNo=0;
 	
-	
-	
-	
 	// 장바구니 담기
-	@SuppressWarnings({ "unused", "unchecked" })
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/cart/addCart")
 	public ModelAndView addCart(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
@@ -125,8 +122,9 @@ public class CartController {
 			commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 			
 			cartList=cartService.cartList(commandMap.getMap());
-			System.out.println("회원 장바구니 리스트:");
-			System.out.println(cartList);
+			Map<String, Object> memberInfo = new HashMap<String, Object>();
+			memberInfo=adminMemberService.memberDetail(commandMap.getMap());
+			mv.addObject("memberInfo",memberInfo);
 			mv.addObject("cartList", cartList);
 		}
 		

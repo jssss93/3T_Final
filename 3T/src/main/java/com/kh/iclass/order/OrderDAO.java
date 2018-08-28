@@ -52,26 +52,18 @@ public class OrderDAO extends AbstractDAO {
 	public Map<String, Object> orderGoods2(Map<String, Object> map) throws Exception {
 		return (Map<String, Object>) selectOne("goods.orderGoods2", map);
 	}
-	
-	
-
 	public Object createDeliveryList(Map<String, Object> map) throws Exception {
 		return  insert("goods.createDeliveryList", map);
 	}
-	
 	public Object createOrderList(Map<String, Object> map) throws Exception {
 		return  insert("goods.createOrderList", map);
 	}
-	
 	public Object goodsCountDown(Map<String, Object> map) throws Exception {
 		return  update("goods.goodsCountDown", map);
 	}
-	
 	public Object insertPoint(Map<String, Object> map) throws Exception {
 		return  insert("goods.insertPoint", map);
 	}
-	
-	
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectOrderList2(Map<String, Object> map) throws Exception {
 		return selectList("member.selectOrderList2", map);
@@ -89,9 +81,6 @@ public class OrderDAO extends AbstractDAO {
 	public List<Map<String, Object>> selectChangeListAll(Map<String, Object> map) {
 		return selectList("order.selectChangeListAll", map);
 	}
-	
-	
-	
 	@SuppressWarnings("unchecked")
 	public Map<String,Map<String, Object>> getSale(Map<String, Object> map,String mapKey) throws Exception {
 		System.out.println("쿼리에서 나오자마자 값:"+selectMap("order.selectSale", map,mapKey));

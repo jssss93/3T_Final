@@ -7,51 +7,7 @@
 <head>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
-	function sample6_execDaumPostcode() {
-		new daum.Postcode(
-				{
-					oncomplete : function(data) {
-						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-						// 각 주소의 노출 규칙에 따라 주소를 조합한다.
-						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-						var fullAddr = ''; // 최종 주소 변수
-						var extraAddr = ''; // 조합형 주소 변수
-
-						// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-						if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-							fullAddr = data.roadAddress;
-
-						} else { // 사용자가 지번 주소를 선택했을 경우(J)
-							fullAddr = data.jibunAddress;
-						}
-
-						// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-						if (data.userSelectedType === 'R') {
-							//법정동명이 있을 경우 추가한다.
-							if (data.bname !== '') {
-								extraAddr += data.bname;
-							}
-							// 건물명이 있을 경우 추가한다.
-							if (data.buildingName !== '') {
-								extraAddr += (extraAddr !== '' ? ', '
-										+ data.buildingName : data.buildingName);
-							}
-							// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-							fullAddr += (extraAddr !== '' ? ' (' + extraAddr
-									+ ')' : '');
-						}
-
-						// 우편번호와 주소 정보를 해당 필드에 넣는다.
-						document.getElementById('sample6_postcode').value = data.zonecode; //5자리 새우편번호 사용
-						document.getElementById('sample6_address').value = fullAddr;
-
-						// 커서를 상세주소 필드로 이동한다.
-						document.getElementById('sample6_address2').focus();
-					}
-				}).open();
-	}
-
+	
 	function sample7_execDaumPostcode() {
 		new daum.Postcode(
 				{
@@ -88,40 +44,27 @@
 						}
 
 						// 우편번호와 주소 정보를 해당 필드에 넣는다.
-						document.getElementById('sample7_postcode').value = data.zonecode; //5자리 새우편번호 사용
-						document.getElementById('sample7_address').value = fullAddr;
+						document.getElementById('mzipcode').value = data.zonecode; //5자리 새우편번호 사용
+						document.getElementById('maddr1').value = fullAddr;
 
 						// 커서를 상세주소 필드로 이동한다.
-						document.getElementById('sample7_address2').focus();
+						document.getElementById('maddr2').focus();
 					}
 				}).open();
 	}
-	/*
-	<input type="text" name="ORDER_ZIPCODE"
-	id="sample7_postcode" value="${m_resultClass.m_zipcode }">
-	<input type="button" onclick="sample7_execDaumPostcode()"
-	value="우편번호 찾기"><br> <input type="text"
-	name="ORDER_ADDRESS1" id="sample7_address"
-	value="${m_resultClass.m_addr1 }" size="100"> <br> <input
-	type="text" name="ORDER_ADDRESS2" id="sample7_address2"
-	value="${m_resultClass.m_addr2 }" size="100"></td>
-	*/
 </script>
 
 <script type="text/javascript">
 	//F5키 막기
 window.onkeydown = function() {
 	var kcode = event.keyCode;
-	if(kcode == 8 || kcode == 116) event.returnValue = false;
+	if(kcode == 116) event.returnValue = false;
 } 
-
 	
-
- function comma(str) {
+function comma(str) {
     str = String(str);
     return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
 }
- 
 //체크박스 단일 선택
 	var sum = 0;
 	var delivery = 0;
@@ -155,7 +98,8 @@ window.onkeydown = function() {
        	$(".totalPrice").html(comma(sum)+" KRW");
        	$(".delivery").html(comma(delivery)+" KRW");
        	$(".totalSum").html(comma(totalSum)+" KRW");
-       	
+       	$(".totalSum2").val(totalSum);
+
 	}else{
 		
 	    sum -=  totprice;
@@ -171,9 +115,9 @@ window.onkeydown = function() {
 	       	$(".totalPrice").html(comma(sum)+" KRW");
 	       	$(".delivery").html(comma(delivery)+" KRW");
 	       	$(".totalSum").html(comma(totalSum)+" KRW");
+	       	$(".totalSum2").html(comma(totalSum)+" KRW");
 	} 
 };
-
 //체크박스 다중 선택
 var chkCount = $("input[type=checkbox]").length ;
 
@@ -223,17 +167,12 @@ function checkAll2(){
 			<li title="현재 위치"><strong>주문서작성</strong></li>
 		</ol>
 	</div>
-
+	
 	<div class="titleArea">
 		<h2>ORDER</h2>
 	</div>
-
+	
 	<div class="xans-element- xans-order xans-order-form xans-record-">
-		<!-- 이값은 지우면 안되는 값입니다. ($move_order_after 주문완료페이지 주소 / $move_basket 장바구니페이지 주소)
-        $move_order_after=/order/order_result.html
-        $move_basket=/order/basket.html
-    -->
-		<!-- 혜택정보 -->
 		<div class="xans-element- xans-order xans-order-dcinfo ec-base-box typeMember  ">
 			<div class="information">
 				<h3 class="title">혜택정보</h3>
@@ -244,7 +183,7 @@ function checkAll2(){
 								<strong>${memberInfo.MEMBER_ID }</strong> 님은,${memberInfo.GRADE } 등급 회원이십니다.
 							</c:if>
 							<c:if test="${memberInfo.NAME ==null}">
-								<strong>${session.NON_MEMBER_ID }</strong> 님은, 비회원 이십니다.
+								<strong>${NON_MEMBER_ID }</strong> 님은, 비회원 이십니다.
 							</c:if>							
 						</p>
 					</div>
@@ -451,7 +390,7 @@ function checkAll2(){
 								</span>
 							</th>
 							<td>
-								<select class="mphone1" >
+								<select class="mphone1" name="mphone1" >
 									<option value="010">010</option>
 									<option value="011">011</option>
 									<option value="016">016</option>
@@ -459,6 +398,7 @@ function checkAll2(){
 									<option value="018">018</option>
 									<option value="019">019</option>
 								</select>-
+								
 								<input class="mphone2" name="mphone2" maxlength="4" fw-filter="isNumber&amp;isFill" fw-label="수취자 핸드폰번호" fw-alone="N" fw-msg="" size="4" value="" type="text">-
 								<input class="mphone3" name="mphone3" maxlength="4" fw-filter="isNumber&amp;isFill" fw-label="수취자 핸드폰번호" fw-alone="N" fw-msg="" size="4" value="" type="text">
 							</td>
@@ -473,7 +413,7 @@ function checkAll2(){
 								alt="필수"></th>
 							<td>
 								<input id="memail1" name="oemail1" fw-filter="isFill" fw-label="주문자 이메일" fw-alone="N" fw-msg="" class="mailId"	value="" type="text">
-								@<input id="memail2" name="oemail2"	fw-filter="isFill" fw-label="주문자 이메일" fw-alone="N" fw-msg="" class="mailAddress" readonly="readonly" value="" type="text">
+								@<input id="memail2" name="oemail2"	fw-filter="isFill" fw-label="주문자 이메일" fw-alone="N" fw-msg="" class="mailAddress"  value="" type="text">
 								<select	id="select_email" fw-filter="isFill" fw-label="주문자 이메일" fw-alone="N" fw-msg="">
 									<option value="" selected="selected">- 이메일 선택 -</option>
 									<option value="naver.com">naver.com</option>
@@ -682,8 +622,8 @@ function checkAll2(){
 					<strong id="current_pay_name" >무통장 입금</strong> <span>최종결제 금액</span>
 				</h4>
 				<p >
-					<span class="totalSum" name="TOTALPRICE">0 KRW( 722번째줄도) </span>
-					<input type="hidden" name="TOTALPRICE" class="totalSum">
+					<span class="totalSum">0 KRW( 722번째줄도) </span>
+					<input type="hidden" name="TOTALPRICE" class="totalSum2" >
 				</p>
 				<p class="paymentAgree" id="chk_purchase_agreement"style="display: block;">
 					<input id="chk_purchase_agreement0" name="chk_purchase_agreement" fw-filter="" fw-label="구매진행 동의" fw-msg="" value="T"type="checkbox" style="display: block;">

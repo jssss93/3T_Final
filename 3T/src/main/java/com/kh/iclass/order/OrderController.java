@@ -85,8 +85,6 @@ public class OrderController {
 	
 	}
 	
-	
-	
 	//실행안하는거같은데
 	@RequestMapping(value = "order/addOne")
 	public ModelAndView addOne(CommandMap commandMap, HttpServletRequest request) throws Exception {
@@ -142,8 +140,6 @@ public class OrderController {
 			Map<String, Object> memberInfo = new HashMap<String, Object>();
 			memberInfo=adminMemberService.memberDetail(commandMap.getMap());
 			
-			
-			
 			List<Map<String, Object>> checkedCartList = new ArrayList<Map<String, Object>>();
 			
 			checkedCartList=cartService.checkedCartList(commandMap.getMap());
@@ -152,7 +148,6 @@ public class OrderController {
 			mv.addObject("memberInfo", memberInfo);
 		}else {
 			commandMap.put("MEMBER_ID", session.getAttribute("NON_MEMBER_ID"));
-			//이제 페이화면에 뿌릴꺼 가져오면 끝.
 		}
 		return mv;
 	
@@ -160,32 +155,21 @@ public class OrderController {
 	
 	@RequestMapping(value = "order/insert")		
 	public ModelAndView addInsert(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:list");
+		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
 		
-		System.out.println("insert로 들어오는 값:");
-		System.out.println(commandMap.getMap());
-		System.out.println("RECIPIENT_NAME:"+commandMap.get("RECIPIENT_NAME"));
-		System.out.println("RECIPIENT_ZIPCODE:"+commandMap.get("RECIPIENT_ZIPCODE"));
-		System.out.println("RECIPIENT_ADDR1:"+commandMap.get("RECIPIENT_ADDR1"));
-		System.out.println("RECIPIENT_ADDR2:"+commandMap.get("RECIPIENT_ADDR2"));
-		
 		String phone = ""+commandMap.get("mphone1")+commandMap.get("mphone2")+ commandMap.get("mphone3");
-		System.out.println("phone:"+phone);
 		commandMap.put("RECIPIENT_PHONE",phone);
 		
-		System.out.println("RECIPIENT_PHONE:"+commandMap.get("RECIPIENT_PHONE"));
-		
-		System.out.println("TOTALPRICE:"+commandMap.get("TOTALPRICE"));
-		System.out.println("PAYMENT:"+commandMap.get("PAYMENT"));
-		System.out.println("DEPOSIT_NAME:"+commandMap.get("DEPOSIT_NAME"));
-		System.out.println("DEPOSIT_BANK:"+commandMap.get("DEPOSIT_BANK"));
-		
 		if(session.getAttribute("MEMBER_ID")==null) {
+			mv.setViewName("order/orderList");
 			commandMap.put("MEMBER_ID", session.getAttribute("NON_MEMBER_ID"));
+			
 		}else {
+			mv.setViewName("redirect:list");
 			commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 		}
+		
 		orderService.insertOrder(commandMap.getMap(),request);
 		
 		return mv;
@@ -221,23 +205,30 @@ public class OrderController {
 		return mv;
 	
 	}
-	
-	@RequestMapping(value = "order/orderList")		
+	//안쓰는거 같은데 확인.
+	/*@RequestMapping(value = "order/orderList")		
 	public ModelAndView order(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("order/orderList");
 		
 		HttpSession session = request.getSession();
-		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 		
-		mv.addObject("MEMBER_ID", commandMap.get("MEMBER_ID"));
-		System.out.println("commandMap.getMap():"+commandMap.getMap());
-		List<Map<String, Object>> orderList = new ArrayList<Map<String, Object>>();
-		
-		orderList=orderService.orderList(commandMap.getMap());
-		mv.addObject("orderList", orderList);
-		return mv;
+		if(session.getAttribute("MEMBER_ID")!=null) {
+			ModelAndView mv = new ModelAndView("order/orderList");
+			commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+			
+			List<Map<String, Object>> orderList = new ArrayList<Map<String, Object>>();
+			orderList=orderService.orderList(commandMap.getMap());
+			
+			mv.addObject("MEMBER_ID", commandMap.get("MEMBER_ID"));
+			mv.addObject("orderList", orderList);
+			
+			return mv;
+		}else {
+			ModelAndView mv = new ModelAndView("order/orderList2");
+			
+			return mv;
+		}
 	
-	}
+	}*/
 	@RequestMapping(value = "order/swapList")		
 	public ModelAndView swap(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("order/swapList");
@@ -252,8 +243,8 @@ public class OrderController {
 		swapList=orderService.swapList(commandMap.getMap());
 		mv.addObject("swapList", swapList);
 		return mv;
-	
 	}
+	
 	@RequestMapping(value = "order/refundList")		
 	public ModelAndView refund(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("order/refundList");
@@ -262,13 +253,11 @@ public class OrderController {
 		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 		
 		mv.addObject("MEMBER_ID", commandMap.get("MEMBER_ID"));
-		System.out.println("commandMap.getMap():"+commandMap.getMap());
-		List<Map<String, Object>> refundList = new ArrayList<Map<String, Object>>();
 		
+		List<Map<String, Object>> refundList = new ArrayList<Map<String, Object>>();
 		refundList=orderService.refundList(commandMap.getMap());
 		mv.addObject("refundList", refundList);
 		return mv;
-	
 	}
 	
 

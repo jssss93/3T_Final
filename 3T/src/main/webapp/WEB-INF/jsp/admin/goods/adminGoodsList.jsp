@@ -10,10 +10,8 @@ $( document ).ready(function() {
 	$('#dataTables-example').rowspan(1);
 	$('#dataTables-example').rowspan(2);
 	$('#dataTables-example').rowspan(3);
-	$('#dataTables-example').rowspan(4);
 	$('#dataTables-example').rowspan(8);
 	$('#dataTables-example').rowspan(9);
-	$('#dataTables-example').rowspan(10);
 });
 
 $.fn.rowspan = function(colIdx, isStats) {       
@@ -142,9 +140,9 @@ function delchk(){
 								<thead>
 									<tr role="row" style="vertical-align:middle;">
 										<th style="width: 5%; text-align:center;vertical-align:middle;">상품번호</th>
-										<th style="width: 8%; text-align:center;vertical-align:middle;">상품 사진</th>										
-										<th style="width: 7%; text-align:center;vertical-align:middle;">카테고리</th>
 										<th style="width: 20%; text-align:center;vertical-align:middle;">상품명</th>
+										<th style="width: 7%; text-align:center;vertical-align:middle;">카테고리</th>
+										<th style="width: 8%; text-align:center;vertical-align:middle;">상품 사진</th>										
 										<th style="width: 8%; text-align:center;vertical-align:middle;">가격</th>
 										<th style="width: 7%; text-align:center;vertical-align:middle;">색상</th>
 										<th style="width: 6%; text-align:center;vertical-align:middle;">사이즈</th>
@@ -159,11 +157,11 @@ function delchk(){
 									<c:forEach var="goodsList"  items="${list}" varStatus="stat">
 									
 										<tr class="gradeA even" role="row">
-											<td style="text-align:center;vertical-align:middle;">${goodsList.GOODS_NO}</td>										
+											<td style="text-align:center;vertical-align:middle;">${goodsList.GOODS_NO}</td>	
+											<td style="text-align:center;vertical-align:middle;">${goodsList.NAME}</td>	
+											<td style="text-align:center;vertical-align:middle;">${goodsList.CATEGORY}<input type="hidden" value="${goodsList.GOODS_NO }"></td>								
 											<td style="text-align:center;vertical-align:middle;"><img src="/3T/resources/upload/${goodsList.IMAGE.split(',')[0]}" width="60" height="60" alt=""  onerror="상품 이미지가 없습니다." /></td>
-											<td style="text-align:center;vertical-align:middle;">${goodsList.CATEGORY}</td>
-											<td style="text-align:center;vertical-align:middle;">${goodsList.NAME}</td>
-											<td style="text-align:center;vertical-align:middle;">${goodsList.PRICE}</td>
+												<td style="text-align:center;vertical-align:middle;">${goodsList.PRICE}</td>
 											<td style="text-align:center;vertical-align:middle;">${goodsList.COLOR}</td>
 											<td style="text-align:center;vertical-align:middle;">${goodsList.GOODS_SIZE}</td>
 											<td style="text-align:center;vertical-align:middle;">${goodsList.COUNT}</td>
