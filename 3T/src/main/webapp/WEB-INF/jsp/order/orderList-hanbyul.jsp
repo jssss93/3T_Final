@@ -1,836 +1,198 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8" %>
-<%@ include file="/WEB-INF/include/include-header-hanbyul.jspf"%>
-
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%-- <%@ include file="/WEB-INF/include/include-header-hanbyul.jspf"%> --%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--PG크로스브라우징필수내용 시작-->
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta http-equiv="Pragma" content="no-cache">
+<!--PG크로스브라우징필수내용 끝-->
+<!--해당 CSS는 쇼핑몰 전체 페이지에 영향을 줍니다. 삭제와 수정에 주의해주세요.-->
+<!-- 스마트디자인에서는 JQuery 1.4.4 버전이 내장되어있습니다. 추가로 호출하면 충돌이 생길 수 있습니다. -->
+<link
+	href="//fonts.googleapis.com/css?family=Lato:100,300,400,500,700,900,100italic,300italic,400italic,700italic,900italic"
+	rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Cabin" rel="stylesheet"
+	type="text/css">
+<link href="//fonts.googleapis.com/css?family=Cabin:700"
+	rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/fonts/font-awesome.css">
+<link
+	href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"
+	rel="stylesheet">
+<meta name="format-detection" content="telephone=no">
+<script async="" src="//www.google-analytics.com/analytics.js"></script>
+<script type="text/javascript" async=""
+	src="http://www.google-analytics.com/ga.js"></script>
+<script
+	src="https://connect.facebook.net/signals/config/829030643890604?v=2.8.25&amp;r=stable"
+	async=""></script>
+<script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script>
+<script src="/js/jquery.gray.js"></script>
+<!--gray IE 용-->
+<script type="text/javascript" src="/ec-js/common.js"></script>
+<!-- 해당 JS는 플래시를 사용하기 위한 스크립트입니다. -->
+<script src="/js/jquery-1.11.2.min.js"></script>
+<script src="/js/jquery-latest.js"></script>
+<script src="/js/jquery.als-1.6.min.js"></script>
+
 <script>
-	function sample6_execDaumPostcode() {
-		new daum.Postcode(
-				{
-					oncomplete : function(data) {
-						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-						// 각 주소의 노출 규칙에 따라 주소를 조합한다.
-						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-						var fullAddr = ''; // 최종 주소 변수
-						var extraAddr = ''; // 조합형 주소 변수
-
-						// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-						if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-							fullAddr = data.roadAddress;
-
-						} else { // 사용자가 지번 주소를 선택했을 경우(J)
-							fullAddr = data.jibunAddress;
-						}
-
-						// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-						if (data.userSelectedType === 'R') {
-							//법정동명이 있을 경우 추가한다.
-							if (data.bname !== '') {
-								extraAddr += data.bname;
-							}
-							// 건물명이 있을 경우 추가한다.
-							if (data.buildingName !== '') {
-								extraAddr += (extraAddr !== '' ? ', '
-										+ data.buildingName : data.buildingName);
-							}
-							// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-							fullAddr += (extraAddr !== '' ? ' (' + extraAddr
-									+ ')' : '');
-						}
-
-						// 우편번호와 주소 정보를 해당 필드에 넣는다.
-						document.getElementById('sample6_postcode').value = data.zonecode; //5자리 새우편번호 사용
-						document.getElementById('sample6_address').value = fullAddr;
-
-						// 커서를 상세주소 필드로 이동한다.
-						document.getElementById('sample6_address2').focus();
-					}
-				}).open();
-	}
-
-	function sample7_execDaumPostcode() {
-		new daum.Postcode(
-				{
-					oncomplete : function(data) {
-						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-						// 각 주소의 노출 규칙에 따라 주소를 조합한다.
-						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-						var fullAddr = ''; // 최종 주소 변수
-						var extraAddr = ''; // 조합형 주소 변수
-
-						// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-						if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-							fullAddr = data.roadAddress;
-
-						} else { // 사용자가 지번 주소를 선택했을 경우(J)
-							fullAddr = data.jibunAddress;
-						}
-
-						// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-						if (data.userSelectedType === 'R') {
-							//법정동명이 있을 경우 추가한다.
-							if (data.bname !== '') {
-								extraAddr += data.bname;
-							}
-							// 건물명이 있을 경우 추가한다.
-							if (data.buildingName !== '') {
-								extraAddr += (extraAddr !== '' ? ', '
-										+ data.buildingName : data.buildingName);
-							}
-							// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-							fullAddr += (extraAddr !== '' ? ' (' + extraAddr
-									+ ')' : '');
-						}
-
-						// 우편번호와 주소 정보를 해당 필드에 넣는다.
-						document.getElementById('sample7_postcode').value = data.zonecode; //5자리 새우편번호 사용
-						document.getElementById('sample7_address').value = fullAddr;
-
-						// 커서를 상세주소 필드로 이동한다.
-						document.getElementById('sample7_address2').focus();
-					}
-				}).open();
-	}
-	/*
-	<input type="text" name="ORDER_ZIPCODE"
-	id="sample7_postcode" value="${m_resultClass.m_zipcode }">
-	<input type="button" onclick="sample7_execDaumPostcode()"
-	value="우편번호 찾기"><br> <input type="text"
-	name="ORDER_ADDRESS1" id="sample7_address"
-	value="${m_resultClass.m_addr1 }" size="100"> <br> <input
-	type="text" name="ORDER_ADDRESS2" id="sample7_address2"
-	value="${m_resultClass.m_addr2 }" size="100"></td>
-	*/
+	!function(f, b, e, v, n, t, s) {
+		if (f.fbq)
+			return;
+		n = f.fbq = function() {
+			n.callMethod ? n.callMethod.apply(n, arguments) : n.queue
+					.push(arguments)
+		};
+		if (!f._fbq)
+			f._fbq = n;
+		n.push = n;
+		n.loaded = !0;
+		n.version = '2.0';
+		n.queue = [];
+		t = b.createElement(e);
+		t.async = !0;
+		t.src = v;
+		s = b.getElementsByTagName(e)[0];
+		s.parentNode.insertBefore(t, s)
+	}(window, document, 'script',
+			'https://connect.facebook.net/en_US/fbevents.js');
+	fbq('init', '829030643890604'); // Insert your pixel ID here.
+	fbq('track', 'PageView');
 </script>
+<link rel="canonical" href="http://asclo.com/order/basket.html">
+<link rel="alternate" href="http://m.asclo.com/order/basket.html">
+<meta property="og:url" content="http://asclo.com/order/basket.html">
+<meta property="og:site_name" content="애즈클로">
+<meta property="og:type" content="website">
+<link rel="shortcut icon" href="/web/upload/favicon_20141006131340.ico">
+<meta http-equiv="ImageToolbar" content="No">
 
-<script type="text/javascript">
-	//F5키 막기
-window.onkeydown = function() {
-	var kcode = event.keyCode;
-	if(kcode == 8 || kcode == 116) event.returnValue = false;
-} 
+<script type="text/javascript"
+	src="/app/Eclog/js/cid.generate.js?vs=3d0b473968a0ec4ec41e3bf59df3aa51"></script>
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
 
-	
+<link rel="stylesheet" type="text/css"
+	href="/ind-script/optimizer.php?filename=tZXBTgQhDIbvO159jromm6xXT3ozvkEHOgPZQgmF6L69s64HzcTEjHCkab_Cz08BJ4Fgf58hZZkzBsikUrMhMKowZYkFjIQg8WYJ3MJf8snsVLgWL3E3yvvGwlrK1qaMZ8rbSguOTL-UYkrwKJgtvH6HrOQhM1SlrOD88Xh32B8g1ZG9GVwJDGppsKR-jqAnHx8-GUFsZQLJljKMqCcqL2hOOFNDrjXPcZImwHBWJwnevDr2WnowE84-ztvJiwmklouY3jS5pxXwGvjf2afFgAMyN9zWYudlQatX0IpbfQdoEeHiUweyI-6BXYaCrab0IF-Mj4V6qIxjB-pqVDcD__g8GorAPcRdskyTQfjVYarMajJRbElVwmzcE6G9DocP&amp;type=css&amp;k=82e471e6421823158bbbaa252eb0adb8eb11482d&amp;t=1508869165">
+<link rel="stylesheet" type="text/css"
+	href="/ind-script/optimizer.php?filename=tdLNDcIwDAXgAcKVOQyHSmUExgiJ86MmdhQnoG5PywzmbL1Psp8hcUVAZ6ZgF0h5XW_LfYE2XyU7k0YtIB6NR8mRQLZMD3AiUNnPglDsznNA4ciD2-WYXEGHdHZg5L5rmi-23T8psCaa0HrsmqKMY_fzpCH8hSVNteeYhqlIU1P1_CFt89e-KVlGs26zEc2iyQfmofsHjul95DNTc6f7BQ&amp;type=css&amp;k=9a3cb7872486b57aea4134bfe28a5541c53ed81d&amp;t=1499901149">
 
- function comma(str) {
-    str = String(str);
-    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
-}
- 
-//체크박스 단일 선택
-	var sum = 0;
-	var delivery = 0;
-	var totalSum =0;
+<meta name="path_role" content="ORDER_BASKET">
+<meta name="author" content="데일리룩의 정석, 남친룩, 오버핏, 루즈핏, 코디, 남성의류 쇼핑몰">
+<meta name="description" content="데일리룩의 정석, 남친룩, 오버핏, 루즈핏, 코디, 남성의류 쇼핑몰">
+<meta name="keywords"
+	content="남성의류,남자옷,남자쇼핑몰,남자데일리룩,남자유니크쇼핑몰,데일리룩쇼핑몰,데일리룩,애즈클로,남자상의,남자코트,남자바지,오버핏,루즈핏,코트,데님자켓,청자켓,스키니팬츠,남자스키니,남자데님팬츠,OOTD,dailylook,린넨셔츠,남자여름코디,남자봄코디,남자가을코디,남자겨울코디">
+<script src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/983431901/?random=1534724800800&amp;cv=9&amp;fst=1534724800800&amp;num=1&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;u_h=864&amp;u_w=1536&amp;u_ah=824&amp;u_aw=1536&amp;u_cd=24&amp;u_his=5&amp;u_tz=540&amp;u_java=false&amp;u_nplug=3&amp;u_nmime=4&amp;sendb=1&amp;frm=0&amp;url=http%3A%2F%2Fasclo.com%2Forder%2Fbasket.html%3Fdelvtype%3DA&amp;ref=http%3A%2F%2Fasclo.com%2Fproduct%2Fdetail.html%3Fproduct_no%3D8171%26cate_no%3D1%26display_group%3D2&amp;tiba=%EC%95%A0%EC%A6%88%ED%81%B4%EB%A1%9C&amp;rfmt=3&amp;fmt=4">
 	
-	function checkedRows(index){
-	var index = index;
-	var tagName = "#checkbox"+index;
-	
-	//price 클래스의 value 값을 가져온다.
-	var price = $(".price").eq(index).attr("value");
-	var totprice = $(".totprice").eq(index).attr("value");
-	
-	price = parseInt(price);
-	totprice = parseInt(totprice);
-	
-	console.log("price:"+price);
-	console.log("totPrice:"+totprice);
-	
-     if($(tagName).is(":checked")){
-    	
-       	sum += totprice;
-       	
-       	if(sum>50000){
-       		delivery=0;
-       	}else{
-       		delivery=3000;
-       	}
-       	totalSum = sum + delivery;
-       	 
-       	$(".totalPrice").html(comma(sum)+" KRW");
-       	$(".delivery").html(comma(delivery)+" KRW");
-       	$(".totalSum").html(comma(totalSum)+" KRW");
-       	
-	}else{
-		
-	    sum -=  totprice;
-	    
-	    if(sum>50000){
-	    	delivery=0;
-       	}else{
-       		delivery=3000;
-       	}
-	    
-			totalSum = sum + delivery;
-	       	
-	       	$(".totalPrice").html(comma(sum)+" KRW");
-	       	$(".delivery").html(comma(delivery)+" KRW");
-	       	$(".totalSum").html(comma(totalSum)+" KRW");
-	} 
-};
-
-//체크박스 다중 선택
-var chkCount = $("input[type=checkbox]").length ;
-
-function checkAll(){    
-	console.log("checkAll실행");
-	if($("#chkBox").is(":checked")) {
-		for(i=0;i<$("input[type=checkbox]").length-4;i++){
-			if($("#checkbox"+i).is(":checked")){
-			}
-			else{
-				$("#checkbox"+i).prop("checked",true);
-				checkedRows(i); 
-			}
-		}
-	} else{
-		for(i=0;i<$("input[type=checkbox]").length-1;i++){
-			if($("#checkbox"+i).is(":checked")){
-				$("#checkbox"+i).prop("checked",false);
-				checkedRows(i); 
-			}
-			else{
-			}
-		}
-	} 
-}
-
-function checkAll2(){    
-	
-	for(i=0;i<$("input[type=checkbox]").length-1;i++){
-		if($("#checkbox"+i).is(":checked")){
-		}
-		else{
-			$("#checkbox"+i).prop("checked",true);
-			checkedRows(i); 
-		}
-	}
-}
-
 </script>
-<title>3T</title>
+<title>ORDER_LIST</title>
+<link href="<c:url value='/resources/css/cartTest.css'/>" rel="stylesheet" type="text/css" />
 </head>
 <body>
-	<div class="path">
-		<span>현재 위치</span>
-		<ol>
-			<li><a href="/">홈</a></li>
-			<li title="현재 위치"><strong>주문서작성</strong></li>
-		</ol>
-	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<div class="titleArea">
-		<h2>ORDER</h2>
-	</div>
-
-	<div class="xans-element- xans-order xans-order-form xans-record-">
-		<!-- 이값은 지우면 안되는 값입니다. ($move_order_after 주문완료페이지 주소 / $move_basket 장바구니페이지 주소)
-        $move_order_after=/order/order_result.html
-        $move_basket=/order/basket.html
-    -->
-		<!-- 혜택정보 -->
-		<div class="xans-element- xans-order xans-order-dcinfo ec-base-box typeMember  ">
-			<div class="information">
-				<h3 class="title">혜택정보</h3>
-				<div class="description">
-					<div class="member ">
-						<p>
-							<strong>${memberInfo.NAME }</strong> 님은,${memberInfo.GRADE } 회원이십니다.
-						</p>
-					</div>
-					<ul class="mileage">
-						<li><a href="/myshop/coupon/coupon.html">쿠폰 : <strong>0개</strong></a></li>
-					</ul>
+	<form id="frm">
+		<div id="contentwrap">
+			<div id="contents">
+				<div class="titleArea">
+					<h2>ORDER</h2>
 				</div>
-			</div>
-		</div>
-		<!-- 국내배송상품 주문내역 -->
-		<div class="orderListArea ">
-			<div class="title">
-				<h3> 주문내역</h3>
-			</div>
-
-			<!-- 기본배송 -->
-			<div class="ec-base-table typeList ">
-				<table border="1" summary="">
-					<caption>기본배송</caption>
-					<colgroup>
-						<col style="width: 27px" class="">
-						<col style="width: 92px">
-						<col style="width: auto">
-						<col style="width: 98px">
-						<col style="width: 75px">
-						<col style="width: 98px">
-						<col style="width: 98px">
-						<col style="width: 85px">
-						<col style="width: 98px">
-					</colgroup>
-					<thead>
-						<tr>
-							<th scope="col" class=""><input type="checkbox"	id="chkBox" onclick="checkAll();" ></th>
-							<th scope="col">이미지</th>
-							<th scope="col">상품정보</th>
-							<th scope="col">판매가</th>
-							<th scope="col">수량</th>
-							<th scope="col">적립금</th>
-							<th scope="col">배송구분</th>
-							<th scope="col">배송비</th>
-							<th scope="col">합계</th>
-						</tr>
-					</thead>
-					<tfoot class="right">
-						<tr>
-							<td class=""></td>
-							<td colspan="8">
-								<span class="gLeft">[기본배송]</span> 
-									상품구매금액	<strong class="totalPrice">0 KRW </strong>
-									+ 배송비		<strong class="delivery">3000 KRW </strong>
-									-상품할인금액  	<strong class="discount">0 KRW </strong>
-									= 합계 : 		
-								<strong class="txtEm gIndent10">(여기 빨간색 글자키워줘)
-									<span id="domestic_ship_fee_sum" class="totalSum" >0 KRW</span>
-								</strong> 
-							</td>
-
-						</tr>
-					</tfoot>
-					<form id="frm" action="/3T/order/insert">
+				<div class="xans-element- xans-order xans-order-basketpackage ">
+					<div class="xans-element- xans-order xans-order-tabinfo ">
+						<ul>
+							<li class=""><a href="/3T/cart/list">CART LIST</a></li>
+							<li class="selected "><a href="/3T/order/list">ORDER LIST</a></li>
+						</ul>
+						<p >총 구매금액에 따라 등급이 정해집니다.</p>
+					</div>
 					
-					<tbody class="xans-element- xans-order xans-order-normallist center">
-						<c:choose>
-							<c:when test="${fn:length(list) > 0}">
-								<c:forEach items="${list }" var="row" varStatus="stat">
-									<tr class="xans-record-">
-										<td class="">
-											<input type="checkbox" id="checkbox${stat.index}" name="selected" value="${row.ATTRIBUTE_NO},${row.GOODS_NO },${row.COUNT}"
-											onclick="javascript:checkedRows(${stat.index});">
-										</td>
-										<td class="thumb">
-											<a href="/product/detail.html?product_no=8171&amp;cate_no=1">
-												<img width="50" height="50" src="/3T/resources/upload/${row.IMAGE.split(',')[0] }" />
-											</a>
-										</td>
-										<td class="left">
-											<a href="/product/detail.html?product_no=8184&amp;cate_no=1">
-												<strong>${row.NAME }</strong>
-											</a>
-											<div class="option ">[옵션:${row.COLOR }/${row.GOODS_SIZE }]</div>
-										</td>
-										<td class="right">
-											<div >
-												<span class="price" value="${row.PRICE }"><strong >${row.PRICE}</strong></span>
-											</div>
-										</td>
-										<td>${row.COUNT }</td>
-										<td>
-											<span class="txtInfo">
-												<input id="product_mileage_all_8184_000A" name="product_mileage_all"value="400" type="hidden">
-												<img src="//img.echosting.cafe24.com/design/common/icon_cash.gif">400원
-											</span>
-										</td>
-										<td>
-											<div class="txtInfo">
-												기본배송<br>
-											</div>
-										</td>
-										<td>[조건]</td>
-										<td class="right">
-											<span class="totprice" value="${row.PRICE *row.COUNT}"><strong >${row.PRICE*row.COUNT}</strong></span>
-										</td>
-									</tr>
-								</c:forEach>
-							</c:when>
-						<c:otherwise>
-							<tr>
-								<td colspan="4">조회된 결과가 없습니다.</td>
-							</tr>
-						</c:otherwise>
-					</c:choose>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<ul class="ec-base-help controlInfo typeBtm">
-			<li class="txtWarn txt11">상품의 옵션 및 수량 변경은 상품상세 또는 장바구니에서 가능합니다.</li>
-		</ul>
-		<!-- 선택상품 제어 버튼 -->
-		<div class="ec-base-button">
-			<span class="gLeft "> <strong class="text">선택상품을</strong> <a
-				href="#none" id="btn_product_delete"><img
-					src="/images/btn_delete2.gif" alt="삭제하기"></a>
-			</span> <span class="gRight"> <a
-				href="javascript:window.history.back();"><img
-					src="/images/btn_prev.gif" alt="이전페이지"></a>
-			</span>
-		</div>
+					<div class="orderListArea">
+						<div class="xans-element- xans-order xans-order-normtitle title ">
+							<h3>${MEMBER_ID } 회원님의 주문 목록</h3>
+							<br>
+						</div>
+						<table border="1" summary="" class="xans-element- xans-order xans-order-normnormal boardList xans-record-">
 
-		<!-- 배송 정보 -->
-		<div class="orderArea">
-			<div class="title">
-				<h3>배송 정보</h3>
-				<p class="required">
-					<img src="//img.echosting.cafe24.com/skin/base_ko_KR/order/ico_required.gif" alt="필수"> 필수입력사항
-				</p>
-			</div>
-			<div class="ec-base-table typeWrite">
-				<table border="1" summary="">
-					<colgroup>
-						<col style="width: 139px;">
-						<col style="width: auto;">
-					</colgroup>
-					<!-- 비회원 결제 -->
-					<tbody class="displaynone ec-shop-deliverySimpleNomemberForm"
-						style="display: table-row-group;">
-						<tr class="ec-orderform-NoMemberPasswdRow">
-							<th scope="row">주문조회 비밀번호 <img
-								src="//img.echosting.cafe24.com/skin/base_ko_KR/order/ico_required.gif"
-								alt="필수"></th>
-							<td>(주문조회시 필요합니다. 4자에서 12자 영문 또는 숫자 대소문자 구분)</td>
-						</tr>
-						<tr class="ec-orderform-NoMemberPasswdRow">
-							<th scope="row">주문조회 비밀번호<br>확인 <img
-								src="//img.echosting.cafe24.com/skin/base_ko_KR/order/ico_required.gif"
-								alt="필수"></th>
-							<td></td>
-						</tr>
-					</tbody>
-					<!-- 국내 배송지 정보 -->
-					<tbody class="">
-						<tr class="">
-							<th scope="row">배송지 선택</th>
-							<td>
-								<div class="address">
-									<input id="sameaddr0" name="sameaddr0"  fw-filter="" fw-label="1" fw-msg="" value="M" type="radio">
-									<label for="sameaddr0">회원 정보와 동일</label> 
-									<input id="sameaddr1" name="sameaddr1" fw-filter="" fw-label="1" fw-msg="" value="F" type="radio">
-									<label for="sameaddr1">새로운배송지</label> 
-									<span class="recent ec-shop-RecentDelivery displaynone"> 최근 배송지 : </span> 
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">
-								받으시는 분 	<img src="//img.echosting.cafe24.com/skin/base_ko_KR/order/ico_required.gif" alt="필수">
-							</th>
-							<td>
-								<input id="mname" name="RECIPIENT_NAME" fw-filter="isFill" fw-label="수취자 성명" fw-msg="" class="inputTypeText" placeholder=""
-								size="15" value="" type="text">
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">
-								주소 <img src="//img.echosting.cafe24.com/skin/base_ko_KR/order/ico_required.gif" alt="필수">
-							</th>
-							<td>
-								<input id="mzipcode" name="RECIPIENT_ZIPCODE" fw-filter="isFill" fw-label="수취자 우편번호1" fw-msg="" class="inputTypeText" placeholder="" size="6" maxlength="6" readonly="1" value="" type="text"> 
-								<input type="button" onclick="sample7_execDaumPostcode()" value="우편번호 찾기">
-								<br> 
-								<input id="maddr1" name="RECIPIENT_ADDR1" type="text"> 
-								<span class="addr1"></span><br>
-								<input id="maddr2" name="RECIPIENT_ADDR2" fw-filter="isFill" fw-label="수취자 주소2" fw-msg="" class="inputTypeText"placeholder="" size="40" value="" type="text"> 
-								<span class="grid">나머지주소</span>
-								<span class="grid displaynone">(선택입력가능)</span>
-							</td>
-						</tr>
-						
-						<tr class="">
-							<th scope="row">TEL.
-								<span class="">
-									<img src="//img.echosting.cafe24.com/skin/base_ko_KR/order/ico_required.gif" alt="필수">
-								</span>
-							</th>
-							<td>
-								<select class="mphone1" >
-									<option value="010">010</option>
-									<option value="011">011</option>
-									<option value="016">016</option>
-									<option value="017">017</option>
-									<option value="018">018</option>
-									<option value="019">019</option>
-								</select>-
-								<input class="mphone2" name="mphone2" maxlength="4" fw-filter="isNumber&amp;isFill" fw-label="수취자 핸드폰번호" fw-alone="N" fw-msg="" size="4" value="" type="text">-
-								<input class="mphone3" name="mphone3" maxlength="4" fw-filter="isNumber&amp;isFill" fw-label="수취자 핸드폰번호" fw-alone="N" fw-msg="" size="4" value="" type="text">
-							</td>
-						</tr>
-					</tbody>
-					<!-- 이메일 국내/해외 -->
-					<tbody
-						class="email ec-orderform-emailRow ec-shop-deliverySimpleForm">
-						<tr>
-							<th scope="row">이메일 <img
-								src="//img.echosting.cafe24.com/skin/base_ko_KR/order/ico_required.gif"
-								alt="필수"></th>
-							<td>
-								<input id="memail1" name="oemail1" fw-filter="isFill" fw-label="주문자 이메일" fw-alone="N" fw-msg="" class="mailId"	value="" type="text">
-								@<input id="memail2" name="oemail2"	fw-filter="isFill" fw-label="주문자 이메일" fw-alone="N" fw-msg="" class="mailAddress" readonly="readonly" value="" type="text">
-								<select	id="select_email" fw-filter="isFill" fw-label="주문자 이메일" fw-alone="N" fw-msg="">
-									<option value="" selected="selected">- 이메일 선택 -</option>
-									<option value="naver.com">naver.com</option>
-									<option value="daum.net">daum.net</option>
-									<option value="nate.com">nate.com</option>
-									<option value="hotmail.com">hotmail.com</option>
-									<option value="yahoo.com">yahoo.com</option>
-									<option value="empas.com">empas.com</option>
-									<option value="korea.com">korea.com</option>
-									<option value="dreamwiz.com">dreamwiz.com</option>
-									<option value="gmail.com">gmail.com</option>
-									<option value="etc">직접입력</option>
-								</select>
-								<p class="gBlank5">
-									이메일을 통해 주문처리과정을 보내드립니다.<br>
-									이메일 주소란에는 반드시 수신가능한 이메일주소를 입력해 주세요.
-								</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		
-		
-		
-		
-		
-		
-		
-		
-		<!-- 결제 예정 금액 -->
-		<div class="title">
-			<h3>결제 예정 금액</h3>
-		</div>
-		<div class="totalArea">
-			<div class="ec-base-table typeList gBorder total">
-				<table border="1" summary="">
-					<caption>결제 예정 금액</caption>
-					<colgroup>
-						<col style="width: 33.33%">
-						<col style="width: 33.33%" class="">
-						<col style="width: 33.33%">
-					</colgroup>
-					<thead>
-						<tr>
-							<th scope="col">
-								<strong>총 주문 금액</strong> 
-							</th>
-							<th scope="col" class="">
-								<strong>- 총 </strong>
-								<strong id="total_addsale_text" class="">할인</strong>
-							</th>
-							<th scope="col">
-								<strong>총 결제예정 금액</strong>
-							</th>
-						</tr>
-					</thead>
-					<tbody class="center">
-						<tr>
-							<td >
-								<div class="box txt16">
-									<strong> 
-										<span id="total_order_price_view" class="totalPrice">여기도0</span>
-									</strong>KRW
-								</div>
-							</td>
-							<td class="option ">
-								<div class="box txt16">
-									<strong>-</strong> 
-									<strong>
-										<span id="total_sale_price_view" class="discount">여기도0</span>
-									</strong>KRW 
-								</div>
-							</td>
-							<td>
-								<div class="box txtEm txt16">
-									<strong>=</strong> 
-									<strong>
-										<span id="total_order_sale_price_view" class="totalSum">여기도0</span>
-									</strong>KRW 
-								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<!-- 결제수단 -->
-		<div class="title">
-			<h3>결제수단</h3>
-		</div>
-		<div class="payArea">
-			<div class="payment">
-				<div class="method">
-					<span class="ec-base-label">
-						<input id="addr_paymethod0" name="PAYMENT" fw-filter="isFill" fw-label="결제방식" fw-msg=""	value="cash" type="radio" checked="checked">
-						<labelfor="addr_paymethod0">무통장 입금</labelfor>
-					</span> 
-					<span class="ec-base-label">
-						<input id="addr_paymethod1" name="PAYMENT" fw-filter="isFill" fw-label="결제방식" fw-msg="" value="card" type="radio">
-						<label for="addr_paymethod1">카드 결제</label>
-					</span> 
-					<span class="ec-base-label">
-						<input id="addr_paymethod2" name="PAYMENT" fw-filter="isFill" fw-label="결제방식" fw-msg="" value="cell" type="radio">
-						<label for="addr_paymethod2">휴대폰 결제</label>
-					</span> 
-				</div>
+							<thead>
+								<tr>
+									<th scope="col" class="thumb">ORDER NO.</th>
+									<th scope="col" class="thumb">IMAGE</th>
+									<th scope="col" class="product">PRODUCT INFO</th>
+									<th scope="col" class="price">PRICE</th>
+									<th scope="col" class="quantity">QUANTITY</th>
+									<th scope="col" class="mileage">state</th>
+									<th scope="col" class="delivery">배송구분</th>
+									<th scope="col" class="charge">배송비</th>
+									<th scope="col" class="total">total</th>
+									
+								</tr>
+							</thead>
+							<tfoot>
+								<tr>
+									<td colspan="10">
+										총 구매 금액 넣자 <strong id="totalPrice">0 KRW </strong> + 총 구매 금액 넣자 <strong
+										id="delivery">3000 KRW </strong> -총 구매 금액 넣자 <strong
+										id="discount">0 KRW </strong> = 합계 : <strong id="totalSum">0
+											KRW </strong></td>
+								</tr>
+							</tfoot>
+							<tbody class="xans-element- xans-order xans-order-list">
+								<c:choose>
+									<c:when test="${fn:length(list) > 0}">
+										<c:forEach items="${list }" var="row" varStatus="stat">
 
-				<div class="ec-base-table">
-					<!-- 무통장입금 -->
-					<table border="1" summary="" id="payment_input_cash"
-						style="display: table;">
-						<caption >무통장입금</caption>
-						<colgroup>
-							<col style="width: 139px">
-							<col style="width: auto">
-						</colgroup>
-						<tbody>
-							<tr>
-								<th scope="row">입금자명</th>
-								<td><input id="pname" name="DEPOSIT_NAME" fw-filter=""
-									fw-label="무통장 입금자명" fw-msg="" class="inputTypeText"
-									placeholder="" size="15" maxlength="20" value="" type="text"></td>
-							</tr>
-							<tr>
-								<th scope="row">계좌번호</th>
-								<td><input id="pname" name="DEPOSIT_BANK" fw-filter=""
-									fw-label="무통장 입금자명" fw-msg="" class="inputTypeText"
-									placeholder="" size="15" maxlength="20" value="" type="text"></td>
-							</tr>
-							<tr>
-								<th scope="row">입금은행</th>
-								<td><select id="bankaccount" name="DEPOSIT_"
-									fw-filter="" fw-label="무통장 입금은행" fw-msg="">
-										<option value="-1">::: 선택해 주세요. :::</option>
-										<option
-											value="bank_04:437201-04-192634:서지우(애즈클로):국민은행:www.kbstar.com">국민은행:437201-04-192634
-											서지우(애즈클로)</option>
-								</select>
-									<p class="gBlank5 ">
-										<a href="#none" id="btn_bank_go"><img
-											src="//img.echosting.cafe24.com/skin/base_ko_KR/order/btn_bank.gif"
-											alt="은행사이트 바로가기"></a>
-									</p></td>
-							</tr>
-						</tbody>
-					</table>
-					<!-- 실시간 계좌이체 -->
-					<table border="1" summary="" id="payment_input_tcash"
-						style="display: none;">
-						<caption>실시간 계좌이체</caption>
-						<colgroup>
-							<col style="width: 139px">
-							<col style="width: auto">
-						</colgroup>
-						<tbody>
-							<tr>
-								<th scope="row">예금주명</th>
-								<td><input id="allat_account_nm" name="allat_account_nm"
-									fw-filter="" fw-label="무통장 입금자명" fw-msg=""
-									class="inputTypeText" placeholder="" size="26" maxlength="30"
-									value="" type="text"></td>
-							</tr>
-							<tr>
-								<th scope="row"></th>
-								<td><input type="checkbox" name="flagEscrowUse"
-									id="flagEscrowUse0" value="T"><label
-									for="flagEscrowUse0"> 에스크로(구매안전)서비스를 적용합니다.</label></td>
-							</tr>
-						</tbody>
-					</table>
-					<!-- 에스크로(가상계좌) -->
-					<table border="1" summary="" id="payment_input_icash"
-						style="display: none;">
-						<caption>에스크로(가상계좌)</caption>
-						<colgroup>
-							<col style="width: 139px">
-							<col style="width: auto">
-						</colgroup>
-						<tbody>
-							<tr>
-								<th scope="row">에스크로</th>
-								<td><input id="flagEscrowIcashUse0"
-									name="flagEscrowIcashUse" fw-filter="" fw-label="에스크로(구매안전)"
-									fw-msg="" value="T" type="checkbox"><label
-									for="flagEscrowIcashUse0"></label><label
-									for="flagEscrowIcashUse0">에스크로(구매안전)서비스를 적용합니다.</label></td>
-							</tr>
-						</tbody>
-					</table>
-					<!-- 무통장입금, 카드결제, 휴대폰결제, 실시간계좌이체 -->
-					<div id="pg_paymethod_info" class="payHelp" style="display: block;">
-						<p id="pg_paymethod_info_shipfee" class="ec-base-help">최소 결제
-							가능 금액은 결제금액에서 배송비를 제외한 금액입니다.</p>
-						<p id="pg_paymethod_info_pg" class="ec-base-help"
-							style="display: none;">소액 결제의 경우 PG사 정책에 따라 결제 금액 제한이 있을 수
-							있습니다.</p>
+											<tr class="xans-record-">
+												<td>
+													${row.ORDER_NO }
+												</td>
+												<td class="thumb">
+													<a href="/product/detail.html?product_no=8171&amp;cate_no=1">
+														<img width="50" height="50"
+														src="/3T/resources/upload/${row.IMAGE.split(',')[0] }" />
+													</a>
+												</td>  
+												<td class="product">
+													<a href="/product/detail.html?product_no=8171&amp;cate_no=1">
+													<strong>${row.NAME }</strong> </a>
+													<ul class="xans-element- xans-order xans-order-optionall option">
+														<li class="xans-record-">
+															[옵션: ${row.COLOR }/${row.GOODS_SIZE }] 
+														</li>
+													</ul>
+												</td> 
+												<td>
+													<span class="price" value="${row.PRICE}">${row.PRICE} </span>
+												</td> 
+												<td>
+													<strong>${row.COUNT }</strong>
+												</td>
+												<td class="mileage">c:if 문으로 상태 지정 해줄거</td>
+												<td class="delivery">기본배송</td>
+												<td><span class="totprice" value="${row.PRICE*row.COUNT}">${row.PRICE*row.COUNT}</span></td>
+												<td class="total"><strong>${row.PRICE * row.COUNT }</strong></td>
+												
+											</tr>
+
+										</c:forEach>
+									</c:when>
+									<c:otherwise>
+										<tr>
+											<td colspan="4">조회된 결과가 없습니다.</td>
+										</tr>
+									</c:otherwise>
+								</c:choose>
+							</tbody>
+						</table>
 					</div>
-				</div>
-			</div>
-
-			<!-- 최종결제금액 -->
-			<div class="total">
-				<h4>
-					<strong id="current_pay_name" >무통장 입금</strong> <span>최종결제 금액</span>
-				</h4>
-				<p >
-					<span class="totalSum" name="TOTALPRICE">0 KRW( 722번째줄도) </span>
-					<input type="hidden" name="TOTALPRICE" class="totalSum">
-				</p>
-				<p class="paymentAgree" id="chk_purchase_agreement"style="display: block;">
-					<input id="chk_purchase_agreement0" name="chk_purchase_agreement" fw-filter="" fw-label="구매진행 동의" fw-msg="" value="T"type="checkbox" style="display: block;">
-					<label for="chk_purchase_agreement0">결제정보를 확인하였으며, 구매진행에 동의합니다.</label>
-				</p>
-				<div class="button">
-					<a href="/3T/order/insert">
-						<input name="submit" type="submit" style="width: 22em; font-family: 돋움; background-color: #121212; color: #FFFFFF; line-height: 5em; border-color: #121212;" 	value="결제하기 " />
-					</a>
-				</div>
+    			</div>
 			</div>
 		</div>
-		</form>
-		<!-- 이용안내 -->
-		<div class="ec-base-help">
-			<h3>이용안내</h3>
-			<div class="inner">
-				<h4>WindowXP 서비스팩2를 설치하신후 결제가 정상적인 단계로 처리되지 않는경우, 아래의 절차에 따라
-					해결하시기 바랍니다.</h4>
-				<ol>
-					<li class="item1"><a href="javascript:;"
-						onclick="window.open('http://service-api.echosting.cafe24.com/shop/notice_XP_ActiveX.html','','width=795,height=500,scrollbars=yes',resizable=1);">안심클릭
-							결제모듈이 설치되지 않은 경우 ActiveX 수동설치</a></li>
-					<li class="item2"><a
-						href="http://www.microsoft.com/korea/windowsxp/sp2/default.asp"
-						target="_blank">Service Pack 2에 대한 Microsoft사의 상세안내 </a></li>
-					<li class="item3"></li>
-				</ol>
-				<!-- 크로스 브라우징 지원 -->
-				<div class="">
-					<h4>아래의 쇼핑몰일 경우에는 모든 브라우저 사용이 가능합니다.</h4>
-					<ol>
-						<li class="item1"><strong>KG이니시스, KCP, LG U+를 사용하는
-								쇼핑몰일 경우</strong></li>
-						<li class="item2">결제가능브라우저 : 크롬,파이어폭스,사파리,오페라 브라우저에서 결제 가능<br>(단,
-							window os 사용자에 한하며 리눅스/mac os 사용자는 사용불가)
-						</li>
-						<li class="item3">최초 결제 시도시에는 플러그인을 추가 설치 후 반드시 브라우저 종료 후
-							재시작해야만 결제가 가능합니다.<br>(무통장, 휴대폰결제 포함)
-						</li>
-					</ol>
-				</div>
-				<h4>세금계산서 발행 안내</h4>
-				<ol>
-					<li class="item1">부가가치세법 제 54조에 의거하여 세금계산서는 배송완료일로부터 다음달
-						10일까지만 요청하실 수 있습니다.</li>
-					<li class="item2">세금계산서는 사업자만 신청하실 수 있습니다.</li>
-					<li class="item3">배송이 완료된 주문에 한하여 세금계산서 발행신청이 가능합니다.</li>
-					<li class="item4">[세금계산서 신청]버튼을 눌러 세금계산서 신청양식을 작성한 후 팩스로
-						사업자등록증사본을 보내셔야 세금계산서 발생이 가능합니다.</li>
-					<li class="item5">[세금계산서 인쇄]버튼을 누르면 발행된 세금계산서를 인쇄하실 수 있습니다.</li>
-				</ol>
-				<h4>부가가치세법 변경에 따른 신용카드매출전표 및 세금계산서 변경안내</h4>
-				<ol>
-					<li class="item1">변경된 부가가치세법에 의거, 2004.7.1 이후 신용카드로 결제하신 주문에
-						대해서는 세금계산서 발행이 불가하며</li>
-					<li class="item2">신용카드매출전표로 부가가치세 신고를 하셔야 합니다.(부가가치세법 시행령 57조)</li>
-					<li class="item3">상기 부가가치세법 변경내용에 따라 신용카드 이외의 결제건에 대해서만 세금계산서
-						발행이 가능함을 양지하여 주시기 바랍니다.</li>
-				</ol>
-				<h4>현금영수증 이용안내</h4>
-				<ol>
-					<li class="item1">현금영수증은 1원 이상의 현금성거래(무통장입금, 실시간계좌이체, 에스크로,
-						예치금)에 대해 발행이 됩니다.</li>
-					<li class="item2">현금영수증 발행 금액에는 배송비는 포함되고, 적립금사용액은 포함되지 않습니다.</li>
-					<li class="item3">발행신청 기간제한 현금영수증은 입금확인일로 부터 48시간안에 발행을 해야
-						합니다.</li>
-					<li class="item4">현금영수증 발행 취소의 경우는 시간 제한이 없습니다. (국세청의 정책에 따라
-						변경 될 수 있습니다.)</li>
-					<li class="item5">현금영수증이나 세금계산서 중 하나만 발행 가능 합니다.</li>
-				</ol>
-			</div>
-		</div>
-	</div>
-	
-
-
+	</form>
 </body>
-<script>
-
-$(document).ready(function() 
-	{ 
-		$("input:radio[name=sameaddr0]").click(function(){ 
-		    CopyInfo(); 
-		}) 
-		
-		$("input:radio[name=sameaddr1]").click(function(){ 
-				    deleteInfo(); 
-		}) 
-		
-		$("#select_email").on("change", function(){
-			$('#memail2').val($(this).val());
-		})
-		
-		$('#btn_payment').click(function () {
-			e.preventDefault();
-			fn_Insert();
-		})
-	});
-	
-	function fn_Insert() {
-		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/3T/order/insert' />");
-		comSubmit.addParam("key", "value");
-		comSubmit.submit();
-	}
-	
-	function CopyInfo(){	  
-		$.ajax({  
-			type : "POST",  
-			url : "/3T/order/getMemberInfo",
-			success : function(json) {
-				
-				var jsonData=JSON.parse(json);
-				var PHONE="";  
-				PHONE+=jsonData[0].PHONE;
-				console.log(PHONE);
-				
-				$('#mname').val(jsonData[0].NAME);
-				$('#mzipcode').val(jsonData[0].ZIPCODE);
-				$('#maddr1').val(jsonData[0].ADDR1);
-				$('#maddr2').val(jsonData[0].ADDR2);
-				$('#memail1').val(jsonData[0].EMAIL.split('@')[0]);
-				$('#memail2').val(jsonData[0].EMAIL.split('@')[1]);
-				$(".mphone1").val(PHONE.substring(0,3));
-				$('.mphone2').val(PHONE.substring(3,7));
-				$('.mphone3').val(PHONE.substring(7,11));
-				$("input:radio[name='sameaddr1']:radio").prop("checked", false); 
-			},
-			error : function(e) {
-				alert('error' + e);
-			}
-		}); 
-	}
-	
-	function deleteInfo(){
-		
-		$('#mname').val("");
-		$('#mzipcode').val("");
-		$('#maddr1').val("");
-		$('#maddr2').val("");
-		$('#memail1').val("");
-		$('#memail2').val("");
-		$(".mphone1").val("");
-		$('.mphone2').val("");
-		$('.mphone3').val("");
-		$("input:radio[name='sameaddr0']:radio").prop("checked", false); 
-	}
-</script>
 </html>

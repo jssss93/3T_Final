@@ -105,8 +105,8 @@ public class LoginController {
 				List<Map<String, Object>> sessionCartListMap=new ArrayList<Map<String, Object>>();
 				Map<String, Object> sessionCartMap = new HashMap<String,Object>();
 				//장바구니 자동추가
-				System.out.println("세션장바구니 로그인시 자동추가 시작.");
 				if(session.getAttribute("sessionCartList")!=null) {
+					System.out.println("세션장바구니 로그인시 자동추가 시작.");
 					sessionCartListMap=(List<Map<String, Object>>) session.getAttribute("sessionCartList");
 					for(int i=0;i<sessionCartListMap.size();i++) {
 						commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));

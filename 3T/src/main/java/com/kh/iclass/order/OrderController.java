@@ -85,6 +85,9 @@ public class OrderController {
 	
 	}
 	
+	
+	
+	//실행안하는거같은데
 	@RequestMapping(value = "order/addOne")
 	public ModelAndView addOne(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("order/paypage");
@@ -204,7 +207,7 @@ public class OrderController {
 	
 	@RequestMapping(value = "order/list")		
 	public ModelAndView orderList(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("order/list");
+		ModelAndView mv = new ModelAndView("order/orderList-hanbyul");
 		
 		HttpSession session = request.getSession();
 		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
@@ -214,7 +217,7 @@ public class OrderController {
 		List<Map<String, Object>> orderList = new ArrayList<Map<String, Object>>();
 		
 		orderList=orderService.selectList(commandMap.getMap());
-		mv.addObject("orderList", orderList);
+		mv.addObject("list", orderList);
 		return mv;
 	
 	}
@@ -268,9 +271,10 @@ public class OrderController {
 	
 	}
 	
-	@RequestMapping(value = "order/getMemberInfo", produces="application/text;charset=UTF-8")
 
-	public @ResponseBody ModelAndView getMemberInfo(CommandMap commandMap, HttpServletRequest request,HttpServletResponse response ) throws Exception {
+	@ResponseBody
+	@RequestMapping(value = "order/getMemberInfo" ,  produces = "application/json; charset=utf8" )
+	public  ModelAndView getMemberInfo111(CommandMap commandMap, HttpServletRequest request,HttpServletResponse response ) throws Exception {
 		PrintWriter writer = response.getWriter();
 		
 		HttpSession session = request.getSession();
