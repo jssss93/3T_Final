@@ -3,12 +3,12 @@
 
 <mapper namespace="goods">
 
-	<select id="selectList" parameterType="hashmap"
-		resultType="hashmap">
-		
-		<include refid="common.pagingPre" /> 
-		<![CDATA[
-			SELECT
+   <select id="selectList" parameterType="hashmap"
+      resultType="hashmap">
+      
+      <include refid="common.pagingPre" /> 
+      <![CDATA[
+         SELECT
         GOODS_NO,
         NAME,
         CONTENT, 
@@ -113,12 +113,12 @@ FROM
         COLOR,
         COUNT,
         RNUM
-		]]>
-		<include refid="common.pagingPost" />
+      ]]>
+      <include refid="common.pagingPost" />
 
-	</select>
-	
-	<select id="selectGoodsList" parameterType="hashmap" resultType="hashmap">
+   </select>
+   
+   <select id="selectGoodsList" parameterType="hashmap" resultType="hashmap">
       <![CDATA[
          select 
             GOODS_NO,
@@ -182,7 +182,7 @@ FROM
 
 <select id="selectGoodsNewList" parameterType="hashmap" resultType="hashmap">
       <![CDATA[
-		select 
+      select 
             GOODS_NO,
             NAME,
             CONTENT, 
@@ -239,13 +239,13 @@ FROM
          KEYWORD,
          CATEGORY 
       ORDER BY
-         REGDATE ASC
+         REGDATE DESC
 ]]>
 </select>
 
 <select id="selectGoodsBestList" parameterType="hashmap" resultType="hashmap">
       <![CDATA[
-		select 
+      select 
             GOODS_NO,
             NAME,
             CONTENT, 
@@ -355,7 +355,7 @@ select
          a.GOODS_NO DESC 
       )
       WHERE
-      	CATEGORY = #{CATEGORY}
+         CATEGORY = #{CATEGORY}
       GROUP BY
          GOODS_NO,
          NAME,
@@ -421,7 +421,7 @@ select
          a.GOODS_NO DESC 
       )
       WHERE
-      	CATEGORY = #{CATEGORY}
+         CATEGORY = #{CATEGORY}
       GROUP BY
          GOODS_NO,
          NAME,
@@ -433,135 +433,135 @@ select
          KEYWORD,
          CATEGORY 
       ORDER BY
-      	READCNT DESC
+         READCNT DESC
 ]]>
 </select>
 
 <select id="selectGoodsRelatedList" parameterType="java.util.Map" resultType="java.util.Map">
 
       <![CDATA[
-	      SELECT
-	      		GOODS_NO,
-	      		NAME,
-	      		PRICE,
-	      		WM_CONCAT(SAV_NAME) IMAGE
-	      FROM
-	      		(SELECT
-	      			a.GOODS_NO,
-	      			a.NAME,
-	      			a.PRICE,	
-	      			b.SAV_NAME
-	      		FROM
-	      			GOODS a INNER JOIN UPLOAD b
-	      		ON
-	      			a.GOODS_NO = b.GOODS_NO
-	      		)
-	      WHERE
-	      		GOODS_NO
-	      IN		
-	      ]]>
-	      			<foreach collection="relGoodsNo_List" item="item" index="index" separator="," open="(" close=")" >
-	      				#{item}
-	      			</foreach>
-	      				
-	      GROUP BY
-	      		GOODS_NO,
-	      		NAME,
-	      		PRICE
-			  
+         SELECT
+               GOODS_NO,
+               NAME,
+               PRICE,
+               WM_CONCAT(SAV_NAME) IMAGE
+         FROM
+               (SELECT
+                  a.GOODS_NO,
+                  a.NAME,
+                  a.PRICE,   
+                  b.SAV_NAME
+               FROM
+                  GOODS a INNER JOIN UPLOAD b
+               ON
+                  a.GOODS_NO = b.GOODS_NO
+               )
+         WHERE
+               GOODS_NO
+         IN      
+         ]]>
+                  <foreach collection="relGoodsNo_List" item="item" index="index" separator="," open="(" close=")" >
+                     #{item}
+                  </foreach>
+                     
+         GROUP BY
+               GOODS_NO,
+               NAME,
+               PRICE
+           
       
 </select> 
 
 <update id="updateHitcnt" parameterType="hashmap">
 <![CDATA[
-	UPDATE
-		GOODS
-	SET
-		READCNT = READCNT + 1
-	WHERE 
-		GOODS_NO = #{GOODS_NO}
+   UPDATE
+      GOODS
+   SET
+      READCNT = READCNT + 1
+   WHERE 
+      GOODS_NO = #{GOODS_NO}
 ]]>
 </update>
 
 <select id="selectGoodsDetail" resultType="hashmap" parameterType="hashmap">
 <![CDATA[
 SELECT
-	GOODS_NO,
-	NAME,
-	CONTENT, 
-	READCNT,
-	REGDATE,
-	PRICE,
-	RELATED,
-	KEYWORD,
+   GOODS_NO,
+   NAME,
+   CONTENT, 
+   READCNT,
+   REGDATE,
+   PRICE,
+   RELATED,
+   KEYWORD,
     CATEGORY,
     ATTRIBUTE_NO,
-	WM_CONCAT(GOODS_SIZE) AS GOODS_SIZE,
-	WM_CONCAT(COLOR) AS COLOR,
-	WM_CONCAT(COUNT) AS COUNT
+   WM_CONCAT(GOODS_SIZE) AS GOODS_SIZE,
+   WM_CONCAT(COLOR) AS COLOR,
+   WM_CONCAT(COUNT) AS COUNT
 FROM
-	(
-	SELECT 
-		a.GOODS_NO,
-		a.NAME,
-		a.CONTENT,
-		a.READCNT,
-		a.REGDATE,
-		a.PRICE,
-		a.RELATED,
-		a.KEYWORD,
-		a.CATEGORY,
-		b.ATTRIBUTE_NO,
-		b.GOODS_SIZE,
-		b.COLOR,
-		b.COUNT
-	FROM
-		GOODS a INNER JOIN GOODS_ATTRIBUTE b 
-	ON 
-		a.GOODS_NO = b.GOODS_NO 
+   (
+   SELECT 
+      a.GOODS_NO,
+      a.NAME,
+      a.CONTENT,
+      a.READCNT,
+      a.REGDATE,
+      a.PRICE,
+      a.RELATED,
+      a.KEYWORD,
+      a.CATEGORY,
+      b.ATTRIBUTE_NO,
+      b.GOODS_SIZE,
+      b.COLOR,
+      b.COUNT
+   FROM
+      GOODS a INNER JOIN GOODS_ATTRIBUTE b 
+   ON 
+      a.GOODS_NO = b.GOODS_NO 
     WHERE 
-    	ROWNUM < 15
-	ORDER BY 
-		b.ATTRIBUTE_NO ASC
-	)
+       ROWNUM < 15
+   ORDER BY 
+      b.ATTRIBUTE_NO ASC
+   )
   WHERE
         GOODS_NO = #{GOODS_NO}
   GROUP BY
-		GOODS_NO,
-		NAME,CONTENT, 
-		READCNT,
-		REGDATE,
-		PRICE,
-		RELATED,
-		KEYWORD,
+      GOODS_NO,
+      NAME,CONTENT, 
+      READCNT,
+      REGDATE,
+      PRICE,
+      RELATED,
+      KEYWORD,
         ATTRIBUTE_NO,
-		CATEGORY
+      CATEGORY
 ]]>
 </select>
 
 <select id="selectGoodsImage" resultType="hashmap" parameterType="hashmap">
 <![CDATA[
  SELECT 
- 	GOODS_NO,
- 	UPLOAD_NO,
- 	SAV_NAME,
- 	ORG_NAME 
+    GOODS_NO,
+    UPLOAD_NO,
+    SAV_NAME,
+    ORG_NAME 
  FROM 
- 	UPLOAD 
+    UPLOAD 
  WHERE 
- 	GOODS_NO = #{GOODS_NO}
+    GOODS_NO = #{GOODS_NO}
  ORDER BY
- 	UPLOAD_NO ASC
+    UPLOAD_NO ASC
 ]]>
 </select>
 
 
-	<insert id="insert" parameterType="hashmap"
-		useGeneratedKeys="true" keyProperty="GOODS_NO">
-		<selectKey keyProperty="GOODS_NO" resultType="java.lang.Integer"
-			order="BEFORE">
-			SELECT GOODS_NO_SEQ.NEXTVAL FROM DUAL
-		</selectKey>
+   <insert id="insert" parameterType="hashmap"
+      useGeneratedKeys="true" keyProperty="GOODS_NO">
+      <selectKey keyProperty="GOODS_NO" resultType="java.lang.Integer"
+         order="BEFORE">
+         SELECT GOODS_NO_SEQ.NEXTVAL FROM DUAL
+      </selectKey>
     <![CDATA[
          
         INSERT INTO GOODS
@@ -587,14 +587,14 @@ FROM
             #{CATEGORY}
         )
     ]]>
-	</insert>
-	
-	<insert id="insertAttribute" parameterType="hashmap"
-		useGeneratedKeys="true" keyProperty="ATTRIBUTE_NO">
-		<selectKey keyProperty="ATTRIBUTE_NO" resultType="java.lang.Integer"
-			order="BEFORE">
-			SELECT ATTRIBUTE_NO_SEQ.NEXTVAL FROM DUAL
-		</selectKey>
+   </insert>
+   
+   <insert id="insertAttribute" parameterType="hashmap"
+      useGeneratedKeys="true" keyProperty="ATTRIBUTE_NO">
+      <selectKey keyProperty="ATTRIBUTE_NO" resultType="java.lang.Integer"
+         order="BEFORE">
+         SELECT ATTRIBUTE_NO_SEQ.NEXTVAL FROM DUAL
+      </selectKey>
     <![CDATA[
         INSERT INTO GOODS_ATTRIBUTE
         (
@@ -613,16 +613,16 @@ FROM
             #{GOODS_NO}
         )
     ]]>
-	</insert>	
-	
+   </insert>   
+   
 
-	<insert id="insertUpload" parameterType="hashmap"
-		useGeneratedKeys="true" keyProperty="UPLOAD_NO">
-		<selectKey keyProperty="UPLOAD_NO" resultType="java.lang.Integer"
-			order="BEFORE">
-			SELECT UPLOAD_NO_SEQ.NEXTVAL FROM DUAL
-		</selectKey>
-    	<![CDATA[
+   <insert id="insertUpload" parameterType="hashmap"
+      useGeneratedKeys="true" keyProperty="UPLOAD_NO">
+      <selectKey keyProperty="UPLOAD_NO" resultType="java.lang.Integer"
+         order="BEFORE">
+         SELECT UPLOAD_NO_SEQ.NEXTVAL FROM DUAL
+      </selectKey>
+       <![CDATA[
         INSERT INTO UPLOAD
         (
             UPLOAD_NO,
@@ -634,177 +634,177 @@ FROM
         )
         VALUES
         (
-           	#{UPLOAD_NO},
+              #{UPLOAD_NO},
             #{ORG_NAME},
             #{SAV_NAME},
             #{FILE_SIZE},
             'N',
             #{GOODS_NO}
         )
-    	]]>
-	</insert>
-	
-	<update id="updateGoods" parameterType="hashmap">
-		<![CDATA[
-			UPDATE 
-				GOODS 
-			SET 
-				NAME = #{NAME},
-				CONTENT = #{CONTENT},
-				PRICE = #{PRICE},
-				RELATED = #{RELATED},
-				KEYWORD = #{KEYWORD},
-				CATEGORY = #{CATEGORY}
-			WHERE 
-				GOODS_NO = #{GOODS_NO}
-		]]>
-	</update>
+       ]]>
+   </insert>
+   
+   <update id="updateGoods" parameterType="hashmap">
+      <![CDATA[
+         UPDATE 
+            GOODS 
+         SET 
+            NAME = #{NAME},
+            CONTENT = #{CONTENT},
+            PRICE = #{PRICE},
+            RELATED = #{RELATED},
+            KEYWORD = #{KEYWORD},
+            CATEGORY = #{CATEGORY}
+         WHERE 
+            GOODS_NO = #{GOODS_NO}
+      ]]>
+   </update>
 
-	<!-- 상품 종류 수정 -->
-	<update id="updateGoodsAttribute" parameterType="hashmap">
-		<![CDATA[
-			UPDATE 
-				GOODS_ATTRIBUTE
-			SET 
-				GOODS_SIZE = #{GOODS_SIZE},
-				COLOR = #{COLOR},
-				COUNT = #{COUNT}
-			WHERE 
-				GOODS_NO = #{GOODS_NO }
-		]]>
-	</update>
+   <!-- 상품 종류 수정 -->
+   <update id="updateGoodsAttribute" parameterType="hashmap">
+      <![CDATA[
+         UPDATE 
+            GOODS_ATTRIBUTE
+         SET 
+            GOODS_SIZE = #{GOODS_SIZE},
+            COLOR = #{COLOR},
+            COUNT = #{COUNT}
+         WHERE 
+            GOODS_NO = #{GOODS_NO }
+      ]]>
+   </update>
 
-	<!-- 상품 이미지 수정 -->
-	<update id="updateGoodsImage" parameterType="hashmap">
-		<![CDATA[
-			UPDATE 
-				UPLOAD 
-			SET 
-				ORG_NAME = #{ORG_NAME},
-				SAV_NAME = #{SAV_NAME},
-				FILE_SIZE = #{FILE_SIZE},
-				DEL = 'N'
-			WHERE 
-				GOODS_NO = #{GOODS_NO}
-		]]>
-	</update>
-	
-	<!-- 속성 개별 삭제 -->
-	<update id="deleteAttribute" parameterType="hashmap">
-		<![CDATA[
-			DELETE
-			FROM
-				GOODS_ATTRIBUTE
-			WHERE
-				ATTRIBUTE_NO = #{ATTRIBUTE_NO}
-		]]>
-	</update>
-	
-	<!-- 사진 개별 삭제 -->
-	<update id="deleteUpload" parameterType="hashmap">
-		<![CDATA[
-			DELETE
-			FROM
-				UPLOAD
-			WHERE
-				UPLOAD_NO = #{UPLOAD_NO}
-		]]>
-	</update>
-	
-	<!--↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 상품 삭제 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->
-	
-	<delete id="deleteGoods" parameterType="hashmap">
-	 <![CDATA[
+   <!-- 상품 이미지 수정 -->
+   <update id="updateGoodsImage" parameterType="hashmap">
+      <![CDATA[
+         UPDATE 
+            UPLOAD 
+         SET 
+            ORG_NAME = #{ORG_NAME},
+            SAV_NAME = #{SAV_NAME},
+            FILE_SIZE = #{FILE_SIZE},
+            DEL = 'N'
+         WHERE 
+            GOODS_NO = #{GOODS_NO}
+      ]]>
+   </update>
+   
+   <!-- 속성 개별 삭제 -->
+   <update id="deleteAttribute" parameterType="hashmap">
+      <![CDATA[
+         DELETE
+         FROM
+            GOODS_ATTRIBUTE
+         WHERE
+            ATTRIBUTE_NO = #{ATTRIBUTE_NO}
+      ]]>
+   </update>
+   
+   <!-- 사진 개별 삭제 -->
+   <update id="deleteUpload" parameterType="hashmap">
+      <![CDATA[
+         DELETE
+         FROM
+            UPLOAD
+         WHERE
+            UPLOAD_NO = #{UPLOAD_NO}
+      ]]>
+   </update>
+   
+   <!--↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 상품 삭제 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->
+   
+   <delete id="deleteGoods" parameterType="hashmap">
+    <![CDATA[
         delete
         FROM
             GOODS
         WHERE
             GOODS_NO = #{GOODS_NO}   
     ]]>
-	</delete>
-	
-	<delete id="deleteA" parameterType="hashmap">
-	 <![CDATA[
+   </delete>
+   
+   <delete id="deleteA" parameterType="hashmap">
+    <![CDATA[
         delete
         FROM
             GOODS_ATTRIBUTE
         WHERE
             GOODS_NO = #{GOODS_NO}   
     ]]>
-	</delete>
-	
-	<delete id="deleteU" parameterType="hashmap">
-	 <![CDATA[
+   </delete>
+   
+   <delete id="deleteU" parameterType="hashmap">
+    <![CDATA[
         delete
         FROM
             UPLOAD
         WHERE
             GOODS_NO = #{GOODS_NO}   
     ]]>
-	</delete>
+   </delete>
 
-	<!-- ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ 상품 삭제 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ -->
+   <!-- ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ 상품 삭제 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ -->
 
-	<!-- <update id="updateReadCnt" parameterType="hashmap">
-		<![CDATA[
-			UPDATE 
-				GOODS 
-			SET
-				GOODS_READCNT = NVL(GOODS_READCNT, 0) + 1
-			WHERE
-				GOODS_NO = #{GOODS_NO}	
-		]]>
-	</update>
+   <!-- <update id="updateReadCnt" parameterType="hashmap">
+      <![CDATA[
+         UPDATE 
+            GOODS 
+         SET
+            GOODS_READCNT = NVL(GOODS_READCNT, 0) + 1
+         WHERE
+            GOODS_NO = #{GOODS_NO}   
+      ]]>
+   </update>
 
-	<select id="selectDetail" parameterType="hashmap"
-		resultType="hashmap">
-		<![CDATA[
-			SELECT
-			    GOODS_NO,
-			    GOODS_NAME,
-			    GOODS_CONTENT,
-			    GOODS_READCNT,
-			    GOODS_REGDATE,
-			    GOODS_COLOR,
-			    GOODS_PRICE,
-			    GOODS_SIZE,	
-			    GOODS_CATEGORY,
-			    GOODS_RECOMMEND,
-			    GOODS_TOTALCOUNT,
-			    GOODS_RELATED_PRODUCT,
-			    GOODS_FILE_ORGNAME,
-			    GOODS_FILE_SAVNAME
-			FROM
-			    GOODS 
-			WHERE
-				GOODS_NO=#{GOODS_NO,jdbcType=INTEGER}		
-		]]>
-	</select>
+   <select id="selectDetail" parameterType="hashmap"
+      resultType="hashmap">
+      <![CDATA[
+         SELECT
+             GOODS_NO,
+             GOODS_NAME,
+             GOODS_CONTENT,
+             GOODS_READCNT,
+             GOODS_REGDATE,
+             GOODS_COLOR,
+             GOODS_PRICE,
+             GOODS_SIZE,   
+             GOODS_CATEGORY,
+             GOODS_RECOMMEND,
+             GOODS_TOTALCOUNT,
+             GOODS_RELATED_PRODUCT,
+             GOODS_FILE_ORGNAME,
+             GOODS_FILE_SAVNAME
+         FROM
+             GOODS 
+         WHERE
+            GOODS_NO=#{GOODS_NO,jdbcType=INTEGER}      
+      ]]>
+   </select>
 
-	<update id="update" parameterType="hashmap">
-		<![CDATA[
-			UPDATE 
-				GOODS 
-			SET
-				GOODS_NAME = #{GOODS_NAME},
-				GOODS_CONTENT = #{GOODS_CONTENT}
-			WHERE
-				GOODS_NO = #{GOODS_NO}	
-		]]>
-	</update>
+   <update id="update" parameterType="hashmap">
+      <![CDATA[
+         UPDATE 
+            GOODS 
+         SET
+            GOODS_NAME = #{GOODS_NAME},
+            GOODS_CONTENT = #{GOODS_CONTENT}
+         WHERE
+            GOODS_NO = #{GOODS_NO}   
+      ]]>
+   </update>
 
-	<update id="delete" parameterType="hashmap">
-		<![CDATA[
-			DELETE
-			FROM
-				GOODS
-			WHERE
-				GOODS_NO = #{GOODS_NO}
-		]]>
-	</update>
-	
-	<select id="selectFileList" parameterType="hashmap" resultType="hashmap">
-    	<![CDATA[
+   <update id="delete" parameterType="hashmap">
+      <![CDATA[
+         DELETE
+         FROM
+            GOODS
+         WHERE
+            GOODS_NO = #{GOODS_NO}
+      ]]>
+   </update>
+   
+   <select id="selectFileList" parameterType="hashmap" resultType="hashmap">
+       <![CDATA[
         SELECT
             FILE_NO,
             FILE_ORG_NAME,
@@ -813,76 +813,330 @@ FROM
         FROM
             FILE_3T
         WHERE
-        	GOODS_NO=#{GOODS_NO}
+           GOODS_NO=#{GOODS_NO}
         
-    	]]>
-	</select>
+       ]]>
+   </select>
  -->
 
-	
-	
-	
+   
+   
+   
 
-	<!-- <update id="deleteFileList" parameterType="hashmap">
-    	<![CDATA[
+   <!-- <update id="deleteFileList" parameterType="hashmap">
+       <![CDATA[
         UPDATE
-        	FILE_3T
+           FILE_3T
         SET
             FILE_DEL = 'Y'
         WHERE
             GOODS_NO = #{GOODS_NO} 
-    	]]>
-	</update>
+       ]]>
+   </update>
 
-	<update id="updateFile" parameterType="hashmap">
-    	<![CDATA[
+   <update id="updateFile" parameterType="hashmap">
+       <![CDATA[
         UPDATE 
-        	FILE_3T 
+           FILE_3T 
         SET
             DEL_GB = 'N'
         WHERE
             GOODS_NO = #{GOODS_NO}  
-   		]]>
-	</update> -->
-	
-	<!-- RIVIEW 상세보기 리스트-->
-	<select id="selectGoodsReviewList" resultType="hashmap" parameterType="hashmap">
-	<![CDATA[
-		SELECT
-		    REVIEW_NO,
-           	TITLE,
-           	MEMBER_ID,
-           	CONTENT,
-           	REGDATE,
-			READCNT,
-			GOODS_NO
-		FROM 
-		    REVIEW 
-		WHERE 
-		    GOODS_NO = #{GOODS_NO}
-		ORDER BY 
-		    REVIEW_NO
-		    ]]>
-	</select>
-	
+         ]]>
+   </update> -->
+   
+   <!-- RIVIEW 상세보기 리스트-->
+   <select id="selectGoodsReviewList" resultType="hashmap" parameterType="hashmap">
+   <![CDATA[
+      SELECT
+          REVIEW_NO,
+              TITLE,
+              MEMBER_ID,
+              CONTENT,
+              REGDATE,
+         READCNT,
+         GOODS_NO
+      FROM 
+          REVIEW 
+      WHERE 
+          GOODS_NO = #{GOODS_NO}
+      ORDER BY 
+          REVIEW_NO
+          ]]>
+   </select>
+   
 <!-- QA 상세보기 리스트-->
-	<select id="selectQaViewList" resultType="hashmap" parameterType="hashmap">
-	<![CDATA[
-		select 
-		    QA_NO,
-           	TITLE,
-           	MEMBER_ID,
-           	CONTENT,
-           	REGDATE,
-			GOODS_NO
-		FROM 
-		    QA 
-		WHERE 
-		    GOODS_NO = #{GOODS_NO} 
-		ORDER BY 
-		    QA_NO
-		    ]]>
-	</select>
+   <select id="selectQaViewList" resultType="hashmap" parameterType="hashmap">
+   <![CDATA[
+      select 
+          QA_NO,
+              TITLE,
+              MEMBER_ID,
+              CONTENT,
+              REGDATE,
+              CATEGORY,
+           	STATUS,
+         GOODS_NO
+      FROM 
+          QA 
+      WHERE 
+          GOODS_NO = #{GOODS_NO} 
+      ORDER BY 
+          QA_NO
+          ]]>
+   </select>
 
+<select id="goodsSearchList" parameterType="hashMap" resultType="hashMap">
+      <![CDATA[
+      select 
+         GOODS_NO, 
+         NAME,
+            CONTENT,
+         READCNT,
+         REGDATE,
+           PRICE,
+            RELATED,
+         KEYWORD,
+         CATEGORY,
+           WM_CONCAT(SAV_NAME) IMAGE,
+           COUNT(NAME) OVER() AS CNT
+      FROM
+         (
+      SELECT
+             a.GOODS_NO,
+             a.NAME,
+             a.CONTENT,
+             a.READCNT,
+           a.REGDATE,
+             a.PRICE,
+             a.RELATED,
+           a.KEYWORD,
+           a.CATEGORY,
+             b.SAV_NAME
+        FROM
+            GOODS a INNER JOIN UPLOAD b
+           ON a.GOODS_NO = b.GOODS_NO
+        WHERE
+           CATEGORY LIKE '%'||#{CATEGORY}||'%' 
+        )
+         WHERE NAME LIKE '%'||#{keyword}||'%' 
+         OR KEYWORD LIKE '%'||#{keyword}||'%' 
+      GROUP BY
+        GOODS_NO, 
+         NAME,
+        CONTENT,
+         READCNT,
+         REGDATE,
+        PRICE,
+        RELATED,
+         KEYWORD,
+         CATEGORY
+    ORDER BY 
+      GOODS_NO DESC
+      ]]>
+</select>
+
+<select id="goodsSearchListName" parameterType="hashMap" resultType="hashMap">
+      select 
+         GOODS_NO, 
+         NAME,
+            CONTENT,
+         READCNT,
+         REGDATE,
+           PRICE,
+            RELATED,
+         KEYWORD,
+         CATEGORY,
+           WM_CONCAT(SAV_NAME) IMAGE,
+           COUNT(NAME) OVER() AS CNT
+      FROM
+         (
+      SELECT
+             a.GOODS_NO,
+             a.NAME,
+             a.CONTENT,
+             a.READCNT,
+           a.REGDATE,
+             a.PRICE,
+             a.RELATED,
+           a.KEYWORD,
+           a.CATEGORY,
+             b.SAV_NAME
+        FROM
+            GOODS a INNER JOIN UPLOAD b
+           ON a.GOODS_NO = b.GOODS_NO
+        WHERE
+           <if test='PRICE1 != "" and PRICE2 != ""'>
+           PRICE BETWEEN #{PRICE1}  AND #{PRICE2}  AND
+           </if>
+           CATEGORY LIKE '%'||#{CATEGORY}||'%' 
+           <!-- 'PRICE1 != null and PRICR2 != "" and PRICE2 != null' -->
+        )
+         WHERE NAME LIKE '%'||#{keyword}||'%' 
+         OR KEYWORD LIKE '%'||#{keyword}||'%' 
+      GROUP BY
+        GOODS_NO, 
+         NAME,
+        CONTENT,
+         READCNT,
+         REGDATE,
+        PRICE,
+        RELATED,
+         KEYWORD,
+         CATEGORY
+    ORDER BY 
+      NAME ASC
+</select>
+<select id="goodsSearchListRowPrice" parameterType="hashMap" resultType="hashMap">
+      select 
+         GOODS_NO, 
+         NAME,
+            CONTENT,
+         READCNT,
+         REGDATE,
+           PRICE,
+            RELATED,
+         KEYWORD,
+         CATEGORY,
+           WM_CONCAT(SAV_NAME) IMAGE,
+           COUNT(NAME) OVER() AS CNT
+      FROM
+         (
+      SELECT
+             a.GOODS_NO,
+             a.NAME,
+             a.CONTENT,
+             a.READCNT,
+           a.REGDATE,
+             a.PRICE,
+             a.RELATED,
+           a.KEYWORD,
+           a.CATEGORY,
+             b.SAV_NAME
+        FROM
+            GOODS a INNER JOIN UPLOAD b
+           ON a.GOODS_NO = b.GOODS_NO
+        WHERE
+           <if test='PRICE1 != "" and PRICE2 != ""'>
+           PRICE BETWEEN #{PRICE1}  AND #{PRICE2}  AND
+           </if>
+           CATEGORY LIKE '%'||#{CATEGORY}||'%' 
+        )
+         WHERE NAME LIKE '%'||#{keyword}||'%' 
+         OR KEYWORD LIKE '%'||#{keyword}||'%' 
+      GROUP BY
+        GOODS_NO, 
+         NAME,
+        CONTENT,
+         READCNT,
+         REGDATE,
+        PRICE,
+        RELATED,
+         KEYWORD,
+         CATEGORY
+    ORDER BY 
+      PRICE ASC
+</select>
+<select id="goodsSearchListHighPrice" parameterType="hashMap" resultType="hashMap">
+      select 
+         GOODS_NO, 
+         NAME,
+            CONTENT,
+         READCNT,
+         REGDATE,
+           PRICE,
+            RELATED,
+         KEYWORD,
+         CATEGORY,
+           WM_CONCAT(SAV_NAME) IMAGE,
+           COUNT(NAME) OVER() AS CNT
+      FROM
+         (
+      SELECT
+             a.GOODS_NO,
+             a.NAME,
+             a.CONTENT,
+             a.READCNT,
+           a.REGDATE,
+             a.PRICE,
+             a.RELATED,
+           a.KEYWORD,
+           a.CATEGORY,
+             b.SAV_NAME
+        FROM
+            GOODS a INNER JOIN UPLOAD b
+           ON a.GOODS_NO = b.GOODS_NO
+        WHERE
+             <if test='PRICE1 != "" and PRICE2 != ""'>
+           PRICE BETWEEN #{PRICE1}  AND #{PRICE2}  AND
+           </if>
+           CATEGORY LIKE '%'||#{CATEGORY}||'%' 
+        )
+         WHERE NAME LIKE '%'||#{keyword}||'%' 
+         OR KEYWORD LIKE '%'||#{keyword}||'%' 
+      GROUP BY
+        GOODS_NO, 
+         NAME,
+        CONTENT,
+         READCNT,
+         REGDATE,
+        PRICE,
+        RELATED,
+         KEYWORD,
+         CATEGORY
+    ORDER BY 
+      PRICE DESC
+</select>
+
+<select id="goodsSearchPriceList" parameterType="hashMap" resultType="hashMap">
+      <![CDATA[
+      select 
+         GOODS_NO, 
+         NAME,
+            CONTENT,
+         READCNT,
+         REGDATE,
+           PRICE,
+            RELATED,
+         KEYWORD,
+         CATEGORY,
+           WM_CONCAT(SAV_NAME) IMAGE,
+           COUNT(NAME) OVER() AS CNT
+      FROM
+         (
+      SELECT
+             a.GOODS_NO,
+             a.NAME,
+             a.CONTENT,
+             a.READCNT,
+           a.REGDATE,
+             a.PRICE,
+             a.RELATED,
+           a.KEYWORD,
+           a.CATEGORY,
+             b.SAV_NAME
+        FROM
+            GOODS a INNER JOIN UPLOAD b
+           ON a.GOODS_NO = b.GOODS_NO
+        WHERE
+           PRICE BETWEEN #{PRICE1}  AND #{PRICE2}  AND
+           CATEGORY LIKE '%'||#{CATEGORY}||'%' 
+        )
+         WHERE NAME LIKE '%'||#{keyword}||'%' 
+         OR KEYWORD LIKE '%'||#{keyword}||'%' 
+      GROUP BY
+        GOODS_NO, 
+         NAME,
+        CONTENT,
+         READCNT,
+         REGDATE,
+        PRICE,
+        RELATED,
+         KEYWORD,
+         CATEGORY
+    ORDER BY 
+      GOODS_NO DESC
+      ]]>
+</select>
 
 </mapper>

@@ -11,6 +11,8 @@
 	clear: both;
 	overflow: hidden;
 	*zoom: 1;
+	bottom: 0;
+	height: 50%;
 }
 
 .xans-layout-footer .utilMenu {
