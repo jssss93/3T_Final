@@ -95,6 +95,14 @@
 </script>
 <title>ORDER_LIST</title>
 <link href="<c:url value='/resources/css/cartTest.css'/>" rel="stylesheet" type="text/css" />
+<style type="text/css">
+#contentwrap {
+    position: relative;
+    float: left;
+    width: 100%;
+    /* height: 100%; */
+}
+</style>
 </head>
 <body>
 	<form id="frm">
