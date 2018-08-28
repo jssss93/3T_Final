@@ -155,8 +155,7 @@
 							</div>
 
 				<div class="shopMain mileage">
-								<a href="/3T/member/messageWrite"><strong>message</strong>적립금은
-
+								<a data-toggle="modal" data-target="#myModal"><strong>message</strong>적립금은
 									상품 구매 시 사용하실 수 있습니다.<br />메세지</a>
 							</div>
 							<div class="shopMain coupon 1">
@@ -225,7 +224,6 @@
 
 
 </div>
-
 
 </body>
 </html>

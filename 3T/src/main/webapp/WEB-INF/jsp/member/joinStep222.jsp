@@ -420,6 +420,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>회원가입</title>
 <link href="<c:url value='/resources/css/joinTest.css'/>" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.xans-layout-footer {
+	position: relative;
+	width: 100%;
+	margin: 0px auto 25px;
+	padding-top: 0px;
+	text-align: center;
+	clear: both;
+	overflow: hidden;
+	*zoom: 1;
+	bottom: -500;
+	height: 50%
+}
+</style>
 </head>
 <body>
 	<%
