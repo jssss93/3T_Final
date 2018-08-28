@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -140,6 +141,64 @@ public class LoginController {
       
       mv.setViewName("/goods/detail");
       return mv;
+   }
+   
+ //아이디찾기
+   @RequestMapping(value = "/findIdForm")
+   public ModelAndView findIdForm()
+   {
+	  ModelAndView mv = new ModelAndView();
+	
+	  mv.setViewName("member/findIdForm");
+	   
+	  return mv;
+   }
+
+   @RequestMapping(value = "/findId")
+   public ModelAndView findId(HttpServletRequest request,CommandMap commandMap) throws Exception
+   {
+	  ModelAndView mv = new ModelAndView();
+      
+	  System.out.println("들어오냐?맵? : "+commandMap.getMap());
+	  
+	  String id = loginService.findId(commandMap.getMap());
+	  
+	  System.out.println("아이디찾음?" + id);
+	  
+	  mv.addObject("MEMBER_ID", id);
+	  mv.setViewName("member/findId");
+	   
+	  return mv;
+   }
+   
+   //비밀번호찾기
+   @RequestMapping(value = "/findPasswdForm")
+   public ModelAndView findPasswdForm()
+   {
+	  ModelAndView mv = new ModelAndView();
+	   
+	  mv.setViewName("member/findPasswdForm");
+	   
+	  return mv;
+   }
+   
+   @RequestMapping(value = "/findPasswd")
+   public ModelAndView findPasswd(HttpServletRequest request,CommandMap commandMap) throws Exception
+   {
+	  ModelAndView mv = new ModelAndView();
+	  String EMAIL = request.getParameter("email1") + "@" + request.getParameter("email2");
+      commandMap.put("EMAIL", EMAIL);
+	  
+	  System.out.println("들어오냐?맵? : "+commandMap.getMap());
+	  
+	  String passwd = loginService.findPasswd(commandMap.getMap());
+	  
+	  System.out.println("비밀번호찾음?" + passwd);
+	  
+	  mv.addObject("PASSWD", passwd);
+	  mv.setViewName("member/findPasswd");
+	   
+	  return mv;
    }
 
 }

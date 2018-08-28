@@ -100,7 +100,7 @@
 	display: table;
 }
 
-#contentwrap {
+/* #contentwrap {
 	position: relative;
 	float: left;
 	width: 100%;
@@ -121,7 +121,7 @@
 	width: 87%;
 	min-height: 500px;
 	margin: 80px auto 20px;
-}
+} */
 
 #quick {
 	position: absolute;

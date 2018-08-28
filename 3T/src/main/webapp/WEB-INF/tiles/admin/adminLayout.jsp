@@ -35,6 +35,20 @@
 		margin: 0 0 0 250px !important;
 	}
 }
+.navbar-brand strong {
+    margin-right: 5px;
+    color: #fbfafa;
+    font-weight: bold;
+    font-family: 'Lato', 'NanumGothic';
+    font-size: 18px;
+}
+.nav a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    text-align: left;
+    color: #337ab7e8;
+}
 </style>
 </head>
 <body>

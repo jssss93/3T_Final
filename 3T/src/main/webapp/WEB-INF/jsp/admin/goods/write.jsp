@@ -12,11 +12,60 @@ border-bottom: 1px solid #fff;
 
 </head>
 <body>
+ <script type="text/javascript">
+	  function check() {
+
+		var f = document.Reg_form; 
+	
+		if (f.NAME.value == "") {
+			alert("상품명를 입력해주십시오");
+			f.NAME.focus();
+			return false;
+		}
+		if (f.PRICE.value == "") {
+			alert("가격를 입력해주십시오");
+			f.PRICE.focus();
+			return false;
+		}
+		if (f.RELATED.value == "") {
+			alert("RELATED를 입력해주십시오");
+			f.RELATED.focus();
+			return false;
+		}
+		if (f.KEYWORD.value == "") {
+			alert("KEYWORD를 입력해주십시오");
+			f.KEYWORD.focus();
+			return false;
+		}
+		if (f.CONTENT.value == "") {
+			alert("CONTENT를 입력해주십시오");
+			f.CONTENT.focus();
+			return false;
+		}
+		if (f.size.value == "") {
+			alert("size를 입력해주십시오");
+			f.size.focus();
+			return false;
+		}
+		if (f.color.value == "") {
+			alert("color를 입력해주십시오");
+			f.color.focus();
+			return false;
+		}
+		if (f.count.value == "") {
+			alert("count를 입력해주십시오");
+			f.count.focus();
+			return false;
+		}
+		
+		
+	}   
+</script>
 
 <div class="row" style="padding-left:15px;width:900px;">
 	<h1 class="page-header">상품등록</h1>
 </div>
-	<form id="frm"  enctype="multipart/form-data">
+	<form action="/3T/goods/write" id="frm" name="Reg_form"  enctype="multipart/form-data" onsubmit="return check();"  method="post">
 		<table class="board_view5" border="1">
 			<!-- <colgroup>
 				<col width="15%">
@@ -92,7 +141,8 @@ border-bottom: 1px solid #fff;
 		</table>
 		
 		<br/><br/>
-		<a href="#this" class="btn" id="write">작성하기</a>
+		<!-- <a href="#this" class="btn" id="write">작성하기</a> -->
+		<input type="submit" class="btn" value="작성">
 		<a href="#this" class="btn" id="list">목록으로</a>
 	</form>
 	<br/>

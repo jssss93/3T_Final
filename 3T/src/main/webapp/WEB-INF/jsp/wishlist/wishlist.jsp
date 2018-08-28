@@ -276,7 +276,8 @@
 										
 										
 									<td class="thumb"><a
-										href="/product/detail.html?product_no=6986&amp;cate_no=56&amp;display_group=">
+										href="/3T/goods/detail?GOODS_NO=${wish.GOODS_NO }">
+										<input type="hidden" id="GOODS_NO" name="GOODS_NO" value="${wish.GOODS_NO }">
 										<img id="myImg" src="/3T/resources/images/${wish.IMAGE.split(',')[0]}"></a>
 									</td>
 											
@@ -284,7 +285,9 @@
 											
 											
 									<td class="product"><a
-										href="/product/detail.html?product_no=6986&amp;cate_no=56&amp;display_group="><strong>${wish.NAME}</strong></a>
+										href="/3T/goods/detail?GOODS_NO=${wish.GOODS_NO }">
+										<input type="hidden" id="GOODS_NO" name="GOODS_NO" value="${wish.GOODS_NO }">
+										<strong>${wish.NAME}</strong></a>
 										<ul class="xans-element- xans-order xans-order-optionall option">
 										<li class="xans-record-">
 											[옵션: ${wish.COLOR }/${wish.GOODS_SIZE }] 

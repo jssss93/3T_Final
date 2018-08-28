@@ -19,14 +19,68 @@
 
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.btn-group > .btn:first-child {
+   width: 50;
+   height: 26;
+}
+.btn-group .btn + .btn, .btn-group .btn + .btn-group, .btn-group .btn-group + .btn, .btn-group .btn-group + .btn-group {
+  width: 40;
+}
+.note-popover .popover-content, .panel-heading.note-toolbar {
+  height: 40px;
+}
+.note-icon-magic {
+ margin: 0 0 0 10px;
+    height:     32px;
+}
+
+@media(min-width:768px) {
+    #page-wrapper {
+        position: inherit;
+        margin: auto;
+        padding: 0 30px;
+        width: 50%;
+       /*  border-left: 1px solid #e7e7e7; */
+    }
+}
+
+
+
+.note-btn btn btn-default btn-sm dropdown-toggle {
+  height: 40px;
+}
+.note-btn-group btn-group {
+  height: 30px;
+}
+</style>
 </head>
 <body>
+	<script language="javascript">
+	  function check() {
+
+		var f = document.Reg_form; 
+	
+		if (f.TITLE.value == "") {
+			alert("제목을 입력해주십시오");
+			f.TITLE.focus();
+			return false;
+		}
+		
+		 if(document.getElementById("summernote").value==null){
+			alert("내용를 입력해주십시오");
+			f.content.focus();
+			return false;
+		} 
+	}   
+	</script>
+	
 	<c:choose>
 		<c:when test="${map.TITLE==NULL }">
-			<form action="write"method="post" >
+			<form action="write" name="Reg_form" method="post" onsubmit="return check()">
 		</c:when>
 		<c:otherwise>
-			<form action="update"method="post" >
+			<form action="update" name="Reg_form"  method="post" onsubmit="return check()" >
 		</c:otherwise>
 	</c:choose>
 	
@@ -34,7 +88,7 @@
 	
 	<input type="text" class="form-control" name="TITLE" placeholder="제목을 입력해주세요" value="${map.TITLE }"><br/>
 	
-	<div id="summernote" value="4">${map.CONTENT }</div>
+	<div id="summernote" name="summernote" >${map.CONTENT }</div>
 	
 	<textarea id="noteArea" name="CONTENT"  style="display: none;"></textarea>
 	

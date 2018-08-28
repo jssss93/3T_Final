@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-   pageEncoding="utf-8"%>
+	pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <script type="text/javascript">
 /* 종합개수 카운트 */
+
 
 function BuyCheck(index) {
 
@@ -29,6 +30,7 @@ function BuyCheck(index) {
 
 /*    function scroll_follow( id )
 
+
 {
 
   $(window).scroll(function( ) //스크롤이 움직일때마다 이벤트 발생
@@ -47,8 +49,10 @@ function BuyCheck(index) {
 
  scroll_follow( "#scroll" );
 
-    //스크롤이 생기도록  */
-      
+
+	 //스크롤이 생기도록  */
+		
+
 </script>
 </head>
 
@@ -56,6 +60,8 @@ function BuyCheck(index) {
 <br><br>
 <br>
 <center>
+
+
    <table width="1000" height="300" border="0" cellpadding="5"
       cellspacing="0">
       <body>
@@ -224,7 +230,8 @@ function BuyCheck(index) {
       cellspacing="0">
 
 
-   </table>
+
+	</table>
 </center>
 <br>
 <br>
@@ -233,36 +240,36 @@ function BuyCheck(index) {
 <br>
 <br>
 <table width="500" border="1" height="500" align="CENTER"
-   cellpadding="0" cellspacing="0">
-   <br>
-   <br>
-   <br>관련상품
+	cellpadding="0" cellspacing="0">
+	<br>
+	<br>
+	<br>관련상품
 
 
 </table>
 <!-- 관련상품 -->
 <br>
 <table width="200" border="0" height="0" align="center" cellpadding="10"
-   cellspacing="10">
-   <tr>
-      <td><c:forEach items="${goodsRel }" var="list" varStatus="stat"
-            begin="0" end="15">
+	cellspacing="10">
+	<tr>
+		<td><c:forEach items="${goodsRel }" var="list" varStatus="stat"
+				begin="0" end="15">
 
-            <c:if test="stat.index == 3">
-               <tr></tr>
-            </c:if>
-
-
-            <td width="150" height="400" align="center"><a href="#this"
-               name="title"> <img id="myImg"
-                  src="/3T/resources/images/${list.IMAGE.split(',')[0] }"
-                  width="500" height="570"> <input type="hidden" id="GOODS_NO"
-                  name="   " value="${list.GOODS_NO }">
-            </a><br> <br> ${list.NAME }<br> &nbsp;${list.PRICE }</td>
+				<c:if test="stat.index == 3">
+					<tr></tr>
+				</c:if>
 
 
-         </c:forEach></td>
-   </tr>
+				<td width="150" height="400" align="center"><a href="#this"
+					name="title"> <img id="myImg"
+						src="/3T/resources/images/${list.IMAGE.split(',')[0] }"
+						width="500" height="570"> <input type="hidden" id="GOODS_NO"
+						name="	" value="${list.GOODS_NO }">
+				</a><br> <br> ${list.NAME }<br> &nbsp;${list.PRICE }</td>
+
+
+			</c:forEach></td>
+	</tr>
 
 
 
@@ -274,60 +281,62 @@ function BuyCheck(index) {
 <br>
 <br>
 <table width="55%" border="0" cellspacing="0" cellpadding="0"
-   class="board_top">
-   <tr>
-      <td height="50"></td>
-   </tr>
-   <tr>
-      <td align="center" class="text01 formbar"><h3>
-            <font color="#000000">REVIEW</font><span> : WRITE YOUR
-               REVIEWS~!</span>
-         </h3></td>
-   </tr>
+	class="board_top">
+	<tr>
+		<td height="50"></td>
+	</tr>
+	<tr>
+		<td align="center" class="text01 formbar"><h3>
+				<font color="#000000">REVIEW</font><span> : WRITE YOUR
+					REVIEWS~!</span>
+			</h3></td>
+	</tr>
 
-   <tr>
-      <td height="50"></td>
-   </tr>
+	<tr>
+		<td height="50"></td>
+	</tr>
 </table>
 <table width="70%" align="center" border="0" cellspacing="0"
-   cellpadding="1" class="board_review2">
+	cellpadding="1" class="board_review2">
 
-   <tr>
-      <td valign="middle"><strong>NO</strong></td>
-      <td valign="middle"><strong>TITLE</strong></td>
-      <td valign="middle"><strong>CONTENT</strong></td>
-      <td valign="middle"><strong>NAME</strong></td>
-      <td valign="middle"><strong>DATE</strong></td>
-      <td valign="middle"><strong>HIT</strong></td>
-   </tr>
+	<tr>
+		<td valign="middle"><strong>NO</strong></td>
+		<td valign="middle"><strong>TITLE</strong></td>
+		<td valign="middle"><strong>CONTENT</strong></td>
+		<td valign="middle"><strong>NAME</strong></td>
+		<td valign="middle"><strong>DATE</strong></td>
+		<td valign="middle"><strong>HIT</strong></td>
+	</tr>
 
-   <c:if test="${fn:length(goodsDetail1) le 0}">
-      <tr>
-         <td colspan="6" style="text-align: center;">등록된 리뷰가 없습니다</td>
-      </tr>
-   </c:if>
+	<c:if test="${fn:length(goodsDetail1) le 0}">
+		<tr>
+			<td colspan="6" style="text-align: center;">등록된 리뷰가 없습니다</td>
+		</tr>
+	</c:if>
 
-   <c:forEach var="goodsDetail1" items="${goodsDetail1}" varStatus="stat">
-      <tr>
+	<c:forEach var="goodsDetail1" items="${goodsDetail1}" varStatus="stat">
+		<tr>
 
-         <td align="center">${goodsDetail1.REVIEW_NO}</td>
 
-         <td><a href="#this" name="title2">${goodsDetail1.TITLE }</a> <input
-            type="hidden" id="REVIEW_NO" value="${goodsDetail1.REVIEW_NO }">
-            <input type="hidden" id="GOODS_NO" value="${goodsDetail1.GOODS_NO }">
-            <!-- <details> <summary>내용보기</summary> -->
-   
-         <td align="center">${goodsDetail1.CONTENT}</td>
+			<td align="center">${goodsDetail1.REVIEW_NO}</td>
 
-         <td align="center">${goodsDetail1.MEMBER_ID}</td>
+			<td><a href="#this" name="title2">${goodsDetail1.TITLE }</a> <input
+				type="hidden" id="REVIEW_NO" value="${goodsDetail1.REVIEW_NO }">
+				<input type="hidden" id="GOODS_NO" value="${goodsDetail1.GOODS_NO }">
+				<!-- <details> <summary>내용보기</summary> -->
+	
+			<td align="center">${goodsDetail1.CONTENT}</td>
 
-         <td align="center">${goodsDetail1.REGDATE}</td>
+			<td align="center">${goodsDetail1.MEMBER_ID}</td>
 
-         <td align="center">${goodsDetail1.READCNT}</td>
 
-      </tr>
+			<td align="center">${goodsDetail1.REGDATE}</td>
 
-   </c:forEach>
+			<td align="center">${goodsDetail1.READCNT}</td>
+
+		</tr>
+
+	</c:forEach>
 
 </table>
 
@@ -338,60 +347,62 @@ function BuyCheck(index) {
 <br>
 <br>
 <table width="50%" border="0" cellspacing="0" cellpadding="0"
-   class="board_top">
-   <tr>
-      <td height="50"></td>
-   </tr>
-   <tr>
-      <td align="center"><h3>
-            <font color="#000000">Q & A</font><span> : HAVE A QUESTION ?</span>
-         </h3></td>
-   </tr>
+	class="board_top">
+	<tr>
+		<td height="50"></td>
+	</tr>
+	<tr>
+		<td align="center"><h3>
+				<font color="#000000">Q & A</font><span> : HAVE A QUESTION ?</span>
+			</h3></td>
+	</tr>
 
-   <tr>
-      <td height="50"></td>
-   </tr>
+	<tr>
+		<td height="50"></td>
+	</tr>
 </table>
 <table width="70%" align="center" border="0" cellspacing="0"
-   cellpadding="0" class="board_review2">
+	cellpadding="0" class="board_review2">
 
-   <tr>
-      <td valign="middle"><strong>NO</strong></td>
-      <td valign="middle"><strong>TITLE</strong></td>
-      <td valign="middle"><strong>CONTENT</strong></td>
-      <td valign="middle"><strong>NAME</strong></td>
-      <td valign="middle"><strong>DATE</strong></td>
-      <td valign="middle"><strong>HIT</strong></td>
-   </tr>
+	<tr>
+		<td valign="middle"><strong>NO</strong></td>
+		<td valign="middle"><strong>TITLE</strong></td>
+		<td valign="middle"><strong>CONTENT</strong></td>
+		<td valign="middle"><strong>NAME</strong></td>
+		<td valign="middle"><strong>DATE</strong></td>
+		<td valign="middle"><strong>HIT</strong></td>
+	</tr>
 
-   <c:if test="${fn:length(goodsDetail2) le 0}">
-      <tr>
-         <td colspan="6" style="text-align: center;">등록된 QA가 없습니다</td>
-      </tr>
-   </c:if>
+	<c:if test="${fn:length(goodsDetail2) le 0}">
+		<tr>
+			<td colspan="6" style="text-align: center;">등록된 QA가 없습니다</td>
+		</tr>
+	</c:if>
 
-   <c:forEach var="goodsDetail2" items="${goodsDetail2}" varStatus="stat">
-      <tr>
-
-         <td align="center">${goodsDetail2.QA_NO}</td>
-
-         <td><a href="#this" name="title">${goodsDetail2.TITLE }</a> <input
-            type="hidden" id="QA_NO" value="${goodsDetail2.QA_NO }"> <!-- <details> <summary>내용보기</summary> -->
-            <input type="hidden" id="GOODS_NO" value="${goodsDetail2.GOODS_NO }">
-            
-         <td align="center">${goodsDetail2.CONTENT}</td>
-
-         <td align="center">${goodsDetail2.MEMBER_ID}</td>
-
-         <td align="center">${goodsDetail2.REGDATE}</td>
-
-         <td align="center">${goodsDetail2.READCNT}</td>
-
-      </tr>
+	<c:forEach var="goodsDetail2" items="${goodsDetail2}" varStatus="stat">
+		<tr>
 
 
+			<td align="center">${goodsDetail2.QA_NO}</td>
 
-   </c:forEach>
+			<td><a href="#this" name="title">${goodsDetail2.TITLE }</a> <input
+				type="hidden" id="QA_NO" value="${goodsDetail2.QA_NO }"> <!-- <details> <summary>내용보기</summary> -->
+				<input type="hidden" id="GOODS_NO" value="${goodsDetail2.GOODS_NO }">
+				
+			<td align="center">${goodsDetail2.CONTENT}</td>
+
+			<td align="center">${goodsDetail2.MEMBER_ID}</td>
+
+
+			<td align="center">${goodsDetail2.REGDATE}</td>
+
+			<td align="center">${goodsDetail2.READCNT}</td>
+
+		</tr>
+
+
+
+	</c:forEach>
 
 
 </table>
@@ -414,120 +425,119 @@ var r_optno = [];
 
 function setOption(obj) {
 
-    var optno = $("#option option:selected").val();
 
-   
+	 var optno = $("#option option:selected").val();
 
-    if (!optno || in_array(optno,r_optno)) return;
+	
+
+	 if (!optno || in_array(optno,r_optno)) return;
 
 
 
-    var li = "<li class='MK_li_1_1'><span class='MK_p-name'>" +
-    $("#option option:selected").attr("optnm") +
-    "</span><input type='hidden' name='optno[]' value='" +
-    optno +"'><input type='hidden' name='attribute_no[]' value='" +
-    $("option:selected",$(obj)).attr("attribute_no") +
-    "'><input type='hidden' class='mstock' value='" +
-    $("option:selected",$(obj)).attr("stock") +
-    "'><div class='MK_qty-ctrl' style='height:50px'><input type='text' name='ea[]' value='1' class='input_ea' size='2' maxlength='3'><span class='ea'><a class='MK_btn-up'><img src='/3T/resources/images/btn_num_up.gif' alt='' /></a><a class='MK_btn-dw'><img src='/3T/resources/images/btn_num_down.gif' alt='' /></a></span></div><span class='MK_price' data-price='"+$("option:selected",$(obj)).attr("price")+"'>" +($("option:selected",$(obj)).attr("price")) + "원</span><a href='#' optno='" + optno + "'class='MK_btn-del'><img src='/3T/resources/images/btn_close.gif' alt='' /></a></li>";
+	 var li = "<li class='MK_li_1_1'><span class='MK_p-name'>" + $("#option option:selected").attr("optnm") + "</span><input type='hidden' name='optno[]' value='" + optno +"'><input type='hidden' name='attribute_no[]' value='" + $("option:selected",$(obj)).attr("attribute_no") + "'><input type='hidden' class='mstock' value='" +$("option:selected",$(obj)).attr("stock") + "'><div class='MK_qty-ctrl' style='height:50px'><input type='text' name='ea[]' value='1' class='input_ea' size='2' maxlength='3'><span class='ea'><a class='MK_btn-up'><img src='/3T/resources/images/btn_num_up.gif' alt='' /></a><a class='MK_btn-dw'><img src='/3T/resources/images/btn_num_down.gif' alt='' /></a></span></div><span class='MK_price' data-price='"+$("option:selected",$(obj)).attr("price")+"'>" +($("option:selected",$(obj)).attr("price")) + "원</span><a href='#' optno='" + optno + "'class='MK_btn-del'><img src='/3T/resources/images/btn_close.gif' alt='' /></a></li>";
 
 
 
 
 
-   
 
-    $("#MK_innerOpt_01").append(li);
+	
 
-    r_optno.push(optno);
+	 $("#MK_innerOpt_01").append(li);
 
-    var thisIdx = $(".input_ea").index(this);
+	 r_optno.push(optno);
 
-    var inputEa = parseInt($(".input_ea").eq(thisIdx).val());
+	 var thisIdx = $(".input_ea").index(this);
 
-    change_ea(this,1);
+	 var inputEa = parseInt($(".input_ea").eq(thisIdx).val());
 
-    console.log("요기?"+inputEa);
+	 change_ea(this,1);
 
-    var price = parseInt($("option:selected",$('#option')).attr("price"));
+	 console.log("요기?"+inputEa);
 
-    price = price*inputEa;
+	 var price = parseInt($("option:selected",$('#option')).attr("price"));
 
-    price = parseInt(price);
+	 price = price*inputEa;
 
-    if(totprice != 0){
+	 price = parseInt(price);
 
-       totprice = $("#MK_txt-won").data("price");
+	 if(totprice != 0){
 
-    }
+	    totprice = $("#MK_txt-won").data("price");
 
-    totprice = totprice + price;
+	 }
 
-    console.log(totprice);
+	 totprice = totprice + price;
 
-    $("#MK_txt-won").data("price",totprice);
+	 console.log(totprice);
 
-    $("#MK_txt-won").html((totprice)+"원");
+	 $("#MK_txt-won").data("price",totprice);
+
+	 $("#MK_txt-won").html((totprice)+"원");
 
 }
 
-    $("#MK_innerOpt_01").on("click", "li a.MK_btn-del", function(){
+	 $("#MK_innerOpt_01").on("click", "li a.MK_btn-del", function(){
 
-    var ritem = $(this).attr("optno");
+	 var ritem = $(this).attr("optno");
 
-    var thisIdx = $(".MK_btn-del").index(this); 
+	 var thisIdx = $(".MK_btn-del").index(this); 
+
 
      console.log("음"+thisIdx);
 
      var price = $(".MK_price").eq(thisIdx).data("price");
 
-    console.log("zz"+price);
 
-    var totprice = $("#MK_txt-won").data("price");
+	 console.log("zz"+price);
 
-    totprice = totprice - price;
+	 var totprice = $("#MK_txt-won").data("price");
 
-    $("#MK_txt-won").data("price",totprice);
+	 totprice = totprice - price;
 
-    $("#MK_txt-won").html((totprice)+"원");
+	 $("#MK_txt-won").data("price",totprice);
 
-    
+	 $("#MK_txt-won").html((totprice)+"원");
 
-    r_optno = $.grep(r_optno,function(v){ return v != ritem; });
+	 
 
-    $(".MK_li_1_1").eq(thisIdx).remove();
+	 r_optno = $.grep(r_optno,function(v){ return v != ritem; });
 
-   });
+	 $(".MK_li_1_1").eq(thisIdx).remove();
+
+	});
 
 
 
-   $("#MK_innerOpt_01").on("click", "li a.MK_btn-up", function(e) {
+	$("#MK_innerOpt_01").on("click", "li a.MK_btn-up", function(e) {
 
-    var thisIdx = $(".MK_btn-up").index(this);    
+	 var thisIdx = $(".MK_btn-up").index(this);    
 
-    change_ea(this,1);
+	 change_ea(this,1);
 
-    var inputEa = parseInt($(".input_ea").eq(thisIdx).val());
+	 var inputEa = parseInt($(".input_ea").eq(thisIdx).val());
 
-    var mStock = parseInt($(".mstock").eq(thisIdx).val()); 
+	 var mStock = parseInt($(".mstock").eq(thisIdx).val()); 
 
-    var price = parseInt($("option:selected",$('#option')).attr("price"));
+	 var price = parseInt($("option:selected",$('#option')).attr("price"));
 
-    $(".MK_price").eq(thisIdx).data("price",(price*inputEa));
+	 $(".MK_price").eq(thisIdx).data("price",(price*inputEa));
 
-    var total = $(".MK_price").eq(thisIdx).html((price*inputEa)+"원");
+	 var total = $(".MK_price").eq(thisIdx).html((price*inputEa)+"원");
 
-    console.log("오나욜");
+	 console.log("오나욜");
 
-    var totprice = $("#MK_txt-won").data("price");
+	 var totprice = $("#MK_txt-won").data("price");
 
-    console.log(totprice);
+	 console.log(totprice);
 
-    totprice = totprice + price;
+	 totprice = totprice + price;
 
-    $("#MK_txt-won").data("price",totprice);
+	 $("#MK_txt-won").data("price",totprice);
 
-    $("#MK_txt-won").html((totprice)+"원");
+	 $("#MK_txt-won").html((totprice)+"원");
+
+
 
 
 
@@ -697,51 +707,54 @@ function setOption(obj) {
 
     
 
+
     /* var x = document.getElementById("option").value;
 
     document.getElementById("attribute").innerHTML = "You selected: " + x;
 
   */ 
-         
-         
-         
-         
-         <%-- /* 상세보기 review */
-         <%@ include file="/WEB-INF/include/include-body.jspf"%>
+
+			
+			
+			
+			
+			<%-- /* 상세보기 review */
+			<%@ include file="/WEB-INF/include/include-body.jspf"%>
              <script type="text/javascript">
-            $("a[name='title2']").on("click", function(e) { //제목 
-               e.preventDefault();
-               fn_openBoardDetail($(this));
-            });
+				$("a[name='title2']").on("click", function(e) { //제목 
+					e.preventDefault();
+					fn_openBoardDetail($(this));
+				});
 
-         function fn_openBoardDetail(obj) {
-            var comSubmit = new ComSubmit();
-            comSubmit.setUrl("<c:url value='/review/detail' />");
-            comSubmit.addParam("REVIEW_NO", obj.parent().find("#REVIEW_NO")
-                  .val());
-            comSubmitd
-                  .addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
-            comSubmit.submit();
-         }
-         
-         
-         /* 상세보기 q&a */
+			function fn_openBoardDetail(obj) {
+				var comSubmit = new ComSubmit();
+				comSubmit.setUrl("<c:url value='/review/detail' />");
+				comSubmit.addParam("REVIEW_NO", obj.parent().find("#REVIEW_NO")
+						.val());
+				comSubmitd
+						.addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
+				comSubmit.submit();
+			}
+			
+			
+			/* 상세보기 q&a */
 
-               $("a[name='title']").on("click", function(e) { //제목 
-                  e.preventDefault();
-                  fn_openBoardDetail($(this));
-               });
-               
-            function fn_openBoardDetail(obj) {
-               var comSubmit = new ComSubmit();
-               comSubmit.setUrl("<c:url value='/qa/detail' />");
-               comSubmit.addParam("QA_NO", obj.parent().find("#QA_NO").val());
-               comSubmit
-                     .addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
-               comSubmit.submit();
-            } --%>
-         
+					$("a[name='title']").on("click", function(e) { //제목 
+						e.preventDefault();
+						fn_openBoardDetail($(this));
+					});
+					
+				function fn_openBoardDetail(obj) {
+					var comSubmit = new ComSubmit();
+					comSubmit.setUrl("<c:url value='/qa/detail' />");
+					comSubmit.addParam("QA_NO", obj.parent().find("#QA_NO").val());
+					comSubmit
+							.addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
+					comSubmit.submit();
+				} --%>
+			
 
-      </script>
+		</script>
+
 </body>
 </html>

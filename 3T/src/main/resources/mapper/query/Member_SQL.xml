@@ -37,6 +37,32 @@
 			MEMBER_ID = #{MEMBER_ID}
 	]]>
 	</select>
+	
+	<select id="findId" parameterType="hashmap" resultType="String">
+		<![CDATA[
+		SELECT 
+			MEMBER_ID
+		FROM 
+			MEMBER 
+		WHERE 
+			EMAIL = #{EMAIL} AND
+			NAME = #{NAME}
+	]]>
+	</select>
+	
+	<select id="findPasswd" parameterType="hashmap" resultType="String">
+		<![CDATA[
+		SELECT 
+			PASSWD
+		FROM 
+			MEMBER 
+		WHERE 
+			MEMBER_ID = #{MEMBER_ID} AND
+			BIRTH = #{BIRTH} AND
+			NAME = #{NAME}
+	]]>
+	</select>
+	
 
 	<select id="memberInfo" parameterType="String" resultType="hashmap">
 			<![CDATA[

@@ -16,11 +16,21 @@
 </head>
 <body>
  <script type="text/javascript">
-
+ function chkBox(bool) { // 전체선택/해제 
+		var obj = document.getElementsByName("join");
+		for ( var i = 0; i < obj.length; i++)
+			obj[i].checked = bool;
+	}
 		function validation() {
 
 			var frm = document.forms[0];
+			
 
+			if (frm.agree.checked == false) {
+				alert("이용약관에  동의해 주시기 바랍니다.");
+				return false;
+			}
+		
 			if (frm.TITLE.value == "") {
 				alert("제목을 입력해주세요.");
 				return false;
@@ -36,11 +46,12 @@
 			}
 			return true;
 		}
+		
 	</script>
 
 	<table width="100%" align="center" border="0" cellspacing="0"
 		cellpadding="1" colspan="1" class="board_top">
-		<br />
+		<br/>
 		<tr>
 			<td height="50"></td>
 		</tr>
@@ -59,28 +70,20 @@
 			<c:when test="${list.GOODS_NO > 0 }">
 
 				<tr class="board_subject2">
-					<td align="center" width="120"><img width="100" height="100"
-						src="/3T/resources/upload/${list.IMAGE.split(',')[0] }" />
-					<td>${list.NAME }<br /> KRW&nbsp;${list.PRICE } <br> <a
-						class="board_subject4" type="button"
-						onclick="javascript:open_win_noresizable('reviewGoodsSelect', write)">
-							<img
-							src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/btn_prd_select.gif"
-							alt="상품정보선택">
-					</a> <input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
-
-
-						<a href="/3T/goods/detail?GOODS_NO=${list.GOODS_NO}" type="submit"> <img
-							src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/btn_prd_detail.gif"
-							alt="상품상세보기"> <input type="hidden" name="GOODS_NO"
-							value="${list.GOODS_NO }" /></a>  
-							
-							<%-- <form action="/3T/goods/detail">
-							<input type="submit" class="btn" value="상품 상세보기"> <input
-								type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
-						</form>  --%>
+					<td align="center" width="120"><img width="100" height="100" src="/3T/resources/upload/${list.IMAGE.split(',')[0] }" />
+					<td>${list.NAME }<br /> KRW&nbsp;${list.PRICE } <br> 
+						<a class="board_subject4" type="button" onclick="javascript:open_win_noresizable('reviewGoodsSelect', write)">
+							<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/btn_prd_select.gif" alt="상품정보선택">
+						</a> 
+						<input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
+						
+						
+						
+						<a href="/3T/goods/detail?GOODS_NO=${list.GOODS_NO}" type="submit"> 
+							<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/btn_prd_detail.gif" alt="상품상세보기"> 
+							<input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
+						</a>  
 					</td>
-
 				</tr>
 			</c:when>
 			<c:otherwise>
@@ -120,9 +123,6 @@
 					<td colspan="2" class="board_content2"><textarea rows="25"
 							cols="168" title="내용" id="CONTENT" name="CONTENT"></textarea></td>
 				</tr>
-				<!-- <tr class="board_title">
-					<td><input type="button" value="파일 선택">파일 이름</td>
-					</tr> -->
 				<tr class="board_title">
 					<th scope="row">PASSWORD</th>
 					<td><input type="text" id="PASSWD" name="PASSWD"
@@ -140,21 +140,19 @@
 ■ 개인정보의 보유 및 이용 기간
 회사는 개인정보 수집 및 이용목적이 달성된 후에는 예외없이 해당정보를 파기합니다.
 #개인정보의 위탁 처리애즈클로는 서비스 향상을 위해 관계법령에 따라 회원의 동의를 얻거나 관련 사항을 공개 또는 고지 후 회원의 개인정보를 외부에 위탁하여 처리하고 있습니다. 애즈클로의 개인정보처리 수탁자와 그 업무의 내용은 다음과 같습니다. - 수탁자 : (주)루나소프트- 위탁 업무 내용 : 카카오 알림톡 발송 업무 직송 등 일부 배송형태에 따라, 전자상거래소비자보호법 제 21조에 의거 협력사에 배송정보가 제공 됩니다.</textarea>
-						<br /> 개인정보 수집 및 이용에 동의 하십니까?<input type="radio" name="open"
-						value="open" />동의함 <input type="radio" name="open" value="open" />동의
-						안함</td>
+						<br /> 개인정보 수집 및 이용에 동의 하십니까?<input id="agree" type="checkbox" name="open"
+						value="open" />동의함 
 				</tr>
-
-
 			</tbody>
-
 		</table>
 		<br> <br>
 		<table class="notice_button">
 			<tr>
-				<td><a href="#this" class="btn" id="list">목록으로</a> <input
-					type="submit" class="btn" value="작성완료"> <input
-					type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" /></td>
+				<td>
+					<a href="#this" class="btn" id="list">목록으로</a> 
+					<input type="submit" class="btn" value="작성완료"> 
+					<input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
+				</td>
 			</tr>
 		</table>
 	</form>
@@ -166,19 +164,16 @@
 				e.preventDefault();
 				fn_List();
 			});
-
 			$("#write").on("click", function(e) { //작성하기 버튼
 				e.preventDefault();
 				fn_Write();
 			});
 		});
-
 		function fn_List() {
 			var comSubmit = new ComSubmit();
 			comSubmit.setUrl("<c:url value='/review/list' />");
 			comSubmit.submit();
 		}
-
 		function fn_Write() {
 			var comSubmit = new ComSubmit("frm");
 			comSubmit.setUrl("<c:url value='/review/write' />");
