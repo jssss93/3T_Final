@@ -6,8 +6,26 @@
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 </head>
 <body>
+<script type="text/javascript">
+	
+		function check() {
+			var f = document.Reg_form; 
+			
+			if (f.TITLE.value == "") {
+				alert("제목을 입력해주십시오");
+				f.TITLE.focus();
+				return false;
+			}
+			if (f.CONTENT.value == "") {
+				alert("내용을 입력해주십시오");
+				f.CONTENT.focus();
+				return false;
+			}
+			
+		}
+	</script>
 
-	<form id="frm" name="frm">
+	<form action="/3T/review/update" id="frm" name="Reg_form" onsubmit="return check()">
 		<table class="board_view2">
 
 			<caption>게시글 상세</caption>
@@ -19,10 +37,7 @@
 						type="hidden" id="GOODS_NO" name="GOODS_NO"
 						value="${map.GOODS_NO }">
 					</td>
-					<%--       <th scope="row">조회수</th>
-
-
-                    <td>${map.REV_READCNT }</td> --%>
+					
 				</tr>
 				<tr class="board_title">
 					<th scope="row">NAME</th>
@@ -44,20 +59,20 @@
 				</tr>
 			</tbody>
 		</table>
-	</form>
+	
 	<br>
 
 	<table class="notice_button">
 		<tr>
 			<td>
-				<!-- <a href="#this" class="btn" id="addFile">파일 추가</a> --> <a
-				href="#this" class="btn" id="list">LIST</a> <a href="#this"
+			 <a	href="#this" class="btn" id="list">LIST</a> <a href="#this"
 				class="btn" id="update">UPDATE</a> <a href="#this" class="btn"
 				id="delete">DELETE</a>
+				<input type="submit" class="btn" value="수정">
 			</td>
 		</tr>
 	</table>
-
+</form>
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	<script type="text/javascript">
 		/* var gfv_count = '${fn:length(list)+1}';  */

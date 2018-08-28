@@ -199,10 +199,24 @@
 	})();
 </script> -->
 <script language="javascript">
+function chkBox(bool) { // 전체선택/해제 
+	var obj = document.getElementsByName("join");
+	for ( var i = 0; i < obj.length; i++)
+		obj[i].checked = bool;
+}
 	  function check() {
 
 		var f = document.Reg_form; 
 	
+		if (f.agree_service_check1.checked == false) {
+			alert("이용약관에  동의해 주시기 바랍니다.");
+			return false;
+		}
+
+		if (f.agree_privacy_check0.checked == false) {
+			alert("개인정보 수집 및 이용에 동의해 주시기 바랍니다.");
+			return false;
+		}
 		if (f.MEMBER_ID.value == "") {
 			alert("아이디를 입력해주십시오");
 			f.MEMBER_ID.focus();
@@ -272,7 +286,7 @@
 			f.EMAIL.focus();
 			return false;
 		}	
-	
+		
 	
 		
 	}   
@@ -295,22 +309,6 @@
 								 "scrollbars=no,resizable=no,width=400,height=200");
 		}
 </script>
-<!--  <script type="text/JavaScript">
-	
-	function check() {
-			if (Reg_form.agree_privacy_check1.checked == false) {
-			alert("이용약관에  동의해 주시기 바랍니다.");
-			return false;
-		}
-		
-
-		 if (Reg_form.agree_privacy_check0.checked == false) {
-			alert("개인정보 수집 및 이용에  동의해 주시기 바랍니다.");
-			return false;
-		} 
-
-	}
-</script>  -->
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script language="Javascript">
@@ -573,8 +571,10 @@
 								</tbody>
 
 							</table>
+							
 						</div>
 						<h3>전체 동의</h3>
+							<!-- <form name="join_agree" onsubmit="return check2()"> -->
 						<div class="ec-base-box typeThinBg gStrong">
 							<p>
 								<label for="sAgreeAllChecked"><strong>이용약관 및
@@ -964,8 +964,8 @@
 								<span>개인정보 수집 및 이용에 동의하십니까?</span> <input
 									id="agree_privacy_check0" name="agree_privacy_check[]"
 									fw-filter="/1/" fw-label="개인정보 수집 및 이용 방침"
-									fw-msg="개인정보 수집 및 이용 방침에 동의하세요" value="1" type="checkbox"><label
-									for="agree_privacy_check0">동의함</label>
+									fw-msg="개인정보 수집 및 이용 방침에 동의하세요" value="1" type="checkbox" checked="checked"><label
+									for="agree_privacy_check0" >동의함</label>
 							</p>
 						</div>
 						<div class="ec-base-box typeThinBg agreeArea displaynone">

@@ -40,7 +40,7 @@
 					src="/3T/resources/upload/${row.IMAGE.split(',')[0] }" /></td>
 				<td>${row.NAME }<br /> KRW&nbsp; ${row.PRICE }
 				</td>
-				<form action="/3T/review/reviewGoodsSuccess">
+				<form action="/3T/review/reviewGoodsSuccess" >
 					<td><input type="submit" class="btn" value="선택"></td> <input
 						type="hidden" id="GOODS_NO" NAME="GOODS_NO"
 						value="${row.GOODS_NO }">
@@ -74,11 +74,7 @@
             comSubmit.addParam("SearchNum", obj.parent().find("#SearchNum").val());
             comSubmit.addParam("SearchKeyword", obj.parent().find("#SearchKeyword").val());
             comSubmit.submit();
-        }
-        	
-        
-       
-        
+        } 
     </script>
 </body>
 </html>

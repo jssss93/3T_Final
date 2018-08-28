@@ -56,12 +56,31 @@
 </style>
 </head>
 <body>
+	<script language="javascript">
+	  function check() {
+
+		var f = document.Reg_form; 
+	
+		if (f.TITLE.value == "") {
+			alert("제목을 입력해주십시오");
+			f.TITLE.focus();
+			return false;
+		}
+		
+		 if(document.getElementById("summernote").value==null){
+			alert("내용를 입력해주십시오");
+			f.content.focus();
+			return false;
+		} 
+	}   
+	</script>
+	
 	<c:choose>
 		<c:when test="${map.TITLE==NULL }">
-			<form action="write"method="post" >
+			<form action="write" name="Reg_form" method="post" onsubmit="return check()">
 		</c:when>
 		<c:otherwise>
-			<form action="update"method="post" >
+			<form action="update" name="Reg_form"  method="post" onsubmit="return check()" >
 		</c:otherwise>
 	</c:choose>
 	
@@ -69,7 +88,7 @@
 	
 	<input type="text" class="form-control" name="TITLE" placeholder="제목을 입력해주세요" value="${map.TITLE }"><br/>
 	
-	<div id="summernote" value="4">${map.CONTENT }</div>
+	<div id="summernote" name="summernote" >${map.CONTENT }</div>
 	
 	<textarea id="noteArea" name="CONTENT"  style="display: none;"></textarea>
 	

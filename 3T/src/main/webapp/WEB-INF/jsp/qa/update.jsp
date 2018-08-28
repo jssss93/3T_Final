@@ -24,7 +24,26 @@
 </table>
 
 <body>
-	<form id="frm" name="frm">
+<script type="text/javascript">
+	
+		function check() {
+			var f = document.Reg_form; 
+			
+			if (f.TITLE.value == "") {
+				alert("제목을 입력해주십시오");
+				f.TITLE.focus();
+				return false;
+			}
+			if (f.CONTENT.value == "") {
+				alert("내용을 입력해주십시오");
+				f.CONTENT.focus();
+				return false;
+			}
+			
+		}
+	</script>
+	
+	<form action="/3T/qa/update" id="frm" name="Reg_form" onsubmit="return check()">
 		<table border="1" align="center" class="board_view2">
 			
 			<tbody>
@@ -55,7 +74,7 @@
 
 			</tbody>
 		</table>
-	</form>
+	
 	<br>
 
 	<table class="notice_button">
@@ -65,10 +84,12 @@
 				href="#this" class="btn" id="list">LIST</a> <a href="#this"
 				class="btn" id="update">UPDATE</a> <a href="#this" class="btn"
 				id="delete">DELETE</a>
+				<input type="submit" class="btn" value="수정">
+				<input type="button"onclick="test();">
 			</td>
 		</tr>
 	</table>
-
+</form>
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	<script type="text/javascript">
 		/* var gfv_count = '${fn:length(list)+1}';  */
@@ -77,20 +98,16 @@
 				e.preventDefault();
 				fn_openBoardList();
 			});
-
 			$("#update").on("click", function(e) { //저장하기 버튼
 				e.preventDefault();
 				fn_updateBoard();
 			});
-
 			$("#delete").on("click", function(e) { //삭제하기 버튼
 				e.preventDefault();
 				fn_deleteBoard();
 			});
-
-			
 		});
-
+		
 		function fn_openBoardList() {
 			var comSubmit = new ComSubmit();
 			comSubmit.setUrl("<c:url value='/qa/list' />");
@@ -110,7 +127,6 @@
 			comSubmit.submit();
 
 		}
-
 	</script>
 </body>
 </html>
