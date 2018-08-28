@@ -171,4 +171,46 @@ public class GoodsController {
 
       return mv;
    }
+   
+   @RequestMapping(value = "/goods/search")
+   public ModelAndView goodsSearch(CommandMap commandMap) throws Exception {
+      ModelAndView mv = new ModelAndView("goods/searchform");
+
+      System.out.println("들어오냐??" + commandMap.getMap());
+      
+      if(commandMap.get("NAME") != null)
+      {
+          List<Map<String, Object>> searchlist = goodsService.goodsSearchListName(commandMap.getMap());
+          
+          mv.addObject("searchlist", searchlist);
+      }
+      else if(commandMap.get("RowPrice") != null)
+      {
+          List<Map<String, Object>> searchlist = goodsService.goodsSearchListRowPrice(commandMap.getMap());
+          
+          mv.addObject("searchlist", searchlist);
+      }
+      else if(commandMap.get("HighPrice") != null)
+      {
+          List<Map<String, Object>> searchlist = goodsService.goodsSearchListHighPrice(commandMap.getMap());
+          
+          mv.addObject("searchlist", searchlist);
+      }
+      else if(commandMap.get("PRICE1") != null && commandMap.get("PRICE2") != "" && commandMap.get("PRICE2") != null)
+      {
+          List<Map<String, Object>> searchlist = goodsService.goodsSearchPriceList(commandMap.getMap());
+          
+          mv.addObject("searchlist", searchlist);
+      }
+      else
+      {
+          List<Map<String, Object>> searchlist = goodsService.goodsSearchList(commandMap.getMap());
+          
+          mv.addObject("searchlist", searchlist);
+      }
+      
+
+      
+      return mv;
+   } 
 }

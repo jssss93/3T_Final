@@ -94,6 +94,41 @@
 
 
 	<div>
+	
+	<nav>
+			<div class="fullscreen_menu_button">
+				<a class="btn-open" href="#"><img
+					src="/3T/resources/images/search_btn.png"></a>
+			</div>
+		</nav>
+
+		<div class="overlay" style="display: none;">
+			<div class="wrap">
+
+				<form id="searchBarForm" name="" action="/3T/goods/search" method="get" enctype="multipart/form-data">
+				<input type="hidden" id="CATEGORY" name="CATEGORY" value="">
+				<input type="hidden" id="PRICE1" name="PRICE1" value="">
+				<input type="hidden" id="PRICE2" name="PRICE2" value="">
+				
+					
+					<div class="xans-element- xans-layout xans-layout-searchheader ">
+						<h2>
+							<span
+								class="xans-element- xans-layout xans-layout-logotop fullscreen ">
+								<img src="/3T/resources/images/3T2.png">
+							</span>
+						</h2>
+						<fieldset>
+							<legend>검색</legend>
+							<input id="keyword" name="keyword" class="inputTypeText" placeholder="" value="" type="text">
+								
+							<input type="image" placeholder="SEARCH.." src="/3T/resources/images/btn_search.png" alt="검색">
+							&nbsp;
+						</fieldset>
+					</div>
+				</form>
+			</div>
+		</div>
 
 		<div id="body" align="center" style="width: 80%; margin: 0 auto;">
 			<tiles:insertAttribute name="body" ignore="true" />
@@ -283,6 +318,15 @@
 			</td>
 		</tr>
 	</div>
+	
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.fullscreen_menu_button a').click(function () {
+            $('.overlay').fadeToggle(200);
+            $(this).toggleClass('btn-open').toggleClass('btn-close');
+        });
+    });
+</script>
 
 	<script type="text/javascript">
 		$(document).ready(function() {
