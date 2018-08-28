@@ -40,7 +40,7 @@
       <div id="contents">
 
          <form id="member_form_6149332581" name=""
-            action="/3T/login/" method="post" onsubmit="return validation();">
+            action="/3T/findPasswd" method="post" onsubmit="return validation();">
             
             <div class="xans-element- xans-member xans-member-login ">
                <!--
@@ -50,29 +50,21 @@
                <div class="login">
                   <h3></h3>
                   <fieldset>
-                     <legend>회원로그인</legend>
-                     <span>ID</span> <label class="id"><input id="MEMBER_ID"
+                     <legend>비밀번호 찾기</legend>
+                     <span>아이디</span> <label class="id"><input id="MEMBER_ID"
                         name="MEMBER_ID" fw-filter="isFill" fw-label="아이디" fw-msg=""
                         class="inputTypeText" placeholder="" value="" type="text"></label>
-                     <span>PASSWORD</span><label class="password"><input
-                        id="PASSWD" name="PASSWD"
-                        fw-filter="isFill&amp;isMin[4]&amp;isMax[16]" fw-label="패스워드"
-                        fw-msg="" value="" type="password"></label>
-                     <li><a href="/3T/findIdForm">Forgot id? </a></li>
-                     <li><a href="/3T/findPasswdForm">
-                           Forgot password?</a></li>
-                     <p class="security">
-                        <input id="member_check_save_id0" name="check_save_id"
-                           fw-filter="" fw-label="아이디저장" fw-msg="" value="T"
-                           type="checkbox"><label for="member_check_save_id0">아이디
-                           저장</label>
-                     </p>
+                     <span>이름</span> <label class="id"><input id="NAME"
+                        name="NAME" fw-filter="isFill" fw-label="이름" fw-msg=""
+                        class="inputTypeText" placeholder="" value="" type="text"></label>
+                     <span>생년월일</span> <label class="id"><input id="BIRTH"
+                        name="BIRTH" fw-filter="isFill" fw-label="생년월일" fw-msg=""
+                        class="inputTypeText" placeholder="" value="" type="text"></label>
 
                      <p class="link">
                         
-                        <span class="loginbtn"><input class="loginbtn" type="submit" value="Login"></span>
-                        <span class="joinusbtn"><a href="/3T/member/joinStep1">Join
-                              us</a></span>
+                         <span class="loginbtn"><input class="loginbtn" type="submit" value="  찾기  "></span>
+                        <span class="joinusbtn"><a href="/3T/loginForm">취소</a></span>
                      </p>
 
                      

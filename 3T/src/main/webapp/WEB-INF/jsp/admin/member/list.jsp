@@ -81,8 +81,8 @@
 										<th style="width: 9%; text-align: center;">전화번호</th>
 										<th style="width: 14%; text-align: center;">이메일</th>
 										<th style="width: 29%; text-align: center;">주소</th>
-										<th style="width: 5%; text-align: center;">포인트</th>
-										<th style="width: 13%; text-align: center;">가입날짜</th>
+										<th style="width: 5%; text-align: center;">가입날짜</th>
+										<th style="width: 13%; text-align: center;">수정,삭제</th>
 									</tr>
 									
 								</thead>
