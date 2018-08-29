@@ -119,8 +119,8 @@ a:link, a:visited {
 	letter-spacing: 1px;
 }
 
-----------------------------------------------------------------
--상품 상세보기-----------------------------------------------------------
+
+--------------------------------------------------------------상품 상세보기-----------------------------------------------------------
 
 .btnArea a {
 	display: block;
@@ -137,6 +137,9 @@ a:link, a:visited {
 
 .margin_main {
 	margin-left: -17px;
+}
+.margin_main2 {
+	margin-left: -180px;
 }
 
 .order_title {
@@ -1032,15 +1035,24 @@ a:link, a:visited {
 	-moz-osx-font-smoothing: grayscale;
 	border-top: 1px solid #ccc;
 	padding: 10px 0;
-	text-align: left;
+	/* text-align: left; */
 	vertical-align: middle;
 	border-bottom: 1px solid #ccc;
 }
 
-.board_review3 td.title {
-	font-family: FontAwesome;
-	text-align: left;
-	padding-left: 20px
+.board_review3 td.subject {
+	font-family: 'Lato';
+    font-size: 11px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding: 10px 0;
+    /* text-align: left; */
+    vertical-align: middle;
+    text-align: left;
+	padding-left: 80px;
 }
 
 .board_review3 td a {
@@ -1048,12 +1060,12 @@ a:link, a:visited {
 	display: inline-block
 }
 
-.board_review3 table .subject {
+/* .board_review3 table .subject {
 	word-break: break-all;
 	font-size: 12px;
 	text-align: left;
 	padding-left: 8px;
-}
+} */
 
 .board_review3 tbody td div {
 	margin-bottom: 5px;

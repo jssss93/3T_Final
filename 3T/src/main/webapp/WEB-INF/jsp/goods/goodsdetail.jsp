@@ -23,7 +23,7 @@ function BuyCheck(index) {
 	}
 	if (index == 4) {
 	   alert('관심상품으로 등록되었습니다.');
-	   document.form.action = '/3T/wish/addWish';
+	   document.form.action = 'AddWish';
 	}
 	   document.form.submit();
 }
@@ -54,6 +54,17 @@ function BuyCheck(index) {
 		
 
 </script>
+<style>
+table {
+	font-family: 'Lato','Nanum Gothic';
+}
+#myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 15;
+}
+</style>
 </head>
 
 <br><br>
@@ -249,8 +260,8 @@ function BuyCheck(index) {
 </table>
 <!-- 관련상품 -->
 <br>
-<table width="200" border="0" height="0" align="center" cellpadding="10"
-	cellspacing="10">
+<table width="1100" border="0" height="300" align="left"
+		cellpadding="0" cellspacing="20" class="margin_main2">
 	<tr>
 		<td><c:forEach items="${goodsRel }" var="list" varStatus="stat"
 				begin="0" end="15">
@@ -260,10 +271,10 @@ function BuyCheck(index) {
 				</c:if>
 
 
-				<td width="150" height="400" align="center"><a href="#this"
+				<td width="300" height="300" align="center" ><a href="#this"
 					name="title"> <img id="myImg"
 						src="/3T/resources/images/${list.IMAGE.split(',')[0] }"
-						width="500" height="570"> <input type="hidden" id="GOODS_NO"
+						width="300" height="300"> <input type="hidden" id="GOODS_NO"
 						name="	" value="${list.GOODS_NO }">
 				</a><br> <br> ${list.NAME }<br> &nbsp;${list.PRICE }</td>
 
@@ -366,11 +377,12 @@ function BuyCheck(index) {
 
 	<tr>
 		<td valign="middle"><strong>NO</strong></td>
-		<td valign="middle"><strong>TITLE</strong></td>
-		<td valign="middle"><strong>CONTENT</strong></td>
-		<td valign="middle"><strong>NAME</strong></td>
-		<td valign="middle"><strong>DATE</strong></td>
-		<td valign="middle"><strong>HIT</strong></td>
+			<td valign="middle"><strong>CATEGORY</strong></td>
+			<td valign="middle"><strong>ITEM</strong></td>
+			<td valign="middle"><strong>SUBJECT</strong></td>
+			<td valign="middle"><strong>NAME</strong></td>
+			<td valign="middle"><strong>STATUS</strong></td>
+			<td valign="middle"><strong>DATE</strong></td>
 	</tr>
 
 	<c:if test="${fn:length(goodsDetail2) le 0}">
@@ -384,31 +396,50 @@ function BuyCheck(index) {
 
 
 			<td align="center">${goodsDetail2.QA_NO}</td>
-
-			<td><a href="#this" name="title">${goodsDetail2.TITLE }</a> <input
-				type="hidden" id="QA_NO" value="${goodsDetail2.QA_NO }"> <!-- <details> <summary>내용보기</summary> -->
-				<input type="hidden" id="GOODS_NO" value="${goodsDetail2.GOODS_NO }">
+			
+			<td align="center"><c:if test="${goodsDetail2.CATEGORY == 1 }">
+				 상품문의
+			   </c:if> <c:if test="${goodsDetail2.CATEGORY == 2 }">
+				 배송문의
+			   </c:if> <c:if test="${goodsDetail2.CATEGORY == 3 }">
+				 입금확인문의
+			   </c:if> <c:if test="${goodsDetail2.CATEGORY == 4 }">
+				 기타문의
+			   </c:if></td>
+			
+           <td><a href="#this" name="title3">${goodsDetail2.TITLE }</a> 
+			   <details> <summary>내용보기</summary>
+                     <{goodsDetail2.CONTENT} /></details>
+			     <input type="hidden" id="QA_NO" value="${goodsDetail2.QA_NO }">
+				 <input type="hidden" id="GOODS_NO" value="${goodsDetail2.GOODS_NO }"></td>
 				
 			<td align="center">${goodsDetail2.CONTENT}</td>
 
 			<td align="center">${goodsDetail2.MEMBER_ID}</td>
-
+			
+			<c:if test="${goodsDetail2.STATUS ==1 }">
+				<td align="center">공개글</td>
+				    </c:if>
+					<c:if test="${goodsDetail2.STATUS ==0 }">
+					<td align="center">비밀글</td>
+					</c:if>
 
 			<td align="center">${goodsDetail2.REGDATE}</td>
-
-			<td align="center">${goodsDetail2.READCNT}</td>
-
 		</tr>
 
-
-
 	</c:forEach>
-
-
 </table>
+<br>
+<!-- 상품 디테일에서 GOODS_NO 보내서 쓰기 -->
+	<form action="/3T/qa/writeForm">
+		<table class="notice_button">
+			<tr>
+				<td><input type="submit" class="btn" value="WRITE"></td>
+			</tr>
+		</table>
+	</form>
 
 
-
 <br>
 <br>
 <br>
@@ -416,6 +447,7 @@ function BuyCheck(index) {
 <br>
 <br>
 
+<%@ include file="/WEB-INF/include/include-body.jspf"%>
 <script>
 var totprice = 0;
 
@@ -718,15 +750,14 @@ function setOption(obj) {
 			
 			
 			
-			<%-- /* 상세보기 review */
-			<%@ include file="/WEB-INF/include/include-body.jspf"%>
-             <script type="text/javascript">
+			 /* 상세보기 review */
+
 				$("a[name='title2']").on("click", function(e) { //제목 
 					e.preventDefault();
-					fn_openBoardDetail($(this));
+					fn_openBoardDetail1($(this));
 				});
 
-			function fn_openBoardDetail(obj) {
+			function fn_openBoardDetail1(obj) {
 				var comSubmit = new ComSubmit();
 				comSubmit.setUrl("<c:url value='/review/detail' />");
 				comSubmit.addParam("REVIEW_NO", obj.parent().find("#REVIEW_NO")
@@ -739,19 +770,19 @@ function setOption(obj) {
 			
 			/* 상세보기 q&a */
 
-					$("a[name='title']").on("click", function(e) { //제목 
+					$("a[name='title3']").on("click", function(e) { //제목 
 						e.preventDefault();
-						fn_openBoardDetail($(this));
+						fn_openBoardDetail2($(this));
 					});
 					
-				function fn_openBoardDetail(obj) {
+				function fn_openBoardDetail2(obj) {
 					var comSubmit = new ComSubmit();
 					comSubmit.setUrl("<c:url value='/qa/detail' />");
 					comSubmit.addParam("QA_NO", obj.parent().find("#QA_NO").val());
 					comSubmit
 							.addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
 					comSubmit.submit();
-				} --%>
+				}
 			
 
 		</script>

@@ -5,7 +5,17 @@
 <head>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
-
+<style>
+a:link{
+    text-decoration: none;
+    color: #656565;
+    margin-right: 5px;
+    color: #353535;
+    /* font-weight: bold; */
+    font-family: 'Lato', 'NanumGothic';
+    font-size: 12px;
+}
+</style>
 
 </head>
 <body>
@@ -37,9 +47,9 @@
 					<c:forEach items="${list }" var="row">
 						<tr>
 							<td>${row.FAQ_NO }</td>
-							<td><a href="#this" name="title">${row.TITLE }</a> <input
+							<td class="subject"><a href="#this" name="title">${row.TITLE }</a> <input
 								type="hidden" id="FAQ_NO" value="${row.FAQ_NO }"></td>
-							<td align=right>${row.MEMBER_ID }</td>
+							<td align="center">${row.MEMBER_ID }</td>
 						</tr>
 					</c:forEach>
 				</c:when>
