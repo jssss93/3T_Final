@@ -37,7 +37,7 @@
 				<a href="#this" name="title">
 
 						<img id="myImg"
-							src="/3T/resources/images/${New.IMAGE.split(',')[0]}"
+							src="/3T/resources/upload/${New.IMAGE.split(',')[0]}"
 							width="430" height="290">
 							<input type="hidden" id="GOODS_NO" name="GOODS_NO" value="${New.GOODS_NO }">
 					</a></td>
@@ -70,7 +70,7 @@
 				<a href="#this" name="title" >
 
 						<img id="myImg"
-							src="/3T/resources/images/${list.IMAGE.split(',')[0] }"
+							src="/3T/resources/upload/${list.IMAGE.split(',')[0] }"
 							width="490" height="560">
 							<input type="hidden" id="GOODS_NO" name="GOODS_NO" value="${list.GOODS_NO }">
 					</a><br> <br> ${list.NAME }<br>
@@ -101,7 +101,7 @@
 	<br>
 	<br>
 	<br>
-	<table width="80%" border="0" height="300" align="center"
+	<table width="100%" border="0" height="300" align="center"
 		cellpadding="0" cellspacing="10">
 		<tr>
 			<td colspan=3 align="center"><img src="/3T/resources/images/mainline5.png" /></td>
@@ -127,7 +127,7 @@
 				<td width="150" height="400" align="center">
 				<a href="#this" name="title">
 
-				<img id="myImg" src="/3T/resources/images/${best.IMAGE.split(',')[0]}" width="490" height="560">
+				<img id="myImg" src="/3T/resources/upload/${best.IMAGE.split(',')[0]}" width="490" height="560">
 				<input type="hidden" id="GOODS_NO" name="GOODS_NO" value="${best.GOODS_NO }">
 				</a>
 				<br> <br> ${best.NAME }<br>

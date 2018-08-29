@@ -845,7 +845,7 @@ FROM
          ]]>
    </update> -->
    
-   <!-- RIVIEW 상세보기 리스트-->
+  <!-- RIVIEW 상세보기 리스트-->
    <select id="selectGoodsReviewList" resultType="hashmap" parameterType="hashmap">
    <![CDATA[
       SELECT
@@ -868,20 +868,19 @@ FROM
 <!-- QA 상세보기 리스트-->
    <select id="selectQaViewList" resultType="hashmap" parameterType="hashmap">
    <![CDATA[
-      	select 
-       		QA_NO,
-        	TITLE,
-        	MEMBER_ID,
-      		CONTENT,
-        	REGDATE,
-   			CATEGORY,
-           	STATUS,
-           	GOODS_NO
-      	FROM 
-          	QA 
-      	WHERE 
+         select 
+              QA_NO,
+            TITLE,
+            MEMBER_ID,
+            REGDATE,
+            CONTENT,
+         CATEGORY,
+         GOODS_NO
+         FROM 
+             QA 
+         WHERE 
           GOODS_NO = #{GOODS_NO} 
-      	ORDER BY 
+         ORDER BY 
           QA_NO
           ]]>
    </select>
@@ -894,7 +893,6 @@ FROM
 
 
 <select id="goodsSearchList" parameterType="hashMap" resultType="hashMap">
-		<![CDATA[
 		select 
 			GOODS_NO, 
 			NAME,
@@ -924,6 +922,9 @@ FROM
       		GOODS a INNER JOIN UPLOAD b
         	ON a.GOODS_NO = b.GOODS_NO
         WHERE
+        	<if test='PRICE1 != "" and PRICE2 != ""'>
+        	PRICE BETWEEN #{PRICE1}  AND #{PRICE2}  AND
+        	</if>
         	CATEGORY LIKE '%'||#{CATEGORY}||'%' 
         )
 			WHERE NAME LIKE '%'||#{keyword}||'%' 
@@ -940,7 +941,6 @@ FROM
       	CATEGORY
 	 ORDER BY 
 		GOODS_NO DESC
-		]]>
 </select>
 
 <select id="goodsSearchListName" parameterType="hashMap" resultType="hashMap">
