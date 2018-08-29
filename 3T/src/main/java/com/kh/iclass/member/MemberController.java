@@ -36,6 +36,7 @@ public class MemberController {
 		Map<String, Object> refund = new HashMap<String, Object>();
 		Map<String, Object> orderAll = new HashMap<String, Object>();
 		Map<String, Object> messageAll = new HashMap<String, Object>();
+		Map<String, Object> couponAll = new HashMap<String, Object>();
 
 		commandMap.put("MEMBER_ID", request.getSession().getAttribute("MEMBER_ID"));
 		commandMap.put("TOMEMBER", request.getSession().getAttribute("MEMBER_ID"));
@@ -47,7 +48,8 @@ public class MemberController {
 		refund = memberService.refund(commandMap.getMap());
 		orderAll = memberService.orderAll(commandMap.getMap());
 		messageAll = memberService.messageAll(commandMap.getMap());
-
+		couponAll = memberService.couponAll(commandMap.getMap());
+		
 		System.out.println("메세지?" + messageAll);
 
 		System.out.println(stateList);
@@ -66,6 +68,7 @@ public class MemberController {
 		mv.addObject("refund", refund);
 		mv.addObject("orderAll", orderAll);
 		mv.addObject("messageAll", messageAll);
+		mv.addObject("couponAll", couponAll);
 
 		mv.setViewName("member/mypage");
 
@@ -194,13 +197,20 @@ public class MemberController {
 
 	@RequestMapping(value = "/member/mycoupon")
 	public ModelAndView myCouponList(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("member/mycoupon");
-		List<Map<String, Object>> list = null;
-
+		ModelAndView mv = new ModelAndView();
+		List<Map<String, Object>> list = null;		
+		
+		System.out.println("쿠폰들어갈떄" + commandMap.getMap());
+		
 		System.out.println("아이디" + commandMap.get("MEMBER_ID"));
 		commandMap.put("MEMBER_ID", request.getSession().getAttribute("MEMBER_ID"));
 
 		list = memberService.myCoupon(commandMap.getMap());
+		
+		String VALIDITY = list.get(0).get("VALIDITY").toString();
+		
+		System.out.println("날짜"+VALIDITY);
+
 
 		/*
 		 * if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") ==
@@ -208,7 +218,26 @@ public class MemberController {
 		 * QaService.QaSearchList(commandMap.getMap());
 		 */
 		mv.addObject("list", list);
+		
+		mv.setViewName("member/mycoupon");
+		return mv;
+	}
 
+	@RequestMapping(value = "/member/couponDetail")
+	public ModelAndView couponDetail(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		List<Map<String, Object>> list = null;	
+		
+		System.out.println("글번호"+commandMap.get("COUPON_NO"));
+		memberService.readCoupon(commandMap.getMap(), request);
+		
+		commandMap.put("MEMBER_ID", request.getSession().getAttribute("MEMBER_ID"));
+
+		list = memberService.myCoupon(commandMap.getMap());
+		mv.addObject("list", list);
+		
+		mv.setViewName("redirect:/member/mycoupon");
 		return mv;
 	}
 

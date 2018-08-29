@@ -9,7 +9,7 @@
 </head>
 <body>
 	<script type="text/javascript">
-        		alert(${msg}+"개의 사용가능한 쿠폰이 있습니다.");
+        		alert(${NOREADCOUPON.NOREADCOUPON}+"개의 확인하지 않은 쿠폰이 있습니다.");
         		document.location.href="/3T/main";
     </script>
         	

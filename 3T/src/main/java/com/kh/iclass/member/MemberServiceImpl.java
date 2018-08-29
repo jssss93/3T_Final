@@ -49,14 +49,6 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 
-	
-	public List<Map<String, Object>> myCoupon(Map<String, Object> map) throws Exception 
-	{
-		// TODO Auto-generated method stub
-		return memberDAO.myCoupon(map);
-	}
-	
-	
 	@Override
 	public void insertMessage(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		memberDAO.insertMessage(map);
@@ -100,7 +92,25 @@ public class MemberServiceImpl implements MemberService{
 		return memberDAO.messageAll(map);
 	}
 
+	//쿠폰수
+	public Map<String, Object> couponAll(Map<String, Object> map) throws Exception {
+		return memberDAO.couponAll(map);
+	}
+	//확인하지 않은 쿠폰수
+	public Map<String, Object> noReadCoupon(Map<String, Object> map) throws Exception {
+		return memberDAO.noReadCoupon(map);
+	}	
+	public List<Map<String, Object>> myCoupon(Map<String, Object> map) throws Exception 
+	{
+		// TODO Auto-generated method stub
+		return memberDAO.myCoupon(map);
+	}
+	//쿠폰확인
+	@Override
+	public void readCoupon(Map<String, Object> map, HttpServletRequest request) throws Exception {
+		memberDAO.readCoupon(map);
 	
+	}	
 
 	/*@Override
 	public int checkMember(Map<String, Object> map) throws Exception {
