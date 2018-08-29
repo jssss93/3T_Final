@@ -86,15 +86,16 @@ public class LoginController {
 				if (request.getSession().getAttribute("MEMBER_ID").equals("ADMIN")) {
 					mv.setViewName("redirect:/admin/main");
 				} else {
-					List<Map<String, Object>> list = null;
 					commandMap.put("MEMBER_ID", request.getSession().getAttribute("MEMBER_ID"));
 					// 쿠폰개수띄우기위해
-					list = memberService.myCoupon(commandMap.getMap());
-					mv.addObject("msg", list.size());
+					Map<String, Object> NOREADCOUPON = new HashMap<String, Object>();
+					NOREADCOUPON = memberService.noReadCoupon(commandMap.getMap());
+					mv.addObject("NOREADCOUPON", NOREADCOUPON);
+					
+					System.out.println("노리드쿠폰 " + NOREADCOUPON);
+					System.out.println("노리드쿠폰! " + NOREADCOUPON.get("NOREADCOUPON"));
 
-					session.setAttribute("coupon", list.size());
-
-					if (list.size() == 0) {
+					if (NOREADCOUPON.get("NOREADCOUPON") == "0") {
 						mv.setViewName("redirect:/main");
 					} else {
 						mv.setViewName("member/loginCoupon");

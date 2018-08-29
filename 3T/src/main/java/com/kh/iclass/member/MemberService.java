@@ -22,6 +22,15 @@ public interface MemberService
 	Map<String, Object> orderAll(Map<String, Object> map) throws Exception;
 	Map<String, Object> messageAll(Map<String, Object> map) throws Exception;
 	
+	//쿠폰 수
+	Map<String, Object> couponAll(Map<String, Object> map) throws Exception;
+	//확인하지 않은 쿠폰 수
+	Map<String, Object> noReadCoupon(Map<String, Object> map) throws Exception;
+	//내쿠폰정보 가져오기
+	List<Map<String, Object>> myCoupon(Map<String, Object> map) throws Exception;
+	// 쿠폰확인
+	void readCoupon(Map<String, Object> map, HttpServletRequest request) throws Exception;
+	
 	// 회원정보수정
 	void updateMember(Map<String, Object> map, HttpServletRequest request) throws Exception;
 	
@@ -29,11 +38,7 @@ public interface MemberService
 	List<Map<String, Object>> myBoardQna(Map<String, Object> map) throws Exception;
 	//myBoardReviewList
 	List<Map<String, Object>> myBoardReview(Map<String, Object> map) throws Exception;
-	
-	
-	//내쿠폰정보 가져오기
-	List<Map<String, Object>> myCoupon(Map<String, Object> map) throws Exception;
-	
+		
 	
 	//message쓰기
 	void insertMessage(Map<String, Object> map, HttpServletRequest request) throws Exception;

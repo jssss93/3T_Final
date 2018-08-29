@@ -123,13 +123,25 @@
         <![CDATA[
            SELECT
            		COUPON_NO,
-           		CONTENT
+           		CONTENT,
+           		VALIDITY,
+           		STATE
            	FROM 
            		COUPON
            	WHERE
            		MEMBER_ID = #{MEMBER_ID}	
         ]]>
 	</select>
+	<!-- 쿠폰확인 -->
+	<update id="couponRead" parameterType="hashmap">
+		UPDATE
+			COUPON
+		SET
+			STATE = STATE +1
+		WHERE
+			STATE = 0 AND
+			COUPON_NO = #{COUPON_NO}
+	</update>
 	
 	<!-- mypage-mymessage -->
 	<select id="myMessage" parameterType="hashmap"
@@ -213,6 +225,27 @@
 			MESSAGE
 		WHERE
 			TOMEMBER = #{TOMEMBER}
+	</select>
+	<!-- mypage 쿠폰수 -->
+	<select id="couponAll" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			COUNT(MEMBER_ID) as COUPONALL
+		FROM
+			COUPON
+		WHERE
+			MEMBER_ID = #{MEMBER_ID}
+	</select>
+
+	<!--로그인시 뜨는 확인하지 않은 쿠폰수-->
+	<select id="noReadCoupon" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			COUNT(MEMBER_ID) as NOREADCOUPON
+		FROM
+			COUPON
+		WHERE
+			MEMBER_ID = #{MEMBER_ID} AND
+			STATE = 0
+			
 	</select>
 
 	<!-- 회원가입 -->

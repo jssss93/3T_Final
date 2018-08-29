@@ -118,7 +118,7 @@
 									<li class="etc ">
 										<span class="title">쿠폰</span>
 										<span class="data">
-											<a href="/3T/member/mycoupon">${sessionScope.coupon}개</a>
+											<a href="/3T/member/mycoupon">${couponAll.COUPONALL}개</a>
 										</span> 
 									</li>
 									
