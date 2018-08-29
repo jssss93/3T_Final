@@ -22,30 +22,32 @@
 		for ( var i = 0; i < obj.length; i++)
 			obj[i].checked = bool;
 	}
-	
-		function validation() {
+		function check() {
 			
-			var frm = document.forms[0];
+			var f = document.Reg_form;
 			
-			if (frm.agree.checked == false) {
+			if (f.agree.checked == false) {
 				alert("이용약관에  동의해 주시기 바랍니다.");
 				return false;
 			}
-
-			if (frm.TITLE.value == "") {
+			
+			if (f.TITLE.value == "") {
 				alert("제목을 입력해주세요.");
+				f.TITLE.focus();
 				return false;
-			} else if (frm.MEMBER_ID.value == "") {
+			}if (f.MEMBER_ID.value == "") {
 				alert("이름을 입력해주세요.");
+				f.MEMBER_ID.focus();
 				return false;
-			} else if (frm.PASSWD.value == "") {
+			} if (f.PASSWD.value == "") {
 				alert("비밀번호를 입력해주세요.");
+				f.PASSWD.focus();
 				return false;
-			} else if (frm.CONTENT.value == "") {
+			}if (f.CONTENT.value == "") {
 				alert("내용을 입력해주세요.");
+				f.CONTENT.focus();
 				return false;
 			}
-			return true;
 		}
 	</script>
 	
@@ -68,7 +70,7 @@
 			<td height="50"></td>
 		</tr>
 	</table>
-<form action="/3T/qa/write" onsubmit="return validation();" method="post">
+
 	<table border="1" align="center" class="board_list2">
 		<c:choose>
 			<c:when test="${list.GOODS_NO > 0 }">
@@ -88,7 +90,7 @@
 							src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/btn_prd_detail.gif"
 							alt="상품상세보기"> <input type="hidden" name="GOODS_NO"
 							value="${list.GOODS_NO }" /></a> 
-
+							
 					</td>
 				</tr>
 			</c:when>
@@ -110,7 +112,7 @@
 	</table>
 	<br />
 	<br />
-	
+	<form action="/3T/qa/write" name="Reg_form" onsubmit="return check();" method="post">
 		<table border="1" class="board_list2">
 			<tbody>
 				<tr class="board_title2">
@@ -165,8 +167,8 @@
 
 		<table class="notice_button">
 			<tr>
-				<td><a href="#this" class="btn" id="list">LIST</a>
-				 <input	class="btn" type="submit" value="WRITE"></td>
+				<td><a href="#this" class="btn" id="list">LIST</a> 
+				<input class="btn" type="submit" value="WRITE"></td>
 			</tr>
 			<input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
 		</table>

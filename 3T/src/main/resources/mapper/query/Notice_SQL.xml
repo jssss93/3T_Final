@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="notice">
-	
+	<!-- 공지사항 리스트 -->
 	<select id="selectList" parameterType="hashmap" resultType="hashmap">
 		<include refid="common.pagingPre"/> 
 		<![CDATA[
@@ -24,6 +24,7 @@
 
 	</select>
 	
+	<!-- 공지사항 쓰기 -->
 	<insert id="insert" parameterType="hashmap">
 		<![CDATA[
 			INSERT INTO NOTICE
@@ -48,7 +49,7 @@
 			)
 		]]>
 	</insert>
-	
+	<!-- 공지사항 조회수 증가 -->
     <update id="updateReadCnt" parameterType="hashmap">
 		<![CDATA[
 			UPDATE 
@@ -59,7 +60,7 @@
 				NOTICE_NO = #{NOTICE_NO}	
 		]]>
 	</update>
-	
+	<!-- 공지사항 상세보기 -->
    <select id="selectDetail" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
@@ -76,7 +77,7 @@
 				NOTICE_NO=#{NOTICE_NO}		
 		]]>
 	</select>
-	
+	<!-- 공지사항 수정 -->
 	 <update id="update" parameterType="hashmap">
 		<![CDATA[
 			UPDATE 
@@ -88,7 +89,7 @@
 				NOTICE_NO = #{NOTICE_NO}	
 		]]>
 	</update>
-	
+	<!-- 공지사항 삭제 -->
 	 <update id="delete" parameterType="hashmap">
 		<![CDATA[
 			DELETE
@@ -99,7 +100,7 @@
 				NOTICE_NO = #{NOTICE_NO}
 		]]>
 	</update>
-	
+	<!-- 공지사항 검색 -->
 	 <select id="NoticeSelectSearchList" parameterType="hashmap" resultType="hashmap">
 	 <include refid="common.pagingPre"/> 
 		SELECT 

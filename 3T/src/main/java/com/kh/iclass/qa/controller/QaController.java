@@ -21,11 +21,12 @@ public class QaController {
 	@Resource(name = "QaService")
 	private QaService QaService;
 
+	//QA 리스트
 	@RequestMapping(value = "/qa/list")
 	public ModelAndView qaBoardList(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("qa/list");
 		List<Map<String, Object>> list = null;
-
+		//검색정보가 들어왔을때 리스트와 안들어왔을 때 리스트
 		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
 			list = QaService.QaList(commandMap.getMap());
 		else
@@ -35,23 +36,22 @@ public class QaController {
 
 		return mv;
 	}
-
+	//QA 쓰기 폼
 	@RequestMapping(value = "/qa/writeForm")
 	public ModelAndView qaWrite(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("qa/write");
 
 		System.out.println("qaWriteForm : " + commandMap.getMap());
-		if(commandMap.get("GOODS_NO") == null)
-			
+		//상품번호가 안들어왔을 때 폼 그냥 실행 , 상품번호가 들어왔을 때 상품정보 보여줌
+		if(commandMap.get("GOODS_NO") == null)	
 			return mv;
-		
 		if (commandMap.get("GOODS_NO") != null);
 		Map<String, Object> map = QaService.QaGoods(commandMap.getMap());
 		
 		mv.addObject("list", map);
 		return mv;
 	}
-
+	//QA 쓰기
 	@RequestMapping(value = "qa/write")
 	public ModelAndView qaInsert(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/qa/list");
@@ -62,7 +62,7 @@ public class QaController {
 		return mv;
 	}
 
-	// qa 답변 폼
+	// QA 답변 폼
 	@RequestMapping(value = "/qa/writeReplyForm")
 	public ModelAndView qaReplyWrite(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("qa/writeReply");
@@ -74,45 +74,47 @@ public class QaController {
 		return mv;
 	}
 
-	// qa답변
+	// QA 답변
 	@RequestMapping(value = "/qa/writeReply")
 	public ModelAndView qaReplyInsert(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/qa/list");
-
+		//리스트로 리다이렉트시 보낼 정보
 		Map<String, Object> map = QaService.QaSel(commandMap.getMap());
 		System.out.println("qaWriteReply : " + commandMap.getMap());
 
 		commandMap.putAll(map);
 		commandMap.put("RE_STEP", 1);
-
+		//답변 쓰기
 		QaService.QaReplyInsert(commandMap.getMap());
 
 		return mv;
 	}
-
+	//QA 상세보기
 	@RequestMapping(value = "/qa/detail")
 	public ModelAndView qaDetail(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("qa/detail");
 		System.out.println("qaDetail : " + commandMap.getMap());
+		//상품정보
 		Map<String, Object> map1 = QaService.QaGoods(commandMap.getMap());
+		//qa상세보기 정보
 		Map<String, Object> map = QaService.QaDetail(commandMap.getMap());
 		mv.addObject("map", map);
 		mv.addObject("list", map1);
 
 		return mv;
 	}
-
+	//QA 수정 폼
 	@RequestMapping(value = "/qa/updateForm")
 	public ModelAndView qaUpdateForm(CommandMap commandMap) throws Exception {
-
 		ModelAndView mv = new ModelAndView("qa/update");
+		
 		System.out.println("qaUpdateForm : " + commandMap.getMap());
 		Map<String, Object> map = QaService.QaDetail(commandMap.getMap());
 		mv.addObject("map", map);
 
 		return mv;
 	}
-
+	//QA 수정
 	@RequestMapping(value = "/qa/update")
 	public ModelAndView qaUpdate(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/qa/detail");
@@ -124,7 +126,7 @@ public class QaController {
 		mv.addObject("GOODS_NO", commandMap.get("GOODS_NO"));
 		return mv;
 	}
-
+	//QA 삭제
 	@RequestMapping(value = "/qa/delete")
 	public ModelAndView qaDelete(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/qa/list");
@@ -134,14 +136,14 @@ public class QaController {
 
 		return mv;
 	}
-
+	//QA 상품정보 리스트,검색
 	@RequestMapping(value = "/qa/qaGoodsSelect")
 	public ModelAndView qaGoodsBoardList(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/qa/qaGoodsList");
 
 		List<Map<String, Object>> list = null;
 		System.out.println("qaGoodsBoardList : " + commandMap.getMap());
-
+		//검색정보가 들어왔을때 리스트와 안들어왔을 때 상품리스트
 		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
 			list = QaService.QaGoodsList(commandMap.getMap());
 		else
@@ -151,7 +153,7 @@ public class QaController {
 
 		return mv;
 	}
-
+	//QA 상품 선택시 처리
 	@RequestMapping(value = "/qa/qaGoodsSuccess")
 	public ModelAndView qaGoodsSuccess(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("qa/qaGoodsListSuccess");
@@ -162,7 +164,7 @@ public class QaController {
 
 		return mv;
 	}
-
+	//QA 비밀글 비밀번호 체크 폼
 	@RequestMapping(value = "/qa/passwdCheckForm")
 	public ModelAndView qaPasswdCheckForm(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("qa/passwdCheckForm");
@@ -173,7 +175,7 @@ public class QaController {
 
 		return mv;
 	}
-
+	//QA 비밀글 비밀번호 체크 처리
 	@RequestMapping(value = "/qa/passwdCheckSuccess")
 	public ModelAndView qaPasswdCheck(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/qa/detail");
