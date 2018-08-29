@@ -42,7 +42,7 @@
 							<td class="subject"><a href="#this" name="title">${row.TITLE }</a>
 								<input type="hidden" id="NOTICE_NO" value="${row.NOTICE_NO }">
 							</td>
-							<td>${row.MEMBER_ID }</td>
+							<td align="center">${row.MEMBER_ID }</td>
 						</tr>
 					</c:forEach>
 				</c:when>
@@ -72,13 +72,13 @@
 	</table>
  <br />
 	<form action="/3T/notice/list">
-		<select name="SearchNum" id="SearchNum"
+		<select class="btn"name="SearchNum" id="SearchNum"
 			style="width: 100px; height: 30px;">
 			<option value="TITLE">제목</option>
 			<option value="CONTENT">내용</option>
-		</select> <input type="text" name="SearchKeyword" id="SearchKeyword"
+		</select> <input class="btn" type="text" name="SearchKeyword" id="SearchKeyword"
 			style="margin-left: 15px; width: 200px; height: 36px; border-radius: 5px 5px 5px 5px;" />
-		<input type="submit" value="검색">
+		<input class="btn" type="submit" value="검색">
 	</form>
 
 

@@ -6,6 +6,21 @@
 <title>first</title>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
+<style>
+.board_review3 td {
+    font-family: Lato;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    vertical-align: middle;
+    text-align: center;
+    border-top: 1px solid rgb(204, 204, 204);
+    padding: 10px 0px;
+    border-bottom: 1px solid rgb(204, 204, 204);
+}
+</style>
 </head>
 <body>
 

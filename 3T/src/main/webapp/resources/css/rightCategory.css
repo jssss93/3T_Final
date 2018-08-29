@@ -2151,9 +2151,9 @@ total.total_cnt
 strong {
 	margin-right: 5px;
 	color: #353535;
-	font-weight: bold;
+	/* font-weight: bold; */
 	font-family: 'Lato', 'NanumGothic';
-	font-size: 12px;
+	font-size: 11px;
 }
 
 #totalProducts tfoot td .total em {

@@ -21,42 +21,91 @@
 		<tr>
 			<td height="50"></td>
 		</tr>
-		
-		
+
+
 	</table>
-		<table class="board_list" width="80%">
-    <colgroup>
-        <col width="10%"/>
-        <col width="*"/>
-    </colgroup>
-    <thead>
-        <tr>
-            <th scope="col">메세지번호</th>
-            <th scope="col">내용</th>
-        </tr>
-    </thead>
-    <tbody>
-        <c:choose>
-            <c:when test="${fn:length(list) > 0}">
-                <c:forEach items="${list}" var="row">
-                    <tr>
-                        <td>${row.MESSAGE_NO }</td>
-                        <td>${row.CONTENT}</td>
-                    </tr>
-                </c:forEach>
-            </c:when> 
-            <c:otherwise>
-                <tr>
-                    <td colspan="4">조회된 결과가 없습니다.</td>
-                </tr>
-            </c:otherwise>
-        </c:choose>
-         
-    </tbody>
-</table>
+	<table class="board_list" width="80%">
+		<colgroup>
+			<col width="10%" />
+			<col width="*" />
+		</colgroup>
+		<thead>
+			<tr>
+				<th scope="col">메세지번호</th>
+				<th scope="col">내용</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:choose>
+				<c:when test="${fn:length(list) > 0}">
+					<c:forEach items="${list}" var="row">
+						<tr>
+							<td>${row.MESSAGE_NO }</td>
+							<td>${row.CONTENT}</td>
+						</tr>
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<tr>
+						<td colspan="4">조회된 결과가 없습니다.</td>
+					</tr>
+				</c:otherwise>
+			</c:choose>
+
+		</tbody>
+	</table>
 	<br />
-		<a href="#this" class="btn" id="write">글쓰기</as>
-		<a href="/3T/member/mypage" class="btn">마이페이지로</a> 
+	<a class="btn" data-toggle="modal" data-target="#myModal">WRITE</a>
+	<a href="/3T/member/mypage" class="btn">MY PAGE</a>
+
+	<div class="modal fade" id="myModal">
+		<form action="/3T/member/sendmessage">
+			<table width="70%" align="center" border="0" cellspacing="0"
+				cellpadding="1" colspan="1" class="board_top2">
+				<br>
+				<tr>
+					<td height="50"></td>
+				</tr>
+				<tr>
+					<td align="left" class="text01 formbar"><h6>
+							<font color="#555555">MESSAGE</font>
+						</h6></td>
+				</tr>
+
+				<tr>
+					<td height="50"></td>
+				</tr>
+			</table>
+
+			<table class="board_view6">
+				<colgroup>
+					<col width="15%">
+					<col width="*" />
+				</colgroup>
+				<tbody>
+					<tr>
+						<!-- <th scope="row">메세지내용</th> -->
+						<td align="center" colspan="2" class="view_text"><textarea
+								rows="16" cols="80" title="내용" id="CONTENT" name="CONTENT"></textarea></td>
+					</tr>
+
+				</tbody>
+			</table>
+
+			<table class="notice_button2">
+				<tr>
+					<td>
+						<!-- <a href="#this" class="btn" id="write">작성하기</a>  --> <a
+						href="#this" class="btn" id="list">목록으로</a> <input class="btn"
+						type="submit" value="작성완료">
+					</td>
+				</tr>
+			</table>
+		</form>
+
+
+
+	</div>
 
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	<script type="text/javascript">
