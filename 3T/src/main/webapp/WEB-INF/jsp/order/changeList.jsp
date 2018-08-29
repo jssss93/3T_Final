@@ -108,7 +108,7 @@
 <script src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/983431901/?random=1534724800800&amp;cv=9&amp;fst=1534724800800&amp;num=1&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;u_h=864&amp;u_w=1536&amp;u_ah=824&amp;u_aw=1536&amp;u_cd=24&amp;u_his=5&amp;u_tz=540&amp;u_java=false&amp;u_nplug=3&amp;u_nmime=4&amp;sendb=1&amp;frm=0&amp;url=http%3A%2F%2Fasclo.com%2Forder%2Fbasket.html%3Fdelvtype%3DA&amp;ref=http%3A%2F%2Fasclo.com%2Fproduct%2Fdetail.html%3Fproduct_no%3D8171%26cate_no%3D1%26display_group%3D2&amp;tiba=%EC%95%A0%EC%A6%88%ED%81%B4%EB%A1%9C&amp;rfmt=3&amp;fmt=4">
 	
 </script>
-<title>ORDER_LIST</title>
+<title>CHANGE_LIST</title>
 <link href="<c:url value='/resources/css/cartTest.css'/>" rel="stylesheet" type="text/css" />
 <style type="text/css">
 #contentwrap {
@@ -124,15 +124,18 @@
 		<div id="contentwrap">
 			<div id="contents">
 				<div class="titleArea">
-					<h2>ORDER</h2>
+					<h2>CHANGE</h2>
 				</div>
 				<div class="xans-element- xans-order xans-order-basketpackage ">
 					<div class="xans-element- xans-order xans-order-tabinfo ">
 						<ul>
-							<li class=""><a href="/3T/cart/list">CART LIST</a></li>
-							<li class="selected "><a href="/3T/order/list">ORDER LIST</a></li>
+							<li class=" "><a href="/3T/cart/list">					CART LIST</a></li>
+							<li class=" "><a href="/3T/wish/wishlist">				WISH LIST</a></li>
+							<li class=" "><a href="/3T/order/list">					ORDER LIST</a></li>
+							<li class=" "><a href="/3T/order/refundList">			REFUND LIST</a></li>
+							<li class="selected "><a href="/3T/order/changeList">	CHANGE LIST</a></li>
 						</ul>
-						<p >총 구매금액에 따라 등급이 정해집니다.</p>
+						<p >*교환시 택배비는 본인 부담 하여야 합니다.</p>
 					</div>
 					
 					<div class="orderListArea">

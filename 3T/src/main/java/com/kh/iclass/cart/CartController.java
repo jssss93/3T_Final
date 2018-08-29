@@ -107,12 +107,11 @@ public class CartController {
 		return mv;
 	}
 
-	
 	// 장바구니 리스트 불러오기
 	@RequestMapping(value = "/cart/list")
 	public ModelAndView cartList(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("cart/list-hanbyul");
+		mv.setViewName("cart/List");
 		
 		HttpSession session = request.getSession();
 		List<Map<String, Object>> cartList = new ArrayList<Map<String, Object>>();

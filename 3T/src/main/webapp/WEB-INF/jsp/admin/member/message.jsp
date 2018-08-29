@@ -1,140 +1,152 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<title>first</title>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
-
-
-<style>
-.board_review3 {
-    width: 80%;
-    font-family: FontAwesome;
-    valign: middle;
-    border-top: 2px solid #ffffff;
-    border-bottom: 1px solid #eeeeee;
+<head>
+<script type="text/javascript">
+	function delchk() {
+		return confirm("삭제하시겠습니까?");
+	}
+</script>
+<style type="text/css">
+.paging {
+	text-align: center;
+	height: 32px;
+	margin-top: 5px;
+	margin-bottom: 15px;
 }
 
+.paging a, .paging strong {
+	display: inline-block;
+	width: 36px;
+	height: 32px;
+	line-height: 28px;
+	font-size: 14px;
+	border: 1px solid #e0e0e0;
+	margin-left: 5px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 1px 1px 1px 0px rgba(235, 235, 235, 1);
+	-moz-box-shadow: 1px 1px 1px 0px rgba(235, 235, 235, 1);
+	box-shadow: 1px 1px 1px 0px rgba(235, 235, 235, 1);
+}
 
+.paging a:first-child {
+	margin-left: 0;
+}
+
+.paging strong {
+	color: #fff;
+	background: #337AB7;
+	border: 1px solid #337AB7;
+}
+
+.paging .page_arw {
+	font-size: 11px;
+	line-height: 30px;
+}
 </style>
-
 </head>
-<body>
-	<table width="100%" align="center" border="0" cellspacing="1"
-		cellpadding="1" class="board_top">
-		<tr>
-			<td height="50"></td>
-		</tr>
-		<tr>
-			<td align="left" class="text01 formbar"><h6>
-					<font color="#000000">MESSAGE</font>
-				</h6></td>
-		</tr>
+<div class="row" style="padding-left: 15px; width: 900px;">
+	<h1 class="page-header">메세지 목록</h1>
+</div>
+<div class="row"> 
+	<div class="panel panel-default" style="width:1000px;">
+		<div class="panel-heading">회원으로부터 온 메세지를 확인,검색,답장하는 페이지입니다. </div>
+		<div class="panel-body">
+			<div class="dataTable_wrapper" >
+				<div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer" >
+					<div class="row" style="margin-bottom: 5px;">
+						<div class="col-sm-6">
+						<a href="/MODA/member/adminMemberList">
+                        <button type="button" class="btn btn-outline btn-default">전체</button>
+                        </a>
+						</div>
+						<div class="col-sm-6" style="text-align: right;">
+							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">총 메세지수 : ${totalCount}</div>
+						</div>
+					</div>
+					<div class="row" >
+						<div class="col-sm-12">
+							<table class="table table-striped table-bordered table-hover dataTable no-footer"
+								id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
+								<thead>
+									<tr role="row">
+										<th style="width: 5%; text-align: center;">번호</th>
+										<th style="width: 8%; text-align: center;">아이디</th>
+										<th style="width: 20%; text-align: center;">내용</th>
+										<th style="width: 8%; text-align: center;">보낸날짜</th>
+										<th style="width: 8%; text-align: center;">state</th>
+										<th style="width: 13%; text-align: center;">수정,삭제</th>
+									</tr>
+									
+								</thead>
+								<tbody>
+									<c:forEach var="row" items="${list}" varStatus="stat">
+										<c:url var="viewURL" value="/admin/member/Detail">
+											<%-- <input type="hidden" id="MEMBER_ID" name="MEMBER_ID" value="${memberList.MEMBER_ID}"> --%>
+											<c:param name="MESSAGE_NO" value="${row.MESSAGE_NO }" />
+										</c:url>
+										
+										<tr class="gradeA even" role="row">
+											<td style="text-align: center; vertical-align: middle;">${row.MESSAGE_NO}</td>
+											<td style="text-align: center; vertical-align: middle;">${row.SENDMEMBER}</td>
+											<td style="text-align: center; vertical-align: middle;">${row.CONTENT}</td>
+											<td style="text-align: center; vertical-align: middle;">${row.REGDATE}</td>
+											<td style="text-align: center; vertical-align: middle;">
+												<c:if test="${row.STATE==0}"> 답변대기중</c:if>
+												<c:if test="${row.STATE==1}"> 답변완료</c:if>
+											</td>
+											<td style="text-align: center; vertical-align: middle;">
+												<a href="${viewURL}">
+													<input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png">
+												</a>&nbsp;&nbsp;
+												<c:url var="viewURL2" value="/admin/member/adminDeleteMember">
+													<c:param name="MESSAGE_NO" value="${row.MESSAGE_NO}" />
+												</c:url> 
+												<a href="${viewURL2}">
+													<input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png"
+														onclick="return delchk()">
+												</a>
+											</td>
+										</tr>
+									</c:forEach>
+									<!-- 회원이 없을때 -->
+									<c:if test="${fn:length(list) le 0}">
+										<tr>
+											<td colspan="9" style="text-align: center;">메세지가 없습니다.</td>
+										</tr>
+									</c:if>
+								</tbody>
+							</table>
+							<c:if test="${not empty paginationInfo}">
+								<ui:pagination paginationInfo="${paginationInfo}" type="text"
+									jsFunction="fn_search" />
+							</c:if>
+							<input type="hidden" id="currentPageNo" name="currentPageNo" />
+							<table class="notice_button">
+							</table>
+							<br />
+							<form action="/3T/admin/member/list">
+								<select name="SearchNum" id="SearchNum"
+									style="width: 100px; height: 30px;">
+									<option value="MEMBER_ID">아이디</option>
+									<option value="NAME">이름</option>
+								</select> <input type="text" name="SearchKeyword" id="SearchKeyword"
+									style="margin-left: 15px; width: 200px; height: 36px; border-radius: 5px 5px 5px 5px;" />
+								<input type="submit" value="검색">
+							</form>
 
-		<tr>
-			<td height="50"></td>
-		</tr>
-		
-		
-	</table>
-	<table width="80%" border="0" cellspacing="0"
-		cellpadding="2" class="board_review3">
-		<tr>
-			<td valign="middle"><strong>메세지번호</strong>
-			<td valign="middle"><strong>내용</strong>
-			<td valign="middle"><strong>보낸이</strong>
-		</tr>
-    <tbody>
-        <c:choose>
-            <c:when test="${fn:length(list) > 0}">
-                <c:forEach items="${list}" var="row">
-                    <tr>
-                        <td>${row.MESSAGE_NO }</td>
-                        <td>${row.CONTENT}</td>
-                        <td>
-                        	${row.SENDMEMBER}
-                        	<form action="/3T/admin/member/messageWrite">
-                        		<input type="submit" value="답장">
-                       			<input type="hidden" id="SENDMEMBER" name="SENDMEMBER" value="${row.SENDMEMBER}"/>
-                        	</form>
-                        	
-                        </td>
-                       
-                    </tr>
-                </c:forEach>
-            </c:when> 
-            <c:otherwise>
-                <tr>
-                    <td colspan="4">조회된 결과가 없습니다.</td>
-                </tr>
-            </c:otherwise>
-        </c:choose>
-         
-    </tbody>
-</table>
-	    <br>
-		<a href="#this" class="btn" id="write">글쓰기</a>
-		
-	<br />
-	<!-- <form action="/3T/qa/list">
-		<select name="SearchNum" id="SearchNum" style="width: 100px; height: 30px;" >
-					<option value="MEMBER_ID">작성자</option>
-					<option value="TITLE">제목</option>
-					<option value="CONTENT">내용</option>
-				</select>
-				
-				<input type="text" name="SearchKeyword" id="SearchKeyword" style="margin-left:15px;width:200px;height:36px;border-radius :5px 5px 5px 5px;"/>            
-                                 
-            
-                                    <input type="submit" value="검색">
-                                    </form>
-							
-	
-	<br />
-	<a href="#this" class="btn" id="write">글쓰기</a> -->
 
-
-	<%@ include file="/WEB-INF/include/include-body.jspf"%>
-	<script type="text/javascript">
-        $(document).ready(function(){
-            $("#write").on("click", function(e){ //글쓰기 버튼
-                e.preventDefault();
-                fn_openMessageWrite();
-            }); 
-            
-            $("a[name='title']").on("click", function(e){ //제목 
-                e.preventDefault();
-                fn_openBoardDetail($(this));
-            });
-            $("#search").on("click", function(e){ //검색 버튼
-                e.preventDefault();
-                fn_openSearchList();
-            }); 
-        });
-             
-        function fn_openSearchList(){
-            var comSubmit = new ComSubmit();
-            comSubmit.setUrl("<c:url value='/qa/list' />");
-            comSubmit.addParam("SearchNum", obj.parent().find("#SearchNum").val());
-            comSubmit.addParam("SearchKeyword", obj.parent().find("#SearchKeyword").val());
-            comSubmit.submit();
-        }
-        	
-            function fn_openMessageWrite(){
-            var comSubmit = new ComSubmit();
-            comSubmit.setUrl("<c:url value='/mypage/messageWrite' />");
-            comSubmit.submit();
-        	}
-            function fn_openBoardDetail(obj){
-                var comSubmit = new ComSubmit();
-                comSubmit.setUrl("<c:url value='/qa/detail' />");
-                comSubmit.addParam("QA_NO", obj.parent().find("#QA_NO").val());
-                comSubmit.submit();
-            }
-         
-        
-    </script>
-</body>
-</html>
+							<br />
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<!-- /.table-responsive -->
+		</div>
+	</div>
+	<!-- /.panel -->
+</div>

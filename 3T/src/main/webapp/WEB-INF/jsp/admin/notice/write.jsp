@@ -56,16 +56,15 @@
 <body>
 	<script language="javascript">
 	  function check() {
-
 		var f = document.Reg_form; 
 	
-		if (f.TITLE.value == "") {
+		if (f.TITLE.value == "" || f.TITLE.value ==null) {
 			alert("제목을 입력해주십시오");
 			f.TITLE.focus();
 			return false;
 		}
 		
-		 if(document.getElementById("summernote").value==null){
+		 if( document.getElementById("summernote").value==null){
 			alert("내용를 입력해주십시오");
 			f.content.focus();
 			return false;
@@ -145,6 +144,8 @@ $(document).ready(function() {
 	        }
 	   });
 	}
+	
+	
 });
 </script>
 </html>

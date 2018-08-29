@@ -43,33 +43,20 @@ public class AdminQaController {
 
 	@RequestMapping(value = "/qa/writeForm")
 	public ModelAndView qaWrite(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("qa.write");
-		
-		System.out.println("qaWriteForm : " + commandMap.getMap());
-		
-		
-		if (commandMap.get("GOODS_NO") != null );
-			Map<String, Object> map = QaService.QaGoods(commandMap.getMap());
-		
-	/*mv.addObject("list", map);
-	mv.addObject("PRICE", commandMap.get("PRICE"));
-	mv.addObject("NAME",commandMap.get("NAME"));
-	mv.addObject("GOODS_NO", commandMap.get("GOODS_NO"));
-	mv.addObject("SAV_NAME", commandMap.get("SAV_NAME"));*/
+		ModelAndView mv = new ModelAndView("qa.detail");
 	
-	mv.addObject("list", map);
 		return mv;
 	}
-
-	@RequestMapping(value = "/qa/write")
-	public ModelAndView qaInsert(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:qa/list");
-		System.out.println("qaWrite : " + commandMap.getMap());
-		
-		QaService.QaInsert(commandMap.getMap());
+	
+	@RequestMapping(value = "/qa/detail")
+	public ModelAndView qaDetail(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("qa.detail");
+		Map<String, Object> map = QaService.QaDetail(commandMap.getMap());
+		mv.addObject("map", map);
 
 		return mv;
 	}
+	
 	//qa 답변 폼
 	@RequestMapping(value = "/qa/writeReplyForm")
 	public ModelAndView qaReplyWrite(HttpServletRequest request,CommandMap commandMap) throws Exception {
@@ -107,17 +94,7 @@ public class AdminQaController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/qa/detail")
-	public ModelAndView qaDetail(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("qa/detail");
-		System.out.println("qaDetail : " + commandMap.getMap());
-		Map<String, Object> map1 = QaService.QaGoods(commandMap.getMap());
-		Map<String, Object> map = QaService.QaDetail(commandMap.getMap());
-		mv.addObject("map", map);
-		mv.addObject("list", map1);
-
-		return mv;
-	}
+	
 
 	@RequestMapping(value = "/qa/updateForm")
 	public ModelAndView qaUpdateForm(CommandMap commandMap) throws Exception {

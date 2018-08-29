@@ -258,7 +258,7 @@ public class MemberController {
 
 		return mv;
 	}
-
+	//메세지 리스트
 	@RequestMapping(value = "/admin/member/message")
 	public ModelAndView AdminMessage(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("member.message");
@@ -269,16 +269,11 @@ public class MemberController {
 
 		list = memberService.myMessage(commandMap.getMap());
 
-		/*
-		 * if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") ==
-		 * null) list = QaService.QaList(commandMap.getMap()); else list =
-		 * QaService.QaSearchList(commandMap.getMap());
-		 */
 		mv.addObject("list", list);
 
 		return mv;
 	}
-
+	//어드민 메시지 쓰기
 	@RequestMapping(value = "/admin/member/messageWrite")
 	public ModelAndView AdminMessageWrite(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
@@ -292,7 +287,7 @@ public class MemberController {
 
 		return mv;
 	}
-
+	
 	@RequestMapping(value = "/admin/member/sendmessage")
 	public ModelAndView AdminSendMessage(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		System.out.println("나오나?" + request.getParameter("TOMEMBER"));

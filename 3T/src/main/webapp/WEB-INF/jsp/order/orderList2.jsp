@@ -164,7 +164,7 @@ $.fn.rowspan = function(colIdx, isStats) {
             <!-- 탭 -->
             <div class="xans-element- xans-order xans-order-tabinfo ">
                <ul>
-                  <li class=" "><a href="/order/basket.html?delvtype=B">교환현황</a></li>
+                  <li class=" "><a href="/order/basket.html?delvtype=B">주문현황</a></li>
                </ul>
                
             </div>
@@ -173,7 +173,7 @@ $.fn.rowspan = function(colIdx, isStats) {
             <div class="orderListArea row">
             <div class="col-sm-12">
                <div class="xans-element- xans-order xans-order-normtitle title ">
-                  <h3>${MEMBER_ID}회원님의 교환 목록</h3>
+                  <h3>${MEMBER_ID}회원님의 주문 목록</h3>
                </div>
    
                <!-- 일반상품 (기본배송) -->
@@ -193,8 +193,8 @@ $.fn.rowspan = function(colIdx, isStats) {
                   </thead>
                   <tbody class="xans-element- xans-order xans-order-list">
                   <c:choose>
-               <c:when test="${fn:length(swapList) > 0}">
-                  <c:forEach items="${swapList }" var="row" varStatus="stat">
+               <c:when test="${fn:length(orderList) > 0}">
+                  <c:forEach items="${orderList }" var="row" varStatus="stat">
                   
                      <tr class="" role="row">
                         <td align="left" >
@@ -223,10 +223,10 @@ $.fn.rowspan = function(colIdx, isStats) {
                         
                         <td class="delivery">기본배송</td>
                         <td>
-                        <c:if test="${row.STATE eq 4}">교환확인중</c:if>
-                        <c:if test="${row.STATE eq 5}">교환준비중</c:if>
-                        <c:if test="${row.STATE eq 6}">교환중</c:if>
-                        <c:if test="${row.STATE eq 7}">교환 완료</c:if>
+                        <c:if test="${row.STATE eq 0}">입금확인중</c:if>
+                        <c:if test="${row.STATE eq 1}">배송준비중</c:if>
+                        <c:if test="${row.STATE eq 2}">배송중</c:if>
+                        <c:if test="${row.STATE eq 3}">배송완료</c:if> 
                         <td class="total"><strong>${row.PRICE * row.COUNT }</strong></td>
                         
                      </tr>

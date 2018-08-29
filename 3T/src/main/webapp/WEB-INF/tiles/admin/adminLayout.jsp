@@ -99,7 +99,7 @@
 							</a>
 							<ul class="nav nav-second-level">
 								<li><a href="/3T/admin/member/list">- 회원목록</a></li>
-								<li><a href="/3T/admin/member/message">- 메시지보내기</a></li>
+								<li><a href="/3T/admin/member/message">- 메시지목록</a></li>
 							</ul> <!-- /.nav-second-level -->
 						</li>
 						<li class="active">
