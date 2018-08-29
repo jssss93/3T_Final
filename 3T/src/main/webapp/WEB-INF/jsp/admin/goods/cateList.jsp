@@ -12,9 +12,7 @@ $( document ).ready(function() {
 	$('#dataTables-example').rowspan(3);
 	$('#dataTables-example').rowspan(8);
 	$('#dataTables-example').rowspan(9);
-});
-
-$.fn.rowspan = function(colIdx, isStats) {       
+});$.fn.rowspan = function(colIdx, isStats) {       
 	return this.each(function(){      
 		var that;     
 		$('tr', this).each(function(row) {      
@@ -91,63 +89,16 @@ function delchk(){
 .paging strong{color:#fff;background:#337AB7;border:1px solid #337AB7;}
 .paging .page_arw{font-size:11px;line-height:30px;}
 </style> 
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
-<body id="body1">
-<div  style="align:left;">
-
-<div class="row" style="padding-left:15px;width:900px;">    
-	<h1 class="page-header">상품목록</h1>
-</div>
-<div class="row" style="align:left;">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-                         [상품목록페이지] 상품을 검색, 수정, 삭제 기능하는 페이지입니다.
-        </div>
-        <div class="panel-body">
-			<div class="dataTable_wrapper">
-				<div id="dataTables-example_wrapper"
-					class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-					<div class="row" style="margin-bottom:5px;align: left;">
-						<div class="col-sm-6">
-							<a href="/MODA/goods/goodsList"><button type="button" class="btn btn-outline btn-default">전체</button></a>
-							<select class="form-control" name="select" id="select" onchange="ajaxStart()">		
-								<option value ="">--카테고리--</option>
-								
-								
-								
-								
-								<option value ="/3T/admin/goods/list1">OUTER</option>
-								
-								
-								
-								
-								<option value ="/MODA/goods/goodsList?searchNum=2&isSearch=TOP">TOP</option>
-								<option value ="/MODA/goods/goodsList?searchNum=2&isSearch=PANTS">PANTS</option>
-								<option value ="/MODA/goods/goodsList?searchNum=2&isSearch=SHOES">SHOES</option>
-								<option value ="/MODA/goods/goodsList?searchNum=2&isSearch=ACC">ACC</option>
-							</select>
-							<select class="form-control" name="select" onchange="window.open(value,'_self');">
-								<option value ="">--상품구분--</option>
-								<option value ="/MODA/goods/goodsList?searchNum=3&isSearch=0">판매중</option>
-								<option value ="/MODA/goods/goodsList?searchNum=4&isSearch=">품절상품</option>
-								<option value ="/MODA/goods/goodsList?searchNum=3&isSearch=1">비활성화</option>
-							</select>			
-							<select class="form-control" name="select" onchange="window.open(value,'_self');">
-								<option value ="">--상품정렬--</option>
-								<option value ="/MODA/goods/goodsList?searchNum=5&isSearch=GOODS_AMOUNT">판매수량순</option>
-								<option value ="/MODA/goods/goodsList?searchNum=6&isSearch=GOODS_COUNT">조회순</option>
-							</select>											
-						</div>
-						
-						
-					</div>
-					<div id="body" style="align:left;">
-					<div class="row"  >
-						<div class="col-sm-12">
+<body>
+<div class="row">
+						<div class="col-sm-12" style="align:left;">
 							<table
 								class="table  table-bordered table-hover dataTable no-footer"
 								id="dataTables-example" role="grid"
-								aria-describedby="dataTables-example_info">
+								aria-describedby="dataTables-example_info" style="align:left;" >
 								<thead>
 									<tr role="row" style="vertical-align:middle;">
 										<th style="width: 5%; text-align:center;vertical-align:middle;">상품번호</th>
@@ -178,9 +129,8 @@ function delchk(){
 											<td style="text-align:center;vertical-align:middle;">${goodsList.COUNT}</td>
 											<td style="text-align:center;vertical-align:middle;"><fmt:formatDate value="${goodsList.REGDATE}" pattern="YY.MM.dd HH:mm" /></td>										
 											<td style="text-align:center;vertical-align:middle;"><input type="hidden" value="${goodsList.GOODS_NO }" />
-												<a href="/3T/admin/goods/updateForm?GOODS_NO=${goodsList.GOODS_NO }"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;
-												<a href="/3T/admin/goods/deleteGoods?GOODS_NO=${goodsList.GOODS_NO }"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png"></a>
-											</td>
+											<a href="/3T/admin/goods/updateForm?GOODS_NO=${goodsList.GOODS_NO }"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;
+											<a href="/3T/admin/goods/deleteGoods?GOODS_NO=${goodsList.GOODS_NO }"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png"></a>
 										</tr>
 										
 									</c:forEach>
@@ -200,69 +150,5 @@ function delchk(){
 							${pagingHtml}
 						</div>
 					</div>
-					</div>
-					<div class="row">
-							<div style="text-align:center;">
-								<div id="dataTables-example_filter" class="dataTables_filter">
-									<form action="">
-									<select class="form-control" name="searchNum" id="searchNum">
-										<option value="0">상품명</option>
-										<option value="1">상품번호</option>
-									</select>
-										<input class="form-control" type="text" name="isSearch" id="isSearch"/>
-										<span>
-										<button type="submit" class="btn btn-default">검색</button>
-										</span>
-									</form>
-								</div>							
-							</div>
-							
-					</div>
-				</div>
-			</div>
-			<!-- /.table-responsive -->							
-		</div>
-	</div>
-        <!-- /.panel -->   
-</div>
-</div>
 </body>
-
-<script>
-
-   function ajaxStart(){
-	      
-		var target = document.getElementById("select");
-    	var targetText=  target.options[target.selectedIndex].text;     // 옵션 text 값
-    	console.log(targetText);
-    	 
-	        $.ajaxSettings.traditional = true;//배열 형태로 서버쪽 전송을 위한 설정
-	       
-	        
-	       $.ajax({
-	            url: "/3T/admin/goods/listOfOuter",
-	            type : "post",
-	            data: {"CATEGORY":targetText},
-	            success:function(data){
-	            	console.log(data);
-	            	$("#body").html(data); 
-	            }
-	         });  
-	       
-	      
-	   }      
-         
-      /* /*** ranking 가격bar 마우스를 뗄 경우 이벤트 발생 ***/
-     /*  $( "#price-range-slider" ).slider({
-           stop: function() {
-              ajaxList();
-            console.log("다다다");
-            //솔트(2);
-           }
-      }); */
-
-
-   
-
-
-</script>
+</html>

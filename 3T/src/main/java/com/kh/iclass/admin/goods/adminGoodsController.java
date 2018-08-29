@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.iclass.common.map.CommandMap;
@@ -40,6 +41,26 @@ public class adminGoodsController {
 
 		return mv;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/goods/listOfOuter")
+	public ModelAndView goodsListOfOuter(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("cate_list");
+		/*ModelAndView mv = new ModelAndView("goods.adminGoodsList");*/
+		List<Map<String, Object>> OuterList=goodsService.selectGoodsCategory(commandMap.getMap());
+		mv.addObject("list", OuterList);
+
+		return mv;
+	}
+	
+	/*@RequestMapping(value = "/goods/listOfOuter")
+	public @ResponseBody List<Map<String, Object>> goodsListOfOuter(CommandMap commandMap) throws Exception {
+		
+		List<Map<String, Object>> list=goodsService.selectGoodsCategory(commandMap.getMap());
+
+		return list;
+	}*/
+	
 
 	@RequestMapping(value = "/goods/write", method = RequestMethod.GET)
 	public ModelAndView goodsWriteForm(CommandMap commandMap) throws Exception {
