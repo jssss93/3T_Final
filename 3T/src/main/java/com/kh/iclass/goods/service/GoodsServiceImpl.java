@@ -94,43 +94,6 @@ public class GoodsServiceImpl implements GoodsService {
 		
 	}
 	
-	/*@Override
-	public Map<String, Object> goodsDetail(Map<String, Object> map) throws Exception {
-		// 트랜잭션으로 처리 해야 할 거 같은데?
-		goodsDAO.updateReadCnt(map);
-		
-		Map<String, Object> resultMap = new HashMap<String,Object>();
-	    Map<String, Object> tempMap = goodsDAO.selectGoodsDetail(map);
-	   
-	    resultMap.put("map", tempMap);
-	     
-	    List<Map<String,Object>> list = goodsDAO.selectFileList(map);
-	    
-	    resultMap.put("list", list);
-	     
-	    return resultMap;
-	}
-
-	@Override
-	public void goodsUpdate(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		goodsDAO.updateGoods(map);
-		
-		goodsDAO.deleteFileList(map);
-	    List<Map<String,Object>> list = fileUtils.parseUpdateFileInfo(map, request);
-	    Map<String,Object> tempMap = null;
-	    for(int i=0, size=list.size(); i<size; i++){
-	        tempMap = list.get(i);
-	        if(tempMap.get("IS_NEW").equals("Y")){
-	            goodsDAO.insertFile(tempMap);
-	        }
-	        else{
-	            goodsDAO.updateFile(tempMap);
-	        }
-	    }
-
-
-	}
-	*/
 	@Override
 	public void deleteAttribute(Map<String, Object> map) throws Exception {
 		goodsDAO.deleteAttribute(map);

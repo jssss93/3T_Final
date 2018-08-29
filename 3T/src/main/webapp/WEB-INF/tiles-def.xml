@@ -23,7 +23,14 @@
     <definition name="adminLayout" template="/WEB-INF/tiles/admin/adminLayout.jsp"/>
     
     <definition name="*.*" extends="adminLayout">      
-      <put-attribute name="body" value="/WEB-INF/jsp/admin/{1}/{2}.jsp" />
+    	<put-attribute name="body" value="/WEB-INF/jsp/admin/{1}/{2}.jsp" />
     </definition>
+    
+    <definition name="nullLayout" template="/WEB-INF/tiles/nullLayout.jsp"/>
+    
+    <definition name="cate_list" extends="nullLayout">      
+      	<put-attribute name="body" value="/WEB-INF/jsp/admin/goods/cateList.jsp" />
+    </definition>
+    
  	
 </tiles-definitions>

@@ -217,16 +217,10 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView("member/mymessage");
 		List<Map<String, Object>> list = null;
 
-		System.out.println("아이디" + commandMap.get("MEMBER_ID"));
 		commandMap.put("TOMEMBER", request.getSession().getAttribute("MEMBER_ID"));
 
 		list = memberService.myMessage(commandMap.getMap());
 
-		/*
-		 * if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") ==
-		 * null) list = QaService.QaList(commandMap.getMap()); else list =
-		 * QaService.QaSearchList(commandMap.getMap());
-		 */
 		mv.addObject("list", list);
 
 		return mv;

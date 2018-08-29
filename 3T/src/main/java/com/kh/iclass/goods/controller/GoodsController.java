@@ -85,7 +85,7 @@ public class GoodsController {
       goodsService.updateHitcnt(commandMap.getMap());
       
       List<Map<String, Object>> goodsDetail = goodsService.selectGoodsDetail(commandMap.getMap());
-      
+      System.out.println("goodsDetail:"+goodsDetail);
       Map<String, Object> goodsBasic = goodsDetail.get(0);
       
       System.out.println(goodsBasic.get("RELATED").toString().split(",")[0]);

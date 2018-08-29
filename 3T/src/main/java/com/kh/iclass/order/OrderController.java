@@ -76,6 +76,16 @@ public class OrderController {
 	
 	}
 	
+	@RequestMapping(value = "order/complete")
+	public ModelAndView orderComplete(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("order/orderComplete");
+		HttpSession session = request.getSession();
+		
+		return mv;
+	
+	}
+	
+	
 	//실행안하는거같은데
 	@RequestMapping(value = "order/addOne")
 	public ModelAndView addOne(CommandMap commandMap, HttpServletRequest request) throws Exception {
@@ -153,7 +163,7 @@ public class OrderController {
 		commandMap.put("RECIPIENT_PHONE",phone);
 		
 		if(session.getAttribute("MEMBER_ID")==null) {
-			mv.setViewName("order/orderList");
+			mv.setViewName("order/orderComplete");
 			commandMap.put("MEMBER_ID", session.getAttribute("NON_MEMBER_ID"));
 			
 		}else {
