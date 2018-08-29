@@ -44,19 +44,10 @@ public class OrderController {
 	
 	@Resource(name="memberService")
 	private MemberService memberService;
-
-
-	@RequestMapping(value = "/nomemberLogin")
-	public ModelAndView loginForm() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("order/nomemberLoginForm");
-		return mv;
-	}
-
 	
 	@RequestMapping(value = "order/addSelected")
 	public ModelAndView addSelected(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("order/list-hanbyul");
+		ModelAndView mv = new ModelAndView("order/paypage");
 		HttpSession session = request.getSession();
 		
 		String cart_No[]=request.getParameterValues("CART_NO");
@@ -191,7 +182,7 @@ public class OrderController {
 	
 	@RequestMapping(value = "order/list")		
 	public ModelAndView orderList(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("order/orderList-hanbyul");
+		ModelAndView mv = new ModelAndView("order/orderList");
 		
 		HttpSession session = request.getSession();
 		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
@@ -229,9 +220,9 @@ public class OrderController {
 		}
 	
 	}*/
-	@RequestMapping(value = "order/swapList")		
-	public ModelAndView swap(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("order/swapList");
+	@RequestMapping(value = "order/changeList")		
+	public ModelAndView change(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("order/changeList");
 		
 		HttpSession session = request.getSession();
 		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
@@ -241,7 +232,7 @@ public class OrderController {
 		List<Map<String, Object>> swapList = new ArrayList<Map<String, Object>>();
 		
 		swapList=orderService.swapList(commandMap.getMap());
-		mv.addObject("swapList", swapList);
+		mv.addObject("list", swapList);
 		return mv;
 	}
 	
@@ -256,7 +247,7 @@ public class OrderController {
 		
 		List<Map<String, Object>> refundList = new ArrayList<Map<String, Object>>();
 		refundList=orderService.refundList(commandMap.getMap());
-		mv.addObject("refundList", refundList);
+		mv.addObject("list", refundList);
 		return mv;
 	}
 	

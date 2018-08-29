@@ -73,10 +73,6 @@ public class MemberDAO extends AbstractDAO {
 		return (List<Map<String, Object>>)selectList("member.myMessage", map);
 	}
 
-	/*public List<Map<String, Object>> state(Map<String, Object> map) throws Exception
-	{
-		return (List<Map<String, Object>>)selectList("member.state", map);
-	}*/
 	
 	@SuppressWarnings("unchecked")
 	public Map<String,Object> state(Map<String,Object> map) throws Exception

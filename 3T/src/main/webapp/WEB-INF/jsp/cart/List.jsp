@@ -408,12 +408,13 @@
 				<div class="xans-element- xans-order xans-order-basketpackage ">
 					<div class="xans-element- xans-order xans-order-tabinfo ">
 						<ul>
-							<li class="selected "><a href="/3T/cart/list">CART
-									LIST</a></li>
-							<li class=" "><a href="/3T/order/list">ORDER
-									LIST</a></li>
+							<li class="selected "><a href="/3T/cart/list">	CART LIST</a></li>
+							<li class=" "><a href="/3T/wish/wishlist">		WISH LIST</a></li>
+							<li class=" "><a href="/3T/order/list">			ORDER LIST</a></li>
+							<li class=" "><a href="/3T/order/refundList">	REFUND LIST</a></li>
+							<li class=" "><a href="/3T/order/changeList">	CHANGE LIST</a></li>
 						</ul>
-						<p >장바구니에 담긴 상품은 7일 동안 보관됩니다.</p>
+						<p >*장바구니에 담긴 상품은 7일 동안 보관됩니다.</p>
 					</div>
 					<!-- 장바구니 비어있을 때 -->
 					<!-- 일반상품 -->
@@ -549,7 +550,7 @@
 
 					<div
 						class="xans-element- xans-order xans-order-basketpriceinfoguide  ">
-						<p class="info ">할인 적용 금액은 주문서작성의 결제예정금액에서 확인 가능합니다.</p>
+						<p class="info ">결제 예정 금액의 10% 는 포인트로 적립됩니다.</p>
 					</div>
 
 					<!-- 선택상품 제어 버튼 -->
@@ -560,21 +561,10 @@
 								alt="삭제하기"></a> <a href="#none" onclick="Basket.addWishList()"
 							class="displaynone"><img
 								src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_wish.gif"
-								alt="관심상품등록"></a> <a href="#none"
-							onclick="Basket.moveOversea()" class=""><img
-								src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_foreign.gif"
-								alt="해외배송상품 장바구니로 이동"></a> <a href="#none"
-							onclick="Basket.hopeProduct(''); return false;"
-							class="displaynone"><img
-								src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_product.gif"
-								alt="상품조르기"></a>
+								alt="관심상품등록"></a>  
 						</span> <a href="#none" onclick="Basket.emptyBasket()"><img
 							src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_clear.gif"
-							alt="장바구니비우기"></a> <a href="#none"
-							onclick="Basket.estimatePrint(this)"
-							link="/estimate/userform.html"><img
-							src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_estimate.gif"
-							alt="견적서출력"></a>
+							alt="장바구니비우기"></a>
 					</div>
 					<!-- 총 주문금액 : 국내배송상품 -->
 					<div class="xans-element- xans-order xans-order-totalsummary  ">

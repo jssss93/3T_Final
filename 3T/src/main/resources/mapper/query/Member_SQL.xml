@@ -138,7 +138,9 @@
            SELECT
            		MESSAGE_NO,
            		CONTENT,
-           		SENDMEMBER
+           		SENDMEMBER,
+           		REGDATE,
+           		STATE
            	FROM 
            		MESSAGE
            	WHERE
@@ -229,18 +231,26 @@
 	</insert>
 	
 	<!-- 메세지보내기 -->
-	<insert id="insertMessage" parameterType="hashmap"
-		useGeneratedKeys="true" keyProperty="MESSAGE_NO">
-		<selectKey keyProperty="MESSAGE_NO"
-			resultType="java.lang.Integer" order="BEFORE">
-			SELECT M_MSG_NO_SEQ.NEXTVAL FROM
-			DUAL
+	<insert id="insertMessage" parameterType="hashmap" useGeneratedKeys="true" keyProperty="MESSAGE_NO">
+		<selectKey keyProperty="MESSAGE_NO"	resultType="java.lang.Integer" order="BEFORE">
+			SELECT M_MSG_NO_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
     		<![CDATA[
-		INSERT INTO MESSAGE 
-			(MESSAGE_NO, CONTENT, TOMEMBER, SENDMEMBER)
-		VALUES
-			(#{MESSAGE_NO}, #{CONTENT}, #{TOMEMBER}, #{SENDMEMBER})
+			INSERT INTO	MESSAGE 
+				(MESSAGE_NO,
+				CONTENT,
+				TOMEMBER,
+				SENDMEMBER,
+				REGDATE
+				)
+			VALUES
+				(
+				#{MESSAGE_NO},
+				#{CONTENT},
+				#{TOMEMBER},
+				#{SENDMEMBER},
+				SYSDATE
+				)
 		]]>
 	</insert>
 	
