@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="review">
-
+	<!-- 리뷰 리스트 -->
      <select id="REVIEW_selectList" parameterType="hashmap" resultType="hashmap">
       <![CDATA[
            	 SELECT
@@ -33,6 +33,7 @@
            		
       ]]>
 </select>
+<!-- 리뷰 쓰기 -->
    <insert id="REVIEW_insert" parameterType="hashmap">
       <![CDATA[
       
@@ -71,7 +72,7 @@
 		)
     ]]>
 </insert>
-
+<!-- 리뷰 상세보기 -->
 <select id="REVIEW_selectDetail" parameterType="hashmap" resultType="hashmap">
       <![CDATA[
         SELECT
@@ -90,6 +91,7 @@
       ]]>
 </select>
 
+<!-- 리뷰 수정 -->
 <update id="REVIEW_update" parameterType="hashmap">
     <![CDATA[
         UPDATE 
@@ -103,6 +105,7 @@
     ]]>
 </update>
 
+<!-- 리뷰 삭제 -->
 <delete id="REVIEW_delete" parameterType="hashmap">
 	 <![CDATA[
         delete FROM
@@ -112,6 +115,7 @@
     ]]>
 </delete>
 
+<!-- 리뷰 댓글 삭제 -->
 <delete id="REVIEW_Commentdelete" parameterType="hashmap">
 	 <![CDATA[
         delete FROM
@@ -123,6 +127,7 @@
     ]]>
 </delete>
 
+<!-- 리뷰 댓글 쓰기 -->
 <insert id="ReviewInsertComment" parameterType="hashmap">
       <![CDATA[
       
@@ -147,6 +152,8 @@
 		)
     ]]>
 </insert>
+
+<!-- 리뷰 댓글 리스트 -->
     <select id="ReviewCommentSelectList" parameterType="hashmap" resultType="hashmap">
       <![CDATA[
          SELECT
@@ -166,6 +173,7 @@
       ]]>
 </select>
 
+<!-- 리뷰 검색 -->
  <select id="ReveiwSelectSearchList" parameterType="hashmap" resultType="hashmap">
 		SELECT 
 			REVIEW_NO,
@@ -200,6 +208,8 @@
 		
 </select>
 
+
+<!-- 리뷰 상품 리스트 -->
 <select id="Review_GoodsSelectList" parameterType="hashmap" resultType="hashmap">
         <![CDATA[
         select 
@@ -228,7 +238,7 @@
 	    	PRICE  		
         ]]>
     </select>
-    <!-- QA 상품검색 -->
+    <!-- 리뷰 상품검색 -->
        <select id="Review_GoodsSearch" parameterType="hashmap" resultType="hashmap">
        
           select 
@@ -263,6 +273,7 @@
 		
 </select>
 
+<!-- 리뷰 상세보기에서 상품정보 가져옴 -->
  <select id="Review_GoodsSelect" parameterType="hashmap" resultType="hashmap">
       <![CDATA[
       	select
@@ -291,6 +302,7 @@
       ]]>
 </select>
 
+<!-- 리뷰 댓글 비밀번호 확인 -->
 <select id="ReviewPasswdCheck" parameterType="hashmap" resultType="hashmap">
         <![CDATA[
            SELECT

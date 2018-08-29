@@ -23,6 +23,7 @@ public class NoticeController {
 	@Resource(name = "noticeService")
 	private NoticeService noticeService;
 
+	//공지사항 리스트
 	@RequestMapping(value = "/notice/list")
 	public ModelAndView noticeList(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("notice/list");
@@ -39,14 +40,14 @@ public class NoticeController {
 
 		return mv;
 	}
-
+	//공지사항 쓰기 폼
 	@RequestMapping(value = "/notice/write",  method = RequestMethod.GET)
 	public ModelAndView noticeWrtieForm(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("notice/write");
 
 		return mv;
 	}
-
+	//공지사항 쓰기 처리
 	@RequestMapping(value = "/notice/write2", method = RequestMethod.POST)
 	public ModelAndView noticeWrite(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:list");
@@ -55,7 +56,7 @@ public class NoticeController {
 
 		return mv;
 	}
-
+	//공지사항 상세보기
 	@RequestMapping(value = "/notice/detail")
 	public ModelAndView noticeDetail(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("notice/detail");
@@ -68,7 +69,7 @@ public class NoticeController {
 		return mv;
 	}
 
-	
+	//공지사항 수정 폼
 	@RequestMapping(value = "/notice/updateForm")
 	public ModelAndView noticeUpdateForm(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("notice/update");
@@ -79,7 +80,7 @@ public class NoticeController {
 		return mv;
 	}
 
-	
+	//공지사항 수정 처리
 	@RequestMapping(value = "/notice/update")
 	public ModelAndView noticeUpdate(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:detail");
@@ -91,7 +92,7 @@ public class NoticeController {
 		return mv;
 	}
 	
-	
+	//공지사항 삭제
 	@RequestMapping(value = "/notice/delete")
 	public ModelAndView noticeDelete(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:list");

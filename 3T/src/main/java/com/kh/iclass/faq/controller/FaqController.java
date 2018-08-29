@@ -23,13 +23,14 @@ public class FaqController {
 
 	@Resource(name = "faqService")
 	private FaqService faqService;
-
+	
+	//faq 리스트
 	@RequestMapping(value = "/faq/list")
 	public ModelAndView faqList(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("faq/list");
 		
 		Map<String, Object> resultMap = null;
-		
+		//검색정보가 들어왔을때 리스트와 안들어왔을 때 리스트
 		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
 			resultMap = faqService.FaqList(commandMap.getMap());
 		else
@@ -40,14 +41,14 @@ public class FaqController {
 
 		return mv;
 	}
-
+	//faq 쓰기 폼
 	@RequestMapping(value = "/faq/write", method = RequestMethod.GET)
 	public ModelAndView faqWrtieForm(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("faq/write");
 
 		return mv;
 	}
-
+	//faq 쓰기
 	@RequestMapping(value = "/faq/write", method = RequestMethod.POST)
 	public ModelAndView faqWrite(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:list");
@@ -56,7 +57,7 @@ public class FaqController {
 
 		return mv;
 	}
-
+	//faq 상세보기
 	@RequestMapping(value = "/faq/detail")
 	public ModelAndView faqDetail(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("faq/detail");
@@ -69,7 +70,7 @@ public class FaqController {
 		return mv;
 	}
 
-	
+	//faq 수정 폼
 	@RequestMapping(value = "/faq/updateForm")
 	public ModelAndView faqUpdateForm(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("faq/update");
@@ -80,7 +81,7 @@ public class FaqController {
 		return mv;
 	}
 
-	
+	//faq 수정
 	@RequestMapping(value = "/faq/update")
 	public ModelAndView faqUpdate(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:detail");
@@ -91,7 +92,7 @@ public class FaqController {
 		return mv;
 	}
 	
-	
+	//faq 삭제
 	@RequestMapping(value = "/faq/delete")
 	public ModelAndView faqDelete(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:list");

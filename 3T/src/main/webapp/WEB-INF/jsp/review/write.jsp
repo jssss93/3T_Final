@@ -21,37 +21,37 @@
 		for ( var i = 0; i < obj.length; i++)
 			obj[i].checked = bool;
 	}
-		function validation() {
-
-			var frm = document.forms[0];
-			
-
-			if (frm.agree.checked == false) {
-				alert("이용약관에  동의해 주시기 바랍니다.");
-				return false;
-			}
+	function check() {
 		
-			if (frm.TITLE.value == "") {
-				alert("제목을 입력해주세요.");
-				return false;
-			} else if (frm.MEMBER_ID.value == "") {
-				alert("이름을 입력해주세요.");
-				return false;
-			} else if (frm.PASSWD.value == "") {
-				alert("비밀번호를 입력해주세요.");
-				return false;
-			} else if (frm.CONTENT.value == "") {
-				alert("내용을 입력해주세요.");
-				return false;
-			}
-			return true;
+		var f = document.Reg_form;
+		if (f.agree.checked == false) {
+			alert("이용약관에  동의해 주시기 바랍니다.");
+			return false;
 		}
 		
-	</script>
+		if (f.TITLE.value == "") {
+			alert("제목을 입력해주세요.");
+			f.TITLE.focus();
+			return false;
+		}if (f.MEMBER_ID.value == "") {
+			alert("이름을 입력해주세요.");
+			f.MEMBER_ID.focus();
+			return false;
+		} if (f.PASSWD.value == "") {
+			alert("비밀번호를 입력해주세요.");
+			f.PASSWD.focus();
+			return false;
+		}if (f.CONTENT.value == "") {
+			alert("내용을 입력해주세요.");
+			f.CONTENT.focus();
+			return false;
+		}
+	}
+</script>
 
 	<table width="100%" align="center" border="0" cellspacing="0"
 		cellpadding="1" colspan="1" class="board_top">
-		<br/>
+		<br />
 		<tr>
 			<td height="50"></td>
 		</tr>
@@ -70,20 +70,28 @@
 			<c:when test="${list.GOODS_NO > 0 }">
 
 				<tr class="board_subject2">
-					<td align="center" width="120"><img width="100" height="100" src="/3T/resources/upload/${list.IMAGE.split(',')[0] }" />
-					<td>${list.NAME }<br /> KRW&nbsp;${list.PRICE } <br> 
-						<a class="board_subject4" type="button" onclick="javascript:open_win_noresizable('reviewGoodsSelect', write)">
-							<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/btn_prd_select.gif" alt="상품정보선택">
-						</a> 
-						<input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
-						
-						
-						
-						<a href="/3T/goods/detail?GOODS_NO=${list.GOODS_NO}" type="submit"> 
-							<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/btn_prd_detail.gif" alt="상품상세보기"> 
-							<input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
-						</a>  
+					<td align="center" width="120"><img width="100" height="100"
+						src="/3T/resources/upload/${list.IMAGE.split(',')[0] }" />
+					<td>${list.NAME }<br /> KRW&nbsp;${list.PRICE } <br> <a
+						class="board_subject4" type="button"
+						onclick="javascript:open_win_noresizable('reviewGoodsSelect', write)">
+							<img
+							src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/btn_prd_select.gif"
+							alt="상품정보선택">
+					</a> <input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
+
+
+						<a href="/3T/goods/detail?GOODS_NO=${list.GOODS_NO}" type="submit"> <img
+							src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/btn_prd_detail.gif"
+							alt="상품상세보기"> <input type="hidden" name="GOODS_NO"
+							value="${list.GOODS_NO }" /></a>  
+							
+							<%-- <form action="/3T/goods/detail">
+							<input type="submit" class="btn" value="상품 상세보기"> <input
+								type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
+						</form>  --%>
 					</td>
+
 				</tr>
 			</c:when>
 			<c:otherwise>
@@ -105,7 +113,7 @@
 
 	<br />
 	<br />
-	<form action="/3T/review/write" onsubmit="return validation();" method="post">
+	<form action="/3T/review/write" name="Reg_form" onsubmit="return check();" method="post">
 		<table border="1" class="board_list2">
 			<tbody>
 				<tr class="board_title2">
@@ -123,6 +131,8 @@
 					<td colspan="2" class="board_content2"><textarea rows="25"
 							cols="168" title="내용" id="CONTENT" name="CONTENT"></textarea></td>
 				</tr>
+				
+					</tr> -->
 				<tr class="board_title">
 					<th scope="row">PASSWORD</th>
 					<td><input type="text" id="PASSWD" name="PASSWD"
@@ -143,16 +153,17 @@
 						<br /> 개인정보 수집 및 이용에 동의 하십니까?<input id="agree" type="checkbox" name="open"
 						value="open" />동의함 
 				</tr>
+
+
 			</tbody>
+
 		</table>
 		<br> <br>
 		<table class="notice_button">
 			<tr>
-				<td>
-					<a href="#this" class="btn" id="list">목록으로</a> 
-					<input type="submit" class="btn" value="작성완료"> 
-					<input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
-				</td>
+				<td><a href="#this" class="btn" id="list">목록으로</a> <input
+					type="submit" class="btn" value="작성완료"> <input
+					type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" /></td>
 			</tr>
 		</table>
 	</form>
@@ -164,16 +175,19 @@
 				e.preventDefault();
 				fn_List();
 			});
+
 			$("#write").on("click", function(e) { //작성하기 버튼
 				e.preventDefault();
 				fn_Write();
 			});
 		});
+
 		function fn_List() {
 			var comSubmit = new ComSubmit();
 			comSubmit.setUrl("<c:url value='/review/list' />");
 			comSubmit.submit();
 		}
+
 		function fn_Write() {
 			var comSubmit = new ComSubmit("frm");
 			comSubmit.setUrl("<c:url value='/review/write' />");

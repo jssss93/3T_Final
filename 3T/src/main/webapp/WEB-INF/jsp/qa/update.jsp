@@ -43,7 +43,7 @@
 		}
 	</script>
 	
-	<form action="/3T/qa/update" id="frm" name="Reg_form" onsubmit="return check()">
+	<form action="/3T/qa/update" id="frm" name="Reg_form" onsubmit="return check();">
 		<table border="1" align="center" class="board_view2">
 			
 			<tbody>
@@ -85,7 +85,7 @@
 				class="btn" id="update">UPDATE</a> <a href="#this" class="btn"
 				id="delete">DELETE</a>
 				<input type="submit" class="btn" value="수정">
-				<input type="button"onclick="test();">
+			
 			</td>
 		</tr>
 	</table>

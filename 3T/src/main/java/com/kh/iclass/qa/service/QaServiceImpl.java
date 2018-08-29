@@ -18,76 +18,87 @@ public class QaServiceImpl implements QaService{
 
 	 @Resource(name="QaDAO")
 	 private QaDAO QaDAO;
+	//QA 리스트
 	@Override
 	public List<Map<String, Object>> QaList(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
+	
 		return QaDAO.QaList(map);
 	}
+	//QA 쓰기
 	@Override
 	public void QaInsert(Map<String, Object> map) throws Exception {
 		QaDAO.QaInsert(map);
 	}
+	//QA 상세보기
 	@Override
 	public Map<String, Object> QaDetail(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
+	
 		Map<String, Object> resultMap = QaDAO.QaDetail(map);
 		return resultMap;
 	}
+	//QA 수정
 	@Override
 	public void QaUpdate(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
+		
 		QaDAO.QaUpdate(map);
 		
 	}
+	//QA 삭제
 	@Override
 	public void QaDelete(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
+	
 		QaDAO.QaDelete(map);
 	}
-	//qa 검색
+	//QA 검색
 	@Override
 	public List<Map<String, Object>> QaSearchList(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
+	
 		return QaDAO.QaSearchList(map);
 	}
+	//QA 답글 쓰기
 	@Override
 	public void QaReplyInsert(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
+	
 		QaDAO.QaReplyInsert(map);
 	}
+	//QA 답글 쓰기 시 RE_STEP 증가
 	@Override
 	public void QaUpdateReplyStep(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
+		
 		QaDAO.QaReplyStep(map);
 	}
+	//QA 상품 리스트
 	@Override
 	public List<Map<String, Object>> QaGoodsList(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
+	
 		return QaDAO.QaGoodsList(map);
 	}
+	//QA 상품 검색
 	@Override
 	public List<Map<String, Object>> QaGoodsSearch(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
+		
 		return QaDAO.QaGoodsSearch(map);
 	}
+	//QA 상세보기에 가져올 상품정보
 	@Override
 	public Map<String, Object> QaGoods(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
+	
 		Map<String, Object> resultMap = QaDAO.QaGoods(map);
 		
 		return resultMap;
 	}
+	//QA 비밀글 비밀번호 체크
 	@Override
 	public Map<String, Object> QaPasswdCheck(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
+	
 		Map<String, Object> resultMap = QaDAO.QaPasswdCheck(map);
 		
 		return resultMap;
 	}
-	
+	//QA 답변쓰기후 list로 이동할때 카테고리,비밀글여부,상품번호를 보냄
 	@Override
 	public Map<String, Object> QaSel(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
+		
 		Map<String, Object> resultMap = QaDAO.QaSel(map);
 		return resultMap;
 	}
