@@ -80,7 +80,7 @@ table {
 				</c:if>
 				<td width="300" height="300" align="center"><a href="#this"
 					name="title"> <img name="bestimg"
-						src="/3T/resources/images/${row.IMAGE.split(',')[0] }" width="300"
+						src="/3T/resources/upload/${row.IMAGE.split(',')[0] }" width="300"
 						height="300"> <input type="hidden" id="GOODS_NO"
 						name="GOODS_NO" value="${row.GOODS_NO }"></a> <br>
 					${row.NAME }<br> KRWsdsds&nbsp;${row.PRICE }</td>
@@ -104,7 +104,7 @@ table {
 			</c:if>
 			<td width="150" height="400" align="center"><a href="#this"
 				name="title"> <img id="myImg"
-					src="/3T/resources/images/${list.IMAGE.split(',')[0] }" width="400"
+					src="/3T/resources/upload/${list.IMAGE.split(',')[0] }" width="400"
 					height="400"> <input type="hidden" id="GOODS_NO"
 					name="GOODS_NO" value="${list.GOODS_NO }"></a> <br>
 				${list.NAME }<br> KRW&nbsp;${list.PRICE }</td>
