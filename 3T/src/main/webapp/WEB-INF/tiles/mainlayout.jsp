@@ -93,6 +93,24 @@
 .sm_btn:hover img { opacity:1; }
 .sm_btn .sm_btn_text { top:-1px !important; background-color:#f8f8f8; border:1px solid #dbdbdb; font-size:11px; letter-spacing:-0.5px; padding-left:10px; text-align:left; color:#555; position:absolute; visibility:hidden; left:-130px; top:0px; line-height:46px; opacity:0; width:200px;-moz-transition: all 0.3s linear; -webkit-transition: all 0.3s linear; -o-transition: all 0.3s linear; -ms-transition: all 0.3s linear; transition: all 0.3s linear;}
 .sm_btn:hover .sm_btn_text {left:-212px;opacity:1;visibility:visible;}
+
+.left_sns {
+	float: left;
+	text-align: left;
+	margin-right: 20px;
+}
+
+.left_sns li {
+	display: inline-block;
+	float: left;
+	margin: 0 0 0 10px;
+}
+.leftsns {
+    margin: 0 0 30px 40px;
+    padding: 0;
+    border-top: 0px #ddd solid;
+    overflow: hidden;
+}
 </style>
 </head>
 <body>
@@ -220,10 +238,25 @@
 					<li class="xans-record-"><a href="/3T/review/list">REVIEW</a></li>
 
 				</ul>
+				</div>
+				<div class="leftsns">
+				<ul class="left_sns">
+					<li><a href="http://blog.naver.com/asclohi" target="_blank"><img
+							src="/3T/resources/images/1.png"></a></li>
+					<li><a href="https://www.instagram.com/hi880515/"
+						target="_blank"><img src="/3T/resources/images/2.png"></a></li>
+					<li><a href="https://www.facebook.com/asclocom"
+						target="_blank"><img src="/3T/resources/images/3.png"></a></li>
+					<li><a href="http://pf.kakao.com/_muhjE" target="_blank"><img
+							src="/3T/resources/images/4.png"></a></li>
+				</ul>
+				
 			</div>
+			
 		</div>
 
 	</div>
+	
 	</tr>
 	</table>
 	</div>
@@ -278,7 +311,12 @@
 							src="/3T/resources/images/버튼2.png">
 						</a>
 					</div>
+					
+				
 				</div>
+				</div>
+				
+				
 				<!-- //sm_right_bn -->
 			</div>
 			<!-- //fixed_quick -->

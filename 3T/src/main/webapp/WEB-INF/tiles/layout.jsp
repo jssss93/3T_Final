@@ -84,6 +84,23 @@
 	z-index: 9;
 	background: none;
 }
+.left_sns {
+	float: left;
+	text-align: left;
+	margin-right: 20px;
+}
+
+.left_sns li {
+	display: inline-block;
+	float: left;
+	margin: 0 0 0 10px;
+}
+.leftsns {
+    margin: 0 0 30px 40px;
+    padding: 0;
+    border-top: 0px #ddd solid;
+    overflow: hidden;
+}
 .fixed_quick {position:fixed; right:17px; top:300px;z-index:500; }
 .fixed_quick ul li {width:46px;font-size:0px;border:1px solid #ddd;border-bottom:0px;}
 
@@ -213,6 +230,19 @@
 					<li class="xans-record-"><a href="/3T/review/list">REVIEW</a></li>
 
 				</ul>
+			</div>
+			<div class="leftsns">
+				<ul class="left_sns">
+					<li><a href="http://blog.naver.com/asclohi" target="_blank"><img
+							src="/3T/resources/images/1.png"></a></li>
+					<li><a href="https://www.instagram.com/hi880515/"
+						target="_blank"><img src="/3T/resources/images/2.png"></a></li>
+					<li><a href="https://www.facebook.com/asclocom"
+						target="_blank"><img src="/3T/resources/images/3.png"></a></li>
+					<li><a href="http://pf.kakao.com/_muhjE" target="_blank"><img
+							src="/3T/resources/images/4.png"></a></li>
+				</ul>
+				
 			</div>
 		</div>
 
