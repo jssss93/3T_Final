@@ -124,6 +124,18 @@ public class MemberDAO extends AbstractDAO {
 	{
 		update("member.couponRead", map);
 	}
+	
+	//메세지확인
+	public void readMessage(Map<String, Object> map) throws Exception
+	{
+		update("member.messageRead", map);
+	}
+	//확인하지 않은 메세지수
+	@SuppressWarnings("unchecked")
+	public Map<String,Object> noReadMessage(Map<String,Object> map) throws Exception
+	{
+		return (Map<String,Object>) selectOne("member.noReadMessage", map);
+	}
 		
 /*	public int checkId(String mem_id) throws Exception{
 		return (int)selectOne("member.checkId", mem_id);

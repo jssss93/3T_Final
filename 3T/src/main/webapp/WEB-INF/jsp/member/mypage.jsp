@@ -125,7 +125,7 @@
 									<li class="etc ">
 										<span class="title">메시지</span>
 										<span class="data">
-											<a href="/3T/member/mymessage">${messageAll.MESSAGEALL}개</a>
+											<a href="/3T/member/mymessage">${NOREADMESSAGE.NOREADMESSAGE}개</a>
 										</span> 
 									</li>
 

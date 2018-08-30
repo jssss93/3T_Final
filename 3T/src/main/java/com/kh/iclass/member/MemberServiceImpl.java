@@ -112,6 +112,18 @@ public class MemberServiceImpl implements MemberService{
 	
 	}	
 
+	//메세지 확인
+	@Override
+	public void readMessage(Map<String, Object> map, HttpServletRequest request) throws Exception {
+		memberDAO.readMessage(map);
+	
+	}	
+	
+	//확인하지 않은 메세지 수
+	public Map<String, Object> noReadMessage(Map<String, Object> map) throws Exception {
+		return memberDAO.noReadMessage(map);
+	}	
+	
 	/*@Override
 	public int checkMember(Map<String, Object> map) throws Exception {
 		return joinDAO.checkMember(map);

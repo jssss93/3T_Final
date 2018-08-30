@@ -95,7 +95,7 @@ public class LoginController {
 					System.out.println("노리드쿠폰 " + NOREADCOUPON);
 					System.out.println("노리드쿠폰! " + NOREADCOUPON.get("NOREADCOUPON"));
 
-					if (NOREADCOUPON.get("NOREADCOUPON") == "0") {
+					if (NOREADCOUPON.get("NOREADCOUPON").toString().equals("0")) {
 						mv.setViewName("redirect:/main");
 					} else {
 						mv.setViewName("member/loginCoupon");
