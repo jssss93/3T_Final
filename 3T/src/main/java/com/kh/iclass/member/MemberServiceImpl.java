@@ -123,7 +123,12 @@ public class MemberServiceImpl implements MemberService{
 	public Map<String, Object> noReadMessage(Map<String, Object> map) throws Exception {
 		return memberDAO.noReadMessage(map);
 	}	
-	
+
+	// 메세지 삭제
+	@Override
+	public void deleteMessage(Map<String, Object> map) throws Exception {
+		memberDAO.deleteMessage(map);
+	}
 	/*@Override
 	public int checkMember(Map<String, Object> map) throws Exception {
 		return joinDAO.checkMember(map);

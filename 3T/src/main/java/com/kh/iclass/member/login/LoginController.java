@@ -70,7 +70,7 @@ public class LoginController {
 		Map<String, Object> chk = loginService.loginGo(commandMap.getMap());
 		// 아이디 값이 없으면
 		if (chk == null) {
-			mv.setViewName("loginForm");
+			mv.setViewName("member/loginForm");
 			mv.addObject("message", "해당 아이디가 없습니다.");
 			return mv;
 		}
@@ -123,7 +123,7 @@ public class LoginController {
 				return mv;
 
 			} else { // 비밀번호 틀렸을때
-				mv.setViewName("loginForm");
+				mv.setViewName("member/loginForm");
 				mv.addObject("message", "비밀번호를 확인해 주세요.");
 				return mv;
 			}

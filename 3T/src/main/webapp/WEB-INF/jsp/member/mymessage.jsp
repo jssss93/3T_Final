@@ -7,6 +7,11 @@
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 </head>
+<script type="text/javascript">
+	function delchk() {
+		return confirm("메세지를 삭제하시겠습니까?");
+	}
+</script>
 <style>
 .modal-content {
     position: relative;
@@ -128,21 +133,34 @@ font-size:15px;
 				<th scope="col">메세지번호</th>
 				<th scope="col">내용</th>
 				<th scope="col">날짜</th>
+				<th scope="col">삭제</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:choose>
 				<c:when test="${fn:length(list) > 0}">
 					<c:forEach items="${list}" var="row" varStatus="vs">
-						<tr data-toggle="modal" data-target="#myModal${vs.index}">
-							<td><c:if test="${row.STATE == 1 }">
-                    			읽음
-                    		</c:if> <c:if test="${row.STATE == 0 }">
-                    			읽지않음
-                    		</c:if></td>
-							<td>${row.MESSAGE_NO }</td>
-							<td>${row.CONTENT}</td>
-							<td>${row.REGDATE}</td>
+						<tr>
+							<td data-toggle="modal" data-target="#myModal${vs.index}">
+								<c:if test="${row.STATE == 1 }">
+                    				읽음
+                    			</c:if>
+                    			<c:if test="${row.STATE == 0 }">
+                    				읽지않음
+                    			</c:if></td>
+							<td data-toggle="modal" data-target="#myModal${vs.index}">${row.MESSAGE_NO }</td>
+							<td data-toggle="modal" data-target="#myModal${vs.index}">${row.CONTENT}</td>
+							<td data-toggle="modal" data-target="#myModal${vs.index}">${row.REGDATE}</td>
+							<td style="text-align: center; vertical-align: middle;">
+								<c:url var="URL" value="/member/deleteMessage">
+									<c:param name="MESSAGE_NO" value="${row.MESSAGE_NO}" />
+								</c:url> 
+								<a href="${URL}"> 
+									<input type="image" 
+										src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png"
+										onclick="return delchk()">
+								</a>
+							</td>
 						</tr>
 						<div class="modal fade" id="myModal${vs.index}">
 							<div class="modal-content">

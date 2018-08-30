@@ -27,9 +27,9 @@ public class MemberDAO extends AbstractDAO {
 	 }
 	
 	// 회원강제 탈퇴
-		public void deleteMember(Map<String, Object> map) throws Exception {
-			delete("adminMember.deleteMemberA", map);
-		}
+	public void deleteMember(Map<String, Object> map) throws Exception {
+		delete("adminMember.deleteMemberA", map);
+	}
     
 	//회원수정
 	public void updateMember(Map<String, Object> map) throws Exception
@@ -124,6 +124,11 @@ public class MemberDAO extends AbstractDAO {
 	{
 		update("member.couponRead", map);
 	}
+	//쿠폰삭제
+	public void deleteCoupon() throws Exception
+	{
+		deleteCoupon("member.deleteCoupon");
+	}
 	
 	//메세지확인
 	public void readMessage(Map<String, Object> map) throws Exception
@@ -135,6 +140,10 @@ public class MemberDAO extends AbstractDAO {
 	public Map<String,Object> noReadMessage(Map<String,Object> map) throws Exception
 	{
 		return (Map<String,Object>) selectOne("member.noReadMessage", map);
+	}
+	// 메세지 삭제
+	public void deleteMessage(Map<String, Object> map) throws Exception {
+		delete("member.deleteMessage", map);
 	}
 		
 /*	public int checkId(String mem_id) throws Exception{

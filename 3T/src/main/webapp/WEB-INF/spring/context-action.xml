@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans
-	xmlns:context="http://www.springframework.org/schema/context"
+<beans xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:aop="http://www.springframework.org/schema/aop"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
-       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<!-- Enables the Spring MVC @Controller programming model -->
 	
@@ -117,6 +118,17 @@
 		p:viewClass="org.springframework.web.servlet.view.JstlView"
 		p:prefix="/WEB-INF/jsp/" p:suffix=".jsp">
 	</bean>
+	
+	
+	<!-- 쿠폰삭제관련 빈설정 -->
+	<bean id="batchExcuetor" class="com.kh.iclass.member.MemberDAO" />
+	
+	<!-- 실행할 메소드 등록 -->
+	<task:scheduled-tasks>
+		<task:scheduled ref="batchExcuetor" method="deleteCoupon" cron="0 0 0/12 * * *" />
+	</task:scheduled-tasks> 
+	<task:scheduler id="taskScheduler" pool-size="10" /> 
+	
 </beans>
 
 
