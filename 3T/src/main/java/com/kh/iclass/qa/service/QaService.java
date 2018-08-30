@@ -7,10 +7,13 @@ import java.util.Map;
 public interface QaService {
 		//QA 리스트
 	 	List<Map<String, Object>> QaList(Map<String, Object> map) throws Exception;
+	 	//QA 관리자 
+	 			List<Map<String, Object>> QaAdminList(Map<String, Object> map) throws Exception;
 	 	//QA 쓰기
 	 	void QaInsert(Map<String, Object> map) throws Exception;
 	 	//QA 상세보기
 	 	Map<String, Object> QaDetail(Map<String, Object> map) throws Exception;
+	 	Map<String, Object> QaDetail2(Map<String, Object> map) throws Exception;
 	 	//QA 수정
 		void QaUpdate(Map<String, Object> map) throws Exception;
 		//QA 삭제
@@ -31,4 +34,7 @@ public interface QaService {
 		Map<String, Object> QaPasswdCheck(Map<String, Object> map) throws Exception;
 		//QA 답변쓰기후 list로 이동할때 카테고리,비밀글여부,상품번호를 보냄
 		Map<String, Object> QaSel(Map<String, Object> map) throws Exception;
+		
+		//QA 수정
+		void QaUpdateRe_level(Map<String, Object> map) throws Exception;
 }

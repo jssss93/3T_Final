@@ -32,7 +32,7 @@ public class AdminQaController {
 		List<Map<String, Object>> list = null;
 
 		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
-			list = QaService.QaList(commandMap.getMap());
+			list = QaService.QaAdminList(commandMap.getMap());
 		else 
 			list = QaService.QaSearchList(commandMap.getMap());
 
@@ -43,20 +43,24 @@ public class AdminQaController {
 
 	@RequestMapping(value = "/qa/writeForm")
 	public ModelAndView qaWrite(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("qa.detail");
-	
+		
+        ModelAndView mv = new ModelAndView("qa.detail");
 		return mv;
 	}
-	
-	@RequestMapping(value = "/qa/detail")
-	public ModelAndView qaDetail(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("qa.detail");
-		Map<String, Object> map = QaService.QaDetail(commandMap.getMap());
-		mv.addObject("map", map);
+	//상세보기
+    @RequestMapping(value = "/qa/detail")
+    public ModelAndView qaDetail(CommandMap commandMap) throws Exception {
+        ModelAndView mv = new ModelAndView("qa.detail");
+        Map<String, Object> map = QaService.QaDetail(commandMap.getMap());
+        commandMap.put("REF",map.get("REF"));
+        
+        Map<String,Object> map2=QaService.QaDetail2(commandMap.getMap());
+        
+        mv.addObject("map", map);
+        mv.addObject("map2", map2);
 
 		return mv;
 	}
-	
 	//qa 답변 폼
 	@RequestMapping(value = "/qa/writeReplyForm")
 	public ModelAndView qaReplyWrite(HttpServletRequest request,CommandMap commandMap) throws Exception {
@@ -65,31 +69,24 @@ public class AdminQaController {
 		System.out.println("qaUpdateForm : " + commandMap.getMap());
 
 		mv.addObject("REF", commandMap.getMap());
-	/*	String REF = (String)request.getParameter("QA_NO");
-		int REF = Integer.parseInt(request.getParameter("QA_NO"));
-		
-		commandMap.put("REF", REF);
-		
-		mv.addObject("REF", commandMap.get(REF));*/
+	
 
 		return mv;
 	}
 	//qa답변
-	@RequestMapping(value = "/qa/writeReply")
+	@RequestMapping(value = "/qa/adminQnaReplyForm")
 	public ModelAndView qaReplyInsert(HttpServletRequest request,CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:qa/list");
-		/*String REF = (String)request.getParameter("QA_NO");
-			commandMap.put("REF", REF);
-		
-		mv.addObject("REF", commandMap.get(REF));*/
+		ModelAndView mv = new ModelAndView("redirect:/admin/qa/list");
+		System.out.println("adminQnaReplyForm : " + commandMap.getMap());
 		Map<String, Object> map = QaService.QaSel(commandMap.getMap());
 		System.out.println("qaWriteReply : " + commandMap.getMap());
 		
 		commandMap.putAll(map);
 		commandMap.put("RE_STEP", 1);
 		
+		
 		QaService.QaReplyInsert(commandMap.getMap());	
-		/*QaService.QaUpdateReplyStep(commandMap.getMap());*/
+		QaService.QaUpdateRe_level(commandMap.getMap());
 		
 		return mv;
 	}
@@ -109,11 +106,11 @@ public class AdminQaController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/qa/update")
+	@RequestMapping(value = "/qa/adminQnaReplyUpdate")
 	public ModelAndView qaUpdate(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:qa/detail");
+		ModelAndView mv = new ModelAndView("redirect:/admin/qa/list");
 		
-		System.out.println("qaUpdate : " + commandMap.getMap());
+		System.out.println("adminQnaReplyUpdate : " + commandMap.getMap());
 		QaService.QaUpdate(commandMap.getMap());
 	
 		
@@ -122,9 +119,9 @@ public class AdminQaController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/qa/delete")
+	@RequestMapping(value = "/qa/adminQnaReplyDelete")
 	public ModelAndView qaDelete(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:qa/list");
+		ModelAndView mv = new ModelAndView("redirect:/admin/qa/list");
 		System.out.println("qaDelete : " + commandMap.getMap());
 		
 		QaService.QaDelete(commandMap.getMap());

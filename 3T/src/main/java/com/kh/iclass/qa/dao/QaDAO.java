@@ -17,6 +17,10 @@ public class QaDAO extends AbstractDAO{
     public List<Map<String, Object>> QaList(Map<String, Object> map) throws Exception{
         return (List<Map<String, Object>>)selectList("qa.QA_selectList", map);//selectList는 Mybatis기본 기능으로 리스트를 조회할때 사용
     }
+	@SuppressWarnings("unchecked")
+    public List<Map<String, Object>> QaAdminList(Map<String, Object> map) throws Exception{
+        return (List<Map<String, Object>>)selectList("qa.QA_AdminSelectList", map);//selectList는 Mybatis기본 기능으로 리스트를 조회할때 사용
+    }
 	//QA 쓰기
 	public void QaInsert(Map<String, Object> map) throws Exception{
 		insert("qa.QA_insert", map);
@@ -25,6 +29,10 @@ public class QaDAO extends AbstractDAO{
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> QaDetail(Map<String, Object> map) throws Exception{
 		return (Map<String, Object>) selectOne("qa.QA_selectDetail", map);
+	}
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> QaDetail2(Map<String, Object> map) throws Exception{
+		return (Map<String, Object>) selectOne("qa.QA_selectDetail2", map);
 	}
 	//QA 수정
 	public void QaUpdate(Map<String, Object> map) throws Exception{
@@ -71,5 +79,9 @@ public class QaDAO extends AbstractDAO{
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> QaSel(Map<String, Object> map) throws Exception{
 		return (Map<String, Object>) selectOne("qa.QaReplySel", map);
+	}
+	
+	public void QaUpdateRe_level(Map<String, Object> map) throws Exception{
+		update("QA_updateRe_level", map);
 	}
 }

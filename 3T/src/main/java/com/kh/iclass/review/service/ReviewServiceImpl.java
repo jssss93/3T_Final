@@ -103,6 +103,12 @@ public class ReviewServiceImpl implements ReviewService{
 		
 		return resultMap;
 	}
+	//관리자 리뷰 코멘트 삭제
+	@Override
+	public void ReviewAdminDeleteComment(Map<String, Object> map) throws Exception {
+		
+		ReviewDAO.ReviewAdminCommentDelete(map);
+	}
 
 		
 	
