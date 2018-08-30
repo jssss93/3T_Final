@@ -319,6 +319,26 @@
       	]]>
 	</delete>
 	
+		<!-- 메세지 삭제 -->
+	<delete id="deleteMessage" parameterType="hashmap">
+      	<![CDATA[
+         DELETE FROM 
+         	MESSAGE 
+         WHERE 
+         	MESSAGE_NO = #{MESSAGE_NO}
+      	]]>
+	</delete>
+	
+	<!-- 쿠폰 삭제 -->
+	<delete id="deleteCoupon">
+      	<![CDATA[
+         DELETE FROM 
+         	COUPON 
+         WHERE 
+         	VALIDITY < sysdate
+      	]]>
+	</delete>
+	
 
 
 	

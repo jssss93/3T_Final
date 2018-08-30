@@ -353,4 +353,26 @@ public class MemberController {
 		return mv;
 	}
 
+	// 메세지 삭제
+	@RequestMapping(value = "/member/deleteMessage")
+	public ModelAndView deleteMessage(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		List<Map<String, Object>> list = null;
+		Map<String, Object> messageAll = new HashMap<String, Object>();
+		
+		memberService.deleteMessage(commandMap.getMap());
+
+		commandMap.put("TOMEMBER", request.getSession().getAttribute("MEMBER_ID"));
+
+		list = memberService.myMessage(commandMap.getMap());
+		messageAll = memberService.messageAll(commandMap.getMap());
+		
+		mv.addObject("list", list);
+		mv.addObject("messageAll", messageAll);
+		mv.setViewName("redirect:/member/mymessage");
+		
+		return mv;
+
+	}	
+
 }

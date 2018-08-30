@@ -78,7 +78,12 @@ public class AbstractDAO {
 		printQueryId(queryId);
 		return sqlSession.selectMap(queryId,params, mapKey);
 	}
-
+	//쿠폰자동삭제
+	public void deleteCoupon(String queryId)
+	{
+		printQueryId(queryId);
+		sqlSession.delete(queryId);
+	}
 	
 	
 	
