@@ -130,7 +130,7 @@ font-size:15px;
         <c:choose>
             <c:when test="${fn:length(list) > 0}">
                 <c:forEach items="${list}" var="row" varStatus="vs">
-                    <tr>
+                    <tr data-toggle="modal" data-target="#myModal${vs.index}">
                     	<td>
                     		<c:if test="${row.STATE == 1 }">
                     			읽음
@@ -140,9 +140,7 @@ font-size:15px;
                     		</c:if>                    
                     	</td>        	
                         <td>${row.COUPON_NO }</td>
-                        <td>
-							<a data-toggle="modal" data-target="#myModal${vs.index}">${row.CONTENT}</a>
-						</td>
+                        <td>${row.CONTENT}</td>
                         <td>${row.VALIDITY}</td>
                     </tr>
 						<div class="modal fade" id="myModal${vs.index}">

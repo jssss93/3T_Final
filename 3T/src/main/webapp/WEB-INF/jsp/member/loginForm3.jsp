@@ -43,7 +43,7 @@
 				                    <input class="loginbtn" type="submit" value="Login">
 				                </span>
 				                <span class="joinusbtn">
-				                    <a href="/3T/member/joinStep1">Joinus</a>
+				                    <a href="/3T/joinStep1">Joinus</a>
 				                </span>
 				      		</p>
 				      		<p>

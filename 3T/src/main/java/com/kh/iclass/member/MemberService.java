@@ -42,9 +42,12 @@ public interface MemberService
 	
 	//message쓰기
 	void insertMessage(Map<String, Object> map, HttpServletRequest request) throws Exception;
-	
+	//메세지리스트
 	List<Map<String, Object>> myMessage(Map<String, Object> map) throws Exception;
-	
+	// 메세지확인
+	void readMessage(Map<String, Object> map, HttpServletRequest request) throws Exception;
+	//확인하지 않은 메세지 수
+	Map<String, Object> noReadMessage(Map<String, Object> map) throws Exception;	
 		
 	/*// 이메일인증시, ID중복체크
 	int checkMember(Map<String, Object> map) throws Exception;

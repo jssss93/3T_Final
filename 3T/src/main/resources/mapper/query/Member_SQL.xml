@@ -160,6 +160,29 @@
         ]]>
 	</select>
 	
+		<!-- 메세지확인 -->
+	<update id="messageRead" parameterType="hashmap">
+		UPDATE
+			MESSAGE
+		SET
+			STATE = STATE +1
+		WHERE
+			STATE = 0 AND
+			MESSAGE_NO = #{MESSAGE_NO}
+	</update>
+	
+		<!--마이페이지에서 뜨는 메세지의수-->
+	<select id="noReadMessage" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			COUNT(TOMEMBER) as NOREADMESSAGE
+		FROM
+			MESSAGE
+		WHERE
+			TOMEMBER = #{TOMEMBER} AND
+			STATE = 0
+			
+	</select>
+	
 	<!-- mypage state값들 -->
 	<select id="state" parameterType="hashmap" resultType="hashmap">
         <![CDATA[

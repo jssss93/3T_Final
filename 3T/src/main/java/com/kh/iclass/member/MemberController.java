@@ -35,7 +35,7 @@ public class MemberController {
 		Map<String, Object> swap = new HashMap<String, Object>();
 		Map<String, Object> refund = new HashMap<String, Object>();
 		Map<String, Object> orderAll = new HashMap<String, Object>();
-		Map<String, Object> messageAll = new HashMap<String, Object>();
+		Map<String, Object> NOREADMESSAGE = new HashMap<String, Object>();
 		Map<String, Object> couponAll = new HashMap<String, Object>();
 
 		commandMap.put("MEMBER_ID", request.getSession().getAttribute("MEMBER_ID"));
@@ -47,10 +47,10 @@ public class MemberController {
 		swap = memberService.swap(commandMap.getMap());
 		refund = memberService.refund(commandMap.getMap());
 		orderAll = memberService.orderAll(commandMap.getMap());
-		messageAll = memberService.messageAll(commandMap.getMap());
+		NOREADMESSAGE = memberService.noReadMessage(commandMap.getMap());
 		couponAll = memberService.couponAll(commandMap.getMap());
 		
-		System.out.println("메세지?" + messageAll);
+		System.out.println("메세지?" + NOREADMESSAGE);
 
 		System.out.println(stateList);
 
@@ -67,7 +67,7 @@ public class MemberController {
 		mv.addObject("swap", swap);
 		mv.addObject("refund", refund);
 		mv.addObject("orderAll", orderAll);
-		mv.addObject("messageAll", messageAll);
+		mv.addObject("NOREADMESSAGE", NOREADMESSAGE);
 		mv.addObject("couponAll", couponAll);
 
 		mv.setViewName("member/mypage");
@@ -245,13 +245,16 @@ public class MemberController {
 	public ModelAndView myMessage(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("member/mymessage");
 		List<Map<String, Object>> list = null;
-
+		Map<String, Object> messageAll = new HashMap<String, Object>();
+		
 		commandMap.put("TOMEMBER", request.getSession().getAttribute("MEMBER_ID"));
 
 		list = memberService.myMessage(commandMap.getMap());
-
+		messageAll = memberService.messageAll(commandMap.getMap());
+		
 		mv.addObject("list", list);
-
+		mv.addObject("messageAll", messageAll);
+		
 		return mv;
 	}
 
@@ -329,6 +332,24 @@ public class MemberController {
 
 		mv.setViewName("member.message");
 
+		return mv;
+	}
+
+	@RequestMapping(value = "/member/messageDetail")
+	public ModelAndView messageDetail(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		List<Map<String, Object>> list = null;	
+		
+		System.out.println("글번호"+commandMap.get("MESSAGE_NO"));
+		memberService.readMessage(commandMap.getMap(), request);
+		
+		commandMap.put("TOMEMBER", request.getSession().getAttribute("MEMBER_ID"));
+
+		list = memberService.myMessage(commandMap.getMap());
+		mv.addObject("list", list);
+		
+		mv.setViewName("redirect:/member/mymessage");
 		return mv;
 	}
 
