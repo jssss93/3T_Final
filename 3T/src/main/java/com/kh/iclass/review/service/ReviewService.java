@@ -23,6 +23,8 @@ public interface ReviewService {
 		
 		//리뷰 코멘트 삭제
 		void ReviewDeleteComment (Map<String, Object> map) throws Exception;
+		//관리자 리뷰 코멘트 삭제
+		void ReviewAdminDeleteComment (Map<String, Object> map) throws Exception;
 		//리뷰 검색
 		List<Map<String, Object>> ReviewSearchList(Map<String, Object>map)throws Exception;
  

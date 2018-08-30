@@ -127,6 +127,17 @@
     ]]>
 </delete>
 
+<!-- 관리자 댓글 삭제 -->
+<delete id="REVIEW_AdminCommentdelete" parameterType="hashmap">
+	 <![CDATA[
+        delete FROM
+            REVIEW_COMMENT
+        WHERE
+            REVIEW_COMMENT_NO = #{REVIEW_COMMENT_NO}   
+    ]]>
+</delete>
+
+
 <!-- 리뷰 댓글 쓰기 -->
 <insert id="ReviewInsertComment" parameterType="hashmap">
       <![CDATA[

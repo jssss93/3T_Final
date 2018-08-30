@@ -1,21 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <head>
 <script type="text/javascript">
 	function button1_click(frm) {
 		var theForm = document.frm;
-		theForm.action = "adminQnaReplyForm?REF=${map.QA_NO}&QA_NO=${map.QA_NO}";
-	}
-	function button3_click(frm) {
-		var theForm = document.frm;
-		theForm.action = "adminQnaReplyUpdate?QA_NO=${map2.QA_NO}";
+		theForm.action = "adminCommentWrite?REVIEW_NO=${map.REVIEW_NO}";
 	}
 	function button2_click(frm) {
 		var theForm = document.frm;
-		theForm.action = "adminQnaReplyDelete?QA_NO=${map2.QA_NO}";
+		theForm.action = "adminCommentDelete?REVIEW_NO=${map.REVIEW_NO}";
 	}
 
 	function previewImage(targetObj, View_area) {
@@ -93,26 +90,26 @@
 <!-- 메뉴 시작 -->
 
 <div class="row" style="padding-left: 15px; width: 700px;">
-	<h1 class="page-header">Q&A 상세보기</h1>
+	<h1 class="page-header">REVIEW 상세보기</h1>
 </div>
 
 <div class="row" style="padding-left: 15px; width: 700px;">
 	<div class="panel panel-default">
-		<div class="panel-heading">Q&A 상세보기 페이지입니다.</div>
+		<div class="panel-heading">REVIEW 상세보기 페이지입니다.</div>
 		<div class="panel-body">
 			            <form:form id="frm" name="frm" action="frm" method="post" enctype="multipart/form-data">
 				<div class="form-group">
-					<label>QNA 글번호</label> 
-					<input type="text" class="form-control" value="${map.QA_NO}" style="width: initial;" readonly />
+					<label>REVIEW 글번호</label> 
+					<input type="text" class="form-control" value="${map.REVIEW_NO}" style="width: initial;" readonly />
 				</div>
 
-				<div class="form-group">
-					<label>QNA 카테고리</label> 
+			<%-- 	<div class="form-group">
+					<label>REVIEW 카테고리</label> 
 					<input type="text" class="form-control" id="QNA_CATEGORY" name="QNA_CATEGORY" value="${map.CATEGORY}" style="width: initial;" readonly />
-				</div>
+				</div> --%>
 				<div class="form-group">
 					<label>제목</label> 
-					<input type="text" class="form-control" id="QNA_TITLE" name="QNA_TITLE" value="${map.TITLE}" style="width: initial;" readonly />
+					<input type="text" class="form-control" id="REVIEW_TITLE" name="REVIEW_TITLE" value="${map.TITLE}" style="width: initial;" readonly />
 				</div>
 				<c:if test="${qnaDetail.GOODS_NUMBER ne null }">
 				<div class="form-group">
@@ -144,23 +141,42 @@
 						value="<fmt:formatDate value="${map.REGDATE}" pattern="YY.MM.dd HH:mm" />"
 						style="width: initial;" readonly />
 				</div>
-				 <div class="form-group">
-                            <label>제목</label>
-                            <input type="text" class="form-control" id="TITLE" name="TITLE" value="${map2.TITLE }" style="width:100px;"/>
-                        </div>
+				
+				<table class="board_view2">
+
+					<c:forEach items="${list }" var="list">
+						<tr height="10" width="130" align="center">
+						
+							<td>${list.NAME }<br />
+							<fmt:formatDate value="${list.REGDATE}" pattern="YY.MM.dd HH:mm" />
+							</td>
+							<td>${list.CONTENT }<br /> <br /></td> 	
+						 <td>${list.REVIEW_COMMENT_NO }
+						<input type="hidden" id="REVIEW_COMMENT_NO" name="REVIEW_COMMENT_NO" value="${list.REVIEW_COMMENT_NO }"></td>
+							<td><button type="submit" class="btn btn-success" onclick="button2_click();">삭제</button></td>
+							
+						</tr>
+					</c:forEach>
+					<c:if test="${fn:length(list) le 0}">
+										<tr><td colspan="11" style="text-align:center;">등록된 리뷰 댓글이 없습니다</td></tr>
+									</c:if> 
+				</table>
+				<br/>
+				
                          <div class="form-group">
                             <label>작성자</label>
-                            <input type="text" class="form-control" id="MEMBER_ID" name="MEMBER_ID" value="ADMIN" style="width:100px;" readonly/>
+                            <input type="text" class="form-control" id="NAME" name="NAME" value="ADMIN" style="width:100px;" readonly/>
                         </div>
                          <div class="form-group">
                             <label>비밀번호</label>
-                            <input type="text" class="form-control" id="PASSWD" name="PASSWD" value="${map.PASSWD}" style="width:100px;" readonly/>
+                            <input type="text" class="form-control" id="PASSWD" name="PASSWD" value="<%-- ${map.PASSWD} --%>" style="width:100px;"/>
                         </div>
+                        <input type="hidden" id="REVIEW_ORIGIN_NO"
+								name="REVIEW_ORIGIN_NO" value="${map.REVIEW_NO }">
+						
 				<div class="form-group">
-					<label>답변</label>
-					                   <%--  <textarea class="form-control" id="QNA_REPCONTENT" name="QNA_REPCONTENT" rows="10" cols="30" readonly>${qnaDetail.QNA_REPCONTENT}</textarea> --%>
-					
-					 <textarea class="form-control" rows="10" cols="30"  id="CONTENT" name="CONTENT">${map2.CONTENT }</textarea>
+					<label>댓글</label>
+					 <textarea class="form-control" rows="10" cols="30"  id="CONTENT" name="CONTENT">소중한후기 감사합니다 :)</textarea>
 				</div>
 				<c:if test="${map2.CONTENT ne null}">
 					<div class="form-group">
@@ -171,13 +187,11 @@
 					</div>
 				</c:if>
 				<c:if test="${map2.CONTENT eq null}">
-					<button type="submit" class="btn btn-success" onclick="button1_click();">답변달기</button>
+					<button type="submit" class="btn btn-success" onclick="button1_click();">댓글달기</button>
+					
 				</c:if>
-				<c:if test="${map2.CONTENT ne null}">
-					<button type="submit" class="btn btn-success" onclick="button3_click();">답변수정</button>
-					<button type="submit" class="btn btn-success" onclick="button2_click();">답변삭제</button>
-				</c:if>
-				<a href="/3T/admin/qa/list">
+				
+				<a href="/3T/admin/review/list">
 					<button type="button" class="btn btn-outline btn-default">목록으로</button>
 				</a>
 			</form:form>

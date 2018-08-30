@@ -73,13 +73,13 @@ function delchk(){
 </head>
 
 <div class="row" style="padding-left:15px;width:900px;">    
-	<h1 class="page-header">QA 목록</h1>
+	<h1 class="page-header">REVIEW 목록</h1>
 </div>
 
 <div class="row">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-                         [QA 목록페이지] QA를 관리 하는 페이지입니다.
+                         [REVIEW 목록페이지] REVIEW를 관리 하는 페이지입니다.
         </div>
         <div class="panel-body">
 			<div class="dataTable_wrapper">
@@ -94,31 +94,31 @@ function delchk(){
 										<th style="width: 8%; text-align:center;vertical-align:middle;">TITLE</th>										
 										<th style="width: 7%; text-align:center;vertical-align:middle;">WRITER</th>
 										<th style="width: 20%; text-align:center;vertical-align:middle;">DATE</th>
-										<th style="width: 8%; text-align:center;vertical-align:middle;">STATUS</th>
+										<!-- <th style="width: 8%; text-align:center;vertical-align:middle;">STATUS</th> -->
 										<th style="width: 13%; text-align:center;vertical-align:middle;">SETTING</th>
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach var="list"  items="${list}" varStatus="stat">
-										<input type="hidden" name="QA_NO" value="${list.QA_NO }">
+										<input type="hidden" name="REVIEW_NO" value="${list.REVIEW_NO }">
 										<tr class="gradeA even" role="row">
-											<td style="text-align:center;vertical-align:middle;">${list.QA_NO}</td>
-											<td style="text-align:center;vertical-align:middle;"><c:if test="${list.RE_STEP ==1 }">
+											<td style="text-align:center;vertical-align:middle;">${list.REVIEW_NO}</td>
+											<td style="text-align:center;vertical-align:middle;"><%-- <c:if test="${list.RE_STEP ==1 }">
 												→[답변] &nbsp;
-												</c:if>
+												</c:if> --%>
 											${list.TITLE}</td>										
 											<td style="text-align:center;vertical-align:middle;">${list.MEMBER_ID}</td>
 											<td style="text-align:center;vertical-align:middle;"><fmt:formatDate value="${list.REGDATE}" pattern="YY.MM.dd HH:mm" /></td>
-											<td style="text-align:center;vertical-align:middle;"><c:if test="${list.RE_LEVEL ==1 }">답변완료</c:if><c:if test="${list.RE_LEVEL ==0 }">답변대기중</c:if> </td>	
+											<%-- <td style="text-align:center;vertical-align:middle;"><c:if test="${list.RE_STEP ==1 }">답변완료</c:if> </td>	 --%>
 																					
 											<td style="text-align:center;vertical-align:middle;">
-											<input type="hidden" name="QA_NO" value="${list.QA_NO }">
+											<input type="hidden" name="REVIEW_NO" value="${list.REVIEW_NO }">
 											
-											<c:url var="detail" value="/admin/qa/detail">
-													<c:param name="QA_NO" value="${list.QA_NO }" />
+											<c:url var="detail" value="/admin/review/detail">
+													<c:param name="REVIEW_NO" value="${list.REVIEW_NO }" />
 											</c:url>
-											<c:url var="delete" value="/admin/qa/adminQnaReplyDelete">
-													<c:param name="QA_NO" value="${list.QA_NO }" />
+											<c:url var="delete" value="/admin/review/adminDelete">
+													<c:param name="REVIEW_NO" value="${list.REVIEW_NO }" />
 											</c:url>
 											
 											<a href="${detail}"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;

@@ -36,6 +36,12 @@ public class QaServiceImpl implements QaService{
 		Map<String, Object> resultMap = QaDAO.QaDetail(map);
 		return resultMap;
 	}
+	@Override
+	public Map<String, Object> QaDetail2(Map<String, Object> map) throws Exception {
+	
+		Map<String, Object> resultMap = QaDAO.QaDetail2(map);
+		return resultMap;
+	}
 	//QA 수정
 	@Override
 	public void QaUpdate(Map<String, Object> map) throws Exception {
@@ -104,7 +110,15 @@ public class QaServiceImpl implements QaService{
 	}
 	
 	
-	
+	@Override
+	public void QaUpdateRe_level(Map<String, Object> map) throws Exception {
+		
+		QaDAO.QaUpdateRe_level(map);
+	}
+	@Override
+	public List<Map<String, Object>> QaAdminList(Map<String, Object> map) throws Exception {
+		
+		return QaDAO.QaAdminList(map);
+	}
 
-	
 }

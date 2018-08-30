@@ -37,6 +37,36 @@
                A.ref DESC, A.re_step ASC  
         ]]>
     </select>
+    
+     <select id="QA_AdminSelectList" parameterType="hashmap" resultType="hashmap">
+        <![CDATA[
+           		
+           SELECT 
+ 				QA_NO,
+      			TITLE,
+      		    MEMBER_ID,
+        		CONTENT,
+        		REGDATE,
+        		CATEGORY,
+				REF,
+				RE_STEP,
+				RE_LEVEL,
+				GOODS_NO,
+				STATUS
+       			
+		  from
+                QA 
+          where 
+          		RE_STEP = 0
+     
+               
+         ORDER BY 
+               
+               ref DESC
+        ]]>
+    </select>
+    
+    
     <!-- QA 쓰기 -->
     <insert id="QA_insert" parameterType="hashmap">
       <![CDATA[
@@ -86,11 +116,27 @@
             REGDATE,
             CONTENT,
 			CATEGORY,
-			GOODS_NO
+			GOODS_NO,
+			REF,
+			PASSWD
         FROM
             QA
         WHERE
             QA_NO = #{QA_NO}       
+      ]]>
+    </select>
+    <select id="QA_selectDetail2" parameterType="hashmap" resultType="hashmap">
+      <![CDATA[
+        SELECT
+        	QA_NO,
+            TITLE,
+            REGDATE,
+            CONTENT
+        FROM
+            QA
+        WHERE
+            REF= #{REF} AND
+            RE_STEP = 1      
       ]]>
     </select>
     <!-- QA 수정 -->
@@ -104,6 +150,17 @@
 			
         WHERE
             QA_NO = #{QA_NO}
+    ]]>
+</update>
+<!-- 답글 달때 RE_LEVEL 1증가 -->
+<update id="QA_updateRe_level" parameterType="hashmap">
+    <![CDATA[
+       UPDATE 
+       		QA 
+       SET
+       		RE_LEVEL = 1
+	   WHERE 
+	   		QA_NO = #{REF}
     ]]>
 </update>
     <!-- QA 삭제 -->
