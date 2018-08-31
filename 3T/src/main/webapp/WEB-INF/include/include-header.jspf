@@ -29,3 +29,6 @@
 
 <link href="<c:url value='/resources/css/footer.css'/>" rel="stylesheet" type="text/css" />
 
+<!-- 달력UI -->
+<script src="<c:url value='/resources/js/jquery-ui.js'/>" ></script>
+<link href="<c:url value='/resources/js/jquery-ui.theme.min.css'/>" rel="stylesheet" type="text/css" />

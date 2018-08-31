@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.json.simple.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -92,48 +93,7 @@ public class AdminOrderController {
 	
 	}
 	
-	@RequestMapping(value = "/order/chartBasic")		
-	public ModelAndView chartBasic(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("order.chartBasic");
-		
-		List<Map<String, Object>> saleListMap = new ArrayList<Map<String, Object>>();
-		saleListMap=orderService.getSale2(commandMap.getMap());
-		
-		org.json.simple.JSONArray json=ParseListToJson.convertListToJson(saleListMap);
-		
-		System.out.println("json:"+json);
-		
-		ObjectMapper mapper = new ObjectMapper();  
-		mapper.writerWithDefaultPrettyPrinter().writeValue(System.out, json);
-		
-		mv.addObject("json", json);
-		
-		return mv;
-	}
 	
-	
-	@RequestMapping(value = "/order/chart")		
-	public ModelAndView chart(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("order.chart");
-		
-		HttpSession session = request.getSession();
-		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
-		
-		List<Map<String, Object>> saleListMap = new ArrayList<Map<String, Object>>();
-		saleListMap=orderService.getSale2(commandMap.getMap());
-		
-		org.json.simple.JSONArray json=ParseListToJson.convertListToJson(saleListMap);
-		
-		System.out.println("json:"+json);
-		
-		ObjectMapper mapper = new ObjectMapper();  
-		mapper.writerWithDefaultPrettyPrinter().writeValue(System.out, json);
-		
-		mv.addObject("json", json);
-		
-		return mv;
-	
-	}
 	
 	
 	@RequestMapping(value = "/order/stateup")		
@@ -196,6 +156,91 @@ public class AdminOrderController {
 		return mv;
 	
 	}
+	
+	@RequestMapping(value = "/order/chartBasic")		
+	public ModelAndView chartBasic(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("order.chartBasic");
+		
+		List<Map<String, Object>> saleListMap = new ArrayList<Map<String, Object>>();
+		saleListMap=orderService.getSale2(commandMap.getMap());
+		
+		org.json.simple.JSONArray json=ParseListToJson.convertListToJson(saleListMap);
+		
+		System.out.println("json:"+json);
+		
+		ObjectMapper mapper = new ObjectMapper();  
+		mapper.writerWithDefaultPrettyPrinter().writeValue(System.out, json);
+		
+		mv.addObject("json", json);
+		
+		return mv;
+	}
+	
+	
+	@RequestMapping(value = "/order/chart")		
+	public ModelAndView chart(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("order.chart");
+		
+		HttpSession session = request.getSession();
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		
+		List<Map<String, Object>> saleListMap = new ArrayList<Map<String, Object>>();
+		saleListMap=orderService.getSale2(commandMap.getMap());
+		
+		JSONArray json=ParseListToJson.convertListToJson(saleListMap);
+		
+		System.out.println("json:"+json);
+		
+		ObjectMapper mapper = new ObjectMapper();  
+		mapper.writerWithDefaultPrettyPrinter().writeValue(System.out, json);
+		
+		mv.addObject("json", json);
+		
+		return mv;
+	
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/order/saleSearch")		
+	public JSONArray saleSearch(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		
+		
+		System.out.println("********************ㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱ");
+		System.out.println("saleSearch 로 넘어오는값:"+commandMap.getMap());
+		
+		List<Map<String, Object>> saleListMap = new ArrayList<Map<String, Object>>();
+		saleListMap=orderService.getSearchSale(commandMap.getMap());
+		System.out.println(saleListMap);
+		JSONArray json=ParseListToJson.convertListToJson(saleListMap);
+		
+		ObjectMapper mapper = new ObjectMapper();  
+		System.out.println("넘겨줄 json :");
+		mapper.writerWithDefaultPrettyPrinter().writeValue(System.out, json);
+		
+		return json;
+	}
+	
+	/*@RequestMapping(value = "/order/saleSearch")		
+	public ModelAndView saleSearch(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("order.chartBasic");
+		
+		System.out.println("saleSearch 로 넘어오는값:"+commandMap.getMap());
+		
+		List<Map<String, Object>> saleListMap = new ArrayList<Map<String, Object>>();
+		saleListMap=orderService.getSale2(commandMap.getMap());
+		
+		JSONArray json=ParseListToJson.convertListToJson(saleListMap);
+		
+		System.out.println("json:"+json);
+		
+		ObjectMapper mapper = new ObjectMapper();  
+		mapper.writerWithDefaultPrettyPrinter().writeValue(System.out, json);
+		
+		mv.addObject("json", json);
+		
+		return mv;
+	}*/
+	
 	
 	// 상세보기에서 바로구매
 	@RequestMapping(value = "order")

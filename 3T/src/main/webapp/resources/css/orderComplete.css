@@ -1,0 +1,1069 @@
+
+.xans-order-result .orderInfo {
+	width: 380px;
+	margin: 45px auto 0;
+	padding: 0 0 10px 130px;
+	color: #353535;
+	line-height: 1.5;
+	background:
+		url("http://img.echosting.cafe24.com/skin/base_ko_KR/order/bg_result.gif")
+		no-repeat 0 10px;
+}
+
+.xans-order-result .orderInfo p {
+	margin: 0 0 20px;
+}
+
+.xans-order-result .orderInfo p strong {
+	display: block;
+	margin: 0 0 7px;
+	color: #f65b56;
+	font-family: 'Lato', 'Nanum Gothic';
+	font-size: 16px;
+	text-transform: uppercase;
+}
+
+.xans-order-result .orderInfo p a {
+	color: #333;
+	text-decoration: underline;
+}
+
+.xans-order-result .orderInfo li strong {
+	font-size: 12px;
+	letter-spacing: -1px;
+}
+
+.xans-order-result .title {
+	margin: 40px 0 10px 0px;
+}
+
+.xans-order-result .title h3 {
+	color: #353535;
+	font-size: 12px;
+}
+
+.xans-order-result .orderListArea .title {
+	margin-top: 30px;
+}
+
+.xans-order-result .boardView {
+	border: 1px solid #d7d5d5;
+}
+
+.xans-order-result .boardView table {
+	table-layout: fixed;
+	color: #353535;
+	line-height: 1.5;
+}
+
+.xans-order-result .boardView th {
+	width: 120px;
+	padding: 11px 0 10px 19px;
+	border-top: 1px solid #e9e9e9;
+	border-right: 1px solid #e9e9e9;
+	font-weight: normal;
+	text-align: left;
+	background: #fbfafa;
+}
+
+.xans-order-result .boardView td {
+	width: auto;
+	padding: 11px 0 10px 10px;
+	border-top: 1px solid #e9e9e9;
+}
+
+.xans-order-result .boardView tbody tr:first-child th,
+	.xans-order-result .boardView tbody tr:first-child td {
+	border-top: 0;
+}
+
+.xans-order-result .boardView img {
+	vertical-align: middle;
+}
+
+.xans-order-result .boardView .price {
+	padding-top: 6px;
+	padding-bottom: 7px;
+	color: #333;
+	font-size: 17px;
+}
+
+.xans-order-result .boardView .price .tail {
+	font-size: 12px;
+}
+
+.xans-order-result .boardView .cashReciept span {
+	font-weight: normal;
+}
+
+.xans-order-result .boardView .cashReciept .grid {
+	font-size: 11px;
+	color: #757575;
+}
+
+.xans-order-result .boardList {
+	table-layout: fixed;
+	margin: 0 0 1px;
+	border: 1px solid #d7d5d5;
+	color: #353535;
+	line-height: 1.5;
+}
+
+.xans-order-result .boardList th {
+	padding: 11px 0 9px;
+	border-left: 1px solid #e9e9e9;
+	font-weight: normal;
+	background: #fbfafa;
+}
+
+.xans-order-result .boardList th:first-child {
+	border-left: 0;
+}
+
+.xans-order-result .boardList td {
+	padding: 8px 0 5px;
+	border-top: 1px solid #e9e9e9;
+	text-align: center;
+	vertical-align: middle;
+	word-wrap: break-word;
+}
+
+.xans-order-result .boardList tfoot td {
+	padding: 15px 10px 17px;
+	background: #fbfafa;
+	text-align: right;
+}
+
+.xans-order-result .boardList tfoot td .type {
+	float: left;
+	margin: 6px 0 0;
+	font-weight: normal;
+}
+
+.xans-order-result .boardList tfoot td .total {
+	margin: 0 0 0 15px;
+	color: #333;
+}
+
+.xans-order-result .boardList tfoot td .total span {
+	font-size: 17px;
+	letter-spacing: -1px;
+}
+
+.xans-order-result .boardList .thumb {
+	width: 92px;
+}
+
+.xans-order-result .boardList .product {
+	width: auto;
+}
+
+.xans-order-result .boardList .price {
+	width: 100px;
+}
+
+.xans-order-result .boardList .quantity {
+	width: 40px;
+}
+
+.xans-order-result .boardList .mileage {
+	width: 85px;
+}
+
+.xans-order-result .boardList .delivery {
+	width: 95px;
+}
+
+.xans-order-result .boardList .total {
+	width: 140px;
+}
+
+.xans-order-result .boardList .state {
+	width: 110px;
+}
+
+.xans-order-result .boardList td.thumb img {
+	width: 80px;
+}
+
+.xans-order-result .boardList td.product {
+	padding-left: 10px;
+	text-align: left;
+}
+
+.xans-order-result .boardList td.product a {
+	color: #353535;
+}
+
+.xans-order-result .boardList td.product div.option, .xans-order-result .boardList td.product ul.option>li
+	{
+	margin: 9px 0 0;
+	color: #757575;
+	line-height: 16px;
+}
+
+.xans-order-result .boardList td.product ul.option>li>strong {
+	display: block;
+	color: #353535;
+}
+
+.xans-order-result .boardList td.product div.option span.file a,
+	.xans-order-result .boardList td.product ul.option>li>span.file a {
+	margin: 0 0 0 4px;
+	padding: 0 0 0 11px;
+	color: #757575;
+	text-decoration: underline;
+	background:
+		url("http://img.echosting.cafe24.com/skin/base_ko_KR/common/ico_attach.gif")
+		no-repeat 0 2px;
+}
+
+.xans-order-result .boardList td.product .free {
+	margin: 5px 0 0;
+}
+
+.xans-order-result .boardList td.mileage, .xans-order-result .boardList td.delivery
+	{
+	color: #757575;
+}
+
+.xans-order-result .boardList td.mileage img {
+	vertical-align: middle;
+}
+
+.xans-order-result .btnArea {
+	overflow: hidden;
+	margin: 20px 0 0;
+	padding: 10px;
+	text-align: right;
+	*zoom: 1;
+}
+
+.xans-order-result .btnArea span.left {
+	float: left;
+}
+
+.xans-order-result .btnArea span.right {
+	float: right;
+}
+
+.xans-order-result .btnArea span.right a {
+	font-family: georgiaz;
+	font-size: 12px;
+	padding: 5px 40px;
+	margin: 0 5px;
+	vertical-align: top;
+	border: 1px solid #333;
+	text-decoration: none;
+}
+
+.xans-order-result .btnArea span.right a:hover {
+	border: 2px solid #333;
+	padding: 4px 39px;
+	margin: 0 5px;
+}
+
+.xans-order-result .totalArea {
+	margin: 40px 0 0;
+	color: #353535;
+	line-height: 1.5;
+}
+
+.xans-order-result .totalArea .summary {
+	border: 1px solid #777;
+}
+
+.xans-order-result .totalArea .summary th {
+	height: 39px;
+	border-left: 1px solid #e9e9e9;
+	line-height: 39px;
+	background: #fbfafa;
+}
+
+.xans-order-result .totalArea .summary td {
+	height: 58px;
+	border-top: 1px solid #e9e9e9;
+	border-left: 1px solid #e9e9e9;
+	line-height: 58px;
+	text-align: center;
+	font-size: 23px;
+}
+
+.xans-order-result .totalArea .summary th:first-child,
+	.xans-order-result .totalArea .summary td:first-child {
+	border-left: 0;
+}
+
+.xans-order-result .totalArea .summary th img {
+	margin: 0 0 0 10px;
+	vertical-align: middle;
+}
+
+.xans-order-result .totalArea .summary td.total {
+	color: #333;
+}
+
+.xans-order-result .totalArea .summary td .box {
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+.xans-order-result .totalArea .summary td .tail {
+	font-size: 14px;
+}
+
+.xans-order-result .totalArea .summary td strong {
+	letter-spacing: -1px;
+}
+
+.xans-order-result .totalArea .summary .price {
+	width: 33%;
+}
+
+.xans-order-result .totalArea .summary .price2 {
+	width: 67%;
+}
+
+.xans-order-result .totalArea .summary .option {
+	width: 34%;
+}
+
+.xans-order-result .totalArea .summary .total {
+	width: 33%;
+}
+
+.xans-order-result .totalArea .detail {
+	border: 1px solid #d7d5d5;
+}
+
+.xans-order-result .totalArea .detail th {
+	width: 140px;
+	padding: 11px 0 10px 20px;
+	border-top: 1px solid #e9e9e9;
+	text-align: left;
+	font-weight: normal;
+}
+
+.xans-order-result .totalArea .detail td {
+	padding: 8px 0 8px 10px;
+	border-left: 1px solid #e9e9e9;
+	border-top: 1px solid #e9e9e9;
+	vertical-align: middle;
+}
+
+.xans-order-result .totalArea .detail img {
+	vertical-align: middle;
+}
+
+.xans-order-result .totalArea .detail .total th, .xans-order-result .totalArea .detail .total td
+	{
+	font-weight: bold;
+	background: #fbfafa;
+}
+
+.xans-order-result .totalArea .detail .total th {
+	width: 150px;
+	padding-left: 10px;
+}
+
+.xans-order-result .totalArea .detail .total td strong {
+	font-size: 14px;
+}
+
+.xans-order-result .totalArea .detail .grid {
+	display: inline-block;
+	min-width: 90px;
+}
+
+.xans-order-result .totalDetail {
+	display: none;
+	position: absolute;
+	z-index: 100;
+	width: 300px;
+	color: #757575;
+}
+
+.xans-order-result .totalDetail h3 {
+	height: 35px;
+	padding: 0 35px 0 19px;
+	color: #fff;
+	font-size: 12px;
+	line-height: 35px;
+	background: #111;
+}
+
+.xans-order-result .totalDetail .content {
+	padding: 20px;
+	border: 1px solid #757575;
+	border-top: 0;
+	background: #fff;
+}
+
+.xans-order-result .totalDetail .close {
+	position: absolute;
+	right: 20px;
+	top: 10px;
+}
+
+.xans-order-result .totalDetail .close img {
+	cursor: pointer;
+}
+
+.xans-order-result .totalDetail .content p {
+	color: #f76560;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: right;
+}
+
+.xans-order-result .totalDetail .content ul {
+	line-height: 25px;
+}
+
+.xans-order-result .totalDetail .content li {
+	overflow: hidden;
+	padding: 0 0 0 6px;
+	background:
+		url("http://img.echosting.cafe24.com/skin/base_ko_KR/common/ico_info2.gif")
+		no-repeat 0 10px;
+	*zoom: 1;
+}
+
+.xans-order-result .totalDetail .content li:first-child {
+	margin: 8px 0 0;
+	padding-top: 6px;
+	border-top: 1px dotted #b0b1b3;
+	background-position: 0 16px;
+}
+
+.xans-order-result .totalDetail .content li strong {
+	float: left;
+	font-weight: normal;
+}
+
+.xans-order-result .totalDetail .content li span {
+	float: right;
+}
+
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre,
+	code, form, fieldset, legend, input, textarea, p, blockquote, th, td,
+	img {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+}
+
+body, code {
+	font: 11px 'Open Sans', 'Lato', arial, "¸¼Àº °íµñ", 'Malgun Gothic', ³ª´®°íµñ,
+		'Nanum Gothic', "µ¸¿ò", Dutum, san-serif;
+	color: #555;
+	background: #fff;
+}
+
+body {
+	min-width: 1000px;
+}
+
+body#popup {
+	min-width: 0;
+}
+
+li {
+	list-style: none;
+}
+
+img, fieldset {
+	border: none;
+	vertical-align: top;
+}
+
+table {
+	width: 100%;
+	border: 0;
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+caption {
+	display: none;
+}
+
+th, td {
+	border: 0;
+	vertical-align: top;
+}
+
+input, select, textarea {
+	font-size: 12px;
+	font-family: 'Open Sans', 'Roboto', arial, "¸¼Àº °íµñ", 'Malgun Gothic',
+		³ª´®°íµñ, 'Nanum Gothic', "µ¸¿ò", Dutum, san-serif;
+	color: #555;
+	vertical-align: middle;
+}
+
+.inputTypeText {
+	height: 19px;
+	padding: 3px 0 0 9px;
+	border: 1px solid #d5d5d5;
+}
+
+select {
+	height: 21px;
+	line-height: 21px;
+	color: #000;
+	opacity: 0.70;
+	filter: alpha(opacity = 100);
+	border: 1px solid #aaa;
+}
+
+textarea {
+	padding: 5px 6px;
+	border: 1px solid #d5d5d5;
+	color: #333;
+	line-height: 1.5;
+}
+
+legend {
+	visibility: hidden;
+	position: absolute;
+	left: -9999px;
+	top: -9999px;
+	width: 0;
+	height: 0;
+	line-height: 0;
+}
+
+button {
+	overflow: visible;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	cursor: pointer;
+}
+
+hr.layout {
+	display: none;
+}
+
+a, img, input {
+	outline: none;
+	select-dummy: expression(this.hideFocus = true);
+}
+
+a {
+	text-decoration: none;
+	color: #555;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+a:active {
+	text-decoration: none;
+	background-color: transparent;
+}
+
+.objHidden {
+	visibility: hidden;
+	position: absolute;
+	left: -1000px;
+	top: -1000px;
+	height: 0;
+	width: 0;
+}
+
+table tr.radioType input, span.noBorder input {
+	border: none !important;
+	width: auto !important;
+	height: auto !important;
+	margin: 0 3px 0 0 !important;
+	vertical-align: middle !important;
+	background: none !important;
+}
+
+#content_CONTAINER td {
+	width: auto !important;
+}
+
+table.nneditor-table {
+	width: auto !important;
+}
+
+#progressPaybarBackground {
+	position: absolute;
+	z-index: 99;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#progressPaybarView {
+	position: absolute;
+	z-index: 100;
+	top: 160px;
+	left: 20px;
+	width: 471px;
+	font-size: 12px;
+}
+
+#progressPaybarView .box {
+	height: 180px;
+	background:
+		url(http://img.cafe24.com/images/ec_hosting/popup/layer_guide/bg_layer_box1.gif)
+		0 0 no-repeat;
+}
+
+#progressPaybarView .box .graph {
+	padding: 15px 0 0 0;
+	text-align: center;
+}
+
+#progressPaybarView .box .graph span {
+	display: block;
+	text-align: center;
+	margin: 20px 0;
+}
+
+#progressPaybarView .box .txt {
+	text-align: center;
+	padding: 15px 0 0;
+	color: #555;
+}
+
+div.layerProgress {
+	filter: alpha(opacity = 40);
+	opacity: 0.4;
+	-moz-opacity: 0.4;
+	background-color: #999;
+}
+
+#skipNavigation {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	width: 100%;
+	height: 0;
+}
+
+#skipNavigation p, #skipNavigation ul, #skipNavigation ul li {
+	height: 0;
+}
+
+#skipNavigation p a {
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: block;
+	overflow: hidden;
+	width: 1px;
+	height: 1px;
+	margin-left: -1px;
+	margin-bottom: -1px;
+	text-align: center;
+	color: #555;
+	white-space: nowrap;
+}
+
+#skipNavigation p a:focus, #skipNavigation p a:hover, #skipNavigation p a:active
+	{
+	width: 100%;
+	height: auto;
+	padding: 10px 0;
+	background: #c4122f;
+	color: #fff;
+	z-index: 100;
+}
+
+.displaynone {
+	display: none;
+}
+
+.titleArea {
+	display: inline-block;
+	margin: 0 0 20px 5px;
+	clear: both;
+	overflow: hidden;
+}
+
+.titleArea h2 {
+	display: inline-block;
+	margin: 0;
+	font-size: 12px;
+	color: #2b2b2b;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.titleArea p {
+	display: inline-block;
+	margin: 0 0 0 6px;
+	padding: 0 0 0 10px;
+	color: #bbb;
+	letter-spacing: 0.5px;
+	background:
+		url("http://img.echosting.cafe24.com/skin/base_ko_KR/common/ico_title.gif")
+		no-repeat 0 2px;
+	*display: inline;
+	*zoom: 1;
+}
+
+.titleArea ul {
+	padding: 5px 0;
+	color: #8f8f8f;
+	line-height: 21px;
+}
+
+.titleArea ul li {
+	padding: 0;
+}
+
+.title {
+	border: none !important;
+	text-align: center;
+}
+
+.title h2 {
+	display: inline-block;
+	padding: 0 0 0 0px;
+	margin: 10px 0 5px 10px;
+	line-height: 20px;
+	text-align: center;
+	letter-spacing: 1.5px;
+	*display: inline;
+	*zoom: 1;
+}
+
+.title h2 span {
+	font-size: 12px;
+	color: #111;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+}
+
+.title h2 font {
+	padding: 0 0 0 8px;
+	font-size: 12px;
+	color: #111;
+	font-weight: 400;
+	text-transform: uppercase;
+}
+
+.title p {
+	padding: 7px !important;
+	margin-bottom: 10px;
+	background: none !important;
+	font-size: 9px;
+	text-transform: uppercase;
+	color: #aaa !important;
+	letter-spacing: 1.5px;
+}
+
+.button a {
+	margin-right: 5px;
+	padding: 5px 10px;
+	font-size: 12px;
+	font-family: Arial, Verdana, NanumBarunGothic;
+	color: #333;
+	line-height: 30px;
+	border: 0px solid #ccc;
+}
+
+.button a:hover {
+	text-decoration: none;
+}
+
+.button_s a {
+	margin: 5px 5px 0 0;
+	padding: 3px 8px;
+	font-size: 11px;
+	font-family: Arial, Verdana, NanumBarunGothic;
+	color: #666;
+	line-height: 28px;
+	border: 1px solid #ddd;
+}
+
+.button_s a:hover {
+	text-decoration: none;
+}
+
+table {
+	border-right: none !important;
+	border-left: none !important;
+	background: #fff;
+}
+
+table thead tr td {
+	border-right: none !important;
+	border-left: none !important;
+}
+
+table thead tr th {
+	border-right: none !important;
+	border-left: none !important;
+	color: #888 !important;
+}
+
+table a {
+	text-decoration: none !important;
+}
+
+table .subject a:hover {
+	color: #888 !important;
+}
+
+.categoryTitle {
+	width: 100%;
+	height: 68px;
+}
+
+.categoryTitle .recomm {
+	padding: 20px 0 0;
+	text-align: center;
+	font-family: "times new roman", nanumgothic, dotum;
+	font-size: 22px;
+	font-weight: normal;
+	color: #333;
+	font-style: italic;
+	height: 32px;
+	line-height: 22px;
+}
+
+#wrap_all {
+	width: 100%;
+	margin: 0 auto;
+	padding: 0;
+}
+
+#wrap {
+	position: relative;
+	margin: 0 auto;
+	padding: 0;
+	background: #fff;
+	border: 0px solid #eee;
+	border-top: 0;
+	border-bottom: 0;
+}
+
+#left {
+	position: fixed;
+	float: left;
+	width: 13%;
+	top: 0px;
+	height: 100%;
+	z-index: 9;
+	background: none;
+}
+
+#right {
+	position: fixed;
+	float: right;
+	right: 0px;
+	width: 140px;;
+	top: 0px;
+	height: 90%;
+	z-index: 9;
+	background: none;
+}
+
+#container {
+	position: relative;
+	float: right;
+	width: 86%;
+	height: 100%;
+	margin: 0 auto;
+	*zoom: 1;
+	overflow: hidden;
+	border-left: 0px solid #eee;
+}
+
+#container_main {
+	position: relative;
+	float: left;
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+	*zoom: 1;
+	overflow: hidden;
+	border-left: 0px solid #eee;
+}
+
+#headerwrap {
+	padding-left: 0px;
+	width: 100%;
+	max-width: 100%;
+	min-width: 700px;
+}
+
+#header {
+	position: relative;
+	position: fixed;
+	width: 100%;
+	min-width: 700px;
+	z-index: 99;
+	border-bottom: 0px solid #eee;
+	background: #fff;
+	background: rgba(2552, 255, 255, .95);
+}
+
+#header .header {
+	position: relative;
+	width: 83%;
+	height: 48px;
+	clear: both;
+	display: table;
+}
+
+#contentwrap {
+	position: relative;
+	float: left;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+#contents_main {
+	position: relative;
+	float: left;
+	width: 100%;
+	min-height: 500px;
+	margin: 105px auto 0;
+}
+
+#contents {
+	position: relative;
+	float: left;
+	width: 87%;
+	min-height: 500px;
+	margin: 80px auto 20px;
+}
+
+#quick {
+	position: absolute;
+	bottom: 1000px;
+	right: 0;
+	width: 90px;
+}
+
+#quick .banner a {
+	display: block;
+	margin: 15px 0 0;
+}
+
+#boardArea {
+	overflow: hidden;
+	margin: 20px 20px 0 10px;
+	border-top: 0px solid #d8d8d8;
+	float: left;
+}
+
+#bannerArea {
+	margin: 22px 0 0;
+}
+
+#bannerArea h2 {
+	margin: 0 0 16px;
+	font-weight: normal;
+	font-size: 20px;
+	font-family: CutiveR, Verdana, NanumBarunGothic;
+	color: #2e2e2e;
+	text-align: center;
+}
+
+.path {
+	display: none;
+	overflow: hidden;
+	float: right;
+	height: 30px;
+	line-height: 30px;
+	*zoom: 1;
+}
+
+.path h2 {
+	overflow: hidden;
+	position: absolute;
+	width: 0;
+	height: 0;
+	white-space: nowrap;
+	text-indent: 100%;
+}
+
+.path ol {
+	display: none;
+	float: right;
+}
+
+.path li {
+	float: left;
+	padding: 0 0 0 12px;
+	margin: 0 0 0 8px;
+	color: #757575;
+	background:
+		url("http://img.echosting.cafe24.com/skin/base_ko_KR/common/ico_path.gif")
+		no-repeat 0 10px;
+}
+
+.path li:first-child {
+	background: none;
+}
+
+.path li a {
+	color: #757575;
+}
+
+.path li strong, .path li strong a {
+	color: #2e2e2e;
+}
+
+.help {
+	margin: 40px 0 0;
+	border-top: 0px solid #ddd;
+	border-bottom: 0px solid #ddd;
+	line-height: 18px;
+}
+
+.help h3 {
+	padding: 4px 0 3px 10px;
+	border-bottom: 1px solid #e8e7e7;
+	color: #777;
+	font-size: 11px;
+	background: #fff;
+}
+
+.help .content {
+	padding: 0 9px 12px;
+}
+
+.help .content h4 {
+	margin: 15px 10px -4px;
+	color: #666;
+	font-size: 11px;
+	font-weight: normal;
+}
+
+.help .content h4:first-child {
+	margin-top: 13px;
+}
+
+.help .content p {
+	margin: 0px 0 0 10px;
+	color: #757575;
+}
+
+.help .content ul {
+	margin: 7px 0 10px 0px;
+}
+
+.help .content li {
+	padding: 0 0 0 5px;
+	color: #757575;
+	background: none;
+	opacity: 0.8;
+}

@@ -45,4 +45,6 @@ public interface OrderService {
 	public void changeState8(Map<String, Object> map);
 
 	public void changeState9(Map<String, Object> map);
+
+	public List<Map<String, Object>> getSearchSale(Map<String, Object> map);
 }

@@ -153,6 +153,12 @@ public class OrderServiceImpl implements OrderService {
 		orderDAO.changeState9(map);
 	}
 
+	@Override
+	public List<Map<String, Object>> getSearchSale(Map<String, Object> map) {
+		System.out.println("들어옴?");
+		return orderDAO.getSearchSale(map);
+	}
+
 	
 
 	

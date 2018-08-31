@@ -510,6 +510,23 @@
 	]]>
 	</select>
 	
+	<select id="selectSearchSale" parameterType="hashmap" resultType="map">
+	<![CDATA[
+		SELECT
+			to_char(REGDATE,'YYYY-MM-DD') as REGDATE,
+			SUM(TOTALPRICE) as TOTAL
+		FROM
+			ORDER_3T
+		WHERE
+			STATE =3 AND
+			REGDATE BETWEEN to_date(#{start},'YYYY-MM-DD') AND to_date(#{end},'YYYY-MM-DD')
+		GROUP BY
+			to_char(REGDATE,'YYYY-MM-DD')
+		ORDER BY
+			REGDATE
+	]]>
+	</select>
+	
 	
 	<update id="changeState1" parameterType="hashmap">
 		

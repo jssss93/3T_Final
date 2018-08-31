@@ -92,8 +92,8 @@ function delchk(){
 .paging .page_arw{font-size:11px;line-height:30px;}
 </style> 
 </head>
-<body id="body1">
-<div  style="align:left;">
+<body id="body1" style="float: left;">
+<div  style="align:left;float: left;">
 
 <div class="row" style="padding-left:15px;width:900px;">    
 	<h1 class="page-header">상품목록</h1>
@@ -141,7 +141,7 @@ function delchk(){
 						
 						
 					</div>
-					<div id="body" style="align:left;">
+					<div id="body" style="float: left;">
 					<div class="row"  >
 						<div class="col-sm-12">
 							<table

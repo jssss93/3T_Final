@@ -278,9 +278,64 @@
 		</selectKey>
 		<![CDATA[
 		INSERT INTO MEMBER
-		(MEMBER_NO, MEMBER_ID, PASSWD, NAME, BIRTH, ZIPCODE, ADDR1, ADDR2, PHONE, EMAIL, REGDATE)
+			(MEMBER_NO,
+			MEMBER_ID,
+		  	PASSWD,
+		 	NAME, 
+		 	BIRTH, 
+		 	ZIPCODE, 
+		 	ADDR1, 
+		 	ADDR2, 
+		 	PHONE, 
+		 	EMAIL, 
+		 	REGDATE)
 		VALUES
-		(#{MEMBER_NO}, #{MEMBER_ID}, #{PASSWD}, #{NAME}, #{BIRTH}, #{ZIPCODE}, #{ADDR1}, #{ADDR2}, #{PHONE}, #{EMAIL}, SYSDATE)
+			(#{MEMBER_NO}, 
+			#{MEMBER_ID}, 
+			#{PASSWD}, 
+			#{NAME}, 
+			#{BIRTH}, 
+			#{ZIPCODE}, 
+			#{ADDR1}, 
+			#{ADDR2}, 
+			#{PHONE}, 
+			#{EMAIL}, 
+			SYSDATE)
+		]]>
+		
+		
+	</insert>
+	
+	<!-- 회원가입2 -->
+	<insert id="insertMember2" parameterType="hashmap" useGeneratedKeys="true" keyProperty="MEMBER_NO">
+		<selectKey keyProperty="MEMBER_NO" resultType="java.lang.Integer" order="BEFORE">
+			SELECT MEMBER_NO_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		<![CDATA[
+		INSERT INTO MEMBER
+			(MEMBER_NO,
+			MEMBER_ID,
+		  	PASSWD,
+		 	NAME, 
+		 	BIRTH, 
+		 	ZIPCODE, 
+		 	ADDR1, 
+		 	ADDR2, 
+		 	PHONE, 
+		 	EMAIL, 
+		 	REGDATE)
+		VALUES
+			(#{MEMBER_NO}, 
+			#{MEMBER_ID}, 
+			#{PASSWD3}, 
+			#{NAME}, 
+			#{BIRTH}, 
+			#{ZIPCODE}, 
+			#{ADDR1}, 
+			#{ADDR2}, 
+			#{PHONE}, 
+			#{EMAIL}, 
+			SYSDATE)
 		]]>
 		
 		

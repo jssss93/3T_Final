@@ -1,6 +1,7 @@
 package com.kh.iclass.member.join;
 
 import java.io.PrintWriter;
+import java.security.Key;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -19,12 +20,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.iclass.common.map.CommandMap;
+import com.kh.iclass.member.util.RSAKeySet;
 
 
 @Controller
@@ -50,20 +53,64 @@ public class JoinController {
 		return mv;
 	}
 	
+	/*@RequestMapping("/join/privacy")
+	public String privacyForm() throws Exception {
+		return "member/privacy";
+	}*/
+	
 	@RequestMapping(value="/joinStep2")
-	public ModelAndView joinStep2(HttpSession session,HttpServletResponse response, HttpServletRequest request,CommandMap Map){
+	public ModelAndView joinStep2(Model model,HttpSession session,HttpServletResponse response, HttpServletRequest request,CommandMap Map)throws Exception{
 		ModelAndView mv = new ModelAndView();
+		RSAKeySet keySet = new RSAKeySet();
+		
+		/*if(! request.getHeader("Referer").equals("http://3T/join/privacy")) {
+			mv.addObject("/error");
+			return mv;
+		}*/
+		
+		/* 세션에 개인키 저장 */
+		session.setAttribute("RSA_private", keySet.getPrivateKey());
+		
+		/* Front Side로 공개키 전달 */
+		model.addAttribute("Modulus", keySet.getPublicKeyModulus());
+		model.addAttribute("Exponent", keySet.getPublicKeyExponent());
+		
 		String email1 = (String) Map.getMap().get("email1");
 		String email2 = (String) Map.getMap().get("email2");
-		System.out.println("이메일받자"+request.getParameter("email1"));
-		System.out.println("이메일받자2"+request.getParameter("email2"));
 		
 		mv.setViewName("member/joinStep222");
 		session.setAttribute("email1",email1);
 		session.setAttribute("email2",email2);
-/*		mv.addObject("email1",email1);
-		mv.addObject("email2",email2);*/
+		
 		return mv;
+	}
+	
+	@RequestMapping(value="/joinComplete", method=RequestMethod.POST)
+	public ModelAndView joinComplete(CommandMap commandMap, HttpServletRequest request,HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		String EMAIL = request.getParameter("EMAIL1")+"@"+request.getParameter("EMAIL2");
+		Map<String, Object> memberMap=new HashMap<String, Object>();
+		commandMap.getMap().put("EMAIL", EMAIL);
+			
+		/*if(session.getAttribute("RSA_private") != null) {
+			
+			System.out.println("(Key)session.getAttribute(\"RSA_private\")="+(Key)session.getAttribute("RSA_private"));
+			//(Key)session.getAttribute("RSA_private")=sun.security.rsa.RSAPrivateCrtKeyImpl@fff09455
+			
+			System.out.println(joinService.insertMember2(commandMap.getMap(),(Key)session.getAttribute("RSA_private")));
+			if(joinService.insertMember2(commandMap.getMap(),(Key)session.getAttribute("RSA_private")) > 0)
+				//if(memberService.regist(member, (Key)session.getAttribute("RSA_private")) > 0)
+				mv.setViewName("member/loginForm");
+			return mv;
+		}
+
+		session.removeAttribute("RSA_private");*/
+		
+		
+		joinService.insertMember(commandMap.getMap(), request);
+		mv.setViewName("member/loginForm");
+		return mv;
+		
 	}
 	
 	@RequestMapping(value="/joinStep2/checkId")
@@ -177,18 +224,5 @@ public class JoinController {
 	}
 	//이메일인증 추가 여기까지
 
-	@RequestMapping(value="/joinComplete", method=RequestMethod.POST)
-	public ModelAndView joinComplete(CommandMap commandMap, HttpServletRequest request) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		System.out.println("들어옴?");
-		String EMAIL = request.getParameter("EMAIL1")+"@"+request.getParameter("EMAIL2");
-		Map<String, Object> memberMap=new HashMap<String, Object>();
-		commandMap.getMap().put("EMAIL", EMAIL);
-		memberMap=commandMap.getMap();
-		joinService.insertMember(memberMap, request);
-/*		joinService.joinPoint(memberMap);*/
-		mv.setViewName("member/loginForm");
-		return mv;
-		
-	}
+	
 }
