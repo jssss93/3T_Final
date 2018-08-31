@@ -59,10 +59,7 @@ public interface GoodsService {
 	
 	//서치
 	public List<Map<String, Object>> goodsSearchList(Map<String, Object> map) throws Exception;
-	public List<Map<String, Object>> goodsSearchListName(Map<String, Object> map) throws Exception;
-	public List<Map<String, Object>> goodsSearchListRowPrice(Map<String, Object> map) throws Exception;
-	public List<Map<String, Object>> goodsSearchListHighPrice(Map<String, Object> map) throws Exception;
-	public List<Map<String, Object>> goodsSearchPriceList(Map<String, Object> map) throws Exception;
+	
 
 	
 }

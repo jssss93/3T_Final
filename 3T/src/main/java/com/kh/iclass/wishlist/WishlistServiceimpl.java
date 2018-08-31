@@ -34,5 +34,11 @@ public class WishlistServiceimpl implements WishlistService{
 	public void deleteAllWishlist(Map<String, Object> map) throws Exception {
 		wishlistDAO.deleteAllWishlist(map);
 	}
+	
+	@Override
+	public List<Map<String, Object>> selectCheckedWishList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return wishlistDAO.selectCheckedWishList(map);
+	}
 
 }

@@ -219,19 +219,19 @@
       });
       $("#deleteOne").on("click", function(e) { 
          e.preventDefault();
-         fn_Write();
+         fn_deleteOne();
       });
       
    });
    
    function fn_addOrderSelected() {
       var comSubmit = new ComSubmit("frm");
-      comSubmit.setUrl("<c:url value='/order/addSelected' />");
+      comSubmit.setUrl("<c:url value='/order/addwishSelected' />");
       comSubmit.submit();
    }
    function fn_addOrderAll() {
       var comSubmit = new ComSubmit("frm");
-      comSubmit.setUrl("<c:url value='/cart/Add/OnetoPayment' />");
+      comSubmit.setUrl("<c:url value='/order/addwishSelected' />");
       comSubmit.submit();
    }
    function fn_addOrderOne() {
@@ -241,7 +241,7 @@
    }
    function fn_deleteOne() {
       var comSubmit = new ComSubmit("frm");
-      comSubmit.setUrl("<c:url value='/cart/deleteOne' />");
+      comSubmit.setUrl("<c:url value='/3T/wish/deleteOneWishlist' />");
 
       comSubmit.submit();
    }
@@ -299,7 +299,7 @@
              $("#totalPrice").html(comma(sum)+" KRW");
              $("#delivery").html(comma(delivery)+" KRW");
              $("#totalSum").html(comma(totalSum)+" KRW");
-          $("#totalPrice2").html(comma(sum)+" KRW");
+       	   	 $("#totalPrice2").html(comma(sum)+" KRW");
              $("#delivery2").html(comma(delivery)+" KRW");
              $("#totalSum2").html(comma(totalSum)+" KRW");
              
@@ -384,7 +384,7 @@
    src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/983431901/?random=1534724800800&amp;cv=9&amp;fst=1534724800800&amp;num=1&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;u_h=864&amp;u_w=1536&amp;u_ah=824&amp;u_aw=1536&amp;u_cd=24&amp;u_his=5&amp;u_tz=540&amp;u_java=false&amp;u_nplug=3&amp;u_nmime=4&amp;sendb=1&amp;frm=0&amp;url=http%3A%2F%2Fasclo.com%2Forder%2Fbasket.html%3Fdelvtype%3DA&amp;ref=http%3A%2F%2Fasclo.com%2Fproduct%2Fdetail.html%3Fproduct_no%3D8171%26cate_no%3D1%26display_group%3D2&amp;tiba=%EC%95%A0%EC%A6%88%ED%81%B4%EB%A1%9C&amp;rfmt=3&amp;fmt=4">
    
 </script>
-<title>CART</title>
+<title>WISHLIST</title>
 <link href="<c:url value='/resources/css/cartTest.css'/>" rel="stylesheet" type="text/css" />
 <style type="text/css">
 #contentwrap {
@@ -392,6 +392,21 @@
     float: left;
     width: 100%;
     /* height: 100%; */
+}
+.rightWISH a {
+    font-size: 12px;
+    padding: 2px 10px;
+    margin: 3px;
+    vertical-align: top;
+    line-height: 21px;
+    border: 1px solid #666;
+    text-decoration: none;
+}
+.xans-order-basketpackage .boardList .thumb {
+    width: 120px;
+}
+.xans-order-basketpackage .boardList .product {
+    width: 732px;
 }
 </style>
 </head>
@@ -422,10 +437,10 @@
 						<div class="xans-element- xans-order xans-order-normtitle title ">
 
 							<c:if test="${MEMBER_ID!=null }">
-								<h3>${session.MEMBER_ID } 님의 WISHLIST 목록</h3>
+								<h3>${MEMBER_ID } 님의 WISHLIST 목록</h3>
 							</c:if>
 							<c:if test="${MEMBER_ID==null }">
-								<h3>${memberInfo.MEMBER_ID } 님의 WISHLIST 목록</h3>
+								<h3>${MEMBER_ID } 님의 WISHLIST 목록</h3>
 							</c:if>
 
 						</div>
@@ -443,15 +458,16 @@
 									<th scope="col" class="price">PRICE</th>
 									<th scope="col" class="delivery">배송구분</th>
 									<th scope="col" class="charge">배송비</th>
+									<th scope="col" class="total">total</th>
 									<th scope="col" class="button">select</th>
 								</tr>
 							</thead>
 							<tfoot>
 								<tr>
 									<td colspan="10"><strong class="type">[기본배송]</strong>
-										상품구매금액 <strong id="totalPrice">0 KRW </strong> + 배송비 <strong
+										상품구매금액 <strong id="totalPrice"> KRW </strong> + 배송비 <strong
 										id="delivery">3000 KRW </strong> -상품할인금액 0 <strong
-										id="discount">0 KRW </strong> = 합계 : <strong id="totalSum">0
+										id="discount">0 KRW </strong> = 합계 : <strong id="totalPrice">0
 											KRW </strong></td>
 								</tr>
 							</tfoot>
@@ -463,16 +479,16 @@
 											<tr class="xans-record-">
 
 												<td>
-													<input type="checkbox" id="checkbox${stat.index}" name="CART_NO" id="CART_NO" value="${row.CART_NO}"
+													<input type="checkbox" id="checkbox${stat.index}" name="WISHLIST_NO" id="WISHLIST_NO" value="${row.WISHLIST_NO}"
 													onclick="javascript:checkedRows(${stat.index});">
 												</td>
 												<td class="thumb">
-													<a href="/product/detail.html?product_no=8171&amp;cate_no=1">
+													<a href="/3T/goods/detail?GOODS_NO=${row.GOODS_NO }">
 														<img width="50" height="50"	src="/3T/resources/upload/${row.IMAGE.split(',')[0] }" />
 													</a>
-												</td>  
+												</td>
 												<td class="product">
-													<a href="/product/detail.html?product_no=8171&amp;cate_no=1">
+													<a href="/3T/goods/detail?GOODS_NO=${row.GOODS_NO }">
 													<strong>${row.NAME }</strong> </a>
 													<ul class="xans-element- xans-order xans-order-optionall option">
 														<li class="xans-record-">
@@ -482,27 +498,38 @@
 												<td><span class="price" value="${row.PRICE}">${row.PRICE}</span></td>
 												<td class="delivery">기본배송</td>
 												<td><span class="">무료<br></span></td>
+												<td><span class="totprice"
+													value="${row.PRICE*1}">${row.PRICE*1}</span></td>
+												
 												<td class="button">
 												
-													<c:url var="deleteOne" value="/cart/deleteOne">
-														<c:param name="CART_NO" value="${row.CART_NO }" />
+													<c:url var="deleteOne" value="/wish/deleteOneWishlist">
+														<c:param name="WISHLIST_NO" value="${row.WISHLIST_NO }" />
 													</c:url>
 													
 													<%-- <c:url var="addOne" value="/order/addOne"> --%>
-													<c:url var="addOne" value="/cart/Add/OnetoPayment">
-														<c:param name="CART_NO" value="${row.CART_NO }" />
+													<c:url var="addOne" value="/cart/WishaddCart">
+														<c:param name="WISHLIST_NO" value="${row.WISHLIST_NO }" />
 														<c:param name="ATTRIBUTE_NO" value="${row.ATTRIBUTE_NO}" />
 														<c:param name="GOODS_NO" value="${row.GOODS_NO }" />
-														<c:param name="COUNT" value="${row.COUNT}" />
+														<c:param name="COUNT" value="1" />
 													</c:url>
+													 <c:url var="addOne2" value="/wish/Add/OnetoPayment">
+														<c:param name="WISHLIST_NO" value="${row.WISHLIST_NO }" />
+														<c:param name="ATTRIBUTE_NO" value="${row.ATTRIBUTE_NO}" />
+														<c:param name="GOODS_NO" value="${row.GOODS_NO }" />
+														<c:param name="COUNT" value="1" />
+													</c:url> <a href="${addOne2 }" >
+													<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_order.gif" alt="주문하기"></a>
+													 
 													<a href="${addOne }" >
-													<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_order.gif" alt="주문하기"></a> 
-													<a href="javascript:;" onclick="BasketNew.moveWish(0);">
-													<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_wish.gif" alt="관심상품등록"></a> 
+													<img src="/3T/images/btn_basket.gif" alt="장바구니 담기1"></a> 
+													
 													<c:if test="${memberInfo.MEMBER_ID!=null }">
 														<a href="${deleteOne }" >
 														<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_delete.gif" alt="삭제"></a>
 													</c:if>
+													
 													<c:if test="${memberInfo.MEMBER_ID==null }">
 														<a href="${deleteOne }" >
 														<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_delete.gif" alt="삭제"></a>
@@ -537,24 +564,12 @@
 						<span class="left"> <strong class="ctrlTxt">선택상품을</strong>
 							<a href="#none" onclick="Basket.deleteBasket()"><img
 								src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_delete2.gif"
-								alt="삭제하기"></a> <a href="#none" onclick="Basket.addWishList()"
-							class="displaynone"><img
-								src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_wish.gif"
-								alt="관심상품등록"></a> <a href="#none"
+								alt="삭제하기"></a>  <a href="#none"
 							onclick="Basket.moveOversea()" class=""><img
-								src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_foreign.gif"
-								alt="해외배송상품 장바구니로 이동"></a> <a href="#none"
-							onclick="Basket.hopeProduct(''); return false;"
-							class="displaynone"><img
-								src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_product.gif"
-								alt="상품조르기"></a>
-						</span> <a href="#none" onclick="Basket.emptyBasket()"><img
-							src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_clear.gif"
-							alt="장바구니비우기"></a> <a href="#none"
-							onclick="Basket.estimatePrint(this)"
-							link="/estimate/userform.html"><img
-							src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_estimate.gif"
-							alt="견적서출력"></a>
+								src="/3T/images/btn_basket2.gif"
+								alt="장바구니 담기2"></a> 
+						</span><span class="rightWISH">
+						<a href="/3T/wish/deleteAllWishlist" onclick="NewWishlist.deleteAll();">관심상품 비우기</a> </span>
 					</div>
 					<!-- 총 주문금액 : 국내배송상품 -->
 					<div class="xans-element- xans-order xans-order-totalsummary  ">
@@ -577,11 +592,7 @@
 									<td><strong id="totalPrice2">0 KRW</strong></td>
 									<td><strong>+</strong><strong id="delivery2">3,000
 											KRW</strong></td>
-									<td class="discount displaynone">
-										<div class="box">
-											<strong>-</strong><strong>0</strong>
-										</div>
-									</td>
+									
 									<td><strong>=</strong><strong id="totalSum2">0
 											KRW</strong></td>
 								</tr>
@@ -600,34 +611,7 @@
 				</div>
 				<!-- //장바구니 모듈 Package -->
 
-				<!-- 관심상품 목록 -->
-				<div
-					class="xans-element- xans-myshop xans-myshop-wishlist displaynone xans-record-">
-					<!--
-	        $login_page = /member/login.html
-	        $count = 5
-	        $mode = basket
-	    -->
-					<div class="title">
-						<h3>관심상품</h3>
-					</div>
-					<table border="1" summary="">
-						<caption>관심상품 목록</caption>
-						<thead>
-							<tr>
-								<th scope="col" class="thumb">이미지</th>
-								<th scope="col" class="product">상품정보</th>
-								<th scope="col" class="price">판매가</th>
-								<th scope="col" class="mileage">적립금</th>
-								<th scope="col" class="delivery">배송구분</th>
-								<th scope="col" class="charge">배송비</th>
-								<th scope="col" class="total">합계</th>
-								<th scope="col" class="button">선택</th>
-							</tr>
-						</thead>
-					</table>
-					<p class="empty ">관심상품 내역이 없습니다.</p>
-				</div>
+				
 				<script>
 	fbq('track', 'AddToCart' );
 	</script>

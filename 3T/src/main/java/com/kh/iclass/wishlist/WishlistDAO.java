@@ -28,5 +28,9 @@ public class WishlistDAO extends AbstractDAO{
 	public void deleteAllWishlist(Map<String, Object> map) throws Exception{
 		delete("wish.deleteAllWishlist", map);
 	}
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectCheckedWishList(Map<String, Object> map) throws Exception {
+		return selectList("wish.selectCheckedWishList", map);
+	}
 
 }

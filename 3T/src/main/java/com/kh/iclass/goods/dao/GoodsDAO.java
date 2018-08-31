@@ -142,27 +142,7 @@ public class GoodsDAO extends AbstractDAO{
 		public List<Map<String, Object>> goodsSearchList(Map<String, Object> map) throws Exception{
 		    return selectList("goods.goodsSearchList",map);
 	    }
-		//상품 검색
-		@SuppressWarnings("unchecked")
-		public List<Map<String, Object>> goodsSearchListName(Map<String, Object> map) throws Exception{
-		    return selectList("goods.goodsSearchListName",map);
-	    }
-		//상품 검색
-		@SuppressWarnings("unchecked")
-		public List<Map<String, Object>> goodsSearchListRowPrice(Map<String, Object> map) throws Exception{
-		    return selectList("goods.goodsSearchListRowPrice",map);
-	    }
-		//상품 검색
-		@SuppressWarnings("unchecked")
-		public List<Map<String, Object>> goodsSearchListHighPrice(Map<String, Object> map) throws Exception{
-		    return selectList("goods.goodsSearchListHighPrice",map);
-	    }
-
-		//상품 검색
-		@SuppressWarnings("unchecked")
-		public List<Map<String, Object>> goodsSearchPriceList(Map<String, Object> map) throws Exception{
-			return selectList("goods.goodsSearchPriceList",map);
-		}
+		
 
 
 
