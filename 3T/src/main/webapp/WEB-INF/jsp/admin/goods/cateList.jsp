@@ -92,8 +92,8 @@ function delchk(){
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-<div class="row">
+
+<div class="row" style="float: left;">
 						<div class="col-sm-12" style="align:left;">
 							<table
 								class="table  table-bordered table-hover dataTable no-footer"
@@ -150,5 +150,5 @@ function delchk(){
 							${pagingHtml}
 						</div>
 					</div>
-</body>
+
 </html>
