@@ -939,11 +939,35 @@ FROM
         RELATED,
       	KEYWORD,
       	CATEGORY
-	 ORDER BY 
-		GOODS_NO DESC
+	 ORDER BY
+	 <choose>
+	 	<when test='order_by == "NAMELIST"'>
+			 NAME ASC
+		 </when>
+		 <when test='order_by == "ROWPRICE"'>
+			 PRICE ASC
+		 </when>
+		 <when test='order_by == "HIGHPRICE"'>
+			 PRICE DESC
+		 </when>
+		 <otherwise>
+			 GOODS_NO DESC
+		 </otherwise>
+	 </choose>
+	 <!-- <if test='NAME != ""'>
+        	NAME ASC
+     </if>
+     <if test='ROWPRICE != ""'>
+        	PRICE ASC
+     </if>
+     <if test='HIGHPRICE != ""'>
+        	PRICE DESC
+     </if>
+     
+		GOODS_NO DESC -->
 </select>
 
-<select id="goodsSearchListName" parameterType="hashMap" resultType="hashMap">
+<!-- <select id="goodsSearchListName" parameterType="hashMap" resultType="hashMap">
 		select 
 			GOODS_NO, 
 			NAME,
@@ -977,7 +1001,6 @@ FROM
         	PRICE BETWEEN #{PRICE1}  AND #{PRICE2}  AND
         	</if>
         	CATEGORY LIKE '%'||#{CATEGORY}||'%' 
-        	<!-- 'PRICE1 != null and PRICR2 != "" and PRICE2 != null' -->
         )
 			WHERE NAME LIKE '%'||#{keyword}||'%' 
 			OR KEYWORD LIKE '%'||#{keyword}||'%' 
@@ -1145,6 +1168,6 @@ FROM
 		GOODS_NO DESC
 		]]>
 
-</select>
+</select> -->
 
 </mapper>

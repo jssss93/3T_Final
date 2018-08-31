@@ -23,7 +23,7 @@ function BuyCheck(index) {
 	}
 	if (index == 4) {
 	   alert('관심상품으로 등록되었습니다.');
-	   document.form.action = 'AddWish';
+	   document.form.action = '/3T/wish/addWish';
 	}
 	   document.form.submit();
 }
@@ -80,7 +80,7 @@ table {
          <!-- 상품 메인 이미지-->
 
          <td height="490" align="center" valign="TOP"><img width="490"
-            height="490" src="/3T/resources/images/${goodsoneImage.SAV_NAME}" /></td>
+            height="490" src="/3T/resources/upload/${goodsoneImage.SAV_NAME}" /></td>
 
 
          <!-- 상품 상세 내용 -->
@@ -229,7 +229,7 @@ table {
       <c:forEach var="row" items="${goodsImage }">
          <tr>
             <td colspan="0" align="center"><img width="1000" height="1000"
-               src="/3T/resources/images/${row.SAV_NAME }" /></td>
+               src="/3T/resources/upload/${row.SAV_NAME }" /></td>
          </tr>
          <tr>
             <td><br> <br> <br> <br> <br> <br>
@@ -273,7 +273,7 @@ table {
 
 				<td width="300" height="300" align="center" ><a href="#this"
 					name="title"> <img id="myImg"
-						src="/3T/resources/images/${list.IMAGE.split(',')[0] }"
+						src="/3T/resources/upload/${list.IMAGE.split(',')[0] }"
 						width="300" height="300"> <input type="hidden" id="GOODS_NO"
 						name="	" value="${list.GOODS_NO }">
 				</a><br> <br> ${list.NAME }<br> &nbsp;${list.PRICE }</td>
@@ -285,159 +285,112 @@ table {
 
 
 </table>
-<!-- 상세보기REVIEW -->
-
-
-<br>
-<br>
-<br>
-<table width="55%" border="0" cellspacing="0" cellpadding="0"
-	class="board_top">
-	<tr>
-		<td height="50"></td>
-	</tr>
-	<tr>
-		<td align="center" class="text01 formbar"><h3>
-				<font color="#000000">REVIEW</font><span> : WRITE YOUR
-					REVIEWS~!</span>
-			</h3></td>
-	</tr>
-
-	<tr>
-		<td height="50"></td>
-	</tr>
-</table>
-<table width="70%" align="center" border="0" cellspacing="0"
-	cellpadding="1" class="board_review2">
-
-	<tr>
-		<td valign="middle"><strong>NO</strong></td>
-		<td valign="middle"><strong>TITLE</strong></td>
-		<td valign="middle"><strong>CONTENT</strong></td>
-		<td valign="middle"><strong>NAME</strong></td>
-		<td valign="middle"><strong>DATE</strong></td>
-		<td valign="middle"><strong>HIT</strong></td>
-	</tr>
-
-	<c:if test="${fn:length(goodsDetail1) le 0}">
-		<tr>
-			<td colspan="6" style="text-align: center;">등록된 리뷰가 없습니다</td>
-		</tr>
-	</c:if>
-
-	<c:forEach var="goodsDetail1" items="${goodsDetail1}" varStatus="stat">
-		<tr>
-
-
-			<td align="center">${goodsDetail1.REVIEW_NO}</td>
-
-			<td><a href="#this" name="title2">${goodsDetail1.TITLE }</a> <input
-				type="hidden" id="REVIEW_NO" value="${goodsDetail1.REVIEW_NO }">
-				<input type="hidden" id="GOODS_NO" value="${goodsDetail1.GOODS_NO }">
-				<!-- <details> <summary>내용보기</summary> -->
-	
-			<td align="center">${goodsDetail1.CONTENT}</td>
-
-			<td align="center">${goodsDetail1.MEMBER_ID}</td>
-
-
-			<td align="center">${goodsDetail1.REGDATE}</td>
-
-			<td align="center">${goodsDetail1.READCNT}</td>
-
-		</tr>
-
-	</c:forEach>
-
-</table>
-
-
-<br></br>
 <!-- Q & A 게시판 -->
 <br>
 <br>
 <br>
 <table width="50%" border="0" cellspacing="0" cellpadding="0"
-	class="board_top">
-	<tr>
-		<td height="50"></td>
-	</tr>
-	<tr>
-		<td align="center"><h3>
-				<font color="#000000">Q & A</font><span> : HAVE A QUESTION ?</span>
-			</h3></td>
-	</tr>
+   class="board_top">
+   <tr>
+      <td height="50"></td>
+   </tr>
+   <tr>
+      <td align="center"><h3>
+            <font color="#000000">Q & A</font><span> : HAVE A QUESTION ?</span>
+         </h3></td>
+   </tr>
 
-	<tr>
-		<td height="50"></td>
-	</tr>
+   <tr>
+      <td height="50"></td>
+   </tr>
 </table>
 <table width="70%" align="center" border="0" cellspacing="0"
-	cellpadding="0" class="board_review2">
+   cellpadding="0" class="board_review2">
 
-	<tr>
-		<td valign="middle"><strong>NO</strong></td>
-			<td valign="middle"><strong>CATEGORY</strong></td>
-			<td valign="middle"><strong>ITEM</strong></td>
-			<td valign="middle"><strong>SUBJECT</strong></td>
-			<td valign="middle"><strong>NAME</strong></td>
-			<td valign="middle"><strong>STATUS</strong></td>
-			<td valign="middle"><strong>DATE</strong></td>
-	</tr>
+   <tr>
+      <td valign="middle"><strong>NO</strong></td>
+         <td valign="middle"><strong>CATEGORY</strong></td>
+         <td valign="middle"><strong>ITEM</strong></td>
+         <td valign="middle"><strong>SUBJECT</strong></td>
+         <td valign="middle"><strong>NAME</strong></td>
+         <td valign="middle"><strong>STATUS</strong></td>
+         <td valign="middle"><strong>DATE</strong></td>
+   </tr>
 
-	<c:if test="${fn:length(goodsDetail2) le 0}">
-		<tr>
-			<td colspan="6" style="text-align: center;">등록된 QA가 없습니다</td>
-		</tr>
-	</c:if>
+   <c:if test="${fn:length(goodsDetail2) le 0}">
+      <tr>
+         <td colspan="6" style="text-align: center;">등록된 QA가 없습니다</td>
+      </tr>
+   </c:if>
 
-	<c:forEach var="goodsDetail2" items="${goodsDetail2}" varStatus="stat">
-		<tr>
+   <c:forEach var="goodsDetail2" items="${goodsDetail2}" varStatus="stat">
+      <tr>
 
 
-			<td align="center">${goodsDetail2.QA_NO}</td>
-			
-			<td align="center"><c:if test="${goodsDetail2.CATEGORY == 1 }">
-				 상품문의
-			   </c:if> <c:if test="${goodsDetail2.CATEGORY == 2 }">
-				 배송문의
-			   </c:if> <c:if test="${goodsDetail2.CATEGORY == 3 }">
-				 입금확인문의
-			   </c:if> <c:if test="${goodsDetail2.CATEGORY == 4 }">
-				 기타문의
-			   </c:if></td>
-			
+         <td align="center">${goodsDetail2.QA_NO}</td>
+         
+         <td align="center"><c:if test="${goodsDetail2.CATEGORY == 1 }">
+             상품문의
+            </c:if> <c:if test="${goodsDetail2.CATEGORY == 2 }">
+             배송문의
+            </c:if> <c:if test="${goodsDetail2.CATEGORY == 3 }">
+             입금확인문의
+            </c:if> <c:if test="${goodsDetail2.CATEGORY == 4 }">
+             기타문의
+            </c:if></td>
+            
+            <td align="center"><img width="50" height="50"
+            src="/3T/resources/upload/${goodsDetail2.SAV_NAME.split(',')[0] }" /></td>
+         
            <td><a href="#this" name="title3">${goodsDetail2.TITLE }</a> 
-			   <details> <summary>내용보기</summary>
-                     <{goodsDetail2.CONTENT} /></details>
-			     <input type="hidden" id="QA_NO" value="${goodsDetail2.QA_NO }">
-				 <input type="hidden" id="GOODS_NO" value="${goodsDetail2.GOODS_NO }"></td>
-				
-			<td align="center">${goodsDetail2.CONTENT}</td>
+            <details> <summary>내용보기</summary>
+                  <c:if test="${goodsDetail2.STATUS ==1 }">
+                  ${goodsDetail2.CONTENT}
+                </c:if>
+               <c:if test="${goodsDetail2.STATUS ==0 }">
+               <form action="/3T/qa/passwdCheckSuccess">
+                  <table width="100%" align="center" border="" cellspacing="0"
+                     cellpadding="2" class="board_review3">
+                     <tr>
+                        <td width="100">이 글은 비밀글 입니다.<br/>
+                                    비밀번호를 입력해 주세요.<br/>
+                                                <br/>
+                           password &nbsp;&nbsp; <input type="text"
+                           id="PASSWD" name="PASSWD" ></input> &nbsp;&nbsp; <input
+                            type="submit" value="확인"> <input type="hidden" id="QA_NO"
+                           name="QA_NO" value="${list.QA_NO }">
+                        </td>
+                     </tr>
+                  </table>
+               </form>
+               </c:if>
+                     </details>
+              <input type="hidden" id="QA_NO" value="${goodsDetail2.QA_NO }">
+             <input type="hidden" id="GOODS_NO" value="${goodsDetail2.GOODS_NO }"></td>
+            
+         <td align="center">${goodsDetail2.MEMBER_ID}</td>
+         
+         <c:if test="${goodsDetail2.STATUS ==1 }">
+            <td align="center">공개글</td>
+                </c:if>
+               <c:if test="${goodsDetail2.STATUS ==0 }">
+               <td align="center">비밀글</td>
+               </c:if>
 
-			<td align="center">${goodsDetail2.MEMBER_ID}</td>
-			
-			<c:if test="${goodsDetail2.STATUS ==1 }">
-				<td align="center">공개글</td>
-				    </c:if>
-					<c:if test="${goodsDetail2.STATUS ==0 }">
-					<td align="center">비밀글</td>
-					</c:if>
+         <td align="center">${goodsDetail2.REGDATE}</td>
+      </tr>
 
-			<td align="center">${goodsDetail2.REGDATE}</td>
-		</tr>
-
-	</c:forEach>
+   </c:forEach>
 </table>
 <br>
 <!-- 상품 디테일에서 GOODS_NO 보내서 쓰기 -->
-	<form action="/3T/qa/writeForm">
-		<table class="notice_button">
-			<tr>
-				<td><input type="submit" class="btn" value="WRITE"></td>
-			</tr>
-		</table>
-	</form>
+   <form action="/3T/qa/writeForm">
+      <table class="notice_button">
+         <tr>
+            <td><input type="submit" class="btn" value="WRITE"></td>
+         </tr>
+      </table>
+   </form>
 
 
 <br>
@@ -750,39 +703,42 @@ function setOption(obj) {
 			
 			
 			
-			 /* 상세보기 review */
+  /* 상세보기 review */
 
-				$("a[name='title2']").on("click", function(e) { //제목 
-					e.preventDefault();
-					fn_openBoardDetail1($(this));
-				});
+  $("a[name='title2']").on("click", function(e) { //제목 
+     e.preventDefault();
+     fn_openBoardDetail1($(this));
+  });
 
-			function fn_openBoardDetail1(obj) {
-				var comSubmit = new ComSubmit();
-				comSubmit.setUrl("<c:url value='/review/detail' />");
-				comSubmit.addParam("REVIEW_NO", obj.parent().find("#REVIEW_NO")
-						.val());
-				comSubmitd
-						.addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
-				comSubmit.submit();
-			}
-			
-			
-			/* 상세보기 q&a */
+function fn_openBoardDetail1(obj) {
+  var comSubmit = new ComSubmit();
+  comSubmit.setUrl("<c:url value='/review/detail' />");
+  comSubmit.addParam("REVIEW_NO", obj.parent().find("#REVIEW_NO")
+        .val());
+  comSubmitd
+        .addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
+  comSubmit.submit();
+}
 
-					$("a[name='title3']").on("click", function(e) { //제목 
-						e.preventDefault();
-						fn_openBoardDetail2($(this));
-					});
-					
-				function fn_openBoardDetail2(obj) {
-					var comSubmit = new ComSubmit();
-					comSubmit.setUrl("<c:url value='/qa/detail' />");
-					comSubmit.addParam("QA_NO", obj.parent().find("#QA_NO").val());
-					comSubmit
-							.addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
-					comSubmit.submit();
-				}
+
+/* 상세보기 q&a */
+
+     $("a[name='title3']").on("click", function(e) { //제목 
+        e.preventDefault();
+        fn_openBoardDetail2($(this));
+     });
+     
+  function fn_openBoardDetail2(obj) {
+     var comSubmit = new ComSubmit();
+     comSubmit.setUrl("<c:url value='/qa/detail' />");
+     comSubmit.addParam("QA_NO", obj.parent().find("#QA_NO").val());
+     comSubmit
+           .addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
+     comSubmit.submit();
+  }
+
+
+
 			
 
 		</script>

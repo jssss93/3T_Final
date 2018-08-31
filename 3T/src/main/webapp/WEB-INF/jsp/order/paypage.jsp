@@ -294,8 +294,20 @@ function checkAll2(){
 								<c:forEach items="${list }" var="row" varStatus="stat">
 									<tr class="xans-record-">
 										<td class="">
-											<input type="checkbox" id="checkbox${stat.index}" name="selected" value="${row.ATTRIBUTE_NO},${row.GOODS_NO },${row.COUNT}"
-											onclick="javascript:checkedRows(${stat.index});">
+											<c:choose>
+														<c:when test="${row.WISHLIST_NO != null }">
+															<input type="checkbox" id="checkbox${stat.index}"
+																name="selected"
+																value="${row.ATTRIBUTE_NO},${row.GOODS_NO },1"
+																onclick="javascript:checkedRows(${stat.index});">
+														</c:when>
+														<c:otherwise>
+															<input type="checkbox" id="checkbox${stat.index}"
+																name="selected"
+																value="${row.ATTRIBUTE_NO},${row.GOODS_NO },${row.COUNT}"
+																onclick="javascript:checkedRows(${stat.index});">
+														</c:otherwise>
+													</c:choose>
 										</td>
 										<td class="thumb">
 											<a href="/product/detail.html?product_no=8171&amp;cate_no=1">
@@ -313,7 +325,7 @@ function checkAll2(){
 												<span class="price" value="${row.PRICE }"><strong >${row.PRICE}</strong></span>
 											</div>
 										</td>
-										<td>${row.COUNT }</td>
+										<td>${row.COUNT }<c:if test="${row.WISHLIST_NO != null }">1</c:if></td>
 										<td>
 											<span class="txtInfo">
 												<input id="product_mileage_all_8184_000A" name="product_mileage_all"value="400" type="hidden">
@@ -327,7 +339,19 @@ function checkAll2(){
 										</td>
 										<td>[조건]</td>
 										<td class="right">
-											<span class="totprice" value="${row.PRICE *row.COUNT}"><strong >${row.PRICE*row.COUNT}</strong></span>
+											<c:choose>
+											<c:when test="${row.WISHLIST_NO != null }">
+											<span class="totprice" value="${row.PRICE * 1}">
+											<strong >${row.PRICE }</strong>
+											
+											</span>
+											</c:when>
+											<c:otherwise>
+											<span class="totprice" value="${row.PRICE *row.COUNT}">
+											<strong >${row.PRICE*row.COUNT}</strong>
+											</span>
+											</c:otherwise>
+											</c:choose>
 										</td>
 									</tr>
 								</c:forEach>

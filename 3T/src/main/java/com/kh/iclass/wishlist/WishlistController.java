@@ -1,6 +1,7 @@
 package com.kh.iclass.wishlist;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.iclass.admin.member.AdminMemberService;
 import com.kh.iclass.common.map.CommandMap;
 
 @Controller
@@ -19,6 +21,9 @@ public class WishlistController {
 	
 	@Resource(name = "wishService")
 	private WishlistService wishlistService;
+	
+	@Resource(name = "adminMemberService")
+	private AdminMemberService adminMemberService;
 	
 	@RequestMapping(value = "/wish/addWish")
 	public ModelAndView addWish(CommandMap commandMap, HttpServletRequest request) throws Exception{
@@ -38,8 +43,65 @@ public class WishlistController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "/wish/Add/OnetoPayment")
+	public ModelAndView wishAddtoPayment(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("order/paypage");
+		HttpSession session = request.getSession();
+		
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		
+		Map<String, Object> memberInfo = new HashMap<String, Object>();
+		memberInfo=adminMemberService.memberDetail(commandMap.getMap());
+		
+		String wish_No[]=request.getParameterValues("WISHLIST_NO");
+		System.out.println("받아오는 위시 NO 값 >>");
+		for(int i=0;i<wish_No.length;i++) {
+			System.out.println("wish_No"+i+":"+wish_No[i]);
+		}
+		commandMap.put("wish_No", wish_No);
+		
+		List<Map<String, Object>> CheckedWish = new ArrayList<Map<String, Object>>();
+		
+		CheckedWish = wishlistService.selectCheckedWishList(commandMap.getMap());
+			
+		mv.addObject("list", CheckedWish);
+		mv.addObject("memberInfo", memberInfo);
+		
+		return mv;
+	}
+	
+	@RequestMapping(value = "order/addwishSelected")
+	public ModelAndView addSelected(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("order/paypage");
+		HttpSession session = request.getSession();
+		
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		
+		String wish_No[]=request.getParameterValues("WISHLIST_NO");
+		
+		for(int i=0;i<wish_No.length;i++) {
+			System.out.println("wish_No"+i+":"+wish_No[i]);
+		}
+		commandMap.put("wish_No", wish_No);
+		
+		
+			commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+			
+			Map<String, Object> memberInfo = new HashMap<String, Object>();
+			memberInfo=adminMemberService.memberDetail(commandMap.getMap());
+			
+			List<Map<String, Object>> CheckedWish = new ArrayList<Map<String, Object>>();
+			
+			CheckedWish = wishlistService.selectCheckedWishList(commandMap.getMap());
+			
+			mv.addObject("list", CheckedWish);
+			mv.addObject("memberInfo", memberInfo);
+		
+		return mv;
+	
+	}
+	
 	// 위시리스트 불러오기
-		@SuppressWarnings("unchecked")
 		@RequestMapping(value = "/wish/wishlist")
 		public ModelAndView wishlist(CommandMap commandMap, HttpServletRequest request) throws Exception {
 			ModelAndView mv = new ModelAndView("wishlist/wishlist");
