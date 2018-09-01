@@ -24,4 +24,15 @@ public class LoginDAO extends AbstractDAO{
 		{
 			return (String)selectOne("member.findPasswd", map);
 		}
+		
+		public void keepLogin(Map<String, Object> map) throws Exception
+		{
+		
+			update("member.keepLogin",map);
+		}
+		
+		public Map<String,Object> checkUserWithSessionKey(String SESSIONKEY)
+		{
+			return (Map<String, Object>)selectOne("member.checkUserWithSessionKey", SESSIONKEY);
+		}
 }

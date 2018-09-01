@@ -161,6 +161,9 @@ function getCookie(cookieName) {
                         <input id="idSaveCheck" name="idSaveCheck"
                            fw-filter="" fw-label="아이디저장" fw-msg="" value="T"
                            type="checkbox"><label for="member_check_save_id0">아이디저장</label>
+                           <input id="autoLogin" name="autoLogin"
+                           fw-filter="" fw-label="자동로그인" fw-msg="" value="T"
+                           type="checkbox"><label for="autoLogin">자동로그인</label>
                      </p>
 
                      <p class="link">

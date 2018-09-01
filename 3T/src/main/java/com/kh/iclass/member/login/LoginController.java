@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.WebUtils;
 
 import com.kh.iclass.cart.CartService;
 /*import kh.spring.cart.CartService;*/
@@ -46,20 +48,47 @@ public class LoginController {
 	}   
    
 
-   @RequestMapping(value = "/logout")		//로그아웃
-   public ModelAndView logout(HttpServletRequest request, CommandMap commandMap) {
-      HttpSession session = request.getSession(false);
-      if (session != null)
-         session.invalidate();
-      ModelAndView mv = new ModelAndView();
-      mv.setViewName("redirect:/main");
-      return mv;
-   }
+	@RequestMapping(value = "/logout")		//로그아웃
+	   public ModelAndView logout(HttpServletResponse response, HttpServletRequest request, CommandMap commandMap) throws Exception {
+	      HttpSession session = request.getSession(false);
+	      Map<String, Object> map = new HashMap<String, Object>();
+	          
+	      Cookie autoLogin = WebUtils.getCookie(request, "autoLogin");
+
+	      if ( autoLogin != null ){
+	          // null이 아니면 존재하면!
+	    	  autoLogin.setPath("/");
+	        
+	    	 // 쿠키는 없앨 때 유효시간을 0으로 설정하는 것 !!! invalidate같은거 없음.
+	    	  autoLogin.setMaxAge(0);
+	          // 쿠키 설정을 적용한다.
+	          response.addCookie(autoLogin);
+	           
+	       // 사용자 테이블에서도 유효기간을 현재시간으로 다시 세팅해줘야함.
+	          Date SESSIONLIMIT = new Date(System.currentTimeMillis());
+	          
+	          map.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+	          map.put("SESSIONLIMIT", SESSIONLIMIT);
+	          map.put("SESSIONKEY", "none");
+	          
+	          loginService.keepLogin(map);
+	          
+	      }     
+	      if (session != null)
+	      {
+	         session.invalidate();
+	      }
+	      
+	      ModelAndView mv = new ModelAndView();
+	      mv.setViewName("redirect:/main");
+	      
+	      return mv;
+	 }
    
    //로그인 됨
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView loginComplete(CommandMap commandMap, HttpServletRequest request) throws Exception {
+	public ModelAndView loginComplete(CommandMap commandMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv = new ModelAndView();
 
 		HttpSession session = request.getSession();
@@ -68,7 +97,6 @@ public class LoginController {
 
 		// 멤버 정보 가져오고
 		Map<String, Object> chk = loginService.loginGo(commandMap.getMap());
-		// 아이디 값이 없으면
 		if (chk == null) {
 			mv.setViewName("member/loginForm");
 			mv.addObject("message", "해당 아이디가 없습니다.");
@@ -82,6 +110,31 @@ public class LoginController {
 				// 세션에 아이디를 넣어라
 				session.setAttribute("MEMBER_ID", commandMap.get("MEMBER_ID"));
 				mv.addObject("MEMBER", chk); 
+				
+				 // 쿠키 사용한다는게 체크되어 있으면...
+				if(commandMap.get("autoLogin") != null)
+				{
+					System.out.println("session.getId()? : "+session.getId());
+					System.out.println("session.getId()? : "+ session.getAttribute("MEMBER_ID"));
+	                // 쿠키를 생성하고 현재 로그인되어 있을 때 생성되었던 세션을 쿠키에 저장한다.
+					Cookie autoLogin = new Cookie("autoLogin", session.getId());
+					// 쿠키를 찾을 경로를 컨텍스트 경로로 변경해 주고...
+					autoLogin.setPath("/");
+	                int amount = 60 * 60 * 24 * 7;
+	                autoLogin.setMaxAge(amount); // 단위는 (초)임으로 7일정도로 유효시간을 설정해 준다.
+	                // 쿠키를 적용해 준다.
+	                response.addCookie(autoLogin); 
+	                //
+	                String SESSIONKEY = session.getId();
+	                // currentTimeMills()가 1/1000초 단위임으로 1000곱해서 더해야함 
+	                Date sessionLimit = new Date(System.currentTimeMillis() + (1000*amount));
+	                // 현재 세션 id와 유효시간을 사용자 테이블에 저장한다.
+	                commandMap.put("MEMBER_ID", commandMap.get("MEMBER_ID"));
+	                commandMap.put("SESSIONKEY", SESSIONKEY);
+	                commandMap.put("SESSIONLIMIT", sessionLimit);
+	                
+	                loginService.keepLogin(commandMap.getMap());
+				}
 				
 				if (request.getSession().getAttribute("MEMBER_ID").equals("ADMIN")) {
 					mv.setViewName("redirect:/admin/main");
