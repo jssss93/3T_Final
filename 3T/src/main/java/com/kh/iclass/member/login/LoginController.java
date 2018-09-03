@@ -1,12 +1,22 @@
 ﻿package com.kh.iclass.member.login;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.annotation.Resource;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeUtility;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +25,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
@@ -22,7 +33,8 @@ import com.kh.iclass.cart.CartService;
 /*import kh.spring.cart.CartService;*/
 import com.kh.iclass.common.map.CommandMap;
 import com.kh.iclass.common.util.SequenceUtils;
-import com.kh.iclass.member.MemberService;;
+import com.kh.iclass.member.MemberService;
+import com.kh.iclass.member.join.JoinService;;
 
 /* -1- import spring.siroragi.cart.CartService;
 import spring.siroragi.member.MemberService;
@@ -30,6 +42,8 @@ import spring.siroragi.member.MemberService;
 @Controller
 public class LoginController {
 
+	String authNum = "";
+	
 	@Resource(name = "cartService")
 	private CartService cartService;
 
@@ -38,6 +52,9 @@ public class LoginController {
 
 	@Resource(name = "memberService")
 	private MemberService memberService;
+	
+	@Resource(name = "joinService")
+	private JoinService joinService;
 
 	// 로그인 폼
 	@RequestMapping(value = "/loginForm")
@@ -207,6 +224,21 @@ public class LoginController {
 	   
 	  return mv;
    }
+   @RequestMapping(value = "/findIdForm", method = RequestMethod.POST)
+   public ModelAndView findIdForm2(CommandMap commandMap)
+   {
+	  ModelAndView mv = new ModelAndView();
+	
+	  String email1 = (String)commandMap.get("email1");
+	  String email2 = (String)commandMap.get("email2");
+	  
+	  String EMAIL = email1 + "@" + email2;
+	  
+	  mv.addObject("EMAIL", EMAIL);
+	  mv.setViewName("member/findIdForm");
+	   
+	  return mv;
+   }   
 
    @RequestMapping(value = "/findId")
    public ModelAndView findId(HttpServletRequest request,CommandMap commandMap) throws Exception
@@ -254,5 +286,103 @@ public class LoginController {
 	   
 	  return mv;
    }
+   
+	@RequestMapping(value = "/findId/modal_email_auth")
+	public ModelAndView email_auth(HttpServletResponse response, HttpServletRequest request,CommandMap Map) throws Exception{
+		System.out.println("접속?");
+		
+		String email = (String) Map.getMap().get("email");
+		System.out.println("email = " + email);
+		Map.getMap().put("EMAIL", email);
+		
+		int checkNum = joinService.checkMember(Map.getMap());
+		System.out.println("checkNum="+checkNum);
+		
+		if(checkNum==1){
+			authNum = RandomNum();
+			sendEmail(email.toString(),authNum);
+			System.out.println("메일보냄");
+		}
+		String checkNumString=String.valueOf(checkNum);
+		PrintWriter writer =response.getWriter();
+		writer.write(checkNumString);
+		writer.flush();
+		writer.close();
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("email",email);
+		mv.addObject("authNum", authNum);
+		mv.setViewName("member/findIdForm");
+		
+		System.out.println("오드넘"+authNum);
+		return mv;
+	}
+	
+	@RequestMapping(value="/findId/modal_email_auth_success", method=RequestMethod.POST)
+	public @ResponseBody String clickMethod (HttpServletRequest request) throws Exception   {
+	         
+		String str = authNum;
+		System.out.println("authNum뭐냐?"+authNum);
+		return str;
+	}
+	
+	private void sendEmail(String email,String authNum){
+		String host ="smtp.gmail.com";
+		String subject = "3T 인증 번호 전달";
+		String fromName ="3T 관리자";
+		String from="khiclass@gmail.com";//보내는메일
+		String to1 = email;
+		
+		String content = "인증번호[" + authNum +"]";
+		
+		try{
+			Properties props = new Properties();
+			
+			props.put("mail.smtp,starttls.enable","true");
+			props.put("mail.transport.protocol", "smtp");
+			props.put("mail.smtp.host",host);
+			props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+			
+			props.put("mail.smtp.port", "465");
+			props.put("mail.smtp.user", from);
+			props.put("mail.smtp.auth", "true");
+			
+			Session mailSession = Session.getInstance(props,new javax.mail.Authenticator(){
+					@Override
+					protected PasswordAuthentication getPasswordAuthentication(){
+				return new PasswordAuthentication("khiclass@gmail.com","khacademy");
+			}
+			});
+			
+			Message msg = new MimeMessage(mailSession);
+			msg.setFrom(new InternetAddress(from,MimeUtility.encodeText(fromName,"UTF-8","B"))); //보내는사람설정
+			
+			InternetAddress[] address1 = {new InternetAddress(to1)};
+			
+			msg.setRecipients(Message.RecipientType.TO, address1); //받는사람설정1
+			msg.setSubject(subject); //제목설정
+			msg.setSentDate(new java.util.Date()); //보내는 날짜설정
+			msg.setContent(content,"text/html;charset=utf-8"); //내용설정
+			
+			Transport.send(msg);
+		}catch (MessagingException e) {
+			e.printStackTrace();
+		}catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+	}
+	
+	
+	public String RandomNum(){
+		StringBuffer buffer = new StringBuffer();
+		for(int i = 0;i<=6;i++){
+			int n= (int)(Math.random() * 10);
+			buffer.append(n);
+		}
+		return buffer.toString();
+	}
+	//이메일인증 추가 여기까지	    
 
 }
