@@ -136,7 +136,7 @@
 						<div id="myshopMain"
 							class="xans-element- xans-myshop xans-myshop-main ">
 							<div class="shopMain order">
-								<a href="/myshop/order/list.html"><strong>order</strong>고객님께서
+								<a href="/3T/order/list"><strong>order</strong>고객님께서
 									주문하신 상품의 주문내역을 확인하실 수 있습니다.<br />비회원의 경우, 주문서의 주문번호와 비밀번호로
 									주문조회가 가능합니다.</a>
 							</div>
