@@ -103,7 +103,7 @@ public class LoginController {
 	 }
    
    //로그인 됨
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "null" })
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView loginComplete(CommandMap commandMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -174,16 +174,36 @@ public class LoginController {
 				}
 
 				
-				List<Map<String, Object>> sessionCartListMap=new ArrayList<Map<String, Object>>();
-				Map<String, Object> sessionCartMap = new HashMap<String,Object>();
+				
+				
 				//장바구니 자동추가
 				if(session.getAttribute("sessionCartList")!=null) {
-					System.out.println("세션장바구니 로그인시 자동추가 시작.");
+					
+					List<Map<String, Object>> sessionCartListMap=new ArrayList<Map<String, Object>>();
+					Map<String, Object> sessionCartMap = new HashMap<String,Object>();
+					List<Map<String, Object>> cartList = new ArrayList<Map<String, Object>>();
 					sessionCartListMap=(List<Map<String, Object>>) session.getAttribute("sessionCartList");
+					
+					System.out.println("세션장바구니 로그인시 자동추가 시작.");
+					
+					commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+					cartList=cartService.cartList(commandMap.getMap());
+					List<Object> cartList_Attr = new ArrayList<Object>();
+					
+					
+					for(int i=0;i<cartList.size();i++) {
+						cartList_Attr.add(cartList.get(i).get("ATTRIBUTE_NO"));
+					}
+					
 					for(int i=0;i<sessionCartListMap.size();i++) {
 						commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 						commandMap.put("REGDATE", new Date());
 						commandMap.put("ATTRIBUTE_NO",sessionCartListMap.get(i).get("ATTRIBUTE_NO"));
+						for(int j=0;j<cartList_Attr.size();j++) {
+							if(sessionCartListMap.get(i).get("ATTRIBUTE_NO")==cartList_Attr.get(i)) {
+								continue;
+							}
+						}
 						commandMap.put("GOODS_NO",sessionCartListMap.get(i).get("GOODS_NO"));
 						commandMap.put("COUNT",sessionCartListMap.get(i).get("COUNT"));
 						sessionCartMap.put("map"+i, sessionCartListMap.get(i));

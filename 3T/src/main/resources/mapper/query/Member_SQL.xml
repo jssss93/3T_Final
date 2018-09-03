@@ -107,7 +107,9 @@
 			ADDR2, 
 			PHONE, 
 			EMAIL, 
-			REGDATE
+			REGDATE,
+			GRADE,
+			POINT
 		FROM 
 			MEMBER 
 		WHERE 

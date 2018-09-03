@@ -7,7 +7,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.kh.iclass.cart.CartDAO;
 import com.kh.iclass.common.util.OrderDetailUtils;
 
 @Service("orderService")
@@ -15,20 +17,40 @@ public class OrderServiceImpl implements OrderService {
 
 	@Resource(name = "orderDAO")
 	private OrderDAO orderDAO;
+	
+	@Resource(name = "cartDAO")
+	private CartDAO cartDAO;
 
 	@Resource(name = "OrderDetailUtils")
 	private OrderDetailUtils orderDetailUtils;
 
 	@Override
+	@Transactional
 	public void insertOrder(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		// TODO Auto-generated method stub
-
+		//주문인서트
 		orderDAO.insertOrder(map);
-
+		//주문디테일 인서트.
 		List<Map<String, Object>> detailList = orderDetailUtils.parseInsertOrderDetail(map, request);
 		for (int i = 0; i < detailList.size(); i++) {
 			orderDAO.insertOrderDetail(detailList.get(i));
 		}
+		//회원 카트삭제.
+		if(map.get("cart_No")!=null) {
+			cartDAO.deleteSelect(map);
+			request.getSession().removeAttribute("CART_NO");
+		}
+		//비회원 카트삭제.
+		if(request.getSession().getAttribute("sessionCartList")!=null) {
+			request.getSession().removeAttribute("sessionCartList");
+		}
+		//적립금
+		orderDAO.addPoint(map);
+		//포인트사용
+		if(map.get("USEPOINT")!=null) {
+			orderDAO.subPoint(map);
+		}
+		
+		System.out.println("주문 및 카트삭제완료");
 	}
 
 	@Override
@@ -42,6 +64,13 @@ public class OrderServiceImpl implements OrderService {
 		// TODO Auto-generated method stub
 		return orderDAO.selectList(map);
 	}
+	
+	@Override
+	public List<Map<String, Object>> selectListSearch(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return orderDAO.selectListSearch(map);
+	}
+	
 	@Override
 	public List<Map<String, Object>> orderList(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
@@ -158,6 +187,8 @@ public class OrderServiceImpl implements OrderService {
 		System.out.println("들어옴?");
 		return orderDAO.getSearchSale(map);
 	}
+
+	
 
 	
 

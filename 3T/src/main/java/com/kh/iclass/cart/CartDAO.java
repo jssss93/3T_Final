@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import com.kh.iclass.common.dao.AbstractDAO;
+import com.kh.iclass.common.map.CommandMap;
 
 @Repository("cartDAO")
 public class CartDAO extends AbstractDAO {
@@ -52,6 +53,7 @@ public class CartDAO extends AbstractDAO {
 	public void deleteSelect(Map<String, Object> map) throws Exception {
 		delete("cart.deleteSelect", map);
 	}
+	
 	public void deleteAll(Map<String, Object> map) throws Exception {
 		delete("cart.deleteAll", map);
 	}
@@ -100,6 +102,20 @@ public class CartDAO extends AbstractDAO {
 		return (Map<String, Object>) selectOne("cart.selectCartNo", map);
 	}
 
+	public void countUp(Map<String, Object> map) {
+		update("cart.updateCountUp", map);
+	}
+	
+	public void countDown(Map<String, Object> map) {
+		update("cart.updateCountDown", map);
+	}
+
+	public void countChange(Map<String, Object> map) {
+		update("cart.updateCountChange", map);
+	}
+	
+
+	
 	
 
 

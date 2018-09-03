@@ -426,8 +426,6 @@
 							<li class=" "><a href="/3T/cart/list">				CART LIST</a></li>
 							<li class=" selected"><a href="/3T/wish/wishlist">	WISH LIST</a></li>
 							<li class=" "><a href="/3T/order/list">				ORDER LIST</a></li>
-							<li class=" "><a href="/3T/order/refundList">		REFUND LIST</a></li>
-							<li class=" "><a href="/3T/order/changeList">		CHANGE LIST</a></li>
 						</ul>
 						<p >*위시리스트 입니다.</p>
 					</div>

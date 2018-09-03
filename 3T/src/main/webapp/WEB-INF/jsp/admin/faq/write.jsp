@@ -67,11 +67,11 @@
 			return false;
 		}
 		
-		 if(document.getElementById("summernote").value==null){
+		 /* if(document.getElementById("summernote").value==null){
 			alert("내용를 입력해주십시오");
 			f.content.focus();
 			return false;
-		} 
+		}  */
 	}   
 	</script>
 	

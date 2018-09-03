@@ -76,181 +76,14 @@
 <link rel="shortcut icon" href="/web/upload/favicon_20141006131340.ico">
 <meta http-equiv="ImageToolbar" content="No">
 
-<script type="text/javascript"
-   src="/app/Eclog/js/cid.generate.js?vs=3d0b473968a0ec4ec41e3bf59df3aa51"></script>
+<script type="text/javascript" src="/app/Eclog/js/cid.generate.js?vs=3d0b473968a0ec4ec41e3bf59df3aa51"></script>
 <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
-
 <script type="text/javascript">
-   var EC_FRONT_EXTERNAL_SCRIPT_VARIABLE_DATA = {
-      "common_member_id_crypt" : ""
-   };
-</script>
-
-<script type="text/javascript">
-   var EC_SDE_SHOP_NUM = 1;
-   var SHOP = {
-      getLanguage : function() {
-         return "ko_KR";
-      },
-      getCurrency : function() {
-         return "KRW";
-      },
-      getFlagCode : function() {
-         return "KR";
-      },
-      isMultiShop : function() {
-         return true;
-      },
-      isDefaultShop : function() {
-         return true;
-      },
-      isDefaultLanguageShop : function(sLanguageCode) {
-         return SHOP.isDefaultShop() && SHOP.isLanguageShop(sLanguageCode);
-      },
-      isKR : function() {
-         return true;
-      },
-      isUS : function() {
-         return false;
-      },
-      isJP : function() {
-         return false;
-      },
-      isCN : function() {
-         return false;
-      },
-      isTW : function() {
-         return false;
-      },
-      isES : function() {
-         return false;
-      },
-      isPT : function() {
-         return false;
-      },
-      isLanguageShop : function(sLanguageCode) {
-         return sLanguageCode === "ko_KR";
-      },
-      getDefaultShopNo : function() {
-         return 1;
-      },
-      getProductVer : function() {
-         return 2;
-      },
-      isSDE : function() {
-         return true;
-      }
-   };
-   var EC_COMMON_UTIL = {
-      convertSslForString : function(sString) {
-         return sString.replace(/http:/gi, '');
-      },
-      convertSslForHtml : function(sHtml) {
-         return sHtml
-               .replace(
-                     /((?:src|href)\s*=\s*['"])http:(\/\/(?:[a-z0-9\-_\.]+)\/)/ig,
-                     '$1$2');
-      },
-      getProtocol : function() {
-         return 'http';
-      },
-      moveSsl : function() {
-         if (EC_COMMON_UTIL.getProtocol() === 'http') {
-            var oLocation = jQuery(window.location);
-            var sUrl = 'https://' + oLocation.attr('host')
-                  + oLocation.attr('pathname') + oLocation.attr('search');
-            window.location.replace(sUrl);
-         }
-      }
-   };
-</script>
-<script type="text/javascript">
-   var EC_ROOT_DOMAIN = "cafe24.com";
-   var EC_GLOBAL_INFO = (function() {
-      var oData = {
-         "base_domain" : "hi880515.cafe24.com",
-         "root_domain" : "cafe24.com",
-         "is_global" : false,
-         "country_code" : "KR",
-         "language_code" : "ko_KR"
-      };
-
-      return {
-         getBaseDomain : function() {
-            return oData['base_domain'];
-         },
-
-         getRootDomain : function() {
-            return oData['root_domain'];
-         },
-
-         isGlobal : function() {
-            return oData['is_global'];
-         },
-
-         getCountryCode : function() {
-            return oData['country_code'];
-         },
-
-         getLanguageCode : function() {
-            return oData['language_code'];
-         }
-      };
-   })();
    
    
+ 	
+   	
    
-   
-   
-   $(document).ready(function() {
-      $("#addOrderSelected").on("click", function(e) {
-         e.preventDefault();
-         fn_addOrderSelected();
-      });
-      $("#addOrderAll").on("click", function(e) { 
-         e.preventDefault();
-         checkAll2();
-         fn_addOrderAll();
-      });
-
-      $("#addOrderOne").on("click", function(e) { 
-         e.preventDefault();
-         fn_addOrderAll();
-      });
-      $("#deleteOne").on("click", function(e) { 
-         e.preventDefault();
-         fn_Write();
-      });
-      
-   });
-   
-   function fn_addOrderSelected() {
-      var comSubmit = new ComSubmit("frm");
-      comSubmit.setUrl("<c:url value='/order/addSelected' />");
-      comSubmit.submit();
-   }
-   function fn_addOrderAll() {
-      var comSubmit = new ComSubmit("frm");
-      comSubmit.setUrl("<c:url value='/cart/Add/OnetoPayment' />");
-      comSubmit.submit();
-   }
-   function fn_addOrderOne() {
-      var comSubmit = new ComSubmit("frm");
-      comSubmit.setUrl("<c:url value='/cart/Add/OnetoPayment' />");
-      comSubmit.submit();
-   }
-   function fn_deleteOne() {
-      var comSubmit = new ComSubmit("frm");
-      comSubmit.setUrl("<c:url value='/cart/deleteOne' />");
-
-      comSubmit.submit();
-   }
-   
-   function fn_Write() {
-      var comSubmit = new ComSubmit("frm");
-      comSubmit.setUrl("<c:url value='/goods/write' />");
-      comSubmit.submit();
-   }
    
    
     //F5키 막기
@@ -411,8 +244,6 @@
 							<li class="selected "><a href="/3T/cart/list">	CART LIST</a></li>
 							<li class=" "><a href="/3T/wish/wishlist">		WISH LIST</a></li>
 							<li class=" "><a href="/3T/order/list">			ORDER LIST</a></li>
-							<li class=" "><a href="/3T/order/refundList">	REFUND LIST</a></li>
-							<li class=" "><a href="/3T/order/changeList">	CHANGE LIST</a></li>
 						</ul>
 						<p >*장바구니에 담긴 상품은 7일 동안 보관됩니다.</p>
 					</div>
@@ -422,17 +253,13 @@
 						<div class="xans-element- xans-order xans-order-normtitle title ">
 
 							<c:if test="${MEMBER_ID!=null }">
-								<h3>${session.MEMBER_ID } 님의 장바구니 목록</h3>
-							</c:if>
-							<c:if test="${MEMBER_ID==null }">
-								<h3>${memberInfo.MEMBER_ID } 님의 장바구니 목록</h3>
+								<h3>${MEMBER_ID} 님의 장바구니 목록</h3>
 							</c:if>
 
 						</div>
 
 						<!-- 일반상품 (기본배송) -->
-						<table border="1" summary=""
-							class="xans-element- xans-order xans-order-normnormal boardList xans-record-">
+						<table border="1" summary="" class="xans-element- xans-order xans-order-normnormal boardList xans-record-">
 
 							<thead>
 								<tr>
@@ -470,36 +297,43 @@
 													onclick="javascript:checkedRows(${stat.index});">
 												</td>
 												<td class="thumb">
-													<a href="/product/detail.html?product_no=8171&amp;cate_no=1">
-														<img width="50" height="50"	src="/3T/resources/upload/${row.IMAGE.split(',')[0] }" />
+													<a href="/3T/goods/detail?GOODS_NO=${row.GOODS_NO }">
+														<img width="75" height="75"	src="/3T/resources/upload/${row.IMAGE.split(',')[0] }" />
 													</a>
 												</td>  
 												<td class="product">
-													<a href="/product/detail.html?product_no=8171&amp;cate_no=1">
+													<a href="/3T/goods/detail?GOODS_NO=${row.GOODS_NO }">
 													<strong>${row.NAME }</strong> </a>
 													<ul class="xans-element- xans-order xans-order-optionall option">
 														<li class="xans-record-">
 															[옵션: ${row.COLOR }/${row.GOODS_SIZE }] 
 
 														</li>
-													</ul></td>
-												<td><span class="price" value="${row.PRICE}">${row.PRICE}
-												</span></td>
-												<td><span class="quantity"><input
-														id="quantity_id_0" name="quantity_name_0" size="2"
-														value="${row.COUNT }" type="text"><a
-														href="javascript:;"
-														onclick="Basket.addQuantityShortcut('quantity_id_0', 0);"><img
-															src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_quantity_up.gif"
-															alt="증가" class="QuantityUp"></a><a href="javascript:;"
-														onclick="Basket.outQuantityShortcut('quantity_id_0', 0);"><img
-															src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_quantity_down.gif"
-															alt="감소" class="QuantityDown"></a></span> <a
-													href="javascript:;" onclick="Basket.modifyQuantity()"><img
-														src="/images/btn_quantity_modify.gif" alt="변경"></a></td>
+													</ul>
+												</td>
+												<td><span class="price" value="${row.PRICE}">${row.PRICE}</span></td>
+												<td>
+												
+													<c:url var="cntUp" value="/cart/CountUp">
+														<c:param name="CART_NO" value="${row.CART_NO }" />
+														<c:param name="COUNT" value="${row.COUNT}" />
+													</c:url>
+													<c:url var="cntDown" value="/cart/CountDown">
+														<c:param name="CART_NO" value="${row.CART_NO }" />
+														<c:param name="COUNT" value="${row.COUNT}" />
+													</c:url>
+													 
+													<span class="quantity">
+														<input name="ChangeCnt" value="${row.COUNT }" type="text">
+															<a href="${cntUp}" ><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_quantity_up.gif" alt="증가" class="QuantityUp"></a>
+														<c:if test="${row.COUNT>1 }">
+															<a href="${cntDown}"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_quantity_down.gif" alt="감소" class="QuantityDown"></a>
+														</c:if>
+													</span> 
+												</td>
 												<td class="mileage">-</td>
 												<td class="delivery">기본배송</td>
-												<td><span class="totprice"
+												<td><span class="totprice" 
 													value="${row.PRICE*row.COUNT}">${row.PRICE*row.COUNT}</span></td>
 												<td class="total"><strong>${row.PRICE * row.COUNT }</strong></td>
 
@@ -537,15 +371,12 @@
 									</c:when>
 									<c:otherwise>
 										<tr>
-											<td colspan="4">조회된 결과가 없습니다.</td>
+											<td colspan="10" align="center">장바구니가 비어있습니다.</td>
 										</tr>
 									</c:otherwise>
 								</c:choose>
 							</tbody>
 						</table>
-						<!-- 일반상품 (업체기본배송) -->
-						<!-- 일반상품 (개별배송) -->
-						<!-- 일반상품 (해외배송) -->
 					</div>
 
 					<div
@@ -555,16 +386,13 @@
 
 					<!-- 선택상품 제어 버튼 -->
 					<div class="xans-element- xans-order xans-order-selectorder ">
-						<span class="left"> <strong class="ctrlTxt">선택상품을</strong>
-							<a href="#none" onclick="Basket.deleteBasket()"><img
-								src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_delete2.gif"
-								alt="삭제하기"></a> <a href="#none" onclick="Basket.addWishList()"
-							class="displaynone"><img
-								src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_wish.gif"
-								alt="관심상품등록"></a>  
-						</span> <a href="#none" onclick="Basket.emptyBasket()"><img
-							src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_clear.gif"
-							alt="장바구니비우기"></a>
+						<span class="left"> 
+							<strong class="ctrlTxt">선택상품을</strong>
+							<a href="#this" id="deleteSelected">
+							<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_delete2.gif"	alt="삭제하기"></a> 
+						</span> 
+							<a href="this" id="deleteAll">
+							<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_clear.gif" 		alt="장바구니비우기"></a>
 					</div>
 					<!-- 총 주문금액 : 국내배송상품 -->
 					<div class="xans-element- xans-order xans-order-totalsummary  ">
@@ -638,12 +466,66 @@
 					</table>
 					<p class="empty ">관심상품 내역이 없습니다.</p>
 				</div>
-				<script>
-	fbq('track', 'AddToCart' );
-	</script>
 			</div>
 		</div>
 </form>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#addOrderSelected").on("click", function(e) {
+       e.preventDefault();
+       fn_addOrderSelected();
+    });
+    $("#addOrderAll").on("click", function(e) { 
+       e.preventDefault();
+       checkAll2();
+       fn_addOrderAll();
+    });
+    $("#addOrderOne").on("click", function(e) { 
+       e.preventDefault();
+       fn_addOrderAll();
+    });
+    $("#deleteSelected").on("click", function(e) { 
+        e.preventDefault();
+        fn_deleteSelected();
+     });
+    $("#deleteAll").on("click", function(e) { 
+        e.preventDefault();
+        fn_deleteAll();
+     });
+    
+ });
+ 
+function fn_addOrderSelected() {
+	var comSubmit = new ComSubmit("frm");
+	comSubmit.setUrl("<c:url value='/order/addSelected' />");
+	comSubmit.submit();
+}
+	function fn_addOrderAll() {
+  	var comSubmit = new ComSubmit("frm");
+  	comSubmit.setUrl("<c:url value='/cart/Add/OnetoPayment' />");
+ 	 comSubmit.submit();
+}
+	function fn_addOrderOne() {
+  	var comSubmit = new ComSubmit("frm");
+  	comSubmit.setUrl("<c:url value='/cart/Add/OnetoPayment' />");
+  	comSubmit.submit();
+}
+	function fn_deleteOne() {
+  	var comSubmit = new ComSubmit("frm");
+  	comSubmit.setUrl("<c:url value='/cart/deleteOne' />");
+  	comSubmit.submit();
+}
+	function fn_deleteSelected() {
+    var comSubmit = new ComSubmit("frm");
+    comSubmit.setUrl("<c:url value='/cart/deleteSelect' />");
+    comSubmit.submit();
+}
+	function fn_deleteAll() {
+    var comSubmit = new ComSubmit("frm");
+    comSubmit.setUrl("<c:url value='/cart/deleteAll' />");
+    comSubmit.submit();
+}
 
+ </script>
 </body>
 </html>

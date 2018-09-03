@@ -75,6 +75,7 @@
 				PRICE,
 			 	COLOR,
 			 	GOODS_SIZE,
+			 	ATTRIBUTE_NO,
 			 	COUNT,
 			 	WM_CONCAT(SAV_NAME) AS IMAGE
 			FROM
@@ -85,6 +86,7 @@
 					a.NAME,	
 				    b.COLOR,
 				    b.GOODS_SIZE,
+				    b.ATTRIBUTE_NO,
 				    c.SAV_NAME,
 				    d.CART_NO,
 				    d.MEMBER_ID,
@@ -110,6 +112,7 @@
 				COLOR,
 				NAME,
 				GOODS_SIZE,
+				ATTRIBUTE_NO,
 				COUNT
 		]]>
 	</select>
@@ -321,6 +324,7 @@
 			
 		]]>
 	</delete>
+	
 
 	<!-- 세션에서 장바구니 목록 불러오기(비회원 인서트는 SESSION에 저장하고
 	비회원 장바구니 조회는 SESSION에서 GOODS_NUMBER, GOODS_KINDSNUMBER,  CART_AMOUNT 를 가지고 셀렉트문 실행) -->
@@ -362,28 +366,53 @@
 	</select>
 	 
 	<!-- 장바구니 수량 수정 (비회원은 SESSION값 REMOVE 후 다시 PUT) -->
-	<update id="updateCarts" parameterType="hashmap">
+	<update id="updateCountUp" parameterType="hashmap">
 		<![CDATA[
-			UPDATE CART SET CART_AMOUNT=#{CART_AMOUNT}, CART_REG_DATE=SYSDATE
-			WHERE CART_NUMBER=#{CART_NUMBER}
+			UPDATE CART 
+			SET 
+				COUNT=COUNT+1
+			WHERE 
+				CART_NO		=#{CART_NO} 	AND
+				MEMBER_ID	=#{MEMBER_ID}
+		]]>
+	</update>
+	<!-- 장바구니 수량 수정 (비회원은 SESSION값 REMOVE 후 다시 PUT) -->
+	<update id="updateCountDown" parameterType="hashmap">
+		<![CDATA[
+			UPDATE CART 
+			SET 
+				COUNT=COUNT-1
+			WHERE 
+				CART_NO		=#{CART_NO} 	AND
+				MEMBER_ID	=#{MEMBER_ID}
+		]]>
+	</update>
+	
+	<!-- 장바구니 수량 수정 (비회원은 SESSION값 REMOVE 후 다시 PUT) -->
+	<update id="updateCountChange" parameterType="hashmap">
+		<![CDATA[
+			UPDATE CART 
+			SET 
+				COUNT=${COUNT}
+			WHERE 
+				CART_NO		=#{CART_NO} 	AND
+				MEMBER_ID	=#{MEMBER_ID}
 		]]>
 	</update>
 
 	<!-- 장바구니 삭제 -->
 
 	<!-- 멤버 로그인시 3일지난거 자동삭제 -->
-	<delete id="deleteCarts" parameterType="hashmap">
+	<delete id="deleteCartAuto" parameterType="hashmap">
 		<![CDATA[
-			DELETE FROM CART WHERE CART_REG_DATE<SYSDATE-3 AND MEMBER_NUMBER= #{MEMBER_NUMBER}
+			DELETE FROM 
+				CART 
+			WHERE 
+				REGDATE<SYSDATE-3 AND 
+				MEMBER_ID= #{MEMBER_ID}
 		]]>
 	</delete>
 
-	<!-- 멤버가 직접삭제 -->
-	<delete id="deleteMyCart" parameterType="hashmap">
-		<![CDATA[
-			DELETE FROM CART WHERE MEMBER_NUMBER=#{MEMBER_NUMBER} AND GOODS_KIND_NUMBER = #{GOODS_KIND_NUMBER}
-		]]>
-	</delete>
 
 	<!-- 장바구니에서 주문 -->
 	<!-- 회원 GOODS_KIND_NUMBER에 해당하는 장바구니만 뽑아온 후 나머지는 기존 구매와 동일처리 -->

@@ -45,6 +45,7 @@ public class OrderController {
 	@Resource(name="memberService")
 	private MemberService memberService;
 	
+	//payment에 선택된값 추가 from cart 
 	@RequestMapping(value = "order/addSelected")
 	public ModelAndView addSelected(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("order/paypage");
@@ -56,7 +57,7 @@ public class OrderController {
 			System.out.println("cart_No"+i+":"+cart_No[i]);
 		}
 		commandMap.put("cart_No", cart_No);
-		
+		session.setAttribute("CART_NO", commandMap.get("cart_No"));
 		if(session.getAttribute("MEMBER_ID")!=null) {
 			commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 			
@@ -104,10 +105,12 @@ public class OrderController {
 				System.out.println("cart_No"+i+":"+cart_No[i]);
 			}
 			commandMap.put("cart_No", cart_No);
-			
+			session.setAttribute("CART_NO", commandMap.get("cart_No"));
 			List<Map<String, Object>> checkedCartList = new ArrayList<Map<String, Object>>();
 			
 			checkedCartList=cartService.checkedCartList(commandMap.getMap());
+			
+			
 			
 			mv.addObject("list", checkedCartList);
 			mv.addObject("memberInfo", memberInfo);
@@ -134,6 +137,7 @@ public class OrderController {
 			System.out.println("cart_No"+i+":"+cart_No[i]);
 		}
 		commandMap.put("cart_No", cart_No);
+		session.setAttribute("CART_NO", commandMap.get("cart_No"));
 		
 		if(session.getAttribute("MEMBER_ID")!=null) {
 			commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
@@ -158,12 +162,15 @@ public class OrderController {
 	public ModelAndView addInsert(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
+		commandMap.put("cart_No", commandMap.get("cart_No"));
+		System.out.println("order/insert시 넘어오는값:");
+		System.out.println(commandMap.getMap());
 		
 		String phone = ""+commandMap.get("mphone1")+commandMap.get("mphone2")+ commandMap.get("mphone3");
 		commandMap.put("RECIPIENT_PHONE",phone);
 		
 		if(session.getAttribute("MEMBER_ID")==null) {
-			mv.setViewName("order/orderComplete");
+			mv.setViewName("order/orderComplete2");
 			commandMap.put("MEMBER_ID", session.getAttribute("NON_MEMBER_ID"));
 			
 		}else {
@@ -171,6 +178,7 @@ public class OrderController {
 			commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 		}
 		
+		commandMap.put("cart_No", session.getAttribute("CART_NO"));
 		orderService.insertOrder(commandMap.getMap(),request);
 		
 		return mv;
@@ -206,30 +214,26 @@ public class OrderController {
 		return mv;
 	
 	}
-	//안쓰는거 같은데 확인.
-	/*@RequestMapping(value = "order/orderList")		
-	public ModelAndView order(CommandMap commandMap, HttpServletRequest request) throws Exception {
+	@ResponseBody
+	@RequestMapping(value = "order/listSearch")		
+	public JSONArray orderListSearch(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		
 		HttpSession session = request.getSession();
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 		
-		if(session.getAttribute("MEMBER_ID")!=null) {
-			ModelAndView mv = new ModelAndView("order/orderList");
-			commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
-			
-			List<Map<String, Object>> orderList = new ArrayList<Map<String, Object>>();
-			orderList=orderService.orderList(commandMap.getMap());
-			
-			mv.addObject("MEMBER_ID", commandMap.get("MEMBER_ID"));
-			mv.addObject("orderList", orderList);
-			
-			return mv;
-		}else {
-			ModelAndView mv = new ModelAndView("order/orderList2");
-			
-			return mv;
-		}
+		System.out.println("********************ㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱ");
+		System.out.println("listSearch 로 넘어오는값:"+commandMap.getMap());
+		
+		List<Map<String, Object>> orderList = new ArrayList<Map<String, Object>>();
+		
+		orderList=orderService.selectListSearch(commandMap.getMap());
+		
+		JSONArray json=ParseListToJson.convertListToJson(orderList);
+		
+		return json;
+	}
 	
-	}*/
+	
 	@RequestMapping(value = "order/changeList")		
 	public ModelAndView change(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("order/changeList");

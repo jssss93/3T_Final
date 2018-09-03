@@ -174,6 +174,35 @@ public class GoodsController {
       ModelAndView mv = new ModelAndView("goods/searchform");
 
       
+
+      if(commandMap.get("NAME") != null)
+      {
+          List<Map<String, Object>> searchlist = goodsService.goodsSearchListName(commandMap.getMap());
+          
+          mv.addObject("searchlist", searchlist);
+      }
+      else if(commandMap.get("RowPrice") != null)
+      {
+          List<Map<String, Object>> searchlist = goodsService.goodsSearchListRowPrice(commandMap.getMap());
+          
+          mv.addObject("searchlist", searchlist);
+      }
+      else if(commandMap.get("HighPrice") != null)
+      {
+          List<Map<String, Object>> searchlist = goodsService.goodsSearchListHighPrice(commandMap.getMap());
+          
+          mv.addObject("searchlist", searchlist);
+      }
+      
+      else if(commandMap.get("PRICE1") != null && commandMap.get("PRICE2") != "" && commandMap.get("PRICE2") != null)
+      {
+          List<Map<String, Object>> searchlist = goodsService.goodsSearchPriceList(commandMap.getMap());
+          
+          mv.addObject("searchlist", searchlist);
+      }
+      else
+      {
+
           List<Map<String, Object>> searchlist = goodsService.goodsSearchList(commandMap.getMap());
           
           mv.addObject("searchlist", searchlist);
@@ -182,6 +211,21 @@ public class GoodsController {
    }
    
    
+
+   @RequestMapping(value = "/goods/searchhighprice")
+   public ModelAndView goodsSearchhighprice(CommandMap commandMap) throws Exception {
+      ModelAndView mv = new ModelAndView("/goods/searchlist");
+      
+      System.out.println("name들어오냐??" + commandMap.getMap());
+      
+          List<Map<String, Object>> searchlist = goodsService.goodsSearchListHighPrice(commandMap.getMap());
+          
+          mv.addObject("searchlist", searchlist);
+     
+      return mv;
+   }
+   
+
    @RequestMapping(value = "/goods/search1")
    public ModelAndView goodsSearch1(CommandMap commandMap) throws Exception {
       ModelAndView mv = new ModelAndView("/goods/searchlist");

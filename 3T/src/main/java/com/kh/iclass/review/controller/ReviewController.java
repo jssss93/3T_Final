@@ -85,7 +85,7 @@ public class ReviewController {
 	//리뷰 수정 폼
 	@RequestMapping(value = "/review/updateForm")
 	public ModelAndView reviewUpdateForm(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("review/update");
+		ModelAndView mv = new ModelAndView("review/write");
 		
 		System.out.println("reviewUpdateForm : " + commandMap.getMap());
 		

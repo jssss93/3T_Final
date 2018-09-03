@@ -3,6 +3,8 @@ package com.kh.iclass.cart;
 import java.util.List;
 import java.util.Map;
 
+import com.kh.iclass.common.map.CommandMap;
+
 public interface CartService {
 
 	// 장바구니 담기
@@ -46,5 +48,12 @@ public interface CartService {
 	Map<String, Object> buyInCart(Map<String, Object> map) throws Exception;
 	
 	Map<String, Object> cartNo(Map<String, Object> map) throws Exception;
+
+	public void countUp(Map<String, Object> map);
+	
+	public void countDown(Map<String, Object> map);
+
+	public void countChange(Map<String, Object> map);
+
 
 }
