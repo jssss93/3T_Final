@@ -195,19 +195,56 @@ public class LoginController {
 						cartList_Attr.add(cartList.get(i).get("ATTRIBUTE_NO"));
 					}
 					
+					//1,2,3번 속성을 가진 상품을 비교할떄
+					//세션카트값   , 회원카트값
+					
+					//int i int j
+					//1 1   =>break;
+					//1 2	실행 x
+					//1 3	실행 x
+					
+					//2 1	실행 o 지만 2 2 로인한 취소해야함. 
+					//2 2	=>break; 로인한 1값 .
+					//2 3	실행 x
+					
+					//3 1	실행  o지만 3 로인한 취소해야함.
+					//3 2	실행  o지만 3 로인한 취소해야함.
+					//3 3	=>break; 로인한 1,2값 실행 취소되게끔?
+					
+					
+					
+					System.out.println("sessionCartListMap.size()"+sessionCartListMap.size());
+					System.out.println("cartList_Attr.size():"+cartList_Attr.size());
+					
 					for(int i=0;i<sessionCartListMap.size();i++) {
-						commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
-						commandMap.put("REGDATE", new Date());
-						commandMap.put("ATTRIBUTE_NO",sessionCartListMap.get(i).get("ATTRIBUTE_NO"));
+						int checkNum = 0;
+						
 						for(int j=0;j<cartList_Attr.size();j++) {
-							if(sessionCartListMap.get(i).get("ATTRIBUTE_NO")==cartList_Attr.get(i)) {
-								continue;
+							System.out.println("단순 값 비교.");
+							System.out.println("sessionCartListMap.get(i).get(\"ATTRIBUTE_NO\"):"+sessionCartListMap.get(i).get("ATTRIBUTE_NO"));
+							System.out.println("cartList_Attr.get(j):"+cartList_Attr.get(j));
+							
+							
+							//같으면 체크넘 ++
+							if(sessionCartListMap.get(i).get("ATTRIBUTE_NO").toString().equals(cartList_Attr.get(j).toString())) {
+								System.out.println("에러나는부분");
+								System.out.println(sessionCartListMap.get(i).get("ATTRIBUTE_NO")+"=="+cartList_Attr.get(j));
+								checkNum++;
+								break;
 							}
+							
+							
 						}
-						commandMap.put("GOODS_NO",sessionCartListMap.get(i).get("GOODS_NO"));
-						commandMap.put("COUNT",sessionCartListMap.get(i).get("COUNT"));
+						if(checkNum==0) {
+							commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+							commandMap.put("REGDATE", new Date());
+							commandMap.put("ATTRIBUTE_NO",sessionCartListMap.get(i).get("ATTRIBUTE_NO"));
+							commandMap.put("GOODS_NO",sessionCartListMap.get(i).get("GOODS_NO"));
+							commandMap.put("COUNT",sessionCartListMap.get(i).get("COUNT"));
+							cartService.insertCart(commandMap.getMap());
+						}
+						
 						sessionCartMap.put("map"+i, sessionCartListMap.get(i));
-						cartService.insertCart(commandMap.getMap());
 					}
 				}
 				return mv;
