@@ -26,4 +26,16 @@ public class LoginServiceImpl implements LoginService{
 		// TODO Auto-generated method stub
 		return loginDAO.findPasswd(map);
 	}	
+	
+	@Override
+    public void keepLogin(Map<String, Object> map) throws Exception
+	{
+		loginDAO.keepLogin(map);
+    }
+	
+    @Override
+    public Map<String, Object> checkUserWithSessionKey(String SESSIONKEY) {
+        return loginDAO.checkUserWithSessionKey(SESSIONKEY);
+
+    }
 }

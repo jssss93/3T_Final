@@ -173,8 +173,8 @@ public class GoodsController {
    public ModelAndView goodsSearch(CommandMap commandMap) throws Exception {
       ModelAndView mv = new ModelAndView("goods/searchform");
 
-      System.out.println("들어오냐??" + commandMap.getMap());
       
+
       if(commandMap.get("NAME") != null)
       {
           List<Map<String, Object>> searchlist = goodsService.goodsSearchListName(commandMap.getMap());
@@ -202,39 +202,16 @@ public class GoodsController {
       }
       else
       {
+
           List<Map<String, Object>> searchlist = goodsService.goodsSearchList(commandMap.getMap());
           
           mv.addObject("searchlist", searchlist);
-      }
+      
       return mv;
    }
    
-   @RequestMapping(value = "/goods/searchname")
-   public ModelAndView goodsSearchname(CommandMap commandMap) throws Exception {
-      ModelAndView mv = new ModelAndView("/goods/searchlist");
-      
-      System.out.println("name들어오냐??" + commandMap.getMap());
-      
-          List<Map<String, Object>> searchlist = goodsService.goodsSearchListName(commandMap.getMap());
-          
-          mv.addObject("searchlist", searchlist);
-     
-      return mv;
-   }
    
-   @RequestMapping(value = "/goods/searchrowprice")
-   public ModelAndView goodsSearchrowprice(CommandMap commandMap) throws Exception {
-      ModelAndView mv = new ModelAndView("/goods/searchlist");
-      
-      System.out.println("name들어오냐??" + commandMap.getMap());
-      
-          List<Map<String, Object>> searchlist = goodsService.goodsSearchListRowPrice(commandMap.getMap());
-          
-          mv.addObject("searchlist", searchlist);
-     
-      return mv;
-   }
-   
+
    @RequestMapping(value = "/goods/searchhighprice")
    public ModelAndView goodsSearchhighprice(CommandMap commandMap) throws Exception {
       ModelAndView mv = new ModelAndView("/goods/searchlist");
@@ -248,6 +225,7 @@ public class GoodsController {
       return mv;
    }
    
+
    @RequestMapping(value = "/goods/search1")
    public ModelAndView goodsSearch1(CommandMap commandMap) throws Exception {
       ModelAndView mv = new ModelAndView("/goods/searchlist");

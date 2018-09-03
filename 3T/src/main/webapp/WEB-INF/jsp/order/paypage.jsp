@@ -328,8 +328,20 @@ function checkAll2(){
 								<c:forEach items="${list }" var="row" varStatus="stat">
 									<tr class="xans-record-">
 										<td class="">
-											<input type="checkbox" id="checkbox${stat.index}" name="selected" value="${row.ATTRIBUTE_NO},${row.GOODS_NO },${row.COUNT}"
-											onclick="javascript:checkedRows(${stat.index});">
+											<c:choose>
+														<c:when test="${row.WISHLIST_NO != null }">
+															<input type="checkbox" id="checkbox${stat.index}"
+																name="selected"
+																value="${row.ATTRIBUTE_NO},${row.GOODS_NO },1"
+																onclick="javascript:checkedRows(${stat.index});">
+														</c:when>
+														<c:otherwise>
+															<input type="checkbox" id="checkbox${stat.index}"
+																name="selected"
+																value="${row.ATTRIBUTE_NO},${row.GOODS_NO },${row.COUNT}"
+																onclick="javascript:checkedRows(${stat.index});">
+														</c:otherwise>
+													</c:choose>
 										</td>
 										<td class="thumb">
 											<a href="/3T/goods/detail?GOODS_NO=${row.GOODS_NO }">
@@ -347,11 +359,9 @@ function checkAll2(){
 												<span class="price" value="${row.PRICE }"><strong ><fmt:formatNumber value="${row.PRICE }" pattern="#,###" /></strong></span>
 											</div>
 										</td>
-										<td>${row.COUNT }</td>
-										
-										
-										
-										
+
+										<td>${row.COUNT }<c:if test="${row.WISHLIST_NO != null }">1</c:if></td>
+
 										<td>
 											<c:if test="${memberInfo.GRADE==1 }">
 												<span class="point" value="${row.PRICE/10*0.5*row.COUNT}">
@@ -390,9 +400,21 @@ function checkAll2(){
 										</td>
 										<td>[조건]</td>
 										<td class="right">
-											<span class="totprice" value="${row.PRICE *row.COUNT}">
-												<strong ><fmt:formatNumber value="${row.PRICE*row.COUNT }" pattern="#,###" /></strong>
+
+											<c:choose>
+											<c:when test="${row.WISHLIST_NO != null }">
+											<span class="totprice" value="${row.PRICE * 1}">
+											<strong >${row.PRICE }</strong>
+											
 											</span>
+											</c:when>
+											<c:otherwise>
+											<span class="totprice" value="${row.PRICE *row.COUNT}">
+										  <strong ><fmt:formatNumber value="${row.PRICE*row.COUNT }" pattern="#,###" /></strong>
+											</span>
+											</c:otherwise>
+											</c:choose>
+
 										</td>
 									</tr>
 								</c:forEach>

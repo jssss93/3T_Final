@@ -13,5 +13,7 @@ public interface WishlistService {
 	public void deleteOneWishlist(Map<String, Object> map) throws Exception;
 
 	public void deleteAllWishlist(Map<String, Object> map) throws Exception;
+	
+	public List<Map<String, Object>> selectCheckedWishList(Map<String, Object> map) throws Exception;
 
 }

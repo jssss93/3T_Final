@@ -95,5 +95,110 @@
 		]]>
 	</delete>
 	
+	<select id="selectCheckedWishList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT 
+			  	WISHLIST_NO,
+			  	MEMBER_ID,
+			 	GOODS_NO,
+			 	CONTENT,
+			 	ATTRIBUTE_NO,
+			 	NAME,
+				PRICE,
+			 	COLOR,
+			 	GOODS_SIZE,
+			 	WM_CONCAT(SAV_NAME) AS IMAGE
+			FROM
+			
+				(SELECT 
+					a.CONTENT,
+					a.PRICE,
+					a.NAME,
+					b.ATTRIBUTE_NO,	
+				    b.COLOR,
+				    b.GOODS_SIZE,
+				    c.SAV_NAME,
+				    d.WISHLIST_NO,
+				    d.MEMBER_ID,
+				    d.GOODS_NO
+			 	FROM
+			    	GOODS a, GOODS_ATTRIBUTE b, UPLOAD c, WISHLIST d 
+				WHERE
+				    d.GOODS_NO=a.GOODS_NO AND
+				    d.ATTRIBUTE_NO=b.ATTRIBUTE_NO AND
+				    b.GOODS_NO=a.GOODS_NO AND
+				    c.GOODS_NO = d.GOODS_NO AND
+				    d.MEMBER_ID = #{MEMBER_ID} AND
+				    d.WISHLIST_NO 
+				    	IN	
+				    	]]>
+				    		<foreach collection="wish_No" item="item" index="index" separator="," open="(" close=")" >
+	      						#{item}
+	      					</foreach>
+			  	ORDER BY
+			    	WISHLIST_NO DESC)
+			    	
+			GROUP BY
+				WISHLIST_NO,
+				MEMBER_ID,
+				GOODS_NO,
+				CONTENT,
+				PRICE,
+				ATTRIBUTE_NO,
+				COLOR,
+				NAME,
+				GOODS_SIZE
+	</select>
+	
+	<select id="selectAllWishList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT 
+			  	WISHLIST_NO,
+			  	MEMBER_ID,
+			 	GOODS_NO,
+			 	CONTENT,
+			 	ATTRIBUTE_NO,
+			 	NAME,
+				PRICE,
+			 	COLOR,
+			 	GOODS_SIZE,
+			 	WM_CONCAT(SAV_NAME) AS IMAGE
+			FROM
+			
+				(SELECT 
+					a.CONTENT,
+					a.PRICE,
+					a.NAME,
+					b.ATTRIBUTE_NO,	
+				    b.COLOR,
+				    b.GOODS_SIZE,
+				    c.SAV_NAME,
+				    d.WISHLIST_NO,
+				    d.MEMBER_ID,
+				    d.GOODS_NO
+			 	FROM
+			    	GOODS a, GOODS_ATTRIBUTE b, UPLOAD c, WISHLIST d 
+				WHERE
+				    d.GOODS_NO=a.GOODS_NO AND
+				    d.ATTRIBUTE_NO=b.ATTRIBUTE_NO AND
+				    b.GOODS_NO=a.GOODS_NO AND
+				    c.GOODS_NO = d.GOODS_NO AND
+				    d.MEMBER_ID = #{MEMBER_ID} 
+			  	ORDER BY
+			    	WISHLIST_NO DESC)
+			    	
+			GROUP BY
+				WISHLIST_NO,
+				MEMBER_ID,
+				GOODS_NO,
+				CONTENT,
+				PRICE,
+				ATTRIBUTE_NO,
+				COLOR,
+				NAME,
+				GOODS_SIZE
+		]]>
+	</select>
+	
 
 </mapper>

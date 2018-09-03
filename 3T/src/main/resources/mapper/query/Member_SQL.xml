@@ -38,6 +38,36 @@
 	]]>
 	</select>
 	
+		<update id="keepLogin">
+    	UPDATE 
+    		MEMBER 
+    	SET
+    		SESSIONKEY = #{SESSIONKEY}, 
+    		SESSIONLIMIT = #{SESSIONLIMIT} 
+    	WHERE 
+    		MEMBER_ID = #{MEMBER_ID}
+    </update>
+    
+    <select id="checkUserWithSessionKey" parameterType="String" resultType="hashmap">
+        SELECT
+        	MEMBER_NO,
+			MEMBER_ID, 
+			PASSWD, 
+			NAME, 
+			BIRTH, 
+			ZIPCODE, 
+			ADDR1, 
+			ADDR2, 
+			PHONE, 
+			EMAIL,
+			SESSIONKEY
+        FROM 
+        	MEMBER 
+        WHERE 
+        	SESSIONKEY = #{SESSIONKEY} AND 
+        	SESSIONLIMIT > SYSDATE
+    </select>
+	
 	<select id="findId" parameterType="hashmap" resultType="String">
 		<![CDATA[
 		SELECT 

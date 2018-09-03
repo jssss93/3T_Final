@@ -23,7 +23,12 @@
 
 	<!-- 인터셉터설정 -->
 	<mvc:interceptors>
-	
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/main" />
+			<bean class="com.kh.iclass.member.login.AutoLoginInterceptor"></bean>
+		</mvc:interceptor>
+		
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
 			<bean id="loggerInterceptor" class="com.kh.iclass.common.logger.LoggerInterceptor"></bean>

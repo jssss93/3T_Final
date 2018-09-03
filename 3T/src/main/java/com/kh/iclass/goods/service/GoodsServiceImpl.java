@@ -155,23 +155,5 @@ public class GoodsServiceImpl implements GoodsService {
 	public List<Map<String, Object>> goodsSearchList(Map<String, Object> map) throws Exception {
 	   return goodsDAO.goodsSearchList(map);
 	}
-	@Override
-	public List<Map<String, Object>> goodsSearchListName(Map<String, Object> map) throws Exception {
-	   return goodsDAO.goodsSearchListName(map);
-	}
-	@Override
-	public List<Map<String, Object>> goodsSearchListRowPrice(Map<String, Object> map) throws Exception {
-	   return goodsDAO.goodsSearchListRowPrice(map);
-	}
-	@Override
-	public List<Map<String, Object>> goodsSearchListHighPrice(Map<String, Object> map) throws Exception {
-	   return goodsDAO.goodsSearchListHighPrice(map);
-	}
-	@Override
-	public List<Map<String, Object>> goodsSearchPriceList(Map<String, Object> map) throws Exception {
-	   return goodsDAO.goodsSearchPriceList(map);
-	}
-
 	
-
 }
