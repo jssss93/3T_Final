@@ -92,19 +92,16 @@
 								<ul class="order">
 									<li>
 										<strong>주문</strong>
-										<a href="/3T/order/orderList" class="count">
 											<span id="xans_myshop_orderstate_shppied_before_count">${order.ORDER2}</span>
 										</a>
 									</li>
 									<li>
 										<strong>교환</strong>
-										<a href="/3T/order/swapList" class="count">
 											<span id="xans_myshop_orderstate_shppied_standby_count">${swap.SWAP}</span>
 										</a>
 									</li>
 									<li>
 										<strong>환불</strong>
-										<a href="/3T/order/refundList" class="count">
 											<span id="xans_myshop_orderstate_shppied_begin_count">${refund.REFUND}</span>
 										</a>
 									</li>
