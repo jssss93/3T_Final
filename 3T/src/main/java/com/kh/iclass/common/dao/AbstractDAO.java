@@ -34,7 +34,7 @@ public class AbstractDAO {
 		return sqlSession.update(queryId, params);
 	}
 
-	public Object delete(String queryId, Object params) {
+	public  Object delete(String queryId, Object params) {
 		printQueryId(queryId);
 		return sqlSession.delete(queryId, params);
 	}

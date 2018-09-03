@@ -7,6 +7,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.kh.iclass.common.map.CommandMap;
+
 @Service("cartService")
 public class CartServiceImpl implements CartService {
 
@@ -112,6 +114,21 @@ public class CartServiceImpl implements CartService {
 		cartDAO.insertCartDetail(map);
 		
 	}
+
+	@Override
+	public void countUp(Map<String, Object> map) {
+		cartDAO.countUp(map);
+	}
+	@Override
+	public void countDown(Map<String, Object> map) {
+		cartDAO.countDown(map);
+	}
+
+	@Override
+	public void countChange(Map<String, Object> map) {
+		cartDAO.countChange(map);
+	}
+
 
 	
 

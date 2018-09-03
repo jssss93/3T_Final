@@ -109,6 +109,20 @@ public class OrderDAO extends AbstractDAO {
 		return selectList("order.selectSearchSale", map);
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectListSearch(Map<String, Object> map) {
+		return selectList("order.selectListSearch", map);
+	}
+
+	public void addPoint(Map<String, Object> map) {
+		update("order.addPoint", map);
+	}
+
+	public void subPoint(Map<String, Object> map) {
+		update("order.subPoint", map);
+		
+	}
+
 	
 	
 }

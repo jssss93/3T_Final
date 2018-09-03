@@ -3,7 +3,20 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
+
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+	
+<!-- include summernote css/js-->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+
+<script src="<c:url value='/summernote/summernote.js'/>" charset="utf-8"></script>
+<script src="<c:url value='/summernote/summernote-ko-KR.js'/>" charset="utf-8"></script>
+
 <script type="text/javascript">
 		function open_win_noresizable(url, name) {
 			var oWin = window
@@ -12,7 +25,42 @@
 
 		}
 		
-	</script>	
+</script>
+<style type="text/css">
+.btn-group > .btn:first-child {
+   width: 50;
+   height: 26;
+}
+.btn-group .btn + .btn, .btn-group .btn + .btn-group, .btn-group .btn-group + .btn, .btn-group .btn-group + .btn-group {
+  width: 40;
+}
+.note-popover .popover-content, .panel-heading.note-toolbar {
+  height: 40px;
+}
+.note-icon-magic {
+ margin: 0 0 0 10px;
+    height:     32px;
+}
+
+@media(min-width:768px) {
+    #page-wrapper {
+        position: inherit;
+        margin: auto;
+        padding: 0 30px;
+        width: 50%;
+       /*  border-left: 1px solid #e7e7e7; */
+    }
+}
+
+
+
+.note-btn btn btn-default btn-sm dropdown-toggle {
+  height: 40px;
+}
+.note-btn-group btn-group {
+  height: 30px;
+}
+</style>	
 </head>
 <body>
  <script type="text/javascript">
@@ -41,11 +89,11 @@
 			alert("비밀번호를 입력해주세요.");
 			f.PASSWD.focus();
 			return false;
-		}if (f.CONTENT.value == "") {
+		}/* if (f.CONTENT.value == "") {
 			alert("내용을 입력해주세요.");
 			f.CONTENT.focus();
 			return false;
-		}
+		} */
 	}
 </script>
 
@@ -108,7 +156,7 @@
 				</tr>
 			</c:otherwise>
 		</c:choose>
-
+ 
 	</table>
 
 	<br />
@@ -118,21 +166,25 @@
 			<tbody>
 				<tr class="board_title2">
 					<th scope="row">SUBJECT</th>
-					<td><input type="text" id="TITLE" name="TITLE" class="wdp_25"></input></td>
+					<td><input type="text" id="TITLE" name="TITLE" class="wdp_25" value="${map.SUBJECT}"/> </td>
 				</tr>
 				<tr>
 					<th scope="row">NAME</th>
 					<td><input type="text" id="MEMBER_ID" name="MEMBER_ID"
-						class="wdp_25"></input></td>
+						class="wdp_25"value="${map.NAME}"></input></td>
 				</tr>
 
 				<tr>
 
-					<td colspan="2" class="board_content2"><textarea rows="25"
-							cols="168" title="내용" id="CONTENT" name="CONTENT"></textarea></td>
+					<td colspan="2" class="board_content2">
+					<!-- <textarea rows="25" cols="168" title="내용" id="CONTENT" name="CONTENT"></textarea> -->
+						<div id="summernote" name="summernote" >${map.CONTENT }</div>
+	
+						<textarea id="noteArea" name="CONTENT" id="CONTENT"  style="display: none;"></textarea>
+					</td>
+							
 				</tr>
-				
-					</tr> -->
+					
 				<tr class="board_title">
 					<th scope="row">PASSWORD</th>
 					<td><input type="text" id="PASSWD" name="PASSWD"
@@ -158,11 +210,11 @@
 			</tbody>
 
 		</table>
-		<br> <br>
+		<br> <br>	
 		<table class="notice_button">
 			<tr>
 				<td><a href="#this" class="btn" id="list">목록으로</a> <input
-					type="submit" class="btn" value="작성완료"> <input
+					type="submit" class="btn btn-default" id="submitBtn" value="작성완료"> <input
 					type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" /></td>
 			</tr>
 		</table>
@@ -180,6 +232,49 @@
 				e.preventDefault();
 				fn_Write();
 			});
+			
+			$('#summernote').summernote({
+				lang : 'ko-KR',
+				height: 500,
+				fontNames: ['맑은 고딕',  'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', ],
+				fontNamesIgnoreCheck: ['맑은 고딕'],
+				callbacks: {
+		      		onImageUpload: function(files, editor, welEditable) {
+		          		for (var i = files.length - 1; i >= 0; i--) {
+		            		sendFile(files[i], this);
+		          		}
+		        	}
+		      	}
+			});
+			
+			$("#submitBtn").click(function() {
+				copyContent();
+			})
+			
+			function copyContent() { 
+				$("#noteArea").val($("#summernote").summernote('code'));
+			}
+			
+			function sendFile(file, el) {
+				var form_data = new FormData();
+				form_data.append('file', file);
+				
+			    $.ajax({
+			    	data: form_data,
+			        type: "POST",
+			        url: '/3T/image/body',
+			        cache: false,
+			        contentType: false,
+			        enctype: 'multipart/form-data',
+			        processData: false,
+			        success: function(url) {
+			         	$(el).summernote('editor.insertImage', "/3T/resources/upload/" + url, function($image) {
+			         		$image.css('width', '480px');	
+			         		$image.css('height', 'auto');
+			         	});
+			        }
+			   });
+			}
 		});
 
 		function fn_List() {
@@ -194,5 +289,6 @@
 			comSubmit.submit();
 		}
 	</script>
+	
 </body>
 </html>

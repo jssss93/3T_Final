@@ -6,10 +6,6 @@ import java.util.Map;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-
-
-
-
 public class ParseListToJson {
 	@SuppressWarnings("unchecked")
 	public static JSONArray convertListToJson(List<Map<String, Object>> bankCdList) {

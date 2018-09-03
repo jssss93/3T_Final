@@ -43,12 +43,13 @@ public class CartController {
 
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:/cart/list");
+		
 		HttpSession session = request.getSession();
 
 		//비회원 장바구니 등록을 위한 준비
 		Map<String, Object> cartMap = new HashMap<String, Object>();
 		
-		
+		List<Map<String, Object>> cartList = new ArrayList<Map<String, Object>>();
 		
 		// 회원 장바구니 등록
 		if (session.getAttribute("MEMBER_ID") != null) { 
@@ -56,8 +57,50 @@ public class CartController {
 			commandMap.put("ATTRIBUTE_NO", commandMap.get("attribute_no[]"));
 			commandMap.put("COUNT", commandMap.get("ea[]"));
 			commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
-			System.out.println("commandMap.getMap():"+commandMap.getMap());
 			
+			//회원 카트가 존재할경우
+			if(cartList != null) {
+				
+				//하나만 장바구니에 넘겨줄경우. 2개이상이 넘어갈경우는?
+				System.out.println(commandMap.get("ATTRIBUTE_NO"));
+				String addList_Attr=(String) commandMap.get("ATTRIBUTE_NO");
+				
+				cartList=cartService.cartList(commandMap.getMap());
+				List<Object> cartList_Attr = new ArrayList<Object>();
+				for(int i=0;i<cartList.size();i++) {
+					cartList_Attr.add(cartList.get(i).get("ATTRIBUTE_NO"));
+				}
+				for(int j=0;j<cartList_Attr.size();j++) {
+						System.out.println("값비교:"+j);
+						System.out.println(cartList_Attr.get(j));
+						System.out.println(addList_Attr);
+					if(cartList_Attr.get(j).toString().equals(addList_Attr)) {
+						commandMap.remove("ATTRIBUTE_NO");
+						//장바구니에 동일한 속성의 상품이있습니다 장바구니에서 수량을 변경해주세요.
+						mv.setViewName("error/sameAttrError");
+						System.out.println("동일속성상품 중복에러");
+						return mv;
+					}
+					
+				}
+				/*cartList=cartService.cartList(commandMap.getMap());
+				List<Object> cartList_Attr = new ArrayList<Object>();
+				for(int i=0;i<cartList.size();i++) {
+					cartList_Attr.add(cartList.get(i).get("ATTRIBUTE_NO"));
+				}
+				
+				for(int j=0;j<cartList_Attr.size();j++) {
+					for(int k=0;k<addList_Attr.length;k++) {
+						if(cartList_Attr.get(j)==addList_Attr[k]) {
+							//장바구니에 동일한 속성의 상품이있습니다 장바구니에서 수량을 변경해주세요.
+							mv.setViewName("error/sameAttrError");
+							System.out.println("동일속성상품 중복에러");
+							return mv;
+						}
+					}
+				}*/
+				
+			}
 			cartService.insertCart(commandMap.getMap());
 			
 			Map<String, Object> memberInfo = new HashMap<String, Object>();
@@ -104,6 +147,7 @@ public class CartController {
 			System.out.println(sessionCartMap);
 		
 		}
+		
 		return mv;
 	}
 
@@ -162,13 +206,14 @@ public class CartController {
 		ModelAndView mv = new ModelAndView("order/paypage");
 		HttpSession session = request.getSession();
 		Map<String, Object> cartMap = new HashMap<String, Object>();
-		
 		List<Map<String, Object>> fromDetailOne = new ArrayList<Map<String, Object>>();
 		
 		
 		//회원이면
 		if(session.getAttribute("MEMBER_ID")!=null) {
 			commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+			Map<String, Object> memberInfo = new HashMap<String, Object>();
+			memberInfo=adminMemberService.memberDetail(commandMap.getMap());
 			String GOODS_NO 	= (String) commandMap.get("GOODS_NO");
 			String ATTRIBUTE_NO = (String) commandMap.get("attribute_no[]");
 			String COUNT		= (String) commandMap.get("ea[]");
@@ -190,14 +235,15 @@ public class CartController {
 			cartMap.put("COLOR",		COLOR);
 			cartMap.put("GOODS_SIZE",	GOODS_SIZE);
 			
-			Map<String, Object> memberInfo = new HashMap<String, Object>();
-			memberInfo=adminMemberService.memberDetail(commandMap.getMap());
-			cartMap.put("MEMBER_ID",	commandMap.get("MEMBER_ID"));
 			
 			fromDetailOne.add(cartMap);
 			
 			mv.addObject("list", fromDetailOne);
 			mv.addObject("memberInfo", memberInfo);
+			
+			if(commandMap.get("cart_No")!=null) {
+				cartService.cartDeleteSelect(commandMap.getMap());
+			}
 		//비회원이면
 		}else {
 			System.out.println("여기로?");
@@ -208,6 +254,7 @@ public class CartController {
 		return mv;
 	
 	}
+	
 	//회원,비회원 카트->오더 한개 추가  (장바구니에있는값으로 가져간다.)
 	@RequestMapping(value = "/cart/Add/OnetoPayment")
 	public ModelAndView cartAddtoPayment(CommandMap commandMap, HttpServletRequest request) throws Exception {
@@ -224,8 +271,9 @@ public class CartController {
 			System.out.println("받아오는 카트 NO 값 >>");
 			for(int i=0;i<cart_No.length;i++) {
 				System.out.println("cart_No"+i+":"+cart_No[i]);
-			}
+			}	
 			commandMap.put("cart_No", cart_No);
+			session.setAttribute("CART_NO", commandMap.get("cart_No"));
 			
 			List<Map<String, Object>> checkedCartList = new ArrayList<Map<String, Object>>();
 			
@@ -297,6 +345,60 @@ public class CartController {
 	    return mv;
 	}
 	
+	@RequestMapping(value = "/cart/CountUp")
+	public ModelAndView cartCountUp(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		System.out.println("넘어오는값:"+commandMap.getMap());
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("MEMBER_ID") != null) {
+			commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+			cartService.countUp(commandMap.getMap());
+		}else {
+			
+		}
+		
+		mv.setViewName("redirect:/cart/list");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value = "/cart/CountDown")
+	public ModelAndView cartCountDown(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView();
+
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("MEMBER_ID") != null) {
+			commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+			cartService.countDown(commandMap.getMap());
+		}else {
+			
+		}
+		
+		mv.setViewName("redirect:/cart/list");
+		
+		return mv;
+	}
+	@RequestMapping(value = "/cart/CountChange")
+	public ModelAndView cartChange(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		System.out.println("넘어오는값:"+commandMap.getMap());
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("MEMBER_ID") != null) {
+			commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+			cartService.countChange(commandMap.getMap());
+		}else {
+			
+		}
+		
+		mv.setViewName("redirect:/cart/list");
+		
+		return mv;
+	}
+	
+	//선택상품삭제.
 	@RequestMapping(value = "/cart/deleteSelect")
 	public ModelAndView cartDeleteSelect(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();

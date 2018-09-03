@@ -7,51 +7,7 @@
 <head>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
-	function sample6_execDaumPostcode() {
-		new daum.Postcode(
-				{
-					oncomplete : function(data) {
-						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-						// 각 주소의 노출 규칙에 따라 주소를 조합한다.
-						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-						var fullAddr = ''; // 최종 주소 변수
-						var extraAddr = ''; // 조합형 주소 변수
-
-						// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-						if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-							fullAddr = data.roadAddress;
-
-						} else { // 사용자가 지번 주소를 선택했을 경우(J)
-							fullAddr = data.jibunAddress;
-						}
-
-						// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-						if (data.userSelectedType === 'R') {
-							//법정동명이 있을 경우 추가한다.
-							if (data.bname !== '') {
-								extraAddr += data.bname;
-							}
-							// 건물명이 있을 경우 추가한다.
-							if (data.buildingName !== '') {
-								extraAddr += (extraAddr !== '' ? ', '
-										+ data.buildingName : data.buildingName);
-							}
-							// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-							fullAddr += (extraAddr !== '' ? ' (' + extraAddr
-									+ ')' : '');
-						}
-
-						// 우편번호와 주소 정보를 해당 필드에 넣는다.
-						document.getElementById('sample6_postcode').value = data.zonecode; //5자리 새우편번호 사용
-						document.getElementById('sample6_address').value = fullAddr;
-
-						// 커서를 상세주소 필드로 이동한다.
-						document.getElementById('sample6_address2').focus();
-					}
-				}).open();
-	}
-
+	
 	function sample7_execDaumPostcode() {
 		new daum.Postcode(
 				{
@@ -109,58 +65,110 @@ function comma(str) {
     str = String(str);
     return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
 }
-//체크박스 단일 선택
-	var sum = 0;
-	var delivery = 0;
-	var totalSum =0;
+
+	var sum 			= 0;
+	var delivery 		= 0;
+	var totalSum 		= 0;
+	var pointSum 		= 0;
+	var discountPrice	= 0;
+	var usePoint 		= 0;
+	var memberPoint		= ${memberInfo.POINT };
+	var memberGrade		= ${memberInfo.GRADE };
 	
-	function checkedRows(index){
+function discount_Fun(){
+		
+	console.log("discount_Fun()시작!");
+	if($("#usePoint").val()!=null){
+		/* $("#usePoint").val("0"); */
+		usePoint = $("#usePoint").val();
+			
+		if(usePoint > memberPoint){
+			$("#usePoint").val("0");
+			alert("보유 포인트보다 적은 금액을 입력해주세요");
+			return false;
+		}
+		
+		
+			
+		discountPrice=usePoint;
+		console.log(discountPrice);
+		
+		totalSum=totalSum-discountPrice;
+		
+		$(".totalSum").html(comma(totalSum)+" KRW");
+		$(".discount").html(comma(discountPrice)+" KRW");
+		$(".totalSum2").val(totalSum);
+		$(".memberPoint").val(memberPoint -usePoint);
+		$(".usePoint2").val(usePoint);
+	}
+}
+
+//체크박스 단일 선택
+function checkedRows(index){
 	var index = index;
 	var tagName = "#checkbox"+index;
 	
 	//price 클래스의 value 값을 가져온다.
-	var price = $(".price").eq(index).attr("value");
-	var totprice = $(".totprice").eq(index).attr("value");
+	var price 		= 	$(".price").eq(index).attr("value");
+	var totprice	=	$(".totprice").eq(index).attr("value");
+	var point		= 	$(".point").eq(index).attr("value");
 	
-	price = parseInt(price);
-	totprice = parseInt(totprice);
+	price 		= 	parseInt(price);
+	totprice 	= 	parseInt(totprice);
+	point		=	parseInt(point);
 	
 	console.log("price:"+price);
 	console.log("totPrice:"+totprice);
+	console.log("point:"+point);
+	
+	
+	
+	
+	
 	
      if($(tagName).is(":checked")){
     	
-       	sum += totprice;
+       	sum 		+=	totprice;
+       	pointSum	+=	point;
        	
        	if(sum>50000){
        		delivery=0;
        	}else{
        		delivery=3000;
        	}
-       	totalSum = sum + delivery;
-       	 
+       	totalSum = sum + delivery - discountPrice;
+       	
        	$(".totalPrice").html(comma(sum)+" KRW");
        	$(".delivery").html(comma(delivery)+" KRW");
        	$(".totalSum").html(comma(totalSum)+" KRW");
+       	$(".pointSum").html(comma(pointSum)+" KRW");
+       	$(".pointSum2").val(pointSum);
        	$(".totalSum2").val(totalSum);
-
+       	//pointSum 도 추가해줄것.
+       	
+		
 	}else{
 		
-	    sum -=  totprice;
-	    
+	    sum 		-=  totprice;
+	    pointSum	-=	point;
 	    if(sum>50000){
 	    	delivery=0;
        	}else{
        		delivery=3000;
        	}
 	    
-			totalSum = sum + delivery;
+			totalSum = sum + delivery - discountPrice;
 	       	
 	       	$(".totalPrice").html(comma(sum)+" KRW");
 	       	$(".delivery").html(comma(delivery)+" KRW");
 	       	$(".totalSum").html(comma(totalSum)+" KRW");
-	       	$(".totalSum2").html(comma(totalSum)+" KRW");
+	       	$(".pointSum").html(comma(pointSum)+" KRW");
+	       	$(".pointSum2").val(pointSum);
+	       	$(".totalSum2").val(totalSum);
+	      //pointSum 도 추가해줄것.
 	} 
+     console.log("pointSum:"+pointSum);
+     
 };
 //체크박스 다중 선택
 var chkCount = $("input[type=checkbox]").length ;
@@ -200,6 +208,7 @@ function checkAll2(){
 	}
 }
 
+
 </script>
 <title>3T</title>
 </head>
@@ -220,20 +229,45 @@ function checkAll2(){
 		<div class="xans-element- xans-order xans-order-dcinfo ec-base-box typeMember  ">
 			<div class="information">
 				<h3 class="title">혜택정보</h3>
-				<div class="description">
+				<div class="description">  
 					<div class="member ">
-						<p>
-							<c:if test="${memberInfo.NAME !=null}">
-								<strong>${memberInfo.MEMBER_ID }</strong> 님은,${memberInfo.GRADE } 등급 회원이십니다.
-							</c:if>
-							<c:if test="${memberInfo.NAME ==null}">
-								<strong>${NON_MEMBER_ID }</strong> 님은, 비회원 이십니다.
-							</c:if>							
-						</p>
+						
+						<c:if test="${memberInfo.NAME !=null}">
+							<p>
+								<strong>${memberInfo.MEMBER_ID }</strong> 님은,	<c:if test="${memberInfo.GRADE ==1}">[Bronze]</c:if>
+																				<c:if test="${memberInfo.GRADE ==2}">[Silver]</c:if>													
+																				<c:if test="${memberInfo.GRADE ==3}">[Gold]</c:if>												
+																				<c:if test="${memberInfo.GRADE ==4}">[VIP]</c:if>													
+												 																					
+																																	 등급 회원입니다. 
+							</p>
+							<ul class="">
+								<li class="">
+									<span class="">KRW 50,000</span> 이상 <span class="">무통장입금</span> 구매시 <span>
+																				<c:if test="${memberInfo.GRADE ==1}">5%</c:if>
+																				<c:if test="${memberInfo.GRADE ==2}">10%</c:if>													
+																				<c:if test="${memberInfo.GRADE ==3}">15%</c:if>													
+																				<c:if test="${memberInfo.GRADE ==4}">20%</c:if>	
+																											
+																														</span>을 추가적립 받으실 수 있습니다. 
+								</li>
+	                   		</ul>
+	                   		<ul class="mileage">
+								<li><a href="/myshop/mileage/historyList.html">가용포인트 : <strong><fmt:formatNumber value="${memberInfo.POINT}" pattern="#,###" /> P</strong></a></li>
+		                    	<li><a href="/myshop/coupon/coupon.html">쿠폰 : <strong>0개</strong></a></li>
+		                	</ul>
+                   		</c:if>
+                   		<c:if test="${memberInfo.NAME ==null}">
+							<p>
+								<strong>${NON_MEMBER_ID }</strong> 님은, 비회원입니다.
+								
+							</p>
+							<ul class="mileage">
+								<li>회원가입시 쿠폰 및 포인트 혜택을 받을수 있습니다.</li>
+		                	</ul>
+						</c:if>
 					</div>
-					<ul class="mileage">
-						<li><a href="/myshop/coupon/coupon.html">쿠폰 : <strong>0개</strong></a></li>
-					</ul>
+					
 				</div>
 			</div>
 		</div>
@@ -265,7 +299,7 @@ function checkAll2(){
 							<th scope="col">상품정보</th>
 							<th scope="col">판매가</th>
 							<th scope="col">수량</th>
-							<th scope="col">적립금</th>
+							<th scope="col">적립포인트</th>
 							<th scope="col">배송구분</th>
 							<th scope="col">배송비</th>
 							<th scope="col">합계</th>
@@ -298,28 +332,57 @@ function checkAll2(){
 											onclick="javascript:checkedRows(${stat.index});">
 										</td>
 										<td class="thumb">
-											<a href="/product/detail.html?product_no=8171&amp;cate_no=1">
-												<img width="50" height="50" src="/3T/resources/upload/${row.IMAGE.split(',')[0] }" />
+											<a href="/3T/goods/detail?GOODS_NO=${row.GOODS_NO }">
+												<img width="75" height="75" src="/3T/resources/upload/${row.IMAGE.split(',')[0] }" />
 											</a>
 										</td>
 										<td class="left">
-											<a href="/product/detail.html?product_no=8184&amp;cate_no=1">
+											<a href="/3T/goods/detail?GOODS_NO=${row.GOODS_NO }">
 												<strong>${row.NAME }</strong>
 											</a>
 											<div class="option ">[옵션:${row.COLOR }/${row.GOODS_SIZE }]</div>
 										</td>
 										<td class="right">
 											<div >
-												<span class="price" value="${row.PRICE }"><strong >${row.PRICE}</strong></span>
+												<span class="price" value="${row.PRICE }"><strong ><fmt:formatNumber value="${row.PRICE }" pattern="#,###" /></strong></span>
 											</div>
 										</td>
 										<td>${row.COUNT }</td>
+										
+										
+										
+										
 										<td>
-											<span class="txtInfo">
-												<input id="product_mileage_all_8184_000A" name="product_mileage_all"value="400" type="hidden">
-												<img src="//img.echosting.cafe24.com/design/common/icon_cash.gif">400원
-											</span>
+											<c:if test="${memberInfo.GRADE==1 }">
+												<span class="point" value="${row.PRICE/10*0.5*row.COUNT}">
+													<img src="//img.echosting.cafe24.com/design/common/icon_cash.gif">
+													<fmt:formatNumber value="${row.PRICE/10*0.5*row.COUNT}" pattern="#,###" /> P
+												</span>
+											</c:if>
+											<c:if test="${memberInfo.GRADE==2 }">
+												<span class="point" value="${row.PRICE/10*1.0*row.COUNT}">
+													<img src="//img.echosting.cafe24.com/design/common/icon_cash.gif">
+													<fmt:formatNumber value="${row.PRICE/10*1.0*row.COUNT}" pattern="#,###" /> P
+												</span>
+											</c:if>
+											<c:if test="${memberInfo.GRADE==2 }">
+												<span class="point" value="${row.PRICE/10*1.5*row.COUNT}">
+													<img src="//img.echosting.cafe24.com/design/common/icon_cash.gif">
+													<fmt:formatNumber value="${row.PRICE/10*1.5*row.COUNT}" pattern="#,###" /> P
+												</span>
+											</c:if>
+											<c:if test="${memberInfo.GRADE==3 }">
+												<span class="point" value="${row.PRICE/10*2.0*row.COUNT}">
+													<img src="//img.echosting.cafe24.com/design/common/icon_cash.gif">
+													<fmt:formatNumber value="${row.PRICE/10*2.0*row.COUNT}" pattern="#,###" /> P
+												</span>
+											</c:if>
 										</td>
+										
+										
+										
+										
+										
 										<td>
 											<div class="txtInfo">
 												기본배송<br>
@@ -327,14 +390,16 @@ function checkAll2(){
 										</td>
 										<td>[조건]</td>
 										<td class="right">
-											<span class="totprice" value="${row.PRICE *row.COUNT}"><strong >${row.PRICE*row.COUNT}</strong></span>
+											<span class="totprice" value="${row.PRICE *row.COUNT}">
+												<strong ><fmt:formatNumber value="${row.PRICE*row.COUNT }" pattern="#,###" /></strong>
+											</span>
 										</td>
 									</tr>
 								</c:forEach>
 							</c:when>
 						<c:otherwise>
 							<tr>
-								<td colspan="4">조회된 결과가 없습니다.</td>
+								<td colspan="9">조회된 결과가 없습니다.</td>
 							</tr>
 						</c:otherwise>
 					</c:choose>
@@ -345,16 +410,6 @@ function checkAll2(){
 		<ul class="ec-base-help controlInfo typeBtm">
 			<li class="txtWarn txt11">상품의 옵션 및 수량 변경은 상품상세 또는 장바구니에서 가능합니다.</li>
 		</ul>
-		<!-- 선택상품 제어 버튼 -->
-		<div class="ec-base-button">
-			<span class="gLeft "> <strong class="text">선택상품을</strong> <a
-				href="#none" id="btn_product_delete"><img
-					src="/images/btn_delete2.gif" alt="삭제하기"></a>
-			</span> <span class="gRight"> <a
-				href="javascript:window.history.back();"><img
-					src="/images/btn_prev.gif" alt="이전페이지"></a>
-			</span>
-		</div>
 
 		<!-- 배송 정보 -->
 		<div class="orderArea">
@@ -543,6 +598,48 @@ function checkAll2(){
 							</td>
 						</tr>
 					</tbody>
+					<tbody class="">
+						<tr>
+							<th scope="row">적립금</th>
+                            <td>
+                                <p> 
+                                	<input type="text" id="usePoint" onblur="discount_Fun()"> 원 <br>(총 사용가능 적립금 :
+                                	<strong class="memberPoint" >${memberInfo.POINT }</strong>원)
+                                	<input type="hidden" name="USEPOINT" class="usePoint2"> 
+                                </p>
+                                <ul class="info">
+									<li>적립금은 최소 100 이상일 때 결제가 가능합니다.</li>
+                                    <li id="mileage_max_unlimit" class="">최대 사용금액은 제한이 없습니다.</li>
+                                    <li>적립금으로만 결제할 경우, 결제금액이 0으로 보여지는 것은 정상이며 [결제하기] 버튼을 누르면 주문이 완료됩니다.</li>
+                                </ul>
+							</td>
+							<td>
+								총 적립예정 포인트 : 
+							 	<span class="pointSum">
+                                	<strong><fmt:formatNumber value="0" pattern="#,###" /></strong>P
+                                	
+                                </span> 
+                                <input type="hidden" name="ADDPOINT" class="pointSum2" >
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody class="">
+						<tr>
+							<th scope="row">쿠폰</th>
+                            <td>
+                                <p> 
+                                	리스트나열시켜주고.
+                                </p>
+                                
+							</td>
+							<td>
+								<ul class="info">
+									<li>쿠폰설명써주고</li>
+                                    <li>설명2</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
 				</table>
 			</div>
 		</div>

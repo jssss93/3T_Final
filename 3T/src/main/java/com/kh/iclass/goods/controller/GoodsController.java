@@ -193,6 +193,7 @@ public class GoodsController {
           
           mv.addObject("searchlist", searchlist);
       }
+      
       else if(commandMap.get("PRICE1") != null && commandMap.get("PRICE2") != "" && commandMap.get("PRICE2") != null)
       {
           List<Map<String, Object>> searchlist = goodsService.goodsSearchPriceList(commandMap.getMap());
@@ -246,6 +247,7 @@ public class GoodsController {
      
       return mv;
    }
+   
    @RequestMapping(value = "/goods/search1")
    public ModelAndView goodsSearch1(CommandMap commandMap) throws Exception {
       ModelAndView mv = new ModelAndView("/goods/searchlist");
