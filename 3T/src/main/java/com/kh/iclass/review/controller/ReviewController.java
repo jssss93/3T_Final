@@ -88,8 +88,11 @@ public class ReviewController {
 		ModelAndView mv = new ModelAndView("review/write");
 		
 		System.out.println("reviewUpdateForm : " + commandMap.getMap());
+		//상품정보
+		Map<String, Object> map1 = ReviewService.ReviewGoods(commandMap.getMap());
 		
 		Map<String, Object> map = ReviewService.ReviewDetail(commandMap.getMap());
+		mv.addObject("list",map1);
 		mv.addObject("map", map);
 
 		return mv;

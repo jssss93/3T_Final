@@ -58,7 +58,7 @@
 							<td align="center">${row.QA_NO }</td>
 
 							<td align="center"><img width="50" height="50"
-								src="/3T/resources/upload/${row.SAV_NAME.split(',')[0] }" /></td>
+								src="/3T/resources/upload/${row.IMAGE.split(',')[0] }" /></td>
 							<td align="center"><c:if test="${row.CATEGORY == 1 }">
 								상품문의
 							</c:if> <c:if test="${row.CATEGORY == 2 }">

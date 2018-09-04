@@ -210,6 +210,90 @@ function checkAll2(){
 
 
 </script>
+
+<script language="javascript">
+ function chkBox(bool) { // 전체선택/해제 
+	var obj = document.getElementsByName("join");
+	for ( var i = 0; i < obj.length; i++)
+		obj[i].checked = bool;
+}  
+	  function check() {
+
+		 var f = document.Reg_form; 
+		 
+		 if (f.chkBox.checked == false) {
+			alert("상품을 선택해주세요.");
+			return false;
+		} 
+	 	if (f.chk_purchase_agreement.checked == false) {
+			alert("구매진행에  동의해 주시기 바랍니다.");
+			return false;
+		}  
+ 
+		
+		if (f.RECIPIENT_NAME.value == "") {
+			alert("수취자를 입력해주십시오");
+			f.RECIPIENT_NAME.focus();
+			return false;
+		}
+
+		
+		if (f.RECIPIENT_ADDR1.value == "") {
+			alert("우편번호를 검색하여 입력해주십시오");
+			f.RECIPIENT_ADDR1.focus();
+			
+			return false;
+		}
+
+		
+		if (f.RECIPIENT_ADDR2.value == "") {
+			alert("상세주소를 입력해주십시오");
+			f.RECIPIENT_ADDR2.focus();
+			return false;
+		}
+
+		if (f.mphone2.value == "") {
+			alert("전화번호를 입력해주십시오");
+			f.mphone2.focus();
+			return false;
+		}
+
+		if (f.mphone3.value == "") {
+			alert("전화번호를 입력해주세요");
+			f.mphone3.focus();
+			return false;
+		}
+
+		if (f.oemail1.value == "") {
+			alert("이메일을 입력해주십시오");
+			f.oemail1.focus();
+			return false;
+		}
+		
+		if (f.oemail2.value == "") {
+			alert("이메일을 입력해주십시오");
+			f.oemail2.focus();
+			return false;
+		}
+		
+		if (f.DEPOSIT_NAME.value == "") {
+			alert("입금자명을 입력해주십시오");
+			f.DEPOSIT_NAME.focus();
+			return false;
+		}
+		
+		if (f.DEPOSIT_BANK.value == "") {
+			alert("계좌번호를 입력해주십시오");
+			f.DEPOSIT_BANK.focus();
+			return false;
+		}	
+		if(f.DEPOSIT_.value=="-1"){
+			alert("은행을 선택해주세요");
+			return false;
+		}
+	}   
+	  </script>
+	  
 <title>3T</title>
 </head>
 <body>
@@ -276,7 +360,7 @@ function checkAll2(){
 			<div class="title">
 				<h3> 주문내역</h3>
 			</div>
-
+	<form name="Reg_form" id="frm" action="/3T/order/insert" onsubmit="return check()" >
 			<!-- 기본배송 -->
 			<div class="ec-base-table typeList ">
 				<table border="1" summary="">
@@ -320,7 +404,7 @@ function checkAll2(){
 							</td>
 						</tr>
 					</tfoot>
-					<form id="frm" action="/3T/order/insert">
+				
 					
 					<tbody class="xans-element- xans-order xans-order-normallist center">
 						<c:choose>

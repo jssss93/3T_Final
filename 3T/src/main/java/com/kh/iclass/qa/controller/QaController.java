@@ -106,10 +106,12 @@ public class QaController {
 	//QA 수정 폼
 	@RequestMapping(value = "/qa/updateForm")
 	public ModelAndView qaUpdateForm(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("qa/update");
+		ModelAndView mv = new ModelAndView("qa/write");
 		
 		System.out.println("qaUpdateForm : " + commandMap.getMap());
+		Map<String, Object> map1 = QaService.QaGoods(commandMap.getMap());
 		Map<String, Object> map = QaService.QaDetail(commandMap.getMap());
+		mv.addObject("list",map1);
 		mv.addObject("map", map);
 
 		return mv;
@@ -133,6 +135,7 @@ public class QaController {
 		System.out.println("qaDelete : " + commandMap.getMap());
 
 		QaService.QaDelete(commandMap.getMap());
+		
 
 		return mv;
 	}
