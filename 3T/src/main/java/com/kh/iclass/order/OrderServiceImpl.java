@@ -70,6 +70,7 @@ public class OrderServiceImpl implements OrderService {
 		return orderDAO.selectList(map);
 	}
 	
+	
 	@Override
 	public List<Map<String, Object>> selectListSearch(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -194,6 +195,10 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
+	public List<Map<String, Object>> selectOrderSearchListAll(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return orderDAO.selectOrderSearchListAll(map);
+@Override
 	public List<Map<String, Object>> selectOrderInfo(Map<String, Object> map) {
 		return orderDAO.selectOrderInfo(map);
 	}
@@ -201,6 +206,7 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public Map<String, Object> selectOrderMemberInfo(Map<String, Object> map) {
 		return orderDAO.selectOrderMemberInfo(map);
+
 	}
 
 	

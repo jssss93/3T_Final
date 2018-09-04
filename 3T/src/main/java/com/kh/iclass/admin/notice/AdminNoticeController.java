@@ -27,9 +27,12 @@ public class AdminNoticeController {
 	@RequestMapping("/notice/list")
 	public ModelAndView noticeList(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("notice.list");
-
-		Map<String, Object> resultMap = noticeService.NoticeList(commandMap.getMap());
-
+		Map<String, Object> resultMap = null;
+		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
+			resultMap = noticeService.NoticeList(commandMap.getMap());
+		else
+			resultMap = noticeService.NoticeSearchList(commandMap.getMap());
+		
 		mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
 
 		mv.addObject("list", resultMap.get("result"));

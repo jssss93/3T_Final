@@ -180,12 +180,13 @@ function delchk(){
 					<div class="row">
 							<div style="text-align:center;">
 								<div id="dataTables-example_filter" class="dataTables_filter">
-									<form action="">
-									<select class="form-control" name="searchNum" id="searchNum">
-										<option value="0">상품명</option>
-										<option value="1">상품번호</option>
+										<form action="/3T/admin/order/orderlist">
+									<select class="form-control" name="SearchNum" id="SearchNum">
+								<option value="MEMBER_ID">NAME</option>
+								<option value="NAME">TITLE</option>
+								<option value="CONTENT">CONTENT</option>
 									</select>
-										<input class="form-control" type="text" name="isSearch" id="isSearch"/>
+										<input class="form-control" type="text" name="SearchKeyword" id="SearchKeyword"/>
 										<span>
 										<button type="submit" class="btn btn-default">검색</button>
 										</span>

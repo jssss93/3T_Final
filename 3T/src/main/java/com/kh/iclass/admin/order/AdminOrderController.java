@@ -51,11 +51,14 @@ public class AdminOrderController {
 		ModelAndView mv = new ModelAndView("order.list");
 		
 		HttpSession session = request.getSession();
+		
 		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 		
 		List<Map<String, Object>> orderList = new ArrayList<Map<String, Object>>();
-		
-		orderList=orderService.selectOrderListAll(commandMap.getMap());
+		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
+			orderList=orderService.selectOrderListAll(commandMap.getMap());
+		else
+			orderList=orderService.selectOrderSearchListAll(commandMap.getMap());
 		
 		mv.addObject("list", orderList);
 		return mv;

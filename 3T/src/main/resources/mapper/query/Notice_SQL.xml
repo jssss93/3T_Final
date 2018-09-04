@@ -106,6 +106,7 @@
 		SELECT 
 			NOTICE_NO,
            	TITLE,
+           	MEMBER_ID,
            	CONTENT,
            	REGDATE,
 			READCNT,

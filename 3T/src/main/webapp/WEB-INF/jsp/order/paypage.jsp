@@ -224,6 +224,33 @@ function checkAll2(){
 	font-size: 14;
 }
 
+
+<script language="javascript">
+ function chkBox(bool) { // 전체선택/해제 
+	var obj = document.getElementsByName("selected");
+	for ( var i = 0; i < obj.length; i++)
+		obj[i].checked = bool;
+}  
+	  function check() {
+
+		 var f = document.Reg_form; 
+		 
+		  if (f.selected.checked == false) {
+			alert("상품을 선택해주세요.");
+			return false;
+		}  
+	 	if (f.chk_purchase_agreement.checked == false) {
+			alert("구매진행에  동의해 주시기 바랍니다.");
+			return false;
+		}  
+ 
+		
+		if (f.RECIPIENT_NAME.value == "") {
+			alert("수취자를 입력해주십시오");
+			f.RECIPIENT_NAME.focus();
+			return false;
+		}
+
 .txtDel, .strike, .discount {
 	text-decoration: line-through;
 	font-weight: bold;
@@ -236,6 +263,7 @@ function checkAll2(){
 	font-size: 16;
 	font-weight: bold;
 }
+
 
 .xans-order-form .totalArea .ec-base-table.total td .box strong .totalSum
 	{
