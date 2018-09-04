@@ -418,18 +418,11 @@ function chkBox(bool) { // 전체선택/해제
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>회원가입</title>
 <link href="<c:url value='/resources/css/joinTest.css'/>" rel="stylesheet" type="text/css" />
-<style type="text/css">
-.xans-layout-footer {
-	position: relative;
-	width: 100%;
-	margin: 0px auto 25px;
-	padding-top: 0px;
-	text-align: center;
-	clear: both;
-	overflow: hidden;
-	*zoom: 1;
-	bottom: -500;
-	height: 50%
+<style>
+.xans-member-join .agreeArea input.ec-base-chk {
+    vertical-align: middle;
+    width: 12px;
+    margin: 0px 0px 2px 0px;
 }
 </style>
 </head>
@@ -437,13 +430,10 @@ function chkBox(bool) { // 전체선택/해제
 	<%
 		request.setCharacterEncoding("UTF-8");
 	%>
-
-	<div id="contentwrap">
-
-		<div id="contents">
-
-
-
+         <br><br>
+         <br><br>
+         <br><br>
+         <br><br>
 			<div class="titleArea">
 				<h2>회원 가입</h2>
 			</div>
@@ -555,7 +545,7 @@ function chkBox(bool) { // 전체선택/해제
 											alt="필수"></th>
 										<td><input name="EMAIL1" type="text" class="box" id="EMAIL1"
 										size="15" value="${sessionScope.email1}" readonly> @ <input name="EMAIL2" type="text"
-										class="box" id="EMAIL2" size="20" value="${sessionScope.email2}" readonly> <<!-- select
+										class="box" id="EMAIL2" size="20" value="${sessionScope.email2}" readonly> <!-- select
 										name="email3"  id="email_select"
 										onChange="checkemailaddy();">
 										<option value="" selected>선택하세요</option>

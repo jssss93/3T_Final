@@ -3,6 +3,11 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<style>
+.btn {
+    margin: 0px 272px 0px 16px;
+}
+</style>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 </head>
 <body>
