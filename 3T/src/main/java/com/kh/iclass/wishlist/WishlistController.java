@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.iclass.admin.member.AdminMemberService;
 import com.kh.iclass.common.map.CommandMap;
+import com.kh.iclass.common.util.WishNoUtil;
 
 @Controller
 public class WishlistController {
@@ -31,6 +32,17 @@ public class WishlistController {
 		
 		HttpSession session = request.getSession();
 		
+		List<Map<String, Object>> wishlist = new ArrayList<Map<String, Object>>();
+
+		commandMap.put("ATTRIBUTE_NO", commandMap.get("attribute_no[]"));
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		
+		wishlist = wishlistService.selectwish(commandMap.getMap());
+		
+		/*System.out.println("wishlist1:" +wishlist);
+		if(wishlist == null) {
+		System.out.println("wishlist2:" +wishlist);*/
+		
 		if(session.getAttribute("MEMBER_ID") != null) { 
 			commandMap.put("GOODS_NO", commandMap.get("GOODS_NO"));
 			commandMap.put("ATTRIBUTE_NO", commandMap.get("attribute_no[]"));
@@ -39,8 +51,26 @@ public class WishlistController {
 			
 			System.out.println("commandMap.getMap():"+commandMap.getMap());
 			wishlistService.insertWishlist(commandMap.getMap());
-		}
+			}
+		/*}*/
 		return mv;
+	}
+	
+	@RequestMapping(value = "wish/wishtocart")		
+	public ModelAndView wishtocart(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		HttpSession session = request.getSession();
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		
+		System.out.println("commandMap.getMap():"+commandMap.getMap());
+		
+		wishlistService.WishinsertCart(commandMap.getMap(),request);
+		
+		mv.setViewName("redirect:/cart/list");
+		
+		return mv;
+	
 	}
 	
 	@RequestMapping(value = "/wish/Add/OnetoPayment")
@@ -63,7 +93,7 @@ public class WishlistController {
 		List<Map<String, Object>> CheckedWish = new ArrayList<Map<String, Object>>();
 		
 		CheckedWish = wishlistService.selectCheckedWishList(commandMap.getMap());
-			
+		
 		mv.addObject("list", CheckedWish);
 		mv.addObject("memberInfo", memberInfo);
 		
@@ -77,13 +107,13 @@ public class WishlistController {
 		
 		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 		
-		String wish_No[]=request.getParameterValues("WISHLIST_NO");
+		List<String> wish_No1  = WishNoUtil.parseInsertcart(commandMap, request);
 		
-		for(int i=0;i<wish_No.length;i++) {
-			System.out.println("wish_No"+i+":"+wish_No[i]);
-		}
-		commandMap.put("wish_No", wish_No);
-		
+		System.out.println("받아오는 위시 NO 값 >>");
+		System.out.println(wish_No1);
+		commandMap.put("wish_No", wish_No1);
+	
+		commandMap.put("wish_No", wish_No1);
 		
 			commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 			

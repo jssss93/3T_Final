@@ -22,6 +22,11 @@ public class CartDAO extends AbstractDAO {
 		insert("cart.insertCartAuto", attribute);
 	}
 	
+	//위시에서 카트추가
+		public void insertWishCart(Map<String, Object> map) throws Exception {
+			insert("cart.insertWishCart", map);
+		}
+	
 	// 장바구니 등록
 	public void insertCartDetail(Map<String, Object> map) throws Exception {
 		insert("cart.insertCartDetail", map);

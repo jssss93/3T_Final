@@ -207,6 +207,10 @@
          e.preventDefault();
          fn_addOrderSelected();
       });
+      $("#wishtocart").on("click", function(e){
+    	  e.preventDefault();
+    	  fn_wishtocart();
+      });
       $("#addOrderAll").on("click", function(e) { 
          e.preventDefault();
          checkAll2();
@@ -228,6 +232,11 @@
       var comSubmit = new ComSubmit("frm");
       comSubmit.setUrl("<c:url value='/order/addwishSelected' />");
       comSubmit.submit();
+   }
+   function fn_wishtocart() {
+	      var comSubmit = new ComSubmit("frm");
+	      comSubmit.setUrl("<c:url value='/wish/wishtocart' />");
+	      comSubmit.submit();
    }
    function fn_addOrderAll() {
       var comSubmit = new ComSubmit("frm");
@@ -406,7 +415,7 @@
     width: 120px;
 }
 .xans-order-basketpackage .boardList .product {
-    width: 732px;
+    width: 100%;
 }
 </style>
 </head>
@@ -477,7 +486,7 @@
 											<tr class="xans-record-">
 
 												<td>
-													<input type="checkbox" id="checkbox${stat.index}" name="WISHLIST_NO" id="WISHLIST_NO" value="${row.WISHLIST_NO}"
+													<input type="checkbox" id="checkbox${stat.index}" name="selected" id="WISHLIST_NO" value="${row.ATTRIBUTE_NO},${row.GOODS_NO},1,${row.WISHLIST_NO}"
 													onclick="javascript:checkedRows(${stat.index});">
 												</td>
 												<td class="thumb">
@@ -562,8 +571,8 @@
 						<span class="left"> <strong class="ctrlTxt">선택상품을</strong>
 							<a href="#none" onclick="Basket.deleteBasket()"><img
 								src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_delete2.gif"
-								alt="삭제하기"></a>  <a href="#none"
-							onclick="Basket.moveOversea()" class=""><img
+								alt="삭제하기"></a>  <a href="#this"
+								id="wishtocart"><img
 								src="/3T/images/btn_basket2.gif"
 								alt="장바구니 담기2"></a> 
 						</span><span class="rightWISH">

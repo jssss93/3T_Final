@@ -37,6 +37,32 @@
 				)
 		]]>
 	</insert>
+	<!-- 위시에서 카트추가 -->
+	<insert id="insertWishCart" parameterType="hashmap" useGeneratedKeys="true" keyProperty="CART_NO">
+		<selectKey keyProperty="CART_NO" resultType="java.lang.Integer" order="BEFORE">
+			SELECT CART_NO_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		<![CDATA[
+			INSERT INTO CART 
+				( 
+					CART_NO,
+					ATTRIBUTE_NO,
+					GOODS_NO,
+					COUNT,
+					MEMBER_ID,
+					REGDATE
+			 	)
+			 VALUES 
+			 	( 
+					#{CART_NO},
+					#{ATTRIBUTE_NO},
+					#{GOODS_NO},
+					#{COUNT},
+					#{MEMBER_ID},
+					SYSDATE
+				)
+		]]>
+	</insert>
 	
 	
 	<insert id="insertCartDetail" useGeneratedKeys="true" keyProperty="CART_DETAIL_NO">
