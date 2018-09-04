@@ -200,5 +200,17 @@
 		]]>
 	</select>
 	
+	<!-- 추가한 부분 -->
+<select id="selectwish" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+SELECT 
+	*
+FROM
+	WISHLIST
+WHERE
+	MEMBER_ID = #{MEMBER_ID} AND ATTRIBUTE_NO = #{ATTRIBUTE_NO}
+]]>
+</select>
+	
 
 </mapper>

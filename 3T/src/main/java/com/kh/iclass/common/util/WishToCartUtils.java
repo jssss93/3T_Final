@@ -6,17 +6,20 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Component;
 
 @Component("WishToCartUtils")
 public class WishToCartUtils {
 
-	public static List<Map<String, Object>> parseInsertOrderDetail(Map<String, Object> map, HttpServletRequest request)
+	public static List<Map<String, Object>> parseInsertcart(Map<String, Object> map, HttpServletRequest request)
 			throws Exception {
 		
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		Map<String, Object> listMap = null;
+		
+		HttpSession session = request.getSession();
 		
 		String[] selected = request.getParameterValues("selected");
 		
@@ -33,6 +36,7 @@ public class WishToCartUtils {
 				listMap.put("ATTRIBUTE_NO", selected[i].split(",")[0]);
 				listMap.put("GOODS_NO", selected[i].split(",")[1]);
 				listMap.put("COUNT", selected[i].split(",")[2]);
+				listMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 	
 				list.add(listMap);
 	

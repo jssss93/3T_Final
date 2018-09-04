@@ -20,6 +20,11 @@ public class WishlistDAO extends AbstractDAO{
 	public List<Map<String, Object>> selectWishlist(Map<String, Object> map) throws Exception {
 		return selectList("wish.selectWishlist", map);
 	}
+	//위시리시트 중복 체크
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectwish(Map<String, Object> map) throws Exception {
+		return selectList("wish.selectwish", map);
+	}
 	
 	//위시 목록 삭제
 	public void deleteOneWishlist(Map<String, Object> map) throws Exception{

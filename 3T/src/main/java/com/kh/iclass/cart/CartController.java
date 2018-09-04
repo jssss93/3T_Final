@@ -535,6 +535,28 @@ public class CartController {
 
 		return mv;
 	}
+	
+	@RequestMapping(value = "/cart/WishaddCart")
+	public ModelAndView WishaddCart(CommandMap commandMap, HttpServletRequest request) throws Exception {
+
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/cart/list");
+		HttpSession session = request.getSession();
+		
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+
+		// 회원 장바구니 등록
+		commandMap.put("GOODS_NO", commandMap.get("GOODS_NO"));
+		commandMap.put("ATTRIBUTE_NO", commandMap.get("ATTRIBUTE_NO"));
+		commandMap.put("COUNT", commandMap.get("COUNT"));
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		System.out.println("commandMap.getMap():"+commandMap.getMap());
+			
+		cartService.insertCart(commandMap.getMap());
+		
+		return mv;
+	}
+
 
 	
 	
