@@ -2155,6 +2155,13 @@ strong {
 	font-family: 'Lato', 'NanumGothic';
 	font-size: 11px;
 }
+b{
+	margin-right: 5px;
+	color: #353535;
+	/* font-weight: bold; */
+	font-family: 'Lato', 'NanumGothic';
+	font-size: 12px;
+}
 
 #totalProducts tfoot td .total em {
 	font-style: normal;
@@ -3637,7 +3644,7 @@ strong {
 .right_menu>ul>li {
 	color: #000;
 	font-size: 10px;
-	line-height: 16px;
+	line-height: 20px;
 	word-spacing: -1px;
 	letter-spacing: 0.5px;
 	text-transform: uppercase;
@@ -3717,7 +3724,7 @@ strong {
 
 .dep1 .hide {
 	border-top: 0px #ddd solid;
-	display: none;
+	display: block;
 	margin-top: 0px;
 	color: #333;
 	font-size: 11px;
@@ -8480,7 +8487,7 @@ nav ul li a:hover {
 	display: inline;
 	position: fixed;
 	right: 30px;
-	top: 200px;
+	top: 90px;
 	width: 45px;
 	z-index: 9999;
 }
