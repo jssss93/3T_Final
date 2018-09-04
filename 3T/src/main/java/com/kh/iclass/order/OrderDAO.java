@@ -123,6 +123,14 @@ public class OrderDAO extends AbstractDAO {
 		
 	}
 
+	public List<Map<String, Object>> selectOrderInfo(Map<String, Object> map) {
+		return selectList("order.selectOrderInfo", map);
+	}
+
+	public Map<String, Object> selectOrderMemberInfo(Map<String, Object> map) {
+		return (Map<String, Object>) selectOne("order.selectOrderMemberInfo", map);
+	}
+
 	
 	
 }

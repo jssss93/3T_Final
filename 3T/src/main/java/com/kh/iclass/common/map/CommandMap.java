@@ -1,6 +1,8 @@
 package com.kh.iclass.common.map;
  
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -11,7 +13,15 @@ public class CommandMap {
     public Object get(String key){
         return map.get(key);
     }
-     
+    
+	public List<?> getList(String key) {
+		List<Object> List = new ArrayList<>();
+
+		List.add(map.get(key));
+
+		return (List<?>) List;
+	}
+	
     public void put(String key, Object value){
         map.put(key, value);
     }

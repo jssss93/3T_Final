@@ -158,29 +158,35 @@ public class OrderController {
 	
 	}
 	
-	@RequestMapping(value = "order/insert")		
+	@RequestMapping(value = "order/insert")	
 	public ModelAndView addInsert(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
 		commandMap.put("cart_No", commandMap.get("cart_No"));
-		System.out.println("order/insert시 넘어오는값:");
-		System.out.println(commandMap.getMap());
 		
 		String phone = ""+commandMap.get("mphone1")+commandMap.get("mphone2")+ commandMap.get("mphone3");
 		commandMap.put("RECIPIENT_PHONE",phone);
 		
 		if(session.getAttribute("MEMBER_ID")==null) {
-			mv.setViewName("order/orderComplete2");
+			mv.setViewName("order/orderComplete");
 			commandMap.put("MEMBER_ID", session.getAttribute("NON_MEMBER_ID"));
 			
 		}else {
-			mv.setViewName("redirect:list");
+			mv.setViewName("order/orderComplete");
 			commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 		}
 		
 		commandMap.put("cart_No", session.getAttribute("CART_NO"));
 		orderService.insertOrder(commandMap.getMap(),request);
 		
+		List<Map<String, Object>> orderList = new ArrayList<Map<String, Object>>();
+		Map<String, Object> orderMemberInfo = new HashMap<String, Object>();
+		
+		orderMemberInfo=orderService.selectOrderMemberInfo(commandMap.getMap());
+		orderList=orderService.selectOrderInfo(commandMap.getMap());
+		
+		mv.addObject("orderInfo",orderMemberInfo);
+		mv.addObject("orderGoodsList",orderList);
 		return mv;
 	
 	}
@@ -214,6 +220,7 @@ public class OrderController {
 		return mv;
 	
 	}
+	
 	@ResponseBody
 	@RequestMapping(value = "order/listSearch")		
 	public JSONArray orderListSearch(CommandMap commandMap, HttpServletRequest request) throws Exception {

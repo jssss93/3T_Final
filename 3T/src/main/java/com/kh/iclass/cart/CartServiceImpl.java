@@ -1,13 +1,18 @@
 package com.kh.iclass.cart;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
 import com.kh.iclass.common.map.CommandMap;
+import com.kh.iclass.common.util.AttributeUtils;
+import com.kh.iclass.common.util.ParseInsertCart;
 
 @Service("cartService")
 public class CartServiceImpl implements CartService {
@@ -15,6 +20,9 @@ public class CartServiceImpl implements CartService {
 	@Resource(name = "cartDAO")
 	private CartDAO cartDAO;
 
+	@Resource(name = "CartUtils")
+	private ParseInsertCart cartUtils;
+	
 	// 장바구니 등록
 	public void insertCart(Map<String, Object> map) throws Exception {
 		cartDAO.cartInsert(map);
@@ -128,6 +136,24 @@ public class CartServiceImpl implements CartService {
 	public void countChange(Map<String, Object> map) {
 		cartDAO.countChange(map);
 	}
+
+	@Override
+	public void insertCart2(CommandMap map, HttpServletRequest request) throws Exception {
+		Map<String , Object> maps=new HashMap<>();
+		List<Map<String, Object>> addCartList = new ArrayList<Map<String, Object>>();
+		addCartList=cartUtils.parseInsertAttribute2(map, request);
+		String[] size=(String[]) map.getList("ATTRIBUTE_NO").get(0);
+		for(int i=0;i<size.length;i++) {
+			
+			System.out.println(i+"번째:"+addCartList.get(i));
+			cartDAO.cartInsert(addCartList.get(i));
+		}
+	}
+
+
+	
+
+	
 
 
 	
