@@ -6,15 +6,19 @@
 <html>
 <head>
 <!-- 왼쪽 카테고리 -->
-<link href="<c:url value='/resources/css/leftCategory.css'/>"
+<link href="<c:url value='/resources/css/left Category.css'/>"
 	rel="stylesheet" type="text/css" />
 
 <!-- 오른쪽 카테고리 -->
-<link href="<c:url value='/resources/css/rightCategory.css'/>"
+<link href="<c:url value='/resources/css/right Category.css'/>"
 	rel="stylesheet" type="text/css" />
 
 <!-- 로그인 -->
-<link href="<c:url value='/resources/css/loginCategory.css'/>"
+<link href="<c:url value='/resources/css/login Category.css'/>"
+	rel="stylesheet" type="text/css" />
+	
+<!-- wing_banner -->
+<link href="<c:url value='/resources/css/wing_banner.css'/>"
 	rel="stylesheet" type="text/css" />
 	
 <meta charset="UTF-8">
@@ -101,15 +105,11 @@
     border-top: 0px #ddd solid;
     overflow: hidden;
 }
-.fixed_quick {position:fixed; right:17px; top:300px;z-index:500; }
-.fixed_quick ul li {width:46px;font-size:0px;border:1px solid #ddd;border-bottom:0px;}
+.btn_top{
+	text-align: right;
+	margin-right: 10;
+}
 
-.sm_right_bn {position:absolute; left:-48px; }
-.sm_btn {background-color:#fff; border:1px solid #dbdbdb; border-top:0px; position:relative; width:46px; height:46px; }
-.sm_btn img { opacity:0.3; -moz-transition: all 0.3s linear; -webkit-transition: all 0.3s linear; -o-transition: all 0.3s linear; -ms-transition: all 0.3s linear; transition: all 0.3s linear;  }
-.sm_btn:hover img { opacity:1; }
-.sm_btn .sm_btn_text { top:-1px !important; background-color:#f8f8f8; border:1px solid #dbdbdb; font-size:11px; letter-spacing:-0.5px; padding-left:10px; text-align:left; color:#555; position:absolute; visibility:hidden; left:-130px; top:0px; line-height:46px; opacity:0; width:200px;-moz-transition: all 0.3s linear; -webkit-transition: all 0.3s linear; -o-transition: all 0.3s linear; -ms-transition: all 0.3s linear; transition: all 0.3s linear;}
-.sm_btn:hover .sm_btn_text {left:-212px;opacity:1;visibility:visible;}
 </style>
 </head>
 <body>
@@ -231,6 +231,19 @@
 
 				</ul>
 			</div>
+
+			<div class="xans-element- xans-layout xans-layout-boardinfo">
+				<ul>
+
+					<li><strong
+						class="xans-element- xans-layout xans-layout-footer ">
+							예금주 : 서지우(3T)<br> 국민 437201-04-192634
+					</strong></li>
+
+
+				</ul>
+			</div>
+
 			<div class="leftsns">
 				<ul class="left_sns">
 					<li><a href="http://blog.naver.com/asclohi" target="_blank"><img
@@ -256,58 +269,127 @@
 	<div id="right">
 		<div class="right_menu">
 
-			<div class="fixed_quick">
-				<div class="sm_right_bn">
-					<!-- 퀵메뉴 아이콘 -->
+			<ul>
+				<li class="cart_menu"><a href="/3T/cart/list"
+					class="xans-element- xans-layout xans-layout-orderbasketcount ">CART
+						<span>  </span>
+				</a>
+				</li>
+				
+				<li class="cart_menu"><a href="/3T/wish/wishlist"
+					class="xans-element- xans-layout xans-layout-orderbasketcount ">WISHLIST
+						<span>  </span>
+				</a>
+				</li>
+				
+				<li class="cart_menu"><a href="/3T/order/list"
+					class="xans-element- xans-layout xans-layout-orderbasketcount ">ORDER
+						<span>  </span>
+				</a>
+				</li>
+			</ul>
+			<ul>
+				<!--<li><a href="/layout/basic/lookbook_01.html"></a></li>
+                <li><a href="/shopinfo/company.html">ABOUT</a></li>-->
+			</ul>
+			<ul>
+				
+			
+				<!--다운메뉴-->
+				<div>
+					<ul>
+						<li class="dep1">
+							
+								<li><b
+									class="xans-element- xans-layout xans-layout-footer ">070-4477-9922</b><br>
+									<br><strong>mon-fri 10am-4:30pm<br> lunch : 12:30-13:30<br>
+									sat, sun, holiday off</strong></li>
+							</li>
+						
+					</ul>
+				</div>
+				<br>
+				<div class="wing_banner" id="wingBanner"
+					data-log-actionid-area="wing_banner" data-is-ab-send="1">
+					<!-- 2017-02-17 cyn  스크롤 이벤트 발생시 .wing_fixed 넣어주세요 -->
+					<!-- 최근 본 상품 -->
+					<div class="wing_prd_wrap" id="wingRecentWrap" style="">
+						<div class="hwrap">
+							<!-- 2017-02-22 cyn 타이틀 영역 마크업 수정 -->
+							<strong class="tit"> <a href="#" id="wingRecentCount"><span
+									class="tx">최근 본 상품</span><span class="count">2</span><span
+									class="ico"></span></a>
+							</strong>
+							<!-- //2017-02-22 cyn 타이틀 영역 마크업 수정 -->
+						</div>
+						<div class="wing_prd_list" id="windRecentPrdList">
+							<ul id="wingRecentPrd_1" style=""
+								data-log-actionid-label="recent_product">
+								
+								<li class="wing_prd" id="1886256688"><a
+									href="http://www.11st.co.kr/product/SellerProductDetail.tmall?method=getSellerProductDetail&amp;prdNo=1886256688"
+									target="_blank"
+									data-log-body="{'content_type':'PRODUCT', 'content_no':'1886256688', 'last_discount_price':'143,100'}"
+									data-is-send-log="true"><span class="wing_prd_img"><img width="70" height="70"
+											src="http://i.011st.com/t/060/pd/18/2/5/6/6/8/8/CIJSB/1886256688_B.jpg"
+											alt="[프랑코페라로] 겨울용 체크기"></span><span
+										class="wing_prd_info"><span class="p_name">
+												</span><span class="p_price"><strong></strong></span></span></a>
+								<button type="button" class="wing_btn_delete" prdno="1886256688">
+										</button></li><br>
+										
+								<li class="wing_prd" id="2089021363"><a
+									href="http://www.11st.co.kr/product/SellerProductDetail.tmall?method=getSellerProductDetail&amp;prdNo=2089021363"
+									target="_blank"
+									data-log-body="{'content_type':'PRODUCT', 'content_no':'2089021363', 'last_discount_price':'96,000'}"
+									data-is-send-log="true"><span class="wing_prd_img"><img width="70" height="70"
+											src="http://i.011st.com/t/060/pd/18/0/2/1/3/6/3/VmfRq/2089021363_B.jpg"
+											alt="[지오지아] ABX4FP1102 BK 오"
+											onerror="skp11.common.blankImage(this, 60);"></span><span
+										class="wing_prd_info"><span class="p_name">
+												</span><span class="p_price"><strong></strong></span></span></a>
+								<button type="button" class="wing_btn_delete" prdno="2089021363"></button></li>
+							</ul>
+							<ul id="wingRecentPrd_2" style="display: none;"
+								data-log-actionid-label="recent_product"></ul>
+						</div>
+						<div class="wing_paging">
+							<!-- 2017-02-17 cyn 상품이 두 개 이하 존재할 경우 페이징 비노출
+							<div class="wing_btn" data-log-actionid-label="arrow">
+								<button type="button" class="wing_btn_prev"
+									id="wb_btn_recentPrd_prev" data-log-body="{'arrow':'left'}">이전
+									상품 리스트</button>
+								<button type="button" class="wing_btn_next"
+									id="wb_btn_recentPrd_next" data-log-body="{'arrow':'right'}">다음
+									상품 리스트</button> -->
+							</div>
+						</div>
+						<!-- 최근 본 상품 레이어 -->
+						
+						<!-- //최근 본 상품 레이어 -->
 					
-					<div class="cboth sm_btn" style="border-top: 1px solid #dbdbdb;">
-						<a
-							href="javascript:CreateBookmarkLink(&#39;/MODA/main&#39;, &#39;MODA&#39;);">
-							<img src="/3T/resources/images/quick_fav.gif">
+					<!-- 최근 본 상품 -->
+					
+					
+					<div class="btn_top" data-log-actionid-label="top" >
+						<a href="#">
+							<!-- 2017-02-17 main페이지 #wrap으로 이동, 서브페이지 #wrapBody로 이동--> <img
+							src="http://s.011st.com/img/main/wing/img_top.gif"
+							alt="페이지 상단으로 이동">
 						</a>
-						<div class="sm_btn_text">즐겨찾기</div>
-					</div>
-					<div class="cboth sm_btn">
-						<a href="https://www.doortodoor.co.kr/" target="_blank&quot;">
-							<img src="/3T/resources/images/r_quick03_on.gif">
-						</a>
-						<div class="sm_btn_text">배송조회</div>
-					</div>
-					<div class="cboth sm_btn">
-						<a href="/3T/cart/list"> <img
-							src="/3T/resources/images/r_quick04_on.gif">
-						</a>
-						<div class="sm_btn_text">장바구니</div>
-					</div>
-					<div class="cboth sm_btn">
-						<a href="/MODA/todayGoods"> <img
-							src="/3T/resources/images/r_quick05_on.gif">
-						</a>
-						<div class="sm_btn_text">오늘 본 상품</div>
-					</div>
-					<div class="cboth sm_btn">
-						<a href="/3T/review/list"> <img
-							src="/3T/resources/images/r_quick06_on.gif">
-						</a>
-						<div class="sm_btn_text">상품 리뷰</div>
 					</div>
 				</div>
+			</div>
+
+
+
+
 				<!-- //sm_right_bn -->
 			</div>
 			<!-- //fixed_quick -->
 <script type="text/javascript">
 				
-	$(document).ready(function() {
-		var jbOffset = $('#comment_top').offset();
-		$(window).scroll(function() {
-			if ($(document).scrollTop() > jbOffset.top) {
-				$('#comment_top').addClass('fixed');
-			} else {
-				$('#commend_top').removeClass('fixed');
-			}
-		});
-	});
-
+	
 	$(document).ready(function() {
 		$('.fullscreen_menu_button a').click(function() {
 			$('.overlay').fadeToggle(200);

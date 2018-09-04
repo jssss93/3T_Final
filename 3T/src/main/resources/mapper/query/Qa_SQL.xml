@@ -5,7 +5,21 @@
      <!-- QA 리스트 -->
     <select id="QA_selectList" parameterType="hashmap" resultType="hashmap">
         <![CDATA[
-           		
+      SELECT
+          	    QA_NO,
+      			TITLE,
+      		    MEMBER_ID,
+        		CONTENT,
+        		REGDATE,
+        		CATEGORY,
+				REF,
+				RE_STEP,
+				RE_LEVEL,
+				GOODS_NO,
+				STATUS,
+       		 	NAME,
+       		 	WM_CONCAT(SAV_NAME) AS IMAGE
+      FROM(			
            SELECT 
  				A.QA_NO,
       			A.TITLE,
@@ -35,6 +49,23 @@
          ORDER BY 
                
                A.ref DESC, A.re_step ASC  
+               )
+         GROUP BY
+         		 QA_NO,
+      			TITLE,
+      		    MEMBER_ID,
+        		CONTENT,
+        		REGDATE,
+        		CATEGORY,
+				REF,
+				RE_STEP,
+				RE_LEVEL,
+				GOODS_NO,
+				STATUS,
+       		 	NAME
+       	ORDER BY
+       		    REF DESC, RE_STEP ASC
+         	
         ]]>
     </select>
     
@@ -146,7 +177,11 @@
 			QA
         SET
             TITLE = #{TITLE},
+            MEMBER_ID = #{MEMBER_ID},
+            PASSWD = #{PASSWD},
+            STATUS = #{STATUS},
             CONTENT = #{CONTENT}
+            
 			
         WHERE
             QA_NO = #{QA_NO}
@@ -171,7 +206,7 @@
 			FROM
 				QA
 			WHERE
-				QA_NO = #{QA_NO}
+				REF = #{REF}
 		]]>
 	</update>
     <!-- QA 리스트에서 검색 -->

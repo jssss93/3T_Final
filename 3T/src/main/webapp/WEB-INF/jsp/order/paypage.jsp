@@ -7,7 +7,32 @@
 <head>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
+function open_win_noresizable(url, name) {
+	var oWin = window
+			.open(url, name,
+					"scrollbars=no, status=no, resizable=no, width=700, height=500");
+
+
+}
+
+function onCallback (no, content) {
+	console.log("select is ")
+	console.log(no)
+	console.log()
 	
+	$('#coupon_list').html(
+		'<li>' +
+		content + "원 할인 " +
+		'<input type="hidden" value='+no+'>' +
+		'</li>')
+		
+	$('#total_sale_price_view').html(
+		content
+		)
+		
+		
+}
+
 	function sample7_execDaumPostcode() {
 		new daum.Postcode(
 				{
@@ -217,6 +242,90 @@ function checkAll2(){
 
 
 </script>
+
+<script language="javascript">
+ function chkBox(bool) { // 전체선택/해제 
+	var obj = document.getElementsByName("join");
+	for ( var i = 0; i < obj.length; i++)
+		obj[i].checked = bool;
+}  
+	  function check() {
+
+		 var f = document.Reg_form; 
+		 
+		 if (f.chkBox.checked == false) {
+			alert("상품을 선택해주세요.");
+			return false;
+		} 
+	 	if (f.chk_purchase_agreement.checked == false) {
+			alert("구매진행에  동의해 주시기 바랍니다.");
+			return false;
+		}  
+ 
+		
+		if (f.RECIPIENT_NAME.value == "") {
+			alert("수취자를 입력해주십시오");
+			f.RECIPIENT_NAME.focus();
+			return false;
+		}
+
+		
+		if (f.RECIPIENT_ADDR1.value == "") {
+			alert("우편번호를 검색하여 입력해주십시오");
+			f.RECIPIENT_ADDR1.focus();
+			
+			return false;
+		}
+
+		
+		if (f.RECIPIENT_ADDR2.value == "") {
+			alert("상세주소를 입력해주십시오");
+			f.RECIPIENT_ADDR2.focus();
+			return false;
+		}
+
+		if (f.mphone2.value == "") {
+			alert("전화번호를 입력해주십시오");
+			f.mphone2.focus();
+			return false;
+		}
+
+		if (f.mphone3.value == "") {
+			alert("전화번호를 입력해주세요");
+			f.mphone3.focus();
+			return false;
+		}
+
+		if (f.oemail1.value == "") {
+			alert("이메일을 입력해주십시오");
+			f.oemail1.focus();
+			return false;
+		}
+		
+		if (f.oemail2.value == "") {
+			alert("이메일을 입력해주십시오");
+			f.oemail2.focus();
+			return false;
+		}
+		
+		if (f.DEPOSIT_NAME.value == "") {
+			alert("입금자명을 입력해주십시오");
+			f.DEPOSIT_NAME.focus();
+			return false;
+		}
+		
+		if (f.DEPOSIT_BANK.value == "") {
+			alert("계좌번호를 입력해주십시오");
+			f.DEPOSIT_BANK.focus();
+			return false;
+		}	
+		if(f.DEPOSIT_.value=="-1"){
+			alert("은행을 선택해주세요");
+			return false;
+		}
+	}   
+	  </script>
+	  
 <title>3T</title>
 </head>
 <body>
@@ -283,7 +392,7 @@ function checkAll2(){
 			<div class="title">
 				<h3> 주문내역</h3>
 			</div>
-
+	<form name="Reg_form" id="frm" action="/3T/order/insert" onsubmit="return check()" >
 			<!-- 기본배송 -->
 			<div class="ec-base-table typeList ">
 				<table border="1" summary="">
@@ -327,7 +436,7 @@ function checkAll2(){
 							</td>
 						</tr>
 					</tfoot>
-					<form id="frm" action="/3T/order/insert">
+				
 					
 					<tbody class="xans-element- xans-order xans-order-normallist center">
 						<c:choose>
@@ -613,7 +722,9 @@ function checkAll2(){
 								<div class="box txt16">
 									<strong>-</strong> 
 									<strong>
-										<span id="total_sale_price_view" class="discount">여기도0</span>
+										<span id="total_sale_price_view" class="discount">
+										
+										</span>
 									</strong>KRW 
 								</div>
 							</td>
@@ -627,7 +738,7 @@ function checkAll2(){
 							</td>
 						</tr>
 					</tbody>
-					<c:if test="${memberInfo.NAME!=null }">
+<c:if test="${memberInfo.NAME!=null }">
 						<tbody class="">
 							<tr>
 								<th scope="row">적립금</th>
@@ -654,23 +765,23 @@ function checkAll2(){
 	                        </tr>
 	                    </tbody>
 	                    <tbody class="">
-							<tr>
-								<th scope="row">쿠폰</th>
-	                            <td>
-	                                <p> 
-	                                	리스트나열시켜주고.
-	                                </p>
-	                                
-								</td>
-								<td>
-									<ul class="info">
-										<li>쿠폰설명써주고</li>
-	                                    <li>설명2</li>
-	                                </ul>
-	                            </td>
-	                        </tr>
-	                    </tbody>
+						<tr>
+							<th scope="row">쿠폰</th>
+                            <td>
+								<a class="board_subject4" type="button" onclick="javascript:open_win_noresizable('/3T/order/couponList', write)" >
+									쿠폰
+								</a>
+                                
+                     		</td>
+							<td>
+								<ul id = "coupon_list" class="info">
+
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
                     </c:if>
+
 				</table>
 			</div>
 		</div>

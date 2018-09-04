@@ -4,6 +4,55 @@
 <html lang="ko">
 <head>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
+
+
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+	
+<!-- include summernote css/js-->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+
+<script src="<c:url value='/summernote/summernote.js'/>" charset="utf-8"></script>
+<script src="<c:url value='/summernote/summernote-ko-KR.js'/>" charset="utf-8"></script>
+<style type="text/css">
+.btn-group > .btn:first-child {
+   width: 50;
+   height: 26;
+}
+.btn-group .btn + .btn, .btn-group .btn + .btn-group, .btn-group .btn-group + .btn, .btn-group .btn-group + .btn-group {
+  width: 40;
+}
+.note-popover .popover-content, .panel-heading.note-toolbar {
+  height: 40px;
+}
+.note-icon-magic {
+ margin: 0 0 0 10px;
+    height:     32px;
+}
+
+@media(min-width:768px) {
+    #page-wrapper {
+        position: inherit;
+        margin: auto;
+        padding: 0 30px;
+        width: 50%;
+       /*  border-left: 1px solid #e7e7e7; */
+    }
+}
+
+
+
+.note-btn btn btn-default btn-sm dropdown-toggle {
+  height: 40px;
+}
+.note-btn-group btn-group {
+  height: 30px;
+}
+</style>	
+
+
 </head>
 
 <table width="70%" align="center" border="0" cellspacing="0"
@@ -67,8 +116,13 @@
 						class="wdp_90" value="${map.TITLE}" /></td>
 				</tr>
 				<tr>
-					<td colspan="4" class="board_content2"><textarea rows="25"
+					<%-- <td colspan="4" class="board_content2"><textarea rows="25"
 							cols="217" title="내용" id="CONTENT" name="CONTENT">${map.CONTENT }</textarea>
+					</td> --%>
+					<td colspan="2" class="board_content2">
+						<div id="summernote" name="summernote" >${map.CONTENT }</div>
+	
+						<textarea id="noteArea" name="CONTENT" id="CONTENT"  style="display: none;"></textarea>
 					</td>
 				</tr>
 
@@ -84,8 +138,7 @@
 				href="#this" class="btn" id="list">LIST</a> <a href="#this"
 				class="btn" id="update">UPDATE</a> <a href="#this" class="btn"
 				id="delete">DELETE</a>
-				<input type="submit" class="btn" value="수정">
-			
+				<input  class="btn btn-default" id="submitBtn"  type="submit" class="btn" value="수정">
 			</td>
 		</tr>
 	</table>
@@ -106,7 +159,52 @@
 				e.preventDefault();
 				fn_deleteBoard();
 			});
+			
+			$('#summernote').summernote({
+				lang : 'ko-KR',
+				height: 500,
+				fontNames: ['맑은 고딕',  'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', ],
+				fontNamesIgnoreCheck: ['맑은 고딕'],
+				callbacks: {
+		      		onImageUpload: function(files, editor, welEditable) {
+		          		for (var i = files.length - 1; i >= 0; i--) {
+		            		sendFile(files[i], this);
+		          		}
+		        	}
+		      	}
+			});
+			
+			$("#submitBtn").click(function() {
+				copyContent();
+			})
+			
+			function copyContent() { 
+				$("#noteArea").val($("#summernote").summernote('code'));
+			}
+			
+			function sendFile(file, el) {
+				var form_data = new FormData();
+				form_data.append('file', file);
+				
+			    $.ajax({
+			    	data: form_data,
+			        type: "POST",
+			        url: '/3T/image/body',
+			        cache: false,
+			        contentType: false,
+			        enctype: 'multipart/form-data',
+			        processData: false,
+			        success: function(url) {
+			         	$(el).summernote('editor.insertImage', "/3T/resources/upload/" + url, function($image) {
+			         		$image.css('width', '480px');	
+			         		$image.css('height', 'auto');
+			         	});
+			        }
+			   });
+			}
+			
 		});
+		
 		
 		function fn_openBoardList() {
 			var comSubmit = new ComSubmit();

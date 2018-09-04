@@ -129,14 +129,8 @@
 						<a href="/3T/goods/detail?GOODS_NO=${list.GOODS_NO}" type="submit"> <img
 							src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/btn_prd_detail.gif"
 							alt="상품상세보기"> <input type="hidden" name="GOODS_NO"
-							value="${list.GOODS_NO }" /></a>  
-							
-							<%-- <form action="/3T/goods/detail">
-							<input type="submit" class="btn" value="상품 상세보기"> <input
-								type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
-						</form>  --%>
+							value="${list.GOODS_NO }" /></a>  	
 					</td>
-
 				</tr>
 			</c:when>
 			<c:otherwise>
@@ -158,23 +152,27 @@
 
 	<br />
 	<br />
-	<form action="/3T/review/write" name="Reg_form" onsubmit="return check();" method="post">
+	
+<c:if test="${map.CONTENT eq null}">				
+	<form action="/3T/review/write" name="Reg_form" onsubmit="return check();" method="post">		
+	</c:if>
+	<c:if test="${map.CONTENT ne null}">				
+	<form action="/3T/review/update" name="Reg_form" onsubmit="return check();" method="post">		
+	</c:if>
 		<table border="1" class="board_list2">
 			<tbody>
 				<tr class="board_title2">
 					<th scope="row">SUBJECT</th>
-					<td><input type="text" id="TITLE" name="TITLE" class="wdp_25" value="${map.SUBJECT}"/> </td>
+					<td><input type="text" id="TITLE" name="TITLE" class="wdp_25" value="${map.TITLE}"></input> </td>
 				</tr>
 				<tr>
 					<th scope="row">NAME</th>
-					<td><input type="text" id="MEMBER_ID" name="MEMBER_ID"
-						class="wdp_25"value="${map.NAME}"></input></td>
+					<td><input type="text" id="MEMBER_ID" name="MEMBER_ID" class="wdp_25" value="${map.MEMBER_ID}"></input></td>
 				</tr>
 
 				<tr>
 
 					<td colspan="2" class="board_content2">
-					<!-- <textarea rows="25" cols="168" title="내용" id="CONTENT" name="CONTENT"></textarea> -->
 						<div id="summernote" name="summernote" >${map.CONTENT }</div>
 	
 						<textarea id="noteArea" name="CONTENT" id="CONTENT"  style="display: none;"></textarea>
@@ -185,7 +183,7 @@
 				<tr class="board_title">
 					<th scope="row">PASSWORD</th>
 					<td><input type="text" id="PASSWD" name="PASSWD"
-						class="wdp_25"></input></td>
+						class="wdp_25" value="${map.PASSWD }"></input></td>
 				</tr>
 				<tr class="board_title">
 					<th scope="row">개인정보수집 및 <br />이용 동의
@@ -211,8 +209,10 @@
 		<table class="notice_button">
 			<tr>
 				<td><a href="#this" class="btn" id="list">목록으로</a> <input
-					type="submit" class="btn btn-default" id="submitBtn" value="작성완료"> <input
-					type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" /></td>
+					type="submit" class="btn btn-default" id="submitBtn" value="작성완료">
+					 <input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
+					 <input type="hidden" name="REVIEW_NO" value="${map.REVIEW_NO }" />
+					</td>
 			</tr>
 		</table>
 	</form>

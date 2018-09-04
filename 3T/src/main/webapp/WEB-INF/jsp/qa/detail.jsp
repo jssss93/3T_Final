@@ -111,7 +111,7 @@
 
 				function fn_Delete() {
 					var comSubmit = new ComSubmit();
-					comSubmit.addParam("QA_NO", $("#QA_NO").val());
+					comSubmit.addParam("REF", $("#QA_NO").val());
 					comSubmit.setUrl("<c:url value='/qa/delete' />");
 					comSubmit.submit();
 				}

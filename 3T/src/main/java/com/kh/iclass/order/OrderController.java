@@ -695,5 +695,19 @@ public class OrderController {
 
 		return mv;
 	}
+	//쿠폰선택시 리스트
+	@RequestMapping(value = "order/couponList")		
+	public ModelAndView couponList(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/order/couponList");
+		
+		HttpSession session = request.getSession();
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 
+		System.out.println("commandMap.getMap():"+commandMap.getMap());
+		List<Map<String, Object>> couponList = new ArrayList<Map<String, Object>>();
+		
+		couponList = memberService.myCoupon(commandMap.getMap());
+		mv.addObject("list", couponList);
+		return mv;
+	}
 }

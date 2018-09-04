@@ -1,0 +1,494 @@
+@charset "UTF-8";
+
+//wing_banner
+.wing_banner {
+    position: absolute;
+    top: 0;
+    left: 25%;
+    z-index: 10000;
+    padding-top: 360px;
+
+    @if ($pageStatus == 'main') {
+
+        margin-left: 610px;
+
+    } @else {
+
+        margin-left: 500px;
+
+    }
+
+    &.wing_fixed {
+        position: fixed;
+        top: 0;
+    }
+
+    .wing_prd_wrap {
+        position: relative;
+        width: 68px;
+        margin-bottom: -1px;
+        border: 1px solid #dadee1;
+        background: #fff;
+
+        .hwrap {
+            margin-bottom: 9px;
+            line-height: 14px;
+            text-align: center;
+
+            .tit {
+                display: block;
+                padding-top: 9px;
+                font-weight: normal;
+                font-family: $font-family-default;
+                font-size: 11px;
+                line-height: 14px;
+                color: #666;
+                letter-spacing: -1px;
+
+                a {
+                    display: block;
+                    position: relative;
+                    margin-top: -9px;
+                    padding-top: 9px;
+                    margin-bottom: 12px;
+                    text-align: center;
+                    text-decoration: none;
+
+                    .tx {
+                        display: block;
+                        color: #666;
+                    }
+
+                    .count {
+                        display: inline-block;
+                        margin-top: 3px;
+                        padding-bottom: 1px;
+                        font-weight: bold;
+                        font-family: Tahoma, sans-serif;
+                        font-size: 11px;
+                        line-height: 12px;
+                        letter-spacing: 0;
+                        color: #f43142;
+                        background: url(/img/common/bg_tit_line.gif) repeat-x left bottom;
+
+                        &:before {
+                            display: block;
+                            height: 0;
+                            content: "";
+                        }
+                    }
+                }
+
+                .ico {
+                    display: block;
+                    position: absolute;
+                    left: -1px;
+                    bottom: -1px;
+                    width: 15px;
+                    height: 15px;
+                }
+
+                a:hover {
+                    .ico {
+                        background: url(/img/common/v2/sp_common_v2.png) no-repeat -95px -385px;
+                    }
+
+                    .tx {
+                        text-decoration: underline;
+                    }
+                }
+
+                &.on a .ico {
+                    background: url(/img/common/v2/sp_common_v2.png) no-repeat -115px -385px;
+                }
+            }
+        }
+    }
+
+    .wing_prd_list {
+        margin: 0 4px 10px;
+
+        ul {
+            position: relative;
+            width: 60px;
+            height: 125px;
+        }
+    }
+
+    .wing_prd {
+        position: relative;
+        margin-bottom: 5px;
+        font-size: 0;
+
+        .wing_prd_img {
+            display: block;
+            width: 60px;
+            height: 60px;
+            text-align: center;
+        }
+
+        img {
+            max-width: 60px;
+            height: 60px;
+            *width: 60px;
+            *max-width: auto;
+            vertical-align: middle;
+        }
+
+        .wing_prd_info {
+            display: none;
+        }
+
+        a:hover .wing_prd_info {
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 20;
+            width: 140px;
+            height: 58px;
+            padding-right: 59px;
+            font-family: $font-family-default;
+            font-size: 11px;
+            line-height: 14px;
+            border: 1px solid #111111;
+            background: url(/img/common/blank.gif);
+
+            .p_name {
+                display: block;
+                overflow: hidden;
+                height: 30px;
+                padding: 8px 20px 0 15px;
+                line-height: 15px;
+                color: #111;
+                background: #fff;
+            }
+
+            .p_price {
+                display: block;
+                height: 14px;
+                padding: 0 20px 6px 15px;
+                color: #f43142;
+                background: #fff;
+
+                strong {
+                    font-family: Tahoma,sans-serif;
+                }
+            }
+
+            .p_name:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .wing_btn_delete {
+            display: none;
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 999;
+            width: 13px;
+            height: 13px;
+            font-size: 0;
+            line-height: 0;
+            color: transparent;
+            background: url(/img/common/v2/sp_common_v2.png) no-repeat -21px -387px;
+        }
+
+        &:hover .wing_btn_delete {
+            display: inline-block;
+        }
+    }
+
+    .wing_paging {
+        margin: 9px 0 10px;
+
+        .count {
+            text-align: center;
+            font-family: Tahoma,sans-serif;
+            font-size: 11px;
+            line-height: 14px;
+            letter-spacing: 0;
+            color: #999999;
+
+            strong {
+                color: #111;
+            }
+        }
+
+        .wing_btn {
+            overflow: hidden;
+            margin: 5px auto 0;
+            width: 32px;
+
+            button {
+                float: left;
+                width: 16px;
+                height: 16px;
+                font-size: 0;
+                line-height: 0;
+                background: url(/img/common/v2/sp_common_v2.png) no-repeat 0 0;
+            }
+        }
+
+        button {
+            &.wing_btn_prev {
+                background-position: left -365px;
+            }
+
+            &.wing_btn_next {
+                background-position: -16px -365px;
+            }
+        }
+    }
+
+    .wing_prd_wrap2 {
+        margin-bottom: 5px;
+        background: #fff;
+        border-bottom: 1px solid #dadee1;
+
+        .wing_prd_list ul {
+            height: 60px;
+        }
+
+        .ad_nwlay {
+            position: absolute;
+            bottom: 9px;
+            right: 5px;
+            width: 25px;
+            height: auto;
+            margin-left: 0;
+            z-index: 1000;
+
+            button.ad_link {
+                margin-bottom: 0;
+                font-size: 0;
+                line-height: 0;
+                width: 25px;
+                height: 16px;
+                color: transparent;
+                background: transparent url(/img/common/v2/sp_common_v2.png) no-repeat -60px -385px;
+                vertical-align: middle;
+
+                .ico {
+                    display: inline-block;
+                    width: 0;
+                    height: 0;
+                    margin-left: 0;
+                    font-size: 0;
+                    line-height: 0;
+                    color: transparent;
+                }
+            }
+
+            .help_pop {
+                position: absolute;
+                top: 17px;
+                left: auto;
+                right: 0;
+                width: 138px;
+                padding: 7px 20px 5px 5px;
+                height: auto;
+                font-family: $font-family-default;
+                font-size: 11px;
+                line-height: 14px;
+                vertical-align: middle;
+                text-align: left;
+                color: #888888;
+                border: 1px solid #dadee1;
+                background: #fff;
+
+                p {
+                    white-space: normal;
+                }
+
+                .btn_close {
+                    display: block;
+                    position: absolute;
+                    top: 3px;
+                    right: 3px;
+                    width: 16px;
+                    height: 16px;
+                    font-size: 0;
+                    line-height: 0;
+                    color: transparent;
+                    background: url(/img/common/v2/sp_common_v2.png) no-repeat -38px -384px;
+                }
+            }
+        }
+    }
+
+    .wing_prd_layer {
+        display: none;
+        position: absolute;
+        top: -1px;
+        right: 69px;
+        padding-top: 38px;
+        z-index: 10;
+        border: 1px solid #111111;
+        background: #fff;
+
+        ul {
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: relative;
+            width: 285px;
+            max-height: 570px;
+            *height: 570px;
+            padding: 0 15px 5px 15px;
+        }
+
+        .li {
+            position: relative;
+            width: 270px;
+            margin: 10px 0 5px;
+            padding-top: 10px;
+            border-top: 1px solid #f2f2f2;
+
+            &:first-child {
+                margin-top: 0;
+                padding-top: 0;
+                border: none;
+            }
+
+            a {
+                display: block;
+            }
+        }
+
+        .wing_prd {
+            display: block;
+            overflow: hidden;
+        }
+
+        .wing_prd_img {
+            display: block;
+            position: relative;
+            float: left;
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            border: 1px solid #fff;
+
+            img {
+                max-width: 60px;
+                *max-width: auto;
+                *width: 60px;
+                height: 60px;
+                vertical-align: middle;
+            }
+        }
+
+        .wing_prd_info2 {
+            display: block;
+            float: left;
+            width: 195px;
+            padding: 12px 0 0 10px;
+
+            .wing_prd_info2_inner {
+                display: block;
+            }
+
+            .p_name {
+                display: block;
+                overflow: hidden;
+                width: 193px;
+                height: 18px;
+                font-family: $font-family-default;
+                font-size: 14px;
+                line-height: 17px;
+                color: #666666;
+            }
+
+            .p_price {
+                display: block;
+                margin-top: 3px;
+                font-family: Tahoma,sans-serif;
+                font-size: 12px;
+                color: #f43142;
+            }
+        }
+
+        .wing_btn_close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 16px;
+            height: 16px;
+            font-size: 0;
+            line-height: 0;
+            color: transparent;
+            background: url(/img/common/v2/sp_common_v2.png) no-repeat -39px -365px;
+        }
+
+        .wing_layer_tail {
+            position: absolute;
+            top: 25px;
+            right: -7px;
+            width: 7px;
+            height: 13px;
+            background: url(/img/common/v2/sp_common_v2.png) no-repeat -65px -364px;
+        }
+
+        .li {
+            a:hover .p_name {
+                text-decoration: underline;
+            }
+
+            &:hover {
+                .wing_prd_img {
+                    border: 1px solid #111;
+                }
+                .wing_btn_delete {
+                    display: block;
+                }
+            }
+
+            &:focus .wing_btn_delete {
+                display: block;
+            }
+
+            .wing_btn_delete {
+                display: none;
+                position: absolute;
+                top: 10px;
+                left: 48px;
+                z-index: 1;
+                width: 13px;
+                height: 13px;
+                font-size: 0;
+                line-height: 0;
+                color: transparent;
+                background: url(/img/common/v2/sp_common_v2.png) no-repeat -21px -387px;
+            }
+
+            &:first-child .wing_btn_delete {
+                top: 0;
+            }
+        }
+
+        &.on {
+            display: block;
+        }
+    }
+
+    .wing_vis_area {
+        margin-bottom: 5px;
+    }
+
+    .btn_top {
+    	text-align: center;
+        width: 100px;
+        height: 27px;
+        background: url(/img/main/wing/img_top.gif) no-repeat left top;
+
+        a {
+            display: block;
+            width: 100%;
+            height: 27px;
+            font-size: 0;
+            line-height: 0;
+            color: transparent;
+        }
+    }
+}
