@@ -61,7 +61,7 @@
 						<tr>
 							<td>${row.REVIEW_NO }</td>
 							<td align="center"><img width="50" height="50"
-								src="/3T/resources/upload/${row.SAV_NAME.split(',')[0] }" /></td>
+								src="/3T/resources/upload/${row.IMAGE.split(',')[0] }" /></td>
 
 							<td><div>${row.NAME }</div> <br /> <a href="#this"
 								name="title">${row.TITLE }</a> <input type="hidden"

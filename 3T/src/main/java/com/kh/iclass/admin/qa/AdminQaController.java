@@ -30,7 +30,8 @@ public class AdminQaController {
 	public ModelAndView qaBoardList(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("qa.list");
 		List<Map<String, Object>> list = null;
-
+			
+		System.out.println("qaBoardLis : " + commandMap.getMap());
 		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
 			list = QaService.QaAdminList(commandMap.getMap());
 		else 

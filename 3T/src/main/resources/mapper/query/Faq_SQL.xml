@@ -114,7 +114,10 @@
 		
 			(MEMBER_ID LIKE '%' || #{SearchKeyword} || '%')
 			</if>
+			<if test='SearchNum.equals("CONTENT")'>
 		
+			(CONTENT LIKE '%' || #{SearchKeyword} || '%')
+			</if>
 			
 		
 		<include refid="common.pagingPost"/> 

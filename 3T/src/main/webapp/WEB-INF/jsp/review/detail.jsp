@@ -157,10 +157,11 @@
 
 							function fn_openBoardUpdate() {
 								var REVIEW_NO = "${map.REVIEW_NO}";
+								var GOODS_NO = "${list2.GOODS_NO}"
 								var comSubmit = new ComSubmit();
-								comSubmit
-										.setUrl("<c:url value='/review/updateForm' />");
+								comSubmit.setUrl("<c:url value='/review/updateForm' />");
 								comSubmit.addParam("REVIEW_NO", REVIEW_NO);
+								comSubmit.addParam("GOODS_NO",GOODS_NO);
 								comSubmit.submit();
 							}
 

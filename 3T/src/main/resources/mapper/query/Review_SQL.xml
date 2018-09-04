@@ -5,6 +5,20 @@
 	<!-- 리뷰 리스트 -->
      <select id="REVIEW_selectList" parameterType="hashmap" resultType="hashmap">
       <![CDATA[
+      SELECT
+      		REVIEW_NO,
+           	TITLE,
+           	MEMBER_ID,
+           	CONTENT,
+           	REGDATE,
+			READCNT,
+			GOODS_NO,
+			REF,
+			RE_STEP,
+			RE_LEVEL,
+			NAME,	
+      		WM_CONCAT(SAV_NAME) AS IMAGE
+      FROM(
            	 SELECT
            	A.REVIEW_NO,
            	A.TITLE,
@@ -29,7 +43,23 @@
          ON 
             A.GOODS_NO = C.GOODS_NO    
             
-           	ORDER BY REVIEW_NO DESC
+           	ORDER BY
+           	 A.REVIEW_NO DESC
+           	)
+        GROUP BY
+           	REVIEW_NO,
+           	TITLE,
+           	MEMBER_ID,
+           	CONTENT,
+           	REGDATE,
+			READCNT,
+			GOODS_NO,
+			REF,
+			RE_STEP,
+			RE_LEVEL,
+			NAME	
+		ORDER BY
+			REVIEW_NO DESC
            		
       ]]>
 </select>
@@ -82,7 +112,8 @@
             REGDATE,
             CONTENT,
 			READCNT,
-			GOODS_NO
+			GOODS_NO,
+			PASSWD
 
         FROM
             REVIEW
@@ -98,6 +129,8 @@
 			REVIEW
         SET
             TITLE = #{TITLE},
+            MEMBER_ID = #{MEMBER_ID},
+            PASSWD = #{PASSWD},
             CONTENT = #{CONTENT}
 			
         WHERE

@@ -10,6 +10,10 @@
 
 
 function BuyCheck(index) {
+	if(form.option.value=='none'){
+		alert("옵션을 선택해주세요");
+		return false;
+	}
 
 	if (index == 1) {
     	document.form.action = '/3T/cart/Add/OnetoPaymentNow';
@@ -111,7 +115,7 @@ table {
                      <!------------------------  COUNT는 ea[]로 보내고 COLOR랑 SIZE는 optno[]로 한꺼번에 보냄 ----------------------------->
                         <!-- 색상, 사이즈, 개수 선택옵션 --> <select id="option"
                         onchange="setOption(this)" style="width: 225px">
-                           <option value="">-옵션 선택-</option>
+                           <option value="none">-옵션 선택-</option>
                            <c:forEach var="goodsDetail" items="${goodsDetail}"
                               varStatus="stat">
                               <c:if test="${goodsDetail.COUNT ne 0}">

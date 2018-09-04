@@ -159,7 +159,13 @@
 	</table>
 	<br />
 	<br />
-	<form action="/3T/qa/write" name="Reg_form" onsubmit="return check();" method="post">
+	<c:if test="${map.CONTENT eq null}">				
+	<form action="/3T/qa/write" name="Reg_form" onsubmit="return check();" method="post">		
+	</c:if>
+	<c:if test="${map.CONTENT ne null}">				
+	<form action="/3T/qa/update" name="Reg_form" onsubmit="return check();" method="post">		
+	</c:if>
+	
 		<table border="1" class="board_list2">
 			<tbody>
 				<tr class="board_title2">
@@ -169,13 +175,13 @@
 							<option value="2">배송문의</option>
 							<option value="3">입금확인문의</option>
 							<option value="4">기타문의</option>
-					</select> <input type="text" id="TITLE" name="TITLE" class="wdp_20"></input></td>
+					</select> <input type="text" id="TITLE" name="TITLE" class="wdp_20" value="${map.TITLE }"></input></td>
 				</tr>
 
 				<tr>
 					<th scope="row">NAME</th>
 					<td><input type="text" id="MEMBER_ID" name="MEMBER_ID"
-						class="wdp_25"></input></td>
+						class="wdp_25" value="${map.MEMBER_ID}"></input></td>
 				</tr>
 				<tr>
 					<td colspan="2" class="board_content2">
@@ -190,7 +196,7 @@
 				<tr class="board_title">
 					<th scope="row">PASSWORD</th>
 					<td><input type="text" id="PASSWD" name="PASSWD"
-						class="wdp_25"></input></td>
+						class="wdp_25" value="${map.PASSWD }"></input></td>
 				</tr>
 				<tr class="board_title">
 					<th scope="row">비밀글 설정</th>
@@ -219,9 +225,12 @@
 		<table class="notice_button">
 			<tr>
 				<td><a href="#this" class="btn" id="list">LIST</a> 
-				<input class="btn btn-default" id="submitBtn" type="submit" value="WRITE"></td>
+				<input class="btn btn-default" id="submitBtn" type="submit" value="WRITE">
+				<input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
+				 <input type="hidden" name="QA_NO" value="${map.QA_NO }" />
+				</td>
 			</tr>
-			<input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
+			
 		</table>
 	</form>
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
