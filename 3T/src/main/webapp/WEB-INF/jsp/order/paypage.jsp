@@ -97,16 +97,23 @@ function comma(str) {
 	var pointSum 		= 0;
 	var discountPrice	= 0;
 	var usePoint 		= 0;
-	var memberPoint		= ${memberInfo.POINT };
-	var memberGrade		= ${memberInfo.GRADE };
 	
+	//이거를 어떻게 받아야 할까
+	
+	var memberPoint		= parseInt('<c:out value="${memberInfo.POINT}"/>');
+	var memberGrade		= parseInt('<c:out value="${memberInfo.GRADE}"/>');
+	 
 function discount_Fun(){
 		
 	console.log("discount_Fun()시작!");
+	
 	if($("#usePoint").val()!=null){
 		/* $("#usePoint").val("0"); */
 		usePoint = $("#usePoint").val();
-			
+		
+		/* memberPoint	=parseInt(memberPoint);
+		usePoint	=parseInt(usePoint); */
+		
 		if(usePoint > memberPoint){
 			$("#usePoint").val("0");
 			alert("보유 포인트보다 적은 금액을 입력해주세요");
@@ -352,13 +359,13 @@ function checkAll2(){
 							</p>
 							<ul class="">
 								<li class="">
-									<span class="">KRW 50,000</span> 이상 <span class="">무통장입금</span> 구매시 <span>
-																				<c:if test="${memberInfo.GRADE ==1}">5%</c:if>
+									구매시 <span>
+										<c:if test="${memberInfo.GRADE ==1}">5%</c:if>
 																				<c:if test="${memberInfo.GRADE ==2}">10%</c:if>													
 																				<c:if test="${memberInfo.GRADE ==3}">15%</c:if>													
 																				<c:if test="${memberInfo.GRADE ==4}">20%</c:if>	
 																											
-																														</span>을 추가적립 받으실 수 있습니다. 
+																														</span> 적립 받을 수 있습니다. 
 								</li>
 	                   		</ul>
 	                   		<ul class="mileage">
@@ -731,32 +738,33 @@ function checkAll2(){
 							</td>
 						</tr>
 					</tbody>
-					<tbody class="">
-						<tr>
-							<th scope="row">적립금</th>
-                            <td>
-                                <p> 
-                                	<input type="text" id="usePoint" onblur="discount_Fun()"> 원 <br>(총 사용가능 적립금 :
-                                	<strong class="memberPoint" >${memberInfo.POINT }</strong>원)
-                                	<input type="hidden" name="USEPOINT" class="usePoint2"> 
-                                </p>
-                                <ul class="info">
-									<li>적립금은 최소 100 이상일 때 결제가 가능합니다.</li>
-                                    <li id="mileage_max_unlimit" class="">최대 사용금액은 제한이 없습니다.</li>
-                                    <li>적립금으로만 결제할 경우, 결제금액이 0으로 보여지는 것은 정상이며 [결제하기] 버튼을 누르면 주문이 완료됩니다.</li>
-                                </ul>
-							</td>
-							<td>
-								총 적립예정 포인트 : 
-							 	<span class="pointSum">
-                                	<strong><fmt:formatNumber value="0" pattern="#,###" /></strong>P
-                                	
-                                </span> 
-                                <input type="hidden" name="ADDPOINT" class="pointSum2" >
-                            </td>
-                        </tr>
-                    </tbody>
-                    <tbody class="">
+<c:if test="${memberInfo.NAME!=null }">
+						<tbody class="">
+							<tr>
+								<th scope="row">적립금</th>
+	                            <td>
+	                                <p> 
+	                                	<input type="text" id="usePoint" onblur="discount_Fun()"> 원 <br>(총 사용가능 적립금 :
+	                                	<strong class="memberPoint" >${memberInfo.POINT }</strong>원)
+	                                	<input type="hidden" name="USEPOINT" class="usePoint2"> 
+	                                </p>
+	                                <ul class="info">
+										<li>적립금은 최소 100 이상일 때 결제가 가능합니다.</li>
+	                                    <li id="mileage_max_unlimit" class="">최대 사용금액은 제한이 없습니다.</li>
+	                                    <li>적립금으로만 결제할 경우, 결제금액이 0으로 보여지는 것은 정상이며 [결제하기] 버튼을 누르면 주문이 완료됩니다.</li>
+	                                </ul>
+								</td>
+								<td>
+									총 적립예정 포인트 : 
+								 	<span class="pointSum">
+	                                	<strong><fmt:formatNumber value="0" pattern="#,###" /></strong>P
+	                                	
+	                                </span> 
+	                                <input type="hidden" name="ADDPOINT" class="pointSum2" >
+	                            </td>
+	                        </tr>
+	                    </tbody>
+	                    <tbody class="">
 						<tr>
 							<th scope="row">쿠폰</th>
                             <td>
@@ -772,6 +780,8 @@ function checkAll2(){
                             </td>
                         </tr>
                     </tbody>
+                    </c:if>
+
 				</table>
 			</div>
 		</div>
