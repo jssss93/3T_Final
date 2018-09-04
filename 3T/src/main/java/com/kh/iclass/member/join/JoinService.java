@@ -20,7 +20,7 @@ public interface JoinService {
 	int checkMember(Map<String, Object> map) throws Exception;
 	
 	//회원가입 id중복체크
-	int chekcId(String mem_id) throws Exception;
+	int chekcId(String MEMBER_ID) throws Exception;
 	
 /*	//회원가입시 적립금 부여
 	public void joinPoint(Map<String, Object> map) throws Exception;*/

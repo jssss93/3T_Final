@@ -429,7 +429,7 @@
 
 
 	
-<!-- 	<select id="checkId" parameterType="String" resultType="int">
+ 	<select id="checkId" parameterType="String" resultType="int">
 	<![CDATA[
 		SELECT 
 			COUNT(*) 
@@ -438,7 +438,7 @@
 		WHERE 
 			MEMBER_ID = #{MEMBER_ID}
 	]]>
-	</select> -->
+	</select>
 	
 	<!-- 정보수정 -->
 	<update id="updateMember" parameterType="hashmap">
