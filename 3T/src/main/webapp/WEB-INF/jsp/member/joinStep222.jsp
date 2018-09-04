@@ -6,32 +6,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<!--PG크로스브라우징필수내용 시작-->
-<meta http-equiv="Cache-Control" content="no-cache">
-<meta http-equiv="Expires" content="0">
-<meta http-equiv="Pragma" content="no-cache">
-<!--PG크로스브라우징필수내용 끝-->
-<!--해당 CSS는 쇼핑몰 전체 페이지에 영향을 줍니다. 삭제와 수정에 주의해주세요.-->
-<!-- 스마트디자인에서는 JQuery 1.4.4 버전이 내장되어있습니다. 추가로 호출하면 충돌이 생길 수 있습니다. -->
-<link
-	href="//fonts.googleapis.com/css?family=Lato:100,300,400,500,700,900,100italic,300italic,400italic,700italic,900italic"
-	rel="stylesheet" type="text/css">
-<link href="//fonts.googleapis.com/css?family=Cabin" rel="stylesheet"
-	type="text/css">
-<link href="//fonts.googleapis.com/css?family=Cabin:700"
-	rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="/fonts/font-awesome.css">
-<link
-	href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"
-	rel="stylesheet">
-<meta name="format-detection" content="telephone=no">
-<script async="" src="//www.google-analytics.com/analytics.js"></script>
-<script type="text/javascript" async=""
-	src="http://www.google-analytics.com/ga.js"></script>
-<script
-	src="https://connect.facebook.net/signals/config/829030643890604?v=2.8.25&amp;r=stable"
-	async=""></script>
 <script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script>
 <script src="/js/jquery.gray.js"></script>
 <!--gray IE 용-->
@@ -40,11 +14,6 @@
 <script src="/js/jquery-1.11.2.min.js"></script>
 <script src="/js/jquery-latest.js"></script>
 <script src="/js/jquery.als-1.6.min.js"></script>
-<!--[if IE]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
-    <![endif]-->
-<!-- Facebook Pixel Code -->
 <script>
 	!function(f, b, e, v, n, t, s) {
 		if (f.fbq)
@@ -85,120 +54,8 @@
 		"common_member_id_crypt" : ""
 	};
 </script>
-
-<!-- <script type="text/javascript">
-	var EC_SDE_SHOP_NUM = 1;
-	var SHOP = {
-		getLanguage : function() {
-			return "ko_KR";
-		},
-		getCurrency : function() {
-			return "KRW";
-		},
-		getFlagCode : function() {
-			return "KR";
-		},
-		isMultiShop : function() {
-			return true;
-		},
-		isDefaultShop : function() {
-			return true;
-		},
-		isDefaultLanguageShop : function(sLanguageCode) {
-			return SHOP.isDefaultShop() && SHOP.isLanguageShop(sLanguageCode);
-		},
-		isKR : function() {
-			return true;
-		},
-		isUS : function() {
-			return false;
-		},
-		isJP : function() {
-			return false;
-		},
-		isCN : function() {
-			return false;
-		},
-		isTW : function() {
-			return false;
-		},
-		isES : function() {
-			return false;
-		},
-		isPT : function() {
-			return false;
-		},
-		isLanguageShop : function(sLanguageCode) {
-			return sLanguageCode === "ko_KR";
-		},
-		getDefaultShopNo : function() {
-			return 1;
-		},
-		getProductVer : function() {
-			return 2;
-		},
-		isSDE : function() {
-			return true;
-		}
-	};
-	var EC_COMMON_UTIL = {
-		convertSslForString : function(sString) {
-			return sString.replace(/http:/gi, '');
-		},
-		convertSslForHtml : function(sHtml) {
-			return sHtml
-					.replace(
-							/((?:src|href)\s*=\s*['"])http:(\/\/(?:[a-z0-9\-_\.]+)\/)/ig,
-							'$1$2');
-		},
-		getProtocol : function() {
-			return 'http';
-		},
-		moveSsl : function() {
-			if (EC_COMMON_UTIL.getProtocol() === 'http') {
-				var oLocation = jQuery(window.location);
-				var sUrl = 'https://' + oLocation.attr('host')
-						+ oLocation.attr('pathname') + oLocation.attr('search');
-				window.location.replace(sUrl);
-			}
-		}
-	};
-</script>
-<script type="text/javascript">
-	var EC_ROOT_DOMAIN = "cafe24.com";
-	var EC_GLOBAL_INFO = (function() {
-		var oData = {
-			"base_domain" : "hi880515.cafe24.com",
-			"root_domain" : "cafe24.com",
-			"is_global" : false,
-			"country_code" : "KR",
-			"language_code" : "ko_KR"
-		};
-
-		return {
-			getBaseDomain : function() {
-				return oData['base_domain'];
-			},
-
-			getRootDomain : function() {
-				return oData['root_domain'];
-			},
-
-			isGlobal : function() {
-				return oData['is_global'];
-			},
-
-			getCountryCode : function() {
-				return oData['country_code'];
-			},
-
-			getLanguageCode : function() {
-				return oData['language_code'];
-			}
-		};
-	})();
-</script> -->
 <script language="javascript">
+
 function chkBox(bool) { // 전체선택/해제 
 	var obj = document.getElementsByName("join");
 	for ( var i = 0; i < obj.length; i++)
@@ -291,7 +148,7 @@ function chkBox(bool) { // 전체선택/해제
 		
 	}   
 	  
-
+/* 
 	  function openConfirmId(){
 			var url="/checkId?MEMBER_ID="+ document.Reg_form.MEMBER_ID.value;
 			var chk=document.Reg_form;
@@ -307,7 +164,7 @@ function chkBox(bool) { // 전체선택/해제
 			}
 			open(url, "confirm", "toolbar=no,location=no,status=no,menubar=no,"+
 								 "scrollbars=no,resizable=no,width=400,height=200");
-		}
+		} */
 </script>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -473,11 +330,17 @@ function chkBox(bool) { // 전체선택/해제
 										<th scope="row">아이디 <img
 											src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"
 											alt="필수"></th>
-										<td><input id="MEMBER_ID" name="MEMBER_ID"
-											fw-filter="isFill&amp;isFill&amp;isMin[4]&amp;isMax[16]&amp;isIdentity"
-											fw-label="아이디" fw-msg="" class="inputTypeText" placeholder=""
-											value="" type="text"> <span id="idMsg"></span>
-											(영문소문자/숫자, 4~16자)</td>
+										<td>
+										<div class="col-lg-21 col-md-20">
+											<input id="MEMBER_ID" name="MEMBER_ID" type="text"/>
+											(영문소문자/숫자, 4~16자)
+											<p class="alert1 alert-positive"></p>
+										</div>
+											
+										</td>
+		
+		<!-- 	<input type="text" name="MEMBER_ID" id="MEMBER_ID" value="" maxlength="20" class="xx-control" label="아이디" required=""> -->
+			
 									</tr>
 									<tr>
 										<th scope="row">비밀번호 <img
@@ -1028,5 +891,24 @@ function chkBox(bool) { // 전체선택/해제
 			</div>
 		</div>
 	</div>
-</body>
+</body>S
+<script type="text/javascript">
+$("input[name=MEMBER_ID]").blur(function(){
+	console.log("dd");
+	var MEMBER_ID = $(this).val();
+	var p = $(this).parent();
+	$.post("/3T/checkId",{MEMBER_ID:MEMBER_ID},function(data){
+		if (!MEMBER_ID){
+			$(".alert1",p).removeClass("alert-positive").addClass("alert-negative").html("필수정보입니다.");
+			//$("input[name=chkid]").val("");
+		} else if (data==1){
+			$(".alert1",p).removeClass("alert-positive").addClass("alert-negative").html("누군가 쓰고있네요..");
+			//$("input[name=chkid]").val("");
+		} else {
+			$(".alert1",p).removeClass("alert-negative").addClass("alert-positive").html("멋진아이디네요!!");
+			//$("input[name=chkid]").val("on");
+		}
+	});		
+});
+</script>
 </html>
