@@ -3,6 +3,8 @@ package com.kh.iclass.cart;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.kh.iclass.common.map.CommandMap;
 
 public interface CartService {
@@ -54,6 +56,8 @@ public interface CartService {
 	public void countDown(Map<String, Object> map);
 
 	public void countChange(Map<String, Object> map);
+
+	public void insertCart2(CommandMap map, HttpServletRequest request) throws Exception;
 
 
 }

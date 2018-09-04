@@ -15,7 +15,9 @@ public class CartDAO extends AbstractDAO {
 	public void cartInsert(Map<String, Object> map) throws Exception {
 		insert("cart.insertCart", map);
 	}
-	
+	public void cartInsert2(CommandMap map) {
+		insert("cart.insertCart", map);
+	}
 	public void cartInsertAuto(Object attribute) {
 		insert("cart.insertCartAuto", attribute);
 	}
@@ -113,6 +115,8 @@ public class CartDAO extends AbstractDAO {
 	public void countChange(Map<String, Object> map) {
 		update("cart.updateCountChange", map);
 	}
+
+	
 	
 
 	

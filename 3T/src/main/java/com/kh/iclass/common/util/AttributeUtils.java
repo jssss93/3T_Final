@@ -6,14 +6,18 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.kh.iclass.common.map.CommandMap;
+
 //@Component 어노테이션을 이용하여 이 객체의 관리를 스프링이 담당하도록 할 계획이다.
 @Component("attributeUtils")
 public class AttributeUtils {
-
+	
+	//상품 등록수정
 	public static List<Map<String, Object>> parseInsertAttribute(Map<String, Object> map, HttpServletRequest request)
 			throws Exception {
 		
@@ -39,52 +43,31 @@ public class AttributeUtils {
 
 		return list;
 	}
-/*
-	public List<Map<String, Object>> parseUpdateFileInfo(Map<String, Object> map, HttpServletRequest request)
-			throws Exception {
-		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
-		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
-
-		MultipartFile multipartFile = null;
-		String originalFileName = null;
-		String originalFileExtension = null;
-		String storedFileName = null;
-
-		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-		Map<String, Object> listMap = null;
-
-		String goods_no = (String) map.get("GOODS_NO");
-		String requestName = null;
-		String idx = null;
-
-		while (iterator.hasNext()) {
-			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
-			if (multipartFile.isEmpty() == false) {
-				originalFileName = multipartFile.getOriginalFilename();
-				originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
-				storedFileName = CommonUtils.getRandomString() + originalFileExtension;
-
-				multipartFile.transferTo(new File(filePath + storedFileName));
-
-				listMap = new HashMap<String, Object>();
-				listMap.put("IS_NEW", "Y");
-				listMap.put("GOODS_NO", goods_no);
-				listMap.put("FILE_ORG_NAME", originalFileName);
-				listMap.put("FILE_SAV_NAME", storedFileName);
-				listMap.put("FILE_SIZE", multipartFile.getSize());
-				list.add(listMap);
-			} else {
-				requestName = multipartFile.getName();
-				idx = "GOODS_NO_" + requestName.substring(requestName.indexOf("_") + 1);
-				if (map.containsKey(idx) == true && map.get(idx) != null) {
-					listMap = new HashMap<String, Object>();
-					listMap.put("IS_NEW", "N");
-					listMap.put("GOODS_NO", map.get(idx));
-					list.add(listMap);
-				}
+	
+	//상품 등록수정
+		@SuppressWarnings("unchecked")
+		public static List<Map<String, Object>> parseInsertAttribute2(CommandMap commandMap, HttpServletRequest request)
+				throws Exception {
+			
+			List<Map<String, Object>> addCartList = new ArrayList<Map<String, Object>>();
+			
+			List<String> AttrList=new ArrayList<>();
+			List<String> CountList=new ArrayList<>();
+			
+			CountList= (List<String>) commandMap.getList("ea[]");
+			AttrList= (List<String>) commandMap.getList("attribute_no[]");
+			
+			for(int i=0;i<AttrList.size();i++) {
+				Map<String, Object> listMap = new HashMap<String, Object>();
+				
+				listMap.put("GOODS_NO",		commandMap.get("GOODS_NO"));
+				listMap.put("COUNT",		CountList.get(i));
+				listMap.put("ATTRIBUTE_NO", AttrList.get(i));
+				listMap.put("MEMBER_ID", 	request.getSession().getAttribute("MEMBER_ID"));
+				addCartList.add(listMap);
 			}
+
+			return addCartList;
 		}
-		return list;
-	}*/
 
 }

@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.iclass.admin.member.AdminMemberService;
 import com.kh.iclass.common.map.CommandMap;
+import com.kh.iclass.common.util.ParseInsertCart;
 import com.kh.iclass.common.util.SequenceUtils;
 import com.kh.iclass.order.OrderService;
 
@@ -25,6 +26,7 @@ public class CartController {
 
 	@Resource(name = "cartService")
 	private CartService cartService;
+	
 	
 	@Resource(name = "orderService")
 	private OrderService orderService;
@@ -40,7 +42,10 @@ public class CartController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/cart/addCart")
 	public ModelAndView addCart(CommandMap commandMap, HttpServletRequest request) throws Exception {
-
+		
+		System.out.println("addCart 하면 넘어오는값:");
+		System.out.println(commandMap.getMap());
+		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:/cart/list");
 		
@@ -58,49 +63,76 @@ public class CartController {
 			commandMap.put("COUNT", commandMap.get("ea[]"));
 			commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 			
-			//회원 카트가 존재할경우
-			if(cartList != null) {
+			
+			//여러개 카트추가
+			if(commandMap.get("ATTRIBUTE_NO") instanceof Object[]) {
+				//회원 카트가 존재하면  or 존재하지 않으면.
 				
-				//하나만 장바구니에 넘겨줄경우. 2개이상이 넘어갈경우는?
-				System.out.println(commandMap.get("ATTRIBUTE_NO"));
-				String addList_Attr=(String) commandMap.get("ATTRIBUTE_NO");
+				//1개추가될때마다 속성이 하나 더들어오므로 속성으로 count 가능.
+				String[] Attr	=(String[]) commandMap.get("ATTRIBUTE_NO");
+				
+				List<Object> addList_Attr=new ArrayList<Object>();
+				for(int i=0;i<Attr.length;i++) {
+					addList_Attr.add(Attr[i]);
+				}
 				
 				cartList=cartService.cartList(commandMap.getMap());
-				List<Object> cartList_Attr = new ArrayList<Object>();
-				for(int i=0;i<cartList.size();i++) {
-					cartList_Attr.add(cartList.get(i).get("ATTRIBUTE_NO"));
-				}
-				for(int j=0;j<cartList_Attr.size();j++) {
-						System.out.println("값비교:"+j);
-						System.out.println(cartList_Attr.get(j));
-						System.out.println(addList_Attr);
-					if(cartList_Attr.get(j).toString().equals(addList_Attr)) {
-						commandMap.remove("ATTRIBUTE_NO");
-						//장바구니에 동일한 속성의 상품이있습니다 장바구니에서 수량을 변경해주세요.
-						mv.setViewName("error/sameAttrError");
-						System.out.println("동일속성상품 중복에러");
-						return mv;
-					}
-					
-				}
-				/*cartList=cartService.cartList(commandMap.getMap());
-				List<Object> cartList_Attr = new ArrayList<Object>();
+				List<Object> cartList_Attr=new ArrayList<Object>();
+				
 				for(int i=0;i<cartList.size();i++) {
 					cartList_Attr.add(cartList.get(i).get("ATTRIBUTE_NO"));
 				}
 				
+				//값 비교 시작.
 				for(int j=0;j<cartList_Attr.size();j++) {
-					for(int k=0;k<addList_Attr.length;k++) {
-						if(cartList_Attr.get(j)==addList_Attr[k]) {
-							//장바구니에 동일한 속성의 상품이있습니다 장바구니에서 수량을 변경해주세요.
+					for(int i=0;i<addList_Attr.size();i++) {
+						if(cartList_Attr.get(j).toString().equals(addList_Attr.get(i).toString())) {
 							mv.setViewName("error/sameAttrError");
 							System.out.println("동일속성상품 중복에러");
 							return mv;
 						}
 					}
-				}*/
+				}
 				
+				cartService.insertCart2(commandMap,request);
+				return mv;
+				
+			//1개 카트추가
+			}else {
+			
+				//회원 카트가 존재할경우
+				if(cartList != null) {
+					
+					//하나만 장바구니에 넘겨줄경우. 2개이상이 넘어갈경우는?
+					System.out.println(commandMap.get("ATTRIBUTE_NO"));
+					String addList_Attr1=(String) commandMap.get("ATTRIBUTE_NO");
+					
+					cartList=cartService.cartList(commandMap.getMap());
+					List<Object> cartList_Attr = new ArrayList<Object>();
+					
+					for(int i=0;i<cartList.size();i++) {
+						cartList_Attr.add(cartList.get(i).get("ATTRIBUTE_NO"));
+					}
+					
+					for(int j=0;j<cartList_Attr.size();j++) {
+							System.out.println("값비교:"+j);
+							System.out.println(cartList_Attr.get(j));
+							System.out.println(addList_Attr1);
+						if(cartList_Attr.get(j).toString().equals(addList_Attr1)) {
+							/*commandMap.remove("ATTRIBUTE_NO");*/
+							//장바구니에 동일한 속성의 상품이있습니다 장바구니에서 수량을 변경해주세요.
+							
+							mv.setViewName("error/sameAttrError");
+							System.out.println("동일속성상품 중복에러");
+							return mv;
+						}
+						
+					}
+					
+				}
 			}
+			
+			
 			cartService.insertCart(commandMap.getMap());
 			
 			Map<String, Object> memberInfo = new HashMap<String, Object>();
@@ -260,11 +292,12 @@ public class CartController {
 	public ModelAndView cartAddtoPayment(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("order/paypage");
 		HttpSession session = request.getSession();
+		Map<String, Object> memberInfo = new HashMap<String, Object>();
 		
 		if(session.getAttribute("MEMBER_ID") != null) {
 			commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 			
-			Map<String, Object> memberInfo = new HashMap<String, Object>();
+			
 			memberInfo=adminMemberService.memberDetail(commandMap.getMap());
 			
 			String cart_No[]=request.getParameterValues("CART_NO");
@@ -298,6 +331,10 @@ public class CartController {
 				}
 			}
 			System.out.println("sessionCheckedCartList" + sessionCheckedCartList);
+			memberInfo.put("POINT", "0");
+			memberInfo.put("GRADE", "0");
+			
+			mv.addObject("memberInfo",memberInfo);
 			mv.addObject("list", sessionCheckedCartList);
 			mv.addObject("MEMBER_ID", session.getAttribute("NON_MEMBER_ID"));
 		}

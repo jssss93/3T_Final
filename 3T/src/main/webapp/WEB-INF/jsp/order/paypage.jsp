@@ -72,16 +72,23 @@ function comma(str) {
 	var pointSum 		= 0;
 	var discountPrice	= 0;
 	var usePoint 		= 0;
-	var memberPoint		= ${memberInfo.POINT };
-	var memberGrade		= ${memberInfo.GRADE };
 	
+	//이거를 어떻게 받아야 할까
+	
+	var memberPoint		= parseInt('<c:out value="${memberInfo.POINT}"/>');
+	var memberGrade		= parseInt('<c:out value="${memberInfo.GRADE}"/>');
+	 
 function discount_Fun(){
 		
 	console.log("discount_Fun()시작!");
+	
 	if($("#usePoint").val()!=null){
 		/* $("#usePoint").val("0"); */
 		usePoint = $("#usePoint").val();
-			
+		
+		/* memberPoint	=parseInt(memberPoint);
+		usePoint	=parseInt(usePoint); */
+		
 		if(usePoint > memberPoint){
 			$("#usePoint").val("0");
 			alert("보유 포인트보다 적은 금액을 입력해주세요");
@@ -348,24 +355,24 @@ div.member p strong {
 								등급 회원입니다.
 							</p>
 							<ul class="">
-								<li class=""><span class="">KRW 50,000</span> 이상 <span
-									class="">무통장입금</span> 구매시 <span> <c:if
-											test="${memberInfo.GRADE ==1}">5%</c:if> <c:if
-											test="${memberInfo.GRADE ==2}">10%</c:if> <c:if
-											test="${memberInfo.GRADE ==3}">15%</c:if> <c:if
-											test="${memberInfo.GRADE ==4}">20%</c:if>
 
-								</span>을 추가적립 받으실 수 있습니다.</li>
-							</ul>
-							<ul class="mileage">
-								<li><a href="/myshop/mileage/historyList.html">가용포인트 :
-										<strong><fmt:formatNumber value="${memberInfo.POINT}"
-												pattern="#,###" /> P</strong>
-								</a></li>
-								<li><a href="/myshop/coupon/coupon.html">쿠폰 : <strong>0개</strong></a></li>
-							</ul>
-						</c:if>
-						<c:if test="${memberInfo.NAME ==null}">
+								<li class="">
+									구매시 <span>
+										<c:if test="${memberInfo.GRADE ==1}">5%</c:if>
+																				<c:if test="${memberInfo.GRADE ==2}">10%</c:if>													
+																				<c:if test="${memberInfo.GRADE ==3}">15%</c:if>													
+																				<c:if test="${memberInfo.GRADE ==4}">20%</c:if>	
+																											
+																														</span> 적립 받을 수 있습니다. 
+								</li>
+	                   		</ul>
+	                   		<ul class="mileage">
+								<li><a href="/myshop/mileage/historyList.html">가용포인트 : <strong><fmt:formatNumber value="${memberInfo.POINT}" pattern="#,###" /> P</strong></a></li>
+		                    	<li><a href="/myshop/coupon/coupon.html">쿠폰 : <strong>0개</strong></a></li>
+		                	</ul>
+                   		</c:if>
+                   		<c:if test="${memberInfo.NAME ==null}">
+
 							<p>
 								<strong>${NON_MEMBER_ID }</strong> 님은, 비회원입니다.
 
@@ -726,6 +733,7 @@ div.member p strong {
 							</td>
 						</tr>
 					</tbody>
+
 					</table>
 					<table border="1" summary="">
 					<tbody class="">
@@ -752,20 +760,19 @@ div.member p strong {
 						</tr>
 					</tbody>
 					<tbody class="">
+
 						<tr>
 							<th scope="row">쿠폰</th>
 							<td>
 								<p>리스트나열시켜주고.</p>
 
-							</td>
-							<td>
-								<ul class="info">
-									<li>쿠폰설명써주고</li>
-									<li>설명2</li>
-								</ul>
-							</td>
-						</tr>
-					</tbody>
+
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                    </c:if>
+
 				</table>
 			</div>
 		</div>

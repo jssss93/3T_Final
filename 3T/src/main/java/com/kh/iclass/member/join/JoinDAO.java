@@ -21,8 +21,8 @@ public class JoinDAO extends AbstractDAO {
 		return (int) insert("member.insertMember2", map);
 	}
 
-	public int checkId(String mem_id) throws Exception{
-		return (int)selectOne("member.checkId", mem_id);
+	public int checkId(String MEMBER_ID) throws Exception{
+		return (int)selectOne("member.checkId", MEMBER_ID);
 	}
 	
 	public int checkMember(Map<String, Object> map) throws Exception{

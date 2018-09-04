@@ -113,9 +113,22 @@ public class JoinController {
 		
 	}
 	
-	@RequestMapping(value="/joinStep2/checkId")
+	@RequestMapping(value="/checkId")
 	@ResponseBody
 	public void checkId(HttpServletRequest request, HttpServletResponse response, CommandMap commandMap) throws Exception{
+		PrintWriter out = response.getWriter();
+		String paramId= (request.getParameter("MEMBER_ID") == null)?"":String.valueOf(request.getParameter("MEMBER_ID"));
+		int checkId = joinService.chekcId(paramId);
+		
+		System.out.println("나오니니ㅣㄴ" + checkId);
+		out.print(checkId);
+		out.flush();
+		out.close();
+	}
+	
+	@RequestMapping(value="/joinStep2/checkId")
+	@ResponseBody
+	public void checkId2(HttpServletRequest request, HttpServletResponse response, CommandMap commandMap) throws Exception{
 		PrintWriter writer = response.getWriter();
 		/*String id= (request.getParameter("MEMBER_ID") == null)?"":String.valueOf(request.getParameter("MEMBER_ID"));*/
 		String id= commandMap.getMap().get("id").toString();
