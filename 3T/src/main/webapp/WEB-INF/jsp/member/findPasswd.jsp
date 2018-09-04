@@ -7,7 +7,35 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>로그인</title>
 <%@ include file="/WEB-INF/include/include-header-hanbyul.jspf"%>
-
+<style>
+.xans-member-login .login fieldset .link input.loginbtn {
+    position: absolute;
+    top: 7px;
+    right: 119px;
+    padding: 7px 105px 5px 92px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 9px;
+    color: #fff;
+    line-height: 12px;
+    background: #111;
+    border: 0px solid #333;
+    width: 66%;
+    height: auto;
+    margin: 0px 0 0px 0px;
+}
+.xans-member-login .login fieldset .id, .xans-member-login .login fieldset .password {
+    overflow: hidden;
+    display: block;
+    width: auto;
+    margin: 0 0 5px;
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+    color: #8F8F91;
+    height: 25px;
+    padding: 4px;
+}
+</style>
 <script type="text/javascript">
 	
 		function validation() {

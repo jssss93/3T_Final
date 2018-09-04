@@ -875,6 +875,7 @@ FROM
             REGDATE,
             CONTENT,
          CATEGORY,
+         STATUS,
          GOODS_NO
          FROM 
              QA 

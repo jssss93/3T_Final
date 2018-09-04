@@ -30,7 +30,8 @@ a:link, a:visited {
 
 .MK_btn-del img {
 	padding-top: 0;
-	margin: -5 0 0 0;
+    margin: 6px 0 0 -65px;
+    opacity: 0.8;
 }
 
 .MK_qty-ctrl {
@@ -77,7 +78,7 @@ a:link, a:visited {
 
 .totalRight {
 	margin: 20 0 0 0;
-	font-size: 11px;
+	font-size: 14px;
 }
 
 .good_total {

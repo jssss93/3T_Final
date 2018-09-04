@@ -46,6 +46,9 @@
 	font-size: 11px;
 	line-height: 30px;
 }
+.btn {
+    width: 80px;
+}
 </style>
 </head>
 <div class="row" style="padding-left: 15px; width: 900px;">
@@ -92,7 +95,12 @@
 										<tr class="gradeA even" role="row">
 											<td style="text-align: center; vertical-align: middle;">${row.MESSAGE_NO}</td>
 											<td style="text-align: center; vertical-align: middle;">${row.SENDMEMBER}</td>
-											<td style="text-align: center; vertical-align: middle;">${row.CONTENT}</td>
+											<td style="text-align: center; vertical-align: middle;">${row.CONTENT}
+                        	                <form action="/3T/admin/member/messageWrite">
+                        		                <input class="btn" type="submit" value="답장">
+                       			                <input type="hidden" id="SENDMEMBER" name="SENDMEMBER" value="${row.SENDMEMBER}"/>
+                        	                </form>
+											</td>
 											<td style="text-align: center; vertical-align: middle;">${row.REGDATE}</td>
 											<td style="text-align: center; vertical-align: middle;">
 												<c:if test="${row.STATE==0}"> 답변대기중</c:if>

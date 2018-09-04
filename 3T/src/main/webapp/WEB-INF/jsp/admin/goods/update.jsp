@@ -8,35 +8,112 @@
 .page-header{
 border-bottom: 1px solid #fff;
 }
+.form-control {
+    display: block;
+    width: 40%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.form-control2 {
+    display: block;
+    width: 50%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.form-control3 {
+    display: block;
+    width: 100%;
+    height: 200px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.board_view4 input{
+    margin: 0 5 0 0;
+}
+.board_view5{
+/* border: 1px solid #f2f2f2 !important; */
+}
+.board_view5 input {
+    table-layout: fixed;
+    /* border: 1px solid #f2f2f2 !important; */
+    line-height: 180%;
+    padding: 5 0 10 10;
+}
+.board_view4 p {
+    width: 101%;
+    padding: 10px 0 8px 2px;
+    border-right: 1px solid #fff;
+    font-family: 'Lato', 'Nanum Gothic';
+    font-size: 12px;
+    text-transform: uppercase;
+    background-color: #fff;
+    text-align: left;
+    font-weight: normal;
+    vertical-align: middle;
+}
+.panel {
+    width: 104%;
+}
 </style>
 
 </head>
 <body>
 
-<div class="row" style="padding-left:15px;width:900px;">    
+<div class="row" style="padding-left: 15px; width: 700px;">
 	<h1 class="page-header">상품등록</h1>
 </div>
-	<form id="frm" name="frm" enctype="multipart/form-data">
-	<input type="hidden" name="GOODS_NO" id="GOODS_NO" value="${goodsBasic.GOODS_NO }">
-		<table class="board_view5" border="1">
-			<colgroup>
-				<col width="15%">
-				<col width="*"/>
-			</colgroup>
-			<caption>상품 등록</caption>
-			<tbody>
-				<tr>
-					<th scope="row">상품명</th>
-					<td><input type="text" name="NAME" id="NAME" class="wdp_30" value="${goodsBasic.NAME }"></input></td>
-				</tr>
-				<tr>
-					<th scope="row">가격</th>
-					<td><input type="text" name="PRICE" id="PRICE" class="wdp_30" value="${goodsBasic.PRICE }"></input></td>
-				</tr>
-				<tr>
-					<th scope="row">카테고리</th>
-					<td>
-						<select name="CATEGORY" >
+<form action="/3T/goods/write" id="frm" name="Reg_form"  enctype="multipart/form-data" onsubmit="return check();"  method="post">
+<div class="row" style="padding-left: 15px; width: 700px;">
+	<div class="panel panel-default">
+		<div class="panel-heading">상품 등록 페이지입니다.</div>
+		<div class="panel-body">
+			            <form:form id="frm" name="frm" action="frm" method="post" enctype="multipart/form-data">
+				<div class="form-group">
+					<label>상품명</label> 
+					<input type="text" name="NAME" id="NAME" class="form-control" value="${goodsBasic.NAME }"></input>
+				</div>
+				<div class="form-group">
+					<label>가격</label> 
+					<input type="text" name="PRICE" id="PRICE" class="form-control" value="${goodsBasic.PRICE }"></input>
+				</div>
+			 	<div class="form-group">
+					<label>카테고리</label> 
+					<select name="CATEGORY" class="form-control" >
 							<OPTION value='OUTER'>OUTER</OPTION>
 							<OPTION value='SUIT'>SUIT</OPTION>
 							<OPTION value='TOP'>TOP</OPTION>
@@ -46,27 +123,22 @@ border-bottom: 1px solid #fff;
 							<OPTION value='SHOES'>SHOES</OPTION>
 							<OPTION value='ACC'>ACC</OPTION>	 
 						</select>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">관련상품번호</th>
-					<td><input type="text" name="RELATED" id="RELATED"	class="wdp_30" value="${goodsBasic.RELATED }"></input></td>
-				</tr>
-				<tr>
-					<th scope="row">상품 키워드</th>
-					<td><input type="text" name="KEYWORD" id="KEYWORD"
-						class="wdp_20" placeholder="ex) 바지,반바지,긴바지,팬츠,하의," value="${goodsBasic.KEYWORD }"></input></td>
-				</tr>
-				<tr>
-					<td colspan="2" class="view_text">
-						<textarea rows="10" cols="170" title="내용" id="CONTENT" name="CONTENT" placeholder="상세 설명">${goodsBasic.CONTENT }</textarea>
-					</td>
-				</tr> 
-	
-				<tr>
-					<td>
-						<!--속성 -->
-						<div id="AttributeDiv" class="board_view4">
+				</div>
+				<%-- <c:if test="${qnaDetail.GOODS_NUMBER ne null }"> --%>
+				<div class="form-group">
+					<label>관련상품번호</label> 
+					<input type="text" name="RELATED" id="RELATED"	class="form-control" value="${goodsBasic.RELATED }"></input>
+				</div>
+				<div class="form-group">
+					<label>상품 키워드</label> 
+					<input type="text" name="KEYWORD" id="KEYWORD"
+						class="form-control2" placeholder="ex) 바지,반바지,긴바지,팬츠,하의," value="${goodsBasic.KEYWORD }"></input>
+				</div>
+				<div class="form-group">
+					<label>내용</label>
+					<textarea class="form-control3" rows="10" cols="90" title="내용" id="CONTENT" name="CONTENT" placeholder="상세 설명">${goodsBasic.CONTENT }</textarea>
+				</div>
+				<div id="AttributeDiv" class="board_view4">
 							<c:forEach items="${goodsDetail }" var="attribute" varStatus="stat">
 							<p id="deleteB${stat.index }">
 								<span class="ATTRIBUTE_NO2" value="${attribute.ATTRIBUTE_NO }">${attribute.ATTRIBUTE_NO }</span>
@@ -86,14 +158,11 @@ border-bottom: 1px solid #fff;
 								<a href='#this' class='btn' name='deleteA'>삭제</a>
 							</p>
 							</div>
-						<a href="#this" class="btn" id="addAttribute" >속성 추가</a>  
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-					
-					<a href="#this" class="btn" id="addFile">이미지 추가</a>
-						<div id="fileDiv" class="board_view4">
+						<a href="#this" class="btn" id="addAttribute" >속성 추가</a>
+				<br>
+				<br>
+				<a href="#this" class="btn" id="addFile">이미지 추가</a>
+						<div id="fileDiv" class="board_view5">
 						
 						<c:forEach var="row" items="${goodsImage }" varStatus="stat">
 								<p id="deleteI${stat.index}">
@@ -107,23 +176,12 @@ border-bottom: 1px solid #fff;
 										
 								</p>
 							</c:forEach>
-							
-						
-						 
-						
-							
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		
-		<br/><br/>
-		<a href="#this" class="btn" id="update">수정하기</a>
-		<a href="#this" class="btn" id="list">목록으로</a>
-	</form>
-	<br/>
-	<br/>
+							</div>
+							</form:form>
+		</div>
+	</div>
+</div>
+</form>	
 	
 	
 	
