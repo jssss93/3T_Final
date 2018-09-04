@@ -7,7 +7,32 @@
 <head>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
+function open_win_noresizable(url, name) {
+	var oWin = window
+			.open(url, name,
+					"scrollbars=no, status=no, resizable=no, width=700, height=500");
+
+
+}
+
+function onCallback (no, content) {
+	console.log("select is ")
+	console.log(no)
+	console.log()
 	
+	$('#coupon_list').html(
+		'<li>' +
+		content + "원 할인 " +
+		'<input type="hidden" value='+no+'>' +
+		'</li>')
+		
+	$('#total_sale_price_view').html(
+		content
+		)
+		
+		
+}
+
 	function sample7_execDaumPostcode() {
 		new daum.Postcode(
 				{
@@ -690,7 +715,9 @@ function checkAll2(){
 								<div class="box txt16">
 									<strong>-</strong> 
 									<strong>
-										<span id="total_sale_price_view" class="discount">여기도0</span>
+										<span id="total_sale_price_view" class="discount">
+										
+										</span>
 									</strong>KRW 
 								</div>
 							</td>
@@ -733,15 +760,14 @@ function checkAll2(){
 						<tr>
 							<th scope="row">쿠폰</th>
                             <td>
-                                <p> 
-                                	리스트나열시켜주고.
-                                </p>
+								<a class="board_subject4" type="button" onclick="javascript:open_win_noresizable('/3T/order/couponList', write)" >
+									쿠폰
+								</a>
                                 
-							</td>
+                     		</td>
 							<td>
-								<ul class="info">
-									<li>쿠폰설명써주고</li>
-                                    <li>설명2</li>
+								<ul id = "coupon_list" class="info">
+
                                 </ul>
                             </td>
                         </tr>

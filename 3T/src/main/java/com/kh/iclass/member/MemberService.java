@@ -26,8 +26,10 @@ public interface MemberService
 	Map<String, Object> couponAll(Map<String, Object> map) throws Exception;
 	//확인하지 않은 쿠폰 수
 	Map<String, Object> noReadCoupon(Map<String, Object> map) throws Exception;
-	//내쿠폰정보 가져오기
+	//내쿠폰정보 가져오기리스트
 	List<Map<String, Object>> myCoupon(Map<String, Object> map) throws Exception;
+	//내쿠폰정보 가져오기
+	Map<String, Object> coupon(Map<String, Object> map) throws Exception;
 	// 쿠폰확인
 	void readCoupon(Map<String, Object> map, HttpServletRequest request) throws Exception;
 	
