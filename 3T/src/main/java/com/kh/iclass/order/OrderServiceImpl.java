@@ -65,6 +65,7 @@ public class OrderServiceImpl implements OrderService {
 		return orderDAO.selectList(map);
 	}
 	
+	
 	@Override
 	public List<Map<String, Object>> selectListSearch(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -186,6 +187,12 @@ public class OrderServiceImpl implements OrderService {
 	public List<Map<String, Object>> getSearchSale(Map<String, Object> map) {
 		System.out.println("들어옴?");
 		return orderDAO.getSearchSale(map);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectOrderSearchListAll(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return orderDAO.selectOrderSearchListAll(map);
 	}
 
 	

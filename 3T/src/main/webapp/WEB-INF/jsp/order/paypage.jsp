@@ -213,7 +213,7 @@ function checkAll2(){
 
 <script language="javascript">
  function chkBox(bool) { // 전체선택/해제 
-	var obj = document.getElementsByName("join");
+	var obj = document.getElementsByName("selected");
 	for ( var i = 0; i < obj.length; i++)
 		obj[i].checked = bool;
 }  
@@ -221,10 +221,10 @@ function checkAll2(){
 
 		 var f = document.Reg_form; 
 		 
-		 if (f.chkBox.checked == false) {
+		  if (f.selected.checked == false) {
 			alert("상품을 선택해주세요.");
 			return false;
-		} 
+		}  
 	 	if (f.chk_purchase_agreement.checked == false) {
 			alert("구매진행에  동의해 주시기 바랍니다.");
 			return false;

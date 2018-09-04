@@ -666,5 +666,69 @@
 		
 	</update>
 	
+	<select id="selectOrderSearchListAll" parameterType="hashmap" resultType="hashmap">
+	
+		select
+			REGDATE,
+			ORDER_NO,
+			STATE,
+			MEMBER_ID,
+			COUNT,
+			ATTRIBUTE_NO,
+			GOODS_NO,
+			NAME,
+			PRICE,
+			SUBSTR(CONTENT, 0, 20) AS CONTENT,
+			COLOR,
+			GOODS_SIZE,
+			WM_CONCAT(SAV_NAME) AS IMAGE
+		from
+		  	(
+		  	select 
+		    	a.REGDATE,
+		    	a.ORDER_NO,
+			    a.STATE,
+			    a.MEMBER_ID,
+			    b.COUNT,
+			    b.ATTRIBUTE_NO,
+			    b.GOODS_NO,
+			    c.NAME,
+			    c.PRICE,
+			    c.CONTENT,
+			    d.color,
+			    d.GOODS_SIZE,
+			    e.sav_name
+			from
+		    	ORDER_3T a, ORDER_DETAIL b, GOODS c , GOODS_ATTRIBUTE d , UPLOAD e
+		  	where
+			    a.ORDER_NO=b.ORDER_NO AND
+			    b.GOODS_NO=c.GOODS_NO AND
+			    b.ATTRIBUTE_NO=d.ATTRIBUTE_NO AND
+			    b.GOODS_NO=e.GOODS_NO AND
+			    a.STATE IN (0,1,2,3) AND
+			    
+			    <if test='SearchNum.equals("MEMBER_ID")'> 	
+			(MEMBER_ID LIKE '%' || #{SearchKeyword} || '%')	
+				</if>
+			    ORDER BY
+		    	a.ORDER_NO desc
+		    	)
+		GROUP BY
+			  REGDATE,
+			  ORDER_NO,
+			  STATE,
+			  MEMBER_ID,
+			  COUNT,
+			  NAME,
+			  ATTRIBUTE_NO,
+			  GOODS_NO,
+			  PRICE,
+			  CONTENT,
+			  COLOR,
+			  GOODS_SIZE
+	
+	</select>
+	
+	
 	
 </mapper>
