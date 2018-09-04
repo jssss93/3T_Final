@@ -198,6 +198,7 @@ public class OrderServiceImpl implements OrderService {
 	public List<Map<String, Object>> selectOrderSearchListAll(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return orderDAO.selectOrderSearchListAll(map);
+	}
 @Override
 	public List<Map<String, Object>> selectOrderInfo(Map<String, Object> map) {
 		return orderDAO.selectOrderInfo(map);

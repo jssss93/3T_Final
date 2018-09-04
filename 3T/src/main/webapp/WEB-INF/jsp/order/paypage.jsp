@@ -795,11 +795,11 @@ div.member p strong {
 								<p>리스트나열시켜주고.</p>
 
 
-                                </ul>
+                               
                             </td>
                         </tr>
                     </tbody>
-                    </c:if>
+                   
 
 				</table>
 			</div>
