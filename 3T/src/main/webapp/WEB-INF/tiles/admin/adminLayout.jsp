@@ -47,7 +47,7 @@
     display: block;
     padding: 10px 15px;
     text-align: left;
-    color: #337ab7e8;
+    color: #337ab7e8!important;
 }
 </style>
 </head>

@@ -19,7 +19,7 @@
 
 .xans-member-login .login {
 	border: 0px solid #eee;
-	margin: 0 0 3px 0;
+	margin: 0 0 3px -150px;
 	padding: 50px 0 20px 0;
 	color: #2e2e2e;
 }
@@ -39,6 +39,7 @@
 	border: 1px solid #d9d9d9;
 	border-radius: 2px;
 	color: #8F8F91;
+	padding: 0 0 0 11px;
 }
 
 .xans-member-login .login fieldset .id span, .xans-member-login .login fieldset span
@@ -58,7 +59,7 @@
 	padding: 15px 2px 2px 3px;
 	border: 0 none;
 	color: #111;
-	margin: -6px 0 7;
+	margin: -6px 0 7 -9;
 	font-size: 12px;
 }
 
@@ -81,7 +82,7 @@
 }
 
 .xans-member-login .login fieldset .security label {
-	margin: -1 50px 0 1px;
+	margin: -1 78px 0 1px;
 }
 
 .xans-member-login .login fieldset .security img {

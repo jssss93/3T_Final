@@ -123,10 +123,20 @@ public class OrderDAO extends AbstractDAO {
 		
 	}
 
+
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectOrderSearchListAll(Map<String, Object> map) throws Exception {
 		return selectList("order.selectOrderSearchListAll", map);
 	}
+
+	public List<Map<String, Object>> selectOrderInfo(Map<String, Object> map) {
+		return selectList("order.selectOrderInfo", map);
+	}
+
+	public Map<String, Object> selectOrderMemberInfo(Map<String, Object> map) {
+		return (Map<String, Object>) selectOne("order.selectOrderMemberInfo", map);
+	}
+
 	
 	
 }

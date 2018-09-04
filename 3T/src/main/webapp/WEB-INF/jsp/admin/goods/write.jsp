@@ -8,6 +8,84 @@
 .page-header{
 border-bottom: 1px solid #fff;
 }
+.form-control {
+    display: block;
+    width: 40%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.form-control2 {
+    display: block;
+    width: 50%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.form-control3 {
+    display: block;
+    width: 100%;
+    height: 200px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.board_view4 input{
+    margin: 0 5 0 0;
+}
+.board_view5{
+/* border: 1px solid #f2f2f2 !important; */
+}
+.board_view5 input {
+    table-layout: fixed;
+    /* border: 1px solid #f2f2f2 !important; */
+    line-height: 180%;
+    padding: 5 0 10 10;
+}
+.board_view4 p {
+    width: 100%;
+    padding: 10px 0 8px 2px;
+    border-right: 1px solid #fff;
+    font-family: 'Lato', 'Nanum Gothic';
+    font-size: 12px;
+    text-transform: uppercase;
+    background-color: #fff;
+    text-align: left;
+    font-weight: normal;
+    vertical-align: middle;
+}
 </style>
 
 </head>
@@ -61,30 +139,26 @@ border-bottom: 1px solid #fff;
 		
 	}   
 </script>
-
-<div class="row" style="padding-left:15px;width:900px;">
+<div class="row" style="padding-left: 15px; width: 700px;">
 	<h1 class="page-header">상품등록</h1>
 </div>
-	<form action="/3T/goods/write" id="frm" name="Reg_form"  enctype="multipart/form-data" onsubmit="return check();"  method="post">
-		<table class="board_view5" border="1">
-			<!-- <colgroup>
-				<col width="15%">
-				<col width="*"/>
-			</colgroup> -->
-			<caption>상품 등록</caption>
-			<tbody>
-				<tr>
-					<th scope="row">상품명</th>
-					<td><input type="text" name="NAME" class="wdp_30"></input></td>
-				</tr>
-				<tr>
-					<th scope="row">가격</th>
-					<td><input type="text" name="PRICE" class="wdp_30"></input></td>
-				</tr>
-				<tr>
-					<th scope="row">카테고리</th>
-					<td>
-						<select name="CATEGORY" >
+<form action="/3T/goods/write" id="frm" name="Reg_form"  enctype="multipart/form-data" onsubmit="return check();"  method="post">
+<div class="row" style="padding-left: 15px; width: 700px;">
+	<div class="panel panel-default">
+		<div class="panel-heading">상품 등록 페이지입니다.</div>
+		<div class="panel-body">
+			            <form:form id="frm" name="frm" action="frm" method="post" enctype="multipart/form-data">
+				<div class="form-group">
+					<label>상품명</label> 
+					<input type="text" class="form-control" name="NAME" />
+				</div>
+				<div class="form-group">
+					<label>가격</label> 
+					<input type="text" class="form-control" name="PRICE" />
+				</div>
+			 	<div class="form-group">
+					<label>카테고리</label> 
+					<select name="CATEGORY" class="form-control" >
 							<OPTION value='OUTER'>OUTER</OPTION>
 							<OPTION value='SUIT'>SUIT</OPTION>
 							<OPTION value='TOP'>TOP</OPTION>
@@ -94,60 +168,46 @@ border-bottom: 1px solid #fff;
 							<OPTION value='SHOES'>SHOES</OPTION>
 							<OPTION value='ACC'>ACC</OPTION>	 
 						</select>
-					</td>
-				</tr>
-				<tr class="board_title">
-					<th scope="row">관련상품번호</th>
-					<td><input type="text" name="RELATED"	class="wdp_30"></input></td>
-				</tr>
-				<tr class="board_title">
-					<th scope="row">상품 키워드</th>
-					<td><input type="text" name="KEYWORD"
-						class="wdp_20" placeholder="ex) 바지,반바지,긴바지,팬츠,하의,"></input></td>
-				</tr>
-				<tr>
-					<td colspan="2" class="view_text">
-						<textarea  rows="10" cols="170" title="내용" name="CONTENT" placeholder="상세 설명"></textarea>
-					</td>
-				</tr> 
-				<br>
-				<tr>
-					<td>
-						<!--속성 -->
-						<div id="AttributeDiv" class="board_view4">
-							<p>
+				</div>
+				<%-- <c:if test="${qnaDetail.GOODS_NUMBER ne null }"> --%>
+				<div class="form-group">
+					<label>관련상품번호</label> 
+					<input type="text" class="form-control" name="RELATED" />
+				</div>
+				<div class="form-group">
+					<label>상품 키워드</label> 
+					<input type="text" class="form-control2" name="KEYWORD" placeholder="ex) 바지,반바지,긴바지,팬츠,하의,"/>
+				</div>
+				<div class="form-group">
+					<label>내용</label>
+					<textarea class="form-control3" rows="10" cols="170" title="내용" name="CONTENT" placeholder="상세 설명">${map.CONTENT}</textarea>
+				</div>
+				<div class="board_view4" id="AttributeDiv">
+					<p>
 								사이즈  : <input type="text" name="size">
 								색상 : <input type="text" name="color"> 
 								개수 : <input type="text" name="count">  
 							</p>
-							
-						</div>
-						<a href="#this" class="btn" id="addAttribute" >속성 추가</a>  
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-					
-						<div id="fileDiv" class="board_view4">
-							<p>
+				</div>
+				<a href="#this" class="btn" id="addAttribute" >속성 추가</a>
+				<br>
+				<br>
+				<div id="fileDiv" class="board_view5">
+				<p>
 							<input type="file" id="IMAGE" name="IMAGE">
 							
 							</p>
 						</div>
 						<a href="#this" class="btn" id="addFile">이미지 추가</a>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		
-		<br/><br/>
-		<!-- <a href="#this" class="btn" id="write">작성하기</a> -->
-		<input type="submit" class="btn" value="작성">
-		<a href="#this" class="btn" id="list">목록으로</a>
-	</form>
-	<br/>
-	<br/>
-	
+						
+						<br/><br/>
+						<input type="submit" class="btn" value="작성">
+					<a href="#this" class="btn btn-outline btn-default" id="list">목록으로</a>
+			</form:form>
+		</div>
+	</div>
+</div>
+</form>	
 	
 	
 	

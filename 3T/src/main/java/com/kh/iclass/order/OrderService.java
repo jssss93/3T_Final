@@ -51,6 +51,13 @@ public interface OrderService {
 	public List<Map<String, Object>> getSearchSale(Map<String, Object> map);
 
 	public List<Map<String, Object>> selectListSearch(Map<String, Object> map);
+
 	
 	List<Map<String, Object>> selectOrderSearchListAll(Map<String, Object> map) throws Exception;
+
+
+	public List<Map<String, Object>> selectOrderInfo(Map<String, Object> map);
+
+	public Map<String, Object> selectOrderMemberInfo(Map<String, Object> map);
+
 }

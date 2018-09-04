@@ -7,7 +7,28 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>로그인</title>
 <%@ include file="/WEB-INF/include/include-header-hanbyul.jspf"%>
-
+<style>
+.xans-member-login .login fieldset .security {
+      padding: 0px 0 0px 0px;
+}
+.xans-member-login .login fieldset .han {
+      margin: -19px 0 0 84px;
+}
+.xans-member-login .login fieldset .han1 {
+      margin: -26px 0 0 78!important;
+      width: 107px;
+}
+.xans-member-login .login fieldset input {
+	float: left;
+	width: auto;
+	height: 25px;
+	padding: 15px 2px 2px 3px;
+	border: 0 none;
+	color: #111;
+	margin: -6px 0 7 -9;
+	font-size: 12px;
+}
+</style>
 <script type="text/javascript">
 		
 $(document).ready(function(){
@@ -161,9 +182,9 @@ function getCookie(cookieName) {
                         <input id="idSaveCheck" name="idSaveCheck"
                            fw-filter="" fw-label="아이디저장" fw-msg="" value="T"
                            type="checkbox"><label for="member_check_save_id0">아이디저장</label>
-                           <input id="autoLogin" name="autoLogin"
+                           <input class="han" id="autoLogin" name="autoLogin"
                            fw-filter="" fw-label="자동로그인" fw-msg="" value="T"
-                           type="checkbox"><label for="autoLogin">자동로그인</label>
+                           type="checkbox"><label class="han1"for="autoLogin">자동로그인</label>
                      </p>
 
                      <p class="link">

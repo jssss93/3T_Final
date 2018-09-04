@@ -100,11 +100,18 @@ public class MemberServiceImpl implements MemberService{
 	public Map<String, Object> noReadCoupon(Map<String, Object> map) throws Exception {
 		return memberDAO.noReadCoupon(map);
 	}	
+	//쿠폰정보리스트
 	public List<Map<String, Object>> myCoupon(Map<String, Object> map) throws Exception 
 	{
 		// TODO Auto-generated method stub
 		return memberDAO.myCoupon(map);
 	}
+	//쿠폰정보
+	public Map<String, Object> coupon(Map<String, Object> map) throws Exception 
+	{
+		// TODO Auto-generated method stub
+		return memberDAO.coupon(map);
+	}	
 	//쿠폰확인
 	@Override
 	public void readCoupon(Map<String, Object> map, HttpServletRequest request) throws Exception {

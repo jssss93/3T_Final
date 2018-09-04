@@ -65,9 +65,9 @@ public class JoinServiceImpl implements JoinService{
 	}
 	
 	@Override
-	public int chekcId(String mem_id) throws Exception {
+	public int chekcId(String MEMBER_ID) throws Exception {
 		// TODO Auto-generated method stub
-		return joinDAO.checkId(mem_id);
+		return joinDAO.checkId(MEMBER_ID);
 	}
 	
 /*	//회원가입시 적립금 부여

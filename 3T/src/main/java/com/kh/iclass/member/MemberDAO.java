@@ -114,11 +114,18 @@ public class MemberDAO extends AbstractDAO {
 	{
 		return (Map<String,Object>) selectOne("member.noReadCoupon", map);
 	}
-	//쿠폰정보
+	//쿠폰정보리스트
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> myCoupon(Map<String, Object> map) throws Exception
 	{
-		return (List<Map<String, Object>>)selectList("member.myCoupon", map);		}
+		return (List<Map<String, Object>>)selectList("member.myCoupon", map);		
+	}
+	//쿠폰정보
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> coupon(Map<String, Object> map) throws Exception
+	{
+		return (Map<String, Object>)selectOne("member.myCoupon", map);		
+	}	
 	//쿠폰확인
 	public void readCoupon(Map<String, Object> map) throws Exception
 	{

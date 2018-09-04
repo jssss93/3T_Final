@@ -176,6 +176,27 @@
 	/* height: 100%; */
 	/* overflow: scroll; */
 }
+.xans-order-result .totalArea .summary td strong {
+    letter-spacing: -1px;
+    font-size: 25!important;
+}
+.help h3 {
+    padding: 4px 0 3px 10px;
+    border-bottom: 1px solid #e8e7e7;
+    color: #777;
+    font-size: 11px;
+    background: #fff;
+    text-align: left;
+}
+.boardView td {
+   font-size: 13px;
+}
+.boardView th {
+   font-size: 13px;
+}
+.boardList th{
+   text-align: center;
+}
 </style>
 </head>
 <body>
@@ -194,9 +215,9 @@
 									href="/myshop/order/list.html">주문조회</a> 를 통하여 확인 가능합니다.
 							</p>
 							<ul>
-								<li>주문번호 : <strong>20180828-0002861</strong>
+								<li>주문번호 : <strong><fmt:formatDate value="${orderInfo.REGDATE }" pattern="yyyyMMdd" />-000${orderInfo.ORDER_NO}</strong>
 								</li>
-								<li>주문일자 : <span>2018-08-28 21:15:01</span>
+								<li>주문일자 : <span><fmt:formatDate value="${orderInfo.REGDATE }" pattern="yyyyMMdd hh:mm" /></span>
 								</li>
 							</ul>
 						</div>
@@ -212,22 +233,15 @@
 									<tbody>
 										<tr>
 											<th scope="row">최종결제금액</th>
-											<td class="price">KRW <strong>44,500</strong><strong
+											<td class="price">KRW <strong>${orderInfo.TOTALPRICE}</strong><strong
 												class="tail"></strong> 
 											</td>
 										</tr>
 										<tr>
 											<th scope="row">결제수단</th>
-											<td><strong><span>무통장 입금</span></strong>
+											<td>
 												<p>
-													<span>입금자 : 강한별, 계좌번호 : 국민은행 437201-04-192634
-														(서지우(애즈클로))</span> <span class=""><a href="#none"
-														id="btn_bank_go"><img
-															src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_banking.gif"
-															alt="인터넷뱅킹 바로가기"></a></span> <span class="displaynone"><a
-														href="#none" id=""><img
-															src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_order_payment.gif"
-															alt="결제사이트 바로가기"></a></span>
+													<span>(${orderInfo.PAYMENT }) 입금자 :${orderInfo.DEPOSIT_NAME }, 계좌번호 : ${orderInfo.DEPOSIT_BANK} </span> 
 												</p>
 											</td>
 										</tr>
@@ -236,7 +250,7 @@
 								</table>
 							</div>
 						</div>
-						<!-- 주문 상품 정보 -->
+						<!-- 주문 상품 정보 -->	
 						<div class="orderListArea">
 							<div class="title">
 								<h3>주문 상품 정보</h3>
@@ -258,42 +272,41 @@
 								</thead>
 								<tfoot>
 									<tr>
-										<td colspan="7"><strong class="type">[기본배송]</strong>
-											상품구매금액 <strong>42,000<span class="displaynone">
-													(0)</span></strong> + 배송비 2,500 + 지역별배송비 0 = 합계 : <strong class="total">KRW
-												<span>44,500</span>
-										</strong> <span class="displaynone"></span></td>
+										<td colspan="7">
+											<strong class="type">[기본배송]</strong>상품구매금액 
+											<strong>42,000</strong> + 배송비 2,500 + 지역별배송비 0 = 합계 : 
+											<strong class="total">KRW<span>44,500</span></strong> 
+										</td>
 									</tr>
 								</tfoot>
-								<tbody
-									class="xans-element- xans-order xans-order-normalresultlist">
+								<tbody class="xans-element- xans-order xans-order-normalresultlist">
 									<tr class="xans-record-">
-										<td class="thumb"><a
-											href="/product/detail.html?product_no=8115&amp;cate_no=59"><img
-												src="//www.asclo.com/web/product/tiny/201808/ed35d34b114b324dee58e8c21b9f4563.jpg"
-												onerror="this.src='http://img.echosting.cafe24.com/thumb/img_product_small.gif';"
-												alt=""></a></td>
-										<td class="product"><a
-											href="/product/detail.html?product_no=8115&amp;cate_no=59"><strong>모네
-													서스펜더슬랙스 (3color)</strong></a>
-											<div class="option ">[옵션: Black/S]</div>
-										</td>
-										<td class="price"><strong>KRW 42,000</strong></td>
-										<td class="quantity">1</td>
-										<td class="mileage">-</td>
-										<td class="delivery">기본배송
-											<div class="displaynone">(해외배송가능)</div>
-										</td>
-										<td class="total"><strong>KRW 42,000</strong>
-											<div class="displaynone"></div></td>
+										<c:choose>
+											<c:when test="${fn:length(orderGoodsList) > 0}">
+												<c:forEach items="${orderGoodsList }" var="row" varStatus="stat">
+													<td class="thumb">
+														<a href="/3T/goods/detail?GOODS_NO=${row.GOODS_NO }">
+															<img width="75" height="75"	src="/3T/resources/upload/${row.IMAGE.split(',')[0] }" />
+														</a>
+													</td>
+													<td class="product">
+														<a href="/3T/goods/detail?GOODS_NO=${row.GOODS_NO }">
+															<strong>${row.NAME }</strong>
+														</a>
+														<div class="option ">[옵션: ${row.COLOR} / ${row.GOODS_SIZE}]</div>
+													</td>
+													<td class="price"><strong>${row.PRICE}</strong></td>
+													<td class="quantity">${row.COUNT}</td>
+													<td class="mileage">-</td>
+													<td class="delivery">기본배송</td>
+													<td class="total"><strong>KRW ${row.COUNT*row.PRICE}</strong></td>
+												</c:forEach>
+											</c:when>
+										</c:choose>
 									</tr>
 								</tbody>
 							</table>
-							
-							
-							
 						</div>
-						<!-- 사은품 -->
 						
 						<!-- 결제금액 -->
 						<div class="totalArea">
@@ -302,14 +315,8 @@
 									<caption>결제금액</caption>
 									<thead>
 										<tr>
-											<th scope="col"><span>총 주문 금액</span><a href="#none"
-												onclick="OrderLayer.onDiv('order_layer_detail', event);"
-												class="more"><img
-													src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_list.gif"
-													alt="내역보기"></a></th>
-											<th scope="col" class="displaynone"><span>총 </span><span
-												class="displaynone">할인</span><span class="displaynone">
-													+ </span><span class="displaynone">부가결제</span><span> 금액</span></th>
+											<th scope="col"><span>총 주문 금액</span></th>
+												
 											<th scope="col">총 결제금액</th>
 										</tr>
 									</thead>
@@ -340,12 +347,9 @@
 												<th scope="row">총 할인금액</th>
 												<td>KRW <strong>0</strong></td>
 											</tr>
-											<tr class="displaynone">
+											<tr >
 												<th scope="row">쿠폰할인</th>
-												<td><span class="grid">KRW 0</span> <a href="#none"
-													class="eUsedCouponDetail"><img
-														src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_list.gif"
-														alt="내역보기"></a></td>
+												<td><span class="grid">KRW 0</span> </td>
 											</tr>
 											<tr class="displaynone">
 												<th scope="row">추가할인금액</th>
@@ -366,47 +370,12 @@
 												<th scope="row">총 적립예정금액</th>
 												<td>KRW <strong>0</strong></td>
 											</tr>
-											<tr class="displaynone">
-												<th scope="row">상품별 적립금</th>
-												<td><span class="grid">KRW 0원</span></td>
-											</tr>
-											<tr class="displaynone">
-												<th scope="row">회원 적립금</th>
-												<td><span class="grid">KRW 0원</span></td>
-											</tr>
-											<tr class="displaynone">
-												<th scope="row">쿠폰 적립금</th>
-												<td><span class="grid">KRW 0원</span> <a href="#none"
-													class="eUsedCouponDetail"><img
-														src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_list.gif"
-														alt="내역보기"></a></td>
-											</tr>
 										</tbody>
 									</table>
 								</div>
 							</div>
 						</div>
-						<!-- 다음CTS 컨버젼 스크립트 START -->
-						<script type="text/javascript">
-							//<![CDATA[
-							var DaumConversionDctSv = "type=P,orderID=20180828-0002861,amount=44,500";
-							var DaumConversionAccountID = "dEnhyOXHTcIAhOrEEUdE2w00";
-							if (typeof DaumConversionScriptLoaded == "undefined"
-									&& location.protocol != "file:") {
-								var DaumConversionScriptLoaded = true;
-								document
-										.write(unescape("%3Cscript%20type%3D%22text/javas"
-												+ "cript%22%20src%3D%22"
-												+ (location.protocol == "https:" ? "https"
-														: "http")
-												+ "%3A//s1.daumcdn.net/svc/original/U03/commonjs/cts/vr200/dcts.js%22%3E%3C/script%3E"));
-							}
-							//]]>
-						</script>
-						<script type="text/javascript"
-							src="http://s1.daumcdn.net/svc/original/U03/commonjs/cts/vr200/dcts.js"></script>
-						<!-- 다음CTS 컨버젼 스크립트 END -->
-						<!-- 배송지정보 -->
+						<!-- 배송지정보 --> 
 						<div class="orderArea">
 							<div class="title">
 								<h3>배송지정보</h3>
@@ -418,69 +387,29 @@
 									<tbody>
 										<tr>
 											<th scope="row">받으시는분</th>
-											<td><span>강한별</span></td>
-										</tr>
-										<tr class="displaynone">
-											<th scope="row">영문이름</th>
-											<td><span></span></td>
-										</tr>
-										<tr class="displaynone">
-											<th scope="row">이름(발음기호)</th>
-											<td><span></span></td>
-										</tr>
-										<tr class="displaynone">
-											<th scope="row">국가</th>
-											<td></td>
+											<td><span>${orderInfo.RECIPIENT_NAME}</span></td>
 										</tr>
 										<tr>
 											<th scope="row">우편번호</th>
-											<td><span>18125</span></td>
+											<td><span>${orderInfo.RECIPIENT_ZIPCODE}</span></td>
 										</tr>
 										<tr>
 											<th scope="row">주소</th>
-											<td><span>경기도 오산시 가수로 68 (가수동) 사랑채 303호</span></td>
-										</tr>
-										<tr class="displaynone">
-											<th scope="row">도시</th>
-											<td></td>
-										</tr>
-										<tr class="displaynone">
-											<th scope="row">주/지방</th>
-											<td></td>
+											<td><span>${orderInfo.RECIPIENT_ADDR1} ${orderInfo.RECIPIENT_ADDR2}</span></td>
 										</tr>
 										<tr>
-											<th scope="row">일반전화</th>
-											<td><span>02-0000-0000</span></td>
-										</tr>
-										<tr>
-											<th scope="row">휴대전화</th>
-											<td><span>010-2584-6854</span></td>
-										</tr>
-										<tr>
-											<th scope="row">배송메시지</th>
-											<td></td>
-										</tr>
-										<tr class="displaynone">
-											<th scope="row">희망배송일</th>
-											<td><strong></strong></td>
-										</tr>
-										<tr class="displaynone">
-											<th scope="row">배송업체</th>
-											<td></td>
+											<th scope="row">TEL.</th>
+											<td><span>${orderInfo.RECIPIENT_PHONE}</span></td>
 										</tr>
 									</tbody>
 								</table>
 							</div>
 						</div>
 						<!-- 추가정보 -->
-						
-						
-						<script src="https://cdn.megadata.co.kr/js/enliple_min2.js"
-							defer="defer" onload="mobConv()"></script>
-						<!-- Mobon Tracker v3.1 [결제전환] end -->
 						<div class="btnArea">
-							 <span class="right"> <a href="/">쇼핑계속하기</a> <a
-								href="/myshop/order/list.html">주문확인하기</a>
+							 <span class="right"> 
+							 	<a href="/">쇼핑계속하기</a> 
+							 	<a href="/3T/order/list">주문확인하기</a>
 							</span>
 						</div>
 						<!-- 이용안내 -->
@@ -488,12 +417,10 @@
 							<h3>이용안내</h3>
 							<div class="content">
 								<ul>
-									<li class="item1">비회원 주문의 경우, 주문번호를 꼭 기억하세요. 주문번호로 주문조회가
-										가능합니다.</li>
+									<li class="item1">비회원 주문의 경우, 주문번호를 꼭 기억하세요. 주문번호로 주문조회가 가능합니다.</li>
 									<li class="item2">배송은 결제완료 후 지역에 따라 1일 ~ 3일 가량이 소요됩니다.</li>
 									<li class="item3">상품별 자세한 배송과정은 주문조회를 통하여 조회하실 수 있습니다.</li>
-									<li class="item4">주문의 취소 및 환불, 교환에 관한 사항은 이용안내의 내용을
-										참고하십시오.</li>
+									<li class="item4">주문의 취소 및 환불, 교환에 관한 사항은 이용안내의 내용을 참고하십시오.</li>
 								</ul>
 							</div>
 						</div>
@@ -501,17 +428,6 @@
 						
 					</div>
 				</form>
-				<!-- begin facebook purchase code -->
-				<script>
-					fbq('track', 'Purchase', {
-						value : src_total_price,
-						currency : 'KRW'
-					});
-				</script>
-
 			</div>
-		</div>
-	</div>
-
 </body>
 </html>

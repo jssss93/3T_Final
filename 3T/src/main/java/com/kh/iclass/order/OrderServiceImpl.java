@@ -29,6 +29,8 @@ public class OrderServiceImpl implements OrderService {
 	public void insertOrder(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		//주문인서트
 		orderDAO.insertOrder(map);
+		System.out.println("*************************");
+		System.out.println(map.get("ORDER_NO"));
 		//주문디테일 인서트.
 		List<Map<String, Object>> detailList = orderDetailUtils.parseInsertOrderDetail(map, request);
 		for (int i = 0; i < detailList.size(); i++) {
@@ -39,16 +41,19 @@ public class OrderServiceImpl implements OrderService {
 			cartDAO.deleteSelect(map);
 			request.getSession().removeAttribute("CART_NO");
 		}
+		
 		//비회원 카트삭제.
-		if(request.getSession().getAttribute("sessionCartList")!=null) {
+		if(request.getSession().getAttribute("sessionCartList")!=null) 
 			request.getSession().removeAttribute("sessionCartList");
-		}
+		
 		//적립금
-		orderDAO.addPoint(map);
+		if(map.get("ADDPOINT")!=null)
+			orderDAO.addPoint(map);
+		
 		//포인트사용
-		if(map.get("USEPOINT")!=null) {
+		if(map.get("USEPOINT")!=null) 
 			orderDAO.subPoint(map);
-		}
+		
 		
 		System.out.println("주문 및 카트삭제완료");
 	}
@@ -193,6 +198,15 @@ public class OrderServiceImpl implements OrderService {
 	public List<Map<String, Object>> selectOrderSearchListAll(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return orderDAO.selectOrderSearchListAll(map);
+@Override
+	public List<Map<String, Object>> selectOrderInfo(Map<String, Object> map) {
+		return orderDAO.selectOrderInfo(map);
+	}
+
+	@Override
+	public Map<String, Object> selectOrderMemberInfo(Map<String, Object> map) {
+		return orderDAO.selectOrderMemberInfo(map);
+
 	}
 
 	

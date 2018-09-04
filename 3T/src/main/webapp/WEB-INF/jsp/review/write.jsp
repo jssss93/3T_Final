@@ -120,12 +120,9 @@
 				<tr class="board_subject2">
 					<td align="center" width="120"><img width="100" height="100"
 						src="/3T/resources/upload/${list.IMAGE.split(',')[0] }" />
-					<td>${list.NAME }<br /> KRW&nbsp;${list.PRICE } <br> <a
-						class="board_subject4" type="button"
-						onclick="javascript:open_win_noresizable('reviewGoodsSelect', write)">
-							<img
-							src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/btn_prd_select.gif"
-							alt="상품정보선택">
+					<td>${list.NAME }<br /> KRW&nbsp;${list.PRICE } <br> 
+					<a class="board_subject4" type="button" onclick="javascript:open_win_noresizable('reviewGoodsSelect', write)">
+							<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/btn_prd_select.gif" alt="상품정보선택">
 					</a> <input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
 
 
