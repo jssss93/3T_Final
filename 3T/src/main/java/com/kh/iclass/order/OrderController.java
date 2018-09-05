@@ -50,6 +50,7 @@ public class OrderController {
 	public ModelAndView addSelected(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("order/paypage");
 		HttpSession session = request.getSession();
+		Map<String, Object> couponAll = new HashMap<String, Object>();
 		
 		String cart_No[]=request.getParameterValues("CART_NO");
 		
@@ -68,8 +69,13 @@ public class OrderController {
 			
 			checkedCartList=cartService.checkedCartList(commandMap.getMap());
 			
+
+			couponAll = memberService.couponAll(commandMap.getMap());
+			System.out.println("쿠폰?" + couponAll);
+			
 			mv.addObject("list", checkedCartList);
 			mv.addObject("memberInfo", memberInfo);
+			mv.addObject("couponAll", couponAll);
 		}else {
 			commandMap.put("MEMBER_ID", session.getAttribute("NON_MEMBER_ID"));
 		}
