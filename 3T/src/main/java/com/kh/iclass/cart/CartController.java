@@ -19,6 +19,7 @@ import com.kh.iclass.admin.member.AdminMemberService;
 import com.kh.iclass.common.map.CommandMap;
 import com.kh.iclass.common.util.ParseInsertCart;
 import com.kh.iclass.common.util.SequenceUtils;
+import com.kh.iclass.member.MemberService;
 import com.kh.iclass.order.OrderService;
 
 @Controller
@@ -33,6 +34,9 @@ public class CartController {
 	
 	@Resource(name = "adminMemberService")
 	private AdminMemberService adminMemberService;
+	
+	@Resource(name="memberService")
+	private MemberService memberService;
 
 	List<Map<String, Object>> sessionCartList = new ArrayList<Map<String, Object>>();
 	
@@ -318,6 +322,7 @@ public class CartController {
 		Map<String, Object> cartMap = new HashMap<String, Object>();
 		List<Map<String, Object>> fromDetailOne = new ArrayList<Map<String, Object>>();
 		
+
 		
 		
 		//2개이상
@@ -354,8 +359,17 @@ public class CartController {
 			if(session.getAttribute("MEMBER_ID")!=null) {
 				commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 				Map<String, Object> memberInfo = new HashMap<String, Object>();
+				Map<String, Object> couponAll = new HashMap<String, Object>();
+				
 				memberInfo=adminMemberService.memberDetail(commandMap.getMap());
+				couponAll = memberService.couponAll(commandMap.getMap());
+				
 				mv.addObject("memberInfo", memberInfo);
+				mv.addObject("couponAll", couponAll);
+
+				System.out.println("쿠폰?" + couponAll);
+
+				
 				return mv;
 			}//비회원이면
 			else {
@@ -410,6 +424,9 @@ public class CartController {
 				Map<String, Object> memberInfo = new HashMap<String, Object>();
 				memberInfo=adminMemberService.memberDetail(commandMap.getMap());
 				mv.addObject("memberInfo", memberInfo);
+				Map<String, Object> couponAll = new HashMap<String, Object>();
+				couponAll = memberService.couponAll(commandMap.getMap());
+				mv.addObject("couponAll", couponAll);
 				return mv;
 			}//비회원이면
 			else {
@@ -457,6 +474,10 @@ public class CartController {
 			
 			mv.addObject("list", checkedCartList);
 			mv.addObject("memberInfo", memberInfo);
+			
+			Map<String, Object> couponAll = new HashMap<String, Object>();
+			couponAll = memberService.couponAll(commandMap.getMap());
+			mv.addObject("couponAll", couponAll);
 			
 		} else {
 			if (request.getParameterValues("CART_NO") != null) {
