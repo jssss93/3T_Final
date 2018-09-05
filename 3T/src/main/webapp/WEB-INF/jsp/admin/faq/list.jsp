@@ -110,7 +110,7 @@ function delchk(){
 											<c:url var="update" value="/admin/faq/updateForm">
 													<c:param name="FAQ_NO" value="${list.FAQ_NO }" />
 											</c:url>
-											<c:url var="delete" value="/admin/notice/delete">
+											<c:url var="delete" value="/admin/faq/delete">
 													<c:param name="FAQ_NO" value="${list.FAQ_NO }" />
 											</c:url>
 											

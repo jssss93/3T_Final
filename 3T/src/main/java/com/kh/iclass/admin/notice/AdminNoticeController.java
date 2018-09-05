@@ -42,7 +42,7 @@ public class AdminNoticeController {
 
 	@RequestMapping(value = "/notice/write",  method = RequestMethod.GET)
 	public ModelAndView noticeWrtieForm(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("notice.write");
+		ModelAndView mv = new ModelAndView("notice.writeForm");
 
 		return mv;
 	}
@@ -77,7 +77,7 @@ public class AdminNoticeController {
 	
 	@RequestMapping(value = "/notice/updateForm")
 	public ModelAndView noticeUpdateForm(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("notice.detail");
+		ModelAndView mv = new ModelAndView("notice.writeForm");
 		
 		Map<String, Object> map = noticeService.NoticeDetail(commandMap.getMap());
 		mv.addObject("map", map);
