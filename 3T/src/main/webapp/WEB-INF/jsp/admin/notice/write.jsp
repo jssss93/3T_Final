@@ -54,7 +54,7 @@
 </style>
 </head>
 <body>
-	<script language="javascript">
+	<!-- <script language="javascript">
 	  function check() {
 		var f = document.Reg_form; 
 	
@@ -70,7 +70,7 @@
 			return false;
 		} 
 	}   
-	  </script>
+	  </script> -->
 	
 	<c:choose>
 		<c:when test="${map.TITLE==NULL }">

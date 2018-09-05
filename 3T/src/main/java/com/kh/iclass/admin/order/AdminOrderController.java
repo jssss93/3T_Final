@@ -18,6 +18,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.json.simple.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -61,8 +62,25 @@ public class AdminOrderController {
 			orderList=orderService.selectOrderSearchListAll(commandMap.getMap());
 		
 		mv.addObject("list", orderList);
+		
 		return mv;
 	
+	}
+	@RequestMapping(value="/order/updateForm")
+	public ModelAndView joinComplete(CommandMap commandMap) throws Exception{
+		
+		ModelAndView mv = new ModelAndView("order.detail");
+		System.out.println("/order/updateForm : " + commandMap.getMap());
+		/*Map<String, Object> map = orderService.selectDetailList(commandMap.getMap());*/
+		List<Map<String, Object>> map = new ArrayList<Map<String, Object>>();
+			map=orderService.selectAdminDetailList(commandMap.getMap());
+		
+		
+		mv.addObject("list", map);
+		mv.addObject("ORDER_NO", commandMap.get("ORDER_NO"));
+		mv.addObject("MEMBER_ID", map.get(0));
+		return mv;
+		
 	}
 	
 	@RequestMapping(value = "/order/refundlist")		
@@ -648,5 +666,6 @@ public class AdminOrderController {
 
 		return mv;
 	}
+	
 
 }

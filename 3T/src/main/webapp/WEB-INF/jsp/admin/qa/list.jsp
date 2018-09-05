@@ -119,7 +119,7 @@ function delchk(){
 													<c:param name="QA_NO" value="${list.QA_NO }" />
 											</c:url>
 											<c:url var="delete" value="/admin/qa/adminQnaReplyDelete">
-													<c:param name="QA_NO" value="${list.QA_NO }" />
+													<c:param name="REF" value="${list.QA_NO }" />
 											</c:url>
 											
 											<a href="${detail}"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;

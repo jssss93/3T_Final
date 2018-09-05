@@ -155,5 +155,13 @@ public class GoodsServiceImpl implements GoodsService {
 	public List<Map<String, Object>> goodsSearchList(Map<String, Object> map) throws Exception {
 	   return goodsDAO.goodsSearchList(map);
 	}
+
+	@Override
+	public Map<String, Object> goodsAdminSearchList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return goodsDAO.goodsAdminSearchList(map);
+	}
+	
 	
 }
+

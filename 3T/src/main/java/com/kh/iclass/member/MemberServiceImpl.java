@@ -141,6 +141,8 @@ public class MemberServiceImpl implements MemberService{
 		return joinDAO.checkMember(map);
 		
 	}*/
+
+	
 	
 	/*
 	
@@ -150,7 +152,11 @@ public class MemberServiceImpl implements MemberService{
 		return joinDAO.checkId(mem_id);
 	} */
 	
-
+	@Override
+	public List<Map<String, Object>> AdminSearchmyMessage(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return memberDAO.AdminSearchmyMessage(map);
+	}
 
 	
 }

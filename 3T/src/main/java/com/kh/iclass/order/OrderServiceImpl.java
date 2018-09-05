@@ -218,7 +218,17 @@ public class OrderServiceImpl implements OrderService {
 
 	}
 
-	
+	@Override
+	public Map<String, Object> selectDetailList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return orderDAO.selectDetailList(map);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectAdminDetailList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return orderDAO.selectAdminDetailList(map);
+	}
 
 	
 

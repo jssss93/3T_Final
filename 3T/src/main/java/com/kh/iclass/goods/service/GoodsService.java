@@ -60,6 +60,6 @@ public interface GoodsService {
 	//서치
 	public List<Map<String, Object>> goodsSearchList(Map<String, Object> map) throws Exception;
 	
-
+	Map<String, Object> goodsAdminSearchList(Map<String, Object> map) throws Exception;
 	
 }

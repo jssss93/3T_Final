@@ -454,7 +454,31 @@
 	
 	</update>
 	
-
+<select id="AdminSearchmyMessage" parameterType="hashmap"
+		resultType="hashmap">
+        
+           SELECT
+           		MESSAGE_NO,
+           		CONTENT,
+           		SENDMEMBER,
+           		REGDATE,
+           		STATE
+           	FROM 
+           		MESSAGE
+           	WHERE
+           		<if test='SearchNum.equals("SENDMEMBER")'> 
+			
+			(SENDMEMBER LIKE '%' || #{SearchKeyword} || '%')
+			
+			</if>
+			
+			 <if test='SearchNum.equals("CONTENT")'> 
+			  
+			(CONTENT LIKE '%' || #{SearchKeyword} || '%')
+			
+			</if> 	
+        
+	</select>
 
 	
 	

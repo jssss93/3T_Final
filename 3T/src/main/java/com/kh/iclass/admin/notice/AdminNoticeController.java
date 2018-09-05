@@ -77,7 +77,7 @@ public class AdminNoticeController {
 	
 	@RequestMapping(value = "/notice/updateForm")
 	public ModelAndView noticeUpdateForm(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("notice.write");
+		ModelAndView mv = new ModelAndView("notice.detail");
 		
 		Map<String, Object> map = noticeService.NoticeDetail(commandMap.getMap());
 		mv.addObject("map", map);
@@ -88,7 +88,7 @@ public class AdminNoticeController {
 	
 	@RequestMapping(value = "/notice/update")
 	public ModelAndView noticeUpdate(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:list");
+		ModelAndView mv = new ModelAndView("redirect:/admin/notice/list");
 		System.out.println("commandMap.getMap():"+commandMap.getMap());
 		noticeService.NoticeUpdate(commandMap.getMap());
 

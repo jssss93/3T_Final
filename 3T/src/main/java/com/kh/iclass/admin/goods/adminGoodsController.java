@@ -31,8 +31,13 @@ public class adminGoodsController {
 	public ModelAndView goodsList(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("goods.adminGoodsList");
 
-		Map<String, Object> resultMap = goodsService.goodsList(commandMap.getMap());
-
+		Map<String, Object> resultMap =null;
+		
+		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
+			resultMap = goodsService.goodsList(commandMap.getMap());
+		else
+			resultMap = goodsService.goodsAdminSearchList(commandMap.getMap());
+			
 		/*
 		 * mv.addObject("paginationInfo", (PaginationInfo)
 		 * resultMap.get("paginationInfo"));
