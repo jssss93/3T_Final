@@ -10,6 +10,11 @@ import com.kh.iclass.common.dao.AbstractDAO;
 @Repository("adminMemberDAO")
 public class AdminMemberDAO extends AbstractDAO {
 	
+	@SuppressWarnings("unchecked")
+	public Map<String,Object> memberAll() throws Exception
+	{
+		return (Map<String,Object>) selectOne("adminMember.memberAll");
+	}
 	//회원리스트
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> memberList(Map<String, Object> map) throws Exception{
@@ -39,6 +44,8 @@ public class AdminMemberDAO extends AbstractDAO {
 	public void insertCoupon(Map<String, Object> map) throws Exception{
 		insert("adminMember.insertCoupon", map);
 	}
+	
+	
 
 	
 }

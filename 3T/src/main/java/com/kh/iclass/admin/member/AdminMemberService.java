@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface AdminMemberService {
 
+	//맴버수
+	Map<String, Object> memberAll() throws Exception;
+	
 	// 회원 전체목록 불러오기
 	Map<String, Object> memberList(Map<String, Object> map) throws Exception;
 	Map<String, Object> memberSearchList(Map<String, Object> map) throws Exception;

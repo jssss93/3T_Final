@@ -64,7 +64,7 @@
                         </a>
 						</div>
 						<div class="col-sm-6" style="text-align: right;">
-							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">총 회원수 : ${totalCount}</div>
+							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">총 회원수 : ${memberAll.MEMBERALL}</div>
 						</div>
 					</div>
 					<div class="row">
@@ -73,16 +73,16 @@
 								id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
 								<thead>
 									<tr role="row">
-										<th style="width: 5%; text-align: center;">번호</th>
+										<th style="width: 4%; text-align: center;">번호</th>
 										<th style="width: 8%; text-align: center;">아이디</th>
-										<th style="width: 20%; text-align: center;">쿠폰</th>
+										<th style="width: 11%; text-align: center;">쿠폰</th>
 										<th style="width: 7%; text-align: center;">이름</th>
 										<th style="width: 10%; text-align: center;">생년월일</th>
 										<th style="width: 9%; text-align: center;">전화번호</th>
 										<th style="width: 14%; text-align: center;">이메일</th>
-										<th style="width: 29%; text-align: center;">주소</th>
-										<th style="width: 5%; text-align: center;">가입날짜</th>
-										<th style="width: 13%; text-align: center;">수정,삭제</th>
+										<th style="width: 20%; text-align: center;">주소</th>
+										<th style="width: 8%; text-align: center;">가입날짜</th>
+										<th style="width: 8%; text-align: center;">수정,삭제</th>
 									</tr>
 									
 								</thead>
@@ -99,7 +99,7 @@
 											</td>
 											<td style="text-align: center; vertical-align: middle;">
 												<form action="/3T/admin/GiftCoupon">
-													<input type="text" id="CONTENT" name="CONTENT" style="width: 130px; text-align: center;">
+													<input type="text" id="CONTENT" name="CONTENT" placeholder="ex)숫자만입력" style="width: 130px; text-align: center;">
 													<input type="submit" value="주기">
 													<input type="hidden" id="MEMBER_ID" name="MEMBER_ID" value="${memberList.MEMBER_ID}">
 												</form>
