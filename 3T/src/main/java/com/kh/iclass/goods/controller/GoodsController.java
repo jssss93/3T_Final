@@ -78,13 +78,15 @@ public class GoodsController {
    
    @RequestMapping(value = "/goods/detail")
    @Transactional
-   public ModelAndView goodsDetail(CommandMap commandMap) throws Exception {
+   public ModelAndView goodsDetail(CommandMap commandMap,HttpServletRequest request) throws Exception {
+	   if(request.getSession().getAttribute("GOODS_NO")!=null) {
+		   	request.removeAttribute("GOODS_NO");
+	   }
+       ModelAndView mv = new ModelAndView("goods/goodsdetail");
 
-      ModelAndView mv = new ModelAndView("goods/goodsdetail");
-
-      goodsService.updateHitcnt(commandMap.getMap());
+       goodsService.updateHitcnt(commandMap.getMap());
       
-      List<Map<String, Object>> goodsDetail = goodsService.selectGoodsDetail(commandMap.getMap());
+       List<Map<String, Object>> goodsDetail = goodsService.selectGoodsDetail(commandMap.getMap());
       System.out.println("goodsDetail:"+goodsDetail);
       Map<String, Object> goodsBasic = goodsDetail.get(0);
       

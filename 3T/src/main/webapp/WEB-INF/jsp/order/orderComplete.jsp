@@ -280,10 +280,10 @@
 									</tr>
 								</tfoot>
 								<tbody class="xans-element- xans-order xans-order-normalresultlist">
-									<tr class="xans-record-">
-										<c:choose>
-											<c:when test="${fn:length(orderGoodsList) > 0}">
-												<c:forEach items="${orderGoodsList }" var="row" varStatus="stat">
+									<c:choose>
+										<c:when test="${fn:length(orderGoodsList) > 0}">
+											<c:forEach items="${orderGoodsList }" var="row" varStatus="stat">
+												<tr class="xans-record-">
 													<td class="thumb">
 														<a href="/3T/goods/detail?GOODS_NO=${row.GOODS_NO }">
 															<img width="75" height="75"	src="/3T/resources/upload/${row.IMAGE.split(',')[0] }" />
@@ -300,10 +300,10 @@
 													<td class="mileage">-</td>
 													<td class="delivery">기본배송</td>
 													<td class="total"><strong>KRW ${row.COUNT*row.PRICE}</strong></td>
-												</c:forEach>
-											</c:when>
-										</c:choose>
-									</tr>
+													</tr>
+											</c:forEach>
+										</c:when>
+									</c:choose>
 								</tbody>
 							</table>
 						</div>

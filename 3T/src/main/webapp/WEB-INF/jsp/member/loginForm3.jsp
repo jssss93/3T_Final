@@ -47,7 +47,7 @@
 				                </span>
 				      		</p>
 				      		<p>
-                				<a href="/3T/nonMember3" >비회원 구매하기</a>
+                				<a href="/3T/nonMember3" >비회원으로 이용하기</a>
                 				<span>비회원님도 상품구매가 가능하나<br>다양한회원혜택에서 제외됩니다. </span>     
             				</p>
 	                  </fieldset>

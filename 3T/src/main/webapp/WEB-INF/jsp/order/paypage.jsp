@@ -499,9 +499,11 @@ div.member p strong {
 																value="${row.PRICE }" pattern="#,###" /></strong></span>
 												</div>
 											</td>
-
-											<td>${row.COUNT }<c:if
-													test="${row.WISHLIST_NO != null }">1</c:if></td>
+												
+											<td>
+												<c:if test="${row.WISHLIST_NO == null }">${row.COUNT }</c:if>
+												<c:if test="${row.WISHLIST_NO != null }">1</c:if>
+											</td>
 
 											<td><c:if test="${memberInfo.GRADE==1 }">
 													<span class="point" value="${row.PRICE/10*0.5*row.COUNT}">
