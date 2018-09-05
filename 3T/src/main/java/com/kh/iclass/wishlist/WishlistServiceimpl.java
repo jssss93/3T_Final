@@ -1,5 +1,7 @@
 package com.kh.iclass.wishlist;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 
 import com.kh.iclass.cart.CartDAO;
+import com.kh.iclass.common.map.CommandMap;
+import com.kh.iclass.common.util.ParseInsertWish;
 import com.kh.iclass.common.util.WishToCartUtils;
 
 @Service("wishService")
@@ -22,6 +26,9 @@ public class WishlistServiceimpl implements WishlistService{
 	
 	@Resource(name = "WishToCartUtils")
 	private WishToCartUtils WishToCartUtils;
+	
+	@Resource(name = "WishUtils")
+	private ParseInsertWish WishUtils; 
 	
 	@Override
 	public void WishinsertCart(Map<String, Object> map, HttpServletRequest request) throws Exception {
@@ -64,6 +71,19 @@ public class WishlistServiceimpl implements WishlistService{
 	public List<Map<String, Object>> selectCheckedWishList(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return wishlistDAO.selectCheckedWishList(map);
+	}
+
+	@Override
+	public void insertWishlist2(CommandMap map, HttpServletRequest request) throws Exception {
+		List<Map<String, Object>> addWishList = new ArrayList<Map<String, Object>>();
+		addWishList=WishUtils.parseInsertAttribute3(map, request);
+		String[] size=(String[]) map.getList("ATTRIBUTE_NO").get(0);
+		for(int i=0;i<size.length;i++) {
+			
+			System.out.println(i+"번째:"+addWishList.get(i));
+			wishlistDAO.insertWishlist(addWishList.get(i));
+		}
+		
 	}
 
 }

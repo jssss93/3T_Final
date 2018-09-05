@@ -324,7 +324,7 @@ function chkBox(bool) { // 전체선택/해제
 										<div class="col-lg-21 col-md-20">
 											<input id="MEMBER_ID" name="MEMBER_ID" type="text"/>
 											(영문소문자/숫자, 4~16자)
-											<p class="alert1 alert-positive"></p>
+											<p class="alertId alert-positive"></p>
 										</div>
 											
 										</td>
@@ -336,21 +336,25 @@ function chkBox(bool) { // 전체선택/해제
 										<th scope="row">비밀번호 <img
 											src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"
 											alt="필수"></th>
-										<td><input id="PASSWD" name="PASSWD"
-											fw-filter="isFill&amp;isMin[4]&amp;isMax[16]" fw-label="비밀번호"
-											fw-msg="" autocomplete="off" maxlength="16"
-											0="disabled" value="" type="password"> 영문/숫자를 이용하여 4~12자로 입력하세요</td>
+										<td>
+											<div class="col-lg-21 col-md-20">
+												<input id="PASSWD2" name="PASSWD" maxlength="16" type="password"/>
+													영문/숫자를 이용하여 4~12자로 입력하세요
+												<p class="alertPass alert-positive"></p>
+											</div>	
+										</td>
 									</tr>
 									<tr>
 										<th scope="row">비밀번호 확인 <img
 											src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"
 											alt="필수"></th>
-										<td><input id="PASSWD2"
-											name="PASSWD2"
-											fw-filter="isFill&amp;isMatch[passwd]" fw-label="비밀번호 확인"
-											fw-msg="비밀번호가 일치하지 않습니다." autocomplete="off" maxlength="16"
-											0="disabled" value="" type="password"> <span
-											id="pwConfirmMsg"></span> 비밀번호를 재입력 해주세요</td>
+										<td>
+											<div class="col-lg-21 col-md-20">
+												<input id="PASSWD2" name="PASSWD2" maxlength="16" type="password"/>
+												(영문소문자/숫자, 4~16자)
+												<p class="alertPass2 alert-positive"></p>
+											</div>
+										</td>
 									</tr>
 									
 									<tr>
@@ -881,24 +885,98 @@ function chkBox(bool) { // 전체선택/해제
 			</div>
 		</div>
 	</div>
-</body>S
+</body>
 <script type="text/javascript">
 $("input[name=MEMBER_ID]").blur(function(){
 	console.log("dd");
 	var MEMBER_ID = $(this).val();
 	var p = $(this).parent();
-	$.post("/3T/checkId",{MEMBER_ID:MEMBER_ID},function(data){
+	$.post("/3T/checkId",{MEMBER_ID:MEMBER_ID},function(data)
+	{
 		if (!MEMBER_ID){
-			$(".alert1",p).removeClass("alert-positive").addClass("alert-negative").html("필수정보입니다.");
+			$(".alertId",p).removeClass("alert-positive").addClass("alert-negative").html("<span style='color:red'>필수정보입니다.</span>");
 			//$("input[name=chkid]").val("");
 		} else if (data==1){
-			$(".alert1",p).removeClass("alert-positive").addClass("alert-negative").html("누군가 쓰고있네요..");
+			$(".alertId",p).removeClass("alert-positive").addClass("alert-negative").html("<span style='color:red'>누군가 쓰고있네요..</span>");
 			//$("input[name=chkid]").val("");
 		} else {
-			$(".alert1",p).removeClass("alert-negative").addClass("alert-positive").html("멋진아이디네요!!");
+			$(".alertId",p).removeClass("alert-negative").addClass("alert-positive").html("<span style='color:blue'>멋진아이디네요!!</span>");
 			//$("input[name=chkid]").val("on");
 		}
 	});		
 });
+
+$("input[name=PASSWD]").blur(function(){ 
+	var PASSWD = $(this).val();
+	var ID = $("input[name=MEMBER_ID]").val();
+	var p = $(this).parent();
+    var chkNum = PASSWD.search(/[0-9]/g);  // 숫자
+//  var chkEngA = PASSWD.search(/[A-Z]/g);  // 영문 대문자
+//  var chkEnga = PASSWD.search(/[a-z]/g);  // 영문 소문자
+  	var chkEngAa = PASSWD.search(/[A-Za-z]/g);  // 영문 대소문자
+  	var chkSpecial = PASSWD.search(/[!@#$%^&*()\-_=+\\\/\[\]{};:\`",.<>\/?]/g);  // 특수문자
+  	var chkCnt = 0;
+	
+    if(chkNum >= 0) { chkCnt += 1; }
+//  if(chkEngA >= 0) { chkCnt += 1; }
+//  if(chkEnga >= 0) { chkCnt += 1; }
+  	if(chkEngAa >= 0) { chkCnt += 1; }
+  	if(chkSpecial >= 0) { chkCnt += 1; }
+  	
+
+  	
+	console.log(PASSWD);
+	console.log(PASSWD2);
+	
+	if (!PASSWD){
+		$(".alertPass",p).removeClass("alert-positive").addClass("alert-negative").html("<span style='color:red'>필수정보입니다.</span>");
+		//$("input[name=chkid]").val("");
+	}
+	else if (chkCnt < 3)
+	{
+		$(".alertPass",p).removeClass("alert-positive").addClass("alert-negative").html("<span style='color:red'>[비밀번호]는 숫자와 영대소문자 및 특수문자 중 3종류이상 혼용하여야 합니다.</span>");
+		//$("input[name=chkid]").val(""); 
+	} 
+	else if(/(\w)\1\1\1/.test(PASSWD))
+	{
+		$(".alertPass",p).removeClass("alert-positive").addClass("alert-negative").html("<span style='color:red'>[비밀번호]에 같은 문자를 연속으로 4번이상 사용하실 수 없습니다.</span>");
+		//$("input[name=chkid]").val("on"); 
+	}
+	else if (PASSWD.indexOf(ID) > -1)
+	{
+		$(".alertPass",p).removeClass("alert-positive").addClass("alert-negative").html("<span style='color:red'>[비밀번호]는 사용자ID와 동일하거나 이를 포함한 비밀번호를 사용하실 수 없습니다.</span>");
+		
+		if(!ID)
+		{
+			$(".alertPass",p).removeClass("alert-positive").addClass("alert-negative").html("<span style='color:red'>사용자 ID를 입력해주세요.</span>");
+		}
+	}
+	else
+	{
+		$(".alertPass",p).removeClass("alert-negative").addClass("alert-positive").html("<span style='color:blue'>사용가능한 비밀번호 입니다.</span>");
+	}
+	
+});
+
+
+$("input[name=PASSWD2]").blur(function(){ 
+	var PASSWD = $("input[name=PASSWD]").val();
+	var PASSWD2 = $(this).val(); 
+	var p = $(this).parent();
+	
+	console.log(PASSWD);
+	console.log(PASSWD2);
+	
+	if (PASSWD == PASSWD2)
+	{
+		$(".alertPass2",p).removeClass("alert-positive").addClass("alert-negative").html("<span style='color:blue'>비밀번호가 일치합니다.</span>");
+		//$("input[name=chkid]").val(""); 
+	} 
+	else 
+	{
+		$(".alertPass2",p).removeClass("alert-negative").addClass("alert-positive").html("<span style='color:red'>비밀번호가 일치하지 않습니다. 다시작성해주세요.</span>");
+		//$("input[name=chkid]").val("on"); 
+	} 
+	}); 
 </script>
 </html>
