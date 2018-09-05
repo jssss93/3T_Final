@@ -208,8 +208,13 @@ SELECT
 FROM
 	WISHLIST
 WHERE
-	MEMBER_ID = #{MEMBER_ID} AND ATTRIBUTE_NO = #{ATTRIBUTE_NO}
-]]>
+	MEMBER_ID = #{MEMBER_ID} AND
+	ATTRIBUTE_NO IN
+	]]>
+	 <foreach collection="attribute_no" item="item" index="index" separator="," open="(" close=")" >
+	      #{item}
+	 </foreach>
+	 
 </select>
 	
 

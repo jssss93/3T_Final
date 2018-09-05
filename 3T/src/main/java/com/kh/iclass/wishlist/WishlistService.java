@@ -4,6 +4,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.kh.iclass.common.map.CommandMap;
+
 import java.util.List;
 
 public interface WishlistService {
@@ -22,5 +24,8 @@ public interface WishlistService {
 	public void deleteAllWishlist(Map<String, Object> map) throws Exception;
 	
 	public List<Map<String, Object>> selectCheckedWishList(Map<String, Object> map) throws Exception;
+	
+	public void insertWishlist2(CommandMap map, HttpServletRequest request) throws Exception;
+
 
 }
