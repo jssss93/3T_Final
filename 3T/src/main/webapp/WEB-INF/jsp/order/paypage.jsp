@@ -530,7 +530,7 @@ div.member p strong {
 
                                  <td>
                                     <div class="txtInfo">
-                                       기본배송<br>
+                                       	기본배송<br>
                                     </div>
                                  </td>
                                  <td>[조건]</td>
@@ -691,7 +691,7 @@ div.member p strong {
                      </select>
                         <p class="gBlank5">
                            이메일을 통해 주문처리과정을 보내드립니다.<br> 이메일 주소란에는 반드시 수신가능한 이메일주소를 입력해
-                           주세요.
+                           주세요. 
                         </p></td>
                   </tr>
                </tbody>
@@ -699,9 +699,57 @@ div.member p strong {
          </div>
       </div>
 
+	<div class="title">
+         <h3>할인 예정 금액</h3>
+    </div>
+    <div class="totalArea">
+    <div class="ec-base-table typeList gBorder total">
 
 
 
+	<table border="1" summary="">
+               <tbody class="">
+                  <tr>
+                     <th scope="row">적립금</th>
+                     <td>
+                        <p>
+                           <input type="text" id="usePoint" onblur="discount_Fun()">
+                           원 (총 사용가능 적립금 : <strong class="memberPoint">${memberInfo.POINT }</strong>원)
+                           <input type="hidden" name="USEPOINT" class="usePoint2">
+                        </p>
+                        <ul class="info">
+                           <li>적립금은 최소 100 이상일 때 결제가 가능합니다.</li>
+                           <li id="mileage_max_unlimit" class="">최대 사용금액은 제한이 없습니다.</li>
+                           <li>적립금으로만 결제할 경우, 결제금액이 0으로 보여지는 것은 정상이며 [결제하기] 버튼을 누르면
+                              주문이 완료됩니다.</li>
+                        </ul>
+                     </td>
+                     <td>총 적립예정 포인트 : <span class="pointSum"> <strong><fmt:formatNumber
+                                 value="0" pattern="#,###" /></strong>P
+
+                     </span> <input type="hidden" name="ADDPOINT" class="pointSum2">
+                     </td>
+                  </tr>
+               </tbody>
+               <tbody class="">
+                                    <tr>
+                     <th scope="row">쿠폰</th>
+                            <td>
+								<a class="board_subject4" type="button" onclick="javascript:open_win_noresizable('/3T/order/couponList', write)" >
+									쿠폰
+								</a>
+                                
+                     		</td>
+                    	<td>
+                        	<ul id = "coupon_list" class="info">
+                        
+                        	</ul>	
+                        </td>
+                  </tr>
+               </tbody>
+            </table>
+		</div>
+	</div>
 
 
 
@@ -755,47 +803,7 @@ div.member p strong {
                   </tr>
                </tbody>
                </table>
-               <table border="1" summary="">
-               <tbody class="">
-                  <tr>
-                     <th scope="row">적립금</th>
-                     <td>
-                        <p>
-                           <input type="text" id="usePoint" onblur="discount_Fun()">
-                           원 (총 사용가능 적립금 : <strong class="memberPoint">${memberInfo.POINT }</strong>원)
-                           <input type="hidden" name="USEPOINT" class="usePoint2">
-                        </p>
-                        <ul class="info">
-                           <li>적립금은 최소 100 이상일 때 결제가 가능합니다.</li>
-                           <li id="mileage_max_unlimit" class="">최대 사용금액은 제한이 없습니다.</li>
-                           <li>적립금으로만 결제할 경우, 결제금액이 0으로 보여지는 것은 정상이며 [결제하기] 버튼을 누르면
-                              주문이 완료됩니다.</li>
-                        </ul>
-                     </td>
-                     <td>총 적립예정 포인트 : <span class="pointSum"> <strong><fmt:formatNumber
-                                 value="0" pattern="#,###" /></strong>P
-
-                     </span> <input type="hidden" name="ADDPOINT" class="pointSum2">
-                     </td>
-                  </tr>
-               </tbody>
-               <tbody class="">
-                                    <tr>
-                     <th scope="row">쿠폰</th>
-                            <td>
-								<a class="board_subject4" type="button" onclick="javascript:open_win_noresizable('/3T/order/couponList', write)" >
-									쿠폰
-								</a>
-                                
-                     		</td>
-                    	<td>
-                        	<ul id = "coupon_list" class="info">
-                        
-                        	</ul>	
-                        </td>
-                  </tr>
-               </tbody>
-            </table>
+               
          </div>
       </div>
       <!-- 결제수단 -->

@@ -160,6 +160,11 @@ public class MemberDAO extends AbstractDAO {
 	/*public int checkMember(Map<String, Object> map) throws Exception{
 		return selectMemberId("member.checkMember", map);
 	*/
-	
+	//관리자 메세지 검색
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> AdminSearchmyMessage(Map<String, Object> map) throws Exception
+	{
+		return (List<Map<String, Object>>)selectList("member.AdminSearchmyMessage", map);
+	}
 	
 }

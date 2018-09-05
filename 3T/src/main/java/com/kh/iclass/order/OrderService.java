@@ -60,4 +60,7 @@ public interface OrderService {
 
 	public Map<String, Object> selectOrderMemberInfo(Map<String, Object> map);
 
+	Map<String, Object> selectDetailList(Map<String, Object> map) throws Exception;
+	
+	List<Map<String, Object>> selectAdminDetailList(Map<String, Object> map) throws Exception;
 }

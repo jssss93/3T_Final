@@ -146,6 +146,12 @@ public class GoodsDAO extends AbstractDAO{
 			update("goods.updateGoodsCnt", map);
 		}
 		
+		//관리자 상품 전제 검색
+		
+				@SuppressWarnings("unchecked")
+				public Map<String, Object> goodsAdminSearchList(Map<String, Object> map) throws Exception{
+				    return (Map<String, Object>)selectPagingList("goods.goodsAdminSearchList", map);
+				}
 
 
 

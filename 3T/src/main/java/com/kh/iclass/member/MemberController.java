@@ -293,8 +293,11 @@ public class MemberController {
 		System.out.println("아이디" + commandMap.get("MEMBER_ID"));
 		commandMap.put("TOMEMBER", request.getSession().getAttribute("MEMBER_ID"));
 
+		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
 		list = memberService.myMessage(commandMap.getMap());
-
+		else
+			list = memberService.AdminSearchmyMessage(commandMap.getMap());
+			
 		mv.addObject("list", list);
 
 		return mv;

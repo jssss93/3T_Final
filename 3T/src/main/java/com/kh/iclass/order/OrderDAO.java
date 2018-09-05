@@ -136,7 +136,14 @@ public class OrderDAO extends AbstractDAO {
 	public Map<String, Object> selectOrderMemberInfo(Map<String, Object> map) {
 		return (Map<String, Object>) selectOne("order.selectOrderMemberInfo", map);
 	}
-
+	//관리자 주문 상세보기
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> selectDetailList(Map<String, Object> map) throws Exception{
+		return (Map<String, Object>) selectOne("order.selectDetailList", map);
+	}
 	
-	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectAdminDetailList(Map<String, Object> map) throws Exception {
+		return selectList("order.selectAdminDetailList", map);
+	}
 }
