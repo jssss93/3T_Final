@@ -150,6 +150,11 @@ public class CartServiceImpl implements CartService {
 		}
 	}
 
+	@Override
+	public void deleteCartAuto(Map<String, Object> map) {
+		cartDAO.deleteCartAuto(map);
+	}
+
 
 	
 

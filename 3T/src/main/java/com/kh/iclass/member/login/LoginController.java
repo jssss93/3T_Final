@@ -126,6 +126,10 @@ public class LoginController {
 			if (chk.get("PASSWD").equals(commandMap.get("PASSWD"))) {
 				// 세션에 아이디를 넣어라
 				session.setAttribute("MEMBER_ID", commandMap.get("MEMBER_ID"));
+				
+				//7일지난거 자동삭제.
+				cartService.deleteCartAuto(commandMap.getMap());
+				
 				mv.addObject("MEMBER", chk); 
 				
 				 // 쿠키 사용한다는게 체크되어 있으면...

@@ -146,4 +146,9 @@ public class OrderDAO extends AbstractDAO {
 	public List<Map<String, Object>> selectAdminDetailList(Map<String, Object> map) throws Exception {
 		return selectList("order.selectAdminDetailList", map);
 	}
+
+	public void deleteCoupon(Map<String, Object> map) {
+		delete("order.deleteCoupon", map);
+		
+	}
 }

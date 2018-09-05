@@ -120,6 +120,9 @@ public class CartDAO extends AbstractDAO {
 	public void countChange(Map<String, Object> map) {
 		update("cart.updateCountChange", map);
 	}
+	public void deleteCartAuto(Map<String, Object> map) {
+		delete("cart.deleteCartAuto", map);
+	}
 
 	
 	

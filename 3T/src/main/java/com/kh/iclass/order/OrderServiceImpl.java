@@ -62,6 +62,10 @@ public class OrderServiceImpl implements OrderService {
 		if(map.get("USEPOINT")!=null) 
 			orderDAO.subPoint(map);
 		
+		//쿠폰사용
+		if(map.get("COUPON_NO")!=null) {
+			orderDAO.deleteCoupon(map);
+		}
 		
 		
 	}
