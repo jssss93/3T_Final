@@ -59,5 +59,7 @@ public interface CartService {
 
 	public void insertCart2(CommandMap map, HttpServletRequest request) throws Exception;
 
+	public void deleteCartAuto(Map<String, Object> map);
+
 
 }

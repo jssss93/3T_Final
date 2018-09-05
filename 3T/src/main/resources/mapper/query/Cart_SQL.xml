@@ -434,7 +434,7 @@
 			DELETE FROM 
 				CART 
 			WHERE 
-				REGDATE<SYSDATE-3 AND 
+				REGDATE<SYSDATE-7 AND 
 				MEMBER_ID= #{MEMBER_ID}
 		]]>
 	</delete>

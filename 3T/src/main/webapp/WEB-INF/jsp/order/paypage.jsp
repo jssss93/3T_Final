@@ -7,81 +7,52 @@
 <head>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
+function sample7_execDaumPostcode() {
+    new daum.Postcode(
+          {
+             oncomplete : function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-function open_win_noresizable(url, name) {
-	var oWin = window
-			.open(url, name,
-					"scrollbars=no, status=no, resizable=no, width=700, height=500");
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var fullAddr = ''; // 최종 주소 변수
+                var extraAddr = ''; // 조합형 주소 변수
 
+                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                   fullAddr = data.roadAddress;
 
-}
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                   fullAddr = data.jibunAddress;
+                }
 
-function onCallback (no, content) {
-	console.log("select is ")
-	console.log(no)
-	console.log()
-	
-	$('#coupon_list').html(
-		'<li>' +
-		content + "원 할인 " +
-		'<input type="hidden" value='+no+'>' +
-		'</li>')
-		
-	$('#total_sale_price_view').html(
-		content
-		)
-		
-		
-}
-   
-   function sample7_execDaumPostcode() {
-      new daum.Postcode(
-            {
-               oncomplete : function(data) {
-                  // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+                if (data.userSelectedType === 'R') {
+                   //법정동명이 있을 경우 추가한다.
+                   if (data.bname !== '') {
+                      extraAddr += data.bname;
+                   }
+                   // 건물명이 있을 경우 추가한다.
+                   if (data.buildingName !== '') {
+                      extraAddr += (extraAddr !== '' ? ', '
+                            + data.buildingName : data.buildingName);
+                   }
+                   // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                   fullAddr += (extraAddr !== '' ? ' (' + extraAddr
+                         + ')' : '');
+                }
 
-                  // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-                  // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                  var fullAddr = ''; // 최종 주소 변수
-                  var extraAddr = ''; // 조합형 주소 변수
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('mzipcode').value = data.zonecode; //5자리 새우편번호 사용
+                document.getElementById('maddr1').value = fullAddr;
 
-                  // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-                  if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                     fullAddr = data.roadAddress;
-
-                  } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                     fullAddr = data.jibunAddress;
-                  }
-
-                  // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-                  if (data.userSelectedType === 'R') {
-                     //법정동명이 있을 경우 추가한다.
-                     if (data.bname !== '') {
-                        extraAddr += data.bname;
-                     }
-                     // 건물명이 있을 경우 추가한다.
-                     if (data.buildingName !== '') {
-                        extraAddr += (extraAddr !== '' ? ', '
-                              + data.buildingName : data.buildingName);
-                     }
-                     // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-                     fullAddr += (extraAddr !== '' ? ' (' + extraAddr
-                           + ')' : '');
-                  }
-
-                  // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                  document.getElementById('mzipcode').value = data.zonecode; //5자리 새우편번호 사용
-                  document.getElementById('maddr1').value = fullAddr;
-
-                  // 커서를 상세주소 필드로 이동한다.
-                  document.getElementById('maddr2').focus();
-               }
-            }).open();
-   }
-</script>
-
-<script type="text/javascript">
-   //F5키 막기
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById('maddr2').focus();
+             }
+          }).open();
+ }
+ 
+//F5키 막기
 window.onkeydown = function() {
    var kcode = event.keyCode;
    if(kcode == 116) event.returnValue = false;
@@ -92,6 +63,46 @@ function comma(str) {
     return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
 }
 
+ 
+function open_win_noresizable(url, name) {
+	var oWin = window
+			.open(url, name,
+					"scrollbars=no, status=no, resizable=no, width=700, height=500");
+
+
+}
+//최종 결제 금액(포인트적용후)
+var accountPrice2 	= 0;
+var couponPrice = 0;
+	couponPrice = parseInt(couponPrice);
+function onCallback (no, content) {
+	couponPrice = content;
+	console.log(couponPrice);
+	$('#coupon_list').html(
+		'<li>' +
+		content + "원 할인 " +
+		'</li>'/* +
+		'<input type="hidden" name="COUPON_NO" value='+no+'>' */)
+		//이거로 값 왜 안넘어가지는거지?
+	couponPrice	=content;
+	discountPrice=parseInt(usePoint) + parseInt(couponPrice);
+	
+	accountPrice=totalSum - discountPrice;
+	
+	$(".totalSum").html(comma(accountPrice)+" KRW");
+    $(".discount").html("-"+comma(discountPrice)+" KRW");
+    
+    $("#COUPON_NO").val(no);
+    $(".totalSum2").val(accountPrice);
+    $(".memberPoint").val(memberPoint -usePoint);
+}
+   
+  
+</script>
+
+<script type="text/javascript">
+
+
    	var sum          	= 0;
    	var delivery       	= 0;
    	var totalSum       	= 0;
@@ -100,34 +111,49 @@ function comma(str) {
   	var usePoint       	= 0;
    	var memberPoint		= parseInt('<c:out value="${memberInfo.POINT}"/>');
 	var memberGrade		= parseInt('<c:out value="${memberInfo.GRADE}"/>');
-   
+    
+	//최종 결제 금액(포인트적용후)
+	var accountPrice 	= 0;
+	
 function discount_Fun(){
       
    console.log("discount_Fun()시작!");
    if($("#usePoint").val()!=null){
+	   
       /* $("#usePoint").val("0"); */
       usePoint = $("#usePoint").val();
          
       if(usePoint > memberPoint){
          $("#usePoint").val("0");
-         alert("보유 포인트보다 적은 금액을 입력해주세요");
+         alert("사용가능 적립금보다 적은 금액을 입력해주세요");
          return false;
       }
       
       
          
-      discountPrice=usePoint;
+      discountPrice=parseInt(usePoint) + parseInt(couponPrice);
+      console.log("test");
+      console.log(usePoint);
+      console.log(couponPrice);
       console.log(discountPrice);
       
-      totalSum=totalSum-discountPrice;
+      accountPrice=totalSum-discountPrice;
       
-      $(".totalSum").html(comma(totalSum)+" KRW");
-      $(".discount").html(comma(discountPrice)+" KRW");
-      $(".totalSum2").val(totalSum);
+      $("#use_point").html(
+    	'<li>' +
+    		"-"+usePoint + "원 할인 " +
+    	'</li>');
+      
+      $(".totalSum").html(comma(accountPrice)+" KRW");
+      $(".discount").html("-"+comma(discountPrice)+" KRW");
+      
+      $(".totalSum2").val(accountPrice);
       $(".memberPoint").val(memberPoint -usePoint);
       $(".usePoint2").val(usePoint);
    }
 }
+
+
 
 //체크박스 단일 선택
 function checkedRows(index){
@@ -135,13 +161,13 @@ function checkedRows(index){
    var tagName = "#checkbox"+index;
    
    //price 클래스의 value 값을 가져온다.
-   var price       =    $(".price").eq(index).attr("value");
-   var totprice   =   $(".totprice").eq(index).attr("value");
-   var point      =    $(".point").eq(index).attr("value");
+   var price	=    $(".price").eq(index).attr("value");
+   var totprice	=    $(".totprice").eq(index).attr("value");
+   var point    =    $(".point").eq(index).attr("value");
    
-   price       =    parseInt(price);
-   totprice    =    parseInt(totprice);
-   point      =   parseInt(point);
+   price      	=    parseInt(price);
+   totprice   	=    parseInt(totprice);
+   point      	=    parseInt(point);
    
    console.log("price:"+price);
    console.log("totPrice:"+totprice);
@@ -445,10 +471,9 @@ div.member p strong {
                      <td class=""></td>
                      <td colspan="8"><span class="gLeft">[기본배송]</span> 상품구매금액 <strong
                         class="totalPrice">0 KRW </strong> + 배송비 <strong
-                        class="delivery">3000 KRW </strong> -상품할인금액 <strong
-                        class="discount">0 KRW </strong> = 합계 : <strong
-                        class="txtEm gIndent10">(여기 빨간색 글자키워줘) <span
-                           id="domestic_ship_fee_sum" class="totalSum">0 KRW</span>
+                        class="delivery">3000 KRW </strong>  = 합계 : <strong
+                        class="txtEm gIndent10"> <span
+                           id="domestic_ship_fee_sum" class="totalPrice">0 KRW</span>
                      </strong></td>
                   </tr>
                </tfoot>
@@ -699,58 +724,70 @@ div.member p strong {
          </div>
       </div>
 
-	<div class="title">
-         <h3>할인 예정 금액</h3>
-    </div>
-    <div class="totalArea">
-    <div class="ec-base-table typeList gBorder total">
-
-
-
-	<table border="1" summary="">
-               <tbody class="">
-                  <tr>
-                     <th scope="row">적립금</th>
-                     <td>
-                        <p>
-                           <input type="text" id="usePoint" onblur="discount_Fun()">
-                           원 (총 사용가능 적립금 : <strong class="memberPoint">${memberInfo.POINT }</strong>원)
-                           <input type="hidden" name="USEPOINT" class="usePoint2">
-                        </p>
-                        <ul class="info">
-                           <li>적립금은 최소 100 이상일 때 결제가 가능합니다.</li>
-                           <li id="mileage_max_unlimit" class="">최대 사용금액은 제한이 없습니다.</li>
-                           <li>적립금으로만 결제할 경우, 결제금액이 0으로 보여지는 것은 정상이며 [결제하기] 버튼을 누르면
-                              주문이 완료됩니다.</li>
-                        </ul>
-                     </td>
-                     <td>총 적립예정 포인트 : <span class="pointSum"> <strong><fmt:formatNumber
-                                 value="0" pattern="#,###" /></strong>P
-
-                     </span> <input type="hidden" name="ADDPOINT" class="pointSum2">
-                     </td>
-                  </tr>
-               </tbody>
-               <tbody class="">
-                                    <tr>
-                     <th scope="row">쿠폰</th>
-                            <td>
-								<a class="board_subject4" type="button" onclick="javascript:open_win_noresizable('/3T/order/couponList', write)" >
-									쿠폰
-								</a>
-                                
-                     		</td>
-                    	<td>
-                        	<ul id = "coupon_list" class="info">
-                        
-                        	</ul>	
-                        </td>
-                  </tr>
-               </tbody>
-            </table>
+	<c:if test="${memberInfo.NAME !=null}">
+		<div class="title">
+	         <h3>할인 정보</h3>
+	    </div>
+	    <div class="totalArea">
+	    <div class="ec-base-table typeList gBorder total">
+	
+	
+	
+		<table border="1" summary="">
+	               <tbody class="">
+	                  <tr>
+	                     <th scope="row">적립금</th>
+	                     <td>
+	                        <p>
+	                           <input type="text" id="usePoint" onblur="discount_Fun()">
+	                           원 (총 사용가능 적립금 : <strong class="memberPoint">${memberInfo.POINT }</strong>원)
+	                           <input type="hidden" name="USEPOINT" class="usePoint2">
+	                        </p>
+	                        <ul class="info">
+	                           <li>적립금은 최소 100 이상일 때 결제가 가능합니다.</li>
+	                           <li id="mileage_max_unlimit" class="">최대 사용금액은 제한이 없습니다.</li>
+	                           <li>적립금으로만 결제할 경우, 결제금액이 0으로 보여지는 것은 정상이며 [결제하기] 버튼을 누르면
+	                              주문이 완료됩니다.</li>
+	                        </ul>
+	                     </td>
+	                     <td>
+	                     	<ul>
+	                     		<li>
+			                     	총 적립예정 포인트 : 
+			                     	<span class="pointSum"> 
+			                     	<strong><fmt:formatNumber value="0" pattern="#,###" /></strong>P
+			                     	</span> 
+			                     	<input type="hidden" name="ADDPOINT" class="pointSum2">
+		                     	</li>
+		                     	
+	                     	</ul>
+	                     	<ul id="use_point">
+	                     		
+	                     	</ul>
+	                     </td>
+	                  </tr>
+	               </tbody>
+	               <tbody class="">
+	                                    <tr>
+	                     <th scope="row">쿠폰</th>
+	                            <td>
+									<a class="board_subject4" type="button" onclick="javascript:open_win_noresizable('/3T/order/couponList', write)" >
+										쿠폰
+									</a>
+	                                
+	                     		</td>
+	                    	<td>
+	                        	<ul id = "coupon_list" class="info">
+	                        
+	                        	</ul>
+	                        	<input type="hidden" name="COUPON_NO" id="COUPON_NO">	
+	                        </td>
+	                  </tr>
+	               </tbody>
+	            </table>
+			</div>
 		</div>
-	</div>
-
+	</c:if>
 
 
 
@@ -780,24 +817,24 @@ div.member p strong {
                      <td>
                         <div class="box txt16">
                            <strong> <span id="total_order_price_view"
-                              class="totalPrice">여기도0</span>
-                           </strong>KRW
+                              class="totalPrice">0 KRW</span>
+                           </strong>
                         </div>
                      </td>
                      <td class="option ">
                         <div class="box txt16">
-                           <strong>-</strong> <strong> 
+                           <strong></strong> <strong> 
                            <span id="total_sale_price_view" class="discount">
-
+								-0 KRW
 							</span>
-                           </strong>KRW
+                           </strong>
                         </div>
                      </td>
                      <td>
                         <div class="box txtEm txt16">
                            <strong>=</strong> <strong> <span
-                              id="total_order_sale_price_view" class="totalSum">여기도0</span>
-                           </strong>KRW
+                              id="total_order_sale_price_view" class="totalSum">0 KRW</span>
+                           </strong>
                         </div>
                      </td>
                   </tr>

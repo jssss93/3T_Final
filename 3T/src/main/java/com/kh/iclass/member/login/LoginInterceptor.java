@@ -20,8 +20,12 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 					System.out.println("*******************************");
 					System.out.println("request.getParameter(\"GOODS_NO\")=="+request.getParameter("GOODS_NO"));
 					request.getSession().setAttribute("GOODS_NO",request.getParameter("GOODS_NO") );
+					if(request.getParameter("optno[]")!=null) {
+						request.getSession().setAttribute("optno[]", request.getParameter("optno[]"));
+					}else {
+						
+					}
 					response.sendRedirect("/3T/loginForm3");
-					
 					System.out.println("여러개일때?");
 					System.out.println("로그인인터셉터로 넘어오는값:");
 					System.out.println(request.getParameterValues("attribute_no[]"));

@@ -166,6 +166,8 @@ public class OrderController {
 	
 	@RequestMapping(value = "order/insert")	
 	public ModelAndView addInsert(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		System.out.println("쿠폰확인");
+		System.out.println(commandMap.getMap());
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
 		commandMap.put("cart_No", commandMap.get("cart_No"));

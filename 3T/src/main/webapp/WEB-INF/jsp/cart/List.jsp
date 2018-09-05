@@ -430,8 +430,8 @@
 
 					<!-- 주문 버튼 -->
 					<div class="xans-element- xans-order xans-order-totalorder">
-						<a href="#this" id="addOrderSelected">선택상품주문</a> <a href="#this#"
-							id="addOrderAll">전체상품주문</a> <span class="right"> <a
+						<a href="#this" id="cartAddSelected">선택상품주문</a>
+						 <a href="#this"id="addOrderAll">전체상품주문</a> <span class="right"> <a
 							href="/">쇼핑계속하기</a>
 						</span>
 					</div>
@@ -471,9 +471,9 @@
 </form>
 <script type="text/javascript">
 $(document).ready(function() {
-    $("#addOrderSelected").on("click", function(e) {
+    $("#cartAddSelected").on("click", function(e) {
        e.preventDefault();
-       fn_addOrderSelected();
+       fn_cartAddSelected();
     });
     $("#addOrderAll").on("click", function(e) { 
        e.preventDefault();
@@ -495,9 +495,9 @@ $(document).ready(function() {
     
  });
  
-function fn_addOrderSelected() {
+function fn_cartAddSelected() {
 	var comSubmit = new ComSubmit("frm");
-	comSubmit.setUrl("<c:url value='/order/addSelected' />");
+	comSubmit.setUrl("<c:url value='/cart/Add/OnetoPayment' />");
 	comSubmit.submit();
 }
 	function fn_addOrderAll() {

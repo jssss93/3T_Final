@@ -753,6 +753,15 @@
 		
 	</update>
 	
+	<delete id="deleteCoupon" parameterType="hashmap">
+		DELETE FROM	
+			COUPON
+		WHERE
+			COUPON_NO= #{COUPON_NO}
+	
+	</delete>
+	
+	
 	<select id="selectOrderSearchListAll" parameterType="hashmap" resultType="hashmap">
 	
 		select
