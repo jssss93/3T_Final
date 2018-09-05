@@ -336,21 +336,22 @@ function chkBox(bool) { // 전체선택/해제
 										<th scope="row">비밀번호 <img
 											src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"
 											alt="필수"></th>
-										<td><input id="PASSWD" name="PASSWD"
-											fw-filter="isFill&amp;isMin[4]&amp;isMax[16]" fw-label="비밀번호"
-											fw-msg="" autocomplete="off" maxlength="16"
-											0="disabled" value="" type="password"> 영문/숫자를 이용하여 4~12자로 입력하세요</td>
+										<td>
+											<input id="PASSWD" name="PASSWD" maxlength="16" type="password"> 
+												영문/숫자를 이용하여 4~12자로 입력하세요
+										</td>
 									</tr>
 									<tr>
 										<th scope="row">비밀번호 확인 <img
 											src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"
 											alt="필수"></th>
-										<td><input id="PASSWD2"
-											name="PASSWD2"
-											fw-filter="isFill&amp;isMatch[passwd]" fw-label="비밀번호 확인"
-											fw-msg="비밀번호가 일치하지 않습니다." autocomplete="off" maxlength="16"
-											0="disabled" value="" type="password"> <span
-											id="pwConfirmMsg"></span> 비밀번호를 재입력 해주세요</td>
+										<td>
+											<div class="col-lg-21 col-md-20">
+												<input id="PASSWD2" name="PASSWD2" maxlength="16" type="password"/>
+												(영문소문자/숫자, 4~16자)
+												<p class="alert2 alert-positive"></p>
+											</div>
+										</td>
 									</tr>
 									
 									<tr>
@@ -881,7 +882,7 @@ function chkBox(bool) { // 전체선택/해제
 			</div>
 		</div>
 	</div>
-</body>S
+</body>
 <script type="text/javascript">
 $("input[name=MEMBER_ID]").blur(function(){
 	console.log("dd");
@@ -900,5 +901,25 @@ $("input[name=MEMBER_ID]").blur(function(){
 		}
 	});		
 });
+
+$("input[name=PASSWD2]").blur(function(){ 
+	var PASSWD = $("input[name=PASSWD]").val();
+	var PASSWD2 = $(this).val(); 
+	var p = $(this).parent();
+	
+	console.log(PASSWD);
+	console.log(PASSWD2);
+	
+	if (PASSWD == PASSWD2)
+	{
+		$(".alert2",p).removeClass("alert-positive").addClass("alert-negative").html("비밀번호가 일치합니다.");
+		//$("input[name=chkid]").val(""); 
+	} 
+	else 
+	{
+		$(".alert2",p).removeClass("alert-negative").addClass("alert-positive").html("비밀번호가 일치하지 않습니다. 다시작성해주세요.");
+		//$("input[name=chkid]").val("on"); 
+	} 
+	}); 
 </script>
 </html>
