@@ -42,7 +42,7 @@ public class AdminFaqController {
 
 	@RequestMapping(value = "/faq/write", method = RequestMethod.GET)
 	public ModelAndView faqWrtieForm(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("faq.write");
+		ModelAndView mv = new ModelAndView("faq.writeForm");
 
 		return mv;
 	}
@@ -60,7 +60,7 @@ public class AdminFaqController {
 
 	@RequestMapping(value = "/faq/updateForm")
 	public ModelAndView faqUpdateForm(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("faq.detail");
+		ModelAndView mv = new ModelAndView("faq.writeForm");
 		
 		Map<String, Object> map = faqService.FaqDetail(commandMap.getMap());
 		mv.addObject("map", map);

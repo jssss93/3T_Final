@@ -88,7 +88,7 @@
 	<div id="summernote" name="summernote" >${map.CONTENT }</div>
 	
 
-	<textarea rows="25" cols="130" id="noteArea" name="content"  style="display: none;"></textarea>
+	<textarea rows="25" cols="130" id="noteArea" name="CONTENT"  style="display: none;"></textarea>
 
 	<c:choose>
 		<c:when test="${map.TITLE == NULL }"><input type="submit" class="btn btn-default" id="submitBtn" value="등록" />	</c:when>
