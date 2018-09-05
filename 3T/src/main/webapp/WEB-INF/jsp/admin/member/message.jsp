@@ -136,11 +136,11 @@
 							<table class="notice_button">
 							</table>
 							<br />
-							<form action="/3T/admin/member/list">
+							<form action="/3T/admin/member/message">
 								<select name="SearchNum" id="SearchNum"
 									style="width: 100px; height: 30px;">
-									<option value="MEMBER_ID">아이디</option>
-									<option value="NAME">이름</option>
+									<option value="SENDMEMBER">아이디</option>
+									<option value="CONTENT">내용</option>
 								</select> <input type="text" name="SearchKeyword" id="SearchKeyword"
 									style="margin-left: 15px; width: 200px; height: 36px; border-radius: 5px 5px 5px 5px;" />
 								<input type="submit" value="검색">
