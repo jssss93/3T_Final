@@ -28,33 +28,82 @@ public class WishlistController {
 	
 	@RequestMapping(value = "/wish/addWish")
 	public ModelAndView addWish(CommandMap commandMap, HttpServletRequest request) throws Exception{
-		ModelAndView mv = new ModelAndView("redirect:/wish/wishlist");
+		ModelAndView mv = new ModelAndView("wishlist/wishsuccess");
 		
 		HttpSession session = request.getSession();
 		
-		List<Map<String, Object>> wishlist = new ArrayList<Map<String, Object>>();
+		/*List<Map<String, Object>> wishlist = new ArrayList<Map<String, Object>>();*/
 
-		commandMap.put("ATTRIBUTE_NO", commandMap.get("attribute_no[]"));
+		/*commandMap.put("ATTRIBUTE_NO", commandMap.get("attribute_no[]"));*/
 		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		String attribute_no []=request.getParameterValues("attribute_no[]");
+		System.out.println("받아오는 attribute NO 값 >>");
+		for(int i=0;i<attribute_no.length;i++) {
+			System.out.println("wish_No"+i+":"+attribute_no[i]);
+		}
+		commandMap.put("attribute_no", attribute_no);
 		
-		wishlist = wishlistService.selectwish(commandMap.getMap());
+		List<Map<String, Object>> wishlist = wishlistService.selectwish(commandMap.getMap());
 		
-		/*System.out.println("wishlist1:" +wishlist);
-		if(wishlist == null) {
-		System.out.println("wishlist2:" +wishlist);*/
+		System.out.println("wishlist1:" +wishlist);
+		//중복체크 (중복된게 없을때)
+		if(wishlist.size() == 0) {
+		System.out.println("wishlist2:" +wishlist);
 		
 		if(session.getAttribute("MEMBER_ID") != null) { 
 			commandMap.put("GOODS_NO", commandMap.get("GOODS_NO"));
 			commandMap.put("ATTRIBUTE_NO", commandMap.get("attribute_no[]"));
 			commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 			System.out.println("commandMap.getMap():"+commandMap.getMap());
+			/*wishlistService.insertWishlist2(commandMap.getMap());*/
 			
-			System.out.println("commandMap.getMap():"+commandMap.getMap());
-			wishlistService.insertWishlist(commandMap.getMap());
+			if(commandMap.get("ATTRIBUTE_NO") instanceof Object[]) {
+				//회원 위시가 존재하면  or 존재하지 않으면.
+				
+				//1개추가될때마다 속성이 하나 더들어오므로 속성으로 count 가능.
+				/*String[] Attr	=(String[]) commandMap.get("ATTRIBUTE_NO");
+				
+				List<Object> addList_Attr=new ArrayList<Object>();
+				for(int i=0;i<Attr.length;i++) {
+					addList_Attr.add(Attr[i]);
+				}
+				
+				wishlist=wishlistService.selectWishlist(commandMap.getMap());
+				List<Object> wishlist_Attr=new ArrayList<Object>();
+				
+				for(int i=0;i<wishlist.size();i++) {
+					wishlist_Attr.add(wishlist.get(i).get("ATTRIBUTE_NO"));
+				}
+				
+				//값 비교 시작.
+				for(int j=0;j<wishlist_Attr.size();j++) {
+					for(int i=0;i<addList_Attr.size();i++) {
+						if(wishlist_Attr.get(j).toString().equals(addList_Attr.get(i).toString())) {
+							mv.setViewName("error/sameAttrError");
+							System.out.println("동일속성상품 중복에러");
+							return mv;
+						}
+					}
+				}*/
+				
+				wishlistService.insertWishlist2(commandMap,request);
+				return mv;
+
 			}
-		/*}*/
+			
+		}else {
+			
+		}
+		//중복된게 있을때
+	}else {
+		mv.setViewName("wishlist/wisherror");
+		System.out.println("동일속성상품 중복에러");
 		return mv;
 	}
+		wishlistService.insertWishlist(commandMap.getMap());
+		
+		return mv;
+}
 	
 	@RequestMapping(value = "wish/wishtocart")		
 	public ModelAndView wishtocart(CommandMap commandMap, HttpServletRequest request) throws Exception {
