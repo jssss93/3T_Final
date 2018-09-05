@@ -13,7 +13,11 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 
 	@Resource(name = "adminMemberDAO")
 	private AdminMemberDAO adminMemberDAO;
-	
+
+	//맴버수
+	public Map<String, Object> memberAll() throws Exception {
+		return adminMemberDAO.memberAll();
+	}
 	// 회원 전체목록 불러오기
 	@Override
 	public Map<String, Object> memberList(Map<String, Object> map) throws Exception {

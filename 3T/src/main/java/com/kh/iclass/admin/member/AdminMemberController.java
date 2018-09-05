@@ -27,7 +27,12 @@ public class AdminMemberController {
 	@RequestMapping(value = "/member/list")
 	public ModelAndView memberList(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("member.list");
+		Map<String, Object> memberAll = new HashMap<String, Object>();
 		Map<String, Object> resultMap = null;
+		
+		memberAll = adminMemberService.memberAll();
+		
+		System.out.println("맴버?" + memberAll);
 		
 		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
 		 resultMap = adminMemberService.memberList(commandMap.getMap());
@@ -37,7 +42,8 @@ public class AdminMemberController {
 		mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
 
 		mv.addObject("memberList", resultMap.get("result"));
-
+		mv.addObject("memberAll", memberAll);
+		
 		return mv;
 	}
 

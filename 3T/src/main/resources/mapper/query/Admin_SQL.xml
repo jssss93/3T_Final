@@ -3,6 +3,14 @@
 
 <mapper namespace="adminMember">
 
+	<!-- 회원수 -->
+	<select id="memberAll" resultType="hashmap">
+		SELECT
+			COUNT(MEMBER_ID) as MEMBERALL
+		FROM
+			MEMBER	
+	</select>
+	
 	<!-- 로그인, 회원정보수정 -->
 	<select id="selectMemberList" parameterType="hashmap" resultType="hashmap">
 		<include refid="common.pagingPre"/> 
