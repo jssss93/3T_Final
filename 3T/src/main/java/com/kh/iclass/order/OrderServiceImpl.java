@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.iclass.cart.CartDAO;
 import com.kh.iclass.common.util.OrderDetailUtils;
+import com.kh.iclass.goods.dao.GoodsDAO;
 
 @Service("orderService")
 public class OrderServiceImpl implements OrderService {
@@ -20,6 +21,9 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Resource(name = "cartDAO")
 	private CartDAO cartDAO;
+	
+	@Resource(name = "goodsDAO")
+	private GoodsDAO goodsDAO;
 
 	@Resource(name = "OrderDetailUtils")
 	private OrderDetailUtils orderDetailUtils;
@@ -31,10 +35,14 @@ public class OrderServiceImpl implements OrderService {
 		orderDAO.insertOrder(map);
 		System.out.println("*************************");
 		System.out.println(map.get("ORDER_NO"));
+		
 		//주문디테일 인서트.
 		List<Map<String, Object>> detailList = orderDetailUtils.parseInsertOrderDetail(map, request);
 		for (int i = 0; i < detailList.size(); i++) {
 			orderDAO.insertOrderDetail(detailList.get(i));
+			System.out.println("시작!");
+			System.out.println(detailList.get(i));
+			goodsDAO.updateGoodsCnt(detailList.get(i));
 		}
 		//회원 카트삭제.
 		if(map.get("cart_No")!=null) {
@@ -55,7 +63,7 @@ public class OrderServiceImpl implements OrderService {
 			orderDAO.subPoint(map);
 		
 		
-		System.out.println("주문 및 카트삭제완료");
+		
 	}
 
 	@Override

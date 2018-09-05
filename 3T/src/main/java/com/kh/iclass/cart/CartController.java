@@ -35,6 +35,7 @@ public class CartController {
 	private AdminMemberService adminMemberService;
 
 	List<Map<String, Object>> sessionCartList = new ArrayList<Map<String, Object>>();
+	
 	String cartArr[];
 	int cartNo=0;
 	
@@ -51,8 +52,7 @@ public class CartController {
 		
 		HttpSession session = request.getSession();
 
-		//비회원 장바구니 등록을 위한 준비
-		Map<String, Object> cartMap = new HashMap<String, Object>();
+		
 		
 		List<Map<String, Object>> cartList = new ArrayList<Map<String, Object>>();
 		
@@ -140,44 +140,121 @@ public class CartController {
 			mv.addObject(memberInfo);
 		}
 		
-		//비회원 장바구니 등록 (세션)
-		else {
-			System.out.println("비회원 장바구니 등록할때 가져오는값:"+commandMap.getMap());
-			//비회원 장바구니 등록시 member_id 세션 지정
-			String n_Id="nonId_"+SequenceUtils.getSeqNumber();
-		    
-			String GOODS_NO 	= (String) commandMap.get("GOODS_NO");
-			String ATTRIBUTE_NO = (String) commandMap.get("attribute_no[]");
-			String COUNT		= (String) commandMap.get("ea[]");
-			String CONTENT		= (String) commandMap.get("CONTENT");
-			String IMAGE		= (String) commandMap.get("IMAGE");
-			String PRICE		= (String) commandMap.get("PRICE");
-			String NAME			= (String) commandMap.get("NAME");
-			String COLOR		= (String) commandMap.get("optno[]").toString().split("-")[0];
-			String GOODS_SIZE	= (String) commandMap.get("optno[]").toString().split("-")[1];
-			
-			cartMap.put("CART_NO", 		cartNo++);
-			cartMap.put("MEMBER_ID",	n_Id);
-			cartMap.put("REGDATE", 		new Date());
-			cartMap.put("ATTRIBUTE_NO",	ATTRIBUTE_NO);
-			cartMap.put("GOODS_NO",		 GOODS_NO);
-			cartMap.put("COUNT",		COUNT);
-			cartMap.put("CONTENT",		CONTENT);
-			cartMap.put("IMAGE",		IMAGE);
-			cartMap.put("PRICE",		PRICE);
-			cartMap.put("NAME",			NAME);
-			cartMap.put("COLOR",		COLOR);
-			cartMap.put("GOODS_SIZE",	GOODS_SIZE);
-			
-			sessionCartList.add(cartMap);
-			
-			session.setAttribute("sessionCartList", sessionCartList);
-			System.out.println("***********세션에 저장된 sessionCartList 값 : "+session.getAttribute("sessionCartList"));
-			
-			List<Map<String, Object>> sessionCartMap=new ArrayList<Map<String, Object>>();
-			sessionCartMap=(List<Map<String, Object>>) session.getAttribute("sessionCartList");
-			System.out.println(sessionCartMap);
 		
+		//비회원일때 장바구니 등록 (세션)
+		//이거도 중복 제거 해야 하니?
+		else {
+			//비회원 로그인 정보도 없으면 
+			System.out.println("NON_MEMBER_ID정보:");
+			System.out.println(session.getAttribute("NON_MEMBER_ID"));
+			if(session.getAttribute("NON_MEMBER_ID")==null) {
+				mv.setViewName("member/loginForm3");
+				return mv;
+			}
+			
+			//비회원 여러개 들어올때.
+			if(commandMap.get("attribute_no[]") instanceof Object[]) {
+				System.out.println("여기 안들어가니?중복인서트");
+				
+				String[] cartList_Attr= (String[]) commandMap.getList("attribute_no[]").get(0);
+				String[] cartList_OptNo=(String[]) commandMap.getList("optno[]").get(0);
+				String[] cartList_Count=(String[]) commandMap.getList("ea[]").get(0);
+
+				for(int i=0;i<cartList_OptNo.length;i++) {
+					Map<String, Object> addMap = new HashMap<String, Object>();
+					
+					addMap.put("CART_NO", 		cartNo++);
+					addMap.put("GOODS_NO", 		commandMap.get("GOODS_NO"));
+					addMap.put("CONTENT", 		commandMap.get("CONTENT"));
+					addMap.put("IMAGE", 		commandMap.get("IMAGE"));
+					addMap.put("PRICE", 		commandMap.get("PRICE"));
+					addMap.put("NAME", 			commandMap.get("NAME"));
+					
+					addMap.put("COLOR", 		cartList_OptNo[i].split("-")[0]);
+					addMap.put("GOODS_SIZE", 	cartList_OptNo[i].split("-")[1]);
+					addMap.put("COUNT", 		cartList_Count[i]);
+					addMap.put("ATTRIBUTE_NO", 	cartList_Attr[i]);
+					//값 비교 시작.
+					
+					if(sessionCartList!=null) {
+						for(int j=0;j<sessionCartList.size();j++) {
+							System.out.println(j+"번쨰 세션카트와 비교");
+							System.out.println(sessionCartList.get(j).get("ATTRIBUTE_NO")+","+addMap.get("ATTRIBUTE_NO"));
+							if(sessionCartList.get(j).get("ATTRIBUTE_NO").equals(addMap.get("ATTRIBUTE_NO"))) {
+								mv.setViewName("error/sameAttrError");
+								return mv;
+							}
+						}
+					}
+					sessionCartList.add(addMap);
+				}
+				session.setAttribute("sessionCartList", sessionCartList);
+				return mv;
+				
+				//비회원 하나들어올ㄸ
+			}else {
+				System.out.println("여기도가니?");
+			
+				List<Map<String, Object>> CartList=new ArrayList<Map<String, Object>>();
+				Map<String, Object> cartMap = new HashMap<String, Object>();
+				
+				System.out.println("비회원 장바구니 등록할때 가져오는값:"+commandMap.getMap());
+				//비회원 장바구니 등록시 member_id 세션 지정
+				String n_Id="nonId_"+SequenceUtils.getSeqNumber();
+			    
+				String GOODS_NO 	= (String) commandMap.get("GOODS_NO");
+				String ATTRIBUTE_NO = (String) commandMap.get("attribute_no[]");
+				String COUNT		= (String) commandMap.get("ea[]");
+				String CONTENT		= (String) commandMap.get("CONTENT");
+				String IMAGE		= (String) commandMap.get("IMAGE");
+				String PRICE		= (String) commandMap.get("PRICE");
+				String NAME			= (String) commandMap.get("NAME");
+				String COLOR		= (String) commandMap.get("optno[]").toString().split("-")[0];
+				String GOODS_SIZE	= (String) commandMap.get("optno[]").toString().split("-")[1];
+				
+				cartMap.put("CART_NO", 		cartNo++);
+				cartMap.put("MEMBER_ID",	n_Id);
+				cartMap.put("REGDATE", 		new Date());
+				cartMap.put("ATTRIBUTE_NO",	ATTRIBUTE_NO);
+				cartMap.put("GOODS_NO",		 GOODS_NO);
+				cartMap.put("COUNT",		COUNT);
+				cartMap.put("CONTENT",		CONTENT);
+				cartMap.put("IMAGE",		IMAGE);
+				cartMap.put("PRICE",		PRICE);
+				cartMap.put("NAME",			NAME);
+				cartMap.put("COLOR",		COLOR);
+				cartMap.put("GOODS_SIZE",	GOODS_SIZE);
+				
+				//중복비교.
+				//카트에 무언가가 들어있으면 (비교해서 중복되면 세션에인서트 X)
+				if(session.getAttribute("sessionCartList")!=null) {
+					CartList=(List<Map<String, Object>>) session.getAttribute("sessionCartList");
+					System.out.println("********");
+					System.out.println(CartList);
+					//CartList 가 자꾸 Null 뜨는데?
+					for(int i=0;i<CartList.size();i++) {
+						System.out.println("************************");
+						System.out.println(CartList.get(i).get("ATTRIBUTE_NO")+","+cartMap.get("ATTRIBUTE_NO"));
+						System.out.println(CartList.get(i).get("ATTRIBUTE_NO").toString().equals(cartMap.get("ATTRIBUTE_NO")));
+						if(CartList.get(i).get("ATTRIBUTE_NO").toString().equals(cartMap.get("ATTRIBUTE_NO"))) {
+							mv.setViewName("error/sameAttrError");
+							return mv;
+						}
+					}
+					
+					
+				}
+				
+				
+				sessionCartList.add(cartMap);
+				
+				session.setAttribute("sessionCartList", sessionCartList);
+				System.out.println("***********세션에 저장된 sessionCartList 값 : "+session.getAttribute("sessionCartList"));
+				
+				List<Map<String, Object>> sessionCartMap=new ArrayList<Map<String, Object>>();
+				sessionCartMap=(List<Map<String, Object>>) session.getAttribute("sessionCartList");
+				System.out.println(sessionCartMap);
+			}
 		}
 		
 		return mv;
@@ -232,7 +309,8 @@ public class CartController {
 		mv.setViewName("redirect:/cart/list");
 		return mv;
 	}
-	//바로구매
+	
+	//디테일에서 바로구매
 	@RequestMapping(value = "/cart/Add/OnetoPaymentNow")
 	public ModelAndView fromDetailOne(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("order/paypage");
@@ -241,11 +319,63 @@ public class CartController {
 		List<Map<String, Object>> fromDetailOne = new ArrayList<Map<String, Object>>();
 		
 		
-		//회원이면
-		if(session.getAttribute("MEMBER_ID")!=null) {
-			commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
-			Map<String, Object> memberInfo = new HashMap<String, Object>();
-			memberInfo=adminMemberService.memberDetail(commandMap.getMap());
+		
+		//2개이상
+		if(commandMap.getList("attribute_no[]").get(0) instanceof Object[]) {
+			System.out.println("들어오냐");
+			String[] cartList_Attr= (String[]) commandMap.getList("attribute_no[]").get(0);
+			String[] cartList_OptNo=(String[]) commandMap.getList("optno[]").get(0);
+			String[] cartList_Count=(String[]) commandMap.getList("ea[]").get(0);
+				for(int i=0;i<cartList_OptNo.length;i++) {
+				Map<String, Object> addMap = new HashMap<String, Object>();
+								
+				addMap.put("REGDATE", 		new Date());
+				addMap.put("GOODS_NO", 		commandMap.get("GOODS_NO"));
+				addMap.put("CONTENT", 		commandMap.get("CONTENT"));
+				addMap.put("IMAGE", 		commandMap.get("IMAGE"));
+				addMap.put("PRICE", 		commandMap.get("PRICE"));
+				addMap.put("NAME", 			commandMap.get("NAME"));
+								
+				addMap.put("COLOR", 		cartList_OptNo[i].split("-")[0]);
+				addMap.put("GOODS_SIZE", 	cartList_OptNo[i].split("-")[1]);
+				addMap.put("COUNT", 		cartList_Count[i]);
+				addMap.put("ATTRIBUTE_NO", 	cartList_Attr[i]);
+				System.out.println(i+"번쨰 addMap.get(Att)");
+				System.out.println(addMap.get("ATTRIBUTE_NO"));
+				
+				
+				fromDetailOne.add(addMap);
+				
+			}
+			session.setAttribute("fromDetailOne",fromDetailOne);
+			mv.addObject("list", fromDetailOne);
+			
+			//회원이면
+			if(session.getAttribute("MEMBER_ID")!=null) {
+				commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+				Map<String, Object> memberInfo = new HashMap<String, Object>();
+				memberInfo=adminMemberService.memberDetail(commandMap.getMap());
+				mv.addObject("memberInfo", memberInfo);
+				return mv;
+			}//비회원이면
+			else {
+				// 인터셉터에서 거르니까 노필요?
+				/*if (request.getSession().getAttribute("NON_MEMBER_ID") == null) {
+					System.out.println("처음여기로.");
+					return mv;
+				}*/
+					
+				System.out.println("여기로 오나여?");
+				fromDetailOne=(List<Map<String, Object>>) session.getAttribute("fromDetailOne");
+				
+				mv.addObject("list",fromDetailOne);
+			}
+				
+		//1개
+		}else {
+			
+				
+				
 			String GOODS_NO 	= (String) commandMap.get("GOODS_NO");
 			String ATTRIBUTE_NO = (String) commandMap.get("attribute_no[]");
 			String COUNT		= (String) commandMap.get("ea[]");
@@ -266,24 +396,37 @@ public class CartController {
 			cartMap.put("NAME",			NAME);
 			cartMap.put("COLOR",		COLOR);
 			cartMap.put("GOODS_SIZE",	GOODS_SIZE);
-			
-			
-			fromDetailOne.add(cartMap);
-			
+			System.out.println(cartMap.get("ATTRIBUTE_NO"));
+			fromDetailOne.add(cartMap);				
 			mv.addObject("list", fromDetailOne);
-			mv.addObject("memberInfo", memberInfo);
-			
-			if(commandMap.get("cart_No")!=null) {
+				
+			//바로구매인데 카트에서 비우는게필요해?
+			/*if(commandMap.get("cart_No")!=null) {
 				cartService.cartDeleteSelect(commandMap.getMap());
+			}*/
+			//회원이면
+			if(session.getAttribute("MEMBER_ID")!=null) {
+				commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+				Map<String, Object> memberInfo = new HashMap<String, Object>();
+				memberInfo=adminMemberService.memberDetail(commandMap.getMap());
+				mv.addObject("memberInfo", memberInfo);
+				return mv;
+			}//비회원이면
+			else {
+				// 인터셉터에서 거르니까 노필요?
+				/*if (request.getSession().getAttribute("NON_MEMBER_ID") == null) {
+					System.out.println("처음여기로.");
+					return mv;
+				}*/
+					
+				System.out.println("여기로 오나여?");
+				fromDetailOne=(List<Map<String, Object>>) session.getAttribute("fromDetailOne");
+				
+				mv.addObject("list",fromDetailOne);
 			}
-		//비회원이면
-		}else {
-			System.out.println("여기로?");
-			fromDetailOne=(List<Map<String, Object>>) session.getAttribute("fromDetailOne");
-			
-			mv.addObject("list",fromDetailOne);
 		}
-		return mv;
+		
+	return mv;
 	
 	}
 	
@@ -355,6 +498,10 @@ public class CartController {
 	public ModelAndView loginForm3(HttpServletRequest request,CommandMap commandMap) {
 		HttpSession session = request.getSession();
 		ModelAndView mv = new ModelAndView();
+		System.out.println("넘어오는값=");
+		System.out.println(session.getAttribute("GOODS_NO"));
+		//mv.addObject("GOODS_NO",session.getAttribute("GOODS_NO"));
+		commandMap.put("GOODS_NO", session.getAttribute("GOODS_NO"));
 		mv.setViewName("member/loginForm3");
 	    return mv;
 	}
@@ -374,11 +521,15 @@ public class CartController {
 	@RequestMapping(value = "/nonMember3")
 	public ModelAndView nonMemLogin2(HttpServletRequest request, CommandMap commandMap) {
 		System.out.println("비회원으로 상품 구매 로그인됨. 비회원ID:"+"nonId_"+SequenceUtils.getSeqNumber());
-	    ModelAndView mv = new ModelAndView();
+	    
+		ModelAndView mv = new ModelAndView();
 	    HttpSession session = request.getSession();
 	    
 	    session.setAttribute("NON_MEMBER_ID", "nonId_"+SequenceUtils.getSeqNumber());
-	    mv.setViewName("redirect:/cart/Add/OnetoPaymentNow");
+	    System.out.println("넘어오는값:");
+	    System.out.println(session.getAttribute("GOODS_NO"));
+	    mv.addObject("GOODS_NO",session.getAttribute("GOODS_NO"));
+	    mv.setViewName("redirect:/goods/detail");
 	    return mv;
 	}
 	
@@ -392,7 +543,9 @@ public class CartController {
 			commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 			cartService.countUp(commandMap.getMap());
 		}else {
-			
+			int CartNo	=(int) commandMap.get("CART_NO");
+			int Cnt		=(int) commandMap.get("COUNT");
+			sessionCartList.get(CartNo).put("CART_NO", Cnt+1);
 		}
 		
 		mv.setViewName("redirect:/cart/list");
@@ -410,7 +563,10 @@ public class CartController {
 			commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 			cartService.countDown(commandMap.getMap());
 		}else {
-			
+			//sessionCartList수정하면된다.
+			int CartNo	=(int) commandMap.get("CART_NO");
+			int Cnt		=(int) commandMap.get("COUNT");
+			sessionCartList.get(CartNo).put("CART_NO", Cnt-1);
 		}
 		
 		mv.setViewName("redirect:/cart/list");

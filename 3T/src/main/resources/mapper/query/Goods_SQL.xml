@@ -468,8 +468,6 @@ select
                GOODS_NO,
                NAME,
                PRICE
-           
-      
 </select> 
 
 <update id="updateHitcnt" parameterType="hashmap">
@@ -482,6 +480,18 @@ select
       GOODS_NO = #{GOODS_NO}
 ]]>
 </update>
+
+<update id="updateGoodsCnt" parameterType="hashmap">
+<![CDATA[
+   UPDATE
+      GOODS_ATTRIBUTE
+   SET
+      COUNT = COUNT - 1
+   WHERE 
+      ATTRIBUTE_NO = #{ATTRIBUTE_NO}
+]]>
+</update>
+
 
 <select id="selectGoodsDetail" resultType="hashmap" parameterType="hashmap">
 <![CDATA[
