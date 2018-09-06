@@ -118,7 +118,7 @@
 	<div id="#" style="margin: 0 auto; height: 880">
 		<tiles:insertAttribute name="header" ignore="true" />
 	</div>
-	
+	<!-- 검색 -->
 	<nav>
 			<div class="fullscreen_menu_button">
 				<a class="btn-open" href="#"><img
@@ -129,11 +129,11 @@
 	<div class="overlay" style="display: none;">
 			<div class="wrap">
 
-				<form id="searchBarForm" name="" action="/3T/goods/search" method="get" enctype="multipart/form-data">
+				<form id="searchBarForm" name="searchBarForm" action="/3T/goods/search" method="get" enctype="multipart/form-data"
+				onsubmit="return validation2();">
 				<input type="hidden" id="CATEGORY" name="CATEGORY" value="">
 				<input type="hidden" id="PRICE1" name="PRICE1" value="">
 				<input type="hidden" id="PRICE2" name="PRICE2" value="">
-				
 					
 					<div class="xans-element- xans-layout xans-layout-searchheader ">
 						<h2>
@@ -144,9 +144,9 @@
 						</h2>
 						<fieldset>
 							<legend>검색</legend>
-							<input id="keyword" name="keyword" class="inputTypeText" placeholder="" value="" type="text">
+							<input id="keyword" name="keyword" class="inputTypeText" placeholder=""  type="text">
 								
-							<input type="image" placeholder="SEARCH.." src="/3T/resources/images/btn_search.png" alt="검색">
+							<input type="image" id="searchbutton" placeholder="SEARCH.." src="/3T/resources/images/btn_search.png" alt="검색">
 							&nbsp;
 						</fieldset>
 					</div>
@@ -411,6 +411,18 @@
             $(this).toggleClass('btn-open').toggleClass('btn-close');
         });
     });
+    
+	
+	
+	function validation2() {
+
+			var frm = document.searchBarForm;
+
+			if (frm.keyword.value == "" || frm.keyword.value.equals("") || frm.keyword.value == null) {
+				alert("검색어를 입력해주세요.");
+				return false;
+			}
+		}
 </script>
 
 	<script type="text/javascript">

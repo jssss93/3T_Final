@@ -612,7 +612,7 @@
 					<div class="xans-element- xans-order xans-order-totalorder">
 						<a href="#this" id="addOrderSelected">선택상품주문</a> <a href="#this#"
 							id="addOrderAll">전체상품주문</a> <span class="right"> <a
-							href="/">쇼핑계속하기</a>
+							href="javascript:back();">쇼핑계속하기</a>
 						</span>
 					</div>
 				</div>
@@ -622,6 +622,11 @@
 				<script>
 	fbq('track', 'AddToCart' );
 	</script>
+	<script type="text/javascript">
+	function back(){
+		history.back();
+	}  		
+    </script>
 			</div>
 		</div>
 </form>
