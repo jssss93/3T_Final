@@ -43,7 +43,7 @@
 								<p class="prdImg">
 								
 									<a
-										href="/product/detail.html?product_no=7009&amp;cate_no=60&amp;display_group=1"
+										href="/3T/goods/detail?GOODS_NO=${search.GOODS_NO }"
 										name="anchorBoxName_7009"><img id="myImg"
 							src="/3T/resources/upload/${search.IMAGE.split(',')[0] }"
 							width="320" height="370"></a> 
@@ -61,7 +61,7 @@
 								</div>
 								<p class="name">
 									<a
-										href="/product/detail.html?product_no=7009&amp;cate_no=60&amp;display_group=1"
+										href="/3T/goods/detail?GOODS_NO=${search.GOODS_NO }"
 										class=""> 
 										<span style="font-size: 12px; color: #000000;">${search.NAME }</span></a>
 								</p>

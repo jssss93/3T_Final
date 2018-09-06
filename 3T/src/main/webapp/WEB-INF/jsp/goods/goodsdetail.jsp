@@ -58,11 +58,10 @@ function BuyCheck(index) {
     }
 	if (index == 3) {
 		alert('로그인 후 이용해주세요.');
-	    document.form.action = 'loginAction';
 	}
 	if (index == 4) {
-	   alert('관심상품으로 등록되었습니다.');
-	   document.form.action = '/3T/wish/addWish';
+	  /* alert('관심상품으로 등록되었습니다.'); */
+	  document.form.action = '/3T/wish/addWish';
 	}
 	   document.form.submit();
 }
@@ -224,11 +223,26 @@ table {
                   <tr/>
 
                   <tr>
-                     <td colspan="2">
-                        <!-- wishlist버튼 --> <a><input name="WishList"
+						<c:if test="${sessionScope.MEMBER_ID == null}">
+								<td colspan="2">
+                        <!-- wishlist버튼 --> <input name="WishList"
+                           onclick="BuyCheck(3);" type="image"
+                           src="/3T/resources/images/wishlist.PNG" value="WishList" />
+                     </td>
+						</c:if>
+						<c:if test="${sessionScope.MEMBER_ID != null}">
+								<td colspan="2">
+                        <!-- wishlist버튼 --> <!-- <a href="javascript:fn_addwish();"> -->
+                        <input name="WishList" onclick="BuyCheck(4);" type="image" src="/3T/resources/images/wishlist.PNG" value="WishList" />
+                       <!-- <img id="WishList" src="/3T/resources/images/wishlist.PNG"> -->
+                           </a>
+                     </td>
+						</c:if>
+							<!-- <td colspan="2">
+                        wishlist버튼 <a><input name="WishList"
                            onclick="BuyCheck(4);" type="image"
                            src="/3T/resources/images/wishlist.PNG" value="WishList" /></a>
-                     </td>
+                     </td> -->
                   </tr>
                   <tr class="board">
                      <td colspan="2">
@@ -310,7 +324,7 @@ table {
 				</c:if>
 
 
-				<td width="300" height="300" align="center" ><a href="#this"
+				<td width="300" height="300" align="center" ><a href="/3T/goods/detail?GOODS_NO=${list.GOODS_NO}"
 					name="title"> <img id="myImg"
 						src="/3T/resources/upload/${list.IMAGE.split(',')[0] }"
 						width="300" height="300"> <input type="hidden" id="GOODS_NO"
@@ -848,7 +862,23 @@ function fn_openBoardDetail1(obj) {
            .addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
      comSubmit.submit();
   }
-
+  
+  /* function fn_addwish() {
+		 var params = $("#form").serialize();
+			console.log(params);
+			  $.ajax({
+			        url: "/3T/wish/addWish",
+			        type:"POST", 
+			        data:params,
+			        success: function (){
+			        	alert("관심상품으로 등록되었습니다.");
+			        },
+			        error: function() {
+			            alert("ajax 통신 error");
+			        }
+			    });
+			}
+ */
 
 
 			
