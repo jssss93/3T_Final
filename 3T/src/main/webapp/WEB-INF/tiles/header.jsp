@@ -59,6 +59,7 @@ to {
 .abc {  font-size: 24px; color: #000000;}
 #myimg2 {
     margin-top: -16px!important;
+    padding: 0px 0px 0px 10px!important;
 }
 </style>
 <title>Insert title here</title>
