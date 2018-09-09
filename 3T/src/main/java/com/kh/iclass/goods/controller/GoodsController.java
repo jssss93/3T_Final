@@ -7,8 +7,10 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.iclass.common.map.CommandMap;
+import com.kh.iclass.common.util.CookieUtils;
 import com.kh.iclass.goods.service.GoodsService;
 
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
@@ -29,7 +32,7 @@ public class GoodsController {
 	private GoodsService goodsService;
 
    @RequestMapping(value = "/main")
-   public ModelAndView mainList(Map<String, Object> commandMap) throws Exception {
+   public ModelAndView mainList(Map<String, Object> commandMap,HttpServletRequest request) throws Exception {
       ModelAndView mv = new ModelAndView("goods/main");
 
       List<Map<String, Object>> list = goodsService.selectMainList(commandMap);
@@ -40,12 +43,16 @@ public class GoodsController {
       mv.addObject("best", best);
       mv.addObject("New", New);
       mv.addObject("list", list);
+      //쿠키리스트 불러온다
+      List<Map<String , Object>> CookieListMap=CookieUtils.getValueListMap("GOODS_NO","IMAGE",request);
+      //쿠키 뷰에 추가
+      mv.addObject("CookieListMap",CookieListMap);
 
       return mv;
    }
 
    @RequestMapping(value = "goods/catelist")
-   public ModelAndView goodsCateList(CommandMap commandMap) throws Exception {
+   public ModelAndView goodsCateList(CommandMap commandMap,HttpServletRequest request) throws Exception {
       ModelAndView mv = new ModelAndView("goods/categorylist");
 
       List<Map<String, Object>> list = goodsService.selectGoodsCategory(commandMap.getMap());
@@ -57,6 +64,10 @@ public class GoodsController {
       mv.addObject("bestlist", bestlist);
       
       mv.addObject("list", list);
+      //쿠키리스트 불러온다
+      List<Map<String , Object>> CookieListMap=CookieUtils.getValueListMap("GOODS_NO","IMAGE",request);
+      //쿠키 뷰에 추가
+      mv.addObject("CookieListMap",CookieListMap);
 
       return mv;
    }
@@ -78,7 +89,7 @@ public class GoodsController {
    
    @RequestMapping(value = "/goods/detail")
    @Transactional
-   public ModelAndView goodsDetail(CommandMap commandMap,HttpServletRequest request) throws Exception {
+   public ModelAndView goodsDetail(CommandMap commandMap,HttpServletRequest request, HttpServletResponse response) throws Exception {
 	   if(request.getSession().getAttribute("GOODS_NO")!=null) {
 		   	request.removeAttribute("GOODS_NO");
 	   }
@@ -120,23 +131,36 @@ public class GoodsController {
       //상품리뷰띄우기
       List<Map<String, Object>> goodsDetail1 = goodsService.selectGoodsDetail1(commandMap.getMap());
          
-       //상품QA띄우기
+      //상품QA띄우기
       List<Map<String, Object>> goodsDetail2 = goodsService.selectGoodsDetail2(commandMap.getMap());
-       
+      
       mv.addObject("goodsDetail1", goodsDetail1); //REVIEW 상세보기
       mv.addObject("goodsDetail2", goodsDetail2); //Q&A 상세보기
       
       mv.addObject("goodsDetail", goodsDetail);
-
+      
       mv.addObject("goodsBasic", goodsBasic);
-
+      
       mv.addObject("goodsRel", goodsRel);
       
       mv.addObject("goodsoneImage", goodsoneImage);
-
+      
       mv.addObject("goodsImage", goodsImage);
-
+      
+      
+      
+      
+      //쿠키에 상품번호와 이미지를 넣어준다.
+      CookieUtils.setCookie("GOODS_NO",(String) commandMap.get("GOODS_NO"),1,request,response);
+      CookieUtils.setCookie("IMAGE",(String) goodsoneImage.get("SAV_NAME"),1,request,response);
+      
+      //쿠키리스트 불러온다
+      List<Map<String , Object>> CookieListMap=CookieUtils.getValueListMap("GOODS_NO","IMAGE",request);
+      //쿠키 뷰에 추가
+      mv.addObject("CookieListMap",CookieListMap);
+      
       return mv;
+      
    }
 
    public static Map<String, Object> changeValue(List<Map<String, Object>> list) {

@@ -124,6 +124,30 @@
 			MEMBER_ID = #{MEMBER_ID}
 	]]>
 	</select>
+	<!-- 암호화해서 로그인 -->
+	<select id="memberInfo2" parameterType="String" resultType="hashmap">
+			<![CDATA[
+		SELECT 
+			MEMBER_NO,
+			MEMBER_ID, 
+			PASSWD, 
+			NAME, 
+			BIRTH, 
+			ZIPCODE, 
+			ADDR1, 
+			ADDR2, 
+			PHONE, 
+			EMAIL, 
+			REGDATE,
+			GRADE,
+			POINT
+		FROM 
+			MEMBER 
+		WHERE 
+			MEMBER_ID = #{MEMBER_ID} AND
+			PASSWD	  = #{PASSWORD_CHK2}
+	]]>
+	</select>
 
 	<!-- mypage-myboard -> Qna -->
 	<select id="myBoardQna" parameterType="hashmap"

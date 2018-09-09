@@ -1,4 +1,4 @@
-package com.kh.iclass.member.util;
+package com.kh.iclass.common.util;
 
 import java.security.Key;
 import java.security.KeyFactory;

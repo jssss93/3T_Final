@@ -1,6 +1,7 @@
 ﻿package com.kh.iclass.member.login;
 
 import java.io.PrintWriter;
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -32,6 +33,7 @@ import org.springframework.web.util.WebUtils;
 import com.kh.iclass.cart.CartService;
 /*import kh.spring.cart.CartService;*/
 import com.kh.iclass.common.map.CommandMap;
+import com.kh.iclass.common.util.RSAKeySet;
 import com.kh.iclass.common.util.SequenceUtils;
 import com.kh.iclass.member.MemberService;
 import com.kh.iclass.member.join.JoinService;;
@@ -58,69 +60,47 @@ public class LoginController {
 
 	// 로그인 폼
 	@RequestMapping(value = "/loginForm")
-	public ModelAndView loginForm() {
+	public ModelAndView loginForm(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		RSAKeySet keySet = new RSAKeySet();
+		
+		/* 세션에 개인키 저장 */
+		session.setAttribute("RSA_private", keySet.getPrivateKey());
+		
+		/* Front Side로 공개키 전달 */
+		mv.addObject("Modulus", keySet.getPublicKeyModulus());
+		mv.addObject("Exponent", keySet.getPublicKeyExponent());
+		
 		mv.setViewName("member/loginForm");
 		return mv;
 	}   
-   
-
-	@RequestMapping(value = "/logout")		//로그아웃
-	   public ModelAndView logout(HttpServletResponse response, HttpServletRequest request, CommandMap commandMap) throws Exception {
-	      HttpSession session = request.getSession(false);
-	      Map<String, Object> map = new HashMap<String, Object>();
-	          
-	      Cookie autoLogin = WebUtils.getCookie(request, "autoLogin");
-
-	      if ( autoLogin != null ){
-	          // null이 아니면 존재하면!
-	    	  autoLogin.setPath("/");
-	        
-	    	 // 쿠키는 없앨 때 유효시간을 0으로 설정하는 것 !!! invalidate같은거 없음.
-	    	  autoLogin.setMaxAge(0);
-	          // 쿠키 설정을 적용한다.
-	          response.addCookie(autoLogin);
-	           
-	       // 사용자 테이블에서도 유효기간을 현재시간으로 다시 세팅해줘야함.
-	          Date SESSIONLIMIT = new Date(System.currentTimeMillis());
-	          
-	          map.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
-	          map.put("SESSIONLIMIT", SESSIONLIMIT);
-	          map.put("SESSIONKEY", "none");
-	          
-	          loginService.keepLogin(map);
-	          
-	      }     
-	      if (session != null)
-	      {
-	         session.invalidate();
-	      }
-	      
-	      ModelAndView mv = new ModelAndView();
-	      mv.setViewName("redirect:/main");
-	      
-	      return mv;
-	 }
-   
+	
    //로그인 됨
 	@SuppressWarnings({ "unchecked", "null" })
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView loginComplete(CommandMap commandMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv = new ModelAndView();
-
+		
 		HttpSession session = request.getSession();
 
 		System.out.println("아이디" + commandMap.get("MEMBER_ID"));
-
+		System.out.println("비밀번호 "+commandMap.get("PASSWD"));
+		System.out.println("넘어오는값:"+commandMap.getMap());
 		// 멤버 정보 가져오고
+		Map<String, Object> chk2 = loginService.loginGo2(commandMap.getMap(),(Key)session.getAttribute("RSA_private"));
 		Map<String, Object> chk = loginService.loginGo(commandMap.getMap());
-		if (chk == null) {
+		
+		
+		if (chk2 == null) {
 			mv.setViewName("member/loginForm");
 			mv.addObject("message", "해당 아이디가 없습니다.");
 			return mv;
 		}
+		//chk2를 돌렸을때 비밀번호 다시 나오니까 그거랑 비교해서 ㄱㄱㄱㄱㄱㄱㄱㄱㄱ
+		
 		// 아이디 값이 있으면
 		else {
+			
 
 			// 비밀번호가 같으면
 			if (chk.get("PASSWD").equals(commandMap.get("PASSWD"))) {
@@ -261,6 +241,43 @@ public class LoginController {
 		}
 	}
     
+	
+	@RequestMapping(value = "/logout")		//로그아웃
+	public ModelAndView logout(HttpServletResponse response, HttpServletRequest request, CommandMap commandMap) throws Exception {
+		HttpSession session = request.getSession(false);
+	    Map<String, Object> map = new HashMap<String, Object>();
+	          
+	    Cookie autoLogin = WebUtils.getCookie(request, "autoLogin");
+
+	    if ( autoLogin != null ){
+	        // null이 아니면 존재하면!
+	    	autoLogin.setPath("/");
+	        
+	    	// 쿠키는 없앨 때 유효시간을 0으로 설정하는 것 !!! invalidate같은거 없음.
+	    	autoLogin.setMaxAge(0);
+	        // 쿠키 설정을 적용한다.
+	        response.addCookie(autoLogin);
+	           
+	     // 사용자 테이블에서도 유효기간을 현재시간으로 다시 세팅해줘야함.
+	        Date SESSIONLIMIT = new Date(System.currentTimeMillis());
+	          
+	        map.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+	        map.put("SESSIONLIMIT", SESSIONLIMIT);
+	        map.put("SESSIONKEY", "none");
+	          
+	        loginService.keepLogin(map);
+	          
+	    }     
+	    if (session != null)
+	    {
+	       session.invalidate();
+	    }
+	      
+	    ModelAndView mv = new ModelAndView();
+	    mv.setViewName("redirect:/main");
+	      
+	    return mv;
+	}	
    //비회원 장바구니 버튼인데 로그인창부터 띄우고 
    @RequestMapping(value = "/nonMemberLogin", method = RequestMethod.POST)
    public ModelAndView nonMemberLogin(CommandMap commandMap, HttpServletRequest request) throws Exception {

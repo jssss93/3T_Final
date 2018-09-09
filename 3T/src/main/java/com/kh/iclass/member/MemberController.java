@@ -26,7 +26,15 @@ public class MemberController {
 
 	@Resource(name = "memberService")
 	private MemberService memberService;
-
+	
+	@RequestMapping(value = "/test234")
+	public ModelAndView facebookTest() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/member/test");
+		return mv;
+	}
+	
+	
 	@RequestMapping(value = "/member/mypage")
 	public ModelAndView mypage(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -76,6 +84,8 @@ public class MemberController {
 
 		return mv;
 	}
+	
+	
 
 
 	@RequestMapping(value = "/member/update")

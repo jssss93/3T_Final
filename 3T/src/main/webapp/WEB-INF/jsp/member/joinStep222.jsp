@@ -14,6 +14,9 @@
 <script src="/js/jquery-1.11.2.min.js"></script>
 <script src="/js/jquery-latest.js"></script>
 <script src="/js/jquery.als-1.6.min.js"></script>
+
+
+
 <script>
 	!function(f, b, e, v, n, t, s) {
 		if (f.fbq)
@@ -283,6 +286,7 @@ function chkBox(bool) { // 전체선택/해제
 }
 </style>
 </head>
+
 <body>
 	<%
 		request.setCharacterEncoding("UTF-8");
@@ -296,6 +300,8 @@ function chkBox(bool) { // 전체선택/해제
 			</div>
 			<div class="xans-element- xans-member xans-member-join">
 				<div class="ec-base-table typeWrite">
+					<input type="hidden" name="modulus" id="modulus">
+                    <input type="hidden" name="exponent" id="exponent">
 
 					<div id="authWrap" style="">
 						<h3 class=" ">기본정보</h3>
@@ -338,7 +344,8 @@ function chkBox(bool) { // 전체선택/해제
 											alt="필수"></th>
 										<td>
 											<div class="col-lg-21 col-md-20">
-												<input id="PASSWD2" name="PASSWD" maxlength="16" type="password"/>
+												<input id="PASSWD" name="PASSWD" maxlength="16" type="password"/>
+												<input type="hidden" id="PASSWORD" name="PASSWORD">
 													영문/숫자를 이용하여 4~12자로 입력하세요
 												<p class="alertPass alert-positive"></p>
 											</div>	
@@ -876,7 +883,7 @@ function chkBox(bool) { // 전체선택/해제
 						
 						<div class="btnArea center">
 							<a href="/3T/main">회원가입취소</a> 
-							<input type="submit" value="회원가입">
+							<input type="submit" id="regist" value="회원가입">
 						</div>
 						</form>
 						<!-- 회원 가입 정보 확인 레이어 -->
@@ -886,6 +893,26 @@ function chkBox(bool) { // 전체선택/해제
 		</div>
 	</div>
 </body>
+<script>
+
+$(document).ready(function() {
+	$("#modulus").val("${Modulus}");
+	$("#exponent").val("${Exponent}");
+	
+	$("#regist").click(function(event) {
+		var rsa = new RSAKey();
+	    rsa.setPublic($('#modulus').val(),$('#exponent').val());
+	    
+	    $("#PASSWORD").val(rsa.encrypt($("#PASSWD2").val()));
+	    
+	    return true;
+	})
+});
+
+</script>
+
+
+
 <script type="text/javascript">
 $("input[name=MEMBER_ID]").blur(function(){
 	console.log("dd");

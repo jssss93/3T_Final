@@ -1,4 +1,4 @@
-package com.kh.iclass.member.util;
+package com.kh.iclass.common.util;
 
 import java.security.Key;
 
@@ -16,14 +16,12 @@ public class RSAUtil {
 
 		cipher.init(Cipher.DECRYPT_MODE, privateKey);
 		
-		System.out.println(encryptedBytes); // => [B@139a9a4b //[B@52f70813
-		
-		//??????
+		System.out.println(encryptedBytes); 
 		
 		byte[] arrData = cipher.doFinal(encryptedBytes);
 		
 		plainPw = new String(arrData, "utf-8");
-
+		
 		return plainPw;
 	}
 

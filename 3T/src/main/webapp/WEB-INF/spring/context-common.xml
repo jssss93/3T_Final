@@ -19,6 +19,24 @@
         <property name="maxInMemorySize" value="100000000" />
     </bean>
     
+    <!-- application.properties 설정 -->
+	<context:property-placeholder location="/WEB-INF/resources/*.properties" />  
+	
+	<!--페이스북 API에 연결해서 인증과 관련된 역할을 할 것  -->
+	<bean id="connectionFactoryLocator" class="org.springframework.social.connect.support.ConnectionFactoryRegistry">
+	  	<property name="connectionFactories">
+	    <bean class="org.springframework.social.facebook.connect.FacebookConnectionFactory">
+	      	<constructor-arg value="514647905627480" />
+	      	<constructor-arg value="cbfd3b0550086b1647546a712eb191a9" />
+	    </bean>
+	  	</property>
+	</bean>
+	
+	<!--페이스북 API에 연결해서 인증과 관련된 역할을 할 것  -->
+	<bean id="inMemoryConnectionRepository" class="org.springframework.social.connect.mem.InMemoryConnectionRepository">
+  		<constructor-arg ref="connectionFactoryLocator" />
+	</bean>
+
 </beans>
 
 

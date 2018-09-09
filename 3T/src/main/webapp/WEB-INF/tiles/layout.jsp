@@ -309,67 +309,37 @@
 					</ul>
 				</div>
 				<br>
-				<div class="wing_banner" id="wingBanner"
-					data-log-actionid-area="wing_banner" data-is-ab-send="1">
+				<div class="wing_banner" id="wingBanner">
 					<!-- 2017-02-17 cyn  스크롤 이벤트 발생시 .wing_fixed 넣어주세요 -->
 					<!-- 최근 본 상품 -->
 					<div class="wing_prd_wrap" id="wingRecentWrap" style="">
 						<div class="hwrap">
-							<!-- 2017-02-22 cyn 타이틀 영역 마크업 수정 -->
-							<strong class="tit"> <a href="#" id="wingRecentCount"><span
-									class="tx">최근 본 상품</span><span class="count">2</span><span
-									class="ico"></span></a>
+							<strong class="tit"> 
+							<a href="#" id="wingRecentCount">
+							<span class="tx">최근 본 상품</span>
 							</strong>
-							<!-- //2017-02-22 cyn 타이틀 영역 마크업 수정 -->
 						</div>
-						<div class="wing_prd_list" id="windRecentPrdList">
-							<ul id="wingRecentPrd_1" style=""
-								data-log-actionid-label="recent_product">
-								
-								<li class="wing_prd" id="1886256688"><a
-									href="http://www.11st.co.kr/product/SellerProductDetail.tmall?method=getSellerProductDetail&amp;prdNo=1886256688"
-									target="_blank"
-									data-log-body="{'content_type':'PRODUCT', 'content_no':'1886256688', 'last_discount_price':'143,100'}"
-									data-is-send-log="true"><span class="wing_prd_img"><img width="70" height="70"
-											src="http://i.011st.com/t/060/pd/18/2/5/6/6/8/8/CIJSB/1886256688_B.jpg"
-											alt="[프랑코페라로] 겨울용 체크기"></span><span
-										class="wing_prd_info"><span class="p_name">
-												</span><span class="p_price"><strong></strong></span></span></a>
-								<button type="button" class="wing_btn_delete" prdno="1886256688">
-										</button></li><br>
-										
-								<li class="wing_prd" id="2089021363"><a
-									href="http://www.11st.co.kr/product/SellerProductDetail.tmall?method=getSellerProductDetail&amp;prdNo=2089021363"
-									target="_blank"
-									data-log-body="{'content_type':'PRODUCT', 'content_no':'2089021363', 'last_discount_price':'96,000'}"
-									data-is-send-log="true"><span class="wing_prd_img"><img width="70" height="70"
-											src="http://i.011st.com/t/060/pd/18/0/2/1/3/6/3/VmfRq/2089021363_B.jpg"
-											alt="[지오지아] ABX4FP1102 BK 오"
-											onerror="skp11.common.blankImage(this, 60);"></span><span
-										class="wing_prd_info"><span class="p_name">
-												</span><span class="p_price"><strong></strong></span></span></a>
-								<button type="button" class="wing_btn_delete" prdno="2089021363"></button></li>
-							</ul>
-							<ul id="wingRecentPrd_2" style="display: none;"
-								data-log-actionid-label="recent_product"></ul>
-						</div>
-						<div class="wing_paging">
-							<!-- 2017-02-17 cyn 상품이 두 개 이하 존재할 경우 페이징 비노출
-							<div class="wing_btn" data-log-actionid-label="arrow">
-								<button type="button" class="wing_btn_prev"
-									id="wb_btn_recentPrd_prev" data-log-body="{'arrow':'left'}">이전
-									상품 리스트</button>
-								<button type="button" class="wing_btn_next"
-									id="wb_btn_recentPrd_next" data-log-body="{'arrow':'right'}">다음
-									상품 리스트</button> -->
-							</div>
-						</div>
-						<!-- 최근 본 상품 레이어 -->
 						
-						<!-- //최근 본 상품 레이어 -->
-					
-					<!-- 최근 본 상품 -->
-					
+						<div class="wing_prd_list" id="windRecentPrdList">
+							<ul id="wingRecentPrd_1">
+								
+								<c:forEach items="${CookieListMap }" var="row">
+									<li class="wing_prd" >
+										<a href="/3T/goods/detail?GOODS_NO=${row.GOODS_NO }">
+											<span class="wing_prd_img">
+											<img width="70" height="70" src="/3T/resources/upload/${row.IMAGE}" ></span>
+										</a>
+										<!-- 삭제버튼 추가할것. -->
+										<button type="button" class="wing_btn_delete" prdno="1886256688"></button>
+									</li>
+									<br>
+								</c:forEach>
+										
+								
+							</ul>
+							
+						</div>
+					</div>
 					
 					<div class="btn_top" data-log-actionid-label="top" >
 						<a href="#">

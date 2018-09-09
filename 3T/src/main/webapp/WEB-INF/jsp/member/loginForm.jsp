@@ -29,6 +29,22 @@
 	font-size: 12px;
 }
 </style>
+<script>
+$(document).ready(function() {
+	$("#modulus").val("${Modulus}");
+	$("#exponent").val("${Exponent}");
+	
+	$("#login").click(function(event) {
+		alert( $("#PASSWD").val)
+		var rsa = new RSAKey();
+	    rsa.setPublic($('#modulus').val(),$('#exponent').val());
+	    
+	    $("#PASSWD2").val(rsa.encrypt($("#PASSWD").val()));
+	    alert( $("#PASSWD2").val());
+	    return true;
+	})
+});
+</script>
 <script type="text/javascript">
 		
 $(document).ready(function(){
@@ -38,7 +54,7 @@ $(document).ready(function(){
     var userInputId = getCookie("userInputId");
 
     $("input[name='MEMBER_ID']").val(userInputId);  
-     
+      
     if($("input[name='MEMBER_ID']").val() != ""){ // 그 전에 ID를 저장해서 처음 페이지 로딩 시, 입력 칸에 저장된 ID가 표시된 상태라면,
 
         $("#idSaveCheck").attr("checked", true); // ID 저장하기를 체크 상태로 두기.
@@ -163,18 +179,22 @@ function getCookie(cookieName) {
                <!--
         $defaultReturnUrl = /index.html
         $forbidIpUrl = member/adminFail.html
-    -->
+    --> 
                <div class="login">
                   <h3></h3>
                   <fieldset>
                      <legend>회원로그인</legend>
-                     <span>ID</span> <label class="id"><input id="MEMBER_ID"
-                        name="MEMBER_ID" fw-filter="isFill" fw-label="아이디" fw-msg=""
-                        class="inputTypeText" placeholder="" value="" type="text"></label>
-                     <span>PASSWORD</span><label class="password"><input
-                        id="PASSWD" name="PASSWD"
-                        fw-filter="isFill&amp;isMin[4]&amp;isMax[16]" fw-label="패스워드"
-                        fw-msg="" value="" type="password"></label>
+                     <input type="hidden" name="modulus" id="modulus">
+                     <input type="hidden" name="exponent" id="exponent">
+                     <input type="hidden" name="PASSWD2" id="PASSWD2">
+                     <span>ID</span> 
+                     <label class="id">
+                     	<input id="MEMBER_ID" name="MEMBER_ID" type="text">
+                       </label>
+                     <span>PASSWORD</span>
+                     <label class="password">
+                     	<input id="PASSWD" name="PASSWD" type="password">
+                     </label>
                      <li><a href="/3T/findIdForm">Forgot id? </a></li>
                      <li><a href="/3T/findPasswdForm">
                            Forgot password?</a></li>
@@ -189,9 +209,10 @@ function getCookie(cookieName) {
 
                      <p class="link">
                         
-                        <span class="loginbtn"><input class="loginbtn" type="submit" value="Login"></span>
-                        <span class="joinusbtn"><a href="/3T/joinStep1">Join
-                              us</a></span>
+                        <span class="loginbtn"><input class="loginbtn" type="submit" id="login" value="Login"></span>
+                        <span class="joinusbtn"><a href="/3T/joinStep1">Join us</a></span>
+                        <fb:login-button scope="public_profile,email"onlogin="checkLoginState();"></fb:login-button>
+						<div id="status"></div>
                      </p>
 
                      
@@ -214,4 +235,82 @@ function getCookie(cookieName) {
 		<input type="submit" value="닫기">
 	</form>
 </c:if>
+<script>
+		// This is called with the results from from FB.getLoginStatus().
+		function statusChangeCallback(response) {
+			console.log('statusChangeCallback');
+			console.log(response);
+			// The response object is returned with a status field that lets the
+			// app know the current login status of the person.
+			// Full docs on the response object can be found in the documentation
+			// for FB.getLoginStatus().
+			if (response.status === 'connected') {
+				// Logged into your app and Facebook.
+				testAPI();
+			} else {
+				// The person is not logged into your app or we are unable to tell.
+				document.getElementById('status').innerHTML = 'Please log '
+						+ 'into this app.';
+			}
+		}
+
+		// This function is called when someone finishes with the Login
+		// Button.  See the onlogin handler attached to it in the sample
+		// code below.
+		function checkLoginState() {
+			FB.getLoginStatus(function(response) {
+				statusChangeCallback(response);
+			});
+		}
+
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId : '514647905627480',
+				cookie : true, // enable cookies to allow the server to access 
+				// the session
+				xfbml : true, // parse social plugins on this page
+				version : 'v2.8' // use graph api version 2.8
+			});
+
+			// Now that we've initialized the JavaScript SDK, we call 
+			// FB.getLoginStatus().  This function gets the state of the
+			// person visiting this page and can return one of three states to
+			// the callback you provide.  They can be:
+			//
+			// 1. Logged into your app ('connected')
+			// 2. Logged into Facebook, but not your app ('not_authorized')
+			// 3. Not logged into Facebook and can't tell if they are logged into
+			//    your app or not.
+			//
+			// These three cases are handled in the callback function.
+
+			FB.getLoginStatus(function(response) {
+				statusChangeCallback(response);
+			});
+
+		};
+
+		// Load the SDK asynchronously
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id))
+				return;
+			js = d.createElement(s);
+			js.id = id;
+			js.src = "https://connect.facebook.net/en_US/sdk.js";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+
+		// Here we run a very simple test of the Graph API after login is
+		// successful.  See statusChangeCallback() for when this call is made.
+		function testAPI() {
+			console.log('Welcome!  Fetching your information.... ');
+			FB.api('/me?fields=id,name,address,gender,hometown,email',function(response) {
+				console.log(response);
+				console.log('Successful login for: '+ response.name);
+				document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
+			});
+		}
+	</script>
+
 </html>
