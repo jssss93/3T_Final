@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="<c:url value='/resources/css/ui.css'/>" rel="stylesheet" type="text/css"/>
+<%-- <link href="<c:url value='/resources/css/ui.css'/>" rel="stylesheet" type="text/css"/> --%>
 
 <!-- 메인페이지 css -->
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">

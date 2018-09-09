@@ -27,7 +27,9 @@
 <link href="//fonts.googleapis.com/css?family=Cabin" rel="stylesheet"
    type="text/css" />
 <link href="//fonts.googleapis.com/css?family=Cabin:700"
+
    rel="stylesheet" type="text/css" />
+
 <link
    href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"
    rel="stylesheet" />
@@ -116,6 +118,7 @@
 </style>
 </head>
 <body>
+
 
 
    <div id="#" style="margin: 0 auto;">
@@ -313,7 +316,7 @@
          </div>
       </div>
    </div>
-   
+
 <script>
   
 
@@ -324,7 +327,9 @@
         });
         
         $("#moveupBtn").on("click", function(event) {
+
          // 이동 버튼을 클릭시 태그로 스크롤의 위치가 이동되도록 한다.
+
 
          // 1. 태그의 위치를 가지고 있는 객체를 얻어온다. => offset 객체
          var offset = $("#suk").offset();
@@ -337,19 +342,8 @@
 
       });
 
-      $("#movedownBtn").on("click", function(event) {
-         // 이동 버튼을 클릭시 태그로 스크롤의 위치가 이동되도록 한다.
 
-         // 1. 태그의 위치를 가지고 있는 객체를 얻어온다. => offset 객체
-         var offset = $("#footer").offset();
-
-         // offset은 절대 위치를 가져온다. offset.top을 통해 상단의 좌표를 가져온다.
-         // position은 부모를 기준으로한 상대위치를 가져온다.
-         $("html body").animate({
-            scrollTop : offset.top
-         }, 0);
-
-      });
+      
     });
     
    
