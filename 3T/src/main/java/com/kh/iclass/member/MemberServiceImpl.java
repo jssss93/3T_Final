@@ -158,5 +158,27 @@ public class MemberServiceImpl implements MemberService{
 		return memberDAO.AdminSearchmyMessage(map);
 	}
 
+	@Override
+	public void onAuthenticationBinding(Map<String, Object> map) throws NullPointerException {
+		/*memberVO.setUsername(facebookUser.getId());
+		memberVO.setEmail(facebookUser.getEmail());
+		memberVO.setFirst_name(facebookUser.getFirstName());
+		memberVO.setKr_name(facebookUser.getName());
+		memberVO.setLast_name(facebookUser.getLastName());
+		memberVO.setAuthorities(ROLE.DEFAULT.getRoleList());
+		memberVO.setAccountNonExpired(true);
+		memberVO.setAccountNonLocked(true);
+		memberVO.setCredentialsNonExpired(true);
+		memberVO.setEnabled(true);*/
+
+		// Token 생성하고 로그인 세션 생성
+		/*UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+				memberVO, null, ROLE.DEFAULT.getRoleList()
+		);
+		SecurityContextHolder.getContext().setAuthentication(authenticationToken);*/
+		
+	}
+
+
 	
 }

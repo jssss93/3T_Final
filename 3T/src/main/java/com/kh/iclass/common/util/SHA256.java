@@ -1,4 +1,4 @@
-package com.kh.iclass.member.util;
+package com.kh.iclass.common.util;
 /**
 @file KISA_SHA256.java
 @brief SHA256 암호 알고리즘

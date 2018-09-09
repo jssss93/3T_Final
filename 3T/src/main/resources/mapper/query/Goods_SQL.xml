@@ -529,8 +529,7 @@ FROM
       GOODS a INNER JOIN GOODS_ATTRIBUTE b 
    ON 
       a.GOODS_NO = b.GOODS_NO 
-    WHERE 
-       ROWNUM < 15
+    
    ORDER BY 
       b.ATTRIBUTE_NO ASC
    )

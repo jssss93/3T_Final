@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.iclass.common.map.CommandMap;
-import com.kh.iclass.member.util.RSAKeySet;
+import com.kh.iclass.common.util.RSAKeySet;
 
 
 @Controller
@@ -63,10 +63,12 @@ public class JoinController {
 		ModelAndView mv = new ModelAndView();
 		RSAKeySet keySet = new RSAKeySet();
 		
+		
 		/*if(! request.getHeader("Referer").equals("http://3T/join/privacy")) {
 			mv.addObject("/error");
 			return mv;
 		}*/
+		
 		
 		/* 세션에 개인키 저장 */
 		session.setAttribute("RSA_private", keySet.getPrivateKey());
@@ -92,7 +94,8 @@ public class JoinController {
 		Map<String, Object> memberMap=new HashMap<String, Object>();
 		commandMap.getMap().put("EMAIL", EMAIL);
 			
-		/*if(session.getAttribute("RSA_private") != null) {
+		
+		if(session.getAttribute("RSA_private") != null) {
 			
 			System.out.println("(Key)session.getAttribute(\"RSA_private\")="+(Key)session.getAttribute("RSA_private"));
 			//(Key)session.getAttribute("RSA_private")=sun.security.rsa.RSAPrivateCrtKeyImpl@fff09455
@@ -101,10 +104,11 @@ public class JoinController {
 			if(joinService.insertMember2(commandMap.getMap(),(Key)session.getAttribute("RSA_private")) > 0)
 				//if(memberService.regist(member, (Key)session.getAttribute("RSA_private")) > 0)
 				mv.setViewName("member/loginForm");
+			
 			return mv;
 		}
 
-		session.removeAttribute("RSA_private");*/
+		session.removeAttribute("RSA_private");
 		
 		
 		joinService.insertMember(commandMap.getMap(), request);

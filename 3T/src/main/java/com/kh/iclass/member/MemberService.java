@@ -59,6 +59,9 @@ public interface MemberService
 	//회원가입 id중복체크
 	int chekcId(String mem_id) throws Exception;*/
 	
-	//관리자 메세지 검색 리스트
+	//관리자 메세지 검색 리스트 
 	List<Map<String, Object>> AdminSearchmyMessage(Map<String, Object> map) throws Exception;
+	
+	public void onAuthenticationBinding(Map<String,Object> map) throws NullPointerException;
+
 }
