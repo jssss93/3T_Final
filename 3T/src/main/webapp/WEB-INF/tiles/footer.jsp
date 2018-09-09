@@ -5,8 +5,8 @@
 <html>
 <head>
 
-<link href="<c:url value='/resources/css/footer.css'/>" rel="stylesheet"
-	type="text/css" />
+<%-- <link href="<c:url value='/resources/css/footer.css'/>" rel="stylesheet"
+	type="text/css" /> --%>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
