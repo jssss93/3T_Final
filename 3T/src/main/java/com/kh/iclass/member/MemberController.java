@@ -1,5 +1,6 @@
 package com.kh.iclass.member;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -378,4 +380,28 @@ public class MemberController {
 
 	}	
 
+	@RequestMapping(value="/checkNowPass")
+	@ResponseBody
+	public void checkNowPass(HttpServletRequest request, HttpServletResponse response, CommandMap commandMap) throws Exception{
+		PrintWriter out = response.getWriter();
+		String NowPASSWD= (request.getParameter("NowPASSWD") == null)?"":String.valueOf(request.getParameter("NowPASSWD"));
+		System.out.println("나오니니ㅣㄴASD" + NowPASSWD);
+		String NowPass = memberService.checkPass((String)request.getSession().getAttribute("MEMBER_ID"));
+		System.out.println("나오니니ㅣㄴ" + NowPass);
+		int chk = 0;
+		
+		System.out.println("nowPASSWD,NOWPASS" + NowPASSWD + NowPass);
+		if(NowPass.equals(NowPASSWD))
+		{
+			chk = 1;
+		}
+		
+		System.out.println("chk =" + chk);
+
+		
+		
+		out.print(chk);
+		out.flush();
+		out.close();
+	}
 }

@@ -3,7 +3,15 @@
 
 <mapper namespace="member">
 
-
+	<select id="checkPass" parameterType="String" resultType="String">
+		SELECT
+			PASSWD
+		FROM
+			MEMBER
+		WHERE
+			MEMBER_ID = #{MEMBER_ID}
+	</select>
+	
 	<select id="checkMember" parameterType="hashmap"
 		resultType="java.lang.Integer">
 	<![CDATA[

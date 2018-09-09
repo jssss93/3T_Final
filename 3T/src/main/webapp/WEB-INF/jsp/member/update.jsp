@@ -5,205 +5,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<!--PG크로스브라우징필수내용 시작-->
-<meta http-equiv="Cache-Control" content="no-cache">
-<meta http-equiv="Expires" content="0">
-<meta http-equiv="Pragma" content="no-cache">
-<!--PG크로스브라우징필수내용 끝-->
-<!--해당 CSS는 쇼핑몰 전체 페이지에 영향을 줍니다. 삭제와 수정에 주의해주세요.-->
-<!-- 스마트디자인에서는 JQuery 1.4.4 버전이 내장되어있습니다. 추가로 호출하면 충돌이 생길 수 있습니다. -->
-<link
-	href="//fonts.googleapis.com/css?family=Lato:100,300,400,500,700,900,100italic,300italic,400italic,700italic,900italic"
-	rel="stylesheet" type="text/css">
-<link href="//fonts.googleapis.com/css?family=Cabin" rel="stylesheet"
-	type="text/css">
-<link href="//fonts.googleapis.com/css?family=Cabin:700"
-	rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="/fonts/font-awesome.css">
-<link
-	href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"
-	rel="stylesheet">
-<meta name="format-detection" content="telephone=no">
-<script async="" src="//www.google-analytics.com/analytics.js"></script>
-<script type="text/javascript" async=""
-	src="http://www.google-analytics.com/ga.js"></script>
-<script
-	src="https://connect.facebook.net/signals/config/829030643890604?v=2.8.25&amp;r=stable"
-	async=""></script>
-<script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script>
 <script src="/js/jquery.gray.js"></script>
-<!--gray IE 용-->
-<script type="text/javascript" src="/ec-js/common.js"></script>
 <!-- 해당 JS는 플래시를 사용하기 위한 스크립트입니다. -->
+
 <script src="/js/jquery-1.11.2.min.js"></script>
 <script src="/js/jquery-latest.js"></script>
 <script src="/js/jquery.als-1.6.min.js"></script>
-<!--[if IE]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
-    <![endif]-->
-<!-- Facebook Pixel Code -->
-<script>
-	!function(f, b, e, v, n, t, s) {
-		if (f.fbq)
-			return;
-		n = f.fbq = function() {
-			n.callMethod ? n.callMethod.apply(n, arguments) : n.queue
-					.push(arguments)
-		};
-		if (!f._fbq)
-			f._fbq = n;
-		n.push = n;
-		n.loaded = !0;
-		n.version = '2.0';
-		n.queue = [];
-		t = b.createElement(e);
-		t.async = !0;
-		t.src = v;
-		s = b.getElementsByTagName(e)[0];
-		s.parentNode.insertBefore(t, s)
-	}(window, document, 'script',
-			'https://connect.facebook.net/en_US/fbevents.js');
-	fbq('init', '829030643890604'); // Insert your pixel ID here.
-	fbq('track', 'PageView');
-</script>
-<link rel="canonical" href="http://asclo.com/member/join.html">
-<link rel="alternate" href="http://m.asclo.com/member/join.html">
-<meta property="og:url" content="http://asclo.com/member/join.html">
-<meta property="og:site_name" content="애즈클로">
-<meta property="og:type" content="website">
-<link rel="shortcut icon" href="/web/upload/favicon_20141006131340.ico">
-<meta http-equiv="ImageToolbar" content="No">
-<script type="text/javascript"
-	src="/app/Eclog/js/cid.generate.js?vs=3d0b473968a0ec4ec41e3bf59df3aa51"></script>
-<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
-
 <script type="text/javascript">
-	var EC_FRONT_EXTERNAL_SCRIPT_VARIABLE_DATA = {
-		"common_member_id_crypt" : ""
-	};
-</script>
 
-<!-- <script type="text/javascript">
-	var EC_SDE_SHOP_NUM = 1;
-	var SHOP = {
-		getLanguage : function() {
-			return "ko_KR";
-		},
-		getCurrency : function() {
-			return "KRW";
-		},
-		getFlagCode : function() {
-			return "KR";
-		},
-		isMultiShop : function() {
-			return true;
-		},
-		isDefaultShop : function() {
-			return true;
-		},
-		isDefaultLanguageShop : function(sLanguageCode) {
-			return SHOP.isDefaultShop() && SHOP.isLanguageShop(sLanguageCode);
-		},
-		isKR : function() {
-			return true;
-		},
-		isUS : function() {
-			return false;
-		},
-		isJP : function() {
-			return false;
-		},
-		isCN : function() {
-			return false;
-		},
-		isTW : function() {
-			return false;
-		},
-		isES : function() {
-			return false;
-		},
-		isPT : function() {
-			return false;
-		},
-		isLanguageShop : function(sLanguageCode) {
-			return sLanguageCode === "ko_KR";
-		},
-		getDefaultShopNo : function() {
-			return 1;
-		},
-		getProductVer : function() {
-			return 2;
-		},
-		isSDE : function() {
-			return true;
-		}
-	};
-	var EC_COMMON_UTIL = {
-		convertSslForString : function(sString) {
-			return sString.replace(/http:/gi, '');
-		},
-		convertSslForHtml : function(sHtml) {
-			return sHtml
-					.replace(
-							/((?:src|href)\s*=\s*['"])http:(\/\/(?:[a-z0-9\-_\.]+)\/)/ig,
-							'$1$2');
-		},
-		getProtocol : function() {
-			return 'http';
-		},
-		moveSsl : function() {
-			if (EC_COMMON_UTIL.getProtocol() === 'http') {
-				var oLocation = jQuery(window.location);
-				var sUrl = 'https://' + oLocation.attr('host')
-						+ oLocation.attr('pathname') + oLocation.attr('search');
-				window.location.replace(sUrl);
-			}
-		}
-	};
-</script>
-<script type="text/javascript">
-	var EC_ROOT_DOMAIN = "cafe24.com";
-	var EC_GLOBAL_INFO = (function() {
-		var oData = {
-			"base_domain" : "hi880515.cafe24.com",
-			"root_domain" : "cafe24.com",
-			"is_global" : false,
-			"country_code" : "KR",
-			"language_code" : "ko_KR"
-		};
 
-		return {
-			getBaseDomain : function() {
-				return oData['base_domain'];
-			},
 
-			getRootDomain : function() {
-				return oData['root_domain'];
-			},
+	function check() {
 
-			isGlobal : function() {
-				return oData['is_global'];
-			},
+		var f = document.Reg_form;
 
-			getCountryCode : function() {
-				return oData['country_code'];
-			},
-
-			getLanguageCode : function() {
-				return oData['language_code'];
-			}
-		};
-	})();
-</script> -->
-<script language="javascript">
-	  function check() {
-
-		var f = document.Reg_form; 
-	
-
+		
 		if (f.MEMBER_ID.value == "") {
 			alert("아이디를 입력해주십시오");
 			f.MEMBER_ID.focus();
@@ -274,9 +90,7 @@
 			return false;
 		}
 		
-		
 
-		
 	}   
 
 	  function openConfirmId(){
@@ -388,19 +202,7 @@
 	}
 </script>
 
-<link rel="stylesheet" type="text/css"
-	href="/ind-script/optimizer.php?filename=tZXNSgQxDMfvO159jrjCwnr1pFffoB-ZaTVtStqC-_bWD0QZBJlpjw3JL8k_JAXHAeF4K5CEF1EBBDNXMQgmZ5iFYwHDIXC8aoZr-I8_mkNmqsVzPGh-3RhYS9malNQFZVtoUZrwj1CVEtyzEgtPPyEredBMNaNkcP58vjkdT5CqJm8mVwJBtjhZzH6JkF98vPtgBLaVEAIGjQLP7HfwWvdcC2iVvelS4Ar4adjX8dyUnxRRx7LaHNsDV-Pvxa1-ALQwU_FpANkhjcC2bbDVlBFktfioCo5QWekB1NWN6gb-dTU7ikAjxG1epsv5-8owV6JsBDH2pGZUYtwDKrvnOKy5xAsXTj2Rpi3BwnLpydTvH9djnLkn1H2r-QY&amp;type=css&amp;k=f17a190bd4804f6def26a3d625199fc1a17f114c&amp;t=1508869165">
-<link rel="stylesheet" type="text/css"
-	href="/ind-script/optimizer.php?filename=rczBDcMgDEDRAei1c7g9IKXjEHDACtgIm1bdvukOnL_-gyINAaObikOh0LY9_NNDn3ul6Iq1CprQJVTKDHoSvyCqQpM0K0INX5kGasGwSpbjuF31DotZXqkOysVcQ54r1SQfXm3uEkZyldR6iGfI6PxK_hAxHCvFKPy-fhLu8e_-AA&amp;type=css&amp;k=bd8e2d0a1c12081773378621cd32acfc0ff27aac&amp;t=1499901149">
-
 <title>3T</title>
-<meta name="path_role" content="MEMBER_JOIN">
-<meta name="author" content="데일리룩의 정석, 남친룩, 오버핏, 루즈핏, 코디, 남성의류 쇼핑몰">
-<meta name="description" content="데일리룩의 정석, 남친룩, 오버핏, 루즈핏, 코디, 남성의류 쇼핑몰">
-<meta name="keywords"
-	content="남성의류,남자옷,남자쇼핑몰,남자데일리룩,남자유니크쇼핑몰,데일리룩쇼핑몰,데일리룩,애즈클로,남자상의,남자코트,남자바지,오버핏,루즈핏,코트,데님자켓,청자켓,스키니팬츠,남자스키니,남자데님팬츠,OOTD,dailylook,린넨셔츠,남자여름코디,남자봄코디,남자가을코디,남자겨울코디">
-<script
-	src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/983431901/?random=1534494017641&amp;cv=9&amp;fst=1534494017641&amp;num=1&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;eid=376635471&amp;u_h=864&amp;u_w=1536&amp;u_ah=824&amp;u_aw=1536&amp;u_cd=24&amp;u_his=3&amp;u_tz=540&amp;u_java=false&amp;u_nplug=3&amp;u_nmime=4&amp;sendb=1&amp;frm=0&amp;url=http%3A%2F%2Fasclo.com%2Fmember%2Fjoin.html&amp;ref=http%3A%2F%2Fasclo.com%2F&amp;tiba=%EC%95%A0%EC%A6%88%ED%81%B4%EB%A1%9C&amp;rfmt=3&amp;fmt=4"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>회원가입</title>
@@ -451,9 +253,23 @@
 											fw-filter="isFill&amp;isFill&amp;isMin[4]&amp;isMax[16]&amp;isIdentity"
 											fw-label="아이디" fw-msg="" class="inputTypeText" placeholder=""
 											value="${row.MEMBER_ID}" readonly type="text"> <span id="idMsg"></span>
-											(영문소문자/숫자, 4~16자)</td>
+											아이디는 변경할 수 없습니다.</td>
 									</tr>
+									
 									<tr>
+										<th scope="row">현재비밀번호 <img
+											src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"
+											alt="필수"></th>
+										<td>
+											<div class="col-lg-21 col-md-20">
+												<input id="Now_PASSWD" name="Now_PASSWD" maxlength="16" type="password"/>
+												현재 사용하고 계신 비밀번호를 입력해주세요.
+												<p class="alertNowPass alert-positive"></p>
+											</div>
+										</td>
+									</tr>
+									
+<%-- 									<tr>
 										<th scope="row">비밀번호 <img
 											src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"
 											alt="필수"></th>
@@ -462,6 +278,7 @@
 											fw-msg="" autocomplete="off" maxlength="16"
 											0="disabled" value="${row.PASSWD}" type="password"> 영문/숫자를 이용하여 4~12자로 입력하세요</td>
 									</tr>
+								
 									<tr>
 										<th scope="row">비밀번호 확인 <img
 											src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"
@@ -472,6 +289,30 @@
 											fw-msg="비밀번호가 일치하지 않습니다." autocomplete="off" maxlength="16"
 											0="disabled" value="" type="password"> <span
 											id="pwConfirmMsg"></span> 비밀번호를 재입력 해주세요</td>
+									</tr> --%>
+																		<tr>
+										<th scope="row">비밀번호 <img
+											src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"
+											alt="필수"></th>
+										<td>
+											<div class="col-lg-21 col-md-20">
+												<input id="PASSWD2" name="PASSWD" maxlength="16" type="password"/>
+													영문/숫자를 이용하여 4~12자로 입력하세요
+												<p class="alertPass alert-positive"></p>
+											</div>	
+										</td>
+									</tr>
+									<tr>
+										<th scope="row">비밀번호 확인 <img
+											src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"
+											alt="필수"></th>
+										<td>
+											<div class="col-lg-21 col-md-20">
+												<input id="PASSWD2" name="PASSWD2" maxlength="16" type="password"/>
+												비밀번호를 확인해주세요.
+												<p class="alertPass2 alert-positive"></p>
+											</div>
+										</td>
 									</tr>
 									
 									<tr>
@@ -527,8 +368,8 @@
 										<th scope="row">이메일 <img
 											src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"
 											alt="필수"></th>
-										<td><input name="EMAIL1" value="${row.EMAIL}" type="text" class="box" id="EMAIL1"
-										size="15"> @ <input name="EMAIL2" type="text"
+										<td><input name="EMAIL1" value="${row.EMAIL}" type="text" class="box" id="EMAIL1" size="25" readonly> 이메일 변경을 원할시 관리자에게 문의바랍니다.
+										<!-- @ <input name="EMAIL2" type="text"
 										class="box" id="EMAIL2" size="20"> <select
 										name="email3"  id="email_select"
 										onChange="checkemailaddy();">
@@ -538,7 +379,7 @@
 										<option value="hanmail.com">hanmail.com</option>
 										<option value="yahoo.co.kr">yahoo.co.kr</option>
 										<option value="1">직접입력</option>
-									</select>
+									</select> -->
 									<span id="emailMsg"></span></td>
 									</tr>
 									</c:forEach>
@@ -560,4 +401,105 @@
 		</div>
 	</div>
 </body>
+<script type="text/javascript">
+
+$("input[name=Now_PASSWD]").blur(function(){
+	var NowPASSWD = $(this).val();
+	var p = $(this).parent();
+	$.post("/3T/checkNowPass",{NowPASSWD:NowPASSWD},function(data)
+	{
+		
+
+		if (!NowPASSWD){
+			$(".alertNowPass",p).removeClass("alert-positive").addClass("alert-negative").html("<span style='color:red'>현재비밀번호를 입력해주세요.</span>");
+			//$("input[name=chkid]").val("");
+		} else if (data==1){
+			$(".alertNowPass",p).removeClass("alert-negative").addClass("alert-positive").html("<span style='color:blue'>비밀번호가 확인되었습니다.</span>");
+			//$("input[name=chkid]").val("");
+		}
+		else
+		{
+			$(".alertNowPass",p).removeClass("alert-positive").addClass("alert-negative").html("<span style='color:red'>비밀번호가 틀렸습니다.</span>");
+		}
+	});		
+});
+
+$("input[name=PASSWD]").blur(function(){ 
+	var PASSWD = $(this).val();
+	var ID = $("input[name=MEMBER_ID]").val();
+	var p = $(this).parent();
+    var chkNum = PASSWD.search(/[0-9]/g);  // 숫자
+//  var chkEngA = PASSWD.search(/[A-Z]/g);  // 영문 대문자
+//  var chkEnga = PASSWD.search(/[a-z]/g);  // 영문 소문자
+  	var chkEngAa = PASSWD.search(/[A-Za-z]/g);  // 영문 대소문자
+  	var chkSpecial = PASSWD.search(/[!@#$%^&*()\-_=+\\\/\[\]{};:\`",.<>\/?]/g);  // 특수문자
+  	var chkCnt = 0;
+	
+    if(chkNum >= 0) { chkCnt += 1; }
+//  if(chkEngA >= 0) { chkCnt += 1; }
+//  if(chkEnga >= 0) { chkCnt += 1; }
+  	if(chkEngAa >= 0) { chkCnt += 1; }
+  	if(chkSpecial >= 0) { chkCnt += 1; }
+  	
+
+  	
+	console.log(PASSWD);
+	console.log(PASSWD2);
+	
+	if (!PASSWD){
+		$(".alertPass",p).removeClass("alert-positive").addClass("alert-negative").html("<span style='color:red'>필수정보입니다.</span>");
+		//$("input[name=chkid]").val("");
+	}
+	else if (chkCnt < 3)
+	{
+		$(".alertPass",p).removeClass("alert-positive").addClass("alert-negative").html("<span style='color:red'>[비밀번호]는 숫자와 영대소문자 및 특수문자 중 3종류이상 혼용하여야 합니다.</span>");
+		//$("input[name=chkid]").val(""); 
+	} 
+	else if(/(\w)\1\1\1/.test(PASSWD))
+	{
+		$(".alertPass",p).removeClass("alert-positive").addClass("alert-negative").html("<span style='color:red'>[비밀번호]에 같은 문자를 연속으로 4번이상 사용하실 수 없습니다.</span>");
+		//$("input[name=chkid]").val("on"); 
+	}
+	else if (PASSWD.indexOf(ID) > -1)
+	{
+		$(".alertPass",p).removeClass("alert-positive").addClass("alert-negative").html("<span style='color:red'>[비밀번호]는 사용자ID와 동일하거나 이를 포함한 비밀번호를 사용하실 수 없습니다.</span>");
+		
+		if(!ID)
+		{
+			$(".alertPass",p).removeClass("alert-positive").addClass("alert-negative").html("<span style='color:red'>사용자 ID를 입력해주세요.</span>");
+		}
+	}
+	else
+	{
+		$(".alertPass",p).removeClass("alert-negative").addClass("alert-positive").html("<span style='color:blue'>사용가능한 비밀번호 입니다.</span>");
+	}
+	
+});
+
+
+$("input[name=PASSWD2]").blur(function(){ 
+	var PASSWD = $("input[name=PASSWD]").val();
+	var PASSWD2 = $(this).val(); 
+	var p = $(this).parent();
+	
+	console.log(PASSWD);
+	console.log(PASSWD2);
+	
+	if (PASSWD == PASSWD2)
+	{
+		$(".alertPass2",p).removeClass("alert-positive").addClass("alert-negative").html("<span style='color:blue'>비밀번호가 일치합니다.</span>");
+		if(PASSWD2 == "")
+		{
+			$(".alertPass2",p).removeClass("alert-negative").addClass("alert-positive").html("<span style='color:red'>비밀번호를 작성해주세요</span>");
+		}
+		
+		//$("input[name=chkid]").val(""); 
+	} 
+	else 
+	{
+		$(".alertPass2",p).removeClass("alert-negative").addClass("alert-positive").html("<span style='color:red'>비밀번호가 일치하지 않습니다. 다시작성해주세요.</span>");
+		//$("input[name=chkid]").val("on"); 
+	} 
+	}); 
+</script>
 </html>
