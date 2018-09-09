@@ -178,7 +178,10 @@
 }
 .xans-order-result .totalArea .summary td strong {
     letter-spacing: -1px;
-    font-size: 25!important;
+    font-size: 18!important;
+}
+.xans-order-result .totalArea .summary td {
+    font-size: 17!important;
 }
 .help h3 {
     padding: 4px 0 3px 10px;
@@ -196,6 +199,21 @@
 }
 .boardList th{
    text-align: center;
+}
+.xans-order-result .totalArea .detail .total th, .xans-order-result .totalArea .detail .total td{
+   font-size:15px!important;
+}
+.xans-order-result .totalArea .detail td {
+   font-size:13px!important; 
+}
+.xans-order-result .boardView tbody tr:first-child th, .xans-order-result .boardView tbody tr:first-child strong {
+   font-size:13px!important;  
+}
+.xans-order-result .boardView .price {
+   font-size:14px!important;  
+}
+#contents {
+	width: 100%!important;
 }
 </style>
 </head>
