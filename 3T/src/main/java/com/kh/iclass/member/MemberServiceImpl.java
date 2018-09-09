@@ -15,6 +15,11 @@ public class MemberServiceImpl implements MemberService{
     @Resource(name="memberDAO")
 	private MemberDAO memberDAO  ;
 
+	public String checkPass(String NowPass) throws Exception {
+		return memberDAO.checkPass(NowPass);
+		
+	}
+	
     public List<Map<String, Object>> memberInfoList(Map<String, Object> map) throws Exception 
 	{
 		return memberDAO.memberInfoList(map);
