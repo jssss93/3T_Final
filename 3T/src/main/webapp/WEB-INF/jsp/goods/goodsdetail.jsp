@@ -534,245 +534,120 @@ table {
 <%@ include file="/WEB-INF/include/include-body.jspf"%>
 <script>
 var totprice = 0;
-
 var r_optno = [];
-
-
-
+//
 function setOption(obj) {
-
-
 	 var optno = $("#option option:selected").val();
-
-	
-
 	 if (!optno || in_array(optno,r_optno)) return;
-
-
 
 	 var li = "<li class='MK_li_1_1'><span class='MK_p-name'>" + $("#option option:selected").attr("optnm") + "</span><input type='hidden' name='optno[]' value='" + optno +"'><input type='hidden' name='attribute_no[]' value='" + $("option:selected",$(obj)).attr("attribute_no") + "'><input type='hidden' class='mstock' value='" +$("option:selected",$(obj)).attr("stock") + "'><div class='MK_qty-ctrl'><input type='text' name='ea[]' value='1' class='input_ea' size='2' maxlength='3'><span class='ea'><a class='MK_btn-up'><img src='/3T/resources/images/btn_num_up.gif' alt='' /></a><a class='MK_btn-dw'><img src='/3T/resources/images/btn_num_down.gif' alt='' /></a></span><span class='MK_price' data-price='"+$("option:selected",$(obj)).attr("price")+"'>" +($("option:selected",$(obj)).attr("price")) + "원</span><a href='#' optno='" + optno + "'class='MK_btn-del'><img src='/3T/resources/images/btn_close.gif' alt='' /></a></li></div>";
 
 
-
-
-
-
-	
-
 	 $("#MK_innerOpt_01").append(li);
-
 	 r_optno.push(optno);
-
 	 var thisIdx = $(".input_ea").index(this);
-
 	 var inputEa = parseInt($(".input_ea").eq(thisIdx).val());
-
 	 change_ea(this,1);
-
 	 console.log("요기?"+inputEa);
-
 	 var price = parseInt($("option:selected",$('#option')).attr("price"));
-
 	 price = price*inputEa;
-
 	 price = parseInt(price);
-
 	 if(totprice != 0){
-
 	    totprice = $("#MK_txt-won").data("price");
-
 	 }
-
 	 totprice = totprice + price;
-
 	 console.log(totprice);
-
 	 $("#MK_txt-won").data("price",totprice);
-
 	 $("#MK_txt-won").html((totprice)+"원");
-
 }
 
+	//
 	 $("#MK_innerOpt_01").on("click", "li a.MK_btn-del", function(){
-
 	 var ritem = $(this).attr("optno");
-
 	 var thisIdx = $(".MK_btn-del").index(this); 
-
-
      console.log("음"+thisIdx);
-
      var price = $(".MK_price").eq(thisIdx).data("price");
-
-
 	 console.log("zz"+price);
-
 	 var totprice = $("#MK_txt-won").data("price");
-
 	 totprice = totprice - price;
-
 	 $("#MK_txt-won").data("price",totprice);
-
 	 $("#MK_txt-won").html((totprice)+"원");
-
-	 
-
 	 r_optno = $.grep(r_optno,function(v){ return v != ritem; });
-
 	 $(".MK_li_1_1").eq(thisIdx).remove();
-
 	});
 
-
-
+	 //
 	$("#MK_innerOpt_01").on("click", "li a.MK_btn-up", function(e) {
-
 	 var thisIdx = $(".MK_btn-up").index(this);    
-
 	 change_ea(this,1);
-
 	 var inputEa = parseInt($(".input_ea").eq(thisIdx).val());
-
 	 var mStock = parseInt($(".mstock").eq(thisIdx).val()); 
-
 	 var price = parseInt($("option:selected",$('#option')).attr("price"));
-
 	 $(".MK_price").eq(thisIdx).data("price",(price*inputEa));
-
 	 var total = $(".MK_price").eq(thisIdx).html((price*inputEa)+"원");
-
 	 console.log("오나욜");
-
 	 var totprice = $("#MK_txt-won").data("price");
-
 	 console.log(totprice);
-
 	 totprice = totprice + price;
-
 	 $("#MK_txt-won").data("price",totprice);
-
 	 $("#MK_txt-won").html((totprice)+"원");
-
-
-
-
-
 
 
     // 재고 수량 이상 주문 체크
-
     if(inputEa >= mStock) {
-
        alert(mStock+"개 이상 주문하실 수 없습니다.");
-
        change_ea(this,-1);
-
          inputEa = parseInt($(".input_ea").eq(thisIdx).val());
-
          var total = $(".MK_price").eq(thisIdx).html((price*inputEa)+"원");
 
-    
-
-         
-
        return false ;
-
     } 
-
    });
-
    $("#MK_innerOpt_01").on("keyup", "li input.input_ea", function(e){
-
        var thisIdx = $(".input_ea").index(this); 
-
        var mStock = parseInt($(".mstock").eq(thisIdx).val()); 
-
        var price = parseInt($("option:selected",$('#option')).attr("price"));
-
        var totprice = $("#MK_txt-won").data("price");
 
-
-
-       
-
        $(this).val($(this).val().replace(/[^0-9]/g,""));
-
-
-
        if($(this).val() == "" || parseInt($(this).val()) <= 0) {
-
           $(this).val("1");
-
           return false ;
-
        }
 
-
-
        if(parseInt($(this).val()) > mStock) {
-
           alert(mStock+"개 이상 주문하실 수 없습니다.");
-
           $(this).val(mStock);
-
           var total = $(".MK_price").eq(thisIdx).html((price*parseInt($(this).val()))+"원");
 
-
-
           return false ;
-
        } else{
-
             var total = $(".MK_price").eq(thisIdx).html((price*parseInt($(this).val()))+"원");
-
             totprice = totprice + (price*(parseInt($(this).val())-1));
-
             $("#MK_txt-won").html((totprice)+"원");
-
         }
-
       });
 
-
-
       $("#MK_innerOpt_01").on("click", "li a.MK_btn-dw", function(e) {
-
        var thisIdx = $(".MK_btn-dw").index(this); 
-
        var inputEa = parseInt($(".input_ea").eq(thisIdx).val());
 
-       
-
        if(inputEa == 1){
-
           alert("1개 이상 주문하셔야 합니다.");
-
           $(".input_ea").eq(thisIdx).val() == 1;   
-
           return false;
-
        } 
 
        change_ea(this,-1);
-
         inputEa = parseInt($(".input_ea").eq(thisIdx).val());
-
         var price = parseInt($("option:selected",$('#option')).attr("price"));
-
         $(".MK_price").eq(thisIdx).data("price",(price*inputEa));
-
         var total = $(".MK_price").eq(thisIdx).html((price*inputEa)+"원");
-
         var totprice = $("#MK_txt-won").data("price");
-
         totprice = totprice - price;
-
         $("#MK_txt-won").data("price",totprice);
-
         $("#MK_txt-won").html((totprice)+"원");
-
        return false ;
-
       });
 
       
@@ -781,7 +656,7 @@ function setOption(obj) {
 
    
 
-      </script>
+</script>
 
 <script>
 

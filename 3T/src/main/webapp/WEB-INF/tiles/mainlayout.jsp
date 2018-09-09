@@ -5,17 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- 왼쪽 카테고리 -->
-<link href="<c:url value='/resources/css/left category.css'/>"
-	rel="stylesheet" type="text/css" />
-
-<!-- 오른쪽 카테고리 -->
-<link href="<c:url value='/resources/css/right category.css'/>"
-	rel="stylesheet" type="text/css" />
-
-<!-- 로그인 -->
-<link href="<c:url value='/resources/css/login category.css'/>"
-	rel="stylesheet" type="text/css" />
 
 <!-- wing_banner -->
 <link href="<c:url value='/resources/css/wing_banner.css'/>"
@@ -39,7 +28,6 @@
 	type="text/css" />
 <link href="//fonts.googleapis.com/css?family=Cabin:700"
 	rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="/fonts/font-awesome.css" />
 <link
 	href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"
 	rel="stylesheet" />
@@ -49,22 +37,16 @@
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:700" /> -->
 
 <meta name="format-detection" content="telephone=no" />
-
+ 
 <link rel="canonical" href="http://asclo.com/myshop/index.html" />
 <link rel="alternate" href="http://m.asclo.com/myshop/index.html" />
 <meta property="og:url" content="http://asclo.com/myshop/index.html" />
 <meta property="og:site_name" content="애즈클로" />
 <meta property="og:type" content="website" />
 <link rel="shortcut icon" href="/web/upload/favicon_20141006131340.ico" />
-<script type="text/javascript"
-	src="/app/Eclog/js/cid.generate.js?vs=3d0b473968a0ec4ec41e3bf59df3aa51"></script>
 <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
 
 
-<link rel="stylesheet" type="text/css"
-	href="/ind-script/optimizer.php?filename=tZRNTsQwDIX3U7acw4A00rBlxRpO4CZuG-HEkeNIzO0JPwtQNRKapstY8ef4xX6wSCS4f1DIKrNiBKUiVR2BKwUmlWTgJEZJNy1wC_-5T-5QhKsFSYdR3q9MrGbXFmU8k16XajgyXUjFnOFJUD28_Ias5CE31EJaYAmn093x_gi5jhzcsFhkKJ4GTyXMCcpbSI9fjCi-MkE8l0UyjJRoCtYTKepJXw2NelIjhg2Nt2-SajBiCa6Lkivgd2Bbx1MbkQGZOz6rDVw70GpOe3Fr2AFqImwh70BeiPfAtrX11dkeZJxD2rRKl1XGcQfqyky7gf_Ye0cReA9x2y3Xxf5-KkyVuTglSj2phVDd8kzot5jDmssyi0nuiXRtCWbR8yfzAw&type=css&k=2e4de6868efd8dbe20b10160c5f38e26a835807c&t=1508869165" />
-<link rel="stylesheet" type="text/css"
-	href="/ind-script/optimizer.php?filename=tdJBDgIhDAXQA-DWc1QXk4xH8BgIBZqBdkKLxts7egZc__y3-R-KNAQMbih2hULrelmuC-zjUSm4Yq2CRnQRlTKDbsQ3CKrQJI6KUP1bhsFDfI93TnI6sjPMQQv6iH2mqOYNq2RJ6S8sz1Q75WKuIY-ZapQXzzZ_67tKarsPm8_olpl8ErG5PwjCz6NPwnv4uh8&type=css&k=40f8d745a3ef768c9e28f15515a41b168e584117&t=1499901149" />
 <link href="<c:url value='/resources/css/mypage.css'/>" rel="stylesheet"
 	type="text/css" />
 <style type="text/css">
@@ -138,45 +120,39 @@
 	</div>
 	<!-- 검색 -->
 	<nav>
-			<div class="fullscreen_menu_button">
-				<a class="btn-open" href="#"><img
-					src="/3T/resources/images/search_btn.png"></a>
-			</div>
-		</nav>
+		<div class="fullscreen_menu_button">
+			<a class="btn-open" href="#"><img
+				src="/3T/resources/images/search_btn.png"></a>
+		</div>
+	</nav>
 	
 	<div class="overlay" style="display: none;">
-			<div class="wrap">
+		<div class="wrap">
 
-				<form id="searchBarForm" name="searchBarForm" action="/3T/goods/search" method="get" enctype="multipart/form-data"
-				onsubmit="return validation2();">
+			<form id="searchBarForm" name="searchBarForm" action="/3T/goods/search" method="get" enctype="multipart/form-data" onsubmit="return validation2();">
 				<input type="hidden" id="CATEGORY" name="CATEGORY" value="">
 				<input type="hidden" id="PRICE1" name="PRICE1" value="">
 				<input type="hidden" id="PRICE2" name="PRICE2" value="">
 					
-					<div class="xans-element- xans-layout xans-layout-searchheader ">
-						<h2>
-							<span
-								class="xans-element- xans-layout xans-layout-logotop fullscreen ">
-								<img src="/3T/resources/images/3T2.png">
-							</span>
-						</h2>
-						<fieldset>
-							<legend>검색</legend>
-							<input id="keyword" name="keyword" class="inputTypeText" placeholder=""  type="text">
-								
-							<input type="image" id="searchbutton" placeholder="SEARCH.." src="/3T/resources/images/btn_search.png" alt="검색">
-							&nbsp;
-						</fieldset>
-					</div>
-				</form>
-			</div>
+				<div class="xans-element- xans-layout xans-layout-searchheader ">
+					<h2>
+						<span
+							class="xans-element- xans-layout xans-layout-logotop fullscreen ">
+							<img src="/3T/resources/images/3T2.png">
+						</span>
+					</h2>
+					<fieldset>
+						<legend>검색</legend>
+						<input id="keyword" name="keyword" class="inputTypeText" placeholder=""  type="text">
+						<input type="image" id="searchbutton" placeholder="SEARCH.." src="/3T/resources/images/btn_search.png" alt="검색"> &nbsp;
+					</fieldset>
+				</div>
+			</form>
 		</div>
+	</div>
 
 
 	<div>
-	
-	
-
 		<div id="body" align="center" style="width: 80%; margin: 0 auto;">
 			<tiles:insertAttribute name="body" ignore="true" />
 		</div>
@@ -200,15 +176,14 @@
 				<c:if test="${sessionScope.MEMBER_ID == null}">
 					<a href="/3T/loginForm" class="log">login</a>
 					<a href="/3T/joinStep1">join</a>
-							</c:if>
+				</c:if>
 				<c:if test="${sessionScope.MEMBER_ID != null}">
 					<a href="/3T/logout" class="log">logout</a> 
-							</c:if> 
-							<br>
-		     <a href="/3T/order/list">order</a> <a href="/3T/member/mypage">mypage</a>
+				</c:if> 
+				<br>
+		     	<a href="/3T/order/list">order</a> 
+		     	<a href="/3T/member/mypage">mypage</a>
 			</div>
-
-
 		</div>
 		<!-- //left_login -->
 
@@ -244,21 +219,17 @@
 				</div>
 			</div>
 
-
 			<div class="xans-element- xans-layout xans-layout-boardinfo">
 				<ul>
 					<li class="xans-record-"><a href="/3T/notice/list">NOTICE</a></li>
-
 					<li class="xans-record-"><a href="/3T/faq/list">FAQ</a></li>
-
 					<li class="xans-record-"><a href="/3T/qa/list">Q&amp;A</a></li>
 					<li class="xans-record-"><a href="/3T/review/list">REVIEW</a></li>
-
 				</ul>
-				</div>
+			</div>
 				
-				<div class="xans-element- xans-layout xans-layout-boardinfo">
-					<ul>
+			<div class="xans-element- xans-layout xans-layout-boardinfo">
+				<ul>
 							
 								<li><strong class="xans-element- xans-layout xans-layout-footer ">
 									예금주 : 서지우(3T)<br>
@@ -283,14 +254,6 @@
 			</div>
 			
 		</div>
-				
-			
-		</div>
-
-	</div>
-	
-	</tr>
-	</table>
 	</div>
 
 
@@ -388,14 +351,42 @@
 
 			</div>
 	
-<script type="text/javascript">
-
+<script>
+  
 
     $(document).ready(function () {
         $('.fullscreen_menu_button a').click(function () {
             $('.overlay').fadeToggle(200);
             $(this).toggleClass('btn-open').toggleClass('btn-close');
         });
+        
+        $("#moveupBtn").on("click", function(event) {
+			// 이동 버튼을 클릭시 태그로 스크롤의 위치가 이동되도록 한다.
+
+			// 1. 태그의 위치를 가지고 있는 객체를 얻어온다. => offset 객체
+			var offset = $("#suk").offset();
+
+			// offset은 절대 위치를 가져온다. offset.top을 통해 상단의 좌표를 가져온다.
+			// position은 부모를 기준으로한 상대위치를 가져온다.
+			$("html body").animate({
+				scrollTop : offset.top
+			}, 0);
+
+		});
+
+		$("#movedownBtn").on("click", function(event) {
+			// 이동 버튼을 클릭시 태그로 스크롤의 위치가 이동되도록 한다.
+
+			// 1. 태그의 위치를 가지고 있는 객체를 얻어온다. => offset 객체
+			var offset = $("#footer").offset();
+
+			// offset은 절대 위치를 가져온다. offset.top을 통해 상단의 좌표를 가져온다.
+			// position은 부모를 기준으로한 상대위치를 가져온다.
+			$("html body").animate({
+				scrollTop : offset.top
+			}, 0);
+
+		});
     });
     
 	
@@ -411,36 +402,6 @@
 		}
 </script>
 
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$("#moveupBtn").on("click", function(event) {
-				// 이동 버튼을 클릭시 태그로 스크롤의 위치가 이동되도록 한다.
 
-				// 1. 태그의 위치를 가지고 있는 객체를 얻어온다. => offset 객체
-				var offset = $("#suk").offset();
-
-				// offset은 절대 위치를 가져온다. offset.top을 통해 상단의 좌표를 가져온다.
-				// position은 부모를 기준으로한 상대위치를 가져온다.
-				$("html body").animate({
-					scrollTop : offset.top
-				}, 0);
-
-			});
-
-			$("#movedownBtn").on("click", function(event) {
-				// 이동 버튼을 클릭시 태그로 스크롤의 위치가 이동되도록 한다.
-
-				// 1. 태그의 위치를 가지고 있는 객체를 얻어온다. => offset 객체
-				var offset = $("#footer").offset();
-
-				// offset은 절대 위치를 가져온다. offset.top을 통해 상단의 좌표를 가져온다.
-				// position은 부모를 기준으로한 상대위치를 가져온다.
-				$("html body").animate({
-					scrollTop : offset.top
-				}, 0);
-
-			});
-		}); // end of ready()
-	</script>
 </body>
 </html>
