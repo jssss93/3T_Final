@@ -57,6 +57,9 @@ to {
 	opacity: 1;
 }
 .abc {  font-size: 24px; color: #000000;}
+#myimg2 {
+    margin-top: -16px!important;
+}
 </style>
 <title>Insert title here</title>
 </head>
@@ -67,23 +70,23 @@ to {
 		style="max-width: 100%">
 		<a href="GoodsView.action?goods_no=1124">
 			<img id="myimg2" class="mySlides"
-				src="/3T/resources/images/slide1.PNG" width="1900" height="880">
+				src="/3T/resources/images/slide1.PNG" width="100%" height="auto">
 		</a>
 		<a href="GoodsView.action?goods_no=1123">
 			<img id="myimg2" class="mySlides"
-				src="/3T/resources/images/slide2.PNG" width=1900 height=880>
+				src="/3T/resources/images/slide2.PNG" width="100%" height="auto" >
 		</a>
 		<a href="GoodsView.action?goods_no=1122">
 			<img id="myimg2" class="mySlides"
-				src="/3T/resources/images/slide3.PNG" width=1900 height=880>
+				src="/3T/resources/images/slide3.PNG" width="100%" height="auto">
 		</a>
 		<a href="GoodsView.action?goods_no=823">
 			<img id="myimg2" class="mySlides"
-				src="/3T/resources/images/slide4.PNG" width=1900 height=880>
+				src="/3T/resources/images/slide4.PNG" width="100%" height="auto">
 		</a>
 		<a href="GoodsView.action?goods_no=945">
 			<img id="myimg2" class="mySlides"
-				src="/3T/resources/images/slide5.PNG" width=1900 height=880>
+				src="/3T/resources/images/slide5.PNG" width="100%" height="auto">
 		</a>
 
 		<div

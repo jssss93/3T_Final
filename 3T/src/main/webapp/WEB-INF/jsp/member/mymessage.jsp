@@ -80,7 +80,7 @@ font-size:15px;
 }
 .text-center {
     text-align: center;
-    margin: -42 0 0 410;
+    margin: 15 0 0 0;
 }
 .form-inline .form-control{
     margin: 0 0 0 2;
@@ -98,7 +98,17 @@ font-size:15px;
     letter-spacing: 1px;
     background: white;
     margin: 0 0 0 10;
-    
+}
+.form-group {
+    /* margin-bottom: 15px; */
+    margin: 0 0 0 160;
+    width: 80%;
+    font-family: 'Lato','Nanum Gothic';
+}
+.modal-backdrop.in {
+    filter: alpha(opacity=50);
+    opacity: 0.8;
+}    
 </style>
 
 <body>
@@ -177,8 +187,8 @@ font-size:15px;
 										<section style="padding: 50px 20px;">
 											<div class="form-group">
 												<div class="col-xs-24 col-lg-24 form-inline">
-													보낸이 : 관리자 <br>
-													${row.CONTENT}<br>
+													보낸이 : 관리자 <br><br>
+													내용 : ${row.CONTENT}<br>
 													<p />
 
 													<div class="text-center" style="padding-top: 10px">

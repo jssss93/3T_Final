@@ -797,9 +797,10 @@ table .subject a:hover {
 #contents {
 	position: relative;
 	float: left;
-	width: 87%;
+	width: 92%;
 	min-height: 500px;
-	margin: 80px auto 20px;
+/* 	margin: 80px auto 20px; */
+	margin-left:100px;
 }
 @font-face {
 	font-family: "Nanum Gothic";
