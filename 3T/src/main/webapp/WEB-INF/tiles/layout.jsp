@@ -17,10 +17,6 @@
 <link href="<c:url value='/resources/css/login Category.css'/>"
 	rel="stylesheet" type="text/css" />
 	
-<!-- wing_banner -->
-<link href="<c:url value='/resources/css/wing_banner.css'/>"
-	rel="stylesheet" type="text/css" />
-	
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -60,7 +56,9 @@
 	src="/app/Eclog/js/cid.generate.js?vs=3d0b473968a0ec4ec41e3bf59df3aa51"></script>
 <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
 
-
+<!-- wing_banner -->
+<link href="<c:url value='/resources/css/wing_banner.css'/>"
+	rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css"
 	href="/ind-script/optimizer.php?filename=tZRNTsQwDIX3U7acw4A00rBlxRpO4CZuG-HEkeNIzO0JPwtQNRKapstY8ef4xX6wSCS4f1DIKrNiBKUiVR2BKwUmlWTgJEZJNy1wC_-5T-5QhKsFSYdR3q9MrGbXFmU8k16XajgyXUjFnOFJUD28_Ias5CE31EJaYAmn093x_gi5jhzcsFhkKJ4GTyXMCcpbSI9fjCi-MkE8l0UyjJRoCtYTKepJXw2NelIjhg2Nt2-SajBiCa6Lkivgd2Bbx1MbkQGZOz6rDVw70GpOe3Fr2AFqImwh70BeiPfAtrX11dkeZJxD2rRKl1XGcQfqyky7gf_Ye0cReA9x2y3Xxf5-KkyVuTglSj2phVDd8kzot5jDmssyi0nuiXRtCWbR8yfzAw&type=css&k=2e4de6868efd8dbe20b10160c5f38e26a835807c&t=1508869165" />
 <link rel="stylesheet" type="text/css"
@@ -81,10 +79,9 @@
 #Right {
 	position: fixed;
 	float: right;
-	right: 0px;
-	width: 140px;
+	width: 13%!important;
 	top: 0px;
-	height: 90%;
+	height: 100%!important;
 	z-index: 9;
 	background: none;
 }
@@ -106,8 +103,27 @@
     overflow: hidden;
 }
 .btn_top{
-	text-align: right;
-	margin-right: 10;
+	position: fixed;
+    right: -1px;
+    bottom: 23%;
+    clear: both;
+    border: 1px #ddd solid;
+    border-right: 0px #333 solid;
+    z-index: 99;
+    width: 30px;
+    height: 30px;
+}
+.btn_bottom {
+    position: fixed;
+    right: -1px;
+    bottom: 20%;
+    clear: both;
+    border: 1px #ddd solid;
+    border-right: 0px #333 solid;
+    z-index: 99;
+    width: 30px;
+    height: 30px;
+    
 }
 
 </style>
@@ -272,111 +288,81 @@
 			<ul>
 				<li class="cart_menu"><a href="/3T/cart/list"
 					class="xans-element- xans-layout xans-layout-orderbasketcount ">CART
-						<span>  </span>
-				</a>
-				</li>
-				
+						<span> </span>
+				</a></li>
+
 				<li class="cart_menu"><a href="/3T/wish/wishlist"
 					class="xans-element- xans-layout xans-layout-orderbasketcount ">WISHLIST
-						<span>  </span>
-				</a>
-				</li>
-				
+						<span> </span>
+				</a></li>
+
 				<li class="cart_menu"><a href="/3T/order/list"
 					class="xans-element- xans-layout xans-layout-orderbasketcount ">ORDER
-						<span>  </span>
-				</a>
-				</li>
+						<span> </span>
+				</a></li>
 			</ul>
 			<ul>
 				<!--<li><a href="/layout/basic/lookbook_01.html"></a></li>
                 <li><a href="/shopinfo/company.html">ABOUT</a></li>-->
 			</ul>
 			<ul>
-				
-			
+
+
 				<!--다운메뉴-->
 				<div>
 					<ul>
 						<li class="dep1">
-							
-								<li><b
-									class="xans-element- xans-layout xans-layout-footer ">070-4477-9922</b><br>
-									<br><strong>mon-fri 10am-4:30pm<br> lunch : 12:30-13:30<br>
-									sat, sun, holiday off</strong></li>
-							</li>
-						
+						<li><b class="xans-element- xans-layout xans-layout-footer ">070-4477-9922</b><br>
+							<br>
+						<strong>mon-fri 10am-4:30pm<br> lunch : 12:30-13:30<br>
+								sat, sun, holiday off
+						</strong></li>
+						</li>
+
 					</ul>
 				</div>
 				<br>
+
 				<div class="wing_banner" id="wingBanner">
 					<!-- 2017-02-17 cyn  스크롤 이벤트 발생시 .wing_fixed 넣어주세요 -->
 					<!-- 최근 본 상품 -->
 					<div class="wing_prd_wrap" id="wingRecentWrap" style="">
 						<div class="hwrap">
-							<strong class="tit"> 
-							<a href="#" id="wingRecentCount">
-							<span class="tx">최근 본 상품</span>
-							</strong>
+							<strong class="tit"> <a href="#" id="wingRecentCount">
+									<span class="tx">최근 본 상품</span></strong>
 						</div>
-						
+
 						<div class="wing_prd_list" id="windRecentPrdList">
 							<ul id="wingRecentPrd_1">
-								
+
 								<c:forEach items="${CookieListMap }" var="row">
-									<li class="wing_prd" >
-										<a href="/3T/goods/detail?GOODS_NO=${row.GOODS_NO }">
-											<span class="wing_prd_img">
-											<img width="70" height="70" src="/3T/resources/upload/${row.IMAGE}" ></span>
-										</a>
-										<!-- 삭제버튼 추가할것. -->
-										<button type="button" class="wing_btn_delete" prdno="1886256688"></button>
-									</li>
+									<li class="wing_prd"><a
+										href="/3T/goods/detail?GOODS_NO=${row.GOODS_NO }"> <span
+											class="wing_prd_img"> <img width="70" height="70"
+												src="/3T/resources/upload/${row.IMAGE}"></span>
+									</a> <!-- 삭제버튼 추가할것. -->
+										<button type="button" class="wing_btn_delete"
+											prdno="1886256688"></button></li>
 									<br>
 								</c:forEach>
-										
-								
+
+
 							</ul>
-							
+
 						</div>
 					</div>
-					
-					<div class="btn_top" data-log-actionid-label="top" >
-						<a href="#">
-							<!-- 2017-02-17 main페이지 #wrap으로 이동, 서브페이지 #wrapBody로 이동--> <img
-							src="http://s.011st.com/img/main/wing/img_top.gif"
-							alt="페이지 상단으로 이동">
-						</a>
-					</div>
 				</div>
-			</div>
-
-
-
-
-				<!-- //sm_right_bn -->
-			</div>
-			<!-- //fixed_quick -->
-<script type="text/javascript">
-
- function validation2() {
-
-	var frm = document.searchBarForm;
-
-	if (frm.keyword.value == "" || frm.keyword.value.equals("") || frm.keyword.value == null) {
-		alert("검색어를 입력해주세요.");
-		return false;
-	}
-}	
-	
-	$(document).ready(function() {
-		$('.fullscreen_menu_button a').click(function() {
-			$('.overlay').fadeToggle(200);
-			$(this).toggleClass('btn-open').toggleClass('btn-close');
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.fullscreen_menu_button a').click(function() {
+				$('.overlay').fadeToggle(200);
+				$(this).toggleClass('btn-open').toggleClass('btn-close');
+			});
 		});
-	});
-
-</script>
+	</script>
 
 			<script type="text/javascript">
 		$(document).ready(function() {

@@ -81,10 +81,9 @@
 #Right {
 	position: fixed;
 	float: right;
-	right: 0px;
-	width: 140px;
+	width: 13%!important;
 	top: 0px;
-	height: 90%;
+	height: 100%!important;
 	z-index: 9;
 	background: none;
 }
@@ -105,8 +104,27 @@
     overflow: hidden;
 }
 .btn_top{
-	text-align: right;
-	margin-right: 10;
+	position: fixed;
+    right: -1px;
+    bottom: 23%;
+    clear: both;
+    border: 1px #ddd solid;
+    border-right: 0px #333 solid;
+    z-index: 99;
+    width: 30px;
+    height: 30px;
+}
+.btn_bottom {
+    position: fixed;
+    right: -1px;
+    bottom: 20%;
+    clear: both;
+    border: 1px #ddd solid;
+    border-right: 0px #333 solid;
+    z-index: 99;
+    width: 30px;
+    height: 30px;
+    
 }
 /* 우측 퀵메뉴 스타일 */
 
@@ -115,7 +133,7 @@
 <body>
 
 
-	<div id="#" style="margin: 0 auto; height: 880">
+	<div id="#" style="margin: 0 auto;">
 		<tiles:insertAttribute name="header" ignore="true" />
 	</div>
 	<!-- 검색 -->
@@ -356,17 +374,19 @@
 					<div class="btn_top" data-log-actionid-label="top" >
 						<a href="#">
 							<!-- 2017-02-17 main페이지 #wrap으로 이동, 서브페이지 #wrapBody로 이동--> <img
-							src="http://s.011st.com/img/main/wing/img_top.gif"
+							src="/3T/resources/images/버튼1.png"
 							alt="페이지 상단으로 이동">
+						</a>
+					</div>
+					<div class="btn_bottom">
+						<a href="#footer" class="scroll"> <img
+							src="/3T/resources/images/버튼2.png">
 						</a>
 					</div>
 				</div>
 			</div>
 
 			</div>
-		</div>
-		
-	</div>
 	
 <script type="text/javascript">
 

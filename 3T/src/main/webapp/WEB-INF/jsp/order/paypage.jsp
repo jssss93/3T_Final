@@ -353,7 +353,7 @@ function checkAll2(){
 }
 
 .txtDel, .strike, .discount {
-   text-decoration: line-through;
+   text-decoration: none!important;
    font-weight: bold;
    font-size: 20;
    letter-spacing: -1;
@@ -367,7 +367,7 @@ function checkAll2(){
 
 .xans-order-form .totalArea .ec-base-table.total td .box strong .totalSum
    {
-   text-decoration: line-through;
+   text-decoration: none;
    font-weight: bold;
    font-size: 20;
    letter-spacing: -1;
@@ -376,7 +376,7 @@ function checkAll2(){
 
 .xans-order-form .totalArea .ec-base-table.total td .box strong .totalPrice
    {
-   text-decoration: line-through;
+   text-decoration: none!important;
    font-weight: bold;
    font-size: 20;
    letter-spacing: -1;
@@ -391,7 +391,7 @@ function checkAll2(){
    border: 1px solid #dfdfdf;
    border-bottom-width: 0;
    color: #353535;
-   text-align: left;
+   text-align: center;
    font-weight: normal;
    background-color: #fbfafa;
    border-left: 0;
