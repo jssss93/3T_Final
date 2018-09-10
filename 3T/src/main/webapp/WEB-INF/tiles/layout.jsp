@@ -2,10 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-
+<script src="http://developers.kakao.com/sdk/js/kakao.min.js"></script>
 	
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -28,10 +29,6 @@
 <link
 	href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"
 	rel="stylesheet" />
-<!-- <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:200" />
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400" />
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:500" />
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:700" /> -->
 
 <meta name="format-detection" content="telephone=no" />
 
@@ -166,23 +163,24 @@
 	
 
 		<!--로그인메뉴-->
-
-
+ 		<%@ include file="/WEB-INF/include/include-body.jspf"%>
+		<form id="frm">
 		<div class="left_login">
 			<div class="xans-element- xans-layout xans-layout-statelogoff ">
 				<c:if test="${sessionScope.MEMBER_ID == null}">
 					<a href="/3T/loginForm" class="log">login</a>/
 					<a href="/3T/joinStep1">join</a>
-							</c:if>
+				</c:if>
 				<c:if test="${sessionScope.MEMBER_ID != null}">
-					<a href="/3T/logout" class="log">logout</a> 
-							</c:if> 
-							<br>
+					<a href="#this"id="logout" class="log">logout3</a> 
+				</c:if> 
+				<br>
 		     <a href="/3T/order/list">order</a>/ <a href="/3T/member/mypage">mypage</a>
 			</div>
 
 
 		</div>
+		</form>
 		<!-- //left_login -->
 
 
@@ -337,6 +335,24 @@
 			</ul>
 		</div>
 	</div>
+	<script>
+	Kakao.init('95db4ac62ef65afa94ce309801ff9014');
+	$(document).ready(function() {
+	    $("#logout").on("click", function(e) {
+	       e.preventDefault();
+	       logout();
+	    });
+	 });
+	 
+	function logout() {
+		Kakao.Auth.logout();
+		alert("실행됨");
+		var comSubmit = new ComSubmit("frm");
+		comSubmit.setUrl("<c:url value='/logout' />");
+		comSubmit.submit();
+	}
+	</script>
+	
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('.fullscreen_menu_button a').click(function() {
