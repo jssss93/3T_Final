@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,7 +74,24 @@
 		} 
 	}   
 	  </script> -->
-	
+	<c:if test="${map.NOTICE_NO eq null}">
+<div class="row" style="padding-left: 15px; width: 800px;">
+	<h1 class="page-header">NOTICE 쓰기</h1>
+</div>
+</c:if>
+<c:if test="${map.NOTICE_NO ne null}">
+<div class="row" style="padding-left: 15px; width: 800px;">
+	<h1 class="page-header">NOTICE 상세</h1>
+</div>
+</c:if>
+<div class="row" style="padding-left: 15px; width: 800px;">
+	<div class="panel panel-default">
+	<c:if test="${map.NOTICE_NO eq null}">
+		<div class="panel-heading">NOTICE 쓰기 페이지입니다.</div>
+		</c:if>
+		<c:if test="${map.NOTICE_NO ne null}">
+		<div class="panel-heading">NOTICE 상세보기 페이지입니다.</div>
+		</c:if>
 	<c:choose>
 		<c:when test="${map.TITLE==NULL }">
 			<form action="write" name="Reg_form" method="post" onsubmit="return check()">
@@ -80,22 +100,38 @@
 			<form action="update" name="Reg_form"  method="post" onsubmit="return check()" >
 		</c:otherwise>
 	</c:choose>
+	  <c:if test="${map.NOTICE_NO ne null}">
+				<div class="form-group">
+					<label>NOTICE 글번호</label> 
+					<input type="text" class="form-control" value="${map.NOTICE_NO}" style="width: initial;" readonly />
+				</div>
+		</c:if>
 	
 	<input type="hidden" name="NOTICE_NO" value="${map.NOTICE_NO }"><br/>
-	
-	<input type="text" class="form-control" name="TITLE" placeholder="제목을 입력해주세요" value="${map.TITLE }"><br/>
-	
+	<div class="form-group">
+					<label>제목</label> 
+	<input type="text" class="form-control" name="TITLE" placeholder="제목을 입력해주세요" value="${map.TITLE }" style="width: initial;" ><br/>
+	</div>
+	<div class="form-group">
+					<label>작성자</label> 
+					<input type="text" class="form-control" id="MEMBER_ID" name="MEMBER_ID" value="ADMIN" style="width: 250px;"  readonly />
+				</div>
+				<div class="form-group">
+					<label>내용</label>
 	<div id="summernote" name="summernote" >${map.CONTENT }</div>
 	
 
-	<textarea rows="25" cols="130" id="noteArea" name="CONTENT"  style="display: none;"></textarea>
-
+	<textarea rows="25" cols="130" id="noteArea" name="CONTENT"   style="display: none;"></textarea>
+</div>
 	<c:choose>
 		<c:when test="${map.TITLE == NULL }"><input type="submit" class="btn btn-default" id="submitBtn" value="등록" />	</c:when>
 		<c:when test="${map.TITLE != NULL }"><input type="submit" class="btn btn-default" id="submitBtn" value="수정" /></c:when>
 	</c:choose>
-	
+	</div>
+	</div>
 	</form>
+	
+	
 </body>
 <script>	
 $(document).ready(function() {
@@ -147,5 +183,6 @@ $(document).ready(function() {
 	
 	
 });
+
 </script>
 </html>

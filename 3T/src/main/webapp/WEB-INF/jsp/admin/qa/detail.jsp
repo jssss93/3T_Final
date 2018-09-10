@@ -105,8 +105,8 @@
 				<div class="form-group">
 					<label>QNA 글번호</label> 
 					<input type="text" class="form-control" value="${map.QA_NO}" style="width: initial;" readonly />
+					<input type="hidden" id="STATUS" NAME="STATUS" value="${map.STATUS }"/>
 				</div>
-
 				<div class="form-group">
 					<label>QNA 카테고리</label> 
 					<input type="text" class="form-control" id="QNA_CATEGORY" name="QNA_CATEGORY" value="${map.CATEGORY}" style="width: initial;" readonly />

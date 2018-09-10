@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -66,8 +67,9 @@ public class ReviewController {
 	
 	//리뷰 상세보기
 	@RequestMapping(value = "/review/detail")
-	public ModelAndView reviewDetail(CommandMap commandMap) throws Exception {
+	public ModelAndView reviewDetail(CommandMap commandMap,HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("review/detail");
+		
 		System.out.println("reviewDetail : " + commandMap.getMap());
 		//상품정보
 		Map<String, Object> map1 = ReviewService.ReviewGoods(commandMap.getMap());
@@ -75,7 +77,8 @@ public class ReviewController {
 		Map<String, Object> map = ReviewService.ReviewDetail(commandMap.getMap());
 		// 리뷰 댓글 리스트
 		List<Map<String, Object>> list = ReviewService.ReviewCommentList(commandMap.getMap());
-
+		
+		mv.addObject("ID",request.getSession().getAttribute("MEMBER_ID"));
 		mv.addObject("map", map);
 		mv.addObject("list2", map1);
 		mv.addObject("list", list);

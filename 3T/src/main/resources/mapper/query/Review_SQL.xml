@@ -219,17 +219,45 @@
 
 <!-- 리뷰 검색 -->
  <select id="ReveiwSelectSearchList" parameterType="hashmap" resultType="hashmap">
-		SELECT 
-			REVIEW_NO,
+		  SELECT
+      		REVIEW_NO,
            	TITLE,
            	MEMBER_ID,
            	CONTENT,
            	REGDATE,
-           	GOODS_NO
-		FROM 
-			REVIEW
-		WHERE 
-				
+			READCNT,
+			GOODS_NO,
+			REF,
+			RE_STEP,
+			RE_LEVEL,
+			NAME,	
+      		WM_CONCAT(SAV_NAME) AS IMAGE
+      FROM(
+           	 SELECT
+           	A.REVIEW_NO,
+           	A.TITLE,
+           	A.MEMBER_ID,
+           	A.CONTENT,
+           	A.REGDATE,
+			A.READCNT,
+			A.GOODS_NO,
+			A.REF,
+			A.RE_STEP,
+			A.RE_LEVEL,
+			B.SAV_NAME,
+			C.NAME	
+         FROM 
+           	REVIEW A
+         INNER JOIN  	
+           	UPLOAD B
+         ON 
+            A.GOODS_NO = B.GOODS_NO    
+         INNER JOIN 
+            GOODS C 
+         ON 
+            A.GOODS_NO = C.GOODS_NO   
+            
+            	WHERE
 			<if test='SearchNum.equals("TITLE")'> 
 			
 			(TITLE LIKE '%' || #{SearchKeyword} || '%')
@@ -245,10 +273,25 @@
 			<if test='SearchNum.equals("CONTENT")'>
 		
 			(CONTENT LIKE '%' || #{SearchKeyword} || '%')
-			</if>
-			
-			ORDER BY REVIEW_NO DESC
-
+			</if> 
+            
+           	ORDER BY
+           	 A.REVIEW_NO DESC
+           	)
+        GROUP BY
+           	REVIEW_NO,
+           	TITLE,
+           	MEMBER_ID,
+           	CONTENT,
+           	REGDATE,
+			READCNT,
+			GOODS_NO,
+			REF,
+			RE_STEP,
+			RE_LEVEL,
+			NAME	
+		ORDER BY
+			REVIEW_NO DESC
 		
 </select>
 
