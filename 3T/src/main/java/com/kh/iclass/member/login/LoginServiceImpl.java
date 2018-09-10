@@ -43,6 +43,14 @@ public class LoginServiceImpl implements LoginService{
 		// TODO Auto-generated method stub
 		return loginDAO.findPasswd(map);
 	}	
+	//
+	public void findPasswd2(Map<String, Object> map, Key privateKey) throws Exception 
+	{
+		map.put("PASSWORD_CHK1",RSAUtil.decrypt(privateKey, map.get("PASSWD2").toString()));
+		map.put("PASSWORD_CHK2",SHA256Util.hashing(map.get("PASSWORD_CHK1").toString()));
+		
+		loginDAO.findPasswd2(map);
+	}
 	
 	@Override
     public void keepLogin(Map<String, Object> map) throws Exception
