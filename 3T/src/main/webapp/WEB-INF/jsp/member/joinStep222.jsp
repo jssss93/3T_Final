@@ -313,6 +313,8 @@ function chkBox(bool) { // 전체선택/해제
 						</p>
 						
 						<form name="Reg_form" action="/3T/joinComplete" method="post" onsubmit="return check()">
+							<input type="hidden" name="modulus" id="modulus" value="${Modulus}">
+                   			<input type="hidden" name="exponent" id="exponent" value="${Exponent}">						
 						<div class="ec-base-table typeWrite">
 							<table border="1" summary="">
 								<caption>회원 기본정보</caption>
