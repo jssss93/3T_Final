@@ -28,6 +28,8 @@ import com.kh.iclass.common.map.CommandMap;
 import com.kh.iclass.common.util.ParseListToJson;
 import com.kh.iclass.order.OrderService;
 
+import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
+
 
 @Controller
 @RequestMapping(value = "/admin/")
@@ -55,13 +57,16 @@ public class AdminOrderController {
 		
 		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 		
-		List<Map<String, Object>> orderList = new ArrayList<Map<String, Object>>();
-		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
-			orderList=orderService.selectOrderListAll(commandMap.getMap());
-		else
-			orderList=orderService.selectOrderSearchListAll(commandMap.getMap());
+		Map<String, Object> resultMap = null;
 		
-		mv.addObject("list", orderList);
+		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
+			resultMap=orderService.selectOrderListAll(commandMap.getMap());
+		else
+			resultMap=orderService.selectOrderSearchListAll(commandMap.getMap());
+		
+		mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
+		
+		mv.addObject("list", resultMap.get("result"));
 		
 		return mv;
 	
@@ -90,11 +95,13 @@ public class AdminOrderController {
 		HttpSession session = request.getSession();
 		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 		
-		List<Map<String, Object>> orderList = new ArrayList<Map<String, Object>>();
+		Map<String, Object> resultMap = null;
 		
-		orderList=orderService.selectRefundListAll(commandMap.getMap());
+		resultMap=orderService.selectRefundListAll(commandMap.getMap());
 		
-		mv.addObject("list", orderList);
+		mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
+		
+		mv.addObject("list", resultMap.get("result"));
 		return mv;
 	
 	}
@@ -105,11 +112,13 @@ public class AdminOrderController {
 		HttpSession session = request.getSession();
 		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 		
-		List<Map<String, Object>> orderList = new ArrayList<Map<String, Object>>();
+		Map<String, Object> resultMap = null;
 		
-		orderList=orderService.selectChangeListAll(commandMap.getMap());
+		resultMap=orderService.selectChangeListAll(commandMap.getMap());
 		
-		mv.addObject("list", orderList);
+		mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
+		
+		mv.addObject("list", resultMap.get("result"));
 		return mv;
 	
 	}

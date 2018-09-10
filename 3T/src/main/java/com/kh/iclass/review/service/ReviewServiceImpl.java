@@ -20,7 +20,7 @@ public class ReviewServiceImpl implements ReviewService{
 	 private ReviewDAO ReviewDAO;
 	//리뷰 리스트
 	@Override
-	public List<Map<String, Object>> ReviewList(Map<String, Object> map) throws Exception {
+	public Map<String, Object> ReviewList(Map<String, Object> map) throws Exception {
 		
 		return ReviewDAO.ReviewList(map);
 	}
@@ -70,7 +70,7 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 	//리뷰 검색
 	@Override
-	public List<Map<String, Object>> ReviewSearchList(Map<String, Object> map) throws Exception {
+	public Map<String, Object> ReviewSearchList(Map<String, Object> map) throws Exception {
 		
 		return ReviewDAO.ReviewSearchList(map);
 	}

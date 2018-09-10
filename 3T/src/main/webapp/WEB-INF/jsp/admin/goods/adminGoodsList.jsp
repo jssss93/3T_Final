@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>  
 <head>
 <script type="text/javascript">
 //주문번호 같은 열 합치는 Jquery
@@ -195,11 +196,14 @@ function delchk(){
 								</tbody>
 							</table>
 						</div>
-					
-						<div class="paging">
-							${pagingHtml}
+							<div align="center">
+								<c:if test="${not empty paginationInfo}">
+									<ui:pagination paginationInfo="${paginationInfo}" type="text"
+									jsFunction="fn_search" />
+								</c:if>
+								<input type="hidden" id="currentPageNo" name="currentPageNo" />
+							</div>
 						</div>
-					</div>
 					</div>
 					<div class="row">
 							<div style="text-align:center;">
@@ -231,7 +235,15 @@ function delchk(){
 </div>
 </div>
 </body>
-
+<%@ include file="/WEB-INF/include/include-body.jspf"%>
+<script type="text/javascript">
+function fn_search(pageNo) {
+	var comSubmit = new ComSubmit();
+	comSubmit.setUrl("<c:url value='/admin/goods/list' />");
+	comSubmit.addParam("currentPageNo", pageNo);
+	comSubmit.submit();
+}
+</script>
 <script>
 
    function ajaxStart(){

@@ -20,7 +20,7 @@ public class QaServiceImpl implements QaService{
 	 private QaDAO QaDAO;
 	//QA 리스트
 	@Override
-	public List<Map<String, Object>> QaList(Map<String, Object> map) throws Exception {
+	public Map<String, Object> QaList(Map<String, Object> map) throws Exception {
 	
 		return QaDAO.QaList(map);
 	}
@@ -57,7 +57,7 @@ public class QaServiceImpl implements QaService{
 	}
 	//QA 검색
 	@Override
-	public List<Map<String, Object>> QaSearchList(Map<String, Object> map) throws Exception {
+	public Map<String, Object> QaSearchList(Map<String, Object> map) throws Exception {
 	
 		return QaDAO.QaSearchList(map);
 	}
@@ -116,7 +116,7 @@ public class QaServiceImpl implements QaService{
 		QaDAO.QaUpdateRe_level(map);
 	}
 	@Override
-	public List<Map<String, Object>> QaAdminList(Map<String, Object> map) throws Exception {
+	public Map<String, Object> QaAdminList(Map<String, Object> map) throws Exception {
 		
 		return QaDAO.QaAdminList(map);
 	}

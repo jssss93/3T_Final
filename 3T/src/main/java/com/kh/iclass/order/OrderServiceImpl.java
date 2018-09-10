@@ -107,18 +107,18 @@ public class OrderServiceImpl implements OrderService {
 	
 	//리스트
 	@Override
-	public List<Map<String, Object>> selectOrderListAll(Map<String, Object> map) throws Exception {
+	public Map<String, Object> selectOrderListAll(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return orderDAO.selectOrderListAll(map);
 	}
 	
 	@Override
-	public List<Map<String, Object>> selectRefundListAll(Map<String, Object> map) throws Exception {
+	public Map<String, Object> selectRefundListAll(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return orderDAO.selectRefundListAll(map);
 	}
 	@Override
-	public List<Map<String, Object>> selectChangeListAll(Map<String, Object> map) throws Exception {
+	public Map<String, Object> selectChangeListAll(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return orderDAO.selectChangeListAll(map);
 	}
@@ -207,7 +207,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<Map<String, Object>> selectOrderSearchListAll(Map<String, Object> map) throws Exception {
+	public Map<String, Object> selectOrderSearchListAll(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return orderDAO.selectOrderSearchListAll(map);
 	}

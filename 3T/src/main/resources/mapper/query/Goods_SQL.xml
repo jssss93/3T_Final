@@ -307,6 +307,7 @@ FROM
 </select>
 
 <select id="selectGoodsCategory" resultType="hashmap" parameterType="hashmap">
+<include refid="common.pagingPre"/>
 <![CDATA[
 select 
             GOODS_NO,
@@ -367,6 +368,7 @@ select
          KEYWORD,
          CATEGORY 
 ]]>
+<include refid="common.pagingPost"/>
 </select>
 
 
@@ -956,6 +958,7 @@ FROM
 
 
 <select id="goodsSearchList" parameterType="hashMap" resultType="hashMap">
+<include refid="common.pagingPre" /> 
 		select 
 			GOODS_NO, 
 			NAME,
@@ -967,7 +970,8 @@ FROM
 			KEYWORD,
 			CATEGORY,
      		WM_CONCAT(SAV_NAME) IMAGE,
-     		COUNT(NAME) OVER() AS CNT
+     		COUNT(NAME) OVER() AS CNT,
+     		ROW_NUMBER() OVER (ORDER BY GOODS_NO DESC) RNUM
 		FROM
 			(
 		SELECT
@@ -1017,17 +1021,8 @@ FROM
 			 GOODS_NO DESC
 		 </otherwise>
 	 </choose>
-	 <!-- <if test='NAME != ""'>
-        	NAME ASC
-     </if>
-     <if test='ROWPRICE != ""'>
-        	PRICE ASC
-     </if>
-     <if test='HIGHPRICE != ""'>
-        	PRICE DESC
-     </if>
-     
-		GOODS_NO DESC -->
+	 
+		<include refid="common.pagingPost" />
 </select>
 
 <select id="goodsAdminSearchList" parameterType="hashmap"
@@ -1163,207 +1158,5 @@ FROM
 
    </select>
 
-<!-- <select id="goodsSearchListName" parameterType="hashMap" resultType="hashMap">
-		select 
-			GOODS_NO, 
-			NAME,
-      		CONTENT,
-			READCNT,
-			REGDATE,
-     		PRICE,
-      		RELATED,
-			KEYWORD,
-			CATEGORY,
-     		WM_CONCAT(SAV_NAME) IMAGE,
-     		COUNT(NAME) OVER() AS CNT
-		FROM
-			(
-		SELECT
-          	a.GOODS_NO,
-          	a.NAME,
-          	a.CONTENT,
-          	a.READCNT,
-        	a.REGDATE,
-          	a.PRICE,
-          	a.RELATED,
-        	a.KEYWORD,
-        	a.CATEGORY,
-          	b.SAV_NAME
-        FROM
-      		GOODS a INNER JOIN UPLOAD b
-        	ON a.GOODS_NO = b.GOODS_NO
-        WHERE
-        	<if test='PRICE1 != "" and PRICE2 != ""'>
-        	PRICE BETWEEN #{PRICE1}  AND #{PRICE2}  AND
-        	</if>
-        	CATEGORY LIKE '%'||#{CATEGORY}||'%' 
-        )
-			WHERE NAME LIKE '%'||#{keyword}||'%' 
-			OR KEYWORD LIKE '%'||#{keyword}||'%' 
-      GROUP BY
-        GOODS_NO, 
-      	NAME,
-        CONTENT,
-      	READCNT,
-      	REGDATE,
-        PRICE,
-        RELATED,
-      	KEYWORD,
-      	CATEGORY
-	 ORDER BY 
-		NAME ASC
-</select>
-<select id="goodsSearchListRowPrice" parameterType="hashMap" resultType="hashMap">
-		select 
-			GOODS_NO, 
-			NAME,
-      		CONTENT,
-			READCNT,
-			REGDATE,
-     		PRICE,
-      		RELATED,
-			KEYWORD,
-			CATEGORY,
-     		WM_CONCAT(SAV_NAME) IMAGE,
-     		COUNT(NAME) OVER() AS CNT
-		FROM
-			(
-		SELECT
-          	a.GOODS_NO,
-          	a.NAME,
-          	a.CONTENT,
-          	a.READCNT,
-        	a.REGDATE,
-          	a.PRICE,
-          	a.RELATED,
-        	a.KEYWORD,
-        	a.CATEGORY,
-          	b.SAV_NAME
-        FROM
-      		GOODS a INNER JOIN UPLOAD b
-        	ON a.GOODS_NO = b.GOODS_NO
-        WHERE
-        	<if test='PRICE1 != "" and PRICE2 != ""'>
-        	PRICE BETWEEN #{PRICE1}  AND #{PRICE2}  AND
-        	</if>
-        	CATEGORY LIKE '%'||#{CATEGORY}||'%' 
-        )
-			WHERE NAME LIKE '%'||#{keyword}||'%' 
-			OR KEYWORD LIKE '%'||#{keyword}||'%' 
-      GROUP BY
-        GOODS_NO, 
-      	NAME,
-        CONTENT,
-      	READCNT,
-      	REGDATE,
-        PRICE,
-        RELATED,
-      	KEYWORD,
-      	CATEGORY
-	 ORDER BY 
-		PRICE ASC
-</select>
-<select id="goodsSearchListHighPrice" parameterType="hashMap" resultType="hashMap">
-		select 
-			GOODS_NO, 
-			NAME,
-      		CONTENT,
-			READCNT,
-			REGDATE,
-     		PRICE,
-      		RELATED,
-			KEYWORD,
-			CATEGORY,
-     		WM_CONCAT(SAV_NAME) IMAGE,
-     		COUNT(NAME) OVER() AS CNT
-		FROM
-			(
-		SELECT
-          	a.GOODS_NO,
-          	a.NAME,
-          	a.CONTENT,
-          	a.READCNT,
-        	a.REGDATE,
-          	a.PRICE,
-          	a.RELATED,
-        	a.KEYWORD,
-        	a.CATEGORY,
-          	b.SAV_NAME
-        FROM
-      		GOODS a INNER JOIN UPLOAD b
-        	ON a.GOODS_NO = b.GOODS_NO
-        WHERE
-       		<if test='PRICE1 != "" and PRICE2 != ""'>
-        	PRICE BETWEEN #{PRICE1}  AND #{PRICE2}  AND
-        	</if>
-        	CATEGORY LIKE '%'||#{CATEGORY}||'%' 
-        )
-			WHERE NAME LIKE '%'||#{keyword}||'%' 
-			OR KEYWORD LIKE '%'||#{keyword}||'%' 
-      GROUP BY
-        GOODS_NO, 
-      	NAME,
-        CONTENT,
-      	READCNT,
-      	REGDATE,
-        PRICE,
-        RELATED,
-      	KEYWORD,
-      	CATEGORY
-	 ORDER BY 
-		PRICE DESC
-</select>
-
-<select id="goodsSearchPriceList" parameterType="hashMap" resultType="hashMap">
-		<![CDATA[
-		select 
-			GOODS_NO, 
-			NAME,
-      		CONTENT,
-			READCNT,
-			REGDATE,
-     		PRICE,
-      		RELATED,
-			KEYWORD,
-			CATEGORY,
-     		WM_CONCAT(SAV_NAME) IMAGE,
-     		COUNT(NAME) OVER() AS CNT
-		FROM
-			(
-		SELECT
-          	a.GOODS_NO,
-          	a.NAME,
-          	a.CONTENT,
-          	a.READCNT,
-        	a.REGDATE,
-          	a.PRICE,
-          	a.RELATED,
-        	a.KEYWORD,
-        	a.CATEGORY,
-          	b.SAV_NAME
-        FROM
-      		GOODS a INNER JOIN UPLOAD b
-        	ON a.GOODS_NO = b.GOODS_NO
-        WHERE
-     		PRICE BETWEEN #{PRICE1}  AND #{PRICE2}  AND
-        	CATEGORY LIKE '%'||#{CATEGORY}||'%' 
-        )
-			WHERE NAME LIKE '%'||#{keyword}||'%' 
-			OR KEYWORD LIKE '%'||#{keyword}||'%' 
-      GROUP BY
-        GOODS_NO, 
-      	NAME,
-        CONTENT,
-      	READCNT,
-      	REGDATE,
-        PRICE,
-        RELATED,
-      	KEYWORD,
-      	CATEGORY
-	 ORDER BY 
-		GOODS_NO DESC
-		]]>
-
-</select> -->
 
 </mapper>

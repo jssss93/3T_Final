@@ -54,8 +54,10 @@ public class GoodsController {
    @RequestMapping(value = "goods/catelist")
    public ModelAndView goodsCateList(CommandMap commandMap,HttpServletRequest request) throws Exception {
       ModelAndView mv = new ModelAndView("goods/categorylist");
+      
+      Map<String, Object> resultMap = null;
 
-      List<Map<String, Object>> list = goodsService.selectGoodsCategory(commandMap.getMap());
+      resultMap = goodsService.selectGoodsCategory(commandMap.getMap());
       
       List<Map<String, Object>> bestlist = goodsService.selectGoodsBestCategory(commandMap.getMap());
       
@@ -63,7 +65,8 @@ public class GoodsController {
       
       mv.addObject("bestlist", bestlist);
       
-      mv.addObject("list", list);
+      mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
+      mv.addObject("list", resultMap.get("result"));
       //쿠키리스트 불러온다
       List<Map<String , Object>> CookieListMap=CookieUtils.getValueListMap("GOODS_NO","IMAGE",request);
       //쿠키 뷰에 추가
@@ -201,10 +204,14 @@ public class GoodsController {
    @RequestMapping(value = "/goods/search")
    public ModelAndView goodsSearch(CommandMap commandMap) throws Exception {
       ModelAndView mv = new ModelAndView("goods/searchform");
+      
+      Map<String, Object> resultMap =null;
 
-          List<Map<String, Object>> searchlist = goodsService.goodsSearchList(commandMap.getMap());
+      resultMap = goodsService.goodsSearchList(commandMap.getMap());
+      
+      mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
           
-          mv.addObject("searchlist", searchlist);
+      mv.addObject("searchlist", resultMap.get("result"));
       
       return mv;
    }
@@ -213,11 +220,15 @@ public class GoodsController {
    public ModelAndView goodsSearch1(CommandMap commandMap) throws Exception {
       ModelAndView mv = new ModelAndView("/goods/searchlist");
       
+      Map<String, Object> resultMap =null;
+      
       System.out.println("name들어오냐??" + commandMap.getMap());
       
-          List<Map<String, Object>> searchlist = goodsService.goodsSearchList(commandMap.getMap());
+      resultMap = goodsService.goodsSearchList(commandMap.getMap());
+      
+      mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
           
-          mv.addObject("searchlist", searchlist);
+      mv.addObject("searchlist", resultMap.get("result"));
      
       return mv;
    }

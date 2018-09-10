@@ -14,8 +14,8 @@ import com.kh.iclass.common.dao.AbstractDAO;
 public class ReviewDAO extends AbstractDAO{
 	//리뷰 리스트
 	@SuppressWarnings("unchecked")
-    public List<Map<String, Object>> ReviewList(Map<String, Object> map) throws Exception{
-        return (List<Map<String, Object>>)selectList("review.REVIEW_selectList", map);//selectList는 Mybatis기본 기능으로 리스트를 조회할때 사용
+    public Map<String, Object> ReviewList(Map<String, Object> map) throws Exception{
+        return (Map<String, Object>)selectPagingList("review.REVIEW_selectList", map);//selectList는 Mybatis기본 기능으로 리스트를 조회할때 사용
     }
 	//리뷰 쓰기
 	public void ReviewInsert(Map<String, Object> map) throws Exception{
@@ -53,8 +53,8 @@ public class ReviewDAO extends AbstractDAO{
 	}
 	//리뷰 검색
 	@SuppressWarnings("unchecked")
-    public List<Map<String, Object>> ReviewSearchList(Map<String, Object> map) throws Exception{
-        return (List<Map<String, Object>>)selectList("review.ReveiwSelectSearchList", map);
+    public Map<String, Object> ReviewSearchList(Map<String, Object> map) throws Exception{
+        return (Map<String, Object>)selectPagingList("review.ReveiwSelectSearchList", map);
     }
 	//리뷰 상품 리스트
 	@SuppressWarnings("unchecked")

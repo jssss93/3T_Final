@@ -4,72 +4,88 @@
 <mapper namespace="qa">
      <!-- QA 리스트 -->
     <select id="QA_selectList" parameterType="hashmap" resultType="hashmap">
+    <include refid="common.pagingPre"/> 
         <![CDATA[
       SELECT
-          	    QA_NO,
-      			TITLE,
-      		    MEMBER_ID,
-        		CONTENT,
-        		REGDATE,
-        		CATEGORY,
-				REF,
-				RE_STEP,
-				RE_LEVEL,
-				GOODS_NO,
-				STATUS,
-       		 	NAME,
-       		 	WM_CONCAT(SAV_NAME) AS IMAGE
-      FROM(			
+            QA_NO,
+            TITLE,
+            MEMBER_ID,
+            CONTENT,
+            REGDATE,
+            CATEGORY,
+            REF,
+            RE_STEP,
+            RE_LEVEL,
+            GOODS_NO,
+            STATUS,
+            NAME,
+            WM_CONCAT(SAV_NAME) AS IMAGE,
+           
+            ROW_NUMBER() OVER (ORDER BY QA_NO DESC) RNUM
+      FROM(      
+      
+      
+      
+      
            SELECT 
- 				A.QA_NO,
-      			A.TITLE,
-      		    A.MEMBER_ID,
-        		A.CONTENT,
-        		A.REGDATE,
-        		A.CATEGORY,
-				A.REF,
-				A.RE_STEP,
-				A.RE_LEVEL,
-				A.GOODS_NO,
-				A.STATUS,
-       			B.SAV_NAME,
-       			C.NAME
-		  from
-                QA A
-          INNER JOIN 
+              A.QA_NO,
+              A.TITLE,
+              A.MEMBER_ID,
+              A.CONTENT,
+              A.REGDATE,
+              A.CATEGORY,
+              A.REF,
+              A.RE_STEP,
+              A.RE_LEVEL,
+              A.GOODS_NO,
+              A.STATUS,
+              B.SAV_NAME,
+              C.NAME
+              
+          
+           from
+              QA A
+            INNER JOIN 
                 UPLOAD B 
-          ON 
+            ON 
                A.GOODS_NO = B.GOODS_NO 
                
-          INNER JOIN 
+            INNER JOIN 
                 GOODS C 
-          ON 
-               A.GOODS_NO = C.GOODS_NO 
-               
-         ORDER BY 
-               
+            ON 
+                A.GOODS_NO = C.GOODS_NO 
+                
+            ORDER BY 
                A.ref DESC, A.re_step ASC  
+               
+               
+               
                )
          GROUP BY
-         		 QA_NO,
-      			TITLE,
-      		    MEMBER_ID,
-        		CONTENT,
-        		REGDATE,
-        		CATEGORY,
-				REF,
-				RE_STEP,
-				RE_LEVEL,
-				GOODS_NO,
-				STATUS,
-       		 	NAME
-       	ORDER BY
-       		    REF DESC, RE_STEP ASC
+                QA_NO,
+            TITLE,
+              MEMBER_ID,
+            CONTENT,
+            REGDATE,
+            CATEGORY,
+            REF,
+            RE_STEP,
+            RE_LEVEL,
+            GOODS_NO,
+            STATUS,
+            NAME
+            
+          ORDER BY
+                 REF DESC, RE_STEP ASC
+              
+             
          	
         ]]>
+        <include refid="common.pagingPost"/> 
     </select>
     
      <select id="QA_AdminSelectList" parameterType="hashmap" resultType="hashmap">
+     <include refid="common.pagingPre"/> 
         <![CDATA[
            		
            SELECT 
@@ -83,7 +99,8 @@
 				RE_STEP,
 				RE_LEVEL,
 				GOODS_NO,
-				STATUS
+				STATUS,
+				ROW_NUMBER() OVER (ORDER BY QA_NO DESC) RNUM
        			
 		  from
                 QA 
@@ -92,6 +109,7 @@
           ORDER BY 
                ref DESC
         ]]>
+        <include refid="common.pagingPost"/> 
     </select>
     
     
@@ -209,49 +227,26 @@
 	</update>
     <!-- QA 리스트에서 검색 -->
      <select id="QA_selectSearchList" parameterType="hashmap" resultType="hashmap">
-		
+		<include refid="common.pagingPre"/>
 			SELECT
-           	    QA_NO,
-      			TITLE,
-      		    MEMBER_ID,
-        		CONTENT,
-        		REGDATE,
-        		CATEGORY,
+           		QA_NO,
+           		TITLE,
+           		MEMBER_ID,
+           		CONTENT,
+           		REGDATE,
+           		CATEGORY,
 				REF,
 				RE_STEP,
 				RE_LEVEL,
 				GOODS_NO,
 				STATUS,
-       		 	NAME,
-       		 	WM_CONCAT(SAV_NAME) AS IMAGE
-      FROM(			
-           SELECT 
- 				A.QA_NO,
-      			A.TITLE,
-      		    A.MEMBER_ID,
-        		A.CONTENT,
-        		A.REGDATE,
-        		A.CATEGORY,
-				A.REF,
-				A.RE_STEP,
-				A.RE_LEVEL,
-				A.GOODS_NO,
-				A.STATUS,
-       			B.SAV_NAME,
-       			C.NAME
-		  from
-                QA A
-          INNER JOIN 
-                UPLOAD B 
-          ON 
-               A.GOODS_NO = B.GOODS_NO 
-               
-          INNER JOIN 
-                GOODS C 
-          ON 
-               A.GOODS_NO = C.GOODS_NO 
-	WHERE
-	<if test='SearchNum.equals("TITLE")'> 
+				ROW_NUMBER() OVER (ORDER BY QA_NO DESC) RNUM
+		FROM 
+			QA
+		WHERE 
+			
+			
+			<if test='SearchNum.equals("TITLE")'> 
 			
 			(TITLE LIKE '%' || #{SearchKeyword} || '%')
 			
@@ -267,28 +262,10 @@
 		
 			(CONTENT LIKE '%' || #{SearchKeyword} || '%')
 			</if>
-               
-         ORDER BY 
-               
-               A.ref DESC, A.re_step ASC  
-               )
-         GROUP BY
-         		 QA_NO,
-      			TITLE,
-      		    MEMBER_ID,
-        		CONTENT,
-        		REGDATE,
-        		CATEGORY,
-				REF,
-				RE_STEP,
-				RE_LEVEL,
-				GOODS_NO,
-				STATUS,
-       		 	NAME
-       	ORDER BY
-       		    REF DESC, RE_STEP ASC
+			
+			ORDER BY QA_NO DESC
 
-		
+		<include refid="common.pagingPost"/>
 </select>
 <!-- QA 답글 쓰기 -->
    <insert id="QaInsertReply" parameterType="hashmap">

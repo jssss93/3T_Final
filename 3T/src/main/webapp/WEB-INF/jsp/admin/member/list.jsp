@@ -132,11 +132,13 @@
 									</c:if>
 								</tbody>
 							</table>
+							<div align="center">
 							<c:if test="${not empty paginationInfo}">
 								<ui:pagination paginationInfo="${paginationInfo}" type="text"
 									jsFunction="fn_search" />
 							</c:if>
 							<input type="hidden" id="currentPageNo" name="currentPageNo" />
+							</div>
 							<table class="notice_button">
 							</table>
 							<br />
@@ -162,3 +164,12 @@
 	</div>
 	<!-- /.panel -->
 </div>
+<%@ include file="/WEB-INF/include/include-body.jspf"%>
+<script type="text/javascript">
+function fn_search(pageNo) {
+	var comSubmit = new ComSubmit();
+	comSubmit.setUrl("<c:url value='/admin/member/list' />");
+	comSubmit.addParam("currentPageNo", pageNo);
+	comSubmit.submit();
+}
+</script>

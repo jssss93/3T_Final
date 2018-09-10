@@ -14,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.iclass.common.map.CommandMap;
 import com.kh.iclass.qa.service.QaService;
 
+import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
+
 @Controller
 @RequestMapping(value = "/admin")
 public class AdminQaController {
@@ -29,15 +31,17 @@ public class AdminQaController {
 	@RequestMapping(value = "/qa/list")
 	public ModelAndView qaBoardList(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("qa.list");
-		List<Map<String, Object>> list = null;
+		Map<String, Object> resultMap = null;
 			
 		System.out.println("qaBoardLis : " + commandMap.getMap());
 		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
-			list = QaService.QaAdminList(commandMap.getMap());
+			resultMap = QaService.QaAdminList(commandMap.getMap());
 		else 
-			list = QaService.QaSearchList(commandMap.getMap());
+			resultMap = QaService.QaSearchList(commandMap.getMap());
+		
+		mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
 
-		mv.addObject("list", list);
+		mv.addObject("list", resultMap.get("result"));
 		
 		return mv;
 	}

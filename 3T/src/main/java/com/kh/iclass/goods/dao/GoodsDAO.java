@@ -34,8 +34,8 @@ public class GoodsDAO extends AbstractDAO{
 	}
 	//카테고리 리스트
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectGoodsCategory(Map<String, Object> map) throws Exception{
-		return selectList("goods.selectGoodsCategory",map);
+	public Map<String, Object> selectGoodsCategory(Map<String, Object> map) throws Exception{
+		return (Map<String, Object>)selectPagingList3("goods.selectGoodsCategory",map);
 	}
 	//카테고리별 BEST리스트
 	@SuppressWarnings("unchecked")
@@ -139,8 +139,8 @@ public class GoodsDAO extends AbstractDAO{
 			
 	//상품 검색
 		@SuppressWarnings("unchecked")
-		public List<Map<String, Object>> goodsSearchList(Map<String, Object> map) throws Exception{
-		    return selectList("goods.goodsSearchList",map);
+		public Map<String, Object> goodsSearchList(Map<String, Object> map) throws Exception{
+		    return (Map<String, Object>)selectPagingList2("goods.goodsSearchList",map);
 	    }
 		public void updateGoodsCnt(Map<String, Object> map) {
 			update("goods.updateGoodsCnt", map);

@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.iclass.review.service.ReviewService;
+
+import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
+
 import com.kh.iclass.common.map.CommandMap;
 
 @Controller
@@ -26,14 +29,16 @@ public class ReviewController {
 	public ModelAndView reviewBoardList(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("review/list");
 
-		List<Map<String, Object>> list = null;
+		Map<String, Object> resultMap = null;
 		//검색정보가 들어왔을때 리스트와 안들어왔을 때 리스트
 		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
-			list = ReviewService.ReviewList(commandMap.getMap());
+			resultMap = ReviewService.ReviewList(commandMap.getMap());
 		else
-			list = ReviewService.ReviewSearchList(commandMap.getMap());
+			resultMap = ReviewService.ReviewSearchList(commandMap.getMap());
+		
+		mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
 
-		mv.addObject("list", list);
+		mv.addObject("list", resultMap.get("result"));
 		return mv;
 	}
 	//리뷰 쓰기 폼

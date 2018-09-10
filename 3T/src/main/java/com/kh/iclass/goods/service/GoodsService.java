@@ -21,7 +21,7 @@ public interface GoodsService {
 	
 	List<Map<String, Object>> selectMainList(Map<String, Object> map) throws Exception;
 	
-	public List<Map<String, Object>> selectGoodsCategory(Map<String, Object> map) throws Exception;
+	public Map<String, Object> selectGoodsCategory(Map<String, Object> map) throws Exception;
 	
 	List<Map<String, Object>> selectGoodsBestCategory(Map<String, Object> map) throws Exception;
 	
@@ -58,7 +58,7 @@ public interface GoodsService {
 	public List<Map<String, Object>> selectGoodsDetail2(Map<String, Object> map) throws Exception;
 	
 	//서치
-	public List<Map<String, Object>> goodsSearchList(Map<String, Object> map) throws Exception;
+	public Map<String, Object> goodsSearchList(Map<String, Object> map) throws Exception;
 	
 	Map<String, Object> goodsAdminSearchList(Map<String, Object> map) throws Exception;
 	

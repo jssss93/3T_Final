@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -174,13 +175,22 @@
 						
 
 					</table>
-					</fieldset>
+					<br><br>
+					<div align="center">
+						<c:if test="${not empty paginationInfo}">
+							<ui:pagination paginationInfo="${paginationInfo}" type="text"
+								jsFunction="fn_search" />
+						</c:if>
+						<input type="hidden" id="currentPageNo" name="currentPageNo" />
+					</div>
+				</fieldset>
 					</ul>
 				</div>
-				
-			</div>
 		
 
+	</div>
+		
+<%@ include file="/WEB-INF/include/include-body.jspf"%>
 <script type="text/javascript">
 /* 
 $(document).ready(function() {
@@ -191,6 +201,13 @@ $(document).ready(function() {
 });
 
  */
+ function fn_search(pageNo) {
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='/goods/search' />");
+		comSubmit.addParam("currentPageNo", pageNo);
+		comSubmit.submit();
+	} 
+
 function setOption(obj) {
 	 var params = $("#searchForm").serialize();
 		console.log(params);

@@ -111,6 +111,11 @@
 	</table>
 	<br>
 	<!-- 상품 디테일에서 GOODS_NO 보내서 쓰기 -->
+	<c:if test="${not empty paginationInfo}">
+		<ui:pagination paginationInfo="${paginationInfo}" type="text"
+			jsFunction="fn_search" />
+	</c:if>
+	<input type="hidden" id="currentPageNo" name="currentPageNo" />
 	<form action="/3T/qa/writeForm">
 		<table class="notice_button">
 			<tr>
@@ -188,6 +193,12 @@
 			comSubmit.addParam("QA_NO", obj.parent().find("#QA_NO").val());
 			comSubmit
 					.addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
+			comSubmit.submit();
+		}
+		function fn_search(pageNo) {
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("<c:url value='/qa/list' />");
+			comSubmit.addParam("currentPageNo", pageNo);
 			comSubmit.submit();
 		}
 	</script>

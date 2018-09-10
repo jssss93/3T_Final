@@ -6,9 +6,9 @@ import java.util.Map;
 
 public interface QaService {
 		//QA 리스트
-	 	List<Map<String, Object>> QaList(Map<String, Object> map) throws Exception;
+	 	Map<String, Object> QaList(Map<String, Object> map) throws Exception;
 	 	//QA 관리자 
-	 			List<Map<String, Object>> QaAdminList(Map<String, Object> map) throws Exception;
+	 			Map<String, Object> QaAdminList(Map<String, Object> map) throws Exception;
 	 	//QA 쓰기
 	 	void QaInsert(Map<String, Object> map) throws Exception;
 	 	//QA 상세보기
@@ -19,7 +19,7 @@ public interface QaService {
 		//QA 삭제
 		void QaDelete(Map<String, Object> map) throws Exception;
 		//QA검색
-		List<Map<String, Object>> QaSearchList(Map<String, Object>map)throws Exception;
+		Map<String, Object> QaSearchList(Map<String, Object>map)throws Exception;
 		//QA 답글 쓰기
 		void QaReplyInsert(Map<String, Object> map) throws Exception;
 		//QA 답글 쓰기 시 RE_STEP 증가
