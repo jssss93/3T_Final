@@ -172,7 +172,7 @@
 					<a href="/3T/joinStep1">join</a>
 				</c:if>
 				<c:if test="${sessionScope.MEMBER_ID != null}">
-					<a href="#this"id="logout" class="log">logout3</a> 
+					<a href="#this"id="logout" class="log">logout</a> 
 				</c:if> 
 				<br>
 		     <a href="/3T/order/list">order</a>/ <a href="/3T/member/mypage">mypage</a>
