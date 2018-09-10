@@ -101,8 +101,13 @@ public class JoinController {
 			//(Key)session.getAttribute("RSA_private")=sun.security.rsa.RSAPrivateCrtKeyImpl@fff09455
 			
 			if(joinService.insertMember2(commandMap.getMap(),(Key)session.getAttribute("RSA_private")) > 0)
+			{
 				//if(memberService.regist(member, (Key)session.getAttribute("RSA_private")) > 0)
+				mv.addObject("Modulus",commandMap.get("modulus"));
+				mv.addObject("Exponent",commandMap.get("exponent"));
 				mv.setViewName("member/loginForm");
+			}
+				
 			
 			return mv;
 		}
