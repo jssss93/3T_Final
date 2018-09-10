@@ -1,5 +1,6 @@
 package com.kh.iclass.member;
 
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -9,14 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
+import com.kh.iclass.common.util.RSAUtil;
+import com.kh.iclass.common.util.SHA256Util;
+
 @Service("memberService")
 public class MemberServiceImpl implements MemberService{
 
     @Resource(name="memberDAO")
 	private MemberDAO memberDAO  ;
 
-	public String checkPass(String NowPass) throws Exception {
-		return memberDAO.checkPass(NowPass);
+	public int checkPass(Map<String, Object> map, Key privateKey) throws Exception {
+		
+		map.put("PASSWD22",(RSAUtil.decrypt(privateKey, map.get("NowPASSWD").toString())));			
+        map.put("PASSWD3",(SHA256Util.hashing(map.get("PASSWD22").toString())));
+      
+		return memberDAO.checkPass(map);
 		
 	}
 	

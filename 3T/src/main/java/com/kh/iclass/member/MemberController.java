@@ -1,6 +1,7 @@
 package com.kh.iclass.member;
 
 import java.io.PrintWriter;
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.iclass.common.map.CommandMap;
+import com.kh.iclass.common.util.RSAKeySet;
 
 @Controller
 public class MemberController {
@@ -89,12 +91,21 @@ public class MemberController {
 
 
 	@RequestMapping(value = "/member/update")
-	public ModelAndView mypageInfo(HttpServletRequest request) throws Exception {
+	public ModelAndView mypageInfo(HttpServletRequest request, HttpSession session) throws Exception {
 		System.out.println("세션 : " + request.getSession().getAttribute("MEMBER_ID"));
 		ModelAndView mv = new ModelAndView();
+		RSAKeySet keySet = new RSAKeySet();
 		CommandMap commandMap = new CommandMap();
 		commandMap.put("MEMBER_ID", request.getSession().getAttribute("MEMBER_ID"));
 		System.out.println("아이디" + commandMap.get("MEMBER_ID"));
+		
+		/* 세션에 개인키 저장 */
+		session.setAttribute("RSA_private", keySet.getPrivateKey());
+		
+		/* Front Side로 공개키 전달 */
+		mv.addObject("Modulus", keySet.getPublicKeyModulus());
+		mv.addObject("Exponent", keySet.getPublicKeyExponent());
+		
 		// 상품정보 가져오기
 		List<Map<String, Object>> mypageInfo = memberService.memberInfoList(commandMap.getMap());
 
@@ -392,24 +403,14 @@ public class MemberController {
 
 	@RequestMapping(value="/checkNowPass")
 	@ResponseBody
-	public void checkNowPass(HttpServletRequest request, HttpServletResponse response, CommandMap commandMap) throws Exception{
+	public void checkNowPass(HttpServletRequest request, HttpServletResponse response, CommandMap commandMap, HttpSession session) throws Exception{
 		PrintWriter out = response.getWriter();
 		String NowPASSWD= (request.getParameter("NowPASSWD") == null)?"":String.valueOf(request.getParameter("NowPASSWD"));
-		System.out.println("나오니니ㅣㄴASD" + NowPASSWD);
-		String NowPass = memberService.checkPass((String)request.getSession().getAttribute("MEMBER_ID"));
-		System.out.println("나오니니ㅣㄴ" + NowPass);
-		int chk = 0;
 		
-		System.out.println("nowPASSWD,NOWPASS" + NowPASSWD + NowPass);
-		if(NowPass.equals(NowPASSWD))
-		{
-			chk = 1;
-		}
-		
-		System.out.println("chk =" + chk);
-
-		
-		
+		commandMap.getMap().put("MEMBER_ID", request.getSession().getAttribute("MEMBER_ID"));		
+        
+		int chk = memberService.checkPass(commandMap.getMap(),(Key)session.getAttribute("RSA_private"));
+			
 		out.print(chk);
 		out.flush();
 		out.close();

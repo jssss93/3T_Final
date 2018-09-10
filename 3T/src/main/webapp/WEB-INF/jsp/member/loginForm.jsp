@@ -35,12 +35,10 @@ $(document).ready(function() {
 	$("#exponent").val("${Exponent}");
 	
 	$("#login").click(function(event) {
-		alert( $("#PASSWD").val)
 		var rsa = new RSAKey();
 	    rsa.setPublic($('#modulus').val(),$('#exponent').val());
 	    
 	    $("#PASSWD2").val(rsa.encrypt($("#PASSWD").val()));
-	    alert( $("#PASSWD2").val());
 	    return true;
 	})
 });

@@ -227,7 +227,8 @@
 
 					<div id="authWrap" style="">
 						<h3 class=" ">기본정보</h3>
-						
+							<input type="hidden" name="modulus" id="modulus">
+                			<input type="hidden" name="exponent" id="exponent">
 						<p class="required ">
 							<img
 								src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"
@@ -402,14 +403,20 @@
 	</div>
 </body>
 <script type="text/javascript">
+$(document).ready(function() {
+	$("#modulus").val("${Modulus}");
+	$("#exponent").val("${Exponent}");
+	
+});
 
 $("input[name=Now_PASSWD]").blur(function(){
 	var NowPASSWD = $(this).val();
 	var p = $(this).parent();
-	$.post("/3T/checkNowPass",{NowPASSWD:NowPASSWD},function(data)
+	
+	var rsa = new RSAKey();
+    rsa.setPublic($('#modulus').val(),$('#exponent').val());
+	$.post("/3T/checkNowPass",{NowPASSWD:rsa.encrypt(NowPASSWD)},function(data)
 	{
-		
-
 		if (!NowPASSWD){
 			$(".alertNowPass",p).removeClass("alert-positive").addClass("alert-negative").html("<span style='color:red'>현재비밀번호를 입력해주세요.</span>");
 			//$("input[name=chkid]").val("");
