@@ -1,5 +1,6 @@
 package com.kh.iclass.member;
 
+import java.security.Key;
 import java.util.List;
 import java.util.Map;
 
@@ -8,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 public interface MemberService 
 {	
 	//회원수정 비밀번호 체크
-	String checkPass(String NowPass) throws Exception;
+	int checkPass(Map<String, Object> map, Key privateKey) throws Exception;
 	
 	public List<Map<String, Object>> memberInfoList(Map<String, Object> map) throws Exception;
 	Map<String, Object> memberInfo(String id) throws Exception;

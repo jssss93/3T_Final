@@ -100,7 +100,6 @@ public class JoinController {
 			System.out.println("(Key)session.getAttribute(\"RSA_private\")="+(Key)session.getAttribute("RSA_private"));
 			//(Key)session.getAttribute("RSA_private")=sun.security.rsa.RSAPrivateCrtKeyImpl@fff09455
 			
-			System.out.println(joinService.insertMember2(commandMap.getMap(),(Key)session.getAttribute("RSA_private")));
 			if(joinService.insertMember2(commandMap.getMap(),(Key)session.getAttribute("RSA_private")) > 0)
 				//if(memberService.regist(member, (Key)session.getAttribute("RSA_private")) > 0)
 				mv.setViewName("member/loginForm");

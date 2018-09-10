@@ -3,13 +3,14 @@
 
 <mapper namespace="member">
 
-	<select id="checkPass" parameterType="String" resultType="String">
+	<select id="checkPass" parameterType="hashmap" resultType="int">
 		SELECT
-			PASSWD
+			count(MEMBER_ID)
 		FROM
 			MEMBER
 		WHERE
-			MEMBER_ID = #{MEMBER_ID}
+			MEMBER_ID = #{MEMBER_ID} AND
+			PASSWD = #{PASSWD3}
 	</select>
 	
 	<select id="checkMember" parameterType="hashmap"

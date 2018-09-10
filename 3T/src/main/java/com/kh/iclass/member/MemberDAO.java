@@ -15,9 +15,9 @@ public class MemberDAO extends AbstractDAO {
 	private static final int Map = 0;
 
 	//회원수정 비밀번호 체크
-	public String checkPass(String NowPass) throws Exception
+	public int checkPass(Map<String, Object> map) throws Exception
 	{
-		return (String)selectOne("member.checkPass", NowPass);
+		return (int)selectOne("member.checkPass", map);
 	}
 	//회원 정보 불러오기
 	@SuppressWarnings("unchecked")

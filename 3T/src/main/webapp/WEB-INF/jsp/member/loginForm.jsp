@@ -94,7 +94,8 @@ $(document).ready(function() {
 	    rsa.setPublic($('#modulus').val(),$('#exponent').val());
 	    
 	    $("#PASSWD2").val(rsa.encrypt($("#PASSWD").val()));
-	    return true;	
+	    return true;
+
 	})
 });
 </script>
