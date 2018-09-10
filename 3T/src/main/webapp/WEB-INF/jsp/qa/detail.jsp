@@ -47,7 +47,6 @@
 			<tr class="board_title">
 				<th scope="row">NAME</th>
 				<td>${map.MEMBER_ID }</td>
-
 			</tr>
 			<table class="board_content">
 				<br>
@@ -62,11 +61,15 @@
 
 			<table class="notice_button">
 				<tr>
-					<td><a href="#this" class="btn" id="list">LIST</a> <a
-						href="#this" class="btn" id="update">UPDATE</a> <a href="#this"
-						class="btn" id="delete">DELETE</a> <a href="#this" class="btn"
-						name="writeReply">REPLY</a> <input type="hidden" id="QA_NO"
-						value="${map.QA_NO }"></td>
+					<td>
+						<a href="#this" class="btn" id="list">LIST</a> 
+						<c:if test="${map.MEMBER_ID==ID }">
+							<a href="#this" class="btn" id="update">UPDATE</a> 
+							<a href="#this" class="btn" id="delete">DELETE</a> 
+						</c:if>
+						<a href="#this" class="btn" name="writeReply">REPLY</a> 
+						<input type="hidden" id="QA_NO" value="${map.QA_NO }">
+					</td>
 				</tr>
 			</table>
 

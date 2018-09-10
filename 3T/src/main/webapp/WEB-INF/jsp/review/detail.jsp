@@ -62,16 +62,20 @@
 
 				<table class="notice_button">
 					<tr>
-						<td><a href="#this" class="btn" id="list">LIST</a> <a
-							href="#this" class="btn" id="update">UPDATE</a> <a href="#this"
-							class="btn" id="delete">DELETE</a></td>
+						<td>
+							<a href="#this" class="btn" id="list">LIST</a> 
+							<c:if test="${map.MEMBER_ID==ID }">
+								<a href="#this" class="btn" id="update">UPDATE</a> 
+								<a href="#this" class="btn" id="delete">DELETE</a>
+							</c:if>
+						</td>
 					</tr>
 				</table>
 				<br>
 				<br>
 
 				<form id="frm" action="/3T/review/comment" method="post">
-
+					<c:if test="${MEMBER_ID!=null}">
 					<table border="1" align="center" class="board_view2">
 						<tbody>
 							<tr class="board_title">
@@ -96,6 +100,7 @@
 						</tbody>
 
 					</table>
+					</c:if>
 	<br>
 	<table class="notice_button">
 		<tr>

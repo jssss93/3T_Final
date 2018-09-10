@@ -88,11 +88,8 @@
 		  from
                 QA 
           where 
-          		RE_STEP = 0
-     
-               
-         ORDER BY 
-               
+          		RE_STEP = 0  
+          ORDER BY 
                ref DESC
         ]]>
     </select>
@@ -149,6 +146,7 @@
 			CATEGORY,
 			GOODS_NO,
 			REF,
+			STATUS,
 			PASSWD
         FROM
             QA
@@ -213,23 +211,47 @@
      <select id="QA_selectSearchList" parameterType="hashmap" resultType="hashmap">
 		
 			SELECT
-           		QA_NO,
-           		TITLE,
-           		MEMBER_ID,
-           		CONTENT,
-           		REGDATE,
-           		CATEGORY,
+           	    QA_NO,
+      			TITLE,
+      		    MEMBER_ID,
+        		CONTENT,
+        		REGDATE,
+        		CATEGORY,
 				REF,
 				RE_STEP,
 				RE_LEVEL,
 				GOODS_NO,
-				STATUS
-		FROM 
-			QA
-		WHERE 
-			
-			
-			<if test='SearchNum.equals("TITLE")'> 
+				STATUS,
+       		 	NAME,
+       		 	WM_CONCAT(SAV_NAME) AS IMAGE
+      FROM(			
+           SELECT 
+ 				A.QA_NO,
+      			A.TITLE,
+      		    A.MEMBER_ID,
+        		A.CONTENT,
+        		A.REGDATE,
+        		A.CATEGORY,
+				A.REF,
+				A.RE_STEP,
+				A.RE_LEVEL,
+				A.GOODS_NO,
+				A.STATUS,
+       			B.SAV_NAME,
+       			C.NAME
+		  from
+                QA A
+          INNER JOIN 
+                UPLOAD B 
+          ON 
+               A.GOODS_NO = B.GOODS_NO 
+               
+          INNER JOIN 
+                GOODS C 
+          ON 
+               A.GOODS_NO = C.GOODS_NO 
+	WHERE
+	<if test='SearchNum.equals("TITLE")'> 
 			
 			(TITLE LIKE '%' || #{SearchKeyword} || '%')
 			
@@ -245,8 +267,26 @@
 		
 			(CONTENT LIKE '%' || #{SearchKeyword} || '%')
 			</if>
-			
-			ORDER BY QA_NO DESC
+               
+         ORDER BY 
+               
+               A.ref DESC, A.re_step ASC  
+               )
+         GROUP BY
+         		 QA_NO,
+      			TITLE,
+      		    MEMBER_ID,
+        		CONTENT,
+        		REGDATE,
+        		CATEGORY,
+				REF,
+				RE_STEP,
+				RE_LEVEL,
+				GOODS_NO,
+				STATUS,
+       		 	NAME
+       	ORDER BY
+       		    REF DESC, RE_STEP ASC
 
 		
 </select>
