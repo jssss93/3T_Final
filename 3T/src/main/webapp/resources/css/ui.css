@@ -318,11 +318,11 @@ a:link, a:visited {
 }
 
 .board_top_main {
-	margin: 0 0 0 615;
-	padding: 0;
-	display: inline-block;
-	clear: both;
-	overflow: hidden;
+	margin: 0 0 0 733px;
+    padding: 0px 0px 59px 0px;
+    display: inline-block;
+    clear: both;
+    overflow: hidden;
 }
 
 .board_list {

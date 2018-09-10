@@ -208,7 +208,7 @@
 		<br> <br>	
 		<table class="notice_button">
 			<tr>
-				<td><a href="#this" class="btn" id="list">목록으로</a> <input
+				<td><a href="#this" class="btn btn-default" id="list">목록으로</a> <input
 					type="submit" class="btn btn-default" id="submitBtn" value="작성완료">
 					 <input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
 					 <input type="hidden" name="REVIEW_NO" value="${map.REVIEW_NO }" />
