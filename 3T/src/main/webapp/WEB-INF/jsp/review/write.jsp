@@ -165,11 +165,18 @@
 					<th scope="row">SUBJECT</th>
 					<td><input type="text" id="TITLE" name="TITLE" class="wdp_25" value="${map.TITLE}"></input> </td>
 				</tr>
+				 <c:if test="${ID =! null }"> 
 				<tr>
 					<th scope="row">NAME</th>
+					<td><input type="text" id="MEMBER_ID" name="MEMBER_ID" class="wdp_25" value="${IDX}"></input></td>
+				</tr>
+				 </c:if> 
+				 <c:if test="${ID == null }"> 
+				<tr>
+					<th scope="row">NAME1</th>
 					<td><input type="text" id="MEMBER_ID" name="MEMBER_ID" class="wdp_25" value="${map.MEMBER_ID}"></input></td>
 				</tr>
-
+				 </c:if> 
 				<tr>
 
 					<td colspan="2" class="board_content2">

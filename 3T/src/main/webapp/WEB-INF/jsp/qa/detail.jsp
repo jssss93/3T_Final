@@ -63,7 +63,7 @@
 				<tr>
 					<td>
 						<a href="#this" class="btn" id="list">LIST</a> 
-						<c:if test="${map.MEMBER_ID==ID }">
+						<c:if test="${map.MEMBER_ID == ID }">
 							<a href="#this" class="btn" id="update">UPDATE</a> 
 							<a href="#this" class="btn" id="delete">DELETE</a> 
 						</c:if>
