@@ -295,7 +295,10 @@
                               <img width="70" height="70" src="/3T/resources/upload/${row.IMAGE}" ></span>
                            </a>
                            <!-- 삭제버튼 추가할것. -->
-                           <button type="button" class="wing_btn_delete" prdno="1886256688"></button>
+                           <!-- <button type="button" class="wing_btn_delete" prdno="1886256688"> -->
+                           <a class="wing_btn_delete" id="windRecentPrdList" type="button">
+                           <img width="30" height="30" src="/3T/resources/images/hanb.PNG" ></a>
+                           <!-- </button> -->
                         </li><br>
                      </c:forEach>
                   </ul>
@@ -357,6 +360,16 @@
             return false;
          }
       }
+   
+   
+   
+   
+   
+   $('button').click(function() {
+	   alert('Clicked');
+	 });
+   
+   $('button').remove();
 </script>
 
 

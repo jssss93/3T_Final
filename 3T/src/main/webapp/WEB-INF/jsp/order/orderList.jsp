@@ -25,32 +25,16 @@
 <!--PG크로스브라우징필수내용 끝-->
 <!--해당 CSS는 쇼핑몰 전체 페이지에 영향을 줍니다. 삭제와 수정에 주의해주세요.-->
 <!-- 스마트디자인에서는 JQuery 1.4.4 버전이 내장되어있습니다. 추가로 호출하면 충돌이 생길 수 있습니다. -->
-<link
-	href="//fonts.googleapis.com/css?family=Lato:100,300,400,500,700,900,100italic,300italic,400italic,700italic,900italic"
+<link href="//fonts.googleapis.com/css?family=Lato:100,300,400,500,700,900,100italic,300italic,400italic,700italic,900italic"
 	rel="stylesheet" type="text/css">
-<link href="//fonts.googleapis.com/css?family=Cabin" rel="stylesheet"
-	type="text/css">
-<link href="//fonts.googleapis.com/css?family=Cabin:700"
-	rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="/fonts/font-awesome.css">
-<link
-	href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"
-	rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Cabin" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Cabin:700" rel="stylesheet" type="text/css">
+<link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css rel="stylesheet">
 <meta name="format-detection" content="telephone=no">
 <script async="" src="//www.google-analytics.com/analytics.js"></script>
-<script type="text/javascript" async=""
-	src="http://www.google-analytics.com/ga.js"></script>
-<script
-	src="https://connect.facebook.net/signals/config/829030643890604?v=2.8.25&amp;r=stable"
-	async=""></script>
+<script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script>
+<script src="https://connect.facebook.net/signals/config/829030643890604?v=2.8.25&amp;r=stable" async=""></script>
 <script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script>
-<script src="/js/jquery.gray.js"></script>
-<!--gray IE 용-->
-<script type="text/javascript" src="/ec-js/common.js"></script>
-<!-- 해당 JS는 플래시를 사용하기 위한 스크립트입니다. -->
-<script src="/js/jquery-1.11.2.min.js"></script>
-<script src="/js/jquery-latest.js"></script>
-<script src="/js/jquery.als-1.6.min.js"></script>
 
 <script type="text/javascript">
 
@@ -99,14 +83,7 @@
 <link rel="shortcut icon" href="/web/upload/favicon_20141006131340.ico">
 <meta http-equiv="ImageToolbar" content="No">
 
-<script type="text/javascript"
-	src="/app/Eclog/js/cid.generate.js?vs=3d0b473968a0ec4ec41e3bf59df3aa51"></script>
 <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
-
-<link rel="stylesheet" type="text/css"
-	href="/ind-script/optimizer.php?filename=tZXBTgQhDIbvO159jromm6xXT3ozvkEHOgPZQgmF6L69s64HzcTEjHCkab_Cz08BJ4Fgf58hZZkzBsikUrMhMKowZYkFjIQg8WYJ3MJf8snsVLgWL3E3yvvGwlrK1qaMZ8rbSguOTL-UYkrwKJgtvH6HrOQhM1SlrOD88Xh32B8g1ZG9GVwJDGppsKR-jqAnHx8-GUFsZQLJljKMqCcqL2hOOFNDrjXPcZImwHBWJwnevDr2WnowE84-ztvJiwmklouY3jS5pxXwGvjf2afFgAMyN9zWYudlQatX0IpbfQdoEeHiUweyI-6BXYaCrab0IF-Mj4V6qIxjB-pqVDcD__g8GorAPcRdskyTQfjVYarMajJRbElVwmzcE6G9DocP&amp;type=css&amp;k=82e471e6421823158bbbaa252eb0adb8eb11482d&amp;t=1508869165">
-<link rel="stylesheet" type="text/css"
-	href="/ind-script/optimizer.php?filename=tdLNDcIwDAXgAcKVOQyHSmUExgiJ86MmdhQnoG5PywzmbL1Psp8hcUVAZ6ZgF0h5XW_LfYE2XyU7k0YtIB6NR8mRQLZMD3AiUNnPglDsznNA4ciD2-WYXEGHdHZg5L5rmi-23T8psCaa0HrsmqKMY_fzpCH8hSVNteeYhqlIU1P1_CFt89e-KVlGs26zEc2iyQfmofsHjul95DNTc6f7BQ&amp;type=css&amp;k=9a3cb7872486b57aea4134bfe28a5541c53ed81d&amp;t=1499901149">
 
 <meta name="path_role" content="ORDER_BASKET">
 <meta name="author" content="데일리룩의 정석, 남친룩, 오버핏, 루즈핏, 코디, 남성의류 쇼핑몰">

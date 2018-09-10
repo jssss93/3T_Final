@@ -7,40 +7,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script>
-<script src="/js/jquery.gray.js"></script>
-<!--gray IE 용-->
-<script type="text/javascript" src="/ec-js/common.js"></script>
-<!-- 해당 JS는 플래시를 사용하기 위한 스크립트입니다. -->
-<script src="/js/jquery-1.11.2.min.js"></script>
-<script src="/js/jquery-latest.js"></script>
-<script src="/js/jquery.als-1.6.min.js"></script>
-
-
-
-<script>
-	!function(f, b, e, v, n, t, s) {
-		if (f.fbq)
-			return;
-		n = f.fbq = function() {
-			n.callMethod ? n.callMethod.apply(n, arguments) : n.queue
-					.push(arguments)
-		};
-		if (!f._fbq)
-			f._fbq = n;
-		n.push = n;
-		n.loaded = !0;
-		n.version = '2.0';
-		n.queue = [];
-		t = b.createElement(e);
-		t.async = !0;
-		t.src = v;
-		s = b.getElementsByTagName(e)[0];
-		s.parentNode.insertBefore(t, s)
-	}(window, document, 'script',
-			'https://connect.facebook.net/en_US/fbevents.js');
-	fbq('init', '829030643890604'); // Insert your pixel ID here.
-	fbq('track', 'PageView');
-</script>
 <link rel="canonical" href="http://asclo.com/member/join.html">
 <link rel="alternate" href="http://m.asclo.com/member/join.html">
 <meta property="og:url" content="http://asclo.com/member/join.html">
@@ -48,8 +14,6 @@
 <meta property="og:type" content="website">
 <link rel="shortcut icon" href="/web/upload/favicon_20141006131340.ico">
 <meta http-equiv="ImageToolbar" content="No">
-<script type="text/javascript"
-	src="/app/Eclog/js/cid.generate.js?vs=3d0b473968a0ec4ec41e3bf59df3aa51"></script>
 <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
 
 <script type="text/javascript">
@@ -260,12 +224,6 @@ function chkBox(bool) { // 전체선택/해제
 
 	}
 </script>
-
-<link rel="stylesheet" type="text/css"
-	href="/ind-script/optimizer.php?filename=tZXNSgQxDMfvO159jrjCwnr1pFffoB-ZaTVtStqC-_bWD0QZBJlpjw3JL8k_JAXHAeF4K5CEF1EBBDNXMQgmZ5iFYwHDIXC8aoZr-I8_mkNmqsVzPGh-3RhYS9malNQFZVtoUZrwj1CVEtyzEgtPPyEredBMNaNkcP58vjkdT5CqJm8mVwJBtjhZzH6JkF98vPtgBLaVEAIGjQLP7HfwWvdcC2iVvelS4Ar4adjX8dyUnxRRx7LaHNsDV-Pvxa1-ALQwU_FpANkhjcC2bbDVlBFktfioCo5QWekB1NWN6gb-dTU7ikAjxG1epsv5-8owV6JsBDH2pGZUYtwDKrvnOKy5xAsXTj2Rpi3BwnLpydTvH9djnLkn1H2r-QY&amp;type=css&amp;k=f17a190bd4804f6def26a3d625199fc1a17f114c&amp;t=1508869165">
-<link rel="stylesheet" type="text/css"
-	href="/ind-script/optimizer.php?filename=rczBDcMgDEDRAei1c7g9IKXjEHDACtgIm1bdvukOnL_-gyINAaObikOh0LY9_NNDn3ul6Iq1CprQJVTKDHoSvyCqQpM0K0INX5kGasGwSpbjuF31DotZXqkOysVcQ54r1SQfXm3uEkZyldR6iGfI6PxK_hAxHCvFKPy-fhLu8e_-AA&amp;type=css&amp;k=bd8e2d0a1c12081773378621cd32acfc0ff27aac&amp;t=1499901149">
-
 <title>3T</title>
 <meta name="path_role" content="MEMBER_JOIN">
 <meta name="author" content="데일리룩의 정석, 남친룩, 오버핏, 루즈핏, 코디, 남성의류 쇼핑몰">
