@@ -12,9 +12,19 @@
 <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet">
 <style>
 #myImg {
-	border-radius: 5px;
-	cursor: pointer;
-	transition: 0.3s;
+    border-radius: 0px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 80%;
+    padding: 10px 0px 0px 0px;
+    height: auto;
+}
+#myImg2 {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 90%;
+    height: auto;
 }
 
 #myImg:hover {
@@ -40,6 +50,28 @@ table {
 	line-height: 2;
 	font-family: 'Lato','Nanum Gothic';
 }
+.suk {
+    position: relative;
+    /* float: left; */
+    /* padding-right: 4px; */
+    width: 33%;
+    border-right: 0px solid #fff;
+    border-left: 0px solid #fff;
+    box-sizing: border-box;
+    font-size: 11;
+}
+.suk2 {
+    position: relative;
+    /* float: left; */
+    /* padding-right: 4px; */
+    width: 33%;
+    border-right: 0px solid #fff;
+    border-left: 0px solid #fff;
+    box-sizing: border-box;
+    font-size: 11;
+    left: 10px;
+}
+
 </style>
 </head>
 <br>
@@ -50,10 +82,11 @@ table {
 
 
 	<table>
-		<tr height="60">
+		<tr>
 			<td align="left" valign="top"><strong>${CATEGORY}</strong></td>
 		</tr>
 	</table>
+	<br><br>
 
 	<table width="100%" align="center" border="0" cellspacing="1"
 		cellpadding="1" class="board_top_main">
@@ -64,50 +97,46 @@ table {
 				</h6></td>
 		</tr>
 		<tr>
-			<td height="50"></td>
+			<td></td>
 		</tr>
 	</table>
-	<table width="1100" border="0" height="300" align="center"
-		cellpadding="0" cellspacing="20">
+	<table border="0" align="center" cellpadding="0" cellspacing="20">
 
 		<tr>
-			<td width="50"></td>
+			<td></td>
 			<c:forEach items="${bestlist }" var="row" varStatus="stat" begin="0"
 				end="3">
 
 				<c:if test="${stat.index%4==0}">
 					<tr></tr>
 				</c:if>
-				<td width="300" height="300" align="center"><a href="#this"
-					name="title"> <img name="bestimg"
-						src="/3T/resources/upload/${row.IMAGE.split(',')[0] }" width="300"
-						height="300"> <input type="hidden" id="GOODS_NO"
-						name="GOODS_NO" value="${row.GOODS_NO }"></a> <br>
-					${row.NAME }<br> KRWsdsds&nbsp;${row.PRICE }</td>
+				<td class="suk" align="center">
+				   <a href="#this" name="title"> 
+				   <img id="myImg" name="bestimg" src="/3T/resources/upload/${row.IMAGE.split(',')[0] }"> 
+				     <input type="hidden" id="GOODS_NO"name="GOODS_NO" value="${row.GOODS_NO }"></a> <br>
+					      ${row.NAME }<br> KRWsdsds&nbsp;${row.PRICE }</td>
 
 
 			</c:forEach>
-			<td width="50"></td>
+			<td></td>
 		</tr>
 	</table>
 	<br>
 	<br>
 	<br>
-	<table width="1300" border="0" height="300" align="center"
-		cellpadding="0" cellspacing="0" class="margin_main">
-		<tr height="100">
+	<table border="0" align="center" cellpadding="0" cellspacing="0" class="margin_main">
+		<tr>
 		</tr>
 		<c:forEach items="${list }" var="list" varStatus="stat">
 
 			<c:if test="${stat.index%3==0}">
 				<tr></tr>
 			</c:if>
-			<td width="150" height="400" align="center"><a href="#this"
-				name="title"> <img id="myImg"
-					src="/3T/resources/upload/${list.IMAGE.split(',')[0] }" width="400"
-					height="400"> <input type="hidden" id="GOODS_NO"
-					name="GOODS_NO" value="${list.GOODS_NO }"></a> <br>
-				${list.NAME }<br> KRW&nbsp;${list.PRICE }</td>
+			<td class="suk2" align="center">
+			  <a href="#this" name="title"> 
+			   <img id="myImg2" src="/3T/resources/upload/${list.IMAGE.split(',')[0] }"> 
+			    <input type="hidden" id="GOODS_NO" name="GOODS_NO" value="${list.GOODS_NO }"></a> <br>
+				 ${list.NAME }<br> KRW&nbsp;${list.PRICE }</td>
 
 		</c:forEach>
 

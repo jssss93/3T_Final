@@ -224,7 +224,7 @@
 
 		<table class="notice_button">
 			<tr>
-				<td><a href="#this" class="btn" id="list">LIST</a> 
+				<td><a href="#this" class="btn btn-default" id="list">LIST</a> 
 				<input class="btn btn-default" id="submitBtn" type="submit" value="WRITE">
 				<input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
 				 <input type="hidden" name="QA_NO" value="${map.QA_NO }" />

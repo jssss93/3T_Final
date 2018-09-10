@@ -14,7 +14,7 @@
     cursor: pointer;
     transition: 0.3s;
     width: 100%;
-    padding: 10px 30px 0px 10px;
+    padding: 10px 20px 0px 20px;
     height: auto;
 }
 
@@ -23,17 +23,18 @@
     cursor: pointer;
     transition: 0.3s;
     width: 100%;
-    padding: 10px 30px 0px 10px;
     height: auto;
+    padding: 0px 50px 0px 50px;
 }
 .suk {
     position: relative;
     /* float: left; */
     padding-right: 4px;
-    width: 34.6%;
+    width: 33%;
     border-right: 0px solid #fff;
     border-left: 0px solid #fff;
     box-sizing: border-box;
+    font-size: 11;
 }
 .han_img img {
     width: 100%;
@@ -43,7 +44,9 @@
 }
 table {
     width: 95%!important;
-    margin: 0 0 0 40!important;
+}
+.han12 {
+    /* margin: 0px 0 0 27px; */
 }
 </style>
 </head>
@@ -83,7 +86,7 @@ table {
 			</tr>
 		</table>
 		<br> <br>
-		<table border="0" align="center" cellpadding="0" cellspacing="20">
+		<table border="0" align="center" cellpadding="0" cellspacing="20" class="han12">
 
 			<tr>
 				<td colspan="3" align="center"><h1 class="abc">3T</h1>
@@ -152,7 +155,7 @@ table {
 
 
 							<li>
-							<td class="suk2" align="center"><a href="#this" name="title">
+							<td class="suk" align="center"><a href="#this" name="title">
 
 									<img id="myImg"
 									src="/3T/resources/upload/${best.IMAGE.split(',')[0]}"> <input

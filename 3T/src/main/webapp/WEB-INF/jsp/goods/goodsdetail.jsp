@@ -41,6 +41,19 @@
     border-bottom: 1px solid #ccc!important;
     border-right: 1px solid #ccc!important;
     border-left: 1px solid #ccc!important;
+}
+.board_review2 {
+    width: 85%!important;
+}
+.board_top {
+    width: 85%!important;
+}
+.notice_button {
+    width: 85%!important;
+}
+.text01 h3{
+    font-size: 20px;
+}
 </style>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -380,7 +393,7 @@ table {
 
 	<c:if test="${fn:length(goodsDetail1) le 0}">
 		<tr>
-			<td colspan="6" style="text-align: center;">등록된 리뷰가 없습니다</td>
+			<td colspan="7" style="text-align: center;">등록된 리뷰가 없습니다</td>
 		</tr>
 	</c:if>
 
@@ -413,7 +426,19 @@ table {
 	</c:forEach>
 
 </table>
+<br>
 
+	<!-- 상품 디테일에서 GOODS_NO 보내서 쓰기 -->
+	<table class="notice_button">
+		<tr>
+			<td>
+				<form action="/3T/review/writeForm">
+
+					<input type="submit" class="btn" value="WRITE">
+				</form>
+			</td>
+		</tr>
+</table>
 
 <br></br>
 <!-- Q & A 게시판 -->
@@ -426,7 +451,7 @@ table {
 		<td height="50"></td>
 	</tr>
 	<tr>
-		<td align="center"><h3>
+		<td align="center" class="text01 formbar"><h3>
 				<font color="#000000">Q & A</font><span> : HAVE A QUESTION ?</span>
 			</h3></td>
 	</tr>
@@ -450,7 +475,7 @@ table {
 
 	<c:if test="${fn:length(goodsDetail2) le 0}">
 		<tr>
-			<td colspan="6" style="text-align: center;">등록된 QA가 없습니다</td>
+			<td colspan="7" style="text-align: center;">등록된 QA가 없습니다</td>
 		</tr>
 	</c:if>
 
