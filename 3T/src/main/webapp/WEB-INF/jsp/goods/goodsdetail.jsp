@@ -362,25 +362,23 @@ table {
 <br>
 <br>
 <br>
-<table width="55%" border="0" cellspacing="0" cellpadding="0"
-	class="board_top">
+<table width="55%" border="0" cellspacing="0" cellpadding="0" class="board_top">
 	<tr>
 		<td height="50"></td>
 	</tr>
 	<tr>
-		<td align="center" class="text01 formbar"><h3>
-				<font color="#000000">REVIEW</font><span> : WRITE YOUR
-					REVIEWS~!</span>
-			</h3></td>
+		<td align="center" class="text01 formbar">
+			<h3>
+				<font color="#000000">REVIEW</font><span> : WRITE YOUR REVIEWS~!</span>
+			</h3>
+		</td>
 	</tr>
 
 	<tr>
 		<td height="50"></td>
 	</tr>
 </table>
-<table width="70%" align="center" border="0" cellspacing="0"
-	cellpadding="1" class="board_review2">
-
+<table width="70%" align="center" border="0" cellspacing="0" cellpadding="1" class="board_review2">
 	<tr>
 		<td valign="middle"><strong>NO</strong></td>
 		<td valign="middle"><strong>ITEM</strong></td>
@@ -390,7 +388,7 @@ table {
 		<td valign="middle"><strong>DATE</strong></td>
 		<td valign="middle"><strong>HIT</strong></td>
 	</tr>
-
+	
 	<c:if test="${fn:length(goodsDetail1) le 0}">
 		<tr>
 			<td colspan="7" style="text-align: center;">등록된 리뷰가 없습니다</td>
@@ -742,12 +740,11 @@ function setOption(obj) {
   });
 
 function fn_openBoardDetail1(obj) {
+	
   var comSubmit = new ComSubmit();
   comSubmit.setUrl("<c:url value='/review/detail' />");
-  comSubmit.addParam("REVIEW_NO", obj.parent().find("#REVIEW_NO")
-        .val());
-  comSubmitd
-        .addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
+  comSubmit.addParam("REVIEW_NO", obj.parent().find("#REVIEW_NO").val());
+  comSubmitd.addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
   comSubmit.submit();
 }
 

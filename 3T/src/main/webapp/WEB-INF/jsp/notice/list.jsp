@@ -63,14 +63,8 @@
 
 	<input type="hidden" id="NOTICE_NO" name="NOTICE_NO"
 		value="${Detail.NOTICE_NO}">
-	<br>
-	<table class="notice_button">
-
-		<tr>
-			<td><a href="write" class="btn">WRITE</a></td>
-		</tr>
-	</table>
- <br />
+	<br> 
+	 <br />
 	<form action="/3T/notice/list">
 		<select class="btn"name="SearchNum" id="SearchNum"
 			style="width: 100px; height: 30px;">
