@@ -48,19 +48,22 @@
 			<br><br/>
 			<tr>
 				<td style="text-align: center; ">${Detail.CONTENT }</td>
-				<!-- style="text-align: center; -->
 			</tr>
 			</table>
 		</tbody>
 	</table>
-<br><br/>
+<br><br/> 
 	<input type="hidden" id="FAQ_NO" name="FAQ_NO" value="${Detail.FAQ_NO}">
     
     <table class="notice_button">
     <tr>
-	<td><a href="#this" class="btn" id="list">LIST</a>
-	<a href="#this" class="btn" id="update">UPDATE</a>
-	<a href="#this" class="btn" id="delete">DELETE</a></td>
+	<td> 
+		<a href="#this" class="btn" id="list">LIST</a>
+		<c:if test="${MEMBER_ID==ADMIN }">
+			<a href="#this" class="btn" id="update">UPDATE</a>
+			<a href="#this" class="btn" id="delete">DELETE</a>
+		</c:if>
+	</td>
 	</tr>
 	</table>
 
@@ -91,7 +94,7 @@
 		function fn_UpdateForm() {
 			var FAQ_NO = "${Detail.FAQ_NO}";
 			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/faq/updateForm' />");
+			comSubmit.setUrl("<c:url value='/3T/admin/faq/updateForm' />");
 			comSubmit.addParam("FAQ_NO", FAQ_NO);
 			comSubmit.submit();
 		}

@@ -69,11 +69,6 @@ a:link{
 	<input type="hidden" id="currentPageNo" name="currentPageNo" />
 
 	<br>
-	<table class="notice_button">
-		<tr>
-			<td><a href="write" class="btn">WRITE</a></td>
-		</tr>
-	</table>
 	<br />
 	<form action="/3T/faq/list">
 		<select class="btn" name="SearchNum" id="SearchNum"

@@ -59,9 +59,13 @@ board_view CONTENT {
 	<table class="notice_button">
 
 		<tr>
-			<td><a href="#this" class="btn" id="list">LIST</a> <a
-				href="#this" class="btn" id="update">UPDATE</a> <a href="#this"
-				class="btn" id="delete">DELETE</a></td>
+			<td>
+				<a href="#this" class="btn" id="list">LIST</a> 
+				<c:if test="${MEMBER_ID eq ADMIN }">
+					<a href="#this" class="btn" id="update">UPDATE</a> 
+					<a href="#this" class="btn" id="delete">DELETE</a>
+				</c:if>
+			</td>
 		</tr>
 	</table>
 
@@ -92,7 +96,7 @@ board_view CONTENT {
 		function fn_UpdateForm() {
 			var NOTICE_NO = "${Detail.NOTICE_NO}";
 			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/notice/updateForm' />");
+			comSubmit.setUrl("<c:url value='/3T/admin/notice/updateForm' />");
 			comSubmit.addParam("NOTICE_NO", NOTICE_NO);
 			comSubmit.submit();
 		}

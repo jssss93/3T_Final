@@ -3,6 +3,7 @@ package com.kh.iclass.faq.controller;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -52,21 +53,23 @@ public class FaqController {
 	@RequestMapping(value = "/faq/write", method = RequestMethod.POST)
 	public ModelAndView faqWrite(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:list");
-
+		
 		faqService.FaqInsert(commandMap.getMap());
 
 		return mv;
 	}
+	
 	//faq 상세보기
 	@RequestMapping(value = "/faq/detail")
-	public ModelAndView faqDetail(CommandMap commandMap) throws Exception {
+	public ModelAndView faqDetail(CommandMap commandMap,HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("faq/detail");
 		
 		/*faqService.FaqReadCntUp(commandMap.getMap());*/
 		
 		Map<String, Object> map = faqService.FaqDetail(commandMap.getMap());
 		mv.addObject("Detail", map);
-
+		mv.addObject("MEMBER_ID",request.getSession().getAttribute("MEMBER_ID").toString());
+		
 		return mv;
 	}
 

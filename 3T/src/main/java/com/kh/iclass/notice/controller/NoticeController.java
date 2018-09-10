@@ -3,8 +3,10 @@ package com.kh.iclass.notice.controller;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -58,14 +60,15 @@ public class NoticeController {
 	}
 	//공지사항 상세보기
 	@RequestMapping(value = "/notice/detail")
-	public ModelAndView noticeDetail(CommandMap commandMap) throws Exception {
+	public ModelAndView noticeDetail(CommandMap commandMap,HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("notice/detail");
+		
 		
 		noticeService.NoticeReadCntUp(commandMap.getMap());
 		
 		Map<String, Object> map = noticeService.NoticeDetail(commandMap.getMap());
 		mv.addObject("Detail", map);
-
+		mv.addObject("MEMBER_ID",request.getSession().getAttribute("MEMBER_ID"));
 		return mv;
 	}
 
