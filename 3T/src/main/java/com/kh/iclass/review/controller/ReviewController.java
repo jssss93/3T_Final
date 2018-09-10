@@ -95,7 +95,7 @@ public class ReviewController {
 	
 	//리뷰 수정 폼
 	@RequestMapping(value = "/review/updateForm")
-	public ModelAndView reviewUpdateForm(CommandMap commandMap) throws Exception {
+	public ModelAndView reviewUpdateForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("review/write");
 		
 		System.out.println("reviewUpdateForm : " + commandMap.getMap());
@@ -105,7 +105,7 @@ public class ReviewController {
 		Map<String, Object> map = ReviewService.ReviewDetail(commandMap.getMap());
 		mv.addObject("list",map1);
 		mv.addObject("map", map);
-
+		mv.addObject("IDX",request.getSession().getAttribute("MEMBER_ID"));
 		return mv;
 	}
 

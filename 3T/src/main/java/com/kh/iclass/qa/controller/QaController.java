@@ -39,17 +39,22 @@ public class QaController {
 	}
 	//QA 쓰기 폼
 	@RequestMapping(value = "/qa/writeForm")
-	public ModelAndView qaWrite(CommandMap commandMap) throws Exception {
+	public ModelAndView qaWrite(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("qa/write");
 
 		System.out.println("qaWriteForm : " + commandMap.getMap());
 		//상품번호가 안들어왔을 때 폼 그냥 실행 , 상품번호가 들어왔을 때 상품정보 보여줌
 		if(commandMap.get("GOODS_NO") == null)	
-			return mv;
-		if (commandMap.get("GOODS_NO") != null);
+			mv.addObject("IDX",request.getSession().getAttribute("MEMBER_ID"));
+		
+		if (commandMap.get("GOODS_NO") != null) {
 		Map<String, Object> map = QaService.QaGoods(commandMap.getMap());
+		mv.addObject("IDX",request.getSession().getAttribute("MEMBER_ID"));
 		
 		mv.addObject("list", map);
+		return mv;
+		}
+		
 		return mv;
 	}
 	//QA 쓰기
