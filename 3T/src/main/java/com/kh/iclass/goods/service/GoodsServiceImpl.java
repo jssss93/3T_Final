@@ -80,7 +80,7 @@ public class GoodsServiceImpl implements GoodsService {
 	}
 	
 	@Override
-	public List<Map<String, Object>> selectGoodsCategory(Map<String, Object> map) throws Exception {
+	public Map<String, Object> selectGoodsCategory(Map<String, Object> map) throws Exception {
 		return goodsDAO.selectGoodsCategory(map);
 	}
 	@Override
@@ -152,7 +152,7 @@ public class GoodsServiceImpl implements GoodsService {
 	}
 	
 	@Override
-	public List<Map<String, Object>> goodsSearchList(Map<String, Object> map) throws Exception {
+	public Map<String, Object> goodsSearchList(Map<String, Object> map) throws Exception {
 	   return goodsDAO.goodsSearchList(map);
 	}
 

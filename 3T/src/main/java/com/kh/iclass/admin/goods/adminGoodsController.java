@@ -16,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.iclass.common.map.CommandMap;
 import com.kh.iclass.goods.service.GoodsService;
 
+import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
+
 @Controller
 @RequestMapping(value = "/admin")
 public class adminGoodsController {
@@ -38,6 +40,8 @@ public class adminGoodsController {
 		else
 			resultMap = goodsService.goodsAdminSearchList(commandMap.getMap());
 			
+		
+		mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
 		/*
 		 * mv.addObject("paginationInfo", (PaginationInfo)
 		 * resultMap.get("paginationInfo"));
@@ -47,16 +51,16 @@ public class adminGoodsController {
 		return mv;
 	}
 	
-	@ResponseBody
+	/*@ResponseBody
 	@RequestMapping(value = "/goods/listOfOuter")
 	public ModelAndView goodsListOfOuter(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("cate_list");
-		/*ModelAndView mv = new ModelAndView("goods.adminGoodsList");*/
+		ModelAndView mv = new ModelAndView("goods.adminGoodsList");
 		List<Map<String, Object>> OuterList=goodsService.selectGoodsCategory(commandMap.getMap());
 		mv.addObject("list", OuterList);
 
 		return mv;
-	}
+	}*/
 	
 	/*@RequestMapping(value = "/goods/listOfOuter")
 	public @ResponseBody List<Map<String, Object>> goodsListOfOuter(CommandMap commandMap) throws Exception {

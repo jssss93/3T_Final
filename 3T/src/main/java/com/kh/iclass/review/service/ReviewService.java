@@ -6,7 +6,7 @@ import java.util.Map;
 
 public interface ReviewService {
 		//리뷰 리스트
-	 	List<Map<String, Object>> ReviewList(Map<String, Object> map) throws Exception;
+	 	Map<String, Object> ReviewList(Map<String, Object> map) throws Exception;
 	 	//리뷰 쓰기
 	 	void ReviewInsert(Map<String, Object> map) throws Exception;
 	 	//리뷰 상세보기
@@ -26,7 +26,7 @@ public interface ReviewService {
 		//관리자 리뷰 코멘트 삭제
 		void ReviewAdminDeleteComment (Map<String, Object> map) throws Exception;
 		//리뷰 검색
-		List<Map<String, Object>> ReviewSearchList(Map<String, Object>map)throws Exception;
+		Map<String, Object> ReviewSearchList(Map<String, Object>map)throws Exception;
  
 		//리뷰 상품 리스트
 		List<Map<String, Object>> ReviewGoodsList(Map<String, Object> map) throws Exception;

@@ -70,16 +70,16 @@ public class OrderDAO extends AbstractDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectOrderListAll(Map<String, Object> map) throws Exception {
-		return selectList("order.selectOrderListAll", map);
+	public Map<String, Object> selectOrderListAll(Map<String, Object> map) throws Exception {
+		return (Map<String, Object>)selectPagingList("order.selectOrderListAll", map);
 	}
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectRefundListAll(Map<String, Object> map) {
-		return selectList("order.selectRefundListAll", map);
+	public Map<String, Object> selectRefundListAll(Map<String, Object> map) {
+		return (Map<String, Object>)selectPagingList("order.selectRefundListAll", map);
 	}
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectChangeListAll(Map<String, Object> map) {
-		return selectList("order.selectChangeListAll", map);
+	public Map<String, Object> selectChangeListAll(Map<String, Object> map) {
+		return (Map<String, Object>)selectPagingList("order.selectChangeListAll", map);
 	}
 	@SuppressWarnings("unchecked")
 	public Map<String,Map<String, Object>> getSale(Map<String, Object> map,String mapKey) throws Exception {
@@ -125,8 +125,8 @@ public class OrderDAO extends AbstractDAO {
 
 
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectOrderSearchListAll(Map<String, Object> map) throws Exception {
-		return selectList("order.selectOrderSearchListAll", map);
+	public Map<String, Object> selectOrderSearchListAll(Map<String, Object> map) throws Exception {
+		return (Map<String, Object>)selectPagingList("order.selectOrderSearchListAll", map);
 	}
 
 	public List<Map<String, Object>> selectOrderInfo(Map<String, Object> map) {

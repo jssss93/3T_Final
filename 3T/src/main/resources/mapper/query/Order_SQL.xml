@@ -74,6 +74,7 @@
 
 	<!-- 관리자 주문리스트 -->
  	<select id="selectOrderListAll" parameterType="hashmap" resultType="hashmap">
+	<include refid="common.pagingPre"/>
 	<![CDATA[
 		select
 			REGDATE,
@@ -88,7 +89,8 @@
 			SUBSTR(CONTENT, 0, 20) AS CONTENT,
 			COLOR,
 			GOODS_SIZE,
-			WM_CONCAT(SAV_NAME) AS IMAGE
+			WM_CONCAT(SAV_NAME) AS IMAGE,
+			ROW_NUMBER() OVER (ORDER BY ORDER_NO DESC) RNUM
 		from
 		  	(
 		  	select 
@@ -130,9 +132,11 @@
 			  COLOR,
 			  GOODS_SIZE
 	]]>
+	<include refid="common.pagingPost"/> 
 	</select>
 	<!-- 관리자 교환리스트 -->
 	<select id="selectChangeListAll" parameterType="hashmap" resultType="hashmap">
+	<include refid="common.pagingPre"/>
 	<![CDATA[
 		select
 			REGDATE,
@@ -147,7 +151,8 @@
 			SUBSTR(CONTENT, 0, 20) AS CONTENT,
 			COLOR,
 			GOODS_SIZE,
-			WM_CONCAT(SAV_NAME) AS IMAGE
+			WM_CONCAT(SAV_NAME) AS IMAGE,
+			ROW_NUMBER() OVER (ORDER BY ORDER_NO DESC) RNUM
 		from
 		  	(
 		  	select 
@@ -189,9 +194,11 @@
 			  COLOR,
 			  GOODS_SIZE
 	]]>
+	<include refid="common.pagingPost"/>
 	</select>
 	<!-- 관리자 환불리스트 -->
 	<select id="selectRefundListAll" parameterType="hashmap" resultType="hashmap">
+	<include refid="common.pagingPre"/>
 	<![CDATA[
 		select
 			REGDATE,
@@ -206,7 +213,8 @@
 			SUBSTR(CONTENT, 0, 20) AS CONTENT,
 			COLOR,
 			GOODS_SIZE,
-			WM_CONCAT(SAV_NAME) AS IMAGE
+			WM_CONCAT(SAV_NAME) AS IMAGE,
+			ROW_NUMBER() OVER (ORDER BY ORDER_NO DESC) RNUM
 		from
 		  	(
 		  	select 
@@ -248,6 +256,7 @@
 			  COLOR,
 			  GOODS_SIZE
 	]]>
+	<include refid="common.pagingPost"/>
 	</select>
 	
 	
@@ -763,7 +772,7 @@
 	
 	
 	<select id="selectOrderSearchListAll" parameterType="hashmap" resultType="hashmap">
-	
+	<include refid="common.pagingPre"/>
 		select
 			REGDATE,
 			ORDER_NO,
@@ -777,7 +786,8 @@
 			SUBSTR(CONTENT, 0, 20) AS CONTENT,
 			COLOR,
 			GOODS_SIZE,
-			WM_CONCAT(SAV_NAME) AS IMAGE
+			WM_CONCAT(SAV_NAME) AS IMAGE,
+			ROW_NUMBER() OVER (ORDER BY ORDER_NO DESC) RNUM
 		from
 		  	(
 		  	select 
@@ -832,7 +842,7 @@
 			  CONTENT,
 			  COLOR,
 			  GOODS_SIZE
-	
+		<include refid="common.pagingPost"/> 
 	</select>
 	
 	<select id="selectDetailList" parameterType="hashmap" resultType="hashmap">

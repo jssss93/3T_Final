@@ -14,12 +14,12 @@ import com.kh.iclass.common.dao.AbstractDAO;
 public class QaDAO extends AbstractDAO{
 	//QA 리스트
 	@SuppressWarnings("unchecked")
-    public List<Map<String, Object>> QaList(Map<String, Object> map) throws Exception{
-        return (List<Map<String, Object>>)selectList("qa.QA_selectList", map);//selectList는 Mybatis기본 기능으로 리스트를 조회할때 사용
+    public Map<String, Object> QaList(Map<String, Object> map) throws Exception{
+        return (Map<String, Object>)selectPagingList("qa.QA_selectList", map);//selectList는 Mybatis기본 기능으로 리스트를 조회할때 사용
     }
 	@SuppressWarnings("unchecked")
-    public List<Map<String, Object>> QaAdminList(Map<String, Object> map) throws Exception{
-        return (List<Map<String, Object>>)selectList("qa.QA_AdminSelectList", map);//selectList는 Mybatis기본 기능으로 리스트를 조회할때 사용
+    public Map<String, Object> QaAdminList(Map<String, Object> map) throws Exception{
+        return (Map<String, Object>)selectPagingList("qa.QA_AdminSelectList", map);//selectList는 Mybatis기본 기능으로 리스트를 조회할때 사용
     }
 	//QA 쓰기
 	public void QaInsert(Map<String, Object> map) throws Exception{
@@ -44,8 +44,8 @@ public class QaDAO extends AbstractDAO{
 	}
 	//QA 검색
 	@SuppressWarnings("unchecked")
-    public List<Map<String, Object>> QaSearchList(Map<String, Object> map) throws Exception{
-        return (List<Map<String, Object>>)selectList("qa.QA_selectSearchList", map);
+    public Map<String, Object> QaSearchList(Map<String, Object> map) throws Exception{
+        return (Map<String, Object>)selectPagingList("qa.QA_selectSearchList", map);
     }
 	//QA 답글 쓰기
 	public void QaReplyInsert(Map<String, Object> map) throws Exception{

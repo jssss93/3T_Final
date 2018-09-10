@@ -87,7 +87,7 @@ public class AbstractDAO {
 	
 	
 	
-	//페이징처리부분
+	//전자정부 페이징처리부분
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Map selectPagingList(String queryId, Object params) {
 		printQueryId(queryId);
@@ -101,7 +101,7 @@ public class AbstractDAO {
 		paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(Integer.parseInt(map.get("currentPageNo").toString()));
 		if (map.containsKey("PAGE_ROW") == false || StringUtils.isEmpty(map.get("PAGE_ROW")) == true) {
-			paginationInfo.setRecordCountPerPage(15);
+			paginationInfo.setRecordCountPerPage(10);
 		} else {
 			paginationInfo.setRecordCountPerPage(Integer.parseInt(map.get("PAGE_ROW").toString()));
 		}
@@ -135,4 +135,127 @@ public class AbstractDAO {
 		returnMap.put("result", list);
 		return returnMap;
 	}
+	
+	
+	//상품검색 전자정부페이지 12개띄우기
+		@SuppressWarnings({ "rawtypes", "unchecked" })
+		public Map selectPagingList2(String queryId, Object params) {
+			printQueryId(queryId);
+
+			Map<String, Object> map = (Map<String, Object>) params;
+			PaginationInfo paginationInfo = null;
+
+			if (map.containsKey("currentPageNo") == false || StringUtils.isEmpty(map.get("currentPageNo")) == true)
+				map.put("currentPageNo", "1");
+
+			paginationInfo = new PaginationInfo();
+			paginationInfo.setCurrentPageNo(Integer.parseInt(map.get("currentPageNo").toString()));
+			if (map.containsKey("PAGE_ROW") == false || StringUtils.isEmpty(map.get("PAGE_ROW")) == true) {
+				paginationInfo.setRecordCountPerPage(12);
+			} else {
+				paginationInfo.setRecordCountPerPage(Integer.parseInt(map.get("PAGE_ROW").toString()));
+			}
+			paginationInfo.setPageSize(10);
+
+			int start = paginationInfo.getFirstRecordIndex();
+			int end = start + paginationInfo.getRecordCountPerPage();
+			map.put("START", start + 1);
+			map.put("END", end);
+
+			params = map;
+
+			Map<String, Object> returnMap = new HashMap<String, Object>();
+			List<Map<String, Object>> list = sqlSession.selectList(queryId, params);
+
+			if (list.size() == 0) {
+				map = new HashMap<String, Object>();
+				map.put("TOTAL_COUNT", 0);
+				list.add(map);
+
+				if (paginationInfo != null) {
+					paginationInfo.setTotalRecordCount(0);
+					returnMap.put("paginationInfo", paginationInfo);
+				}
+			} else {
+				if (paginationInfo != null) {
+					paginationInfo.setTotalRecordCount(Integer.parseInt(list.get(0).get("TOTAL_COUNT").toString()));
+					returnMap.put("paginationInfo", paginationInfo);
+				}
+			}
+			returnMap.put("result", list);
+			return returnMap;
+		}
+		
+		//상품카테고리 전자정부페이지 9개띄우기
+				@SuppressWarnings({ "rawtypes", "unchecked" })
+				public Map selectPagingList3(String queryId, Object params) {
+					printQueryId(queryId);
+
+					Map<String, Object> map = (Map<String, Object>) params;
+					PaginationInfo paginationInfo = null;
+
+					if (map.containsKey("currentPageNo") == false || StringUtils.isEmpty(map.get("currentPageNo")) == true)
+						map.put("currentPageNo", "1");
+
+					paginationInfo = new PaginationInfo();
+					paginationInfo.setCurrentPageNo(Integer.parseInt(map.get("currentPageNo").toString()));
+					if (map.containsKey("PAGE_ROW") == false || StringUtils.isEmpty(map.get("PAGE_ROW")) == true) {
+						paginationInfo.setRecordCountPerPage(9);
+					} else {
+						paginationInfo.setRecordCountPerPage(Integer.parseInt(map.get("PAGE_ROW").toString()));
+					}
+					paginationInfo.setPageSize(10);
+
+					int start = paginationInfo.getFirstRecordIndex();
+					int end = start + paginationInfo.getRecordCountPerPage();
+					map.put("START", start + 1);
+					map.put("END", end);
+
+					params = map;
+
+					Map<String, Object> returnMap = new HashMap<String, Object>();
+					List<Map<String, Object>> list = sqlSession.selectList(queryId, params);
+
+					if (list.size() == 0) {
+						map = new HashMap<String, Object>();
+						map.put("TOTAL_COUNT", 0);
+						list.add(map);
+
+						if (paginationInfo != null) {
+							paginationInfo.setTotalRecordCount(0);
+							returnMap.put("paginationInfo", paginationInfo);
+						}
+					} else {
+						if (paginationInfo != null) {
+							paginationInfo.setTotalRecordCount(Integer.parseInt(list.get(0).get("TOTAL_COUNT").toString()));
+							returnMap.put("paginationInfo", paginationInfo);
+						}
+					}
+					returnMap.put("result", list);
+					return returnMap;
+				}
+	
+	//ajax 페이징 처리
+	/*@SuppressWarnings("unchecked")
+	public Object selectPagingList2(String queryId, Object params){
+	    printQueryId(queryId);
+	    Map<String,Object> map = (Map<String,Object>)params;
+	     
+	    String strPageIndex = (String)map.get("PAGE_INDEX");
+	    String strPageRow = (String)map.get("PAGE_ROW");
+	    int nPageIndex = 0;
+	    int nPageRow = 20;
+	     
+	    if(StringUtils.isEmpty(strPageIndex) == false){
+	        nPageIndex = Integer.parseInt(strPageIndex)-1;
+	    }
+	    if(StringUtils.isEmpty(strPageRow) == false){
+	        nPageRow = Integer.parseInt(strPageRow);
+	    }
+	    map.put("START", (nPageIndex * nPageRow) + 1);
+	    map.put("END", (nPageIndex * nPageRow) + nPageRow);
+	     
+	    return sqlSession.selectList(queryId, map);
+	}*/
+
 }

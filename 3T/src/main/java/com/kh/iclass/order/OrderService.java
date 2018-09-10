@@ -32,7 +32,7 @@ public interface OrderService {
 	Object insertPoint(Map<String, Object> map) throws Exception;
 	
 	List<Map<String, Object>> selectOrderList2(Map<String, Object> map) throws Exception;
-	List<Map<String, Object>> selectOrderListAll(Map<String, Object> map) throws Exception;
+	Map<String, Object> selectOrderListAll(Map<String, Object> map) throws Exception;
 	
 	
 	public void changeState1(Map<String, Object> map) throws Exception;
@@ -40,9 +40,9 @@ public interface OrderService {
 	Map<String, Map<String, Object>> getSale(Map<String, Object> map,String mapKey) throws Exception;
 	List<Map<String, Object>> getSale2(Map<String, Object> map) throws Exception;
 
-	List<Map<String, Object>> selectRefundListAll(Map<String, Object> map) throws Exception;
+	Map<String, Object> selectRefundListAll(Map<String, Object> map) throws Exception;
 
-	List<Map<String, Object>> selectChangeListAll(Map<String, Object> map) throws Exception;
+	Map<String, Object> selectChangeListAll(Map<String, Object> map) throws Exception;
 
 	public void changeState8(Map<String, Object> map);
 
@@ -53,7 +53,7 @@ public interface OrderService {
 	public List<Map<String, Object>> selectListSearch(Map<String, Object> map);
 
 	
-	List<Map<String, Object>> selectOrderSearchListAll(Map<String, Object> map) throws Exception;
+	Map<String, Object> selectOrderSearchListAll(Map<String, Object> map) throws Exception;
 
 
 	public List<Map<String, Object>> selectOrderInfo(Map<String, Object> map);

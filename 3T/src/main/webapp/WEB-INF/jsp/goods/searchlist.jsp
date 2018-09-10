@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,6 +87,14 @@
 						
 
 					</table>
+					<br><br>
+					<div align="center">
+						<c:if test="${not empty paginationInfo}">
+							<ui:pagination paginationInfo="${paginationInfo}" type="text"
+								jsFunction="fn_search" />
+						</c:if>
+						<input type="hidden" id="currentPageNo" name="currentPageNo" />
+					</div>
 					</fieldset>
 					
 			

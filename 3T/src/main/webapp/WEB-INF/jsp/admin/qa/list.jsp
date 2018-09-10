@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>  
 <head>
 
 <script type="text/javascript">
@@ -136,10 +137,14 @@ function delchk(){
 							</table>
 						</div>
 					</div>
-					<a href="/3T/admin/qa/writeForm"><button type="submit" class="btn btn-default">작성</button></a>
-					<div class="paging">
-						${pagingHtml}
+					<div align="center">
+					<c:if test="${not empty paginationInfo}">
+						<ui:pagination paginationInfo="${paginationInfo}" type="text"
+							jsFunction="fn_search" />
+					</c:if>
+					<input type="hidden" id="currentPageNo" name="currentPageNo" /> 
 					</div>
+					<a href="/3T/admin/qa/writeForm"><button type="submit" class="btn btn-default">작성</button></a>
 					<div class="row">
 							<div style="text-align:center;">
 								<div id="dataTables-example_filter" class="dataTables_filter">
@@ -164,3 +169,12 @@ function delchk(){
 	</div>
         <!-- /.panel -->   
 </div>
+<%@ include file="/WEB-INF/include/include-body.jspf"%>
+<script type="text/javascript">
+function fn_search(pageNo) {
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("<c:url value='/qa/list' />");
+			comSubmit.addParam("currentPageNo", pageNo);
+			comSubmit.submit();
+		}
+</script>

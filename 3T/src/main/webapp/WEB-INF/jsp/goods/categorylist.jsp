@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -146,16 +147,24 @@ table {
 			</tr><BR><BR><BR>
 		</c:if> --%>
 
-
-
-		<tr align="center">
-
-
-		</tr>
 	</table>
-	<form id="commonForm" name="commonForm"></form>
+	<br><br>
+	<div align="center">
+				<c:if test="${not empty paginationInfo}">
+					<ui:pagination paginationInfo="${paginationInfo}" type="text"
+					jsFunction="fn_search" />
+				</c:if>
+				<input type="hidden" id="currentPageNo" name="currentPageNo" />
+		</div>
+	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 
 	<script type="text/javascript">
+	function fn_search(pageNo) {
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='/goods/catelist' />");
+		comSubmit.addParam("currentPageNo", pageNo);
+		comSubmit.submit();
+	} 
 		$("a[name='title']").on("click", function(e) { //제목 
 			e.preventDefault();
 			fn_openBoardDetail($(this));
