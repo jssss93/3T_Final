@@ -91,8 +91,11 @@ public class GoodsController {
    @Transactional
    public ModelAndView goodsDetail(CommandMap commandMap,HttpServletRequest request, HttpServletResponse response) throws Exception {
 	   if(request.getSession().getAttribute("GOODS_NO")!=null) {
-		   	request.removeAttribute("GOODS_NO");
+		   commandMap.put("GOODS_NO",request.getSession().getAttribute("GOODS_NO") );	
+		   request.removeAttribute("GOODS_NO");
 	   }
+	   System.out.println("디테일로 넘어오는 값:");
+	   System.out.println(commandMap.getMap());
        ModelAndView mv = new ModelAndView("goods/goodsdetail");
 
        goodsService.updateHitcnt(commandMap.getMap());

@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.iclass.admin.member.AdminMemberService;
 import com.kh.iclass.common.map.CommandMap;
 import com.kh.iclass.common.util.ParseInsertCart;
+import com.kh.iclass.common.util.RSAKeySet;
 import com.kh.iclass.common.util.SequenceUtils;
 import com.kh.iclass.member.MemberService;
 import com.kh.iclass.order.OrderService;
@@ -27,7 +28,6 @@ public class CartController {
 
 	@Resource(name = "cartService")
 	private CartService cartService;
-	
 	
 	@Resource(name = "orderService")
 	private OrderService orderService;
@@ -528,7 +528,7 @@ public class CartController {
 		return mv;
 	}
 	
-	// 비회원으로 상품 구매시 로그인폼.
+	/*// 비회원으로 상품 구매시 로그인폼.
 	@RequestMapping(value = "/loginForm2")
 	public ModelAndView loginForm2(HttpServletRequest request,CommandMap commandMap) {
 		HttpSession session = request.getSession();
@@ -537,13 +537,27 @@ public class CartController {
 		mv.setViewName("member/loginForm2");
 	    return mv;
 	}
+	*/
 	// 비회원으로 상품 구매시 로그인폼.
 	@RequestMapping(value = "/loginForm3")
-	public ModelAndView loginForm3(HttpServletRequest request,CommandMap commandMap) {
+	public ModelAndView loginForm3(HttpServletRequest request,CommandMap commandMap) throws Exception {
 		HttpSession session = request.getSession();
 		ModelAndView mv = new ModelAndView();
 
+		RSAKeySet keySet = new RSAKeySet();
+
+		String beforeUrl=request.getHeader("Referer");
+		session.setAttribute("Referer",beforeUrl);
+		/* 세션에 개인키 저장 */
+		session.setAttribute("RSA_private", keySet.getPrivateKey());
+		
+		/* Front Side로 공개키 전달 */
+		mv.addObject("Modulus", keySet.getPublicKeyModulus());
+		mv.addObject("Exponent", keySet.getPublicKeyExponent());
+		
 		commandMap.put("GOODS_NO", session.getAttribute("GOODS_NO"));
+		System.out.println("**********");
+		System.out.println(commandMap.get("GOODS_NO"));
 		
 		mv.setViewName("member/loginForm3");
 		
@@ -574,7 +588,7 @@ public class CartController {
 	    return mv;
 	}	
     
-	// 비회원으로 상품 구매 로그인(세션주기).
+	/*// 비회원으로 상품 구매 로그인(세션주기).
 	@RequestMapping(value = "/nonMember2")
 	public ModelAndView nonMemLogin(HttpServletRequest request, CommandMap commandMap) {
 		System.out.println("비회원으로 상품 구매 로그인됨. 비회원ID:"+"nonId_"+SequenceUtils.getSeqNumber());
@@ -584,7 +598,7 @@ public class CartController {
 	    session.setAttribute("NON_MEMBER_ID", "nonId_"+SequenceUtils.getSeqNumber());
 	    mv.setViewName("redirect:/cart/Add/OnetoPayment");
 	    return mv;
-	}
+	}*/
 	
 	
 	@RequestMapping(value = "/cart/CountUp")
