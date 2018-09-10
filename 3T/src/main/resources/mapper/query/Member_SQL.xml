@@ -102,6 +102,16 @@
 	]]>
 	</select>
 	
+		<update id="findPasswd2" parameterType="hashmap">
+		<![CDATA[
+		UPDATE 
+			MEMBER 
+		SET
+			PASSWD = #{PASSWORD_CHK2} 
+		WHERE 
+			MEMBER_ID = #{MEMBER_ID}
+	]]>
+	</update>
 
 	<select id="memberInfo" parameterType="String" resultType="hashmap">
 			<![CDATA[

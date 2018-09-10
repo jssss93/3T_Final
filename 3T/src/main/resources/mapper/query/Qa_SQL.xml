@@ -105,11 +105,8 @@
 		  from
                 QA 
           where 
-          		RE_STEP = 0
-     
-               
-         ORDER BY 
-               
+          		RE_STEP = 0  
+          ORDER BY 
                ref DESC
         ]]>
         <include refid="common.pagingPost"/> 
@@ -167,6 +164,7 @@
 			CATEGORY,
 			GOODS_NO,
 			REF,
+			STATUS,
 			PASSWD
         FROM
             QA

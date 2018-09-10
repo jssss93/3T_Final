@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -42,21 +43,29 @@ public class ReviewController {
 	}
 	//리뷰 쓰기 폼
 	@RequestMapping(value = "/review/writeForm")
-	public ModelAndView reviewWrite(CommandMap commandMap) throws Exception {
+	public ModelAndView reviewWrite(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("review/write");
 		System.out.println("reviewWriteForm : " + commandMap.getMap());
-		
+		System.out.println("session : " +request.getSession().getAttribute("MEMBER_ID"));
 		//상품번호가 안들어왔을 때 폼 그냥 실행 , 상품번호가 들어왔을 때 상품정보 보여줌
 		if(commandMap.get("GOODS_NO") == null)
+			
+			mv.addObject("IDX",request.getSession().getAttribute("MEMBER_ID"));
+			
+		if (commandMap.get("GOODS_NO") != null) {
+			Map<String, Object> map = ReviewService.ReviewGoods(commandMap.getMap());
+			
+			mv.addObject("IDX",request.getSession().getAttribute("MEMBER_ID"));
+			
+			mv.addObject("list", map);
 			return mv;
-		if (commandMap.get("GOODS_NO") != null);
-		Map<String, Object> map = ReviewService.ReviewGoods(commandMap.getMap());
-
+			
+		}
 		
-
-		mv.addObject("list", map);
-
 		return mv;
+		
+		
+		
 	}
 	//리뷰 쓰기
 	@RequestMapping(value = "/review/write")
@@ -71,8 +80,9 @@ public class ReviewController {
 	
 	//리뷰 상세보기
 	@RequestMapping(value = "/review/detail")
-	public ModelAndView reviewDetail(CommandMap commandMap) throws Exception {
+	public ModelAndView reviewDetail(CommandMap commandMap,HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("review/detail");
+		
 		System.out.println("reviewDetail : " + commandMap.getMap());
 		//상품정보
 		Map<String, Object> map1 = ReviewService.ReviewGoods(commandMap.getMap());
@@ -80,7 +90,8 @@ public class ReviewController {
 		Map<String, Object> map = ReviewService.ReviewDetail(commandMap.getMap());
 		// 리뷰 댓글 리스트
 		List<Map<String, Object>> list = ReviewService.ReviewCommentList(commandMap.getMap());
-
+		
+		mv.addObject("ID",request.getSession().getAttribute("MEMBER_ID"));
 		mv.addObject("map", map);
 		mv.addObject("list2", map1);
 		mv.addObject("list", list);
@@ -89,7 +100,7 @@ public class ReviewController {
 	
 	//리뷰 수정 폼
 	@RequestMapping(value = "/review/updateForm")
-	public ModelAndView reviewUpdateForm(CommandMap commandMap) throws Exception {
+	public ModelAndView reviewUpdateForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("review/write");
 		
 		System.out.println("reviewUpdateForm : " + commandMap.getMap());
@@ -99,7 +110,7 @@ public class ReviewController {
 		Map<String, Object> map = ReviewService.ReviewDetail(commandMap.getMap());
 		mv.addObject("list",map1);
 		mv.addObject("map", map);
-
+		mv.addObject("IDX",request.getSession().getAttribute("MEMBER_ID"));
 		return mv;
 	}
 

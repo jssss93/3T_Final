@@ -50,7 +50,7 @@ public class AdminMemberController {
 
 	// 회원 상세정보에서 한번에 수정가능
 	@RequestMapping(value = "/member/Detail")
-	public ModelAndView adminMemberDetail(CommandMap commandMap,  HttpServletRequest request) throws Exception {
+	public ModelAndView adminMemberDetail(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		commandMap.put("MEMBER_ID", request.getParameter("MEMBER_ID"));
 		Map<String, Object> memberDetail = adminMemberService.memberDetail(commandMap.getMap());

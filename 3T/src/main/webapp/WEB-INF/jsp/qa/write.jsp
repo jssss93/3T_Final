@@ -177,12 +177,19 @@
 							<option value="4">기타문의</option>
 					</select> <input type="text" id="TITLE" name="TITLE" class="wdp_20" value="${map.TITLE }"></input></td>
 				</tr>
-
+			<c:if test="${ID =! null }"> 
 				<tr>
 					<th scope="row">NAME</th>
 					<td><input type="text" id="MEMBER_ID" name="MEMBER_ID"
-						class="wdp_25" value="${map.MEMBER_ID}"></input></td>
+						class="wdp_25" value="${IDX}"></input></td>
 				</tr>
+			</c:if>
+			<c:if test="${ID == null }"> 
+				<tr>
+					<th scope="row">NAME</th>
+					<td><input type="text" id="MEMBER_ID" name="MEMBER_ID" class="wdp_25" value="${map.MEMBER_ID}"></input></td>
+				</tr>
+				 </c:if> 
 				<tr>
 					<td colspan="2" class="board_content2">
 						<!-- <textarea rows="25"	cols="168" title="내용" id="CONTENT" name="CONTENT"></textarea> -->

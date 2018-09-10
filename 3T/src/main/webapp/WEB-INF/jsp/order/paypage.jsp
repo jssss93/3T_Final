@@ -496,12 +496,12 @@ div.member p strong {
                         <li><a href="/myshop/mileage/historyList.html">가용포인트 :
                               <strong><fmt:formatNumber value="${memberInfo.POINT}"
                                     pattern="#,###" /> P</strong>
-                        </a></li>
+                        </a></li> 
                         <li><a href="/3T/mypage/mycoupon">쿠폰 : <strong>${couponAll.COUPONALL}개</strong></a></li>
                      </ul>
                  	</c:if>
                  	
-                 	<c:if test="${MEMBER_ID !=null}">
+                 	<c:if test="${MEMBER_ID !=null && memberInfo.NAME ==null}">
 	                	<p>
 	                       	<strong>${MEMBER_ID }</strong> 님은, KAKAO 회원입니다.
 	                    </p>

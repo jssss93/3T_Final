@@ -9,7 +9,6 @@
 <link href="//fonts.googleapis.com/css?family=Lato:100,300,400,500,700,900,100italic,300italic,400italic,700italic,900italic" rel="stylesheet" type="text/css">
 <link href="//fonts.googleapis.com/css?family=Cabin" rel="stylesheet" type="text/css">
 <link href="//fonts.googleapis.com/css?family=Cabin:700" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="/fonts/font-awesome.css">
 <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet">
 <style>
 #myImg {
@@ -141,11 +140,13 @@ table {
 
 		</c:forEach>
 
+
 		<%-- <c:if test="list.size() <= 0">
 			<tr>
 				<td colspan="3" align="center">등록된 게시물이 없습니다</td>
 			</tr><BR><BR><BR>
 		</c:if> --%>
+
 
 	</table>
 	<br><br>
@@ -177,33 +178,6 @@ table {
 					.addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
 			comSubmit.submit();
 		}
-
-		/*$(document).ready(function(){
-		
-		setInterval(function(){
-			$("body[name='bestimg']").append($('img').first());
-		}, 2000);
-		}); 
-
-		$("#rolling").als({
-		   visible_items: 4,
-		   scrolling_items: 1,
-		   orientation: "horizontal",
-		   circular: "yes",
-		   autoscroll: "no",
-		   interval: 3000
-		});*/
-
-		$('.autoplay').slick({
-			slidesToShow : 3,
-			slidesToScroll : 1,
-			autoplay : true,
-			autoplaySpeed : 2000,
-		});
 	</script>
-
-
-
-
 </body>
 </html>

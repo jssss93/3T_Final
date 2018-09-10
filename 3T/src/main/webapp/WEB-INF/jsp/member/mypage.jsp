@@ -21,7 +21,6 @@
 	type="text/css" />
 <link href="//fonts.googleapis.com/css?family=Cabin:700"
 	rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="/fonts/font-awesome.css" />
 <link
 	href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"
 	rel="stylesheet" />
@@ -38,20 +37,9 @@
 <meta property="og:site_name" content="애즈클로" />
 <meta property="og:type" content="website" />
 <link rel="shortcut icon" href="/web/upload/favicon_20141006131340.ico" />
-	<script type="text/javascript"
-		src="/app/Eclog/js/cid.generate.js?vs=3d0b473968a0ec4ec41e3bf59df3aa51"></script>
 	<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
-
-
-	<link rel="stylesheet" type="text/css"
-		href="/ind-script/optimizer.php?filename=tZRNTsQwDIX3U7acw4A00rBlxRpO4CZuG-HEkeNIzO0JPwtQNRKapstY8ef4xX6wSCS4f1DIKrNiBKUiVR2BKwUmlWTgJEZJNy1wC_-5T-5QhKsFSYdR3q9MrGbXFmU8k16XajgyXUjFnOFJUD28_Ias5CE31EJaYAmn093x_gi5jhzcsFhkKJ4GTyXMCcpbSI9fjCi-MkE8l0UyjJRoCtYTKepJXw2NelIjhg2Nt2-SajBiCa6Lkivgd2Bbx1MbkQGZOz6rDVw70GpOe3Fr2AFqImwh70BeiPfAtrX11dkeZJxD2rRKl1XGcQfqyky7gf_Ye0cReA9x2y3Xxf5-KkyVuTglSj2phVDd8kzot5jDmssyi0nuiXRtCWbR8yfzAw&type=css&k=2e4de6868efd8dbe20b10160c5f38e26a835807c&t=1508869165" />
-	<link rel="stylesheet" type="text/css"
-		href="/ind-script/optimizer.php?filename=tdJBDgIhDAXQA-DWc1QXk4xH8BgIBZqBdkKLxts7egZc__y3-R-KNAQMbih2hULrelmuC-zjUSm4Yq2CRnQRlTKDbsQ3CKrQJI6KUP1bhsFDfI93TnI6sjPMQQv6iH2mqOYNq2RJ6S8sz1Q75WKuIY-ZapQXzzZ_67tKarsPm8_olpl8ErG5PwjCz6NPwnv4uh8&type=css&k=40f8d745a3ef768c9e28f15515a41b168e584117&t=1499901149" />
 	<link href="<c:url value='/resources/css/mypage.css'/>" rel="stylesheet" type="text/css"/>
 	<title>애즈클로</title>
-	<link href="<c:url value='/resources/css/loginTest2.css'/>" rel="stylesheet" type="text/css" />
-	
-	
 <style type="text/css">
 	.modal {
     position: fixed;

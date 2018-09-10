@@ -27,6 +27,11 @@ public class LoginDAO extends AbstractDAO {
 	public String findPasswd(Map<String, Object> map) throws Exception {
 		return (String) selectOne("member.findPasswd", map);
 	}
+	//비밀번호 찾기변경
+	public void findPasswd2(Map<String, Object> map) throws Exception
+	{
+		update("member.findPasswd2", map);
+	}
 
 	public void keepLogin(Map<String, Object> map) throws Exception {
 

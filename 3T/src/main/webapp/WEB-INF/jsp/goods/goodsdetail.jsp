@@ -403,8 +403,8 @@ table {
 
 			<td align="center">${goodsDetail1.REVIEW_NO}</td>
 			
-			<td align="center"><img width="50" height="50"
-				src="/3T/resources/upload/${goodsDetail1.SAV_NAME.split(',')[0] }" /></td>
+			<td align="center"><img width="50" height="50" 
+			 src="/3T/resources/upload/${goodsDetail1.IMAGE.split(',')[0] }" /></td>
 
 			<td><a href="#this" name="title2">${goodsDetail1.TITLE }</a> 
 			 <details> <summary>내용보기</summary>
@@ -496,7 +496,7 @@ table {
 			   </c:if></td>
 			   
 			   <td align="center"><img width="50" height="50"
-				src="/3T/resources/upload/${goodsDetail2.SAV_NAME.split(',')[0] }" /></td>
+				src="/3T/resources/upload/${goodsDetail2.IMAGE.split(',')[0] }" /></td>
 			
            <td><a href="#this" name="title3">${goodsDetail2.TITLE }</a> 
 			   <details> <summary>내용보기</summary>

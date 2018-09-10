@@ -60,9 +60,15 @@ public class LoginController {
 
 	// 로그인 폼
 	@RequestMapping(value = "/loginForm")
-	public ModelAndView loginForm(HttpSession session) throws Exception {
+	public ModelAndView loginForm(HttpSession session,HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		RSAKeySet keySet = new RSAKeySet();
+
+		String beforeUrl=request.getHeader("Referer");
+		session.setAttribute("Referer",beforeUrl);
+		//Referer==http://localhost:8080/3T/main
+		
+		System.out.println(beforeUrl);
 		
 		/* 세션에 개인키 저장 */
 		session.setAttribute("RSA_private", keySet.getPrivateKey());
@@ -82,10 +88,13 @@ public class LoginController {
 		ModelAndView mv = new ModelAndView();
 		
 		HttpSession session = request.getSession();
-
+		commandMap.put("GOODS_NO", session.getAttribute("GOODS_NO"));
+		System.out.println("*****");
+		System.out.println(session.getAttribute("beforeUrl"));
 		System.out.println("아이디" + commandMap.get("MEMBER_ID"));
 		System.out.println("비밀번호 "+commandMap.get("PASSWD"));
 		System.out.println("넘어오는값:"+commandMap.getMap());
+		
 		// 멤버 정보 가져오고
 		Map<String, Object> chk2 = loginService.loginGo2(commandMap.getMap(),(Key)session.getAttribute("RSA_private"));
 		Map<String, Object> chk = loginService.loginGo(commandMap.getMap());
@@ -149,7 +158,7 @@ public class LoginController {
 					System.out.println("노리드쿠폰! " + NOREADCOUPON.get("NOREADCOUPON"));
 
 					if (NOREADCOUPON.get("NOREADCOUPON").toString().equals("0")) {
-						mv.setViewName("redirect:/main");
+						mv.setViewName("redirect:"+session.getAttribute("Referer"));
 					} else {
 						mv.setViewName("member/loginCoupon");
 					}
@@ -342,24 +351,54 @@ public class LoginController {
    }
    
    @RequestMapping(value = "/findPasswd")
-   public ModelAndView findPasswd(HttpServletRequest request,CommandMap commandMap) throws Exception
+   public ModelAndView findPasswd(HttpServletRequest request,CommandMap commandMap, HttpSession session) throws Exception
    {
-	  ModelAndView mv = new ModelAndView();
-	  String EMAIL = request.getParameter("email1") + "@" + request.getParameter("email2");
-      commandMap.put("EMAIL", EMAIL);
+	   	ModelAndView mv = new ModelAndView();
+		RSAKeySet keySet = new RSAKeySet();
+	  	String EMAIL = request.getParameter("email1") + "@" + request.getParameter("email2");
+      	commandMap.put("EMAIL", EMAIL);
+      	
 	  
-	  System.out.println("들어오냐?맵? : "+commandMap.getMap());
+		/* 세션에 개인키 저장 */
+		session.setAttribute("RSA_private", keySet.getPrivateKey());
+		
+		/* Front Side로 공개키 전달 */
+		mv.addObject("Modulus", keySet.getPublicKeyModulus());
+		mv.addObject("Exponent", keySet.getPublicKeyExponent());
+		System.out.println("아이디?" + commandMap.get("MEMBER_ID"));
+		session.setAttribute("MEMBER_ID", commandMap.get("MEMBER_ID"));
 	  
-	  String passwd = loginService.findPasswd(commandMap.getMap());
+/*		String passwd = loginService.findPasswd(commandMap.getMap());
+		System.out.println("비밀번호찾음?" + passwd);
 	  
-	  System.out.println("비밀번호찾음?" + passwd);
-	  
-	  mv.addObject("PASSWD", passwd);
-	  mv.setViewName("member/findPasswd");
+		mv.addObject("PASSWD", passwd);*/
+		mv.setViewName("member/findPasswd");
 	   
-	  return mv;
+		return mv;
    }
    
+   @RequestMapping(value="/findPasswdComplete", method=RequestMethod.POST)
+   public ModelAndView joinComplete(CommandMap commandMap, HttpServletRequest request,HttpSession session) throws Exception{
+	   ModelAndView mv = new ModelAndView();			
+		
+	   System.out.println("맵!!"+commandMap.getMap());
+	   
+	   commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+	   
+	   if(session.getAttribute("RSA_private") != null) 
+	   {
+		   	loginService.findPasswd2(commandMap.getMap(), (Key)session.getAttribute("RSA_private"));
+			//if(memberService.regist(member, (Key)session.getAttribute("RSA_private")) > 0)
+			mv.addObject("Modulus",commandMap.get("modulus"));
+			mv.addObject("Exponent",commandMap.get("exponent"));
+			mv.setViewName("member/loginForm");
+	   }
+
+		  session.removeAttribute("MEMBER_ID");
+					
+		   return mv;
+		   
+	}   
 	@RequestMapping(value = "/findId/modal_email_auth")
 	public ModelAndView email_auth(HttpServletResponse response, HttpServletRequest request,CommandMap Map) throws Exception{
 		System.out.println("접속?");
