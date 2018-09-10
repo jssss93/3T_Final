@@ -72,10 +72,12 @@
 								<td><div>${row.NAME }</div> <br />
 								<c:if test="${row.RE_STEP ==1 }">
 												→[답변] &nbsp;
-												</c:if> <a href="#this" name="checkpasswd">${row.TITLE }</a> <input
-									type="hidden" id="QA_NO" value="${row.QA_NO }"> <input
-									type="hidden" id="GOODS_NO" value="${row.GOODS_NO }"> <img
-									width="15" height="20" src="/3T/resources/upload/secret.PNG" /></td>
+								</c:if> 
+									<a href="#this" name="checkpasswd">${row.TITLE }</a> 
+									<input type="hidden" id="QA_NO" value="${row.QA_NO }"> 
+									<input type="hidden" id="GOODS_NO" value="${row.GOODS_NO }"> 
+									<img width="15" height="20" src="/3T/resources/images/secret.PNG" />
+								</td>
 							</c:if>
 
 							<c:if test="${row.STATUS == 1 }">

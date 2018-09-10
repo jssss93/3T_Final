@@ -81,7 +81,7 @@
 										<th style="width: 20%; text-align: center;">내용</th>
 										<th style="width: 8%; text-align: center;">보낸날짜</th>
 										<th style="width: 8%; text-align: center;">state</th>
-										<th style="width: 13%; text-align: center;">수정,삭제</th>
+										<th style="width: 13%; text-align: center;">삭제</th>
 									</tr>
 									
 								</thead>
@@ -107,9 +107,6 @@
 												<c:if test="${row.STATE==1}"> 답변완료</c:if>
 											</td>
 											<td style="text-align: center; vertical-align: middle;">
-												<a href="${viewURL}">
-													<input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png">
-												</a>&nbsp;&nbsp;
 												<c:url var="viewURL2" value="/admin/member/adminDeleteMember">
 													<c:param name="MESSAGE_NO" value="${row.MESSAGE_NO}" />
 												</c:url> 
