@@ -8,6 +8,7 @@
 <title>로그인</title>
 <%@ include file="/WEB-INF/include/include-header-hanbyul.jspf"%>
 <style>
+
 .xans-member-login .login fieldset .security {
       padding: 0px 0 0px 0px;
 }
@@ -58,9 +59,6 @@ function loginWithKakao(){
 			       url: '/v1/user/me',
 
 			       success: function(res) {
-			             alert(JSON.stringify(res)); //<---- kakao.api.request 에서 불러온 결과값 json형태로 출력
-			             alert(JSON.stringify(authObj)); //<----Kakao.Auth.createLoginButton에서 불러온 결과값 json형태로 출력
-			             
 			             console.log(res.id);//<---- 콘솔 로그에 id 정보 출력(id는 res안에 있기 때문에  res.id 로 불러온다)
 			             console.log(res.kaccount_email);//<---- 콘솔 로그에 email 정보 출력 (어딨는지 알겠죠?)
 			             console.log(res.properties['nickname']);//<---- 콘솔 로그에 닉네임 출력(properties에 있는 nickname 접근  // res.properties.nickname으로도 접근 가능 )
@@ -78,7 +76,7 @@ function loginWithKakao(){
 			         			alert("성공");
 			         		},
 			         		error : function(error, a, b) {
-			         			alert("에러");
+			         			alert("에러나는데왜되냐");
 			         			console.log(error);
 			         			console.log(a);
 			         			console.log(b);
@@ -102,10 +100,8 @@ $(document).ready(function() {
 	$("#login").click(function(event) {
 		var rsa = new RSAKey();
 	    rsa.setPublic($('#modulus').val(),$('#exponent').val());
-	    
 	    $("#PASSWD2").val(rsa.encrypt($("#PASSWD").val()));
 	    return true;
-
 	})
 });
 </script>
