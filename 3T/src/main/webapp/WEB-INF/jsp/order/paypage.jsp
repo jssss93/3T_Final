@@ -499,16 +499,31 @@ div.member p strong {
                         </a></li>
                         <li><a href="/3T/mypage/mycoupon">쿠폰 : <strong>${couponAll.COUPONALL}개</strong></a></li>
                      </ul>
-                  </c:if>
-                  <c:if test="${memberInfo.NAME ==null}">
-                     <p>
-                        <strong>${NON_MEMBER_ID }</strong> 님은, 비회원입니다.
-
-                     </p>
-                     <ul class="mileage">
-                        <li>회원가입시 쿠폰 및 포인트 혜택을 받을수 있습니다.</li>
-                     </ul>
-                  </c:if>
+                 	</c:if>
+                 	
+                 	<c:if test="${MEMBER_ID !=null}">
+	                	<p>
+	                       	<strong>${MEMBER_ID }</strong> 님은, KAKAO 회원입니다.
+	                    </p>
+	                    <ul class="mileage">
+	                       <li>회원가입시 쿠폰 및 포인트 혜택을 받을수 있습니다.</li>
+	                    </ul>
+                  	</c:if>
+                  	
+                  	<c:if test="${MEMBER_ID ==null}">
+	                	<p>
+	                       	<strong>${NON_MEMBER_ID }</strong> 님은, 비회원입니다.
+	                    </p>
+	                    <ul class="mileage">
+	                       <li>회원가입시 쿠폰 및 포인트 혜택을 받을수 있습니다.</li>
+	                    </ul>
+                  	</c:if>
+                  	
+                  	<%-- <c:if test="${memberInfo.NAME ==null && NON_MEMBER_ID==null}">
+                 		<p>
+                        	<strong><%=id %></strong> 님은, Kakao 회원입니다.
+                     	</p>
+                     </c:if> --%>
                </div>
 
             </div>

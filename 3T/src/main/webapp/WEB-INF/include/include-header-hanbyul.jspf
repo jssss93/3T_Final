@@ -4,6 +4,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>3T</title>
 
+<!-- 지우지말것 -->
+<script src="http://developers.kakao.com/sdk/js/kakao.min.js"></script>
+
 <link href="<c:url value='/resources/css/joinTest.css'/>" rel="stylesheet" type="text/css" />
 
 <link href="<c:url value='/resources/css/loginTest.css'/>" rel="stylesheet" type="text/css" />
