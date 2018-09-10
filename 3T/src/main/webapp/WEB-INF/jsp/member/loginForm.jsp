@@ -28,6 +28,16 @@
 	margin: -6px 0 7 -9;
 	font-size: 12px;
 }
+.han123 {
+    margin: 85px 0 0 0;
+}
+.fb_iframe_widget {
+    top: 87px;
+    right: 125px;
+}
+.xans-member-login .login fieldset>a {
+    top: 182px!important;
+    right: 3px!important;
 </style>
 <script type='text/javascript'>
 
@@ -209,10 +219,10 @@ function getCookie(cookieName) {
                         
                         <span class="loginbtn"><input class="loginbtn" type="submit" id="login" value="Login"></span>
                         <span class="joinusbtn"><a href="/3T/joinStep1">Join us</a></span>
-                        <fb:login-button scope="public_profile,email"onlogin="checkLoginState();"></fb:login-button>
-						<div id="status"></div>
+                        <fb:login-button scope="public_profile,email"onlogin="checkLoginState();"><span>(서비스 준비중)</span></fb:login-button>
+						<div class="han123"id="status"></div>
 						<a id='custom-login-btn' href='javascript:loginWithKakao()'>
-                			<img src='/3T/images/Kakao_login_btn.PNG' width='300' height='50' />
+                			<img src='/3T/images/Kakao_login_btn.PNG' width='350' height='50' />
                 		</a>
                      </p>
 

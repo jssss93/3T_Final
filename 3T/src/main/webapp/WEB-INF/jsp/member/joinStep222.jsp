@@ -830,7 +830,7 @@ function chkBox(bool) { // 전체선택/해제
 								<span>개인정보 수집 및 이용에 동의하십니까?</span> <input
 									id="agree_privacy_check0" name="agree_privacy_check[]"
 									fw-filter="/1/" fw-label="개인정보 수집 및 이용 방침"
-									fw-msg="개인정보 수집 및 이용 방침에 동의하세요" value="1" type="checkbox" checked="checked"><label
+									fw-msg="개인정보 수집 및 이용 방침에 동의하세요" value="1" type="checkbox"><label
 									for="agree_privacy_check0" >동의함</label>
 							</p>
 						</div>
