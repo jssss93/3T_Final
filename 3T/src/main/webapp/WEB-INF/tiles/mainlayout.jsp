@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<script src="http://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <!-- wing_banner -->
 <link href="<c:url value='/resources/css/wing_banner.css'/>"
    rel="stylesheet" type="text/css" />
@@ -176,22 +176,25 @@
    
 
       <!--로그인메뉴-->
+ 		<%@ include file="/WEB-INF/include/include-body.jspf"%>
+		<form id="frm">
+		<div class="left_login">
+			<div class="xans-element- xans-layout xans-layout-statelogoff ">
+				<c:if test="${sessionScope.MEMBER_ID == null}">
+					<a href="/3T/loginForm" class="log">login</a>/
+					<a href="/3T/joinStep1">join</a>
+				</c:if>
+				<c:if test="${sessionScope.MEMBER_ID != null}">
+					<a href="#this"id="logout" class="log">logout3</a> 
+				</c:if> 
+				<br>
+		     <a href="/3T/order/list">order</a>/ <a href="/3T/member/mypage">mypage</a>
+			</div>
 
-      <div class="left_login">
-         <div class="xans-element- xans-layout xans-layout-statelogoff ">
-            <c:if test="${sessionScope.MEMBER_ID == null}">
-               <a href="/3T/loginForm" class="log">login</a>
-               <a href="/3T/joinStep1">join</a>
-            </c:if>
-            <c:if test="${sessionScope.MEMBER_ID != null}">
-               <a href="/3T/logout" class="log">logout</a> 
-            </c:if> 
-            <br>
-              <a href="/3T/order/list">order</a> 
-              <a href="/3T/member/mypage">mypage</a>
-         </div>
-      </div>
-      <!-- //left_login -->
+
+		</div>
+		</form>
+		<!-- //left_login -->
 
 
 
@@ -316,7 +319,23 @@
          </div>
       </div>
    </div>
-
+<script>
+	Kakao.init('95db4ac62ef65afa94ce309801ff9014');
+	$(document).ready(function() {
+	    $("#logout").on("click", function(e) {
+	       e.preventDefault();
+	       logout();
+	    });
+	 });
+	 
+	function logout() {
+		Kakao.Auth.logout();
+		alert("실행됨");
+		var comSubmit = new ComSubmit("frm");
+		comSubmit.setUrl("<c:url value='/logout' />");
+		comSubmit.submit();
+	}
+</script>	
 <script>
   
 

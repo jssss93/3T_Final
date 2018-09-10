@@ -60,9 +60,15 @@ public class LoginController {
 
 	// 로그인 폼
 	@RequestMapping(value = "/loginForm")
-	public ModelAndView loginForm(HttpSession session) throws Exception {
+	public ModelAndView loginForm(HttpSession session,HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		RSAKeySet keySet = new RSAKeySet();
+
+		String beforeUrl=request.getHeader("Referer");
+		session.setAttribute("Referer",beforeUrl);
+		//Referer==http://localhost:8080/3T/main
+		
+		System.out.println(beforeUrl);
 		
 		/* 세션에 개인키 저장 */
 		session.setAttribute("RSA_private", keySet.getPrivateKey());
@@ -82,10 +88,13 @@ public class LoginController {
 		ModelAndView mv = new ModelAndView();
 		
 		HttpSession session = request.getSession();
-
+		commandMap.put("GOODS_NO", session.getAttribute("GOODS_NO"));
+		System.out.println("*****");
+		System.out.println(session.getAttribute("beforeUrl"));
 		System.out.println("아이디" + commandMap.get("MEMBER_ID"));
 		System.out.println("비밀번호 "+commandMap.get("PASSWD"));
 		System.out.println("넘어오는값:"+commandMap.getMap());
+		
 		// 멤버 정보 가져오고
 		Map<String, Object> chk2 = loginService.loginGo2(commandMap.getMap(),(Key)session.getAttribute("RSA_private"));
 		Map<String, Object> chk = loginService.loginGo(commandMap.getMap());
@@ -149,7 +158,7 @@ public class LoginController {
 					System.out.println("노리드쿠폰! " + NOREADCOUPON.get("NOREADCOUPON"));
 
 					if (NOREADCOUPON.get("NOREADCOUPON").toString().equals("0")) {
-						mv.setViewName("redirect:/main");
+						mv.setViewName("redirect:"+session.getAttribute("Referer"));
 					} else {
 						mv.setViewName("member/loginCoupon");
 					}
