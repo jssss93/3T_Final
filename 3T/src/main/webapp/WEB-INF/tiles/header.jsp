@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="<c:url value='/resources/css/ui.css'/>" rel="stylesheet" type="text/css"/>
+<%-- <link href="<c:url value='/resources/css/ui.css'/>" rel="stylesheet" type="text/css"/> --%>
 
 <!-- 메인페이지 css -->
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -57,7 +57,12 @@ to {
 	opacity: 1;
 }
 .abc {  font-size: 24px; color: #000000;}
-#myimg2 {
+#myImg3 {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+    height: auto;
     margin-top: -16px!important;
 }
 </style>
@@ -69,23 +74,23 @@ to {
 	<div class="w3-content w3-section w3-display-container"
 		style="max-width: 100%">
 		<a href="GoodsView.action?goods_no=1124">
-			<img id="myimg2" class="mySlides"
+			<img id="myimg3" class="mySlides"
 				src="/3T/resources/images/slide1.PNG" width="100%" height="auto">
 		</a>
 		<a href="GoodsView.action?goods_no=1123">
-			<img id="myimg2" class="mySlides"
+			<img id="myimg3" class="mySlides"
 				src="/3T/resources/images/slide2.PNG" width="100%" height="auto" >
 		</a>
 		<a href="GoodsView.action?goods_no=1122">
-			<img id="myimg2" class="mySlides"
+			<img id="myimg3" class="mySlides"
 				src="/3T/resources/images/slide3.PNG" width="100%" height="auto">
 		</a>
 		<a href="GoodsView.action?goods_no=823">
-			<img id="myimg2" class="mySlides"
+			<img id="myimg3" class="mySlides"
 				src="/3T/resources/images/slide4.PNG" width="100%" height="auto">
 		</a>
 		<a href="GoodsView.action?goods_no=945">
-			<img id="myimg2" class="mySlides"
+			<img id="myimg3" class="mySlides"
 				src="/3T/resources/images/slide5.PNG" width="100%" height="auto">
 		</a>
 

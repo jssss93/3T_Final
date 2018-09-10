@@ -2,20 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<!-- 왼쪽 카테고리 -->
-<link href="<c:url value='/resources/css/left Category.css'/>"
-	rel="stylesheet" type="text/css" />
-
-<!-- 오른쪽 카테고리 -->
-<link href="<c:url value='/resources/css/right Category.css'/>"
-	rel="stylesheet" type="text/css" />
-
-<!-- 로그인 -->
-<link href="<c:url value='/resources/css/login Category.css'/>"
-	rel="stylesheet" type="text/css" />
+<script src="http://developers.kakao.com/sdk/js/kakao.min.js"></script>
 	
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -35,14 +26,9 @@
 	type="text/css" />
 <link href="//fonts.googleapis.com/css?family=Cabin:700"
 	rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="/fonts/font-awesome.css" />
 <link
 	href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"
 	rel="stylesheet" />
-<!-- <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:200" />
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400" />
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:500" />
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:700" /> -->
 
 <meta name="format-detection" content="telephone=no" />
 
@@ -52,17 +38,10 @@
 <meta property="og:site_name" content="애즈클로" />
 <meta property="og:type" content="website" />
 <link rel="shortcut icon" href="/web/upload/favicon_20141006131340.ico" />
-<script type="text/javascript"
-	src="/app/Eclog/js/cid.generate.js?vs=3d0b473968a0ec4ec41e3bf59df3aa51"></script>
 <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
 
-<!-- wing_banner -->
-<link href="<c:url value='/resources/css/wing_banner.css'/>"
-	rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css"
-	href="/ind-script/optimizer.php?filename=tZRNTsQwDIX3U7acw4A00rBlxRpO4CZuG-HEkeNIzO0JPwtQNRKapstY8ef4xX6wSCS4f1DIKrNiBKUiVR2BKwUmlWTgJEZJNy1wC_-5T-5QhKsFSYdR3q9MrGbXFmU8k16XajgyXUjFnOFJUD28_Ias5CE31EJaYAmn093x_gi5jhzcsFhkKJ4GTyXMCcpbSI9fjCi-MkE8l0UyjJRoCtYTKepJXw2NelIjhg2Nt2-SajBiCa6Lkivgd2Bbx1MbkQGZOz6rDVw70GpOe3Fr2AFqImwh70BeiPfAtrX11dkeZJxD2rRKl1XGcQfqyky7gf_Ye0cReA9x2y3Xxf5-KkyVuTglSj2phVDd8kzot5jDmssyi0nuiXRtCWbR8yfzAw&type=css&k=2e4de6868efd8dbe20b10160c5f38e26a835807c&t=1508869165" />
-<link rel="stylesheet" type="text/css"
-	href="/ind-script/optimizer.php?filename=tdJBDgIhDAXQA-DWc1QXk4xH8BgIBZqBdkKLxts7egZc__y3-R-KNAQMbih2hULrelmuC-zjUSm4Yq2CRnQRlTKDbsQ3CKrQJI6KUP1bhsFDfI93TnI6sjPMQQv6iH2mqOYNq2RJ6S8sz1Q75WKuIY-ZapQXzzZ_67tKarsPm8_olpl8ErG5PwjCz6NPwnv4uh8&type=css&k=40f8d745a3ef768c9e28f15515a41b168e584117&t=1499901149" />
+
+
 <link href="<c:url value='/resources/css/mypage.css'/>" rel="stylesheet"
 	type="text/css" />
 <style type="text/css">
@@ -184,23 +163,24 @@
 	
 
 		<!--로그인메뉴-->
-
-
+ 		<%@ include file="/WEB-INF/include/include-body.jspf"%>
+		<form id="frm">
 		<div class="left_login">
 			<div class="xans-element- xans-layout xans-layout-statelogoff ">
 				<c:if test="${sessionScope.MEMBER_ID == null}">
 					<a href="/3T/loginForm" class="log">login</a>/
 					<a href="/3T/joinStep1">join</a>
-							</c:if>
+				</c:if>
 				<c:if test="${sessionScope.MEMBER_ID != null}">
-					<a href="/3T/logout" class="log">logout</a> 
-							</c:if> 
-							<br>
+					<a href="#this"id="logout" class="log">logout3</a> 
+				</c:if> 
+				<br>
 		     <a href="/3T/order/list">order</a>/ <a href="/3T/member/mypage">mypage</a>
 			</div>
 
 
 		</div>
+		</form>
 		<!-- //left_login -->
 
 
@@ -355,6 +335,24 @@
 			</ul>
 		</div>
 	</div>
+	<script>
+	Kakao.init('95db4ac62ef65afa94ce309801ff9014');
+	$(document).ready(function() {
+	    $("#logout").on("click", function(e) {
+	       e.preventDefault();
+	       logout();
+	    });
+	 });
+	 
+	function logout() {
+		Kakao.Auth.logout();
+		alert("실행됨");
+		var comSubmit = new ComSubmit("frm");
+		comSubmit.setUrl("<c:url value='/logout' />");
+		comSubmit.submit();
+	}
+	</script>
+	
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('.fullscreen_menu_button a').click(function() {

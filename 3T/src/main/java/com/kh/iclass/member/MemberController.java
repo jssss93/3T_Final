@@ -36,6 +36,15 @@ public class MemberController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "/kakaoLogin")
+	public String KakaoTest(CommandMap commandMap,HttpServletRequest request) {
+		request.getSession().setAttribute("MEMBER_ID", "kakao_"+commandMap.getMap().get("id"));
+		request.getSession().setAttribute("TOKEN", "kakao_"+commandMap.getMap().get("token"));
+
+		return authNum;
+		
+	}
+	
 	
 	@RequestMapping(value = "/member/mypage")
 	public ModelAndView mypage(CommandMap commandMap, HttpServletRequest request) throws Exception {
