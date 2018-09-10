@@ -90,10 +90,12 @@ public class LoginController {
 		Map<String, Object> chk2 = loginService.loginGo2(commandMap.getMap(),(Key)session.getAttribute("RSA_private"));
 		Map<String, Object> chk = loginService.loginGo(commandMap.getMap());
 		
+		System.out.println("chk2" + chk2); //이게 꺼낸값
+		System.out.println("commandMap "+ commandMap.getMap());
 		
 		if (chk2 == null) {
 			mv.setViewName("member/loginForm");
-			mv.addObject("message", "해당 아이디가 없습니다.");
+			mv.addObject("message", "아이디나 비밀번호를 확인해주세요.");
 			return mv;
 		}
 		//chk2를 돌렸을때 비밀번호 다시 나오니까 그거랑 비교해서 ㄱㄱㄱㄱㄱㄱㄱㄱㄱ
@@ -101,16 +103,13 @@ public class LoginController {
 		// 아이디 값이 있으면
 		else {
 			
-
-			// 비밀번호가 같으면
-			if (chk.get("PASSWD").equals(commandMap.get("PASSWD"))) {
 				// 세션에 아이디를 넣어라
 				session.setAttribute("MEMBER_ID", commandMap.get("MEMBER_ID"));
 				
 				//7일지난거 자동삭제.
 				cartService.deleteCartAuto(commandMap.getMap());
 				
-				mv.addObject("MEMBER", chk); 
+				mv.addObject("MEMBER", chk2); 
 				
 				 // 쿠키 사용한다는게 체크되어 있으면...
 				if(commandMap.get("autoLogin") != null)
@@ -233,11 +232,7 @@ public class LoginController {
 				}
 				return mv;
 
-			} else { // 비밀번호 틀렸을때
-				mv.setViewName("member/loginForm");
-				mv.addObject("message", "비밀번호를 확인해 주세요.");
-				return mv;
-			}
+		
 		}
 	}
     
