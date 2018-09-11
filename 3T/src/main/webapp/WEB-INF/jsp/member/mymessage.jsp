@@ -7,6 +7,7 @@
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 </head>
+
 <script type="text/javascript">
 	function delchk() {
 		return confirm("메세지를 삭제하시겠습니까?");
@@ -111,43 +112,50 @@ font-size:15px;
 }    
 </style>
 
+
 <body>
-	<h2>메세지</h2>
-	<table width="80%" border="0" cellspacing="0" cellpadding="2">
-
-		<tr>
-			<td height="30"></td>
-		</tr>
-		<tr>
-			<td align="center" class="text01 formbar"><h2>mymessage</h2></td>
-		</tr>
-
+	<body>
+		<table width="70%" align="center" border="0" cellspacing="1" cellpadding="1" class="board_top">
+		<br>
 		<tr>
 			<td height="50"></td>
 		</tr>
-		
 		<tr>
-			<td align="right"> 전체 메시지수 : ${	messageAll.MESSAGEALL}</td>
+			<td align="left" class="text01 formbar"><h6>
+					<font color="#000000">MYMESSAGE</font><span><p>ㅣ 내메세지
+							목록입니다.</p></span>
+				</h6></td>
 		</tr>
 
-
+		<tr>
+			<td height="25"></td>
+		</tr>
+	
 	</table>
-	<table class="board_list" width="80%">
-		<colgroup>
-			<col width="10%" />
-			<col width="*" />
-		</colgroup>
-		<thead>
+	<table>
 			<tr>
-			    <th scope="col">확인</th>
-				<th scope="col">메세지번호</th>
-				<th scope="col">내용</th>
-				<th scope="col">날짜</th>
-				<th scope="col">삭제</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:choose>
+			<td align="right" class="text01 formbar">
+				<h6>
+					<font color="#000000">전체 메시지수 : ${	messageAll.MESSAGEALL}</font><span></span>
+				</h6>
+			</td>
+		</tr>
+		<tr>
+			<td height="10"></td>
+		</tr>
+		
+	</table>
+	<table width="80%" border="0" cellspacing="0"
+		cellpadding="2" class="board_review4">
+		<tr>
+			<td valign="middle"><strong>확인</strong>
+			<td valign="middle"><strong>메세지번호</strong>
+			<td valign="middle"><strong>내용</strong>
+			<td valign="middle"><strong>날짜</strong>
+			<td valign="middle"><strong>삭제</strong>
+		</tr>
+    <tbody>
+        <c:choose>
 				<c:when test="${fn:length(list) > 0}">
 					<c:forEach items="${list}" var="row" varStatus="vs">
 						<tr>
@@ -220,14 +228,15 @@ font-size:15px;
 					</tr>
 				</c:otherwise>
 			</c:choose>
+         
+    </tbody>
+</table>
 
-		</tbody>
-	</table>
-	<br />
-	<a class="btn" data-toggle="modal" data-target="#myModal">WRITE</a>
-	<a href="/3T/member/mypage" class="btn">MY PAGE</a>
-
-	<div class="modal fade" id="myModal">
+	<br/>
+		<a class="btn" data-toggle="modal" data-target="#myModal">WRITE</a>
+		<a href="/3T/member/mypage" class="btn">MY PAGE</a>
+		
+<div class="modal fade" id="myModal">
 		<form action="/3T/member/sendmessage">
 			<table width="70%" align="center" border="0" cellspacing="0"
 				cellpadding="1" colspan="1" class="board_top2">
@@ -271,11 +280,8 @@ font-size:15px;
 				</tr>
 			</table>
 		</form>
-
-
-
-	</div>
-
+	</div>		
+		
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 </body>
 </html>

@@ -200,7 +200,7 @@
  <td>
 		<!-- <a href="#this" class="btn" id="write">작성하기</a>  -->
 		<a href="#this"class="btn" id="list">목록으로</a>
-			<input class="btn" type="submit" value="작성완료" >
+			<input class="btn" type="submit" value="작성완료" />
 			</td>
 			</tr>
 			</table>
@@ -210,5 +210,12 @@
 
 </div>
 
+<!-- <script type="text/javascript">
+	$(document).ready(function() {
+	$("#search").on("click", function(e) { 
+		close();
+	});
+});
+</script> -->
 </body>
 </html>

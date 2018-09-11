@@ -6,7 +6,7 @@
 <title>first</title>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
-
+</head>
 <style>
 .modal-content {
     position: relative;
@@ -105,35 +105,24 @@ font-size:15px;
     opacity: 0.8;
 }    
 </style>
-
-</head>
 <body>
-	<body>
-		<table width="70%" align="center" border="0" cellspacing="1" cellpadding="1" class="board_top">
-		<br>
-		<tr>
-			<td height="50"></td>
-		</tr>
-		<tr>
-			<td align="left" class="text01 formbar"><h6>
-					<font color="#000000">MYCOUPON</font><span><p>ㅣ 내쿠폰
-							목록입니다.</p></span>
-				</h6></td>
-		</tr>
-
-		<tr>
-			<td height="50"></td>
-		</tr>
+	<table width="80%" border="0" cellspacing="0" cellpadding="2">
+		
 	</table>
-
-	<table width="80%" border="0" cellspacing="0"
-		cellpadding="2" class="board_review4">
-		<tr>
-			<td valign="middle"><strong>확인</strong>
-			<td valign="middle"><strong>쿠폰번호</strong>
-			<td valign="middle"><strong>금액</strong>
-			<td valign="middle"><strong>유효기간</strong>
-		</tr>
+		<table class="board_list" width="80%">
+		
+    <colgroup>
+        <col width="10%"/>
+        <col width="*"/>
+    </colgroup>
+    <thead>
+        <tr>
+        	<th scope="col">확인</th>
+            <th scope="col">쿠폰번호</th>
+            <th scope="col">금액</th>
+            <th scope="col">유효기간</th>
+        </tr>
+    </thead>
     <tbody>
         <c:choose>
             <c:when test="${fn:length(list) > 0}">
@@ -204,13 +193,10 @@ font-size:15px;
                 </tr>
             </c:otherwise>
         </c:choose>
-         
+        
     </tbody>
+    
 </table>
-
-	<br/>
-			<a href="/3T/member/mypage" class="btn">MY PAGE</a>
-			
-	<%@ include file="/WEB-INF/include/include-body.jspf"%>
+	<br/>	
 </body>
 </html>
