@@ -32,7 +32,7 @@ board_view CONTENT {
 	</table>
 
 	<table border="1" align="center" class="board_notice">
-		<tbody>
+		<tbody> 
 			<tr class="board_title">
 				<th scope="row">SUBJECT</th>
 				<td>${Detail.TITLE }</td>
@@ -52,19 +52,24 @@ board_view CONTENT {
 	</table>
 	<br>
 	<br />
-
+ 
 	<input type="hidden" id="NOTICE_NO" name="NOTICE_NO"
 		value="${Detail.NOTICE_NO}">
 
 	<table class="notice_button">
 
-		<tr>
+		<tr> 
 			<td>
 				<a href="#this" class="btn" id="list">LIST</a> 
-				<c:if test="${MEMBER_ID eq ADMIN }">
-					<a href="#this" class="btn" id="update">UPDATE</a> 
-					<a href="#this" class="btn" id="delete">DELETE</a>
-				</c:if>
+				
+				<c:choose>
+				  	<c:when test="${MEMBER_ID eq ADMIN}">
+				     	<a href="#this" class="btn" id="update">UPDATE</a> 
+						<a href="#this" class="btn" id="delete">DELETE</a>
+				  	</c:when>
+				  	<c:otherwise></c:otherwise>
+				</c:choose>
+  
 			</td>
 		</tr>
 	</table>

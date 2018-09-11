@@ -309,15 +309,15 @@
 													<a href="${addOne }" >
 													<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_order.gif" alt="주문하기"></a> 
 													<a href="javascript:;" onclick="BasketNew.moveWish(0);">
-													<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_wish.gif" alt="관심상품등록"></a> 
+													<!-- <img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_wish.gif" alt="관심상품등록"></a>  -->
 													<c:if test="${memberInfo.MEMBER_ID!=null }">
 														<a href="${deleteOne }" >
 														<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_delete.gif" alt="삭제"></a>
 													</c:if>
-													<c:if test="${memberInfo.MEMBER_ID==null }">
+													 <c:if test="${memberInfo.MEMBER_ID==null }">
 														<a href="${deleteOne }" >
 														<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/btn_delete.gif" alt="삭제"></a>
-													</c:if>
+													</c:if> 
 													
 												</td>
 

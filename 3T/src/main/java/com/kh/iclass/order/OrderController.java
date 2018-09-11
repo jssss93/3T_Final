@@ -166,10 +166,9 @@ public class OrderController {
 	
 	@RequestMapping(value = "order/insert")	
 	public ModelAndView addInsert(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		System.out.println("쿠폰확인");
-		System.out.println(commandMap.getMap());
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
+		
 		commandMap.put("cart_No", commandMap.get("cart_No"));
 		
 		String phone = ""+commandMap.get("mphone1")+commandMap.get("mphone2")+ commandMap.get("mphone3");
@@ -195,6 +194,10 @@ public class OrderController {
 		
 		mv.addObject("orderInfo",orderMemberInfo);
 		mv.addObject("orderGoodsList",orderList);
+		mv.addObject("TOTALPRICE",commandMap.get("TOTALPRICE2"));
+		mv.addObject("TOTALSUM",commandMap.get("TOTALSUM2"));
+		mv.addObject("DISCOUNT",commandMap.get("DISCOUNT2"));
+		
 		return mv;
 	
 	}

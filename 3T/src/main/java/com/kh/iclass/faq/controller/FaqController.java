@@ -64,11 +64,15 @@ public class FaqController {
 	public ModelAndView faqDetail(CommandMap commandMap,HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("faq/detail");
 		
-		/*faqService.FaqReadCntUp(commandMap.getMap());*/
-		
 		Map<String, Object> map = faqService.FaqDetail(commandMap.getMap());
 		mv.addObject("Detail", map);
-		mv.addObject("MEMBER_ID",request.getSession().getAttribute("MEMBER_ID").toString());
+		
+		String MEMBER_ID="";
+		
+		if(request.getSession().getAttribute("MEMBER_ID")!=null) {
+			MEMBER_ID=(String) request.getSession().getAttribute("MEMBER_ID");
+		}
+		mv.addObject("MEMBER_ID",MEMBER_ID);
 		
 		return mv;
 	}

@@ -150,6 +150,8 @@ function discount_Fun(){
       $(".totalSum2").val(accountPrice);
       $(".memberPoint").val(memberPoint -usePoint);
       $(".usePoint2").val(usePoint);
+      $(".discount2").val(discountPrice);
+      
    }
 }
 
@@ -196,6 +198,7 @@ function checkedRows(index){
           $(".pointSum").html(comma(pointSum)+" KRW");
           $(".pointSum2").val(pointSum);
           $(".totalSum2").val(totalSum);
+          $(".totalPrice2").val(totalSum);
           //pointSum 도 추가해줄것.
           
       
@@ -914,25 +917,20 @@ div.member p strong {
                   <tr>
                      <td>
                         <div class="box txt16">
-                           <strong> <span id="total_order_price_view"
-                              class="totalPrice">0 KRW</span>
-                           </strong>
+                           <strong><span id="total_order_price_view" class="totalPrice">0 KRW</span></strong>
+                           <input type="hidden" name="TOTALPRICE2" class="totalPrice2">
                         </div>
                      </td>
                      <td class="option ">
                         <div class="box txt16">
-                           <strong></strong> <strong> 
-                           <span id="total_sale_price_view" class="discount">
-								-0 KRW
-							</span>
-                           </strong>
+                     		<strong><span id="total_sale_price_view" class="discount">-0 KRW</span></strong>
+                     		<input type="hidden" name="DISCOUNT2" class="discount2">
                         </div>
                      </td>
                      <td>
                         <div class="box txtEm txt16">
-                           <strong>=</strong> <strong> <span
-                              id="total_order_sale_price_view" class="totalSum">0 KRW</span>
-                           </strong>
+                           <strong>=</strong> <strong> <span id="total_order_sale_price_view" class="totalSum">0 KRW</span></strong>
+                        	<input type="hidden" name="TOTALSUM2" class="totalSum2">
                         </div>
                      </td>
                   </tr>

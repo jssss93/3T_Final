@@ -17,64 +17,27 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			if (request.getSession().getAttribute("MEMBER_ID") == null) {
 				//비회원 ID 가 없으면.세션만주고 다시 상품디테일서 값 넣어주는거 처리
 				if (request.getSession().getAttribute("NON_MEMBER_ID") == null) {
-					System.out.println("*******************************");
-					System.out.println("request.getParameter(\"GOODS_NO\")=="+request.getParameter("GOODS_NO"));
+					
 					request.getSession().setAttribute("GOODS_NO",request.getParameter("GOODS_NO") );
+					
 					if(request.getParameter("optno[]")!=null) {
 						request.getSession().setAttribute("optno[]", request.getParameter("optno[]"));
 					}else {
-						
 					}
-					response.sendRedirect("/3T/loginForm3");
-					System.out.println("여러개일때?");
-					System.out.println("로그인인터셉터로 넘어오는값:");
-					System.out.println(request.getParameterValues("attribute_no[]"));
 					
+					response.sendRedirect("/3T/loginForm3");
 					HttpSession session = request.getSession();
 					//비회원에서 로그인하면?
 					//장바구니 !
 					String cart_No[]=request.getParameterValues("CART_NO");
-					/*if(cart_No!=null) {
-					request.setAttribute("CART_NO2", request.getParameterValues("CART_NO"));
-					session.putValue("CART_NO2", cart_No);
-					
-					System.out.println("cart_No"+cart_No);
-					
-					response.sendRedirect("/3T/loginForm2");
-					}
-					else {
-						Map<String, Object> cartMap = new HashMap<String, Object>();
-						
-						List<Map<String, Object>> fromDetailOne = new ArrayList<Map<String, Object>>();
-						
-						cartMap.put("REGDATE", 		new Date());
-						//??????
-						cartMap.put("ATTRIBUTE_NO", (String)request.getParameter("attribute_no[]"));
-						cartMap.put("GOODS_NO",		(String)request.getParameter("GOODS_NO"));
-						cartMap.put("COUNT",		(String)request.getParameter("ea[]"));
-						cartMap.put("CONTENT",		(String)request.getParameter("CONTENT"));
-						cartMap.put("IMAGE",		(String)request.getParameter("IMAGE"));
-						cartMap.put("PRICE",		(String)request.getParameter("PRICE"));
-						cartMap.put("NAME",			(String)request.getParameter("NAME"));
-						cartMap.put("COLOR",		(String)request.getParameter("optno[]").toString().split("-")[0]);
-						cartMap.put("GOODS_SIZE",	(String)request.getParameter("optno[]").toString().split("-")[1]);
-						fromDetailOne.add(cartMap);
-						session.setAttribute("fromDetailOne", fromDetailOne);
-						System.out.println("session.getAttribute('fromDetailOne'):"+session.getAttribute("fromDetailOne"));
-						response.sendRedirect("/3T/loginForm3");
-					}*/
-					
-					
 					
 					return false;
+					
+				//비회원 정보가있을때. 
 				}else {
-					
-					
-					
-					
-					return true;
+					response.sendRedirect("/3T/loginForm3");
+					return false;
 				}
-				
 			} 
 		} catch (Exception e) {
 			e.printStackTrace();

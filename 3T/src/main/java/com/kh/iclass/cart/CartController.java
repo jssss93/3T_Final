@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.iclass.admin.member.AdminMemberService;
 import com.kh.iclass.common.map.CommandMap;
-import com.kh.iclass.common.util.ParseInsertCart;
 import com.kh.iclass.common.util.RSAKeySet;
 import com.kh.iclass.common.util.SequenceUtils;
 import com.kh.iclass.member.MemberService;
@@ -139,9 +138,9 @@ public class CartController {
 			
 			cartService.insertCart(commandMap.getMap());
 			
-			Map<String, Object> memberInfo = new HashMap<String, Object>();
+			/*Map<String, Object> memberInfo = new HashMap<String, Object>();
 			memberInfo=adminMemberService.memberDetail(commandMap.getMap());
-			mv.addObject(memberInfo);
+			mv.addObject(memberInfo);*/
 		}
 		
 		
@@ -506,7 +505,8 @@ public class CartController {
 			if (request.getParameterValues("CART_NO") != null) {
 				cartArr = request.getParameterValues("CART_NO");
 			} else {
-				cartArr = (String[]) session.getValue("CART_NO2");
+				/*cartArr = (String[]) session.getValue("CART_NO2");*/
+				cartArr = (String[]) session.getAttribute("CART_NO2");
 			}
 			List<Map<String, Object>> sessionCheckedCartList = new ArrayList<Map<String, Object>>();
 			for (int i = 0; i < sessionCartList.size(); i++) {

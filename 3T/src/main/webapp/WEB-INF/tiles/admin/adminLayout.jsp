@@ -129,9 +129,9 @@
 								<span class="fa arrow">▼</span>
 							</a>
 							<ul class="nav nav-second-level">
-								<li><a href="/3T/admin/notice/list">- 공지사항</a></li>
-								<li><a href="/3T/admin/review/list">- 구매후기</a></li>
+								<li><a href="/3T/admin/notice/list">- NOTICE</a></li>
 								<li><a href="/3T/admin/faq/list">- FAQ</a></li>
+								<li><a href="/3T/admin/review/list">- REVIEW</a></li>
 								<li><a href="/3T/admin/qa/list">- Q&A</a></li>
 							</ul>
 						</li>
