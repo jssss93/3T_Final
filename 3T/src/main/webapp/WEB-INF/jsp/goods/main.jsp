@@ -52,123 +52,85 @@ table {
 </head>
 
 <body>
-
-
+	<div>
 		<table border="0" align="center" cellpadding="0" cellspacing="20">
 			<tr>
-				<td colspan=3 align="center"><img
-					src="/3T/resources/images/mainline2.JPG" /></td>
+				<td colspan=3 align="center"><img src="/3T/resources/images/mainline2.JPG" /></td>
 			</tr>
 			<tr>
-
-
-
-
-
-				<c:forEach items="${New }" var="New" varStatus="stat" begin="0"
-					end="2">
-
-
-
-
-
-
-					<td class="suk" align="center"><a href="#this" name="title">
-
-							<img id="myImg2"
-							src="/3T/resources/upload/${New.IMAGE.split(',')[0]}"> <input
-							type="hidden" id="GOODS_NO" name="GOODS_NO"
-							value="${New.GOODS_NO }">
-					</a></td>
+				<c:forEach items="${New }" var="New" varStatus="stat" begin="0"	end="2">
+					<td class="suk" align="center">
+						<a href="#this" name="title">
+							<img id="myImg2" src="/3T/resources/upload/${New.IMAGE.split(',')[0]}"> 
+							<input type="hidden" id="GOODS_NO" name="GOODS_NO" value="${New.GOODS_NO }">
+						</a>
+					</td>
 				</c:forEach>
-
-
 			</tr>
 		</table>
-		<br> <br>
+		<br><br>
+		
 		<table border="0" align="center" cellpadding="0" cellspacing="20" class="han12">
-
 			<tr>
-				<td colspan="3" align="center"><h1 class="abc">3T</h1>
-					<img src="/3T/resources/images/mainline.PNG" /></td>
+				<td colspan="3" align="center"><h1 class="abc">3T</h1><img src="/3T/resources/images/mainline.PNG" /></td>
 			</tr>
 			<tr>
-
 				<c:choose>
 					<c:when test="${fn:length(list) > 0}">
-						<c:forEach items="${list }" var="list" varStatus="stat" begin="0"
-							end="15">
-
-							<c:if test="${stat.index%3==0}">
-								<tr></tr>
-							</c:if>
-
-
-							<td class="suk" align="center"><a href="#this" name="title">
-
-									<img id="myImg"
-									src="/3T/resources/upload/${list.IMAGE.split(',')[0] }"> 
+						<c:forEach items="${list }" var="list" varStatus="stat" begin="0" end="15">
+							<c:if test="${stat.index%3==0}"><tr></tr></c:if>
+							<td class="suk" align="center">
+								<a href="#this" name="title">
+									<img id="myImg" src="/3T/resources/upload/${list.IMAGE.split(',')[0] }"> 
 									<input type="hidden" id="GOODS_NO" name="GOODS_NO" value="${list.GOODS_NO }">
-							</a><br> <br> ${list.NAME }<br> KRW&nbsp;${list.PRICE }</td>
-
+								</a><br><br>
+								${list.NAME }<br>
+								KRW&nbsp;${list.PRICE }
+							</td>
 						</c:forEach>
 					</c:when>
-
-
 				</c:choose>
-
-
-
 			</tr>
 		</table>
-		<br> <br> <br>
-		<table border="0" align="center" cellpadding="0" cellspacing="20"
-			class="han_img">
+		<br><br><br>
+		
+		
+		<table border="0" align="center" cellpadding="0" cellspacing="20" class="han_img">
 			<tr>
-				<td colspan="3" align="center"><a href="main"><img
-						src="/3T/resources/images/mainline4.png" /></a></td>
-
+				<td colspan="3" align="center"><a href="main">
+					<img src="/3T/resources/images/mainline4.png" /></a>
+				</td>
 			</tr>
 		</table>
-
-		<br> <br> <br>
+		<br><br><br>
+		
+		
 		<table border="0" align="center" cellpadding="0" cellspacing="20">
 			<tr>
-				<td colspan=3 align="center"><img
-					src="/3T/resources/images/mainline5.png" /></td>
+				<td colspan=3 align="center"><img src="/3T/resources/images/mainline5.png" /></td>
 			</tr>
 			<tr>
-
-
-
-
-
 				<c:choose>
 					<c:when test="${fn:length(best) > 0}">
-						<c:forEach items="${best }" var="best" varStatus="stat" begin="0"
-							end="15">
-
-							<c:if test="${stat.index%3==0}">
-								<tr></tr>
-							</c:if>
-
-
-
+						<c:forEach items="${best }" var="best" varStatus="stat" begin="0" end="15">
+							<c:if test="${stat.index%3==0}"><tr></tr></c:if>
+							
+							<!--여기에 li가 왜들어가? -->
 							<li>
-							<td class="suk" align="center"><a href="#this" name="title">
-
-									<img id="myImg"
-									src="/3T/resources/upload/${best.IMAGE.split(',')[0]}"> <input
-									type="hidden" id="GOODS_NO" name="GOODS_NO"
-									value="${best.GOODS_NO }">
-							</a> <br> <br> ${best.NAME }<br> KRW&nbsp;${best.PRICE }</td>
-
+							
+							<td class="suk" align="center">
+								<a href="#this" name="title">
+									<img id="myImg" src="/3T/resources/upload/${best.IMAGE.split(',')[0]}"> 
+									<input type="hidden" id="GOODS_NO" name="GOODS_NO" value="${best.GOODS_NO }">
+								</a> 
+								<br><br>${best.NAME }
+								<br>KRW&nbsp;${best.PRICE }
+							</td>
 						</c:forEach>
 					</c:when>
-
-
 				</c:choose>
 		</table>
+	<!-- 여기에 div 가 왜들어가? -->
 	</div>
 	<form id="commonForm" name="commonForm"></form>
 	

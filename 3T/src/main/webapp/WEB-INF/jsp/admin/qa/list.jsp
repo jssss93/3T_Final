@@ -144,7 +144,6 @@ function delchk(){
 					</c:if>
 					<input type="hidden" id="currentPageNo" name="currentPageNo" /> 
 					</div>
-					<a href="/3T/admin/qa/writeForm"><button type="submit" class="btn btn-default">작성</button></a>
 					<div class="row">
 							<div style="text-align:center;">
 								<div id="dataTables-example_filter" class="dataTables_filter">

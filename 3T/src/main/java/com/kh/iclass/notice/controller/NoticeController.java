@@ -6,7 +6,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -68,7 +67,14 @@ public class NoticeController {
 		
 		Map<String, Object> map = noticeService.NoticeDetail(commandMap.getMap());
 		mv.addObject("Detail", map);
-		mv.addObject("MEMBER_ID",request.getSession().getAttribute("MEMBER_ID"));
+		
+		String MEMBER_ID="";
+		
+		if(request.getSession().getAttribute("MEMBER_ID")!=null) {
+			MEMBER_ID=(String) request.getSession().getAttribute("MEMBER_ID");
+		}
+		
+		mv.addObject("MEMBER_ID",MEMBER_ID);
 		return mv;
 	}
 
