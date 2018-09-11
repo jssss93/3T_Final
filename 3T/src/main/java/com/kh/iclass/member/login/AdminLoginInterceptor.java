@@ -24,7 +24,7 @@ public class AdminLoginInterceptor extends HandlerInterceptorAdapter{
             }
             else
             {
-            	response.sendRedirect("/3T/loginForm");
+            	response.sendRedirect("/3T/adminError");
             	return false;
             }
             
