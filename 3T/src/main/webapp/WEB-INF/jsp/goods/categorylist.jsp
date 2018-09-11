@@ -71,6 +71,9 @@ table {
     font-size: 11;
     left: 10px;
 }
+.text01 {
+    padding: 0px 0px 40px 0;
+}
 
 </style>
 </head>
