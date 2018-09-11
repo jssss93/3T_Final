@@ -110,9 +110,20 @@
     height: 30px;
     
 }
-.tx {
-    margin: 0;
+.han1234 {
+    margin: -15px 0 0 0;
+    z-index: 1;
 }
+.btn-default {
+   padding: 4px 1px!important;
+   width: 23%!important;
+   height: 3%!important;
+   margin: -17px 0 0 0!important;
+}
+.wing_prd_list {
+   margin-top: -27px;
+}
+
 /* 우측 퀵메뉴 스타일 */
 
 </style>
@@ -296,11 +307,17 @@
                            </a>
                            <!-- 삭제버튼 추가할것. -->
                            <!-- <button type="button" class="wing_btn_delete" prdno="1886256688"> -->
+                           <div class="han1234">
                            <a class="wing_btn_delete" id="windRecentPrdList" type="button">
-                           <img width="30" height="30" src="/3T/resources/images/hanb.PNG" ></a>
+                           <img width="15" height="15" src="/3T/resources/images/hanb.PNG" ></a>
+                           </div>
                            <!-- </button> -->
                         </li><br>
                      </c:forEach>
+                        <li>
+                           <a class="btn btn-default" id="windRecentPrdList" type="button">
+                            	 전체삭제</a>
+                       </li>
                   </ul>
                      
                </div>

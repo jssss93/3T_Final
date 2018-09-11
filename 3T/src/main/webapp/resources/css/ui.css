@@ -318,9 +318,9 @@ a:link, a:visited {
 }
 
 .board_top_main {
-	margin: 0 0 0 733px;
+	/* margin: 0 0 0 733px;
     padding: 0px 0px 59px 0px;
-    display: inline-block;
+    display: inline-block; */
     clear: both;
     overflow: hidden;
 }
@@ -1049,7 +1049,6 @@ a:link, a:visited {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     padding: 10px 0;
-    /* text-align: left; */
     vertical-align: middle;
     text-align: left;
 	padding-left: 80px;
