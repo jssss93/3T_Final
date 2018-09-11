@@ -721,4 +721,25 @@ public class OrderController {
 		mv.addObject("list", couponList);
 		return mv;
 	}
+	
+	//쿠폰확인 리스트
+	@RequestMapping(value = "/order/orderCouponList")
+	public ModelAndView myCouponList(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		List<Map<String, Object>> list = null;		
+		
+		commandMap.put("MEMBER_ID", request.getSession().getAttribute("MEMBER_ID"));
+
+		list = memberService.myCoupon(commandMap.getMap());
+		
+		/*
+		 * if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") ==
+		 * null) list = QaService.QaList(commandMap.getMap()); else list =
+		 * QaService.QaSearchList(commandMap.getMap());
+		 */
+		mv.addObject("list", list);
+		
+		mv.setViewName("/order/orderCouponList");
+		return mv;
+	}	
 }

@@ -67,7 +67,7 @@ function comma(str) {
 function open_win_noresizable(url, name) {
 	var oWin = window
 			.open(url, name,
-					"scrollbars=no, status=no, resizable=no, width=700, height=500");
+					"scrollbars=no, status=no, resizable=no, width=900, height=500");
 
 
 }
@@ -500,7 +500,17 @@ div.member p strong {
                               <strong><fmt:formatNumber value="${memberInfo.POINT}"
                                     pattern="#,###" /> P</strong>
                         </a></li> 
-                        <li><a href="/3T/mypage/mycoupon">쿠폰 : <strong>${couponAll.COUPONALL}개</strong></a></li>
+                        <li>
+                        	<a onclick="javascript:open_win_noresizable('/3T/order/orderCouponList', write)" >
+								쿠폰 : 
+								<c:if test="${empty couponAll.COUPONALL}">
+									<strong>0개</strong>
+								</c:if>
+								<c:if test="${not empty couponAll.COUPONALL}">
+									<strong>${couponAll.COUPONALL}개</strong>
+								</c:if>
+							</a>
+						</li>
                      </ul>
                  	</c:if>
                  	
@@ -873,7 +883,7 @@ div.member p strong {
 	                     <th scope="row">쿠폰</th>
 	                            <td>
 									<a class="board_subject4" type="button" onclick="javascript:open_win_noresizable('/3T/order/couponList', write)" >
-										쿠폰
+										쿠폰사용하기
 									</a>
 	                                
 	                     		</td>

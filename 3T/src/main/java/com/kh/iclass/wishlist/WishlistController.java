@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.iclass.admin.member.AdminMemberService;
 import com.kh.iclass.common.map.CommandMap;
 import com.kh.iclass.common.util.WishNoUtil;
+import com.kh.iclass.member.MemberService;
 
 @Controller
 public class WishlistController {
@@ -25,6 +26,9 @@ public class WishlistController {
 	
 	@Resource(name = "adminMemberService")
 	private AdminMemberService adminMemberService;
+	
+	@Resource(name = "memberService")
+	private MemberService memberService;
 	
 	@RequestMapping(value = "/wish/addWish")
 	public ModelAndView addWish(CommandMap commandMap, HttpServletRequest request) throws Exception{
@@ -105,6 +109,7 @@ public class WishlistController {
 		
 		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
 		
+		Map<String, Object> couponAll = new HashMap<String, Object>();
 		Map<String, Object> memberInfo = new HashMap<String, Object>();
 		memberInfo=adminMemberService.memberDetail(commandMap.getMap());
 		
@@ -118,7 +123,9 @@ public class WishlistController {
 		List<Map<String, Object>> CheckedWish = new ArrayList<Map<String, Object>>();
 		
 		CheckedWish = wishlistService.selectCheckedWishList(commandMap.getMap());
+		couponAll = memberService.couponAll(commandMap.getMap());
 		
+		mv.addObject("couponAll", couponAll);
 		mv.addObject("list", CheckedWish);
 		mv.addObject("memberInfo", memberInfo);
 		
