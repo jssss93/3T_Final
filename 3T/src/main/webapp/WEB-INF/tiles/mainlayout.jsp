@@ -67,7 +67,7 @@
    float: right;
    width: 13%!important;
    top: 0px;
-   height: 100%!important;
+   height: 40%!important;
    z-index: 9;
    background: none;
 }

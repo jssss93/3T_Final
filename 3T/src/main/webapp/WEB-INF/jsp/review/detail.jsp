@@ -68,10 +68,10 @@
 				<table class="notice_button">
 					<tr>
 						<td>
-							<a href="#this" class="btn btn-default" id="list">LIST</a> 
+							<a href="#this" class="btn btn-default2" id="list">LIST</a> 
 							<c:if test="${map.MEMBER_ID==ID }">
-								<a href="#this" class="btn btn-default" id="update">UPDATE</a> 
-								<a href="#this" class="btn btn-default" id="delete">DELETE</a>
+								<a href="#this" class="btn btn-default2" id="update">UPDATE</a> 
+								<a href="#this" class="btn btn-default2" id="delete">DELETE</a>
 							</c:if>
 						</td>
 					</tr>
@@ -109,7 +109,7 @@
 	<br>
 	<table class="notice_button">
 		<tr>
-			<td><input class="btn btn-default" type="submit" name="리뷰" id="리뷰"
+			<td><input class="btn btn-default2" type="submit" name="리뷰" id="리뷰"
 				value="댓글작성"></td>
 		</tr>
 		</form>

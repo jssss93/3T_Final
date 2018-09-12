@@ -8,6 +8,19 @@
     width: auto;
 }
 
+.btn-default2:hover {
+	color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
+
+.btn btn-default2 {
+    padding: 4px 1px!important;
+    width: 15%!important;
+    height: 3%!important;
+    margin: -17px 0 0 0!important;
+}
+
 body.eMobilePopup {
 	overflow: hidden;
 	position: fixed;

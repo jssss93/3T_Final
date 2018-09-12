@@ -48,7 +48,7 @@
 }
 </style>
 </head>
-<div id="body" align="center" style="width: 100%;margin: 0px 0px 0 -130px;">
+<div id="body" align="center" style="width: 100%;">
 <table width="70%" align="center" border="0" cellspacing="0"
 	cellpadding="1" colspan="1" class="board_top">
 	<br>
@@ -101,8 +101,8 @@
 
 		<table class="notice_button">
 			<tr>
-				<td><a href="#this" class="btn btn-default" id="write">WRITE</a> <a
-					href="#this" class="btn btn-default" id="list">LIST</a></td>
+				<td><a href="#this" class="btn btn-default2" id="write">WRITE</a> <a
+					href="#this" class="btn btn-default2" id="list">LIST</a></td>
 			</tr>
 		</table>
 	</form>

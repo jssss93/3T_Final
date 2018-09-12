@@ -54,6 +54,12 @@
 .text01 h3{
     font-size: 20px;
 }
+.btn btn-default2 {
+    padding: 4px 1px!important;
+    width: 15%!important;
+    height: 3%!important;
+    margin: -17px 0 0 0!important;
+}
 </style>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -432,7 +438,7 @@ table {
 			<td>
 				<form action="/3T/review/writeForm">
 
-					<input type="submit" class="btn btn-default" value="WRITE">
+					<input type="submit" class="btn btn-default2" value="WRITE">
 				</form>
 			</td>
 		</tr>
@@ -541,7 +547,7 @@ table {
 	<form action="/3T/qa/writeForm">
 		<table class="notice_button">
 			<tr>
-				<td><input type="submit" class="btn btn-default" value="WRITE"></td>
+				<td><input type="submit" class="btn btn-default2" value="WRITE"></td>
 			</tr>
 		</table>
 	</form>

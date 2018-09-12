@@ -96,7 +96,7 @@
 			<td>
 				<form action="/3T/review/writeForm">
 
-					<input type="submit" class="btn btn-default" value="WRITE">
+					<input type="submit" class="btn btn-default2" value="WRITE">
 				</form>
 			</td>
 		</tr>

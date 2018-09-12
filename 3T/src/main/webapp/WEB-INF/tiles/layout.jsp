@@ -55,7 +55,7 @@
 #Left {
    position: fixed;
    float: left;
-   width: 13%;
+   width: 10%;
    top: 0px;
    height: 100%;
    z-index: 9;

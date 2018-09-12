@@ -135,10 +135,10 @@
 		<tr>
 			<td>
 				<!-- <a href="#this" class="btn" id="addFile">파일 추가</a> --> <a
-				href="#this" class="btn" id="list">LIST</a> <a href="#this"
-				class="btn" id="update">UPDATE</a> <a href="#this" class="btn"
+				href="#this" class="btn btn-default2" id="list">LIST</a> <a href="#this"
+				class="btn btn-default2" id="update">UPDATE</a> <a href="#this" class="btn btn-default2"
 				id="delete">DELETE</a>
-				<input  class="btn btn-default" id="submitBtn"  type="submit" class="btn" value="수정">
+				<input  class="btn btn-default2" id="submitBtn"  type="submit" class="btn btn-default2" value="수정">
 			</td>
 		</tr>
 	</table>

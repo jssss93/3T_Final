@@ -110,7 +110,7 @@ table {
 			<c:forEach items="${bestlist }" var="row" varStatus="stat" begin="0"
 				end="3">
 
-				<c:if test="${stat.index%4==0}">
+				<c:if test="${stat.index%3==0}">
 					<tr></tr>
 				</c:if>
 				<td class="suk" align="center">
