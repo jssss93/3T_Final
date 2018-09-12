@@ -48,10 +48,31 @@
 			<td valign="middle"><strong>CATEGORY</strong></td>
 			<td valign="middle"><strong>SUBJECT</strong></td>
 			<td valign="middle"><strong>NAME</strong></td>
-			<td valign="middle"><strong>STATUS</strong></td>
+			<!-- <td valign="middle"><strong>STATUS</strong></td> -->
 			<td valign="middle"><strong>DATE</strong></td>
 		</tr>
 		<tbody>
+			<c:forEach items="${QA3list }" var="row3">
+						<tr>
+							<td align="center"><strong>&nbsp;&nbsp;☆</strong></td>
+
+							<td></td>
+							<td><strong>공지사항</strong></td>
+							<td>
+								<div>
+									<a href="#this" name="title2"><strong>${row3.TITLE }</strong></a>
+									<input type="hidden" id="NOTICE_NO" name="NOTICE_NO" value="${row3.NOTICE_NO }">
+								</div>
+							</td>
+							<td align="center"><strong>${row3.MEMBER_ID }</strong></td>
+							<!-- <td align="center"></td> -->
+							<td align="center"><strong><fmt:formatDate value="${row3.REGDATE }" pattern="yyyy.MM.dd" /></strong></td>
+						</tr>
+					</c:forEach>
+		
+		
+		
+		
 			<c:choose>
 				<c:when test="${fn:length(list) > 0}">
 					<c:forEach items="${list }" var="row">
@@ -91,12 +112,12 @@
 							</c:if>
 							<td align="center">${row.MEMBER_ID }</td>
 
-							<c:if test="${row.STATUS ==1 }">
+							<%-- <c:if test="${row.STATUS ==1 }">
 								<td align="center">공개글</td>
 							</c:if>
 							<c:if test="${row.STATUS ==0 }">
 								<td align="center">비밀글</td>
-							</c:if>
+							</c:if> --%>
 							<td align="center"><fmt:formatDate value="${row.REGDATE }" pattern="yyyy.MM.dd" /></td>
 						</tr>
 					</c:forEach>
@@ -155,6 +176,10 @@
 				e.preventDefault();
 				fn_openBoardDetail($(this));
 			});
+			$("a[name='title2']").on("click", function(e) { //제목 
+				e.preventDefault();
+				fn_openBoardDetail2($(this));
+			});
 			$("#search").on("click", function(e) { //검색 버튼
 				e.preventDefault();
 				fn_openSearchList();
@@ -186,6 +211,12 @@
 			comSubmit.addParam("QA_NO", obj.parent().find("#QA_NO").val());
 			comSubmit
 					.addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
+			comSubmit.submit();
+		}
+		function fn_openBoardDetail2(obj) {
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("<c:url value='/notice/detail' />");
+			comSubmit.addParam("NOTICE_NO", obj.parent().find("#NOTICE_NO").val());
 			comSubmit.submit();
 		}
 		function fn_openPasswdCheck(obj) {

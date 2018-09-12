@@ -1,5 +1,6 @@
 package com.kh.iclass.faq.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -30,6 +31,10 @@ public class FaqController {
 	public ModelAndView faqList(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("faq/list");
 		
+		List<Map<String, Object>> list = null;
+		//FAQ 공지사항 리스트
+		list = faqService.faq2List(commandMap.getMap());
+		
 		Map<String, Object> resultMap = null;
 		//검색정보가 들어왔을때 리스트와 안들어왔을 때 리스트
 		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
@@ -39,6 +44,7 @@ public class FaqController {
 
 		mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
 		mv.addObject("list", resultMap.get("result"));
+		mv.addObject("faq2list", list);
 
 		return mv;
 	}
