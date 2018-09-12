@@ -109,13 +109,14 @@
 	
 	<input type="hidden" name="NOTICE_NO" value="${map.NOTICE_NO }"><br/>
 	<div class="form-group">
-					<label>제목</label> 
-	<input type="text" class="form-control" name="TITLE" placeholder="제목을 입력해주세요" value="${map.TITLE }" style="width: initial;" ><br/>
-	</div>
-	<div class="form-group">
 					<label>작성자</label> 
 					<input type="text" class="form-control" id="MEMBER_ID" name="MEMBER_ID" value="ADMIN" style="width: 250px;"  readonly />
 				</div>
+	<div class="form-group">
+					<label>제목</label> 
+	<input type="text" class="form-control" name="TITLE" placeholder="제목을 입력해주세요" value="${map.TITLE }" style="width: initial;" ><br/>
+	</div>
+	
 				<div class="form-group">
 					<label>내용</label>
 	<div id="summernote" name="summernote" >${map.CONTENT }</div>

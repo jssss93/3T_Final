@@ -34,7 +34,7 @@
 			VALUES
 			(
 				FAQ_NO_SEQ.NEXTVAL,
-			    0, 
+			    #{MEMBER_ID}, 
 			    #{TITLE},
 			    #{CONTENT},
 			    SYSDATE		    
