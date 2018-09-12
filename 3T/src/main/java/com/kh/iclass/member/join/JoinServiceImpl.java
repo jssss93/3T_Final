@@ -20,11 +20,13 @@ public class JoinServiceImpl implements JoinService{
 	private JoinDAO joinDAO  ;
 	
 	
+  //회원가입
 	@Override
 	public void insertMember(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		joinDAO.insertMember(map);
 	}
 	
+	//비밀번호 암호화 회원가입
 	@Override
 	public int insertMember2(Map<String, Object> map,Key privateKey) throws Exception {
 		//여기서 에러.
@@ -58,12 +60,14 @@ public class JoinServiceImpl implements JoinService{
 		
 	}*/
 	
+	// 이메일인증시, ID중복체크
 	@Override
 	public int checkMember(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return joinDAO.checkMember(map);
 	}
 	
+	//회원가입 id중복체크
 	@Override
 	public int chekcId(String MEMBER_ID) throws Exception {
 		// TODO Auto-generated method stub

@@ -63,12 +63,12 @@
 				<div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer" >
 					<div class="row" style="margin-bottom: 5px;">
 						<div class="col-sm-6">
-						<a href="/MODA/member/adminMemberList">
+						<a href="/3T/admin/member/message">
                         <button type="button" class="btn btn-outline btn-default">전체</button>
                         </a>
 						</div>
 						<div class="col-sm-6" style="text-align: right;">
-							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">총 메세지수 : ${totalCount}</div>
+							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">총 메세지수 : ${messageAll.MESSAGEALL}</div>
 						</div>
 					</div>
 					<div class="row" >
@@ -108,7 +108,7 @@
 												<c:if test="${row.STATE==1}"> 답변완료</c:if>
 											</td>
 											<td style="text-align: center; vertical-align: middle;">
-												<c:url var="viewURL2" value="/admin/member/adminDeleteMember">
+												<c:url var="viewURL2" value="/admin/member/deleteMessage">
 													<c:param name="MESSAGE_NO" value="${row.MESSAGE_NO}" />
 												</c:url> 
 												<a href="${viewURL2}">

@@ -19,19 +19,19 @@ public class MemberDAO extends AbstractDAO {
 	{
 		return (int)selectOne("member.checkPass", map);
 	}
-	//회원 정보 불러오기
+	//회원 정보 리스트로불러오기
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> memberInfoList(Map<String, Object> map) throws Exception
 	{
 		return selectList("member.memberInfoList", map);
 	}
-	
+	//회원정보 맵으로 불러오기
 	@SuppressWarnings("unchecked")
 	 Map<String, Object> memberInfo(String id) throws Exception{
 		 return (Map<String, Object>)selectOne("member.memberInfo", id);
 	 }
 	
-	// 회원강제 탈퇴
+	// 회원 탈퇴
 	public void deleteMember(Map<String, Object> map) throws Exception {
 		delete("adminMember.deleteMemberA", map);
 	}
@@ -56,19 +56,19 @@ public class MemberDAO extends AbstractDAO {
         return (List<Map<String, Object>>)selectList("member.myBoardReview", map);
     }
 
-	
+	//메세지 보내기
 	public void insertMessage(Map<String, Object> map) throws Exception{
 		insert("member.insertMessage", map);
 	}
 
-	
+	//내메세지 꺼내오기
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> myMessage(Map<String, Object> map) throws Exception
 	{
 		return (List<Map<String, Object>>)selectList("member.myMessage", map);
 	}
 
-	
+	//주문 상태 꺼내기
 	@SuppressWarnings("unchecked")
 	public Map<String,Object> state(Map<String,Object> map) throws Exception
 	{
@@ -158,13 +158,6 @@ public class MemberDAO extends AbstractDAO {
 		delete("member.deleteMessage", map);
 	}
 		
-/*	public int checkId(String mem_id) throws Exception{
-		return (int)selectOne("member.checkId", mem_id);
-	}*/
-	
-	/*public int checkMember(Map<String, Object> map) throws Exception{
-		return selectMemberId("member.checkMember", map);
-	*/
 	//관리자 메세지 검색
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> AdminSearchmyMessage(Map<String, Object> map) throws Exception

@@ -58,6 +58,7 @@ public class JoinController {
 		return "member/privacy";
 	}*/
 	
+	//회원가입 폼으로
 	@RequestMapping(value="/joinStep2")
 	public ModelAndView joinStep2(Model model,HttpSession session,HttpServletResponse response, HttpServletRequest request,CommandMap Map)throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -77,6 +78,7 @@ public class JoinController {
 		model.addAttribute("Modulus", keySet.getPublicKeyModulus());
 		model.addAttribute("Exponent", keySet.getPublicKeyExponent());
 		
+		//이메일 인증한값 폼으로 넘겨주기위해.
 		String email1 = (String) Map.getMap().get("email1");
 		String email2 = (String) Map.getMap().get("email2");
 		
@@ -87,6 +89,7 @@ public class JoinController {
 		return mv;
 	}
 	
+	//회원가입 성공시
 	@RequestMapping(value="/joinComplete", method=RequestMethod.POST)
 	public ModelAndView joinComplete(CommandMap commandMap, HttpServletRequest request,HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -121,47 +124,47 @@ public class JoinController {
 		
 	}
 	
+	//회원가입시 아이디 중폭체크.
 	@RequestMapping(value="/checkId")
 	@ResponseBody
 	public void checkId(HttpServletRequest request, HttpServletResponse response, CommandMap commandMap) throws Exception{
 		PrintWriter out = response.getWriter();
 		String paramId= (request.getParameter("MEMBER_ID") == null)?"":String.valueOf(request.getParameter("MEMBER_ID"));
 		int checkId = joinService.chekcId(paramId);
-		
-		System.out.println("나오니니ㅣㄴ" + checkId);
+
 		out.print(checkId);
 		out.flush();
 		out.close();
 	}
 	
-	@RequestMapping(value="/joinStep2/checkId")
+	//이건 위랑 같은데 내가안씀 원래있던거인듯 그래서 주석처리해놓고 이것떄매 오류안나면 지워버리기~
+/*	@RequestMapping(value="/joinStep2/checkId")
 	@ResponseBody
 	public void checkId2(HttpServletRequest request, HttpServletResponse response, CommandMap commandMap) throws Exception{
 		PrintWriter writer = response.getWriter();
-		/*String id= (request.getParameter("MEMBER_ID") == null)?"":String.valueOf(request.getParameter("MEMBER_ID"));*/
+		String id= (request.getParameter("MEMBER_ID") == null)?"":String.valueOf(request.getParameter("MEMBER_ID"));
 		String id= commandMap.getMap().get("id").toString();
 		int checkId = joinService.chekcId(id);
 		
 		writer.print(checkId);
 		writer.flush();
 		writer.close();
-	}
+	}*/
 
+	//이메일 인증 확인후 메일보내기
 	@RequestMapping(value = "/joinStep1/modal_email_auth")
 	public ModelAndView email_auth(HttpServletResponse response, HttpServletRequest request,CommandMap Map) throws Exception{
 		System.out.println("접속?");
 		
 		String email = (String) Map.getMap().get("email");
-		System.out.println("email = " + email);
 		Map.getMap().put("EMAIL", email);
 		
+		//이메일 가입되있는지 확인.
 		int checkNum = joinService.checkMember(Map.getMap());
-		System.out.println("checkNum="+checkNum);
 		
 		if(checkNum==0){
 			authNum = RandomNum();
 			sendEmail(email.toString(),authNum);
-			System.out.println("메일보냄");
 		}
 		String checkNumString=String.valueOf(checkNum);
 		PrintWriter writer =response.getWriter();
@@ -174,11 +177,11 @@ public class JoinController {
 		mv.addObject("email",email);
 		mv.addObject("authNum", authNum);
 		mv.setViewName("joinStep1");
-		
-		System.out.println("오드넘"+authNum);
+
 		return mv;
 	}
 	
+	//이메일 인증 성공시 인증번호 넘겨주기
 	@RequestMapping(value="/joinStep1/modal_email_auth_success", method=RequestMethod.POST)
 	public @ResponseBody String clickMethod (HttpServletRequest request) throws Exception   {
 	         
@@ -187,6 +190,7 @@ public class JoinController {
 		return str;
 	}
 
+	//이메일인증 이메일 전송
 	private void sendEmail(String email,String authNum){
 		String host ="smtp.gmail.com";
 		String subject = "3T 인증 번호 전달";
@@ -234,7 +238,7 @@ public class JoinController {
 		}
 	}
 	
-	
+	//이메일 인증 인증번호  주기.
 	public String RandomNum(){
 		StringBuffer buffer = new StringBuffer();
 		for(int i = 0;i<=6;i++){

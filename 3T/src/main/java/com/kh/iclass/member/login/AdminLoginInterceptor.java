@@ -24,6 +24,7 @@ public class AdminLoginInterceptor extends HandlerInterceptorAdapter{
             }
             else
             {
+            	//admin이 아니면 권한없다고 에러페이지로
             	response.sendRedirect("/3T/adminError");
             	return false;
             }

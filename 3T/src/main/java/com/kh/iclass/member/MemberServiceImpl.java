@@ -78,13 +78,12 @@ public class MemberServiceImpl implements MemberService{
 	{
 		List<Map<String, Object>> stateList = new ArrayList<Map<String, Object>>();
 		for(int i=0;i<10;i++) {          
+			//for문으로 state값 0부터 9까지 꺼냄
 			map.put("STATE", i);
-			System.out.println(i+"번째map:"+map);
 			stateList.add(memberDAO.state(map));
-			System.out.println(i+"번째list:"+stateList);
 			
 		}
-		System.out.println("옵니까!?오면 stateList값은?" + stateList);
+	
 		return stateList;
 	}
 	
@@ -149,22 +148,7 @@ public class MemberServiceImpl implements MemberService{
 	public void deleteMessage(Map<String, Object> map) throws Exception {
 		memberDAO.deleteMessage(map);
 	}
-	/*@Override
-	public int checkMember(Map<String, Object> map) throws Exception {
-		return joinDAO.checkMember(map);
-		
-	}*/
-
-	
-	
-	/*
-	
-	@Override
-	public int chekcId(String mem_id) throws Exception {
-		// TODO Auto-generated method stub
-		return joinDAO.checkId(mem_id);
-	} */
-	
+	//관리자 메세지 검색 리스트
 	@Override
 	public List<Map<String, Object>> AdminSearchmyMessage(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub

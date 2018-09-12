@@ -10,13 +10,13 @@ public interface MemberService
 {	
 	//회원수정 비밀번호 체크
 	int checkPass(Map<String, Object> map, Key privateKey) throws Exception;
-	
+	//맴버정보 가져오기 리스트,맵
 	public List<Map<String, Object>> memberInfoList(Map<String, Object> map) throws Exception;
 	Map<String, Object> memberInfo(String id) throws Exception;
 	
 	//회원 탈퇴
 	public void deleteMember(Map<String, Object> map) throws Exception;
-	
+	//주문상태 
 	List<Map<String, Object>> state(Map<String, Object> map) throws Exception;
 	
 	//주문수, 교환수, 환불수, 총주문수, 메세지수 가져오기

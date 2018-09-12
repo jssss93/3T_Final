@@ -52,12 +52,14 @@ public class LoginServiceImpl implements LoginService{
 		loginDAO.findPasswd2(map);
 	}
 	
+	// 자동로그인 체크한 경우에 사용자 테이블에 세션과 유효시간을 저장하기 위한 메서드
 	@Override
     public void keepLogin(Map<String, Object> map) throws Exception
 	{
 		loginDAO.keepLogin(map);
     }
 	
+	// 이전에 로그인한 적이 있는지, 즉 유효시간이 넘지 않은 세션을 가지고 있는지 체크한다.
     @Override
     public Map<String, Object> checkUserWithSessionKey(String SESSIONKEY) {
         return loginDAO.checkUserWithSessionKey(SESSIONKEY);

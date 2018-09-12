@@ -17,14 +17,16 @@ public class JoinDAO extends AbstractDAO {
 	public void insertMember(Map<String, Object> map) throws Exception{
 		insert("member.insertMember", map);
 	}
+	//비밀번호 암호화 회원가입
 	public int insertMember2(Map<String, Object> map) throws Exception{
 		return (int) insert("member.insertMember2", map);
 	}
-
+	
+	//아이디 중복확인 체크
 	public int checkId(String MEMBER_ID) throws Exception{
 		return (int)selectOne("member.checkId", MEMBER_ID);
 	}
-	
+	//회원 체크 이메일인증에서 사용
 	public int checkMember(Map<String, Object> map) throws Exception{
 		return selectMemberId("member.checkMember", map);
 	}
