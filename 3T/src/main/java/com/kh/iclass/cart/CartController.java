@@ -314,44 +314,7 @@ public class CartController {
 		return mv;
 	}
 	
-	/*
-	  이거도안쓰는듯.
-	//장바구니에서 payment에 select된 값 추가 
-	//선택상품주문
-	@RequestMapping(value = "cart/Add/Selected")
-	public ModelAndView addSelected(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("order/paypage");
-		HttpSession session = request.getSession();
-		
-		String cart_No[]=request.getParameterValues("CART_NO");
-		
-		for(int i=0;i<cart_No.length;i++) {
-			System.out.println("cart_No"+i+":"+cart_No[i]);
-		}
-		commandMap.put("cart_No", cart_No);
-		session.setAttribute("CART_NO", commandMap.get("cart_No"));
-		if(session.getAttribute("MEMBER_ID")!=null) {
-			commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
-			
-			Map<String, Object> memberInfo = new HashMap<String, Object>();
-			memberInfo=adminMemberService.memberDetail(commandMap.getMap());
-			
-			List<Map<String, Object>> checkedCartList = new ArrayList<Map<String, Object>>();
-			
-			checkedCartList=cartService.checkedCartList(commandMap.getMap());
-			
-			mv.addObject("list", checkedCartList);
-			mv.addObject("memberInfo", memberInfo);
-		}else {
-			commandMap.put("MEMBER_ID", session.getAttribute("NON_MEMBER_ID"));
-			System.out.println("비회원 선택 주문 컨트롤러로 넘어오는 값:");
-			System.out.println(commandMap.getMap());
-			
-		}
-		return mv;
-	
-	}*/
-	
+ 	
 	//디테일에서 바로구매
 	@RequestMapping(value = "/cart/Add/OnetoPaymentNow")
 	public ModelAndView fromDetailOne(CommandMap commandMap, HttpServletRequest request) throws Exception {

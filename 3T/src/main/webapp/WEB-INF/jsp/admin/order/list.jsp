@@ -9,7 +9,6 @@
  $( document ).ready(function() {
 	$('#dataTables-example').rowspan(0);
 	$('#dataTables-example').rowspan(1);
-	$('#dataTables-example').rowspan(9);
 }); 
 $(window).load(function () {
     $(".gubun").each(function () {
@@ -108,12 +107,12 @@ function delchk(){
 								</thead>
 								<tbody> 
 									<c:forEach var="list"  items="${list}" varStatus="stat">
-										<input type="hidden" name="ORDER_NO" value="${list.ORDER_NO }">
+									
+										
+										
 										<tr class="gradeA even" role="row">
 											<td style="text-align:center;vertical-align:middle;" class="gubun">2018-0${list.ORDER_NO}<br><fmt:formatDate value="${list.REGDATE}" pattern="yyyy.MM.dd" /></td>
-											<td style="text-align:center;vertical-align:middle;">${list.MEMBER_ID}
-												<input type="hidden" name="ORDER_NO" value="${list.ORDER_NO }">
-											</td>
+											<td style="text-align:center;vertical-align:middle;">${list.MEMBER_ID}</td>
 											<td style="text-align:center;vertical-align:middle;"><img width="50" height="50" src="/3T/resources/upload/${list.IMAGE.split(',')[0] }" /></td>		
 											<td style="text-align:center;vertical-align:middle;">${list.NAME}</td>										
 											<td style="text-align:center;vertical-align:middle;">${list.CONTENT}...<br>[${list.COLOR }/${list.GOODS_SIZE }]</td>	
@@ -136,9 +135,14 @@ function delchk(){
 												</c:choose>
 											</td>
 											<td style="text-align:center;vertical-align:middle;">${list.PRICE*list.COUNT}</td>
-											<td style="text-align:center;vertical-align:middle;">
-												<input type="hidden" name="ORDER_NO" value="${list.ORDER_NO }">
-												<c:url var="update" value="/admin/order/updateForm"><c:param name="ORDER_NO" value="${list.ORDER_NO }"/></c:url>
+											<td style="text-align:center;vertical-align:middle;"> 
+												<%-- <input type="hidden" name="ORDER_NO" value="${list.ORDER_NO }">
+												<input type="hidden" name="ORDER_DETAIL_NO" value="${list.ORDER_DETAIL_NO }"> --%>
+												<c:url var="update" value="/admin/order/updateForm">
+													<c:param name="ORDER_NO" value="${list.ORDER_NO }"/>
+													<c:param name="ORDER_DETAIL_NO" value="${list.ORDER_DETAIL_NO }"/>
+													<c:param name="REGDATE" value="${list.REGDATE }"/>
+												</c:url>
 												<c:url var="delete" value="/admin/order/delete"><c:param name="ORDER_NO" value="${list.ORDER_NO }" /></c:url>
 												<c:url var="stateup" value="/admin/order/stateup"><c:param name="ORDER_NO" value="${list.ORDER_NO }" /><c:param name="STATE" value="${list.STATE }" /></c:url>
 												<c:url var="statechange" value="/admin/order/statechange"><c:param name="ORDER_NO" value="${list.ORDER_NO }" /><c:param name="STATE" value="${list.STATE }" /></c:url>

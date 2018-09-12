@@ -62,9 +62,15 @@ public interface OrderService {
 
 	Map<String, Object> selectDetailList(Map<String, Object> map) throws Exception;
 	
-	List<Map<String, Object>> selectAdminDetailList(Map<String, Object> map) throws Exception;
+	Map<String, Object> selectAdminDetailList(Map<String, Object> map) throws Exception;
 
 	public List<Map<String, Object>> selectListSearchNonMem(Map<String, Object> map);
 
-	public List getSizeList(Map<String, Object> map);
+	public List<Map<String, Object>> getSizeList(Map<String, Object> map);
+
+	public List<Map<String, Object>> getColorList(Map<String, Object> map);
+
+	public List<Map<String, Object>> getAttrList(Map<String, Object> map);
+	
+	public void updateOrder(Map<String, Object> map);
 }
