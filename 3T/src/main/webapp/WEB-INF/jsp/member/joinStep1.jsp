@@ -3,6 +3,23 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 <%@ include file="/WEB-INF/include/include-header-hanbyul.jspf"%>
 <style>
+
+#myshopMain .shopMain {
+    float: initial;
+    display: inline-block;
+    width: 48%;
+    margin: 0 10px 10px 0;
+    line-height: 16px;
+    border: 1px #ddd solid;
+    color: #626262;
+}
+#contents {
+    position: relative;
+    float: initial;
+    width: 65%;
+    min-height: 500px;
+    margin: 80px auto 20px;
+}
 .modal-content {
     position: relative;
     background-color: #fff;
@@ -100,37 +117,40 @@ font-size:15px;
     margin: 0px 0 0 51px;
 </style>
 
-<div id="container">
-   <div id="headerwrap"></div>
+	<div id="contentwrap">
 
-   <div id="contentwrap">
+		<div id="contents">
 
-      <div id="contents">
+			<div class="xans-element- xans-myshop xans-myshop-orderstate ">
+				<div class="title">
+					<h3>
+						3T<span class="desc"> 회원가입</span>
+					</h3>
+				</div>
+				<div class="state">
+				</div>
+			</div>
 
-            <div class="xans-element- xans-member xans-member-login ">
-               <div class="login">
-                  <h3></h3>
-                  <fieldset>
-                     <legend>이메일인증</legend>
-                     <span>
-                     	<strong>3T 회원가입을 위해 이메일인증을 시작합니다.</strong>
-                     </span>
-                      <p class="link">
-                      
-                     <span>
-                     	<a data-toggle="modal" data-target="#myModal">인증하기</a>
-                     </span>
-                     </p>
 
-                     
-                     
-                  </fieldset>
-               </div>
-            </div>
-</div>
 
-    </div>
-   </div>
+
+			<div id="myshopMain"
+				class="xans-element- xans-myshop xans-myshop-main ">
+				<div class="shopMain order">
+					<a data-toggle="modal" data-target="#myModal"><strong>이메일인증</strong>회원가입을 위해 이메일을 인증해주세요..</a>
+				</div>
+				<div class="shopMain profile">
+					<a><strong>휴대폰인증</strong>현재는 지원하지 않는 서비스입니다..</a>
+				</div>
+
+			</div>
+
+
+
+
+
+		</div>
+	</div>
 
 
 	<div class="modal fade" id="myModal">

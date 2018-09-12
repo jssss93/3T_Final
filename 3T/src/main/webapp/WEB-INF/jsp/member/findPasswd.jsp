@@ -35,8 +35,13 @@
     height: 25px;
     padding: 4px;
 }
-.han1{
-    margin: -26px 0 0 135px;
+.han1 {
+    margin: -32px 0 0 230px!important;
+    WIDTH: 120%;
+}
+.han2 {
+    margin: -32px 0 0 230px!important;
+    WIDTH: 120%;
 }
 .xans-member-login .login fieldset .id, .xans-member-login .login fieldset .password {
     width: 61%!important;
@@ -97,16 +102,21 @@
                      <label class="id">
                      	<input id="PASSWD" name="PASSWD" type="password">
                        </label>
-                       <p class="han1">1111</p>
-                     <span>비밀번호 확인</span>
+						<div class="col-lg-21 col-md-20">
+							<span class="han1 alert-positive"><span>변경하실 비밀번호를 입력해주세요.</span></span>
+						</div>
+					 <span>비밀번호 확인</span>
                      <label class="password">
                      	<input id="PASSWD2" name="PASSWD2" type="password">
                     </label>
-                    
-						
-					<p class="link">
-						<span class="loginbtn"><input id="findPass"
-						class="loginbtn" type="submit" value="비밀번호 변경 "></span>
+						<div class="col-lg-21 col-md-20">
+							<span class="han2 alert-positive"><span>다시한번 입력해주세요.</span></span>
+						</div>
+
+							<p class="link">
+						<span class="loginbtn">
+							<input id="findPass" class="loginbtn" type="submit" value="비밀번호 변경 ">
+						</span>
 					</p>
 				</fieldset>
             </div>
@@ -137,7 +147,7 @@ $(document).ready(function() {
  <script type="text/javascript">
 $("input[name=PASSWD]").blur(function(){ 
 	var PASSWD = $(this).val();
-	var p = $(this).parent();
+	var p = $(".han1").parent();
     var chkNum = PASSWD.search(/[0-9]/g);  // 숫자
 //  var chkEngA = PASSWD.search(/[A-Z]/g);  // 영문 대문자
 //  var chkEnga = PASSWD.search(/[a-z]/g);  // 영문 소문자
@@ -152,22 +162,22 @@ $("input[name=PASSWD]").blur(function(){
   	if(chkSpecial >= 0) { chkCnt += 1; }
 	
 	if (!PASSWD){
-		$(".alertPass",p).removeClass("alert-positive").addClass("alert-negative").html("<span style='color:red'>필수정보입니다.</span>");
+		$(".han1",p).removeClass("alert-positive").addClass("alert-negative").html("<span style='color:red'>필수정보입니다.</span>");
 		//$("input[name=chkid]").val("");
 	}
 	else if (chkCnt < 3)
 	{
-		$(".alertPass",p).removeClass("alert-positive").addClass("alert-negative").html("<span style='color:red'>[비밀번호]는 숫자와 영대소문자 및 특수문자 중 3종류이상 혼용하여야 합니다.</span>");
+		$(".han1",p).removeClass("alert-positive").addClass("alert-negative").html("<span style='color:red'>[비밀번호]는 숫자와 영대소문자 및 특수문자 중 3종류이상 혼용하여야 합니다.</span>");
 		//$("input[name=chkid]").val(""); 
 	} 
 	else if(/(\w)\1\1\1/.test(PASSWD))
 	{
-		$(".alertPass",p).removeClass("alert-positive").addClass("alert-negative").html("<span style='color:red'>[비밀번호]에 같은 문자를 연속으로 4번이상 사용하실 수 없습니다.</span>");
+		$(".han1",p).removeClass("alert-positive").addClass("alert-negative").html("<span style='color:red'>[비밀번호]에 같은 문자를 연속으로 4번이상 사용하실 수 없습니다.</span>");
 		//$("input[name=chkid]").val("on"); 
 	}
 	else
 	{
-		$(".alertPass",p).removeClass("alert-negative").addClass("alert-positive").html("<span style='color:blue'>사용가능한 비밀번호 입니다.</span>");
+		$(".han1",p).removeClass("alert-negative").addClass("alert-positive").html("<span style='color:blue'>사용가능한 비밀번호 입니다.</span>");
 	}
 	
 });
@@ -176,19 +186,19 @@ $("input[name=PASSWD]").blur(function(){
 $("input[name=PASSWD2]").blur(function(){ 
 	var PASSWD = $("input[name=PASSWD]").val();
 	var PASSWD2 = $(this).val(); 
-	var p = $(this).parent();
+	var p = $(".han2").parent();
 	
 	console.log(PASSWD);
 	console.log(PASSWD2);
 	
 	if (PASSWD == PASSWD2)
 	{
-		$(".alertPass2",p).removeClass("alert-positive").addClass("alert-negative").html("<span style='color:blue'>비밀번호가 일치합니다.</span>");
+		$(".han2",p).removeClass("alert-positive").addClass("alert-negative").html("<span style='color:blue'>비밀번호가 일치합니다.</span>");
 		//$("input[name=chkid]").val(""); 
 	} 
 	else 
 	{
-		$(".alertPass2",p).removeClass("alert-negative").addClass("alert-positive").html("<span style='color:red'>비밀번호가 일치하지 않습니다. 다시작성해주세요.</span>");
+		$(".han2",p).removeClass("alert-negative").addClass("alert-positive").html("<span style='color:red'>비밀번호가 일치하지 않습니다. 다시작성해주세요.</span>");
 		//$("input[name=chkid]").val("on"); 
 	} 
 	}); 
