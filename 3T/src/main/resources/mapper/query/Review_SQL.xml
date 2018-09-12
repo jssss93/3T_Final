@@ -66,6 +66,22 @@
       ]]>
       <include refid="common.pagingPost"/> 
 </select>
+<!-- 리뷰 공지사항 가져오기 -->
+<select id="review4List" parameterType="hashmap" resultType="hashmap">
+	SELECT
+		NOTICE_NO,
+		CATEGORY,
+		MEMBER_ID,
+		TITLE,
+		CONTENT,
+		REGDATE,
+		READCNT
+	FROM
+		NOTICE
+    WHERE 
+        CATEGORY = 4
+	</select>
+
 <!-- 리뷰 쓰기 -->
    <insert id="REVIEW_insert" parameterType="hashmap">
       <![CDATA[
