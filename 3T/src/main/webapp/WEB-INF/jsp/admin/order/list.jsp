@@ -110,7 +110,7 @@ function delchk(){
 									<c:forEach var="list"  items="${list}" varStatus="stat">
 										<input type="hidden" name="ORDER_NO" value="${list.ORDER_NO }">
 										<tr class="gradeA even" role="row">
-											<td style="text-align:center;vertical-align:middle;" class="gubun">2018-0${list.ORDER_NO}<br>[${list.REGDATE }]</td>
+											<td style="text-align:center;vertical-align:middle;" class="gubun">2018-0${list.ORDER_NO}<br><fmt:formatDate value="${list.REGDATE}" pattern="yyyy.MM.dd" /></td>
 											<td style="text-align:center;vertical-align:middle;">${list.MEMBER_ID}
 												<input type="hidden" name="ORDER_NO" value="${list.ORDER_NO }">
 											</td>

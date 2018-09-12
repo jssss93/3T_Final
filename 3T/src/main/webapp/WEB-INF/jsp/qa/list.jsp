@@ -97,7 +97,7 @@
 							<c:if test="${row.STATUS ==0 }">
 								<td align="center">비밀글</td>
 							</c:if>
-							<td align="center"><fmt:formatDate value="${row.REGDATE }" pattern="yyyyMMdd" /></td>
+							<td align="center"><fmt:formatDate value="${row.REGDATE }" pattern="yyyy.MM.dd" /></td>
 						</tr>
 					</c:forEach>
 				</c:when>
