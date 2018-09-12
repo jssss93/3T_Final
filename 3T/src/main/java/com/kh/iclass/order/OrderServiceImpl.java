@@ -112,11 +112,17 @@ public class OrderServiceImpl implements OrderService {
 		return orderDAO.refundList(map);
 	}
 	
-	//리스트
+	//관리자 총 주문 리스트
 	@Override
 	public Map<String, Object> selectOrderListAll(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return orderDAO.selectOrderListAll(map);
+	}
+	//관리자 0,1,2,3 주문 리스트
+	@Override
+	public Map<String, Object> selectOrderList(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return orderDAO.selectOrderList(map);
 	}
 	
 	@Override
