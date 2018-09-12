@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.springframework.http.HttpRequest;
+import org.json.simple.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.iclass.common.map.CommandMap;
 import com.kh.iclass.common.util.CookieUtils;
+import com.kh.iclass.common.util.ParseListToJson;
 import com.kh.iclass.goods.service.GoodsService;
 
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
@@ -93,6 +94,8 @@ public class GoodsController {
    @RequestMapping(value = "/goods/detail")
    @Transactional
    public ModelAndView goodsDetail(CommandMap commandMap,HttpServletRequest request, HttpServletResponse response) throws Exception {
+	   
+	   
 	   if(request.getSession().getAttribute("GOODS_NO")!=null) {
 		   commandMap.put("GOODS_NO",request.getSession().getAttribute("GOODS_NO") );	
 		   request.removeAttribute("GOODS_NO");
@@ -132,8 +135,15 @@ public class GoodsController {
       List<Map<String, Object>> goodsImage = goodsService.selectGoodsImage(commandMap.getMap());
 
       Map<String, Object> goodsoneImage = goodsImage.get(0);
-
       
+      
+      //쿠키추가
+      //쿠키에 상품번호와 이미지를 넣어준다.
+      CookieUtils.setCookie("GOODS_NO",(String) commandMap.get("GOODS_NO"),1,request,response);
+      CookieUtils.setCookie("IMAGE",(String) goodsoneImage.get("SAV_NAME"),1,request,response);
+      System.out.println("쿠키 출력");
+      System.out.println(CookieUtils.getValueList("GOODS_NO", request));
+      System.out.println(CookieUtils.getValueList("IMAGE", request));
       //상품리뷰띄우기
       List<Map<String, Object>> goodsDetail1 = goodsService.selectGoodsDetail1(commandMap.getMap());
          
@@ -156,12 +166,12 @@ public class GoodsController {
       
       
       
-      //쿠키에 상품번호와 이미지를 넣어준다.
-      CookieUtils.setCookie("GOODS_NO",(String) commandMap.get("GOODS_NO"),1,request,response);
-      CookieUtils.setCookie("IMAGE",(String) goodsoneImage.get("SAV_NAME"),1,request,response);
+      
       
       //쿠키리스트 불러온다
       List<Map<String , Object>> CookieListMap=CookieUtils.getValueListMap("GOODS_NO","IMAGE",request);
+      System.out.println("뿌리는 쿠키값:");
+      System.out.println(CookieListMap);
       //쿠키 뷰에 추가
       mv.addObject("CookieListMap",CookieListMap);
       
@@ -183,13 +193,23 @@ public class GoodsController {
         return resultMap;
     }
 
-
-
-   @RequestMapping(value = "/goods/write", method = RequestMethod.GET)
-   public ModelAndView goodsWriteForm(CommandMap commandMap) throws Exception {
-      ModelAndView mv = new ModelAndView("goods/write");
-
-      return mv;
+   
+   @RequestMapping(value = "/goods/cookieDeleteAll")
+   public void cookieDeleteAll(CommandMap commandMap,HttpServletRequest request,HttpServletResponse response) throws Exception {
+	   CookieUtils.deleteAllCookie("GOODS_NO",request,response);
+	   CookieUtils.deleteAllCookie("IMAGE",request,response);
+   }
+   
+   @RequestMapping(value = "/goods/cookieDeleteOne")
+   public JSONArray cookieDeleteOne(CommandMap commandMap,HttpServletRequest request,HttpServletResponse response) throws Exception {
+	   
+	   CookieUtils.deleteCookie("GOODS_NO",commandMap.get("GOODS_NO").toString(),request,response);
+	   CookieUtils.deleteCookie("IMAGE",commandMap.get("IMAGE").toString(),request,response);
+	   
+	   List<Map<String , Object>> CookieListMap=CookieUtils.getValueListMap("GOODS_NO","IMAGE",request);
+	   JSONArray json=ParseListToJson.convertListToJson(CookieListMap);
+	   
+	   return json;
    }
 
    @RequestMapping(value = "/goods/write", method = RequestMethod.POST)

@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
-
 <!DOCTYPE html>
 <html>
 <head>
 <script src="http://developers.kakao.com/sdk/js/kakao.min.js"></script>
-	
+<!-- wing_banner -->
+<link href="<c:url value='/resources/css/wing_banner.css'/>"
+   rel="stylesheet" type="text/css" />
+   
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -20,18 +22,24 @@
 <!--해당 CSS는 쇼핑몰 전체 페이지에 영향을 줍니다. 삭제와 수정에 주의해주세요.-->
 <!-- 스마트디자인에서는 JQuery 1.4.4 버전이 내장되어있습니다. 추가로 호출하면 충돌이 생길 수 있습니다. -->
 <link
-	href="//fonts.googleapis.com/css?family=Lato:100,300,400,500,700,900,100italic,300italic,400italic,700italic,900italic"
-	rel="stylesheet" type="text/css" />
+   href="//fonts.googleapis.com/css?family=Lato:100,300,400,500,700,900,100italic,300italic,400italic,700italic,900italic"
+   rel="stylesheet" type="text/css" />
 <link href="//fonts.googleapis.com/css?family=Cabin" rel="stylesheet"
-	type="text/css" />
+   type="text/css" />
 <link href="//fonts.googleapis.com/css?family=Cabin:700"
-	rel="stylesheet" type="text/css" />
+
+   rel="stylesheet" type="text/css" />
+
 <link
-	href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"
-	rel="stylesheet" />
+   href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"
+   rel="stylesheet" />
+<!-- <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:200" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:500" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:700" /> -->
 
 <meta name="format-detection" content="telephone=no" />
-
+ 
 <link rel="canonical" href="http://asclo.com/myshop/index.html" />
 <link rel="alternate" href="http://m.asclo.com/myshop/index.html" />
 <meta property="og:url" content="http://asclo.com/myshop/index.html" />
@@ -41,39 +49,37 @@
 <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
 
 
-
 <link href="<c:url value='/resources/css/mypage.css'/>" rel="stylesheet"
-	type="text/css" />
+   type="text/css" />
 <style type="text/css">
 #Left {
-	position: fixed;
-	float: left;
-	width: 13%;
-	top: 0px;
-	height: 100%;
-	z-index: 9;
-	background: none;
+   position: fixed;
+   float: left;
+   width: 13%;
+   top: 0px;
+   height: 100%;
+   z-index: 9;
+   background: none;
 }
 
 #Right {
-	position: fixed;
-	float: right;
-	width: 13%!important;
-	top: 0px;
-	height: 100%!important;
-	z-index: 9;
-	background: none;
+   position: fixed;
+   float: right;
+   width: 13%!important;
+   top: 0px;
+   height: 100%!important;
+   z-index: 9;
+   background: none;
 }
 .left_sns {
-	float: left;
-	text-align: left;
-	margin-right: 20px;
+   float: left;
+   text-align: left;
+   margin-right: 20px;
 }
-
 .left_sns li {
-	display: inline-block;
-	float: left;
-	margin: 0 0 0 10px;
+   display: inline-block;
+   float: left;
+   margin: 0 0 0 10px;
 }
 .leftsns {
     margin: 0 0 30px 40px;
@@ -82,7 +88,7 @@
     overflow: hidden;
 }
 .btn_top{
-	position: fixed;
+   position: fixed;
     right: -1px;
     bottom: 23%;
     clear: both;
@@ -104,65 +110,83 @@
     height: 30px;
     
 }
+.han1234 {
+    margin: -15px 0 0 0;
+    z-index: 1;
+}
+.btn-default {
+   padding: 4px 1px!important;
+   width: 23%!important;
+   height: 3%!important;
+   margin: -17px 0 0 0!important;
+}
+.wing_prd_list {
+   margin-top: -27px;
+}
+
+/* 우측 퀵메뉴 스타일 */
 
 </style>
 </head>
 <body>
 
-<nav>
-			<div class="fullscreen_menu_button">
-				<a class="btn-open" href="#"><img
-					src="/3T/resources/images/search_btn.png"></a>
-			</div>
-		</nav>
-	
-	<div class="overlay" style="display: none;">
-			<div class="wrap">
-
-				<form id="searchBarForm" name="searchBarForm" action="/3T/goods/search" method="get" enctype="multipart/form-data"
-				onsubmit="return validation2();">
-				<input type="hidden" id="CATEGORY" name="CATEGORY" value="">
-				<input type="hidden" id="PRICE1" name="PRICE1" value="">
-				<input type="hidden" id="PRICE2" name="PRICE2" value="">
-				
-					
-					<div class="xans-element- xans-layout xans-layout-searchheader ">
-						<h2>
-							<span
-								class="xans-element- xans-layout xans-layout-logotop fullscreen ">
-								<img src="/3T/resources/images/3T2.png">
-							</span>
-						</h2>
-						<fieldset>
-							<legend>검색</legend>
-							<input id="keyword" name="keyword" class="inputTypeText" placeholder="" type="text">
-							<input type="image" placeholder="SEARCH.." src="/3T/resources/images/btn_search.png" alt="검색">
-							&nbsp;
-						</fieldset>
-					</div>
-				</form>
-			</div>
-		</div>
-
-	<div>
-
-		<div id="body" align="center" style="width: 70%; margin: 0 auto;">
-			<tiles:insertAttribute name="body" ignore="true" />
-		</div>
-		<div id="footer">
-			<tiles:insertAttribute name="footer" ignore="true" />
-		</div>
-	</div>
 
 
-	<!--  왼쪽 메뉴 고정 바 -->
-	<div id="left">
-		<h1 class="xans-element- xans-layout xans-layout-logotop ">
-			<a href="\3T\"><img src="/3T/resources/images/3T.PNG"></a>
-		</h1>
-	
+   <div id="#" style="margin: 0 auto;">
+      <tiles:insertAttribute name="header" ignore="true" />
+   </div>
+   <!-- 검색 -->
+   <nav>
+      <div class="fullscreen_menu_button">
+         <a class="btn-open" href="#"><img
+            src="/3T/resources/images/search_btn.png"></a>
+      </div>
+   </nav>
+   
+   <div class="overlay" style="display: none;">
+      <div class="wrap">
 
-		<!--로그인메뉴-->
+         <form id="searchBarForm" name="searchBarForm" action="/3T/goods/search" method="get" enctype="multipart/form-data" onsubmit="return validation2();">
+            <input type="hidden" id="CATEGORY" name="CATEGORY" value="">
+            <input type="hidden" id="PRICE1" name="PRICE1" value="">
+            <input type="hidden" id="PRICE2" name="PRICE2" value="">
+               
+            <div class="xans-element- xans-layout xans-layout-searchheader ">
+               <h2>
+                  <span
+                     class="xans-element- xans-layout xans-layout-logotop fullscreen ">
+                     <img src="/3T/resources/images/3T2.png">
+                  </span>
+               </h2>
+               <fieldset>
+                  <legend>검색</legend>
+                  <input id="keyword" name="keyword" class="inputTypeText" placeholder=""  type="text">
+                  <input type="image" id="searchbutton" placeholder="SEARCH.." src="/3T/resources/images/btn_search.png" alt="검색"> &nbsp;
+               </fieldset>
+            </div>
+         </form>
+      </div>
+   </div>
+
+
+   <div>
+      <div id="body" align="center" style="width: 80%; margin: 0 auto;">
+         <tiles:insertAttribute name="body" ignore="true" />
+      </div>
+      <div id="footer">
+         <tiles:insertAttribute name="footer" ignore="true" />
+      </div>
+   </div>
+
+
+   <!--  왼쪽 메뉴 고정 바 -->
+   <div id="left">
+      <h1 class="xans-element- xans-layout xans-layout-logotop ">
+         <a href="\3T\"><img src="/3T/resources/images/3T.PNG"></a>
+      </h1>
+   
+
+      <!--로그인메뉴-->
  		<%@ include file="/WEB-INF/include/include-body.jspf"%>
 		<form id="frm">
 		<div class="left_login">
@@ -186,156 +210,144 @@
 
 
 
-		<div>
-			<div id="category"
-				class="xans-element- xans-layout xans-layout-category">
-				<div class="position">
-					<ul>
-						<c:url var="OUTER" value="/goods/catelist">
-							<c:param name="CATEGORY" value="OUTER" />
-						</c:url>
+      <div>
+         <div id="category"
+            class="xans-element- xans-layout xans-layout-category">
+            <div class="position">
+               <ul>
+                  <c:url var="OUTER" value="/goods/catelist">
+                     <c:param name="CATEGORY" value="OUTER" />
+                  </c:url>
 
-						<li class="xans-record-"><a
-							href="/3T/goods/catelist?CATEGORY=OUTER">OUTER</a></li>
-						<li class="xans-record-"><a
-							href="/3T/goods/catelist?CATEGORY=SUIT">SUIT</a></li>
-						<li class="xans-record-"><a
-							href="/3T/goods/catelist?CATEGORY=TOP">TOP</a></li>
-						<li class="xans-record-"><a
-							href="/3T/goods/catelist?CATEGORY=SHIRT">SHIRT</a></li>
-						<li class="xans-record-"><a
-							href="/3T/goods/catelist?CATEGORY=KNIT">KNIT</a></li>
-						<li class="xans-record-"><a
-							href="/3T/goods/catelist?CATEGORY=BOTTOM">BOTTOM</a></li>
-						<li class="xans-record-"><a
-							href="/3T/goods/catelist?CATEGORY=SHOES">SHOES</a></li>
-						<li class="xans-record-"><a
-							href="/3T/goods/catelist?CATEGORY=ACC">ACC</a></li>
-					</ul>
-				</div>
-			</div>
+                  <li class="xans-record-"><a href="/3T/goods/catelist?CATEGORY=OUTER">OUTER</a></li>
+                  <li class="xans-record-"><a href="/3T/goods/catelist?CATEGORY=SUIT">SUIT</a></li>
+                  <li class="xans-record-"><a href="/3T/goods/catelist?CATEGORY=TOP">TOP</a></li>
+                  <li class="xans-record-"><a href="/3T/goods/catelist?CATEGORY=SHIRT">SHIRT</a></li>
+                  <li class="xans-record-"><a href="/3T/goods/catelist?CATEGORY=KNIT">KNIT</a></li>
+                  <li class="xans-record-"><a href="/3T/goods/catelist?CATEGORY=BOTTOM">BOTTOM</a></li>
+                  <li class="xans-record-"><a href="/3T/goods/catelist?CATEGORY=SHOES">SHOES</a></li>
+                  <li class="xans-record-"><a href="/3T/goods/catelist?CATEGORY=ACC">ACC</a></li>
+               </ul>
+            </div>
+         </div>
 
-
-			<div class="xans-element- xans-layout xans-layout-boardinfo">
-				<ul>
-					<li class="xans-record-"><a href="/3T/notice/list">NOTICE</a></li>
-
-					<li class="xans-record-"><a href="/3T/faq/list">FAQ</a></li>
-
-					<li class="xans-record-"><a href="/3T/qa/list">Q&amp;A</a></li>
-					<li class="xans-record-"><a href="/3T/review/list">REVIEW</a></li>
-
-				</ul>
-			</div>
-
-			<div class="xans-element- xans-layout xans-layout-boardinfo">
-				<ul>
-
-					<li><strong
-						class="xans-element- xans-layout xans-layout-footer ">
-							예금주 : 서지우(3T)<br> 국민 437201-04-192634
-					</strong></li>
-
-
-				</ul>
-			</div>
-
-			<div class="leftsns">
-				<ul class="left_sns">
-					<li><a href="http://blog.naver.com/asclohi" target="_blank"><img
-							src="/3T/resources/images/1.png"></a></li>
-					<li><a href="https://www.instagram.com/hi880515/"
-						target="_blank"><img src="/3T/resources/images/2.png"></a></li>
-					<li><a href="https://www.facebook.com/asclocom"
-						target="_blank"><img src="/3T/resources/images/3.png"></a></li>
-					<li><a href="http://pf.kakao.com/_muhjE" target="_blank"><img
-							src="/3T/resources/images/4.png"></a></li>
-				</ul>
-				
-			</div>
-		</div>
-
-	</div>
-	</tr>
-	</table>
-	</div>
+         <div class="xans-element- xans-layout xans-layout-boardinfo">
+            <ul>
+               <li class="xans-record-"><a href="/3T/notice/list">NOTICE</a></li>
+               <li class="xans-record-"><a href="/3T/faq/list">FAQ</a></li>
+               <li class="xans-record-"><a href="/3T/qa/list">Q&amp;A</a></li>
+               <li class="xans-record-"><a href="/3T/review/list">REVIEW</a></li>
+            </ul>
+         </div>
+            
+         <div class="xans-element- xans-layout xans-layout-boardinfo">
+            <ul>
+               <li>
+                  <strong class="xans-element- xans-layout xans-layout-footer ">
+                     예금주 : 최종수(3T)<br>
+                     신한 110-370-660054
+                  </strong>
+               </li>
+            </ul>
+         </div>
+            
+         <div class="leftsns">
+            <ul class="left_sns">
+               <li><a href="http://blog.naver.com/asclohi" target="_blank"><img src="/3T/resources/images/1.png"></a></li>
+               <li><a href="https://www.instagram.com/hi880515/" target="_blank"><img src="/3T/resources/images/2.png"></a></li>
+               <li><a href="https://www.facebook.com/asclocom"target="_blank"><img src="/3T/resources/images/3.png"></a></li>
+               <li><a href="http://pf.kakao.com/_muhjE" target="_blank"><img src="/3T/resources/images/4.png"></a></li>
+            </ul>
+         </div>
+      </div>
+   </div>
 
 
-	<!-- 오른쪽 메뉴 고정 바 -->
-	<div id="right">
-		<div class="right_menu">
-
-			<ul>
-				<li class="cart_menu"><a href="/3T/cart/list"
-					class="xans-element- xans-layout xans-layout-orderbasketcount ">CART
-						<span> </span>
-				</a></li>
-
-				<li class="cart_menu"><a href="/3T/wish/wishlist"
-					class="xans-element- xans-layout xans-layout-orderbasketcount ">WISHLIST
-						<span> </span>
-				</a></li>
-
-				<li class="cart_menu"><a href="/3T/order/list"
-					class="xans-element- xans-layout xans-layout-orderbasketcount ">ORDER
-						<span> </span>
-				</a></li>
-			</ul>
-			<ul>
-				<!--<li><a href="/layout/basic/lookbook_01.html"></a></li>
-                <li><a href="/shopinfo/company.html">ABOUT</a></li>-->
-			</ul>
-			<ul>
-
-
-				<!--다운메뉴-->
-				<div>
-					<ul>
-						<li class="dep1">
-						<li><b class="xans-element- xans-layout xans-layout-footer ">070-4477-9922</b><br>
-							<br>
-						<strong>mon-fri 10am-4:30pm<br> lunch : 12:30-13:30<br>
-								sat, sun, holiday off
-						</strong></li>
-						</li>
-
-					</ul>
-				</div>
-				<br>
-
-				<div class="wing_banner" id="wingBanner">
-					<!-- 2017-02-17 cyn  스크롤 이벤트 발생시 .wing_fixed 넣어주세요 -->
-					<!-- 최근 본 상품 -->
-					<div class="wing_prd_wrap" id="wingRecentWrap" style="">
-						<div class="hwrap">
-							<strong class="tit"> <a href="#" id="wingRecentCount">
-									<span class="tx">최근 본 상품</span></strong>
-						</div>
-
-						<div class="wing_prd_list" id="windRecentPrdList">
-							<ul id="wingRecentPrd_1">
-
-								<c:forEach items="${CookieListMap }" var="row">
-									<li class="wing_prd"><a
-										href="/3T/goods/detail?GOODS_NO=${row.GOODS_NO }"> <span
-											class="wing_prd_img"> <img width="70" height="70"
-												src="/3T/resources/upload/${row.IMAGE}"></span>
-									</a> <!-- 삭제버튼 추가할것. -->
-										<button type="button" class="wing_btn_delete"
-											prdno="1886256688"></button></li>
-									<br>
-								</c:forEach>
-
-
-							</ul>
-
-						</div>
-					</div>
-				</div>
-			</ul>
-		</div>
-	</div>
-	<script>
+   <!-- 오른쪽 메뉴 고정 바 -->
+   <div id="right">
+      <div class="right_menu">
+         <ul>
+            <li class="cart_menu">
+               <a href="/3T/cart/list" class="xans-element- xans-layout xans-layout-orderbasketcount ">CART</a>
+            </li>
+            <li class="cart_menu">
+               <a href="/3T/wish/wishlist" class="xans-element- xans-layout xans-layout-orderbasketcount ">WISHLIST</a>
+            </li>
+            <li class="cart_menu">
+               <a href="/3T/order/list" class="xans-element- xans-layout xans-layout-orderbasketcount ">ORDER</a>
+            </li>
+         </ul>
+         <ul>
+            <li class="dep1">
+               <li>
+                  <b class="xans-element- xans-layout xans-layout-footer ">010-6226-0533</b><br><br>
+                  <strong>
+                     mon-fri 10am-4:30pm<br>
+                     lunch : 12:30-13:30<br>
+                     sat, sun, holiday off
+                  </strong>
+               </li>
+         </ul><br>
+            
+            
+         <div class="wing_banner" id="wingBanner">
+            <div class="wing_prd_wrap" id="wingRecentWrap" style="">
+               <div class="hwrap" style="padding: 0 0 0 150;">
+                  <strong class="tit"> 
+                     <a href="#" id="wingRecentCount">
+                     <span class="tx">최근 본 상품</span>
+                  </strong>
+               </div> 
+               <br>
+               <!-- 최근상품 리스트 시작. -->
+               <div class="wing_prd_list" id="wingRecentPrdList">
+                  <ul id="wingRecentPrd_1">
+                     <c:forEach items="${CookieListMap }" var="row2" varStatus="stat">
+                        <li class="wing_prd" id="wing_prd${stat.index }" >
+                        
+                        <input type="hidden" name="GOODS_NO" class="GOODS_NO2" id="GOODS_NO2${stat.index }" value="${row2.GOODS_NO }">
+                     	<input type="hidden" name="IMAGE" 	 class="IMAGE2"    id="IMAGE2${stat.index }"value="${row2.IMAGE }">
+                     	
+                        	<!-- 이미지 -->
+                           <a href="/3T/goods/detail?GOODS_NO=${row2.GOODS_NO }" >
+                              <span class="wing_prd_img">
+                              	<img width="70" height="70" src="/3T/resources/upload/${row2.IMAGE}" style="position: relative; z-index: 1;" >
+                              </span>
+                           </a>
+                           
+                           <!-- 삭제버튼 -->
+                           <div class="han1234" style="position: relative; z-index: 2;">
+                           <a class="wing_btn_delete" id="CookiedeleteOne" type="button" onclick="javascript:ajaxDeleteOne(${stat.index});">
+                           	<img width="15" height="15" src="/3T/resources/images/hanb.PNG" >
+                           </a>
+                           </div>
+                           
+                        </li>
+                        <br>
+                     </c:forEach>
+                     	<!-- 전체삭제 -->
+                     	<c:if test="${fn:length(CookieListMap) > 1 }">
+                        	<li><a class="btn btn-default" id="CookiedeleteAll" type="button">전체삭제</a></li>
+                  		</c:if>
+                  </ul>
+                     
+               </div>
+            </div>
+               
+            <div class="btn_top" data-log-actionid-label="top" >
+               <a href="#">
+                  <img src="/3T/resources/images/버튼1.png" alt="페이지 상단으로 이동">
+               </a>
+            </div>
+            <div class="btn_bottom">
+               <a href="#footer" class="scroll"> 
+                  <img src="/3T/resources/images/버튼2.png">
+               </a>
+            </div>
+         </div>
+      </div>
+   </div>
+<script>
 	Kakao.init('95db4ac62ef65afa94ce309801ff9014');
 	$(document).ready(function() {
 	    $("#logout").on("click", function(e) {
@@ -343,55 +355,110 @@
 	       logout();
 	    });
 	 });
-	 
+	  
 	function logout() {
 		Kakao.Auth.logout();
-		alert("실행됨");
 		var comSubmit = new ComSubmit("frm");
 		comSubmit.setUrl("<c:url value='/logout' />");
 		comSubmit.submit();
 	}
-	</script>
+</script>	
+
+<script>
 	
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('.fullscreen_menu_button a').click(function() {
-				$('.overlay').fadeToggle(200);
-				$(this).toggleClass('btn-open').toggleClass('btn-close');
-			});
-		});
-	</script>
+	function ajaxDeleteOne(index){
+		var index=index;
+		var Goods_No 	=$("#GOODS_NO2"+index).val();
+		var Image		=$("#IMAGE2"+index).val();
+		
+// 		var Goods_No 	=$(".GOODS_NO2").eq(index).attr("value");
+// 		var Image		=$(".IMAGE2").eq(index).attr("value");
+// 		alert("GOODS_NO:"+Goods_No+"IMAGE:"+Image);
 
-			<script type="text/javascript">
-		$(document).ready(function() {
-			$("#moveupBtn").on("click", function(event) {
-				// 이동 버튼을 클릭시 태그로 스크롤의 위치가 이동되도록 한다.
+		$.ajax({
+		  	url		: "/3T/goods/cookieDeleteOne",
+		  	type 	: "get",
+		  	data	: {	"GOODS_NO"	:Goods_No,
+         				"IMAGE" 	:Image	
+   		      		  },
+		  	success:function(){
+		  		$("#wing_prd"+index).empty();
+		  	}
+		});  
+	} 
+	
+	function ajaxDeleteAll(){
+		$.ajax({
+		   url: "/3T/goods/cookieDeleteAll",
+		   type : "get", 
+		   success:function(){
+		   		$("#wingRecentPrdList").empty();
+		   }
+		});  
+	} 
 
-				// 1. 태그의 위치를 가지고 있는 객체를 얻어온다. => offset 객체
-				var offset = $("#suk").offset();
+    $(document).ready(function () {
+    	/* $("#CookiedeleteOne").on("click", function(e) { 
+    		e.preventDefault();
+    		ajaxDeleteOne();
+    	}); */
+    	$("#CookiedeleteAll").on("click", function(e) { 
+    		e.preventDefault();
+    		ajaxDeleteAll();
+    	});
+    	
+    	
+        $('.fullscreen_menu_button a').click(function () {
+            $('.overlay').fadeToggle(200);
+            $(this).toggleClass('btn-open').toggleClass('btn-close');
+        });
+        
+        $("#moveupBtn").on("click", function(event) {
 
-				// offset은 절대 위치를 가져온다. offset.top을 통해 상단의 좌표를 가져온다.
-				// position은 부모를 기준으로한 상대위치를 가져온다.
-				$("html body").animate({
-					scrollTop : offset.top
-				}, 0);
+         // 이동 버튼을 클릭시 태그로 스크롤의 위치가 이동되도록 한다.
 
-			});
 
-			$("#movedownBtn").on("click", function(event) {
-				// 이동 버튼을 클릭시 태그로 스크롤의 위치가 이동되도록 한다.
+         // 1. 태그의 위치를 가지고 있는 객체를 얻어온다. => offset 객체
+         var offset = $("#suk").offset();
 
-				// 1. 태그의 위치를 가지고 있는 객체를 얻어온다. => offset 객체
-				var offset = $("#footer").offset();
+         // offset은 절대 위치를 가져온다. offset.top을 통해 상단의 좌표를 가져온다.
+         // position은 부모를 기준으로한 상대위치를 가져온다.
+         $("html body").animate({
+            scrollTop : offset.top
+         }, 0);
+		
+        
+         
+         
+      });
 
-				// offset은 절대 위치를 가져온다. offset.top을 통해 상단의 좌표를 가져온다.
-				// position은 부모를 기준으로한 상대위치를 가져온다.
-				$("html body").animate({
-					scrollTop : offset.top
-				}, 0);
 
-			});
-		}); // end of ready()
-	</script>
+      
+    });
+    
+   
+   
+   function validation2() {
+
+         var frm = document.searchBarForm;
+
+         if (frm.keyword.value == "" || frm.keyword.value.equals("") || frm.keyword.value == null) {
+            alert("검색어를 입력해주세요.");
+            return false;
+         }
+      }
+   
+   
+   
+   
+   
+   $('button').click(function() {
+	   alert('Clicked');
+	 });
+   
+   $('button').remove();
+</script>
+
+
 </body>
 </html>
