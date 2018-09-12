@@ -102,7 +102,7 @@
                        			                <input type="hidden" id="SENDMEMBER" name="SENDMEMBER" value="${row.SENDMEMBER}"/>
                         	                </form>
 											</td>
-											<td style="text-align: center; vertical-align: middle;"><fmt:formatDate value="${row.REGDATE}" pattern="yyyyMMdd" /></td>
+											<td style="text-align: center; vertical-align: middle;"><fmt:formatDate value="${row.REGDATE}" pattern="yyyy.MM.dd" /></td>
 											<td style="text-align: center; vertical-align: middle;">
 												<c:if test="${row.STATE==0}"> 답변대기중</c:if>
 												<c:if test="${row.STATE==1}"> 답변완료</c:if>

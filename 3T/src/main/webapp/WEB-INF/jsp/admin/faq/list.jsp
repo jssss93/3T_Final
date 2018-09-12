@@ -105,7 +105,7 @@ function delchk(){
 											<td style="text-align:center;vertical-align:middle;">${list.FAQ_NO}</td>
 											<td style="text-align:center;vertical-align:middle;">${list.TITLE}</td>										
 											<td style="text-align:center;vertical-align:middle;">${list.MEMBER_ID}</td>
-											<td style="text-align:center;vertical-align:middle;"><fmt:formatDate value="${list.REGDATE}" pattern="yyyyMMdd" /></td>										
+											<td style="text-align:center;vertical-align:middle;"><fmt:formatDate value="${list.REGDATE}" pattern="yyyy.MM.dd" /></td>										
 											<td style="text-align:center;vertical-align:middle;">
 											<input type="hidden" name="NOTICE_NO" value="${list.FAQ_NO }">
 											

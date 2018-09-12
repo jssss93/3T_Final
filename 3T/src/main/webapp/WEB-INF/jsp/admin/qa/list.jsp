@@ -110,7 +110,7 @@ function delchk(){
 												</c:if>
 											${list.TITLE}</td>										
 											<td style="text-align:center;vertical-align:middle;">${list.MEMBER_ID}</td>
-											<td style="text-align:center;vertical-align:middle;"><fmt:formatDate value="${list.REGDATE}" pattern="yyyyMMdd" /></td>
+											<td style="text-align:center;vertical-align:middle;"><fmt:formatDate value="${list.REGDATE}" pattern="yyyy.MM.dd" /></td>
 											<td style="text-align:center;vertical-align:middle;"><c:if test="${list.RE_LEVEL ==1 }">답변완료</c:if><c:if test="${list.RE_LEVEL ==0 }">답변대기중</c:if> </td>	
 																					
 											<td style="text-align:center;vertical-align:middle;">

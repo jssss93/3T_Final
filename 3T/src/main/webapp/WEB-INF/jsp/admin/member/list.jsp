@@ -110,7 +110,7 @@
 											<td style="text-align: center; vertical-align: middle;">${memberList.PHONE}</td>
 											<td style="text-align: center; vertical-align: middle;">${memberList.EMAIL}</td>
 											<td style="text-align: center; vertical-align: middle;">${memberList.ADDR1}&nbsp;${memberList.ADDR2}</td>
-											<td style="text-align: center; vertical-align: middle;"><fmt:formatDate value="${memberList.REGDATE}" pattern="yyyyMMdd" /></td>
+											<td style="text-align: center; vertical-align: middle;"><fmt:formatDate value="${memberList.REGDATE}" pattern="yyyy.MM.dd" /></td>
 											<td style="text-align: center; vertical-align: middle;">
 												<a href="${viewURL}">
 													<input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png">
