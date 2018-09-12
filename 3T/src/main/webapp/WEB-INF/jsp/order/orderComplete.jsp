@@ -75,6 +75,7 @@
 								 <a href="/3T/order/list">주문조회</a> 를 통하여 확인 가능합니다.
 							</p>
 							<ul>
+								<li>주문자 : <strong>${orderInfo.DEPOSIT_NAME }</strong></li>
 								<li>주문번호 : <strong><fmt:formatDate value="${orderInfo.REGDATE }" pattern="yyyyMMdd" />-000${orderInfo.ORDER_NO}</strong></li>
 								<li>주문일자 : <strong><fmt:formatDate value="${orderInfo.REGDATE }" pattern="yyyyMMdd hh:mm" /></strong></li>
 								<li>주문번호는 주문조회시 필요하므로 기억해 주시기 바랍니다.</li>
