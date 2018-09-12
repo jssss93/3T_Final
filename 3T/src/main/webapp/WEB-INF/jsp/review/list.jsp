@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,7 +70,7 @@
 								type="hidden" id="GOODS_NO" value="${row.GOODS_NO }"></td>
 							<td>${row.MEMBER_ID }</td>
 							<%-- <td>${row.CONTENT }</td> --%>
-							<td>${row.REGDATE }</td>
+							<td><fmt:formatDate value="${row.REGDATE }" pattern="yyyyMMdd" /></td>
 						</tr>
 					</c:forEach>
 				</c:when>

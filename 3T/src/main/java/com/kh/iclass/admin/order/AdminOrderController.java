@@ -83,7 +83,8 @@ public class AdminOrderController {
 		
 		mv.addObject("list", map);
 		mv.addObject("ORDER_NO", commandMap.get("ORDER_NO"));
-		mv.addObject("MEMBER_ID", map.get(0));
+		mv.addObject("MEMBER_ID", commandMap.get("MEMBER_ID"));
+		mv.addObject("REGDATE", commandMap.get("REGDATE"));
 		return mv;
 		
 	}

@@ -2,6 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
 <script type="text/javascript">
 	function delchk() {
@@ -109,7 +110,7 @@
 											<td style="text-align: center; vertical-align: middle;">${memberList.PHONE}</td>
 											<td style="text-align: center; vertical-align: middle;">${memberList.EMAIL}</td>
 											<td style="text-align: center; vertical-align: middle;">${memberList.ADDR1}&nbsp;${memberList.ADDR2}</td>
-											<td style="text-align: center; vertical-align: middle;">${memberList.REGDATE}</td>
+											<td style="text-align: center; vertical-align: middle;"><fmt:formatDate value="${memberList.REGDATE}" pattern="yyyyMMdd" /></td>
 											<td style="text-align: center; vertical-align: middle;">
 												<a href="${viewURL}">
 													<input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png">
