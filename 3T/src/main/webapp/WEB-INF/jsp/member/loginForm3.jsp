@@ -29,15 +29,35 @@
 	font-size: 12px;
 }
 .han123 {
-    margin: 85px 0 0 0;
+    margin: 91px -35 0 0;
 }
 .fb_iframe_widget {
-    top: 87px;
-    right: 125px;
+    top: 68px!important;
+    right: -120px!important;
 }
 .xans-member-login .login fieldset>a {
     top: 182px!important;
     right: 3px!important;
+}
+.kakao {
+    margin: -7px -5px 0 0px;
+}
+.belogin {
+    width: 69%!important;
+    padding: 5px 0px 5px 0px!important;
+    margin: 50px 105px 0 0px!important;
+    letter-spacing: 1px!important;
+    text-transform: uppercase!important;
+    font-size: 9px!important;
+    color: #111!important;
+    line-height: 12px!important;
+    height: auto!important;
+    background: #fbfafa!important;
+    border: 1px solid #666;
+}
+.han7 {
+    top:0;
+}
 </style>
 <script type='text/javascript'>
 
@@ -221,11 +241,12 @@ function getCookie(cookieName) {
                         <span class="joinusbtn"><a href="/3T/joinStep1">Join us</a></span>
                         <fb:login-button scope="public_profile,email"onlogin="checkLoginState();"><span>(서비스 준비중)</span></fb:login-button>
 						<div class="han123"id="status"></div>
-						<a id='custom-login-btn' href='javascript:loginWithKakao()'>
-                			<img src='/3T/images/Kakao_login_btn.PNG' width='350' height='50' />
+						<a class="kakao" cid='custom-login-btn' href='javascript:loginWithKakao()'>
+                			<img src='/3T/images/Kakao_login_btn.PNG' width='357' height='50' />
                 		</a>
-                		<a href="/3T/nonMember3" >비회원으로 이용하기2</a>
-                		<span>비회원님도 상품구매가 가능하나<br>다양한회원혜택에서 제외됩니다. </span>  
+                		<a class="belogin"href="/3T/nonMember3" >비회원으로 이용하기2</a>
+                		<span class="han7"style="margin: -43px 0px 0px 115px;">
+                		비회원님도 상품구매가 가능하나<br>다양한회원혜택에서 제외됩니다. </span>  
                      </p>
                      
                   </fieldset>

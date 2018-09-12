@@ -49,7 +49,6 @@ a:link{
 							<td>${row.FAQ_NO }</td>
 							<td class="subject"><a href="#this" name="title">${row.TITLE }</a> <input
 								type="hidden" id="FAQ_NO" value="${row.FAQ_NO }"></td>
-							<td align="center">${row.MEMBER_ID }</td>
 						</tr>
 					</c:forEach>
 				</c:when>

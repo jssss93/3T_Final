@@ -2,6 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
 <script type="text/javascript">
 	function delchk() {
@@ -101,7 +102,7 @@
                        			                <input type="hidden" id="SENDMEMBER" name="SENDMEMBER" value="${row.SENDMEMBER}"/>
                         	                </form>
 											</td>
-											<td style="text-align: center; vertical-align: middle;">${row.REGDATE}</td>
+											<td style="text-align: center; vertical-align: middle;"><fmt:formatDate value="${row.REGDATE}" pattern="yyyy.MM.dd" /></td>
 											<td style="text-align: center; vertical-align: middle;">
 												<c:if test="${row.STATE==0}"> 답변대기중</c:if>
 												<c:if test="${row.STATE==1}"> 답변완료</c:if>

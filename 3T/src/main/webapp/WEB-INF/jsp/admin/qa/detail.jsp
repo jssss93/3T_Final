@@ -165,7 +165,7 @@
 					<div class="form-group">
 						<label>답변날짜</label> 
 						<input type="text" class="form-control" id="QNA_REGDATE" name="QNA_REPDATE"
-							value="<fmt:formatDate value="${map2.REGDATE}" pattern="YY.MM.dd HH:mm" />"
+							value="<fmt:formatDate value="${map2.REGDATE}" pattern="yyyyMMdd" />"
 							style="width: initial;" readonly />
 					</div>
 				</c:if>

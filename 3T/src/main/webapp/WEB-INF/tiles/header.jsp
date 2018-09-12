@@ -72,7 +72,7 @@ to {
 <div class="w3-container"></div>
 
 	<div class="w3-content w3-section w3-display-container"
-		style="max-width: 100%">
+		style="max-width: 100%;z-index: 9;">
 		<a href="GoodsView.action?goods_no=1124">
 			<img id="myimg3" class="mySlides"
 				src="/3T/resources/images/slide1.PNG" width="100%" height="auto">

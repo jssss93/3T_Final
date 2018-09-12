@@ -58,6 +58,14 @@ public class LoginController {
 	@Resource(name = "joinService")
 	private JoinService joinService;
 
+	@RequestMapping(value = "/adminError")
+	public ModelAndView admin() throws Exception 
+	{
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("error/access");
+		return mv;
+	}  
 	// 로그인 폼
 	@RequestMapping(value = "/loginForm")
 	public ModelAndView loginForm(HttpSession session,HttpServletRequest request) throws Exception {

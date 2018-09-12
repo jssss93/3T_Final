@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -96,7 +97,7 @@
 							<c:if test="${row.STATUS ==0 }">
 								<td align="center">비밀글</td>
 							</c:if>
-							<td align="center">${row.REGDATE }</td>
+							<td align="center"><fmt:formatDate value="${row.REGDATE }" pattern="yyyy.MM.dd" /></td>
 						</tr>
 					</c:forEach>
 				</c:when>
@@ -119,7 +120,7 @@
 	<form action="/3T/qa/writeForm">
 		<table class="notice_button">
 			<tr>
-				<td><input type="submit" class="btn" value="WRITE"></td>
+				<td><input type="submit" class="btn btn-default" value="WRITE"></td>
 			</tr>
 		</table>
 	</form>

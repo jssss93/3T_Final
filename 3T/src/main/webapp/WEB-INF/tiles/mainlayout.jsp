@@ -111,17 +111,27 @@
     
 }
 .han1234 {
-    margin: -15px 0 0 0;
+    margin: -15px 0 0 55px;
     z-index: 1;
 }
 .btn-default {
-   padding: 4px 1px!important;
-   width: 23%!important;
-   height: 3%!important;
-   margin: -17px 0 0 0!important;
+    padding: 4px 1px!important;
+    width: 37%!important;
+    height: 3%!important;
+    margin: -23px 0 0 9!important;
 }
 .wing_prd_list {
    margin-top: -27px;
+}
+#right2 {
+    position: fixed;
+    float: right;
+    right: 0px;
+    width: 140px;
+    top: 350px;
+    height: 90%;
+    /* z-index: 9; */
+    background: none;
 }
 
 /* 우측 퀵메뉴 스타일 */
@@ -187,25 +197,25 @@
    
 
       <!--로그인메뉴-->
- 		<%@ include file="/WEB-INF/include/include-body.jspf"%>
-		<form id="frm">
-		<div class="left_login">
-			<div class="xans-element- xans-layout xans-layout-statelogoff ">
-				<c:if test="${sessionScope.MEMBER_ID == null}">
-					<a href="/3T/loginForm" class="log">login</a>/
-					<a href="/3T/joinStep1">join</a>
-				</c:if>
-				<c:if test="${sessionScope.MEMBER_ID != null}">
-					<a href="#this"id="logout" class="log">logout</a> 
-				</c:if> 
-				<br>
-		     <a href="/3T/order/list">order</a>/ <a href="/3T/member/mypage">mypage</a>
-			</div>
+       <%@ include file="/WEB-INF/include/include-body.jspf"%>
+      <form id="frm">
+      <div class="left_login">
+         <div class="xans-element- xans-layout xans-layout-statelogoff ">
+            <c:if test="${sessionScope.MEMBER_ID == null}">
+               <a href="/3T/loginForm" class="log">login</a>/
+               <a href="/3T/joinStep1">join</a>
+            </c:if>
+            <c:if test="${sessionScope.MEMBER_ID != null}">
+               <a href="#this"id="logout" class="log">logout</a> 
+            </c:if> 
+            <br>
+           <a href="/3T/order/list">order</a>/ <a href="/3T/member/mypage">mypage</a>
+         </div>
 
 
-		</div>
-		</form>
-		<!-- //left_login -->
+      </div>
+      </form>
+      <!-- //left_login -->
 
 
 
@@ -268,10 +278,12 @@
       <div class="right_menu">
          <ul>
             <li class="cart_menu">
+
                	<a href="/3T/cart/list" class="xans-element- xans-layout xans-layout-orderbasketcount ">CART</a>
             </li>
             <li class="cart_menu">
               	<a href="/3T/wish/wishlist" class="xans-element- xans-layout xans-layout-orderbasketcount ">WISHLIST</a>
+
             </li>
 	        <li class="cart_menu">
 	           	<a href="/3T/order/list" class="xans-element- xans-layout xans-layout-orderbasketcount ">ORDER</a>
@@ -288,16 +300,20 @@
                   </strong>
                </li> 
          </ul><br>
+         </div>
+         </div>
             
-            
+      <div id="right2">
          <div class="wing_banner" id="wingBanner">
             <div class="wing_prd_wrap" id="wingRecentWrap" style="">
-               <div class="hwrap" style="padding: 0 0 0 150;">
+               <div class="hwrap" style="padding: 0 0 0 0;">
                   <strong class="tit"> 
                      <a href="#" id="wingRecentCount">
                      <span class="tx">최근 본 상품</span>
                   </strong>
                </div> 
+
+               <br>         
                <br>
                <!-- 최근상품 리스트 시작. -->
                <div class="wing_prd_list" id="wingRecentPrdList">
@@ -306,29 +322,35 @@
                         <li class="wing_prd" id="wing_prd${stat.index }" >
                         
                         <input type="hidden" name="GOODS_NO" class="GOODS_NO2" id="GOODS_NO2${stat.index }" value="${row2.GOODS_NO }">
+
                      	<input type="hidden" name="IMAGE" 	 class="IMAGE2"    id="IMAGE2${stat.index }"value="${row2.IMAGE }">
                      	
                         	<!-- 이미지 -->
                            <a href="/3T/goods/detail?GOODS_NO=${row2.GOODS_NO }" >
                               <span class="wing_prd_img">
                               	<img width="70" height="70" src="/3T/resources/upload/${row2.IMAGE}" style="position: relative; z-index: 1;" >
+
                               </span>
                            </a>
                            
                            <!-- 삭제버튼 -->
                            <div class="han1234" style="position: relative; z-index:2;" >
                            <a class="wing_btn_delete" id="CookiedeleteOne" type="button" onclick="javascript:ajaxDeleteOne(${stat.index});">
-                           	<img width="15" height="15" src="/3T/resources/images/hanb.PNG" >
+
+                              <img width="15" height="15" src="/3T/resources/images/hanb.PNG" >
+
                            </a>
                            </div>
                            
                         </li>
                         <br>
                      </c:forEach>
+
                      	<!-- 전체삭제 -->
                      	<c:if test="${fn:length(CookieListMap) > 1 }">
                         	<li><a class="btn btn-default" id="CookiedeleteAll" type="button">전체삭제</a></li>
                   		</c:if>
+
                   </ul>
                      
                </div>
@@ -346,8 +368,8 @@
             </div>
          </div>
       </div>
-   </div>
 <script>
+
 	Kakao.init('95db4ac62ef65afa94ce309801ff9014');
 	$(document).ready(function() {
 	    $("#logout").on("click", function(e) {
@@ -408,6 +430,7 @@
     	});
     	
     	
+
         $('.fullscreen_menu_button a').click(function () {
             $('.overlay').fadeToggle(200);
             $(this).toggleClass('btn-open').toggleClass('btn-close');
@@ -426,10 +449,7 @@
          $("html body").animate({
             scrollTop : offset.top
          }, 0);
-		
-        
-         
-         
+     
       });
 
 
@@ -453,8 +473,8 @@
    
    
    $('button').click(function() {
-	   alert('Clicked');
-	 });
+      alert('Clicked');
+    });
    
    $('button').remove();
 </script>

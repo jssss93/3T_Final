@@ -382,7 +382,7 @@ table {
 	<tr>
 		<td valign="middle"><strong>NO</strong></td>
 		<td valign="middle"><strong>ITEM</strong></td>
-		<td valign="middle"><strong>TITLE</strong></td>
+		<td valign="middle"><strong>SUBJECT</strong></td>
 		<td valign="middle"><strong>CONTENT</strong></td>
 		<td valign="middle"><strong>NAME</strong></td>
 		<td valign="middle"><strong>DATE</strong></td>
@@ -432,7 +432,7 @@ table {
 			<td>
 				<form action="/3T/review/writeForm">
 
-					<input type="submit" class="btn" value="WRITE">
+					<input type="submit" class="btn btn-default" value="WRITE">
 				</form>
 			</td>
 		</tr>
@@ -541,7 +541,7 @@ table {
 	<form action="/3T/qa/writeForm">
 		<table class="notice_button">
 			<tr>
-				<td><input type="submit" class="btn" value="WRITE"></td>
+				<td><input type="submit" class="btn btn-default" value="WRITE"></td>
 			</tr>
 		</table>
 	</form>
@@ -734,38 +734,48 @@ function setOption(obj) {
 			
   /* 상세보기 review */
 
-  $("a[name='title2']").on("click", function(e) { //제목 
-     e.preventDefault();
-     fn_openBoardDetail1($(this));
-  });
+ 
+	$(document).ready(function() {
+		$("#write").on("click", function(e) { //글쓰기 버튼
+			e.preventDefault();
+			fn_openBoardWrite();
+		});
 
-function fn_openBoardDetail1(obj) {
-	
-  var comSubmit = new ComSubmit();
-  comSubmit.setUrl("<c:url value='/review/detail' />");
-  comSubmit.addParam("REVIEW_NO", obj.parent().find("#REVIEW_NO").val());
-  comSubmitd.addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
-  comSubmit.submit();
-}
+		$("a[name='title2']").on("click", function(e) { //제목 
+			e.preventDefault();
+			fn_openBoardDetail($(this));
+		});
+	});
 
+	function fn_openBoardWrite() {
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='/review/writeForm' />");
+		comSubmit.submit();
+	}
+	function fn_openBoardDetail(obj) {
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='/review/detail' />");
+		comSubmit.addParam("REVIEW_NO", obj.parent().find("#REVIEW_NO").val());
+		comSubmit.addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
+		comSubmit.submit();
+	}
 
-/* 상세보기 q&a */
+	/* 상세보기 q&a */
 
-     $("a[name='title3']").on("click", function(e) { //제목 
-        e.preventDefault();
-        fn_openBoardDetail2($(this));
-     });
-     
-  function fn_openBoardDetail2(obj) {
-     var comSubmit = new ComSubmit();
-     comSubmit.setUrl("<c:url value='/qa/detail' />");
-     comSubmit.addParam("QA_NO", obj.parent().find("#QA_NO").val());
-     comSubmit
-           .addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
-     comSubmit.submit();
-  }
-  
-  /* function fn_addwish() {
+	$("a[name='title3']").on("click", function(e) { //제목 
+		e.preventDefault();
+		fn_openBoardDetail2($(this));
+	});
+
+	function fn_openBoardDetail2(obj) {
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='/qa/detail' />");
+		comSubmit.addParam("QA_NO", obj.parent().find("#QA_NO").val());
+		comSubmit.addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
+		comSubmit.submit();
+	}
+
+	/* function fn_addwish() {
 		 var params = $("#form").serialize();
 			console.log(params);
 			  $.ajax({
@@ -780,12 +790,8 @@ function fn_openBoardDetail1(obj) {
 			        }
 			    });
 			}
- */
-
-
-			
-
-		</script>
+	 */
+</script>
 
 </body>
 </html>
