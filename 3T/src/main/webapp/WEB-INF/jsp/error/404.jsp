@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    
+
 <head>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <style>
 #outerDiv{
 margin-top:5%;
@@ -17,7 +21,7 @@ margin-bottom:10%;
 			<div class="text">
 				잘못된 경로 입니다. <br>
 				<a href="#" id="back">이전 페이지로</a><br>
-				<a href="/" >홈으로</a>
+				<a href="/3T/main" >홈으로</a>
 			</div>
 		</div>
 	</div>
@@ -27,7 +31,7 @@ margin-bottom:10%;
 
 $(document).ready(function() {
 	$("#back").click(function() {
-		history.back();
+		history.go(-1);
 	})
 })
 

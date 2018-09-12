@@ -43,6 +43,7 @@
 </style>
 <script type='text/javascript'>
 
+
 // 카카오 script key 입력
 Kakao.init('95db4ac62ef65afa94ce309801ff9014');
 
@@ -173,7 +174,11 @@ function getCookie(cookieName) {
 		}
 	</script>
 </head>
-<c:if test="${empty message}">
+<c:if test="${not empty message}">
+	<script type="text/javascript">
+		alert("아이디와 비밀번호를 확인해주세요.");
+	</script>
+</c:if>
 	<div id="container">
    <div id="headerwrap"></div>
 
@@ -235,14 +240,8 @@ function getCookie(cookieName) {
 
 
 </div>
-</c:if>
 
-<c:if test="${not empty message}">
-	${message}
-	<form action="/3T/loginForm">
-		<input type="submit" value="닫기">
-	</form>
-</c:if>
+
 <script>
 		// This is called with the results from from FB.getLoginStatus().
 		function statusChangeCallback(response) {

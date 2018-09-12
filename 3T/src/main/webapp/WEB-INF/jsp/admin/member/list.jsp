@@ -143,13 +143,13 @@
 							</table>
 							<br />
 							<form action="/3T/admin/member/list">
-								<select name="SearchNum" id="SearchNum"
-									style="width: 100px; height: 30px;">
+								<select class="form-control" name="SearchNum" id="SearchNum">
 									<option value="MEMBER_ID">아이디</option>
 									<option value="NAME">이름</option>
-								</select> <input type="text" name="SearchKeyword" id="SearchKeyword"
-									style="margin-left: 15px; width: 200px; height: 36px; border-radius: 5px 5px 5px 5px;" />
-								<input type="submit" value="검색">
+								</select> <input class="form-control" type="text"
+									name="SearchKeyword" id="SearchKeyword" /> <span>
+									<button type="submit" class="btn btn-default">검색</button>
+								</span>
 							</form>
 
 
