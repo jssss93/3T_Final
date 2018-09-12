@@ -911,6 +911,7 @@ FROM
             	PASSWD,
             	MEMBER_ID,
             	CONTENT,
+            	STATUS,
             	REGDATE,
             	GOODS_NO,
             	WM_CONCAT(DISTINCT SAV_NAME) IMAGE,
@@ -923,6 +924,7 @@ FROM
 		    	a.PASSWD,
 		    	a.MEMBER_ID,
 		    	a.CONTENT,
+		    	a.STATUS,
 		    	a.REGDATE,
 		    	a.GOODS_NO,
 		    	b.SAV_NAME
@@ -946,6 +948,7 @@ FROM
 		    	PASSWD,
 		    	MEMBER_ID,
 		    	CONTENT,
+		    	STATUS,
 		    	REGDATE,
 		    	GOODS_NO
    </select>

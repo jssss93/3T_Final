@@ -4,7 +4,51 @@
 <html lang="ko">
 <head>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
+<style>
+.form-control {
+    display: block;
+    width: 9%;
+    height: 24px;
+    text-align: center;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.form-control2 {
+    display: block!important;
+    width: 11%!important;
+    height: 24px!important;
+    text-align: center!important;
+    padding: 6px 12px!important;
+    font-size: 14px!important;
+    line-height: 1.42857143!important;
+    color: #555!important;
+    background-color: #fff!important;
+    background-image: none!important;
+    border: 1px solid #ccc!important;
+    border-radius: 4px!important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075)!important;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075)!important;
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s!important;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s!important;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s!important;
+}
+.notice_button td {
+    padding: 15px 0 0 0px!important;
+}
+</style>
 </head>
+<div id="body" align="center" style="width: 100%;margin: 0px 0px 0 -130px;">
 <table width="70%" align="center" border="0" cellspacing="0"
 	cellpadding="1" colspan="1" class="board_top">
 	<br>
@@ -28,17 +72,17 @@
 			<tbody>
 				<tr class="board_title">
 					<th scope="row">SUBJECT</th>
-					<td><input type="text" id="TITLE" name="TITLE" class="wdp_90"></input></td>
+					<td><input class="form-control2" type="text" id="TITLE" name="TITLE"></input></td>
 				</tr>
 
 				<tr class="board_title">
 					<th scope="row">NAME</th>
-					<td><input type="text" id="MEMBER_ID" name="MEMBER_ID"></input></td>
+					<td><input class="form-control" type="text" id="MEMBER_ID" name="MEMBER_ID"></input></td>
 				</tr>
 
 				<tr class="board_title">
 					<th scope="row">PASSWORD</th>
-					<td><input type="text" id="PASSWD" name="PASSWD"></input></td>
+					<td><input class="form-control" type="text" id="PASSWD" name="PASSWD"></input></td>
 				</tr>
 
 
@@ -57,11 +101,12 @@
 
 		<table class="notice_button">
 			<tr>
-				<td><a href="#this" class="btn" id="write">WRITE</a> <a
-					href="#this" class="btn" id="list">LIST</a></td>
+				<td><a href="#this" class="btn btn-default" id="write">WRITE</a> <a
+					href="#this" class="btn btn-default" id="list">LIST</a></td>
 			</tr>
 		</table>
 	</form>
+	
 
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	<script type="text/javascript">
@@ -91,4 +136,5 @@
 		}
 	</script>
 </body>
+</div>
 </html>

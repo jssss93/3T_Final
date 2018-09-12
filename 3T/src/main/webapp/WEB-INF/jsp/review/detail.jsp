@@ -4,6 +4,11 @@
 <html lang="ko">
 <head>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
+<style>
+.han {
+  font: 12px 'Hind Madurai','맑은 고딕','Malgun Gothic',AppleGothic,sans-serif;
+}
+</style>
 </head>
 <body>
 	<table width="70%" align="center" border="0" cellspacing="0"
@@ -30,7 +35,7 @@
 			<td>${list2.NAME }<br /> KRW&nbsp;${list2.PRICE } <br /> <br />
 				&nbsp;
 				<form action="/3T/goods/detail">
-					<input class="btn" type="submit" value="상품 상세보기▶"> <input
+					<input class="btn_qa" type="submit" value="상품 상세보기▶"> <input
 						type="hidden" id="GOODS_NO" name="GOODS_NO"
 						value="${list2.GOODS_NO }" />
 				</form>
@@ -63,10 +68,10 @@
 				<table class="notice_button">
 					<tr>
 						<td>
-							<a href="#this" class="btn" id="list">LIST</a> 
+							<a href="#this" class="btn btn-default" id="list">LIST</a> 
 							<c:if test="${map.MEMBER_ID==ID }">
-								<a href="#this" class="btn" id="update">UPDATE</a> 
-								<a href="#this" class="btn" id="delete">DELETE</a>
+								<a href="#this" class="btn btn-default" id="update">UPDATE</a> 
+								<a href="#this" class="btn btn-default" id="delete">DELETE</a>
 							</c:if>
 						</td>
 					</tr>
@@ -104,7 +109,7 @@
 	<br>
 	<table class="notice_button">
 		<tr>
-			<td><input class="btn" type="submit" name="리뷰" id="리뷰"
+			<td><input class="btn btn-default" type="submit" name="리뷰" id="리뷰"
 				value="댓글작성"></td>
 		</tr>
 		</form>
@@ -129,7 +134,7 @@
 			</c:when>
 			<c:otherwise>
 				<tr>
-					<td colspan="4">조회된 결과가 없습니다.</td>
+					<td class="han" colspan="4">조회된 결과가 없습니다.</td>
 				</tr>
 			</c:otherwise>
 		</c:choose>
