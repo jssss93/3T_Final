@@ -130,7 +130,7 @@ function delchk(){
 							</table>
 						</div>
 					</div>
-					<div align="center">
+					<div class="paging" align="center">
 					<c:if test="${not empty paginationInfo}">
 						<ui:pagination paginationInfo="${paginationInfo}" type="text"
 							jsFunction="fn_search" />
