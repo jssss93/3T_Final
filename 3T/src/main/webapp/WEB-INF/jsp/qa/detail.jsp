@@ -64,12 +64,12 @@
 			<table class="notice_button">
 				<tr>
 					<td>
-						<a href="#this" class="btn btn-default" id="list">LIST</a> 
+						<a href="#this" class="btn btn-default2" id="list">LIST</a> 
 						<c:if test="${map.MEMBER_ID == ID }">
-							<a href="#this" class="btn btn-default" id="update">UPDATE</a> 
-							<a href="#this" class="btn btn-default" id="delete">DELETE</a> 
+							<a href="#this" class="btn btn-default2" id="update">UPDATE</a> 
+							<a href="#this" class="btn btn-default2" id="delete">DELETE</a> 
 						</c:if>
-						<a href="#this" class="btn btn-default" name="writeReply">REPLY</a> 
+						<a href="#this" class="btn btn-default2" name="writeReply">REPLY</a> 
 						<input type="hidden" id="QA_NO" value="${map.QA_NO }">
 					</td>
 				</tr>

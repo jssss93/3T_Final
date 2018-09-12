@@ -7,6 +7,9 @@
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <link href="<c:url value='/resources/css/searchform.css'/>" rel="stylesheet" type="text/css"/>
 <style type="text/css">
+.xans-search-form .searchbox .item input {
+    border: 1px solid #aaa!important;
+}
 </style>
 </head>
 

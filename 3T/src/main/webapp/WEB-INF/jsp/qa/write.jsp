@@ -61,6 +61,12 @@
 .board_list2 tbody td {
   font: 14px 'Hind Madurai','맑은 고딕','Malgun Gothic',AppleGothic,sans-serif;
 }
+.btn btn-default2 {
+  border-color: #adadad;
+}
+.btn {
+  border: 1px solid #ccc;
+}
 </style>	
 
 </head>
@@ -243,8 +249,8 @@
 
 		<table class="notice_button">
 			<tr>
-				<td><a href="#this" class="btn btn-default" id="list">LIST</a> 
-				<input class="btn btn-default" id="submitBtn" type="submit" value="WRITE">
+				<td><a href="#this" class="btn btn-default2" id="list">LIST</a> 
+				<input class="btn btn-default2" id="submitBtn" type="submit" value="WRITE">
 				<input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
 				 <input type="hidden" name="QA_NO" value="${map.QA_NO }" />
 				</td>

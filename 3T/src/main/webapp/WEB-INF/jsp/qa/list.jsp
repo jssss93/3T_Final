@@ -120,7 +120,7 @@
 	<form action="/3T/qa/writeForm">
 		<table class="notice_button">
 			<tr>
-				<td><input type="submit" class="btn btn-default" value="WRITE"></td>
+				<td><input type="submit" class="btn btn-default2" value="WRITE"></td>
 			</tr>
 		</table>
 	</form>
