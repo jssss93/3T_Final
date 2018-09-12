@@ -147,6 +147,8 @@ public class LoginController {
 				}
 				//맴버아이디가 어디민이면 관리자페이지로
 				if (request.getSession().getAttribute("MEMBER_ID").equals("ADMIN")) {
+					session.removeAttribute("Modulus");
+					session.removeAttribute("Exponent");
 					mv.setViewName("redirect:/admin/main");
 				} else {
 					commandMap.put("MEMBER_ID", request.getSession().getAttribute("MEMBER_ID"));
@@ -154,7 +156,8 @@ public class LoginController {
 					Map<String, Object> NOREADCOUPON = new HashMap<String, Object>();
 					NOREADCOUPON = memberService.noReadCoupon(commandMap.getMap());
 					mv.addObject("NOREADCOUPON", NOREADCOUPON);
-
+					session.removeAttribute("Modulus");
+					session.removeAttribute("Exponent");
 					if (NOREADCOUPON.get("NOREADCOUPON").toString().equals("0")) {
 						mv.setViewName("redirect:"+session.getAttribute("Referer"));
 					} else {

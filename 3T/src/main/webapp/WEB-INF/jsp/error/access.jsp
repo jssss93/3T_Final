@@ -97,8 +97,8 @@ function loginWithKakao(){
 </script> 
 <script>
 $(document).ready(function() {
-	$("#modulus").val("${Modulus}");
-	$("#exponent").val("${Exponent}");
+	$("#modulus").val("${sessionScope.Modulus}");
+	$("#exponent").val("${sessionScope.Exponent}");
 	
 	$("#login").click(function(event) {
 		var rsa = new RSAKey();
