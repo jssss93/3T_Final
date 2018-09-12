@@ -41,7 +41,7 @@
 			(
 				NOTICE_NO_SEQ.NEXTVAL,
 			    0, 
-			    0, 
+			    #{MEMBER_ID}, 
 			    #{TITLE},
 			    #{CONTENT},
 			    0,
@@ -135,4 +135,25 @@
 
 		
 </select>
+
+<select id="selectList_QA" parameterType="hashmap" resultType="hashmap">
+	
+		<![CDATA[
+		SELECT
+			    NOTICE_NO,
+			    STATE,
+			    MEMBER_ID,
+			    TITLE,
+			    CONTENT,
+			    REGDATE,
+			    READCNT	   
+			FROM
+			    NOTICE
+     	    WHERE STATE = 1
+		]]>
+		
+
+	</select>
+
+
 </mapper> 
