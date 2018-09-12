@@ -156,5 +156,9 @@ public class OrderDAO extends AbstractDAO {
 		
 	}
 
+	public List selectSizeList(Map<String, Object> map) {
+		return  selectList("order.selectSizeList", map);
+	}
+
 	
 }

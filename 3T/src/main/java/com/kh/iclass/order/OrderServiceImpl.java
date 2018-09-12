@@ -241,6 +241,11 @@ public class OrderServiceImpl implements OrderService {
 		return orderDAO.selectAdminDetailList(map);
 	}
 
+	@Override
+	public List getSizeList(Map<String, Object> map) {
+		return orderDAO.selectSizeList(map);
+	}
+
 	
 
 	

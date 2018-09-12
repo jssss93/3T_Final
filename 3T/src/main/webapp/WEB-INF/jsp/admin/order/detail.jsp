@@ -49,78 +49,91 @@ function joinValidation(adminModifyMember){
 <div class="row" style="padding-left:15px;width:700px;">
 	<div class="panel panel-default">
 		<div class="panel-heading" >주문 상세 페이지입니다.</div>
-			<div class="panel-body">
-				 <form:form id="adminModifyMember" name="adminModifyMember" action="/3T/admin/order/Update" method="post" onsubmit="return joinValidation(this)">	
-					<input type="hidden" id="ORDER_NO" name="ORDER_NO" value="${ORDER_NO}">	
-                       
+		<div class="panel-body">
+			 <form:form id="adminModifyMember" name="adminModifyMember" action="/3T/admin/order/Update" method="post" onsubmit="return joinValidation(this)">	
+				 
+				<input type="hidden" id="ORDER_NO" name="ORDER_NO" value="${ORDER_NO}">	
+                <div>주문번호:${ORDER_NO }</div>
+                <div>주문날짜1:${REGDATE }</div>
+                <br><br><br>
 				<div>
-								<c:forEach var="list"  items="${list}" varStatus="stat">
-										<input type="hidden" name="ORDER_NO" value="${list.ORDER_NO }">
-											<tr class="gradeA even" role="row">
-											 <div class="form-group">
-                           					 <label>상품 번호</label>   	
-											<input type="text" class="form-control" id="ORDER_NO" name="ORDER_NO" value="${list.ORDER_NO}" style="width:initial;"/>		
-											</div>
-											<div class="form-group">
-                           					 <label>주문일</label>   	
-											<input type="text" class="form-control" id="REGDATE}" name="REGDATE}" value="${list.REGDATE}" style="width:initial;"/>		
-											</div>	
-									
-											<div class="form-group">
-                           					 <label>회원 아이디</label> 
-											<input type="text" class="form-control" id="MEMBER_ID" name="MEMBER_ID" value="${list.MEMBER_ID}" style="width:initial;"/>
-											</div>
-											 <div class="form-group">
-                           					 <label>상품명</label>   	
-											<input type="text" class="form-control" id="NAME" name="NAME" value="${list.NAME}" style="width:initial;"/>		
-											</div>	
-											 <div class="form-group">
-                           					 <label>상품 색상</label> 						
-											<input type="text" class="form-control" id="COLOR" name="COLOR" value="${list.COLOR }" style="width:initial;"/>
-											</div>	
-											<div class="form-group">
-                           					 <label>상품 사이즈</label> 	
-											<input type="text" class="form-control" id="GOODS_SIZE" name="GOODS_SIZE" value="${list.GOODS_SIZE }" style="width:initial;"/>
-											</div>	
-											<div class="form-group">
-                           					 <label>상품 가격</label> 	
-											<input type="text" class="form-control" id="PRICE" name="PRICE" value="${list.PRICE}" style="width:initial;"/>
-											</div>
-											<div class="form-group">
-                           					 <label>상품 카운트?</label> 	
-						
-											<input type="text" class="form-control" id="COUNT" name="COUNT" value="${list.COUNT}" style="width:initial;"/>
-											</div>
-											
-											<div class="form-group">
-                           					 <label>상품 상태</label>
-			
-												<c:choose>
-													
-													<c:when test="${list.STATE==0 }">입금확인중	</c:when>
-													<c:when test="${list.STATE==1 }">배송준비중</c:when>
-													<c:when test="${list.STATE==2 }">배송중</c:when>
-													<c:when test="${list.STATE==3 }">배송완료</c:when>
-													<c:when test="${list.STATE==4 }">교환확인중</c:when>
-													<c:when test="${list.STATE==5 }">교환준비중</c:when>
-													<c:when test="${list.STATE==6 }">교환중</c:when>
-													<c:when test="${list.STATE==7 }">교환완료</c:when>
-													<c:when test="${list.STATE==8 }">환불물품확인중</c:when>
-													<c:when test="${list.STATE==9 }">환불완료</c:when>
-													
-												</c:choose>
-												</div>
-											
-										</tr>
-										
-									</c:forEach>
+				
+				<c:forEach var="list"  items="${list}" varStatus="stat">
+					<input type="hidden" name="ORDER_NO" value="${list.ORDER_NO }">
+					<tr class="gradeA even" role="row">
+					
+						<div class="form-group">
+	                        <label>상품번호[속성번호]<%-- ${updateMap${stat.index}.} --%></label>
+	                        <div>   	
+								<input type="text" class="form-control" id="ORDER_NO" name="ORDER_NO" value="${list.GOODS_NO}[${list.ATTRIBUTE_NO}]" style="width:initial;"/>		
 							</div>
-                        </div>
+							<div>
+								<img width="70" height="70" src="/3T/resources/upload/${list.IMAGE.split(',')[0] }" />
+							</div>
+						</div>
+						
+						<div class="form-group">
+		                       <label>상품명</label>   	
+							<input type="text" class="form-control" id="NAME" name="NAME" value="${list.NAME}" style="width:initial;"/>		
+						</div>	
+						
+						<div class="form-group">
+		                    <label>상품 색상(사이즈수정)</label> 						
+							<select class="form-control" name="select" id="select" >		<!-- onchange="ajaxStart()" -->
+								<option value ="">--카테고리--</option>
+								<option value ="/3T/admin/goods/list1">OUTER</option>
+								<option value ="/MODA/goods/goodsList?searchNum=2&isSearch=TOP">TOP</option>
+								<option value ="/MODA/goods/goodsList?searchNum=2&isSearch=PANTS">PANTS</option>
+								<option value ="/MODA/goods/goodsList?searchNum=2&isSearch=SHOES">SHOES</option>
+								<option value ="/MODA/goods/goodsList?searchNum=2&isSearch=ACC">ACC</option>
+							</select>
+						</div>	
+						 
+						<div class="form-group">
+	                       	<label>상품 사이즈(셀렉트박스로)</label> 	
+							<input type="text" class="form-control" id="GOODS_SIZE" name="GOODS_SIZE" value="${list.GOODS_SIZE }" style="width:initial;"/>
+						</div>	
+						
+						<div class="form-group">
+	                          	<label>상품 가격</label> 	
+							<input type="text" class="form-control" id="PRICE" name="PRICE" value="${list.PRICE}" style="width:initial;"/>
+						</div>
+						
+						<div class="form-group">
+	                          	<label>상품 개수</label> 	
+							<input type="text" class="form-control" id="COUNT" name="COUNT" value="${list.COUNT}" style="width:initial;"/>
+						</div>
+											
+						<div class="form-group">
+	                         <label>상품 상태</label>
+				 
+							<c:choose>
+														
+								<c:when test="${list.STATE==0 }">입금확인중	</c:when>
+								<c:when test="${list.STATE==1 }">배송준비중</c:when>
+								<c:when test="${list.STATE==2 }">배송중</c:when>
+								<c:when test="${list.STATE==3 }">배송완료</c:when>
+								<c:when test="${list.STATE==4 }">교환확인중</c:when>
+								<c:when test="${list.STATE==5 }">교환준비중</c:when>
+								<c:when test="${list.STATE==6 }">교환중</c:when>
+								<c:when test="${list.STATE==7 }">교환완료</c:when>
+								<c:when test="${list.STATE==8 }">환불물품확인중</c:when>
+								<c:when test="${list.STATE==9 }">환불완료</c:when>
+														
+							</c:choose>
+						</div>
+						**************************************************
+					</tr>
+				</c:forEach>
+					
+				</div>
                         
-						<a href="/3T/admin/order/orderlist">
-							<button type="button" class="btn btn-outline btn-default">목록으로</button>
-						</a>		
-			 </form:form> 
-		</div>
+                        
+				<a href="/3T/admin/order/orderlist">
+					<button type="button" class="btn btn-outline btn-default">목록으로</button>
+				</a>
+						
+			 </form:form>
+		</div> 
 	</div>
 </div>

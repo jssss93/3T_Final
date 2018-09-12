@@ -339,11 +339,7 @@
 		
    
  function nonMemberAjax(no,name,cateNum){ 
-	 alert("들어간다");
 	 
-	 
-	 alert("no:"+no+"이름:"+name);
-	 	
  	      	 $.ajax({
              url: "/3T/order/listSearch_nonMem",
              type : "post", 
@@ -359,9 +355,6 @@
              	$("#listView").replaceWith(returnStr(data));
              	$('#dataTables-example').rowspan(0); 
              }
-             /* error : function(e) {
-             	alert('error' + e);
-             } */
           });  
  } 
  function ajaxTest(start,end,cateNum){
