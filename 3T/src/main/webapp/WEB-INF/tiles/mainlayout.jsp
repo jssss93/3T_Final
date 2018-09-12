@@ -111,17 +111,27 @@
     
 }
 .han1234 {
-    margin: -15px 0 0 0;
+    margin: -15px 0 0 55px;
     z-index: 1;
 }
 .btn-default {
-   padding: 4px 1px!important;
-   width: 23%!important;
-   height: 3%!important;
-   margin: -17px 0 0 0!important;
+    padding: 4px 1px!important;
+    width: 37%!important;
+    height: 3%!important;
+    margin: -23px 0 0 9!important;
 }
 .wing_prd_list {
    margin-top: -27px;
+}
+#right2 {
+    position: fixed;
+    float: right;
+    right: 0px;
+    width: 140px;
+    top: 350px;
+    height: 90%;
+    /* z-index: 9; */
+    background: none;
 }
 
 /* 우측 퀵메뉴 스타일 */
@@ -187,25 +197,25 @@
    
 
       <!--로그인메뉴-->
- 		<%@ include file="/WEB-INF/include/include-body.jspf"%>
-		<form id="frm">
-		<div class="left_login">
-			<div class="xans-element- xans-layout xans-layout-statelogoff ">
-				<c:if test="${sessionScope.MEMBER_ID == null}">
-					<a href="/3T/loginForm" class="log">login</a>/
-					<a href="/3T/joinStep1">join</a>
-				</c:if>
-				<c:if test="${sessionScope.MEMBER_ID != null}">
-					<a href="#this"id="logout" class="log">logout</a> 
-				</c:if> 
-				<br>
-		     <a href="/3T/order/list">order</a>/ <a href="/3T/member/mypage">mypage</a>
-			</div>
+       <%@ include file="/WEB-INF/include/include-body.jspf"%>
+      <form id="frm">
+      <div class="left_login">
+         <div class="xans-element- xans-layout xans-layout-statelogoff ">
+            <c:if test="${sessionScope.MEMBER_ID == null}">
+               <a href="/3T/loginForm" class="log">login</a>/
+               <a href="/3T/joinStep1">join</a>
+            </c:if>
+            <c:if test="${sessionScope.MEMBER_ID != null}">
+               <a href="#this"id="logout" class="log">logout</a> 
+            </c:if> 
+            <br>
+           <a href="/3T/order/list">order</a>/ <a href="/3T/member/mypage">mypage</a>
+         </div>
 
 
-		</div>
-		</form>
-		<!-- //left_login -->
+      </div>
+      </form>
+      <!-- //left_login -->
 
 
 
@@ -244,8 +254,8 @@
             <ul>
                <li>
                   <strong class="xans-element- xans-layout xans-layout-footer ">
-                     예금주 : 서지우(3T)<br>
-                     국민 437201-04-192634 
+                       예금주 : 최종수(3T)<br>
+                     신한 110-370-660054
                   </strong>
                </li>
             </ul>
@@ -268,13 +278,13 @@
       <div class="right_menu">
          <ul>
             <li class="cart_menu">
-               <a href="/3T/cart/list" class="xans-element- xans-layout xans-layout-orderbasketcount ">CART</a>
+                  <a href="/3T/cart/list" class="xans-element- xans-layout xans-layout-orderbasketcount ">CART</a>
             </li>
             <li class="cart_menu">
-               <a href="/3T/wish/wishlist" class="xans-element- xans-layout xans-layout-orderbasketcount ">WISHLIST</a>
+                 <a href="/3T/wish/wishlist" class="xans-element- xans-layout xans-layout-orderbasketcount ">WISHLIST</a>
             </li>
-            <li class="cart_menu">
-               <a href="/3T/order/list" class="xans-element- xans-layout xans-layout-orderbasketcount ">ORDER</a>
+           <li class="cart_menu">
+                 <a href="/3T/order/list" class="xans-element- xans-layout xans-layout-orderbasketcount ">ORDER</a>
             </li>
          </ul>
          <ul>
@@ -286,41 +296,52 @@
                      lunch : 12:30-13:30<br>
                      sat, sun, holiday off
                   </strong>
-               </li>
+               </li> 
          </ul><br>
+         </div>
+         </div>
             
-            
+      <div id="right2">
          <div class="wing_banner" id="wingBanner">
             <div class="wing_prd_wrap" id="wingRecentWrap" style="">
-               <div class="hwrap" style="padding: 0 0 0 150;">
+               <div class="hwrap" style="padding: 0 0 0 0;">
                   <strong class="tit"> 
                      <a href="#" id="wingRecentCount">
-                     <span class="tx">최근 상품</span>
+                     <span class="tx">최근 본 상품</span>
                   </strong>
-               </div>
+               </div> 
+               <br>         
                <br>
-                  
-               <div class="wing_prd_list" id="windRecentPrdList">
+               <!-- 최근상품 리스트 시작. -->
+               <div class="wing_prd_list" id="wingRecentPrdList">
                   <ul id="wingRecentPrd_1">
-                     <c:forEach items="${CookieListMap }" var="row">
-                        <li class="wing_prd" >
-                           <a href="/3T/goods/detail?GOODS_NO=${row.GOODS_NO }">
+                     <c:forEach items="${CookieListMap }" var="row2" varStatus="stat">
+                        <li class="wing_prd" id="wing_prd${stat.index }" >
+                        
+                        <input type="hidden" name="GOODS_NO" class="GOODS_NO2" id="GOODS_NO2${stat.index }" value="${row2.GOODS_NO }">
+                        <input type="hidden" name="IMAGE"     class="IMAGE2"    id="IMAGE2${stat.index }"value="${row2.IMAGE }">
+                        
+                           <!-- 이미지 -->
+                           <a href="/3T/goods/detail?GOODS_NO=${row2.GOODS_NO }" >
                               <span class="wing_prd_img">
-                              <img width="70" height="70" src="/3T/resources/upload/${row.IMAGE}" ></span>
+                                 <img width="70" height="70" src="/3T/resources/upload/${row2.IMAGE}" style="position: relative; z-index: 1;" >
+                              </span>
                            </a>
-                           <!-- 삭제버튼 추가할것. -->
-                           <!-- <button type="button" class="wing_btn_delete" prdno="1886256688"> -->
-                           <div class="han1234">
-                           <a class="wing_btn_delete" id="windRecentPrdList" type="button">
-                           <img width="15" height="15" src="/3T/resources/images/hanb.PNG" ></a>
+                           
+                           <!-- 삭제버튼 -->
+                           <div class="han1234" style="position: relative; z-index:2;" >
+                           <a class="wing_btn_delete" id="CookiedeleteOne" type="button" onclick="javascript:ajaxDeleteOne(${stat.index});">
+                              <img width="15" height="15" src="/3T/resources/images/hanb.PNG" >
+                           </a>
                            </div>
-                           <!-- </button> -->
-                        </li><br>
+                           
+                        </li>
+                        <br>
                      </c:forEach>
-                        <li>
-                           <a class="btn btn-default" id="windRecentPrdList" type="button">
-                            	 전체삭제</a>
-                       </li>
+                        <!-- 전체삭제 -->
+                        <c:if test="${fn:length(CookieListMap) > 1 }">
+                           <li><a class="btn btn-default" id="CookiedeleteAll" type="button">전체삭제</a></li>
+                        </c:if>
                   </ul>
                      
                </div>
@@ -338,28 +359,67 @@
             </div>
          </div>
       </div>
-   </div>
 <script>
-	Kakao.init('95db4ac62ef65afa94ce309801ff9014');
-	$(document).ready(function() {
-	    $("#logout").on("click", function(e) {
-	       e.preventDefault();
-	       logout();
-	    });
-	 });
-	 
-	function logout() {
-		Kakao.Auth.logout();
-		alert("실행됨");
-		var comSubmit = new ComSubmit("frm");
-		comSubmit.setUrl("<c:url value='/logout' />");
-		comSubmit.submit();
-	}
-</script>	
+   Kakao.init('95db4ac62ef65afa94ce309801ff9014');
+   $(document).ready(function() {
+       $("#logout").on("click", function(e) {
+          e.preventDefault();
+          logout();
+       });
+    });
+     
+   function logout() {
+      Kakao.Auth.logout();
+      var comSubmit = new ComSubmit("frm");
+      comSubmit.setUrl("<c:url value='/logout' />");
+      comSubmit.submit();
+   }
+</script>   
+
 <script>
-  
+   
+   function ajaxDeleteOne(index){
+      var index=index;
+      var Goods_No    =$("#GOODS_NO2"+index).val();
+      var Image      =$("#IMAGE2"+index).val();
+      
+//       var Goods_No    =$(".GOODS_NO2").eq(index).attr("value");
+//       var Image      =$(".IMAGE2").eq(index).attr("value");
+//       alert("GOODS_NO:"+Goods_No+"IMAGE:"+Image);
+
+      $.ajax({
+           url      : "/3T/goods/cookieDeleteOne",
+           type    : "get",
+           data   : {   "GOODS_NO"   :Goods_No,
+                     "IMAGE"    :Image   
+                       },
+           success:function(){
+              $("#wing_prd"+index).empty();
+           }
+      });  
+   } 
+   
+   function ajaxDeleteAll(){
+      $.ajax({
+         url: "/3T/goods/cookieDeleteAll",
+         type : "get", 
+         success:function(){
+               $("#wingRecentPrdList").empty();
+         }
+      });  
+   } 
 
     $(document).ready(function () {
+       /* $("#CookiedeleteOne").on("click", function(e) { 
+          e.preventDefault();
+          ajaxDeleteOne();
+       }); */
+       $("#CookiedeleteAll").on("click", function(e) { 
+          e.preventDefault();
+          ajaxDeleteAll();
+       });
+       
+       
         $('.fullscreen_menu_button a').click(function () {
             $('.overlay').fadeToggle(200);
             $(this).toggleClass('btn-open').toggleClass('btn-close');
@@ -378,7 +438,10 @@
          $("html body").animate({
             scrollTop : offset.top
          }, 0);
-
+      
+        
+         
+         
       });
 
 
@@ -402,8 +465,8 @@
    
    
    $('button').click(function() {
-	   alert('Clicked');
-	 });
+      alert('Clicked');
+    });
    
    $('button').remove();
 </script>
