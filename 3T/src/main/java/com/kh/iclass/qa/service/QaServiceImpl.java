@@ -24,6 +24,12 @@ public class QaServiceImpl implements QaService{
 	
 		return QaDAO.QaList(map);
 	}
+	//QA 공지사항 리스트
+		@Override
+		public List<Map<String, Object>> QA3List(Map<String, Object> map) throws Exception {
+			
+			return QaDAO.QA3List(map);
+		}
 	//QA 쓰기
 	@Override
 	public void QaInsert(Map<String, Object> map) throws Exception {

@@ -34,6 +34,17 @@
 			</th>
 		</tr>
 		<tbody>
+		<c:forEach items="${notice1list }" var="row1">
+			<tr>
+				<td><strong>&nbsp;&nbsp;☆</strong></td>
+				<td class="subject"><a href="#this" name="title"><strong>${row1.TITLE }</strong></a>
+					<input type="hidden" id="NOTICE_NO" value="${row1.NOTICE_NO }">
+				</td>
+			</tr>
+		</c:forEach>
+		
+		
+		
 			<c:choose>
 				<c:when test="${fn:length(list) > 0}">
 					<c:forEach items="${list }" var="row">

@@ -116,6 +116,16 @@
 					<label>제목</label> 
 	<input type="text" class="form-control" name="TITLE" placeholder="제목을 입력해주세요" value="${map.TITLE }" style="width: initial;" ><br/>
 	</div>
+	<div class="form-group">
+					<label>카테고리</label> <br/>
+		<select id="CATEGORY" name="CATEGORY">
+			<option value="0" selected="selected">일반 공지사항</option>
+			<option value="1">+NOTICE+</option>
+			<option value="2">+FAQ+</option>
+			<option value="3">+Q&A+</option>
+			<option value="4">+REVIEW+</option>
+		</select>
+	</div>
 	
 				<div class="form-group">
 					<label>내용</label>

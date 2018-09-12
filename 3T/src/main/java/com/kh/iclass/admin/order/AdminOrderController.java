@@ -48,7 +48,7 @@ public class AdminOrderController {
 
 	
 
-	
+	//관리자 총 주문목록
 	@RequestMapping(value = "/order/orderlist")		
 	public ModelAndView orderList(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("order.list");
@@ -71,6 +71,31 @@ public class AdminOrderController {
 		return mv;
 	
 	}
+
+	//관리자 0,1,2,3 주문 목록
+	@RequestMapping(value = "/order/orderlist2")		
+	public ModelAndView orderList2(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("order.orderlist3");
+		
+		HttpSession session = request.getSession();
+		
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		
+		Map<String, Object> resultMap = null;
+		
+		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
+			resultMap=orderService.selectOrderList(commandMap.getMap());
+		else
+			resultMap=orderService.selectOrderSearchListAll(commandMap.getMap());
+		
+		mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
+		
+		mv.addObject("list", resultMap.get("result"));
+		
+		return mv;
+	
+	}
+
 	
 	@RequestMapping(value="/order/updateForm")
 	public ModelAndView joinComplete(CommandMap commandMap) throws Exception{

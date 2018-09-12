@@ -2,9 +2,12 @@ package com.kh.iclass.member.login;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import com.kh.iclass.common.util.RSAKeySet;
 
 public class AdminLoginInterceptor extends HandlerInterceptorAdapter{
 
@@ -24,6 +27,14 @@ public class AdminLoginInterceptor extends HandlerInterceptorAdapter{
             }
             else
             {
+        		HttpSession session = request.getSession();
+        		RSAKeySet keySet = new RSAKeySet();
+        		/* 세션에 개인키 저장 */
+        		session.setAttribute("RSA_private", keySet.getPrivateKey());
+        		
+        		/* Front Side로 공개키 전달 */
+        		session.setAttribute("Modulus", keySet.getPublicKeyModulus());
+        		session.setAttribute("Exponent", keySet.getPublicKeyExponent());
             	//admin이 아니면 권한없다고 에러페이지로
             	response.sendRedirect("/3T/adminError");
             	return false;

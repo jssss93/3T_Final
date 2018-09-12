@@ -32,7 +32,10 @@ public interface OrderService {
 	Object insertPoint(Map<String, Object> map) throws Exception;
 	
 	List<Map<String, Object>> selectOrderList2(Map<String, Object> map) throws Exception;
+	//관리자 총 주문리스트
 	Map<String, Object> selectOrderListAll(Map<String, Object> map) throws Exception;
+	//관리자 0,1,2,3 주문 리스트
+	Map<String, Object> selectOrderList(Map<String, Object> map) throws Exception;
 	
 	
 	public void changeState1(Map<String, Object> map) throws Exception;
