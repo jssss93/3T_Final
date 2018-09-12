@@ -327,12 +327,12 @@
 			str += "</td>"
 			str += "<td class='mileage'>"+list.STATE+"</td>"
 			str += "<td class='delivery'>기본배송</td>"
-			str += "<td><span class='totprice' value='"+list.PRICE*list.COUNT+"'>"+list.PRICE*list.COUNT+"</span></td>"
+			str += "<td><span class='totprice' value='-'></span></td>"
 			str += "<td class='total'><strong>"+list.PRICE*list.COUNT+"</strong></td>"
 			str += "</tr>" 
 		})
 		str+="<br>"
-		
+		 
 		return str;
 		 
 	}	

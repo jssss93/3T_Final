@@ -34,10 +34,13 @@
 			<mvc:mapping path="/member/**" />
 			<mvc:mapping path="/order/**" />
 			<mvc:mapping path="/wish/**" />
-			
-			<mvc:exclude-mapping path="/cart/**"/>
+			<mvc:mapping path="/cart/**" />
+
+			<!-- <mvc:exclude-mapping path="/cart/**"/> -->
 			<mvc:exclude-mapping path="/order/list"/>
 			<mvc:exclude-mapping path="/order/listSearch_nonMem"/>
+			<mvc:exclude-mapping path="/order/complete"/>
+			
 			
 			<bean class="com.kh.iclass.member.login.LoginInterceptor" />
 			

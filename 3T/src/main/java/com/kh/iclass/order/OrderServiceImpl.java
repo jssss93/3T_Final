@@ -242,15 +242,35 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<Map<String, Object>> selectAdminDetailList(Map<String, Object> map) throws Exception {
+	public Map<String, Object> selectAdminDetailList(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return orderDAO.selectAdminDetailList(map);
 	}
 
 	@Override
-	public List getSizeList(Map<String, Object> map) {
+	public List<Map<String, Object>> getSizeList(Map<String, Object> map) {
 		return orderDAO.selectSizeList(map);
 	}
+
+	@Override
+	public List<Map<String, Object>> getColorList(Map<String, Object> map) {
+		return orderDAO.selectColorList(map);
+	}
+	
+	@Override
+	public List<Map<String, Object>> getAttrList(Map<String, Object> map) {
+		return orderDAO.selectAttrList(map);
+	}
+
+	@Override
+	@Transactional
+	public void updateOrder(Map<String, Object> map) {
+		orderDAO.updateOrder(map);
+		orderDAO.updateOrder(map);
+		
+	}
+
+	
 
 	
 

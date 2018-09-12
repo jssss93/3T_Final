@@ -79,6 +79,7 @@
 		select
 			REGDATE,
 			ORDER_NO,
+			ORDER_DETAIL_NO,
 			STATE,
 			MEMBER_ID,
 			COUNT,
@@ -98,6 +99,7 @@
 		    	a.ORDER_NO,
 			    a.STATE,
 			    a.MEMBER_ID,
+			    b.ORDER_DETAIL_NO,
 			    b.COUNT,
 			    b.ATTRIBUTE_NO,
 			    b.GOODS_NO,
@@ -184,6 +186,7 @@
 		GROUP BY
 			  REGDATE,
 			  ORDER_NO,
+			  ORDER_DETAIL_NO,
 			  STATE,
 			  MEMBER_ID,
 			  COUNT,
@@ -1051,6 +1054,7 @@
 		select
 			REGDATE,
 			ORDER_NO,
+			ORDER_DETAIL_NO,
 			STATE,
 			MEMBER_ID,
 			COUNT,
@@ -1069,6 +1073,7 @@
 		    	a.ORDER_NO,
 			    a.STATE,
 			    a.MEMBER_ID,
+			    b.ORDER_DETAIL_NO,
 			    b.COUNT,
 			    b.ATTRIBUTE_NO,
 			    b.GOODS_NO,
@@ -1085,14 +1090,15 @@
 			    b.GOODS_NO=c.GOODS_NO AND
 			    b.ATTRIBUTE_NO=d.ATTRIBUTE_NO AND
 			    b.GOODS_NO=e.GOODS_NO AND
-        		a.ORDER_NO = #{ORDER_NO}  AND
-			    a.STATE IN (0,1,2,3)
+        		b.ORDER_DETAIL_NO = #{ORDER_DETAIL_NO} 
+			   
 		  	ORDER BY
 		    	a.ORDER_NO desc
 		    	)
 		GROUP BY
 			  REGDATE,
 			  ORDER_NO,
+			  ORDER_DETAIL_NO,
 			  STATE,
 			  MEMBER_ID,
 			  COUNT,
@@ -1114,4 +1120,43 @@
 		where 
 			GOODS_NO=#{GOODS_NO}
 	</select>
+	
+	<select id="selectColorList" parameterType="hashmap" resultType="hashmap">
+		select 
+			distinct COLOR
+		from
+			GOODS_ATTRIBUTE
+		where 
+			GOODS_NO=#{GOODS_NO}
+	</select>
+	<select id="selectAttrList" parameterType="hashmap" resultType="hashmap">
+		select 
+			ATTRIBUTE_NO,
+			COLOR,
+			GOODS_SIZE
+		from
+			GOODS_ATTRIBUTE
+		where 
+			GOODS_NO=#{GOODS_NO}
+	</select>
+	
+	<update id="updateOrderDetail" parameterType="hashmap">
+		
+			UPDATE 
+				ORDER_DETAIL 
+			SET
+				ATTRIBUTE_NO 	= #{selectAttr} ,
+				COUNT			= #{COUNT}	
+			WHERE
+				ORDER_DETAIL_NO=#{ORDER_DETAIL_NO}	
+	</update>
+	<update id="updateOrderState" parameterType="hashmap">
+		
+			UPDATE 
+				ORDER_3T
+			SET
+				STATE = #{selectState}	
+			WHERE
+				ORDER_NO=#{ORDER_NO}	
+	</update>
 </mapper>

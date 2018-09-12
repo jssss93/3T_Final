@@ -71,6 +71,7 @@ public class AdminOrderController {
 		return mv;
 	
 	}
+
 	//관리자 0,1,2,3 주문 목록
 	@RequestMapping(value = "/order/orderlist2")		
 	public ModelAndView orderList2(CommandMap commandMap, HttpServletRequest request) throws Exception {
@@ -94,6 +95,7 @@ public class AdminOrderController {
 		return mv;
 	
 	}
+
 	
 	@RequestMapping(value="/order/updateForm")
 	public ModelAndView joinComplete(CommandMap commandMap) throws Exception{
@@ -101,30 +103,46 @@ public class AdminOrderController {
 		ModelAndView mv = new ModelAndView("order.detail");
 		System.out.println("/order/updateForm : " + commandMap.getMap());
 		/*Map<String, Object> map = orderService.selectDetailList(commandMap.getMap());*/
-		List<Map<String, Object>> updateList = new ArrayList<Map<String, Object>>();
-		List<Map<String, Object>> AttrListMap = new ArrayList<Map<String, Object>>();
-		updateList=orderService.selectAdminDetailList(commandMap.getMap());
-		System.out.println("속성출력");
-		for(int i=0;i<updateList.size();i++) {
-			System.out.println(i+"번쨰 상품");
-			
-			Map<String,Object> updateMap=updateList.get(i);
-			commandMap.put("GOODS_NO", updateMap.get("GOODS_NO"));
-			
-			List<Map<String, Object>> sizeListMap=orderService.getSizeList( commandMap.getMap());
-			
-			for(int j=0;j<sizeListMap.size();j++) {
-				System.out.println(i+"번째 속성");
-				sizeListMap.get(j).get("GOODS_SIZE");
-				System.out.println(sizeListMap.get(j).get("GOODS_SIZE"));
-			}
-			
-			/*AttrListMap.add(sizeMap);*/
-		}
-		System.out.println(AttrListMap);
+		/*List<Map<String, Object>> updateList = new ArrayList<Map<String, Object>>();*/
+		/*List<Map<String, Object>> AttrListMap = new ArrayList<Map<String, Object>>();*/
+		/*Map<String, Object> sizeMap =new HashMap<>();*/
+		Map<String,Object> updateList=orderService.selectAdminDetailList(commandMap.getMap());
+		
+		
+	
+		commandMap.put("GOODS_NO", updateList.get("GOODS_NO"));
+		
+		//지워야대
+		List<Map<String, Object>> sizeListMap=orderService.getSizeList(commandMap.getMap());
+		List<Map<String, Object>> colorListMap=orderService.getColorList(commandMap.getMap());
+		
+		
+		
+		List<Map<String, Object>> attrListMap=orderService.getAttrList(commandMap.getMap());
+		
 		mv.addObject("list", updateList);
+		mv.addObject("sizeList",sizeListMap);
+		mv.addObject("colorList",colorListMap);
+		mv.addObject("attrList",attrListMap);
+		
 		mv.addObject("ORDER_NO", commandMap.get("ORDER_NO"));
+		mv.addObject("ORDER_DETAIL_NO", commandMap.get("ORDER_DETAIL_NO"));
 		mv.addObject("REGDATE", commandMap.get("REGDATE"));
+		return mv;
+		
+	}
+	
+	
+	@RequestMapping(value="/order/Update")
+	public ModelAndView Update(CommandMap commandMap) throws Exception{
+		
+		ModelAndView mv = new ModelAndView("redirect:/admin/order/orderlist");
+		System.out.println("/order/update : " + commandMap.getMap());
+		
+		orderService.updateOrder(commandMap.getMap());
+	
+		
+		
 		return mv;
 		
 	}

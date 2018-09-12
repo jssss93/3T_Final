@@ -146,6 +146,7 @@ public class OrderDAO extends AbstractDAO {
 	public Map<String, Object> selectOrderMemberInfo(Map<String, Object> map) {
 		return (Map<String, Object>) selectOne("order.selectOrderMemberInfo", map);
 	}
+	
 	//관리자 주문 상세보기
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> selectDetailList(Map<String, Object> map) throws Exception{
@@ -153,18 +154,31 @@ public class OrderDAO extends AbstractDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectAdminDetailList(Map<String, Object> map) throws Exception {
-		return selectList("order.selectAdminDetailList", map);
+	public Map<String, Object> selectAdminDetailList(Map<String, Object> map) throws Exception {
+		return (Map<String, Object>) selectOne("order.selectAdminDetailList", map);
 	}
 
 	public void deleteCoupon(Map<String, Object> map) {
 		delete("order.deleteCoupon", map);
-		
 	}
 
-	public List selectSizeList(Map<String, Object> map) {
+	public List<Map<String, Object>> selectSizeList(Map<String, Object> map) {
 		return  selectList("order.selectSizeList", map);
 	}
+
+	public List<Map<String, Object>> selectColorList(Map<String, Object> map) {
+		return  selectList("order.selectColorList", map);
+	}
+
+	public List<Map<String, Object>> selectAttrList(Map<String, Object> map) {
+		return  selectList("order.selectAttrList", map);
+	}
+	
+	public void updateOrder(Map<String, Object> map) {
+		update("order.updateOrderDetail", map);
+		update("order.updateOrderState", map);
+	}
+
 
 	
 }
