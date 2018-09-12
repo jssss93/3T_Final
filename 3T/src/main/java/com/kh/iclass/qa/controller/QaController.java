@@ -28,11 +28,6 @@ public class QaController {
 	@RequestMapping(value = "/qa/list")
 	public ModelAndView qaBoardList(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("qa/list");
-		
-		List<Map<String, Object>> list = null;
-		//QA 공지사항 리스트
-		list = QaService.QA3List(commandMap.getMap());
-		
 		Map<String, Object> resultMap = null;
 		//검색정보가 들어왔을때 리스트와 안들어왔을 때 리스트
 		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
@@ -43,8 +38,6 @@ public class QaController {
 		mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
 
 		mv.addObject("list", resultMap.get("result"));
-		
-		mv.addObject("QA3list", list);
 
 		return mv;
 	}

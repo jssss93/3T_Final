@@ -20,24 +20,7 @@
 		<include refid="common.pagingPost"/> 
 
 	</select>
-	
-	<!-- faq공지사항 가져오기 -->
-	<select id="faq2List" parameterType="hashmap" resultType="hashmap">
-	SELECT
-		NOTICE_NO,
-		CATEGORY,
-		MEMBER_ID,
-		TITLE,
-		CONTENT,
-		REGDATE,
-		READCNT
-	FROM
-		NOTICE
-    WHERE 
-        CATEGORY = 2
-	</select>
 	<!-- faq 쓰기 -->
-	
 	 <insert id="insert" parameterType="hashmap">
 		<![CDATA[
 			INSERT INTO FAQ

@@ -1,6 +1,5 @@
 package com.kh.iclass.faq.service;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -48,12 +47,6 @@ public class FaqServiceImpl implements FaqService {
 	public Map<String, Object> FaqSearchList(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return faqDAO.FaqSearchList(map);
-	}
-	//faq 공지사항 리스트
-	@Override
-	public List<Map<String, Object>> faq2List(Map<String, Object> map) throws Exception {
-		
-		return faqDAO.Faq2List(map);
 	}
 
 	/*@Override

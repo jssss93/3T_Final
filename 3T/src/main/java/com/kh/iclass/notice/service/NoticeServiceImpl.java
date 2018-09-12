@@ -1,6 +1,5 @@
 package com.kh.iclass.notice.service;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -20,16 +19,6 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public Map<String, Object> NoticeList(Map<String, Object> map) throws Exception {
 		return noticeDAO.NoticeList(map);
-	}
-	//공지사항 리스트
-	@Override
-	public Map<String, Object> NoticeAllList(Map<String, Object> map) throws Exception {
-		return noticeDAO.NoticeAllList(map);
-	}
-	//공지사항의 공지사항 리스트
-	@Override
-	public List<Map<String, Object>> notice1List(Map<String, Object> map) throws Exception {
-		return noticeDAO.notice1List(map);
 	}
 	//공지사항 상세보기
 	@Override

@@ -8,7 +8,7 @@
 		<![CDATA[
 			SELECT
 			    NOTICE_NO,
-			    CATEGORY,
+			    STATE,
 			    MEMBER_ID,
 			    TITLE,
 			    CONTENT,
@@ -17,52 +17,12 @@
 			    ROW_NUMBER() OVER (ORDER BY NOTICE_NO DESC) RNUM
 			FROM
 			    NOTICE
-			WHERE
-				CATEGORY = 0
 			
 			
 		]]>
 		<include refid="common.pagingPost"/> 
 
 	</select>
-	
-	<!-- 공지사항 전체 리스트 -->
-	<select id="selectAllList" parameterType="hashmap" resultType="hashmap">
-		<include refid="common.pagingPre"/> 
-		<![CDATA[
-			SELECT
-			    NOTICE_NO,
-			    CATEGORY,
-			    MEMBER_ID,
-			    TITLE,
-			    CONTENT,
-			    REGDATE,
-			    READCNT,
-			    ROW_NUMBER() OVER (ORDER BY NOTICE_NO DESC) RNUM
-			FROM
-			    NOTICE
-		]]>
-		<include refid="common.pagingPost"/> 
-
-	</select>
-	
-	<!-- 공지사항의 공지사항 가져오기 -->
-	<select id="notice1List" parameterType="hashmap" resultType="hashmap">
-	SELECT
-		NOTICE_NO,
-		CATEGORY,
-		MEMBER_ID,
-		TITLE,
-		CONTENT,
-		REGDATE,
-		READCNT
-	FROM
-		NOTICE
-    WHERE 
-        CATEGORY = 1
-	</select>
-	
-	
 	
 	<!-- 공지사항 쓰기 -->
 	<insert id="insert" parameterType="hashmap">
@@ -70,7 +30,7 @@
 			INSERT INTO NOTICE
 			(
 				NOTICE_NO,
-			    CATEGORY,
+			    STATE,
 			    MEMBER_ID,
 			    TITLE,
 			    CONTENT,
@@ -80,7 +40,7 @@
 			VALUES
 			(
 				NOTICE_NO_SEQ.NEXTVAL,
-			    #{CATEGORY}, 
+			    0, 
 			    #{MEMBER_ID}, 
 			    #{TITLE},
 			    #{CONTENT},
@@ -105,7 +65,7 @@
 		<![CDATA[
 			SELECT
 			    NOTICE_NO,
-			    CATEGORY,
+			    STATE,
 			    MEMBER_ID,
 			    TITLE,
 			    CONTENT,
@@ -181,7 +141,7 @@
 		<![CDATA[
 		SELECT
 			    NOTICE_NO,
-			    CATEGORY,
+			    STATE,
 			    MEMBER_ID,
 			    TITLE,
 			    CONTENT,
@@ -189,7 +149,7 @@
 			    READCNT	   
 			FROM
 			    NOTICE
-     	    WHERE CATEGORY = 1
+     	    WHERE STATE = 1
 		]]>
 		
 

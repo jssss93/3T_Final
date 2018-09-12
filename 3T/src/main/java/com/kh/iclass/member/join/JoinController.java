@@ -94,7 +94,6 @@ public class JoinController {
 	public ModelAndView joinComplete(CommandMap commandMap, HttpServletRequest request,HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		String EMAIL = request.getParameter("EMAIL1")+"@"+request.getParameter("EMAIL2");
-		Map<String, Object> memberMap=new HashMap<String, Object>();
 		commandMap.getMap().put("EMAIL", EMAIL);
 			
 		

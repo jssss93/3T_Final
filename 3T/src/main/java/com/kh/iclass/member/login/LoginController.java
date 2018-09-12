@@ -158,9 +158,22 @@ public class LoginController {
 					mv.addObject("NOREADCOUPON", NOREADCOUPON);
 					session.removeAttribute("Modulus");
 					session.removeAttribute("Exponent");
+					System.out.println("123" + NOREADCOUPON);
+					System.out.println("1234" + NOREADCOUPON.get("NOREADCOUPON").toString().equals("0"));
 					if (NOREADCOUPON.get("NOREADCOUPON").toString().equals("0")) {
-						mv.setViewName("redirect:"+session.getAttribute("Referer"));
-					} else {
+						if(session.getAttribute("Referer") == null)
+						{
+
+							
+							mv.setViewName("redirect:/main");
+						}
+						else
+						{
+							mv.setViewName("redirect:"+session.getAttribute("Referer"));
+					
+						} 
+					}else {
+						System.out.println("여기로들어오나?2");
 						mv.setViewName("member/loginCoupon");
 					}
 

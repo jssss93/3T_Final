@@ -24,12 +24,6 @@ public class ReviewServiceImpl implements ReviewService{
 		
 		return ReviewDAO.ReviewList(map);
 	}
-	//faq 공지사항 리스트
-	@Override
-	public List<Map<String, Object>> review4List(Map<String, Object> map) throws Exception {
-			
-		return ReviewDAO.review4List(map);
-	}
 	//리뷰 쓰기
 	@Override
 	public void ReviewInsert(Map<String, Object> map) throws Exception {

@@ -17,11 +17,6 @@ public class QaDAO extends AbstractDAO{
     public Map<String, Object> QaList(Map<String, Object> map) throws Exception{
         return (Map<String, Object>)selectPagingList("qa.QA_selectList", map);//selectList는 Mybatis기본 기능으로 리스트를 조회할때 사용
     }
-	//QA 공지사항 리스트
-	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> QA3List(Map<String, Object> map) throws Exception{
-	    return selectList("qa.QA3List", map);
-	}
 	@SuppressWarnings("unchecked")
     public Map<String, Object> QaAdminList(Map<String, Object> map) throws Exception{
         return (Map<String, Object>)selectPagingList("qa.QA_AdminSelectList", map);//selectList는 Mybatis기본 기능으로 리스트를 조회할때 사용

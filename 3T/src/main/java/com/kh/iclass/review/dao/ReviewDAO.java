@@ -17,11 +17,6 @@ public class ReviewDAO extends AbstractDAO{
     public Map<String, Object> ReviewList(Map<String, Object> map) throws Exception{
         return (Map<String, Object>)selectPagingList("review.REVIEW_selectList", map);//selectList는 Mybatis기본 기능으로 리스트를 조회할때 사용
     }
-	//리뷰 공지 리스트
-	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> review4List(Map<String, Object> map) throws Exception{
-		return selectList("review.review4List", map);
-	}
 	//리뷰 쓰기
 	public void ReviewInsert(Map<String, Object> map) throws Exception{
 		insert("review.REVIEW_insert", map);

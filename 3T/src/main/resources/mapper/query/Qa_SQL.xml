@@ -84,22 +84,6 @@
         <include refid="common.pagingPost"/> 
     </select>
     
-    <!-- QA 공지사항 가져오기 -->
-    <select id="QA3List" parameterType="hashmap" resultType="hashmap">
-	SELECT
-		NOTICE_NO,
-		CATEGORY,
-		MEMBER_ID,
-		TITLE,
-		CONTENT,
-		REGDATE,
-		READCNT
-	FROM
-		NOTICE
-    WHERE 
-        CATEGORY = 3
-	</select>
-    
      <select id="QA_AdminSelectList" parameterType="hashmap" resultType="hashmap">
      <include refid="common.pagingPre"/> 
         <![CDATA[

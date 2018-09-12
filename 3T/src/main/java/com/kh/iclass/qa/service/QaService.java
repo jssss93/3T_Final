@@ -7,8 +7,6 @@ import java.util.Map;
 public interface QaService {
 		//QA 리스트
 	 	Map<String, Object> QaList(Map<String, Object> map) throws Exception;
-	 	//QA 공지사항 리스트
-		List<Map<String, Object>> QA3List(Map<String, Object> map) throws Exception;
 	 	//QA 관리자 
 	 			Map<String, Object> QaAdminList(Map<String, Object> map) throws Exception;
 	 	//QA 쓰기
