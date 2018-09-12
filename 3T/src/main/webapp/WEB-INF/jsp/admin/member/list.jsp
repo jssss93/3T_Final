@@ -59,7 +59,7 @@
 				<div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 					<div class="row" style="margin-bottom: 5px;">
 						<div class="col-sm-6">
-						<a href="/MODA/member/adminMemberList">
+						<a href="/3T/admin/member/list">
                         <button type="button" class="btn btn-outline btn-default">전체</button>
                         </a>
 						</div>

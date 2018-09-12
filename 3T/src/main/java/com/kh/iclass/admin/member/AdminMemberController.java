@@ -1,6 +1,7 @@
 package com.kh.iclass.admin.member;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.iclass.common.map.CommandMap;
+import com.kh.iclass.member.MemberService;
 
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -22,7 +24,9 @@ public class AdminMemberController {
 	@Resource(name = "adminMemberService")
 	private AdminMemberService adminMemberService;
 	
-
+	@Resource(name = "memberService")
+	private MemberService memberService;
+	
 	// 전체 회원 목록
 	@RequestMapping(value = "/member/list")
 	public ModelAndView memberList(CommandMap commandMap) throws Exception {
@@ -124,6 +128,31 @@ public class AdminMemberController {
 		return mv;
 	}
 	
+	// 메세지 삭제
+	@RequestMapping(value = "/member/deleteMessage")
+	public ModelAndView deleteMessage(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("member.message");
+		List<Map<String, Object>> list = null;
+		Map<String, Object> messageAll = new HashMap<String, Object>();
+		
+		memberService.deleteMessage(commandMap.getMap());
+
+		commandMap.put("TOMEMBER", request.getSession().getAttribute("MEMBER_ID"));
+
+		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
+			list = memberService.myMessage(commandMap.getMap());
+			else
+				list = memberService.AdminSearchmyMessage(commandMap.getMap());
+				
+			
+			messageAll = memberService.messageAll(commandMap.getMap());
+			
+			mv.addObject("list", list);
+			mv.addObject("messageAll", messageAll);
+			return mv;
+
+	}	
+
 	
 
 }

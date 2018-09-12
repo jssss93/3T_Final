@@ -66,6 +66,7 @@ public class LoginController {
 		mv.setViewName("error/access");
 		return mv;
 	}  
+	
 	// 로그인 폼
 	@RequestMapping(value = "/loginForm")
 	public ModelAndView loginForm(HttpSession session,HttpServletRequest request) throws Exception {
@@ -97,25 +98,17 @@ public class LoginController {
 		
 		HttpSession session = request.getSession();
 		commandMap.put("GOODS_NO", session.getAttribute("GOODS_NO"));
-		System.out.println("*****");
-		System.out.println(session.getAttribute("beforeUrl"));
-		System.out.println("아이디" + commandMap.get("MEMBER_ID"));
-		System.out.println("비밀번호 "+commandMap.get("PASSWD"));
-		System.out.println("넘어오는값:"+commandMap.getMap());
 		
 		// 멤버 정보 가져오고
 		Map<String, Object> chk2 = loginService.loginGo2(commandMap.getMap(),(Key)session.getAttribute("RSA_private"));
 		Map<String, Object> chk = loginService.loginGo(commandMap.getMap());
-		
-		System.out.println("chk2" + chk2); //이게 꺼낸값
-		System.out.println("commandMap "+ commandMap.getMap());
+
 		
 		if (chk2 == null) {
 			mv.setViewName("member/loginForm");
 			mv.addObject("message", "아이디나 비밀번호를 확인해주세요.");
 			return mv;
 		}
-		//chk2를 돌렸을때 비밀번호 다시 나오니까 그거랑 비교해서 ㄱㄱㄱㄱㄱㄱㄱㄱㄱ
 		
 		// 아이디 값이 있으면
 		else {
@@ -152,18 +145,15 @@ public class LoginController {
 	                
 	                loginService.keepLogin(commandMap.getMap());
 				}
-				
+				//맴버아이디가 어디민이면 관리자페이지로
 				if (request.getSession().getAttribute("MEMBER_ID").equals("ADMIN")) {
 					mv.setViewName("redirect:/admin/main");
 				} else {
 					commandMap.put("MEMBER_ID", request.getSession().getAttribute("MEMBER_ID"));
-					// 쿠폰개수띄우기위해
+					// 로그인시 쿠폰개수띄우기위해
 					Map<String, Object> NOREADCOUPON = new HashMap<String, Object>();
 					NOREADCOUPON = memberService.noReadCoupon(commandMap.getMap());
 					mv.addObject("NOREADCOUPON", NOREADCOUPON);
-					
-					System.out.println("노리드쿠폰 " + NOREADCOUPON);
-					System.out.println("노리드쿠폰! " + NOREADCOUPON.get("NOREADCOUPON"));
 
 					if (NOREADCOUPON.get("NOREADCOUPON").toString().equals("0")) {
 						mv.setViewName("redirect:"+session.getAttribute("Referer"));
@@ -253,8 +243,8 @@ public class LoginController {
 		}
 	}
     
-	
-	@RequestMapping(value = "/logout")		//로그아웃
+	//로그아웃
+	@RequestMapping(value = "/logout")		
 	public ModelAndView logout(HttpServletResponse response, HttpServletRequest request, CommandMap commandMap) throws Exception {
 		HttpSession session = request.getSession(false);
 	    Map<String, Object> map = new HashMap<String, Object>();
@@ -280,6 +270,7 @@ public class LoginController {
 	        loginService.keepLogin(map);
 	          
 	    }     
+	    //세션 삭제
 	    if (session != null)
 	    {
 	       session.invalidate();
@@ -314,6 +305,7 @@ public class LoginController {
 	   
 	  return mv;
    }
+   //아이디 찾기폼 이메일 인증후 이메일값 받아서 다시넘겨주기
    @RequestMapping(value = "/findIdForm", method = RequestMethod.POST)
    public ModelAndView findIdForm2(CommandMap commandMap)
    {
@@ -329,17 +321,13 @@ public class LoginController {
 	   
 	  return mv;
    }   
-
+   //아이디 찾아서 아이디값 넘겨주기.
    @RequestMapping(value = "/findId")
    public ModelAndView findId(HttpServletRequest request,CommandMap commandMap) throws Exception
    {
 	  ModelAndView mv = new ModelAndView();
-      
-	  System.out.println("들어오냐?맵? : "+commandMap.getMap());
 	  
 	  String id = loginService.findId(commandMap.getMap());
-	  
-	  System.out.println("아이디찾음?" + id);
 	  
 	  mv.addObject("MEMBER_ID", id);
 	  mv.setViewName("member/findId");
@@ -357,7 +345,7 @@ public class LoginController {
 	   
 	  return mv;
    }
-   
+   //비밀번호 찾기 폼에서 정보가맞으면 새로운 비밀번호 작성하기.
    @RequestMapping(value = "/findPasswd")
    public ModelAndView findPasswd(HttpServletRequest request,CommandMap commandMap, HttpSession session) throws Exception
    {
@@ -373,18 +361,14 @@ public class LoginController {
 		/* Front Side로 공개키 전달 */
 		mv.addObject("Modulus", keySet.getPublicKeyModulus());
 		mv.addObject("Exponent", keySet.getPublicKeyExponent());
-		System.out.println("아이디?" + commandMap.get("MEMBER_ID"));
+
 		session.setAttribute("MEMBER_ID", commandMap.get("MEMBER_ID"));
 	  
-/*		String passwd = loginService.findPasswd(commandMap.getMap());
-		System.out.println("비밀번호찾음?" + passwd);
-	  
-		mv.addObject("PASSWD", passwd);*/
 		mv.setViewName("member/findPasswd");
 	   
 		return mv;
    }
-   
+   //비밀번호 찾기에서 새로운 비밀번호입력 성공 db에 비밀번호 업데이트 
    @RequestMapping(value="/findPasswdComplete", method=RequestMethod.POST)
    public ModelAndView joinComplete(CommandMap commandMap, HttpServletRequest request,HttpSession session) throws Exception{
 	   ModelAndView mv = new ModelAndView();			
@@ -407,6 +391,7 @@ public class LoginController {
 		   return mv;
 		   
 	}   
+   //아이디 찾기위해 이메일 인증
 	@RequestMapping(value = "/findId/modal_email_auth")
 	public ModelAndView email_auth(HttpServletResponse response, HttpServletRequest request,CommandMap Map) throws Exception{
 		System.out.println("접속?");
@@ -438,7 +423,7 @@ public class LoginController {
 		System.out.println("오드넘"+authNum);
 		return mv;
 	}
-	
+	//아이디찾기 이메일 인증 성공
 	@RequestMapping(value="/findId/modal_email_auth_success", method=RequestMethod.POST)
 	public @ResponseBody String clickMethod (HttpServletRequest request) throws Exception   {
 	         
@@ -446,7 +431,7 @@ public class LoginController {
 		System.out.println("authNum뭐냐?"+authNum);
 		return str;
 	}
-	
+	//아이디 찾기 이메일 보내주기
 	private void sendEmail(String email,String authNum){
 		String host ="smtp.gmail.com";
 		String subject = "3T 인증 번호 전달";
@@ -494,7 +479,7 @@ public class LoginController {
 		}
 	}
 	
-	
+	//아이디 찾기 이메일인증 인증번호 
 	public String RandomNum(){
 		StringBuffer buffer = new StringBuffer();
 		for(int i = 0;i<=6;i++){

@@ -45,7 +45,7 @@ public class MemberController {
 		
 	}
 	
-	
+	//마이페이지 눌렀을시 주문,환불,교환,쿠폰,메세지등 개수꺼내와 넘겨주기
 	@RequestMapping(value = "/member/mypage")
 	public ModelAndView mypage(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -70,19 +70,13 @@ public class MemberController {
 		orderAll = memberService.orderAll(commandMap.getMap());
 		NOREADMESSAGE = memberService.noReadMessage(commandMap.getMap());
 		couponAll = memberService.couponAll(commandMap.getMap());
-		
-		System.out.println("메세지?" + NOREADMESSAGE);
-
-		System.out.println(stateList);
+	
 
 		for (int i = 0; i < 10; i++) {
 
 			mv.addObject("state" + i, stateList.get(i));
 		}
 
-		System.out.println("반품?" + stateList.get(9));
-
-		System.out.println("총주문수?" + orderAll);
 		
 		mv.addObject("order", order);
 		mv.addObject("swap", swap);
@@ -98,15 +92,13 @@ public class MemberController {
 	
 	
 
-
+	//회원정보수정 
 	@RequestMapping(value = "/member/update")
 	public ModelAndView mypageInfo(HttpServletRequest request, HttpSession session) throws Exception {
-		System.out.println("세션 : " + request.getSession().getAttribute("MEMBER_ID"));
 		ModelAndView mv = new ModelAndView();
 		RSAKeySet keySet = new RSAKeySet();
 		CommandMap commandMap = new CommandMap();
 		commandMap.put("MEMBER_ID", request.getSession().getAttribute("MEMBER_ID"));
-		System.out.println("아이디" + commandMap.get("MEMBER_ID"));
 		
 		/* 세션에 개인키 저장 */
 		session.setAttribute("RSA_private", keySet.getPrivateKey());
@@ -115,7 +107,7 @@ public class MemberController {
 		mv.addObject("Modulus", keySet.getPublicKeyModulus());
 		mv.addObject("Exponent", keySet.getPublicKeyExponent());
 		
-		// 상품정보 가져오기
+		// 회원정보 가져오기
 		List<Map<String, Object>> mypageInfo = memberService.memberInfoList(commandMap.getMap());
 
 		mv.addObject("mypageInfo", mypageInfo);
@@ -125,14 +117,9 @@ public class MemberController {
 		return mv;
 	}
 
-
+	//회원정보 수정성공
 	@RequestMapping(value = "/mypageComplete", method = RequestMethod.POST)
 	public ModelAndView joinComplete(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		System.out.println("아이디" + commandMap.get("MEMBER_ID"));
-		System.out.println("주소1" + commandMap.get("ADDR1"));
-		System.out.println("주소2" + commandMap.get("ADDR2"));
-		System.out.println("폰번호" + commandMap.get("PHONE"));
-		System.out.println("비밀번호" + commandMap.get("PASSWD"));
 
 		ModelAndView mv = new ModelAndView();
 		String EMAIL = request.getParameter("EMAIL1") + "@" + request.getParameter("EMAIL2");
@@ -146,64 +133,51 @@ public class MemberController {
 
 	}
 	
-	//회원탈퇴
-			@RequestMapping(value = "/member/deleteMember")
-			@ResponseBody
-			public int deleteMember(CommandMap commandMap, HttpServletRequest request) throws Exception {
-				
-				System.out.println("들어옴???");
-				
-				HttpSession session = request.getSession();
-				Map<String, Object> member = new HashMap<String, Object>();
-				int check = 0;
-				System.out.println("비번이 안들어오나?" + commandMap.get("PASSWD"));
-				
-				member = memberService.memberInfo((String)commandMap.get("MEMBER_ID"));
-				System.out.println("member-PASSWD" +member.get("PASSWD"));
-				
-				if(member.get("PASSWD").equals(commandMap.get("PASSWD"))) {
-					memberService.deleteMember(commandMap.getMap());
-					session.invalidate();
-					check = 0;
-					return check;
-								
-				}else {
-					check = 1;
-					return check;
-				}
-						 
-						
-			}
+	// 회원탈퇴
+	@RequestMapping(value = "/member/deleteMember")
+	@ResponseBody
+	public int deleteMember(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
-			@RequestMapping(value="/member/deleteMemberForm")
-			public ModelAndView deleteForm(CommandMap map)
-			{
-				ModelAndView mv = new ModelAndView("member/deleteMember");
-				
-				return mv;
-			}
+		HttpSession session = request.getSession();
+		Map<String, Object> member = new HashMap<String, Object>();
+		int check = 0;
+		//정보꺼내와서
+		member = memberService.memberInfo((String) commandMap.get("MEMBER_ID"));
+		//비밀번호 비교
+		if (member.get("PASSWD").equals(commandMap.get("PASSWD"))) {
+			memberService.deleteMember(commandMap.getMap());
+			session.invalidate();
+			check = 0;
+			return check;
+
+		} else {
+			check = 1;
+			return check;
+		}
+
+	}
+	//탈퇴폼으로
+	@RequestMapping(value = "/member/deleteMemberForm")
+	public ModelAndView deleteForm(CommandMap map) {
+		ModelAndView mv = new ModelAndView("member/deleteMember");
+
+		return mv;
+	}
 			
 
 	// mypage -> myboard
-
 	@RequestMapping(value = "/member/myboard")
 	public ModelAndView myBoardList(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("member/myboard");
 		List<Map<String, Object>> list = null;
 		List<Map<String, Object>> list2 = null;
 
-		System.out.println("boardtype" + commandMap.get("BoardType"));
-		System.out.println("아이디" + commandMap.get("MEMBER_ID"));
 		commandMap.put("MEMBER_ID", request.getSession().getAttribute("MEMBER_ID"));
 
 		list = memberService.myBoardQna(commandMap.getMap());
 		list2 = memberService.myBoardReview(commandMap.getMap());
 
-		/*
-		 * if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") ==
-		 * null) list = QaService.QaList(commandMap.getMap()); else list =
-		 * QaService.QaSearchList(commandMap.getMap());
-		 */
+		//폼에서 리뷰인지 
 		if (commandMap.get("sel") != null) {
 			if (commandMap.get("sel").equals("0")) {
 				mv.addObject("list", list);
@@ -220,8 +194,6 @@ public class MemberController {
 		}
 		mv.addObject("sel", request.getParameter("sel"));
 
-		System.out.println("리스트" + list);
-
 		return mv;
 	}
 
@@ -232,23 +204,10 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		List<Map<String, Object>> list = null;		
 		
-		System.out.println("쿠폰들어갈떄" + commandMap.getMap());
-		
-		System.out.println("아이디" + commandMap.get("MEMBER_ID"));
 		commandMap.put("MEMBER_ID", request.getSession().getAttribute("MEMBER_ID"));
 
 		list = memberService.myCoupon(commandMap.getMap());
 		
-		String VALIDITY = list.get(0).get("VALIDITY").toString();
-		
-		System.out.println("날짜"+VALIDITY);
-
-
-		/*
-		 * if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") ==
-		 * null) list = QaService.QaList(commandMap.getMap()); else list =
-		 * QaService.QaSearchList(commandMap.getMap());
-		 */
 		mv.addObject("list", list);
 		
 		mv.setViewName("member/mycoupon");
@@ -293,7 +252,6 @@ public class MemberController {
 	@RequestMapping(value = "/member/messageWrite")
 	public ModelAndView mymessageWrite(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
-		System.out.println("세션 : " + request.getSession().getAttribute("MEMBER_ID"));
 		mv.setViewName("member/messageWrite");
 
 		return mv;
@@ -321,6 +279,9 @@ public class MemberController {
 	public ModelAndView AdminMessage(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("member.message");
 		List<Map<String, Object>> list = null;
+		Map<String, Object> messageAll = new HashMap<String, Object>();
+		
+		
 
 		System.out.println("아이디" + commandMap.get("MEMBER_ID"));
 		commandMap.put("TOMEMBER", request.getSession().getAttribute("MEMBER_ID"));
@@ -330,8 +291,11 @@ public class MemberController {
 		else
 			list = memberService.AdminSearchmyMessage(commandMap.getMap());
 			
+		
+		messageAll = memberService.messageAll(commandMap.getMap());
+		
 		mv.addObject("list", list);
-
+		mv.addObject("messageAll", messageAll);
 		return mv;
 	}
 	//어드민 메시지 쓰기
@@ -376,7 +340,6 @@ public class MemberController {
 		
 		List<Map<String, Object>> list = null;	
 		
-		System.out.println("글번호"+commandMap.get("MESSAGE_NO"));
 		memberService.readMessage(commandMap.getMap(), request);
 		
 		commandMap.put("TOMEMBER", request.getSession().getAttribute("MEMBER_ID"));
