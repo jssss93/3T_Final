@@ -69,9 +69,15 @@ public class OrderDAO extends AbstractDAO {
 		return selectList("member.selectOrderList2", map);
 	}
 	
+	//관리자 총 주문리스트
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> selectOrderListAll(Map<String, Object> map) throws Exception {
 		return (Map<String, Object>)selectPagingList("order.selectOrderListAll", map);
+	}
+	//관리자 0,1,2,3 주문리스트
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> selectOrderList(Map<String, Object> map) throws Exception {
+		return (Map<String, Object>)selectPagingList("order.selectOrderList", map);
 	}
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> selectRefundListAll(Map<String, Object> map) {

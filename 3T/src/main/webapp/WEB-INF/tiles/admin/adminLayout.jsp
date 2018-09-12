@@ -118,7 +118,8 @@
 								<span class="fa arrow">▼</span>
 							</a>
 							<ul class="nav nav-second-level">
-								<li><a href="/3T/admin/order/orderlist">- 주문목록</a></li>
+								<li><a href="/3T/admin/order/orderlist">- 총주문목록</a></li>
+								<li><a href="/3T/admin/order/orderlist2">- 주문목록</a></li>
 								<li><a href="/3T/admin/order/changelist">- 교환목록</a></li>
 								<li><a href="/3T/admin/order/refundlist">- 환불목록</a></li>
 							</ul>
