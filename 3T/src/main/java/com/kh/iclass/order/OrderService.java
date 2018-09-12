@@ -63,4 +63,6 @@ public interface OrderService {
 	Map<String, Object> selectDetailList(Map<String, Object> map) throws Exception;
 	
 	List<Map<String, Object>> selectAdminDetailList(Map<String, Object> map) throws Exception;
+
+	public List<Map<String, Object>> selectListSearchNonMem(Map<String, Object> map);
 }

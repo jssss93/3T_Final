@@ -90,6 +90,13 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 	@Override
+	public List<Map<String, Object>> selectListSearchNonMem(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return orderDAO.selectListSearchNonMem(map);
+	}
+	
+	
+	@Override
 	public List<Map<String, Object>> orderList(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return orderDAO.orderList(map);
@@ -211,7 +218,7 @@ public class OrderServiceImpl implements OrderService {
 		// TODO Auto-generated method stub
 		return orderDAO.selectOrderSearchListAll(map);
 	}
-@Override
+	@Override
 	public List<Map<String, Object>> selectOrderInfo(Map<String, Object> map) {
 		return orderDAO.selectOrderInfo(map);
 	}
@@ -233,6 +240,8 @@ public class OrderServiceImpl implements OrderService {
 		// TODO Auto-generated method stub
 		return orderDAO.selectAdminDetailList(map);
 	}
+
+	
 
 	
 

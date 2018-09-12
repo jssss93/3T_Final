@@ -95,15 +95,19 @@ public class CookieUtils {
 			response.addCookie(cookie);
 		}
 	}
+	
+	
 
 	/**
 	 * @description 쿠키값들 중 특정 값을 삭제한다.
 	 * @params key: 쿠키 이름, value: 쿠키 이름과 짝을 이루는 값
 	 */
-	public void deleteCookie(String key, String value, HttpServletRequest request, HttpServletResponse response)
+	public static void deleteCookie(String key, String value, HttpServletRequest request, HttpServletResponse response)
 			throws UnsupportedEncodingException {
 		List<String> list = getValueList(key, request);
+		System.out.println("전"+list);
 		list.remove(value);
+		System.out.println("후"+list);
 
 		String sumValue = "";
 		if (list.size() != 0) {
@@ -120,6 +124,35 @@ public class CookieUtils {
 		if (sumValue.equals("")) {
 			time = 0;
 		}
+
+		cookie = new Cookie(key, URLEncoder.encode(sumValue, encoding));
+		cookie.setMaxAge(time);
+		cookie.setPath(path);
+		response.addCookie(cookie);
+	}
+	
+	//특정Key 쿠키 전체 삭제
+	public static void deleteAllCookie(String key, HttpServletRequest request, HttpServletResponse response)
+			throws UnsupportedEncodingException {
+		List<String> list = getValueList(key, request);
+		System.out.println("찍히는 list");
+		System.out.println(list);
+		
+		String sumValue = "";
+		if (list.size() != 0) {
+			for (int i = 0; i < list.size(); i++) {
+				sumValue += list.get(i) + ",";
+			}
+			if (sumValue.substring(sumValue.length() - 1).equals(",")) {
+				sumValue = (sumValue.substring(0, sumValue.length() - 1)).replaceAll(" ", "");
+			}
+		}
+		System.out.println("sumValue="+sumValue);
+		
+		Cookie cookie = null;
+		int time = 0;
+		
+		
 
 		cookie = new Cookie(key, URLEncoder.encode(sumValue, encoding));
 		cookie.setMaxAge(time);

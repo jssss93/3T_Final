@@ -113,6 +113,10 @@ public class OrderDAO extends AbstractDAO {
 	public List<Map<String, Object>> selectListSearch(Map<String, Object> map) {
 		return selectList("order.selectListSearch", map);
 	}
+	
+	public List<Map<String, Object>> selectListSearchNonMem(Map<String, Object> map) {
+		return selectList("order.selectListSearchNonMem", map);
+	}
 
 	public void addPoint(Map<String, Object> map) {
 		update("order.addPoint", map);
@@ -151,4 +155,6 @@ public class OrderDAO extends AbstractDAO {
 		delete("order.deleteCoupon", map);
 		
 	}
+
+	
 }

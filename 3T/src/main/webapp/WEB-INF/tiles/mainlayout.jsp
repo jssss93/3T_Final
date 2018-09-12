@@ -244,8 +244,8 @@
             <ul>
                <li>
                   <strong class="xans-element- xans-layout xans-layout-footer ">
-                     예금주 : 서지우(3T)<br>
-                     국민 437201-04-192634 
+                       예금주 : 최종수(3T)<br>
+                     신한 110-370-660054
                   </strong>
                </li>
             </ul>
@@ -268,14 +268,14 @@
       <div class="right_menu">
          <ul>
             <li class="cart_menu">
-               <a href="/3T/cart/list" class="xans-element- xans-layout xans-layout-orderbasketcount ">CART</a>
+               	<a href="/3T/cart/list" class="xans-element- xans-layout xans-layout-orderbasketcount ">CART</a>
             </li>
             <li class="cart_menu">
-               <a href="/3T/wish/wishlist" class="xans-element- xans-layout xans-layout-orderbasketcount ">WISHLIST</a>
+              	<a href="/3T/wish/wishlist" class="xans-element- xans-layout xans-layout-orderbasketcount ">WISHLIST</a>
             </li>
-            <li class="cart_menu">
-               <a href="/3T/order/list" class="xans-element- xans-layout xans-layout-orderbasketcount ">ORDER</a>
-            </li>
+	        <li class="cart_menu">
+	           	<a href="/3T/order/list" class="xans-element- xans-layout xans-layout-orderbasketcount ">ORDER</a>
+	         </li>
          </ul>
          <ul>
             <li class="dep1">
@@ -286,7 +286,7 @@
                      lunch : 12:30-13:30<br>
                      sat, sun, holiday off
                   </strong>
-               </li>
+               </li> 
          </ul><br>
             
             
@@ -295,32 +295,40 @@
                <div class="hwrap" style="padding: 0 0 0 150;">
                   <strong class="tit"> 
                      <a href="#" id="wingRecentCount">
-                     <span class="tx">최근 상품</span>
+                     <span class="tx">최근 본 상품</span>
                   </strong>
-               </div>
+               </div> 
                <br>
-                  
-               <div class="wing_prd_list" id="windRecentPrdList">
+               <!-- 최근상품 리스트 시작. -->
+               <div class="wing_prd_list" id="wingRecentPrdList">
                   <ul id="wingRecentPrd_1">
-                     <c:forEach items="${CookieListMap }" var="row">
-                        <li class="wing_prd" >
-                           <a href="/3T/goods/detail?GOODS_NO=${row.GOODS_NO }">
+                     <c:forEach items="${CookieListMap }" var="row2" varStatus="stat">
+                        <li class="wing_prd" id="wing_prd${stat.index }" >
+                        
+                        <input type="hidden" name="GOODS_NO" class="GOODS_NO2" id="GOODS_NO2${stat.index }" value="${row2.GOODS_NO }">
+                     	<input type="hidden" name="IMAGE" 	 class="IMAGE2"    id="IMAGE2${stat.index }"value="${row2.IMAGE }">
+                     	
+                        	<!-- 이미지 -->
+                           <a href="/3T/goods/detail?GOODS_NO=${row2.GOODS_NO }" >
                               <span class="wing_prd_img">
-                              <img width="70" height="70" src="/3T/resources/upload/${row.IMAGE}" ></span>
+                              	<img width="70" height="70" src="/3T/resources/upload/${row2.IMAGE}" style="position: relative; z-index: 1;" >
+                              </span>
                            </a>
-                           <!-- 삭제버튼 추가할것. -->
-                           <!-- <button type="button" class="wing_btn_delete" prdno="1886256688"> -->
-                           <div class="han1234">
-                           <a class="wing_btn_delete" id="windRecentPrdList" type="button">
-                           <img width="15" height="15" src="/3T/resources/images/hanb.PNG" ></a>
+                           
+                           <!-- 삭제버튼 -->
+                           <div class="han1234" style="position: relative; z-index:2;" >
+                           <a class="wing_btn_delete" id="CookiedeleteOne" type="button" onclick="javascript:ajaxDeleteOne(${stat.index});">
+                           	<img width="15" height="15" src="/3T/resources/images/hanb.PNG" >
+                           </a>
                            </div>
-                           <!-- </button> -->
-                        </li><br>
+                           
+                        </li>
+                        <br>
                      </c:forEach>
-                        <li>
-                           <a class="btn btn-default" id="windRecentPrdList" type="button">
-                            	 전체삭제</a>
-                       </li>
+                     	<!-- 전체삭제 -->
+                     	<c:if test="${fn:length(CookieListMap) > 1 }">
+                        	<li><a class="btn btn-default" id="CookiedeleteAll" type="button">전체삭제</a></li>
+                  		</c:if>
                   </ul>
                      
                </div>
@@ -347,19 +355,59 @@
 	       logout();
 	    });
 	 });
-	 
+	  
 	function logout() {
 		Kakao.Auth.logout();
-		alert("실행됨");
 		var comSubmit = new ComSubmit("frm");
 		comSubmit.setUrl("<c:url value='/logout' />");
 		comSubmit.submit();
 	}
 </script>	
+
 <script>
-  
+	
+	function ajaxDeleteOne(index){
+		var index=index;
+		var Goods_No 	=$("#GOODS_NO2"+index).val();
+		var Image		=$("#IMAGE2"+index).val();
+		
+// 		var Goods_No 	=$(".GOODS_NO2").eq(index).attr("value");
+// 		var Image		=$(".IMAGE2").eq(index).attr("value");
+// 		alert("GOODS_NO:"+Goods_No+"IMAGE:"+Image);
+
+		$.ajax({
+		  	url		: "/3T/goods/cookieDeleteOne",
+		  	type 	: "get",
+		  	data	: {	"GOODS_NO"	:Goods_No,
+         				"IMAGE" 	:Image	
+   		      		  },
+		  	success:function(){
+		  		$("#wing_prd"+index).empty();
+		  	}
+		});  
+	} 
+	
+	function ajaxDeleteAll(){
+		$.ajax({
+		   url: "/3T/goods/cookieDeleteAll",
+		   type : "get", 
+		   success:function(){
+		   		$("#wingRecentPrdList").empty();
+		   }
+		});  
+	} 
 
     $(document).ready(function () {
+    	/* $("#CookiedeleteOne").on("click", function(e) { 
+    		e.preventDefault();
+    		ajaxDeleteOne();
+    	}); */
+    	$("#CookiedeleteAll").on("click", function(e) { 
+    		e.preventDefault();
+    		ajaxDeleteAll();
+    	});
+    	
+    	
         $('.fullscreen_menu_button a').click(function () {
             $('.overlay').fadeToggle(200);
             $(this).toggleClass('btn-open').toggleClass('btn-close');
@@ -378,7 +426,10 @@
          $("html body").animate({
             scrollTop : offset.top
          }, 0);
-
+		
+        
+         
+         
       });
 
 

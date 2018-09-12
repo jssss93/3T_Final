@@ -542,6 +542,83 @@
 	
 	
 	</select>
+	
+	<!-- 동적 주문리스트 -->
+	<select id="selectListSearchNonMem" parameterType="hashmap" resultType="hashmap">
+	
+	
+		select
+		  REGDATE,
+		  ORDER_NO,
+    	  MEMBER_ID,
+		  STATE,
+		  COUNT,
+		  NAME,
+		  ATTRIBUTE_NO,
+		  GOODS_NO,
+		  PRICE,
+		  CONTENT,
+		  COLOR,
+		  GOODS_SIZE,
+		  WM_CONCAT(SAV_NAME) AS IMAGE
+		from
+		  (select 
+		    a.REGDATE,
+		    a.ORDER_NO,
+		    a.STATE,
+        a.MEMBER_ID,
+		    b.COUNT,
+		    b.ATTRIBUTE_NO,
+		    b.GOODS_NO,
+		    c.PRICE,
+		    c.CONTENT,
+		    c.NAME,
+		    d.color,
+		    d.GOODS_SIZE,
+		    e.sav_name
+		  from
+		    ORDER_3T a,ORDER_DETAIL b,GOODS c ,GOODS_ATTRIBUTE d, UPLOAD e
+		  where
+		    a.ORDER_NO=b.ORDER_NO AND
+		    b.GOODS_NO=c.GOODS_NO AND
+		    b.ATTRIBUTE_NO=d.ATTRIBUTE_NO AND
+		    b.GOODS_NO=e.GOODS_NO AND
+        	a.ORDER_NO = #{no} AND 
+        	a.RECIPIENT_NAME=#{name} AND
+        	a.STATE IN 
+        		<if test='cateNum.equals("0")'> 
+					(0,1,2,3,4,5,6,7,8,9)
+				</if>
+				<if test='cateNum.equals("1")'> 
+					(0,1,2,3)
+				</if>
+				<if test='cateNum.equals("2")'> 
+					(8,9)
+				</if>
+				<if test='cateNum.equals("3")'> 
+					(4,5,6,7)
+				</if>
+				
+		  ORDER BY
+		    a.ORDER_NO desc)
+		GROUP BY
+      MEMBER_ID,
+		  REGDATE,
+		  ORDER_NO,
+		  STATE,
+		  COUNT,
+		  NAME,
+		  ATTRIBUTE_NO,
+		  GOODS_NO,
+		  PRICE,
+		  CONTENT,
+		  COLOR,
+		  GOODS_SIZE
+	
+	
+	</select>
+	
+	
 	<!-- 교환 리스트 -->
 	<select id="swapList" parameterType="hashmap" resultType="hashmap">
 	<![CDATA[

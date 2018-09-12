@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%-- <%@ include file="/WEB-INF/include/include-header-hanbyul.jspf"%> --%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -10,31 +9,21 @@
 <head>
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="http://code.highcharts.com/highcharts.js"></script>
- 
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<!--  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>  -->
- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
  
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<!--PG크로스브라우징필수내용 시작-->
-<meta http-equiv="Cache-Control" content="no-cache">
-<meta http-equiv="Expires" content="0">
-<meta http-equiv="Pragma" content="no-cache">
+
 <!--PG크로스브라우징필수내용 끝-->
 <!--해당 CSS는 쇼핑몰 전체 페이지에 영향을 줍니다. 삭제와 수정에 주의해주세요.-->
 <!-- 스마트디자인에서는 JQuery 1.4.4 버전이 내장되어있습니다. 추가로 호출하면 충돌이 생길 수 있습니다. -->
-<link href="//fonts.googleapis.com/css?family=Lato:100,300,400,500,700,900,100italic,300italic,400italic,700italic,900italic"
-	rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Lato:100,300,400,500,700,900,100italic,300italic,400italic,700italic,900italic" rel="stylesheet" type="text/css">
 <link href="//fonts.googleapis.com/css?family=Cabin" rel="stylesheet" type="text/css">
 <link href="//fonts.googleapis.com/css?family=Cabin:700" rel="stylesheet" type="text/css">
 <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css rel="stylesheet">
-<meta name="format-detection" content="telephone=no">
-<script async="" src="//www.google-analytics.com/analytics.js"></script>
-<script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script>
-<script src="https://connect.facebook.net/signals/config/829030643890604?v=2.8.25&amp;r=stable" async=""></script>
-<script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script>
 
 <script type="text/javascript">
 
@@ -75,24 +64,6 @@
 		});  
 	}; 
 </script>
-<link rel="canonical" href="http://asclo.com/order/basket.html">
-<link rel="alternate" href="http://m.asclo.com/order/basket.html">
-<meta property="og:url" content="http://asclo.com/order/basket.html">
-<meta property="og:site_name" content="애즈클로">
-<meta property="og:type" content="website">
-<link rel="shortcut icon" href="/web/upload/favicon_20141006131340.ico">
-<meta http-equiv="ImageToolbar" content="No">
-
-<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
-
-<meta name="path_role" content="ORDER_BASKET">
-<meta name="author" content="데일리룩의 정석, 남친룩, 오버핏, 루즈핏, 코디, 남성의류 쇼핑몰">
-<meta name="description" content="데일리룩의 정석, 남친룩, 오버핏, 루즈핏, 코디, 남성의류 쇼핑몰">
-<meta name="keywords"
-	content="남성의류,남자옷,남자쇼핑몰,남자데일리룩,남자유니크쇼핑몰,데일리룩쇼핑몰,데일리룩,애즈클로,남자상의,남자코트,남자바지,오버핏,루즈핏,코트,데님자켓,청자켓,스키니팬츠,남자스키니,남자데님팬츠,OOTD,dailylook,린넨셔츠,남자여름코디,남자봄코디,남자가을코디,남자겨울코디">
-<script src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/983431901/?random=1534724800800&amp;cv=9&amp;fst=1534724800800&amp;num=1&amp;guid=ON&amp;resp=GooglemKTybQhCsO&amp;u_h=864&amp;u_w=1536&amp;u_ah=824&amp;u_aw=1536&amp;u_cd=24&amp;u_his=5&amp;u_tz=540&amp;u_java=false&amp;u_nplug=3&amp;u_nmime=4&amp;sendb=1&amp;frm=0&amp;url=http%3A%2F%2Fasclo.com%2Forder%2Fbasket.html%3Fdelvtype%3DA&amp;ref=http%3A%2F%2Fasclo.com%2Fproduct%2Fdetail.html%3Fproduct_no%3D8171%26cate_no%3D1%26display_group%3D2&amp;tiba=%EC%95%A0%EC%A6%88%ED%81%B4%EB%A1%9C&amp;rfmt=3&amp;fmt=4">
-	
-</script>
 <title>ORDER_LIST</title>
 <link href="<c:url value='/resources/css/cartTest.css'/>" rel="stylesheet" type="text/css" />
 <style type="text/css">
@@ -125,28 +96,44 @@
 						<div style="float: left ;">
 		                	<fieldset>
 								<legend>검색기간설정</legend>
-								
-								    <span>  
-									    <a href="#this" id="searchToday" 	class="btnNormal" days="00"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date1.gif" offimage="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date1.gif" onimage="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date1_on.gif" alt="오늘"></a> 
-								        <a href="#this" id="searchWeek" 	class="btnNormal" days="07"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date2.gif" offimage="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date2.gif" onimage="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date2_on.gif" alt="1주일"></a>
-								        <a href="#this" id="searchMonth" 	class="btnNormal" days="30"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date3.gif" offimage="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date3.gif" onimage="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date3_on.gif" alt="1개월"></a>
-						            	<a href="#this" id="search3Month" 	class="btnNormal" days="90"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date4.gif" offimage="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date4.gif" onimage="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date4_on.gif" alt="3개월"></a>
-								        <a href="#this" id="search6Month" 	class="btnNormal" days="180"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date5.gif" offimage="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date5.gif" onimage="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date5_on.gif" alt="6개월"></a>
-								    </span>
-									<input id="datepicker1" name="date1"  readonly="readonly" size="10" value="2018-02-24" type="text">
-								   ~<input id="datepicker2" name="date2"  readonly="readonly" size="10" value="2018-08-30" type="text">
 									
+									<c:if test="${MEMBER_ID!=null }">
+									    <span>  
+										    <a href="#this" id="searchToday" 	class="btnNormal" days="00"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date1.gif" offimage="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date1.gif" onimage="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date1_on.gif" alt="오늘"></a> 
+									        <a href="#this" id="searchWeek" 	class="btnNormal" days="07"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date2.gif" offimage="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date2.gif" onimage="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date2_on.gif" alt="1주일"></a>
+									        <a href="#this" id="searchMonth" 	class="btnNormal" days="30"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date3.gif" offimage="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date3.gif" onimage="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date3_on.gif" alt="1개월"></a>
+							            	<a href="#this" id="search3Month" 	class="btnNormal" days="90"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date4.gif" offimage="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date4.gif" onimage="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date4_on.gif" alt="3개월"></a>
+									        <a href="#this" id="search6Month" 	class="btnNormal" days="180"><img src="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date5.gif" offimage="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date5.gif" onimage="http://img.echosting.cafe24.com/skin/base_ko_KR/myshop/btn_date5_on.gif" alt="6개월"></a>
+									    </span>
+									    
+										<input id="datepicker1" name="date1"  readonly="readonly" size="10" value="2018-02-24" type="text">
+									   ~<input id="datepicker2" name="date2"  readonly="readonly" size="10" value="2018-08-30" type="text">
+										
+										<select id="sel">
+											<option value="0">총 주문 목록</option>
+											<option value="1">주문 목록</option>
+											<option value="2">환불 목록</option>
+											<option value="3">교환 목록</option>
+										</select>
+										
+										<a href="#this" name="search" id="search">
+											<input alt="조회" id="order_search_btn" type="image"  src="//img.echosting.cafe24.com/skin/admin_ko_KR/myshop/btn_search.gif"> 
+										</a>   
+									</c:if>
+									<c:if test="${MEMBER_ID==null }">
+									비회원조회<br>
+									주문번호: <input type="text" id="orderNo">
+									주문자명: <input type="text" id="orderName">
 									<select id="sel">
-										<option value="0">총 주문 목록</option>
-										<option value="1">주문 목록</option>
-										<option value="2">환불 목록</option>
-										<option value="3">교환 목록</option>
+											<option value="0">총 주문 목록</option>
+											<option value="1">주문 목록</option>
+											<option value="2">환불 목록</option>
+											<option value="3">교환 목록</option>
 									</select>
-									
-									<a href="#this" name="search" id="search">
-									
-										<input alt="조회" id="order_search_btn" type="image"  src="//img.echosting.cafe24.com/skin/admin_ko_KR/myshop/btn_search.gif"> 
+									<a href="#this" name="searchNonMem" id="searchNonMem">
+										<input alt="조회"  type="image" id="order_search_btn" src="//img.echosting.cafe24.com/skin/admin_ko_KR/myshop/btn_search.gif"> 
 									</a>  
+									</c:if>
 									
 							</fieldset> 
 		                </div >
@@ -177,8 +164,9 @@
 										총 구매 금액 : 쿼리로 끄내서 넣자 <strong id="totalPrice">0 KRW 
 									</td>
 								</tr>
-							</tfoot>
+							</tfoot> 
 							<tbody class="xans-element- xans-order xans-order-list" id="listView">
+								
 								<c:choose>
 									<c:when test="${fn:length(list) > 0}">
 										<c:forEach items="${list }" var="row" varStatus="stat">
@@ -222,19 +210,21 @@
 													</c:choose>
 												</td>												
 												<td class="delivery">기본배송</td>
-												<td><span class="totprice" value="${row.PRICE*row.COUNT}">${row.PRICE*row.COUNT}</span></td>
+												<td><span class="totprice" >-</span></td>
 												<td class="total"><strong>${row.PRICE * row.COUNT }</strong></td>
 												
 											</tr>
 
 										</c:forEach>
 									</c:when>
+									
 									<c:otherwise>
 										<tr>
 											<td colspan="4">조회된 결과가 없습니다.</td>
 										</tr>
 									</c:otherwise>
 								</c:choose>
+								
 							</tbody>
 						</table>
 					</div>
@@ -292,9 +282,12 @@
 </script>
  <script type="text/javascript">
  function returnStr(data) {
+	 
 		var str = "";
+		str +="<tbody class='xans-element- xans-order xans-order-list' id='listView'>"
 		
 		$(data).each(function(){
+			
 			var list = this;
 			if(list.STATE==0){list.STATE="입금확인중";}
 			if(list.STATE==1){list.STATE="배송준비중";}
@@ -306,6 +299,7 @@
 			if(list.STATE==7){list.STATE="교환완료";}
 			if(list.STATE==8){list.STATE="환불물품확인중";}
 			if(list.STATE==9){list.STATE="환불완료";}
+			
 			
 	      	str += "<tr class='xans-record-'>"
 	      	str += "	<td>"
@@ -337,34 +331,60 @@
 			str += "<td class='total'><strong>"+list.PRICE*list.COUNT+"</strong></td>"
 			str += "</tr>" 
 		})
+		str+="<br>"
 		
 		return str;
 		 
 	}	
 		
-  
- function ajaxTest(start,end,cateNum){
+   
+ function nonMemberAjax(no,name,cateNum){ 
+	 alert("들어간다");
+	 
+	 
+	 alert("no:"+no+"이름:"+name);
+	 	
  	      	 $.ajax({
-             url: "/3T/order/listSearch",
+             url: "/3T/order/listSearch_nonMem",
              type : "post", 
-             data: {"start"		:start,
-             		"end" 		:end,	
+             data: {"no"		:no,
+             		"name" 		:name,
              		"cateNum"	:cateNum
              		},
              dataType: 'json',  
              success:function(data){
              	console.log("ajax서 다시끄내는데이터?:");
-             	console.log(data);
-             	console.log("**********");
+             	console.log("*************************");
              	console.log(returnStr(data));
              	$("#listView").replaceWith(returnStr(data));
-             	$('#dataTables-example').rowspan(0);
-    			console.log(data);
+             	$('#dataTables-example').rowspan(0); 
              }
+             /* error : function(e) {
+             	alert('error' + e);
+             } */
           });  
- }      
+ } 
+ function ajaxTest(start,end,cateNum){
+   	 $.ajax({
+     url: "/3T/order/listSearch",
+     type : "post", 
+     data: {"start"		:start,
+     		"end" 		:end,	
+     		"cateNum"	:cateNum
+     		},
+     dataType: 'json',  
+     success:function(data){
+     	console.log("ajax서 다시끄내는데이터?:");
+     	console.log("*************************");
+     	console.log(returnStr(data));
+     	$("#listView").replaceWith(returnStr(data));
+     	$('#dataTables-example').rowspan(0);
+     }
+  });  
+} 
  
 $(document).ready(function() {
+	 
 	$("#search").on("click", function(e) { 
 		var start 	=document.getElementById("datepicker1").value;
 		var end		=document.getElementById("datepicker2").value;
@@ -375,9 +395,20 @@ $(document).ready(function() {
 		ajaxTest(start,end,cateNum);
 	});
 	
+	 $("#searchNonMem").on("click", function(e) { 
+		 var no=$("#orderNo").val().substr(13,5);
+		 var name=$("#orderName").val();
+		 var cateNum = sel.options[sel.selectedIndex].value;
+		e.preventDefault();
+		nonMemberAjax(no,name,cateNum);
+	}); 
+	
+	
 	$("#searchToday").on("click", function(e) { 
 		var startDate 	=	new Date();
 		var endDate 	= 	new Date();
+		var cateNum = sel.options[sel.selectedIndex].value;
+		
 		startDate.setDate(endDate.getDate()-1);
 		
 		var start		=	startDate.getFullYear()+'-'
@@ -389,12 +420,15 @@ $(document).ready(function() {
 		
 		console.log("1일전:"+startDate);
 		e.preventDefault();
-		ajaxTest(start,end);
+		ajaxTest(start,end,cateNum);
 	}); 
+	
 	
 	$("#searchWeek").on("click", function(e) { 
 		var startDate 	=	new Date();
 		var endDate 	= 	new Date();
+		var cateNum = sel.options[sel.selectedIndex].value;
+		
 		startDate.setDate(endDate.getDate()-7);
 		
 		var start		=	startDate.getFullYear()+'-'
@@ -406,12 +440,15 @@ $(document).ready(function() {
 		
 		console.log("1주전:"+startDate);
 		e.preventDefault();
-		ajaxTest(start,end);
+		ajaxTest(start,end,cateNum);
 	}); 
+	
 	
 	$("#searchMonth").on("click", function(e) { 
 		var startDate 	=	new Date();
 		var endDate 	= 	new Date();
+		var cateNum = sel.options[sel.selectedIndex].value;
+		
 		startDate.setMonth(endDate.getMonth()-1);
 		
 		var start		=	startDate.getFullYear()+'-'
@@ -423,12 +460,15 @@ $(document).ready(function() {
 		
 		console.log("1달전:"+startDate);
 		e.preventDefault();
-		ajaxTest(start,end);
+		ajaxTest(start,end,cateNum);
 	}); 
+	
 	
 	$("#search3Month").on("click", function(e) { 
 		var startDate 	=	new Date();
 		var endDate 	= 	new Date();
+		var cateNum = sel.options[sel.selectedIndex].value;
+		
 		startDate.setMonth(endDate.getMonth()-3);
 		
 		var start		=	startDate.getFullYear()+'-'
@@ -440,12 +480,15 @@ $(document).ready(function() {
 		
 		console.log("3달전:"+startDate);
 		e.preventDefault();
-		ajaxTest(start,end);
+		ajaxTest(start,end,cateNum);
 	}); 
+	
 	
 	$("#search6Month").on("click", function(e) { 
 		var startDate 	=	new Date();
 		var endDate 	= 	new Date();
+		var cateNum = sel.options[sel.selectedIndex].value;
+		
 		startDate.setMonth(endDate.getMonth()-6);
 		
 		var start		=	startDate.getFullYear()+'-'
@@ -457,9 +500,10 @@ $(document).ready(function() {
 		
 		console.log("6달전:"+startDate);
 		e.preventDefault();
-		ajaxTest(start,end);
+		ajaxTest(start,end,cateNum);
 	}); 
 	 	 
+	
 }); 
 </script>
 </body>
