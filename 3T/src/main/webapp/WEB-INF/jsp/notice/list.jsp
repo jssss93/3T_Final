@@ -42,7 +42,6 @@
 							<td class="subject"><a href="#this" name="title">${row.TITLE }</a>
 								<input type="hidden" id="NOTICE_NO" value="${row.NOTICE_NO }">
 							</td>
-							<td align="center">${row.MEMBER_ID }</td>
 						</tr>
 					</c:forEach>
 				</c:when>

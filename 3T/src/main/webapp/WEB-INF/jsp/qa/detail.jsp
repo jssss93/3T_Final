@@ -4,6 +4,8 @@
 <html lang="ko">
 <head>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
+<style>
+</style>
 </head>
 <body>
 	<table width="70%" align="center" border="0" cellspacing="0"
@@ -29,7 +31,7 @@
 			<td>${list.NAME }<br /> KRW&nbsp;${list.PRICE } <br /> <br />
 				&nbsp;
 				<form action="/3T/goods/detail">
-					<input class="btn" type="submit" value="상품 상세보기▶"> <input
+					<input class="btn_qa" type="submit" value="상품 상세보기▶"> <input
 						type="hidden" id="GOODS_NO" name="GOODS_NO"
 						value="${list.GOODS_NO }" />
 				</form>
@@ -62,12 +64,12 @@
 			<table class="notice_button">
 				<tr>
 					<td>
-						<a href="#this" class="btn" id="list">LIST</a> 
+						<a href="#this" class="btn btn-default" id="list">LIST</a> 
 						<c:if test="${map.MEMBER_ID == ID }">
-							<a href="#this" class="btn" id="update">UPDATE</a> 
-							<a href="#this" class="btn" id="delete">DELETE</a> 
+							<a href="#this" class="btn btn-default" id="update">UPDATE</a> 
+							<a href="#this" class="btn btn-default" id="delete">DELETE</a> 
 						</c:if>
-						<a href="#this" class="btn" name="writeReply">REPLY</a> 
+						<a href="#this" class="btn btn-default" name="writeReply">REPLY</a> 
 						<input type="hidden" id="QA_NO" value="${map.QA_NO }">
 					</td>
 				</tr>

@@ -53,6 +53,22 @@
     -webkit-overflow-scrolling: touch;
     outline: 0;
 }
+.xans-myshop-orderstate .title {
+    padding: 20px 2px 0!important;
+    border-bottom: 0px solid #e9e9e9!important;
+}
+.xans-myshop-orderstate .order .count {
+    font-weight: normal!important;
+    font-size: 12px!important;
+    padding: 0px 2px 0!important;
+    color: #656565;
+}
+.xans-myshop-orderstate .order {
+    margin: 0 0 0 150px;
+}
+.titleArea {
+    margin: 0 0 20px -29px!important;
+}
 </style>	
 	
 	</head>

@@ -49,6 +49,18 @@
 .note-btn-group btn-group {
   height: 30px;
 }
+.notice_button td {
+  padding: 0px 0 0 129px!important;
+}
+.board_top {
+  width: 80%!important;
+}
+.board_top h6 {
+  font-size: 15px!important;
+}
+.board_list2 tbody td {
+  font: 14px 'Hind Madurai','맑은 고딕','Malgun Gothic',AppleGothic,sans-serif;
+}
 </style>	
 
 </head>

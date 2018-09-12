@@ -98,7 +98,7 @@ font-size:15px;
     line-height: 20px;
     letter-spacing: 1px;
     background: white;
-    margin: 0 0 0 10;
+    margin: 0 0 0 0;
 }
 .form-group {
     /* margin-bottom: 15px; */
@@ -109,7 +109,8 @@ font-size:15px;
 .modal-backdrop.in {
     filter: alpha(opacity=50);
     opacity: 0.8;
-}    
+}
+
 </style>
 
 
@@ -224,7 +225,7 @@ font-size:15px;
 				</c:when>
 				<c:otherwise>
 					<tr>
-						<td colspan="4">조회된 결과가 없습니다.</td>
+						<td colspan="5">조회된 결과가 없습니다.</td>
 					</tr>
 				</c:otherwise>
 			</c:choose>
