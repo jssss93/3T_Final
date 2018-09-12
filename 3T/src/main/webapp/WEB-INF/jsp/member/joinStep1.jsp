@@ -88,7 +88,16 @@ font-size:15px;
     letter-spacing: 1px;
     background: white;
     margin: 0 0 0 10;
-    
+}
+.btn-default3 {
+    padding: 4px 1px!important;
+    width: -1%!important;
+    height: 12%!important;
+    margin: -1px 0 0 0!important;
+}
+.form-control {
+    width: 52%;
+    margin: 0px 0 0 51px;
 </style>
 
 <div id="container">
@@ -147,7 +156,7 @@ font-size:15px;
 							type="text"> @ <input name="email2" id="email2"
 							class="form-control" size="10" type="text"> <a
 							href="javascript:email_code();"
-							class="btn btn-default form-control">인증번호받기</a>
+							class="btn btn-default3 form-control">인증번호받기</a>
 
 						<!-- <a href="/SIRORAGI/joinStep1/modal_email_auth" class="button" target="modal" data-size="sm" data-label="인증번호받기">인증번호받기</a> -->
 					</div>
@@ -161,7 +170,7 @@ font-size:15px;
 
 
 				<div class="text-center" style="padding-top: 10px">
-					<a href="javascript:member_send();" class="btn btn-default">회원가입하기</a>
+					<a href="javascript:member_send();" class="btn btn-default3">회원가입하기</a>
 				</div>
 				</div>
 				</div>
