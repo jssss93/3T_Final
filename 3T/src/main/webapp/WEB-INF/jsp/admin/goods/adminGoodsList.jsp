@@ -78,7 +78,7 @@ function delchk(){
 }
 </script>
 <style type="text/css">
-.paging{text-align:center;height:32px;margin-top:5px;margin-bottom:15px;}
+.paging{text-align:center;margin-top:5px;margin-bottom:15px;}
 .paging a,
 .paging strong{display:inline-block;width:36px;height:32px;line-height:28px;font-size:14px;border:1px solid #e0e0e0;margin-left:5px;
 -webkit-border-radius:3px;
@@ -196,7 +196,7 @@ function delchk(){
 								</tbody>
 							</table>
 						</div>
-							<div align="center">
+							<div class="paging" align="center">
 								<c:if test="${not empty paginationInfo}">
 									<ui:pagination paginationInfo="${paginationInfo}" type="text"
 									jsFunction="fn_search" />

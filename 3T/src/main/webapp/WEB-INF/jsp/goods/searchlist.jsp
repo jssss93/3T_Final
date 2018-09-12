@@ -87,14 +87,8 @@
 						
 
 					</table>
-					<br><br>
-					<div align="center">
-						<c:if test="${not empty paginationInfo}">
-							<ui:pagination paginationInfo="${paginationInfo}" type="text"
-								jsFunction="fn_search" />
-						</c:if>
-						<input type="hidden" id="currentPageNo" name="currentPageNo" />
-					</div>
+					<br><br><hr>
+					
 					</fieldset>
 					
 			

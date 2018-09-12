@@ -137,7 +137,7 @@ function delchk(){
 							</table>
 						</div>
 					</div>
-					<div align="center">
+					<div class="paging" align="center">
 					<c:if test="${not empty paginationInfo}">
 						<ui:pagination paginationInfo="${paginationInfo}" type="text"
 							jsFunction="fn_search" />
@@ -172,7 +172,7 @@ function delchk(){
 <script type="text/javascript">
 function fn_search(pageNo) {
 			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/qa/list' />");
+			comSubmit.setUrl("<c:url value='/admin/qa/list' />");
 			comSubmit.addParam("currentPageNo", pageNo);
 			comSubmit.submit();
 		}

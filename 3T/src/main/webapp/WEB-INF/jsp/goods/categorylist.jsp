@@ -108,7 +108,7 @@ table {
 		<tr>
 			<td></td>
 			<c:forEach items="${bestlist }" var="row" varStatus="stat" begin="0"
-				end="3">
+				end="2">
 
 				<c:if test="${stat.index%3==0}">
 					<tr></tr>
