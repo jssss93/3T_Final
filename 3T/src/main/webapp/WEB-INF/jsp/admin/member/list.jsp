@@ -60,7 +60,7 @@
 				<div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 					<div class="row" style="margin-bottom: 5px;">
 						<div class="col-sm-6">
-						<a href="/MODA/member/adminMemberList">
+						<a href="/3T/admin/member/list">
                         <button type="button" class="btn btn-outline btn-default">전체</button>
                         </a>
 						</div>
@@ -101,7 +101,7 @@
 											<td style="text-align: center; vertical-align: middle;">
 												<form action="/3T/admin/GiftCoupon">
 													<input type="text" id="CONTENT" name="CONTENT" placeholder="ex)숫자만입력" style="width: 130px; text-align: center;">
-													<input type="submit" value="주기">
+													<input type="submit" class="btn" value="쿠폰 주기">
 													<input type="hidden" id="MEMBER_ID" name="MEMBER_ID" value="${memberList.MEMBER_ID}">
 												</form>
 											</td>

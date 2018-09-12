@@ -84,7 +84,7 @@
                 ,maxDate: "-1D" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                
             });                    
             
-            
+             
             
             
             $("#datepicker2").datepicker({
@@ -103,10 +103,10 @@
                 ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
                 ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
                 ,minDate: "-1Y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-                ,maxDate: "0D" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                
+                ,maxDate: "+1D" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                
             });  
             //초기값을 오늘 날짜로 설정
-            $('#datepicker2').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)      
+            $('#datepicker2').datepicker('setDate', 'today+1D'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)      
         });
         
         
@@ -204,9 +204,9 @@ $(document).ready(function() {
 							+((startDate.getDate()<10) 		? "0"+startDate.getDate() 		: startDate.getDate());
 		var end			=	endDate.getFullYear()+'-'
 							+((endDate.getMonth()+1<10) 	? "0"+(endDate.getMonth()+1)  	: endDate.getMonth()+1)+'-'
-							+((endDate.getDate()<10) 		? "0"+endDate.getDate() 			: endDate.getDate());
-		
-		console.log("1주전:"+startDate);
+							+((endDate.getDate()+1<10) 		? "0"+endDate.getDate()+1 			: endDate.getDate()+1);
+		console.log("1주전:"+start)
+		console.log("nowDate:"+end);
 		e.preventDefault();
 		ajaxTest(start,end);
 	}); 
@@ -221,7 +221,7 @@ $(document).ready(function() {
 							+((startDate.getDate()<10) 		? "0"+startDate.getDate() 		: startDate.getDate());
 		var end			=	endDate.getFullYear()+'-'
 							+((endDate.getMonth()+1<10) 	? "0"+(endDate.getMonth()+1)  	: endDate.getMonth()+1)+'-'
-							+((endDate.getDate()<10) 		? "0"+endDate.getDate() 			: endDate.getDate());
+							+((endDate.getDate()+1<10) 		? "0"+endDate.getDate()+1 			: endDate.getDate()+1);
 		
 		console.log("1달전:"+startDate);
 		e.preventDefault();
@@ -238,7 +238,7 @@ $(document).ready(function() {
 							+((startDate.getDate()<10) 		? "0"+startDate.getDate() 		: startDate.getDate());
 		var end			=	endDate.getFullYear()+'-'
 							+((endDate.getMonth()+1<10) 	? "0"+(endDate.getMonth()+1)  	: endDate.getMonth()+1)+'-'
-							+((endDate.getDate()<10) 		? "0"+endDate.getDate() 			: endDate.getDate());
+							+((endDate.getDate()+1<10) 		? "0"+endDate.getDate()+1 			: endDate.getDate()+1);
 		
 		console.log("3달전:"+startDate);
 		e.preventDefault();
@@ -255,7 +255,7 @@ $(document).ready(function() {
 							+((startDate.getDate()<10) 		? "0"+startDate.getDate() 		: startDate.getDate());
 		var end			=	endDate.getFullYear()+'-'
 							+((endDate.getMonth()+1<10) 	? "0"+(endDate.getMonth()+1)  	: endDate.getMonth()+1)+'-'
-							+((endDate.getDate()<10) 		? "0"+endDate.getDate() 			: endDate.getDate());
+							+((endDate.getDate()+1<10) 		? "0"+endDate.getDate()+1 			: endDate.getDate()+1);
 		
 		console.log("6달전:"+startDate);
 		e.preventDefault();

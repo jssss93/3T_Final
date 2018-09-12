@@ -41,7 +41,7 @@
 			(
 				NOTICE_NO_SEQ.NEXTVAL,
 			    0, 
-			    0, 
+			    #{MEMBER_ID}, 
 			    #{TITLE},
 			    #{CONTENT},
 			    0,

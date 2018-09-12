@@ -1041,4 +1041,13 @@
 			  GOODS_SIZE
 	]]>
 	</select>
+	
+	<select id="selectSizeList" parameterType="hashmap" resultType="hashmap">
+		select 
+			distinct GOODS_SIZE
+		from
+			GOODS_ATTRIBUTE
+		where 
+			GOODS_NO=#{GOODS_NO}
+	</select>
 </mapper>
