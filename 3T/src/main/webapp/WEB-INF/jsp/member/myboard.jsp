@@ -95,8 +95,9 @@
                     <tr>
                         <td>${row.REVIEW_NO }</td>
                          <td>
-                                <a href="#this" name="title">${row.TITLE }</a>
+                                <a href="#this" name="Rtitle">${row.TITLE }</a>
                                 <input type="hidden" id="REVIEW_NO" value="${row.REVIEW_NO }">
+                                <input type="hidden" id="GOODS_NO" value="${row.GOODS_NO}">
                             </td>
                         <td>${row.MEMBER_ID }</td>
                         <td>${row.REGDATE }</td>
@@ -108,8 +109,10 @@
 						<tr>
 							<td>${row.QA_NO }</td>
 							<td>
-								<a href="#this" name="title">${row.TITLE }</a>
-								<input type="hidden" id="QA_NO" value="${row.QA_NO }"></td>
+								<a href="#this" name="Qtitle">${row.TITLE }</a>
+								<input type="hidden" id="QA_NO" value="${row.QA_NO }">
+								<input type="hidden" id="GOODS_NO" value="${row.GOODS_NO}">
+							</td>
 							<td>${row.MEMBER_ID }</td>
 							<td>${row.REGDATE }</td>
 						</tr>
@@ -120,8 +123,10 @@
 						<tr>
 							<td>${row.QA_NO }</td>
 							<td class="title">
-								<a href="#this" name="title">${row.TITLE }</a>
-								<input type="hidden" id="QA_NO" value="${row.QA_NO }"></td>
+								<a href="#this" name="Qtitle">${row.TITLE }</a>
+								<input type="hidden" id="QA_NO" value="${row.QA_NO }">
+								<input type="hidden" id="GOODS_NO" value="${row.GOODS_NO}">
+							</td>
 							<td>${row.MEMBER_ID }</td>
 							<td>${row.REGDATE }</td>
 						</tr>
@@ -130,8 +135,9 @@
                     <tr>
                         <td>${row2.REVIEW_NO }</td>
                          <td class="title">
-                                <a href="#this" name="title">${row2.TITLE }</a>
+                                <a href="#this" name="Rtitle">${row2.TITLE }</a>
                                 <input type="hidden" id="REVIEW_NO" value="${row2.REVIEW_NO }">
+                                <input type="hidden" id="GOODS_NO" value="${row.GOODS_NO}">
                             </td>
                         <td>${row2.MEMBER_ID }</td>
                         <td>${row2.REGDATE }</td>
@@ -153,39 +159,31 @@
 	
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	<script type="text/javascript">
-        $(document).ready(function(){
-            $("#write").on("click", function(e){ //글쓰기 버튼
+        $(document).ready(function(){            
+            $("a[name='Rtitle']").on("click", function(e){ //제목 
                 e.preventDefault();
-                fn_openBoardWrite();
-            }); 
-            
-            $("a[name='title']").on("click", function(e){ //제목 
-                e.preventDefault();
-                fn_openBoardDetail($(this));
+                fn_openBoardDetailR($(this));
             });
-            $("#search").on("click", function(e){ //검색 버튼
+            $("a[name='Qtitle']").on("click", function(e){ //제목 
                 e.preventDefault();
-                fn_openSearchList();
-            }); 
+                fn_openBoardDetailQ($(this));
+            });
+
         });
              
-        function fn_openSearchList(){
-            var comSubmit = new ComSubmit();
-            comSubmit.setUrl("<c:url value='/qa/list' />");
-            comSubmit.addParam("SearchNum", obj.parent().find("#SearchNum").val());
-            comSubmit.addParam("SearchKeyword", obj.parent().find("#SearchKeyword").val());
-            comSubmit.submit();
-        }
-        	
-            function fn_openBoardWrite(){
-            var comSubmit = new ComSubmit();
-            comSubmit.setUrl("<c:url value='/qa/writeForm' />");
-            comSubmit.submit();
-        	}
-            function fn_openBoardDetail(obj){
+        
+            function fn_openBoardDetailR(obj){
+                var comSubmit = new ComSubmit();
+                comSubmit.setUrl("<c:url value='/review/detail' />");
+                comSubmit.addParam("REVIEW_NO", obj.parent().find("#REVIEW_NO").val());
+                comSubmit.addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
+                comSubmit.submit();
+            }
+            function fn_openBoardDetailQ(obj){
                 var comSubmit = new ComSubmit();
                 comSubmit.setUrl("<c:url value='/qa/detail' />");
                 comSubmit.addParam("QA_NO", obj.parent().find("#QA_NO").val());
+                comSubmit.addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
                 comSubmit.submit();
             }
          

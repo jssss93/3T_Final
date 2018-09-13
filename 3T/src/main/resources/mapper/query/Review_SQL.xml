@@ -83,9 +83,11 @@
 	</select>
 
 <!-- 리뷰 쓰기 -->
-   <insert id="REVIEW_insert" parameterType="hashmap">
+   <insert id="REVIEW_insert" parameterType="hashmap" useGeneratedKeys="true" keyProperty="REVIEW_NO">
+   		<selectKey keyProperty="REVIEW_NO" resultType="java.lang.Integer" order="BEFORE">
+			SELECT REVIEW_NO_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
       <![CDATA[
-      
          INSERT INTO
 		REVIEW (
 			REVIEW_NO,
@@ -104,7 +106,7 @@
 
 		)
 		VALUES (
-			REVIEW_NO_SEQ.NEXTVAL,
+			#{REVIEW_NO},
 			#{TITLE},
 			#{PASSWD},
 			#{CONTENT},
