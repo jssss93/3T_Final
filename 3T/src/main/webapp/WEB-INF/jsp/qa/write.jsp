@@ -66,10 +66,10 @@
 }
 .btn {
   border: 1px solid #ccc;
+  margin: 0px 0px 0px 0px;
 }
-.note-popover .popover-content>.btn-group, .panel-heading.note-toolbar>.btn-group {
-  height: 2532%;
-  top: 15px;
+.btn-default {
+  height: 70%;
 }
 </style>	
 

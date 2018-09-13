@@ -117,10 +117,10 @@
     z-index: 1;
 }
 .btn-default {
-    padding: 4px 1px!important;
-    width: 37%!important;
-    height: 3%!important;
-    margin: -23px 0 0 9!important;
+    padding: 4px 1px;
+    width: 37%;
+    height: 3%;
+    margin: -24px 0 0 -4px;
 }
 .wing_prd_list {
    margin-top: -27px;
