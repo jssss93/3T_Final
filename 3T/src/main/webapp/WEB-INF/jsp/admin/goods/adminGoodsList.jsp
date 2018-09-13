@@ -77,6 +77,7 @@ function delchk(){
 }
 </script>
 <style type="text/css">
+.pad_5 {padding: 5px;}
 .paging{text-align:center;margin-top:5px;margin-bottom:15px;}
 .paging a,
 .paging strong{display:inline-block;width:36px;height:32px;line-height:28px;font-size:14px;border:1px solid #e0e0e0;margin-left:5px;
