@@ -51,6 +51,30 @@ public class adminGoodsController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "/goods/list2")
+	public ModelAndView goodsList2(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("admin/goods/adminGoodsList2");
+
+		Map<String, Object> resultMap =null;
+		
+		 System.out.println("name들어오냐??" + commandMap.getMap());
+		
+		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
+			resultMap = goodsService.goodsCategoryList(commandMap.getMap());
+		else
+			resultMap = goodsService.goodsAdminSearchList(commandMap.getMap());
+			
+		
+		mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
+		/*
+		 * mv.addObject("paginationInfo", (PaginationInfo)
+		 * resultMap.get("paginationInfo"));
+		 */
+		mv.addObject("list", resultMap.get("result"));
+
+		return mv;
+	}
+	
 	/*@ResponseBody
 	@RequestMapping(value = "/goods/listOfOuter")
 	public ModelAndView goodsListOfOuter(CommandMap commandMap) throws Exception {

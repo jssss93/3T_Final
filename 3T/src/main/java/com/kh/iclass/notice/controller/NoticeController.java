@@ -1,5 +1,6 @@
 package com.kh.iclass.notice.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -28,6 +29,11 @@ public class NoticeController {
 	@RequestMapping(value = "/notice/list")
 	public ModelAndView noticeList(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("notice/list");
+		
+		List<Map<String, Object>> list = null;
+		//공지사항의 공지사항 리스트
+		list = noticeService.notice1List(commandMap.getMap());
+		
 		Map<String, Object> resultMap = null;
 		
 		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
@@ -38,6 +44,8 @@ public class NoticeController {
 		mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
 
 		mv.addObject("list", resultMap.get("result"));
+		
+		mv.addObject("notice1list", list);
 
 		return mv;
 	}

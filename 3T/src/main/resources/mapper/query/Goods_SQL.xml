@@ -118,6 +118,143 @@ FROM
 
    </select>
    
+   <select id="selectListcate" parameterType="hashmap"
+      resultType="hashmap">
+      
+      <include refid="common.pagingPre" /> 
+         SELECT
+        GOODS_NO,
+        NAME,
+        CONTENT, 
+        READCNT,
+        REGDATE,
+        PRICE,
+        RELATED,
+        KEYWORD,
+        CATEGORY,
+        ATTRIBUTE_NO,
+        GOODS_SIZE,
+        COLOR,
+        COUNT,
+        ROW_NUMBER() OVER (
+        ORDER BY
+        		<choose>
+	 			<when test='CATEGORY2 == "1"'>
+					 NAME ASC
+				 </when>
+				 <when test='CATEGORY2 == "2"'>
+					 PRICE ASC
+				 </when>
+				 <when test='CATEGORY2 == "3"'>
+					 PRICE DESC
+				 </when>
+				 <when test='CATEGORY2 == "4"'>
+					 READCNT DESC
+				 </when>
+				 <otherwise>
+					 GOODS_NO DESC
+				 </otherwise>
+				 </choose>
+        ) RNUM,
+        WM_CONCAT(SAV_NAME) AS IMAGE
+FROM
+(
+select 
+           c.GOODS_NO,
+            c.NAME,
+            c.CONTENT, 
+            c.READCNT,
+            c.REGDATE,
+            c.PRICE,
+            c.RELATED,
+            c.KEYWORD,
+            c.CATEGORY,
+            c.ATTRIBUTE_NO,
+            c.GOODS_SIZE,
+            c.COLOR,
+            c.COUNT,
+         d.SAV_NAME
+FROM
+
+
+(SELECT
+            GOODS_NO,
+            NAME,
+            CONTENT, 
+            READCNT,
+            REGDATE,
+            PRICE,
+            RELATED,
+            KEYWORD,
+            CATEGORY,
+            ATTRIBUTE_NO,
+            WM_CONCAT(GOODS_SIZE) AS GOODS_SIZE,
+            WM_CONCAT(COLOR) AS COLOR,
+            WM_CONCAT(COUNT) AS COUNT
+         FROM
+            (
+            SELECT 
+               a.GOODS_NO,
+               a.NAME,
+               a.CONTENT,
+               a.READCNT,
+               a.REGDATE,
+               a.PRICE,
+               a.RELATED,
+               a.KEYWORD,
+               a.CATEGORY,
+               b.ATTRIBUTE_NO,
+               b.GOODS_SIZE,
+               b.COLOR,
+               b.COUNT
+            FROM
+               GOODS a INNER JOIN GOODS_ATTRIBUTE b 
+            ON 
+               a.GOODS_NO = b.GOODS_NO 
+            )
+              GROUP BY
+               GOODS_NO,
+               NAME,CONTENT, 
+               READCNT,
+               REGDATE,
+               PRICE,
+               RELATED,
+               KEYWORD,
+               ATTRIBUTE_NO,
+               CATEGORY
+            ) c INNER JOIN UPLOAD d
+            ON 
+            c.GOODS_NO=d.GOODS_NO
+            )
+            WHERE
+            	<if test='CATEGORY1 == "0"'>
+        		COUNT = 0 AND
+        		</if>
+        		<if test='CATEGORY1 == "1"'>
+        		COUNT > 0 AND
+        		</if>
+            	CATEGORY LIKE '%'||#{CATEGORY}||'%'
+            GROUP BY
+               GOODS_NO,
+        		NAME,
+       	 		CONTENT, 
+       			READCNT,
+       			REGDATE,
+        		PRICE,
+        		RELATED,
+        		KEYWORD,
+        		CATEGORY,
+        		ATTRIBUTE_NO,
+        		GOODS_SIZE,
+        		COLOR,
+        		COUNT
+			
+      <include refid="common.pagingPost" />
+      
+
+   </select>
+   
+   
    <select id="selectGoodsList" parameterType="hashmap" resultType="hashmap">
       <![CDATA[
          select 
