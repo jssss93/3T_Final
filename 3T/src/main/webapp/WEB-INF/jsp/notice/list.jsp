@@ -5,8 +5,11 @@
 <head>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
-
-
+<style>
+a {
+    font-size: 11px;
+}
+</style>
 </head>
 <body>
 	<table width="70%" align="center" border="0" cellspacing="1"

@@ -21,6 +21,9 @@
     padding: 10px 0px;
     border-bottom: 1px solid rgb(204, 204, 204);
 }
+a {
+    font-size: 11px;
+}
 </style>
 </head>
 <body>
@@ -137,7 +140,7 @@
 		<ui:pagination paginationInfo="${paginationInfo}" type="text"
 			jsFunction="fn_search" />
 	</c:if>
-	<input type="hidden" id="currentPageNo" name="currentPageNo" />
+	<input type="hidden" id="currentPageNo" name="currentPageNo" class="han1" />
 	<form action="/3T/qa/writeForm">
 		<table class="notice_button">
 			<tr>
