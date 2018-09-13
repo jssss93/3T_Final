@@ -17,18 +17,18 @@
 <script src="<c:url value='/summernote/summernote-ko-KR.js'/>" charset="utf-8"></script>
 <style type="text/css">
 .btn-group > .btn:first-child {
-   width: 50;
-   height: 26;
+   width: 50!important;
+   height: 26!important;
 }
 .btn-group .btn + .btn, .btn-group .btn + .btn-group, .btn-group .btn-group + .btn, .btn-group .btn-group + .btn-group {
-  width: 40;
+  width: 40!important;
 }
 .note-popover .popover-content, .panel-heading.note-toolbar {
-  height: 40px;
+  height: 40px!important;
 }
 .note-icon-magic {
- margin: 0 0 0 10px;
-    height:     32px;
+ margin: 0 0 0 10px!important;
+    height:     32px!important;
 }
 
 @media(min-width:768px) {
@@ -66,6 +66,10 @@
 }
 .btn {
   border: 1px solid #ccc;
+}
+.note-popover .popover-content>.btn-group, .panel-heading.note-toolbar>.btn-group {
+  height: 2532%;
+  top: 15px;
 }
 </style>	
 
