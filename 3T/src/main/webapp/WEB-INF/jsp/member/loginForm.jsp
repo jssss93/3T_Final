@@ -44,8 +44,6 @@
 <script type='text/javascript'>
 
 
-// 카카오 script key 입력
-Kakao.init('95db4ac62ef65afa94ce309801ff9014');
 
 // 로그인 처리
   
@@ -75,10 +73,8 @@ function loginWithKakao(){
 			         			token : authObj.access_token
 			         		}),
 			         		success : function() {
-			         			alert("성공");
 			         		},
 			         		error : function(error, a, b) {
-			         			alert("에러나는데왜되냐");
 			         			console.log(error);
 			         			console.log(a);
 			         			console.log(b);
@@ -221,7 +217,7 @@ function getCookie(cookieName) {
                         
                         <span class="loginbtn"><input class="loginbtn" type="submit" id="login" value="Login"></span>
                         <span class="joinusbtn"><a href="/3T/joinStep1">Join us</a></span>
-                        <fb:login-button scope="public_profile,email"onlogin="checkLoginState();"><span>(서비스 준비중)</span></fb:login-button>
+                        <fb:login-button scope="public_profile,email"onlogin="checkLoginState();"><span>FaceBook계정으로 로그인</span></fb:login-button>
 						<div class="han123"id="status"></div>
 						<a id='custom-login-btn' href='javascript:loginWithKakao()'>
                 			<img src='/3T/images/Kakao_login_btn.PNG' width='350' height='50' />
@@ -256,8 +252,8 @@ function getCookie(cookieName) {
 				testAPI();
 			} else {
 				// The person is not logged into your app or we are unable to tell.
-				document.getElementById('status').innerHTML = 'Please log '
-						+ 'into this app.';
+				/* document.getElementById('status').innerHTML = 'Please log '
+						+ 'into this app.'; */
 			}
 		}
 
@@ -315,7 +311,26 @@ function getCookie(cookieName) {
 			FB.api('/me?fields=id,name,address,gender,hometown,email',function(response) {
 				console.log(response);
 				console.log('Successful login for: '+ response.name);
-				document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
+				var id=response.id;
+				
+				var token=response.id;
+				
+				$.ajax({ 
+	         		type : "POST", 
+	         		url : "/3T/faceBookLogin",
+	         		data : ({
+	         			id : id,
+	         		}),
+	         		success : function() {
+	         		},
+	         		error : function(error, a, b) {
+	         			console.log(error);
+	         			console.log(a);
+	         			console.log(b);
+	         			window.location.href="/3T/main";
+	         		}
+	         	});
+				
 			});
 		}
 	</script>

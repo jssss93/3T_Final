@@ -33,11 +33,11 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 					
 					return false;
 					
-				//비회원 정보가있을때. 
+				//비회원 ID가있을때. 
 				}else {
-					/*response.sendRedirect("/3T/loginForm3");*/
+					response.sendRedirect("/3T/loginForm3");
 					//인터셉터 빠져나와 정상진행.
-					return true;
+					return false;
 				}
 			} 
 		} catch (Exception e) {

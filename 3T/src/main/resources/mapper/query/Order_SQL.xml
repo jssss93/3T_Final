@@ -606,7 +606,8 @@
 		  CONTENT,
 		  COLOR,
 		  GOODS_SIZE
-	
+	ORDER BY
+			ORDER_NO desc
 	
 	</select>
 	

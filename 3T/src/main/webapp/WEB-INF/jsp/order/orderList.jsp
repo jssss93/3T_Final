@@ -139,8 +139,17 @@
 		                </div >
 		                
 						<div class="xans-element- xans-order xans-order-normtitle title ">
-							<h3>${MEMBER_ID } 회원님의 주문 목록</h3>
-							<br>
+							<c:choose>
+								<c:when test="${NON_MEMBER_ID==null }">
+									<h3>${MEMBER_ID } 회원님의 주문 목록</h3>
+									<br>
+								</c:when>
+								<c:otherwise>
+									<h3>${NON_MEMBER_ID } (비)회원님의 주문 목록</h3>
+									<br>
+								</c:otherwise>
+							</c:choose>
+							
 						</div>
 						<table border="1" summary="" class="xans-element- xans-order xans-order-normnormal boardList xans-record-" id="dataTables-example">
 
@@ -161,7 +170,6 @@
 							<tfoot> 
 								<tr>
 									<td colspan="10">
-										총 구매 금액 : 쿼리로 끄내서 넣자 <strong id="totalPrice">0 KRW 
 									</td>
 								</tr>
 							</tfoot> 
