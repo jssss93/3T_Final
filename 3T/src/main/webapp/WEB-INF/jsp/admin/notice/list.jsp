@@ -93,6 +93,7 @@ function delchk(){
 								<thead>
 									<tr role="row" style="vertical-align:middle;">
 										<th style="width: 5%; text-align:center;vertical-align:middle;">NO</th>
+										<th style="width: 5%; text-align:center;vertical-align:middle;">CATEGORY</th>
 										<th style="width: 8%; text-align:center;vertical-align:middle;">TITLE</th>										
 										<th style="width: 7%; text-align:center;vertical-align:middle;">WRITER</th>
 										<th style="width: 20%; text-align:center;vertical-align:middle;">DATE</th>
@@ -105,6 +106,24 @@ function delchk(){
 										<input type="hidden" name="NOTICE_NO" value="${list.NOTICE_NO }">
 										<tr class="gradeA even" role="row">
 											<td style="text-align:center;vertical-align:middle;">${list.NOTICE_NO}</td>
+											<td style="text-align:center;vertical-align:middle;">
+												<c:if test="${list.CATEGORY eq 0}">
+												일반 공지사항
+												</c:if>
+												<c:if test="${list.CATEGORY eq 1}">
+												NOTICE
+												</c:if>
+												<c:if test="${list.CATEGORY eq 2}">
+												FAQ
+												</c:if>
+												<c:if test="${list.CATEGORY eq 3}">
+												Q&A
+												</c:if>
+												<c:if test="${list.CATEGORY eq 4}">
+												REVIEW
+												</c:if>
+											</td>
+											
 											<td style="text-align:center;vertical-align:middle;">${list.TITLE}</td>										
 											<td style="text-align:center;vertical-align:middle;">${list.MEMBER_ID}</td>
 											<td style="text-align:center;vertical-align:middle;"><fmt:formatDate value="${list.REGDATE}" pattern="yyyy.MM.dd" /></td>										

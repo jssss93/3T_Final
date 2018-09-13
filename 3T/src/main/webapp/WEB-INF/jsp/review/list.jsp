@@ -56,6 +56,21 @@
 
 
 		<tbody>
+		<c:forEach items="${review4list }" var="row4">
+			<tr>
+				<td><strong>&nbsp;&nbsp;☆</strong></td>
+				<td align="center"></td>
+					<td>
+						<a href="#this" name="title2"><strong>${row4.TITLE }</strong></a> 
+						<input type="hidden" id="NOTICE_NO" value="${row4.NOTICE_NO }"> 
+					</td>
+				<td><strong>${row4.MEMBER_ID }</strong></td>
+				<%-- <td>${row.CONTENT }</td> --%>
+				<td><strong><fmt:formatDate value="${row4.REGDATE }" pattern="yyyy.MM.dd" /></strong></td>
+			</tr>
+		</c:forEach>
+		
+		
 			<c:choose>
 				<c:when test="${fn:length(list) > 0}">
 					<c:forEach items="${list }" var="row">
@@ -132,6 +147,10 @@
 				e.preventDefault();
 				fn_openBoardDetail($(this));
 			});
+			$("a[name='title2']").on("click", function(e) { //제목 
+				e.preventDefault();
+				fn_openBoardDetail2($(this));
+			});
 		});
 
 		function fn_openBoardWrite() {
@@ -146,6 +165,12 @@
 					.val());
 			comSubmit
 					.addParam("GOODS_NO", obj.parent().find("#GOODS_NO").val());
+			comSubmit.submit();
+		}
+		function fn_openBoardDetail2(obj) {
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("<c:url value='/notice/detail' />");
+			comSubmit.addParam("NOTICE_NO", obj.parent().find("#NOTICE_NO").val());
 			comSubmit.submit();
 		}
 		function fn_search(pageNo) {
