@@ -53,10 +53,16 @@ public class adminGoodsController {
 	
 	@RequestMapping(value = "/goods/list2")
 	public ModelAndView goodsList2(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("admin/goods/adminGoodsList2");
+		ModelAndView mv = new ModelAndView("goods.adminGoodsList2");
 
 		Map<String, Object> resultMap =null;
 		
+		 System.out.println("name들어오냐??" + commandMap.getMap());
+		 
+		 commandMap.put("CATEGORY",commandMap.get("CATEGORY") );
+		 commandMap.put("CATEGORY1",commandMap.get("CATEGORY1") );
+		 commandMap.put("CATEGORY2",commandMap.get("CATEGORY2") );
+		 
 		 System.out.println("name들어오냐??" + commandMap.getMap());
 		
 		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
@@ -64,6 +70,7 @@ public class adminGoodsController {
 		else
 			resultMap = goodsService.goodsAdminSearchList(commandMap.getMap());
 			
+		
 		
 		mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
 		/*

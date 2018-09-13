@@ -181,7 +181,8 @@
 												</div>
 											</td>
 											<td>
-												<div class="box">0 KRW 
+
+												<div class="box"> KRW 
 													<strong><fmt:formatNumber value="${DISCOUNT }" pattern="#,###" /></strong>
 												</div>
 											</td>

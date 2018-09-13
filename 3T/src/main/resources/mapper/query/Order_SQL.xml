@@ -123,6 +123,7 @@
 		GROUP BY
 			  REGDATE,
 			  ORDER_NO,
+			  ORDER_DETAIL_NO,
 			  STATE,
 			  MEMBER_ID,
 			  COUNT,
@@ -144,6 +145,7 @@
 		select
 			REGDATE,
 			ORDER_NO,
+			ORDER_DETAIL_NO,
 			STATE,
 			MEMBER_ID,
 			COUNT,
@@ -163,6 +165,7 @@
 		    	a.ORDER_NO,
 			    a.STATE,
 			    a.MEMBER_ID,
+			    b.ORDER_DETAIL_NO,
 			    b.COUNT,
 			    b.ATTRIBUTE_NO,
 			    b.GOODS_NO,
@@ -606,7 +609,8 @@
 		  CONTENT,
 		  COLOR,
 		  GOODS_SIZE
-	
+	ORDER BY
+			ORDER_NO desc
 	
 	</select>
 	

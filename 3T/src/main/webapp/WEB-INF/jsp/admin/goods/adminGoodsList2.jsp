@@ -149,10 +149,11 @@ function delchk(){
 								<script type="text/javascript">
 									function fn_search(pageNo) {
 										var comSubmit = new ComSubmit();
-										comSubmit
-												.setUrl("<c:url value='/admin/goods/list2' />");
-										comSubmit.addParam("currentPageNo",
-												pageNo);
+										comSubmit.setUrl("<c:url value='/admin/goods/list2' />");
+										comSubmit.addParam("currentPageNo",pageNo);
+										comSubmit.addParam("CATEGORY", $("#CATEGORY option:selected").val());
+										comSubmit.addParam("CATEGORY1",$("#CATEGORY1 option:selected").val());
+										comSubmit.addParam("CATEGORY2",$("#CATEGORY2 option:selected").val());
 										comSubmit.submit();
 									}
 								</script>

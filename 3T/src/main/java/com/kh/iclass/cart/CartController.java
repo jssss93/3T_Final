@@ -204,7 +204,7 @@ public class CartController {
 				
 				System.out.println("비회원 장바구니 등록할때 가져오는값:"+commandMap.getMap());
 				//비회원 장바구니 등록시 member_id 세션 지정
-				String n_Id="nonId_"+SequenceUtils.getSeqNumber();
+				String n_Id=(String) session.getAttribute("NON_MEMBER_ID");
 			    
 				String GOODS_NO 	= (String) commandMap.get("GOODS_NO");
 				String ATTRIBUTE_NO = (String) commandMap.get("attribute_no[]");
@@ -455,8 +455,8 @@ public class CartController {
 			mv.addObject("list", checkedCartList);
 			mv.addObject("memberInfo", memberInfo);
 			
-//이거머지?
-		//비회원
+			//이거머지?
+			//비회원
 
 			Map<String, Object> couponAll = new HashMap<String, Object>();
 			couponAll = memberService.couponAll(commandMap.getMap());
@@ -531,14 +531,11 @@ public class CartController {
 	// 비회원으로 상품 구매 로그인(세션주기).
 	@RequestMapping(value = "/nonMember3")
 	public ModelAndView nonMemLogin2(HttpServletRequest request, CommandMap commandMap) {
-		System.out.println("비회원으로 상품 구매 로그인됨. 비회원ID:"+"nonId_"+SequenceUtils.getSeqNumber());
 	    
 		ModelAndView mv = new ModelAndView();
 	    HttpSession session = request.getSession();
 	    
 	    session.setAttribute("NON_MEMBER_ID", "nonId_"+SequenceUtils.getSeqNumber());
-	    System.out.println("넘어오는값:");
-	    System.out.println(session.getAttribute("GOODS_NO"));
 	    mv.addObject("GOODS_NO",session.getAttribute("GOODS_NO"));
 	    
 	    if(session.getAttribute("optno[]")==null) {
@@ -547,21 +544,10 @@ public class CartController {
 	    	mv.setViewName("redirect:/goods/detail");
 	    }
 	    session.removeAttribute("optno[]");
-	    session.removeAttribute("GOODS_NO");
+	    
 	    return mv;
 	}	
     
-	/*// 비회원으로 상품 구매 로그인(세션주기).
-	@RequestMapping(value = "/nonMember2")
-	public ModelAndView nonMemLogin(HttpServletRequest request, CommandMap commandMap) {
-		System.out.println("비회원으로 상품 구매 로그인됨. 비회원ID:"+"nonId_"+SequenceUtils.getSeqNumber());
-	    ModelAndView mv = new ModelAndView();
-	    HttpSession session = request.getSession();
-	    
-	    session.setAttribute("NON_MEMBER_ID", "nonId_"+SequenceUtils.getSeqNumber());
-	    mv.setViewName("redirect:/cart/Add/OnetoPayment");
-	    return mv;
-	}*/
 	
 	
 	@RequestMapping(value = "/cart/CountUp")

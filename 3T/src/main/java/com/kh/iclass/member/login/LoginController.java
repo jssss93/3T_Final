@@ -95,6 +95,7 @@ public class LoginController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView loginComplete(CommandMap commandMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		RSAKeySet keySet = new RSAKeySet();
 		
 		HttpSession session = request.getSession();
 		commandMap.put("GOODS_NO", session.getAttribute("GOODS_NO"));
@@ -105,6 +106,13 @@ public class LoginController {
 
 		
 		if (chk2 == null) {
+			/* 세션에 개인키 저장 */
+			session.setAttribute("RSA_private", keySet.getPrivateKey());
+			
+			/* Front Side로 공개키 전달 */
+			mv.addObject("Modulus", keySet.getPublicKeyModulus());
+			mv.addObject("Exponent", keySet.getPublicKeyExponent());
+			
 			mv.setViewName("member/loginForm");
 			mv.addObject("message", "아이디나 비밀번호를 확인해주세요.");
 			return mv;
@@ -116,6 +124,10 @@ public class LoginController {
 				// 세션에 아이디를 넣어라
 				session.setAttribute("MEMBER_ID", commandMap.get("MEMBER_ID"));
 				
+				//비회원으로 로그인되어있으면 비회원 세션 삭제
+				if(session.getAttribute("NON_MEMBER_ID")!=null) {
+					session.removeAttribute("NON_MEMBER_ID");
+				}
 				//7일지난거 자동삭제.
 				cartService.deleteCartAuto(commandMap.getMap());
 				
@@ -504,6 +516,48 @@ public class LoginController {
 		}
 		return buffer.toString();
 	}
-	//이메일인증 추가 여기까지	    
+	
+	@RequestMapping(value = "/kakaoLogin")
+	public String kakaoLogin(CommandMap commandMap, HttpSession session) {
+		session.removeAttribute("NON_MEMBER_ID");
+		session.setAttribute("MEMBER_ID", "kakao_"+commandMap.getMap().get("id"));
+		session.setAttribute("KakaoToken", "kakao_"+commandMap.getMap().get("token"));
 
+		return authNum;
+		
+	}
+	
+	@RequestMapping(value = "/faceBookLogin")
+	public void faceBookLogin(CommandMap commandMap, HttpSession session) {
+		session.removeAttribute("NON_MEMBER_ID");
+		session.setAttribute("MEMBER_ID", "faceBook_"+commandMap.getMap().get("id"));
+		//페이스북 id 고유값을 임의로 token으로 지정해줌
+		session.setAttribute("FaceBookToken",commandMap.getMap().get("id"));
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/sessionCheck")
+	public String sessionCheck(CommandMap commandMap, HttpSession session) {
+		
+		String chk1=(String) session.getAttribute("FaceBookToken");
+		//페이스북 토큰이 존재하면.
+		if(chk1!=null) {
+			session.invalidate();
+			return "1";
+		//페이스북 토큰이 존재하지 않으면.
+		}else {
+			return "2";
+		}
+		
+//		String chk2=(String) session.getAttribute("KakaoToken");
+		
+	}
+	
+	@RequestMapping(value = "/sessionRemove")
+	public void sessionRemove(CommandMap commandMap, HttpSession session) {
+		session.invalidate();
+	}
+	
+	
 }

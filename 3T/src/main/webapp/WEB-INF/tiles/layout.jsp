@@ -191,6 +191,9 @@
 		<form id="frm">
 		<div class="left_login">
 			<div class="xans-element- xans-layout xans-layout-statelogoff ">
+				<c:if test="${sessionScope.NON_MEMBER_ID!=null }">
+	         		<a>${sessionScope.NON_MEMBER_ID } 로 비회원 로그인.<br></a>
+	         	</c:if>
 				<c:if test="${sessionScope.MEMBER_ID == null}">
 					<a href="/3T/loginForm" class="log">login</a>/
 					<a href="/3T/joinStep1">join</a>
@@ -282,7 +285,7 @@
                <li>
                   <b class="xans-element- xans-layout xans-layout-footer ">010-6226-0533</b><br><br>
                   <strong>
-                     mon-fri 10am-4:30pm<br>
+                     mon-fri 10am-6:30pm<br>
                      lunch : 12:30-13:30<br>
                      sat, sun, holiday off
                   </strong>

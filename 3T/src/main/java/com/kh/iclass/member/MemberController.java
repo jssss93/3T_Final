@@ -36,14 +36,7 @@ public class MemberController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/kakaoLogin")
-	public String KakaoTest(CommandMap commandMap,HttpServletRequest request) {
-		request.getSession().setAttribute("MEMBER_ID", "kakao_"+commandMap.getMap().get("id"));
-		request.getSession().setAttribute("TOKEN", "kakao_"+commandMap.getMap().get("token"));
-
-		return authNum;
-		
-	}
+	
 	
 	//마이페이지 눌렀을시 주문,환불,교환,쿠폰,메세지등 개수꺼내와 넘겨주기
 	@RequestMapping(value = "/member/mypage")
@@ -119,15 +112,14 @@ public class MemberController {
 
 	//회원정보 수정성공
 	@RequestMapping(value = "/mypageComplete", method = RequestMethod.POST)
-	public ModelAndView joinComplete(CommandMap commandMap, HttpServletRequest request) throws Exception {
-
+	public ModelAndView joinComplete(CommandMap commandMap, HttpServletRequest request, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		String EMAIL = request.getParameter("EMAIL1") + "@" + request.getParameter("EMAIL2");
 		Map<String, Object> mypageMap = new HashMap<String, Object>();
+	
+		commandMap.put("PASSWORD",request.getParameter("PASSWORD"));
 		commandMap.getMap().put("MEMBER_ID", request.getSession().getAttribute("MEMBER_ID"));
-		commandMap.getMap().put("EMAIL", EMAIL);
 		mypageMap = commandMap.getMap();
-		memberService.updateMember(mypageMap, request);
+		memberService.updateMember(mypageMap, request, (Key)session.getAttribute("RSA_private"));
 		mv.setViewName("member/mypage");
 		return mv;
 
@@ -379,6 +371,7 @@ public class MemberController {
 		PrintWriter out = response.getWriter();
 		String NowPASSWD= (request.getParameter("NowPASSWD") == null)?"":String.valueOf(request.getParameter("NowPASSWD"));
 		
+		commandMap.getMap().put("NowPASSWD", NowPASSWD);	
 		commandMap.getMap().put("MEMBER_ID", request.getSession().getAttribute("MEMBER_ID"));		
         
 		int chk = memberService.checkPass(commandMap.getMap(),(Key)session.getAttribute("RSA_private"));

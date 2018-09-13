@@ -38,7 +38,7 @@
 					<span>사업자등록번호 : 204-29-34817 <a href="http://ftc.go.kr/info/bizinfo/communicationList.jsp" target="_blank"> [사업자정보확인]</a></span> 
 					<span>통신판매신고번호:2016-서울동대문-0071호</span><br> 
 					<span>주소: 133854 서울특별시 성동구 하왕십리동 301-3 신일금속빌딩 5층</span><br> 
-					<span>반품주소: 서울특별시 신림동 1568-7 304</span> 
+					<span>반품주소: 서울특별시 관악구 신림동 1568-7 제일빌딩 304</span> 
 				</p>
 				<a href="#">
 				<img onclick="window.open('https://mark.inicis.com/mark/popup_v1.php?mid=CAEhi88ba9', '', 'scrollbars=yes, width=500, height=580, left=100, top=100')"

@@ -44,8 +44,11 @@ public class MemberServiceImpl implements MemberService{
     }
 	
 	@Override
-	public void updateMember(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		memberDAO.updateMember(map);
+	public void updateMember(Map<String, Object> map, HttpServletRequest request, Key privateKey) throws Exception {
+		
+		map.put("PASSWD22",(RSAUtil.decrypt(privateKey, map.get("PASSWORD").toString())));
+        map.put("PASSWD3",(SHA256Util.hashing(map.get("PASSWD22").toString())));
+        memberDAO.updateMember(map);
 	
 	}
 	

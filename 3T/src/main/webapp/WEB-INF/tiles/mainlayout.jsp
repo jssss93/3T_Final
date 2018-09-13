@@ -6,6 +6,7 @@
 <html>
 <head>
 <script src="http://developers.kakao.com/sdk/js/kakao.min.js"></script>
+
 <!-- wing_banner -->
 <link href="<c:url value='/resources/css/wing_banner.css'/>"
    rel="stylesheet" type="text/css" />
@@ -13,7 +14,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
 <!--PG크로스브라우징필수내용 시작-->
 <meta http-equiv="Cache-Control" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
@@ -188,7 +190,6 @@
       </div>
    </div>
 
-
    <!--  왼쪽 메뉴 고정 바 -->
    <div id="left">
       <h1 class="xans-element- xans-layout xans-layout-logotop ">
@@ -201,6 +202,14 @@
       <form id="frm">
       <div class="left_login">
          <div class="xans-element- xans-layout xans-layout-statelogoff ">
+         	 <c:if test="${sessionScope.KakaoToken!=null }">
+         		<a href="https://accounts.kakao.com/logout?continue=https://pf.kakao.com/logged_out"
+ 				class="btn_bridge link_bridge link_type2 #logout" onclick="sessionremove()">카카오로그아웃</a>
+         	</c:if> 
+         
+         	<c:if test="${sessionScope.NON_MEMBER_ID!=null }">
+         		<a>${sessionScope.NON_MEMBER_ID } 로 비회원 로그인.<br></a>
+         	</c:if>
             <c:if test="${sessionScope.MEMBER_ID == null}">
                <a href="/3T/loginForm" class="log">login</a>/
                <a href="/3T/joinStep1">join</a>
@@ -269,6 +278,9 @@
                <li><a href="http://pf.kakao.com/_muhjE" target="_blank"><img src="/3T/resources/images/4.png"></a></li>
             </ul>
          </div>
+         <br><br><br><br>
+         <div id="plusfriend-addfriend-button" style="z-index:11"></div>
+          <div id="plusfriend-chat-button" style="z-index:11"></div>
       </div>
    </div>
 
@@ -294,7 +306,7 @@
                <li>
                   <b class="xans-element- xans-layout xans-layout-footer ">010-6226-0533</b><br><br>
                   <strong>
-                     mon-fri 10am-4:30pm<br>
+                     mon-fri 10am-6:30pm<br>
                      lunch : 12:30-13:30<br>
                      sat, sun, holiday off
                   </strong>
@@ -306,6 +318,8 @@
       <div id="right2">
          <div class="wing_banner" id="wingBanner">
             <div class="wing_prd_wrap" id="wingRecentWrap" style="">
+            
+            
                <div class="hwrap" style="padding: 0 0 0 0;">
                   <strong class="tit"> 
                      <a href="#" id="wingRecentCount">
@@ -366,20 +380,78 @@
                   <img src="/3T/resources/images/버튼2.png">
                </a>
             </div>
+            
          </div>
       </div>
+
 <script>
+
+	// 플러스친구 친구추가 버튼을 생성합니다.
+	
 
 	Kakao.init('95db4ac62ef65afa94ce309801ff9014');
 	$(document).ready(function() {
+		Kakao.PlusFriend.createAddFriendButton({
+	 		container: '#plusfriend-addfriend-button',
+	 	 	plusFriendId: '_iiBlj' // 플러스친구 홈 URL에 명시된 id로 설정합니다.
+		});
+		
+		Kakao.PlusFriend.createChatButton({
+		      container: '#plusfriend-chat-button',
+		      plusFriendId: '_iiBlj' // 플러스친구 홈 URL에 명시된 id로 설정합니다.
+		});
+		
 	    $("#logout").on("click", function(e) {
 	       e.preventDefault();
 	       logout();
 	    });
 	 });
-	  
+	function kout(){
+		
+		Kakao.Auth.logout(function(data){
+	        });
+	}  
+	function sessionremove(){
+		
+		$.ajax({
+		  	url		: "/3T/sessionRemove",
+		  	type 	: "get",
+		  	success:function(){
+		  	},error : function(error, a, b) {
+     			console.log(error);
+     			console.log(a);
+     			console.log(b);
+     			/* window.location.href="/3T/main"; */
+     		}
+		}); 
+	}  
 	function logout() {
+		//카카오 로그아웃
+		kout();
 		Kakao.Auth.logout();
+		
+		//페이스북 로그아웃
+		$.ajax({
+		  	url		: "/3T/sessionCheck",
+		  	type 	: "get",
+		  	success:function(data){
+		  		
+		  		if(data==1){
+		  			alert("faceBook 사이트에서 로그아웃 해주세요");
+		  			window.location.href="https://www.facebook.com/";
+		  		}else if(data==2){
+		  			
+		  		}
+		  		
+		  	},error : function(error, a, b) {
+     			console.log(error);
+     			console.log(a);
+     			console.log(b);
+     			/* window.location.href="/3T/main"; */
+     		}
+		}); 
+		
+		//세션제거
 		var comSubmit = new ComSubmit("frm");
 		comSubmit.setUrl("<c:url value='/logout' />");
 		comSubmit.submit();

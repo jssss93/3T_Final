@@ -11,6 +11,8 @@
 <script src="/js/jquery-1.11.2.min.js"></script>
 <script src="/js/jquery-latest.js"></script>
 <script src="/js/jquery.als-1.6.min.js"></script>
+
+
 <script type="text/javascript">
 
 
@@ -93,7 +95,7 @@
 
 	}   
 
-	  function openConfirmId(){
+/* 	  function openConfirmId(){
 			var url="/checkId?MEMBER_ID="+ document.Reg_form.MEMBER_ID.value;
 			var chk=document.Reg_form;
 			if(chk.MEMBER_ID.value==""){
@@ -108,7 +110,7 @@
 			}
 			open(url, "confirm", "toolbar=no,location=no,status=no,menubar=no,"+
 								 "scrollbars=no,resizable=no,width=400,height=200");
-		}
+		} */
 </script>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -239,6 +241,7 @@
 						<div class="ec-base-table typeWrite">
 							<table border="1" summary="">
 								<caption>회원 기본정보</caption>
+								
 								<colgroup>
 									<col style="width: 150px;">
 									<col style="width: auto;">
@@ -270,34 +273,15 @@
 										</td>
 									</tr>
 									
-<%-- 									<tr>
-										<th scope="row">비밀번호 <img
-											src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"
-											alt="필수"></th>
-										<td><input id="PASSWD" name="PASSWD"
-											fw-filter="isFill&amp;isMin[4]&amp;isMax[16]" fw-label="비밀번호"
-											fw-msg="" autocomplete="off" maxlength="16"
-											0="disabled" value="${row.PASSWD}" type="password"> 영문/숫자를 이용하여 4~12자로 입력하세요</td>
-									</tr>
-								
+
 									<tr>
-										<th scope="row">비밀번호 확인 <img
-											src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"
-											alt="필수"></th>
-										<td><input id="PASSWD2"
-											name="PASSWD2"
-											fw-filter="isFill&amp;isMatch[passwd]" fw-label="비밀번호 확인"
-											fw-msg="비밀번호가 일치하지 않습니다." autocomplete="off" maxlength="16"
-											0="disabled" value="" type="password"> <span
-											id="pwConfirmMsg"></span> 비밀번호를 재입력 해주세요</td>
-									</tr> --%>
-																		<tr>
 										<th scope="row">비밀번호 <img
 											src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"
 											alt="필수"></th>
 										<td>
 											<div class="col-lg-21 col-md-20">
-												<input id="PASSWD2" name="PASSWD" maxlength="16" type="password"/>
+												<input type="hidden" name="PASSWORD" id="PASSWORD">
+												<input id="PASSWD" name="PASSWD" maxlength="16" type="password"/>
 													영문/숫자를 이용하여 4~12자로 입력하세요
 												<p class="alertPass alert-positive"></p>
 											</div>	
@@ -369,7 +353,7 @@
 										<th scope="row">이메일 <img
 											src="//img.echosting.cafe24.com/skin/base/common/ico_required.gif"
 											alt="필수"></th>
-										<td><input name="EMAIL1" value="${row.EMAIL}" type="text" class="box" id="EMAIL1" size="25" readonly> 이메일 변경을 원할시 관리자에게 문의바랍니다.
+										<td><input name="EMAIL" value="${row.EMAIL}" type="text" class="box" id="EMAIL" size="25" readonly> 이메일 변경을 원할시 관리자에게 문의바랍니다.
 										<!-- @ <input name="EMAIL2" type="text"
 										class="box" id="EMAIL2" size="20"> <select
 										name="email3"  id="email_select"
@@ -391,7 +375,7 @@
 										
 						<div class="btnArea center">
 							<a href="/3T/member/mypage">수정취소</a> 
-							<input type="submit" value="정보수정">
+							<input type="submit" id="update" value="정보수정">
 							<a href="/3T/member/deleteMemberForm">회원탈퇴</a>
 						</div>
 						</form>
@@ -406,6 +390,13 @@
 $(document).ready(function() {
 	$("#modulus").val("${Modulus}");
 	$("#exponent").val("${Exponent}");
+	
+	$("#update").click(function(event) {
+		var rsa = new RSAKey();
+	    rsa.setPublic($('#modulus').val(),$('#exponent').val());
+	    $("#PASSWORD").val(rsa.encrypt($("#PASSWD").val()));
+	    return true;
+	})
 	
 });
 
