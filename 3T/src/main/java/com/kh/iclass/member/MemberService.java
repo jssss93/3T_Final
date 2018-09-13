@@ -38,7 +38,7 @@ public interface MemberService
 	void readCoupon(Map<String, Object> map, HttpServletRequest request) throws Exception;
 	
 	// 회원정보수정
-	void updateMember(Map<String, Object> map, HttpServletRequest request) throws Exception;
+	void updateMember(Map<String, Object> map, HttpServletRequest request,Key privateKey) throws Exception;
 	
 	//myBoardQnaList
 	List<Map<String, Object>> myBoardQna(Map<String, Object> map) throws Exception;
