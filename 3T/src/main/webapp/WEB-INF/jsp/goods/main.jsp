@@ -78,7 +78,7 @@ table {
 			<tr>
 				<c:choose>
 					<c:when test="${fn:length(list) > 0}">
-						<c:forEach items="${best }" var="list" varStatus="stat" begin="0" end="15">
+						<c:forEach items="${best }" var="list" varStatus="stat" begin="0" end="17">
 							<c:if test="${stat.index%3==0}"><tr></tr></c:if>
 							<td class="suk" align="center">
 								<a href="#this" name="title">
@@ -113,7 +113,7 @@ table {
 			<tr>
 				<c:choose>
 					<c:when test="${fn:length(best) > 0}">
-						<c:forEach items="${list }" var="best" varStatus="stat" begin="0" end="15">
+						<c:forEach items="${list }" var="best" varStatus="stat" begin="0" end="17">
 							<c:if test="${stat.index%3==0}"><tr></tr></c:if>
 							
 							<!--여기에 li가 왜들어가? -->
