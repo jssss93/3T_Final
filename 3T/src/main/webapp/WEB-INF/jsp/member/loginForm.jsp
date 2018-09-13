@@ -35,7 +35,7 @@
 }
 .fb_iframe_widget {
     top: 87px;
-    right: 125px;
+    right: 97px;
 }
 .xans-member-login .login fieldset>a {
     top: 182px!important;
