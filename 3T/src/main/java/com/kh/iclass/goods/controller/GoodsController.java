@@ -96,9 +96,12 @@ public class GoodsController {
    public ModelAndView goodsDetail(CommandMap commandMap,HttpServletRequest request, HttpServletResponse response) throws Exception {
 	   
 	   
-	   if(request.getSession().getAttribute("GOODS_NO")!=null) {
+	   /*if(request.getSession().getAttribute("GOODS_NO")!=null) {
 		   commandMap.put("GOODS_NO",request.getSession().getAttribute("GOODS_NO") );	
 		   request.removeAttribute("GOODS_NO");
+	   }*/
+	   if(commandMap.get("GOODS_NO")==null) {
+		   commandMap.put("GOODS_NO", request.getSession().getAttribute("GOODS_NO"));
 	   }
 	   System.out.println("디테일로 넘어오는 값:");
 	   System.out.println(commandMap.getMap());

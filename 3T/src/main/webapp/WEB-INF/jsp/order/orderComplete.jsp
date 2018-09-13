@@ -181,7 +181,7 @@
 												</div>
 											</td>
 											<td>
-												<div class="box">0 KRW 
+												<div class="box">KRW 
 													<strong>${DISCOUNT }</strong>
 												</div>
 											</td>

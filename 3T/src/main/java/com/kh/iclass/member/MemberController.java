@@ -36,14 +36,7 @@ public class MemberController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/kakaoLogin")
-	public String KakaoTest(CommandMap commandMap,HttpServletRequest request) {
-		request.getSession().setAttribute("MEMBER_ID", "kakao_"+commandMap.getMap().get("id"));
-		request.getSession().setAttribute("TOKEN", "kakao_"+commandMap.getMap().get("token"));
-
-		return authNum;
-		
-	}
+	
 	
 	//마이페이지 눌렀을시 주문,환불,교환,쿠폰,메세지등 개수꺼내와 넘겨주기
 	@RequestMapping(value = "/member/mypage")

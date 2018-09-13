@@ -95,10 +95,8 @@ function loginWithKakao(){
 			         			token : authObj.access_token
 			         		}),
 			         		success : function() {
-			         			alert("성공");
 			         		},
 			         		error : function(error, a, b) {
-			         			alert("에러");
 			         			console.log(error);
 			         			console.log(a);
 			         			console.log(b);

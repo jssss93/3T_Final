@@ -75,15 +75,20 @@ function open_win_noresizable(url, name) {
 var accountPrice2 	= 0;
 var couponPrice = 0;
 	couponPrice = parseInt(couponPrice);
+
+//쿠폰 사용시 콜백함수
 function onCallback (no, content) {
+	var canUsePoint =memberPoint-usePoint;
+	
 	couponPrice = content;
 	console.log(couponPrice);
 	$('#coupon_list').html(
 		'<li>' +
-		content + "원 할인 " +
-		'</li>'/* +
+		content + "원 할인 " + 
+		'</li>'
+		/* +
 		'<input type="hidden" name="COUPON_NO" value='+no+'>' */)
-		//이거로 값 왜 안넘어가지는거지?
+		//이거로 값 왜 안넘어가지는거지? 
 	couponPrice	=content;
 	discountPrice=parseInt(usePoint) + parseInt(couponPrice);
 	
@@ -96,8 +101,6 @@ function onCallback (no, content) {
     $(".totalSum2").val(accountPrice);
     $(".memberPoint").val(memberPoint -usePoint);
 }
-   
-  
 </script>
 
 <script type="text/javascript">
@@ -109,6 +112,7 @@ function onCallback (no, content) {
    	var pointSum       	= 0;
    	var discountPrice   = 0;
   	var usePoint       	= 0;
+  	
    	var memberPoint		= parseInt('<c:out value="${memberInfo.POINT}"/>');
 	var memberGrade		= parseInt('<c:out value="${memberInfo.GRADE}"/>');
     
@@ -146,9 +150,8 @@ function discount_Fun(){
       
       $(".totalSum").html(comma(accountPrice)+" KRW");
       $(".discount").html("-"+comma(discountPrice)+" KRW");
-      
       $(".totalSum2").val(accountPrice);
-      $(".memberPoint").val(memberPoint -usePoint);
+      $(".memberPoint").html(memberPoint -usePoint);
       $(".usePoint2").val(usePoint);
       $(".discount2").val(discountPrice);
       
@@ -346,6 +349,10 @@ function checkAll2(){
 			alert("은행을 선택해주세요");
 			return false;
 		}
+		if(f.totalSum.value<0){
+			alert("0원보다 큰 금액으로 구매해주세요");
+			return false;
+		}
 	}   
 	  </script>
 <title>3T</title>
@@ -483,7 +490,7 @@ div.member p strong {
                         <c:if test="${memberInfo.GRADE ==3}">[Gold]</c:if>
                         <c:if test="${memberInfo.GRADE ==4}">[VIP]</c:if>
 
-                        등급 회원입니다.
+                       	 등급 회원입니다.
                      </p>
                      <ul class="">
                         <li class=""><span class="">KRW 50,000</span> 이상 <span
@@ -495,6 +502,7 @@ div.member p strong {
 
                         </span>을 추가적립 받으실 수 있습니다.</li>
                      </ul>
+                     
                      <ul class="mileage">
                         <li><a href="/myshop/mileage/historyList.html">가용포인트 :
                               <strong><fmt:formatNumber value="${memberInfo.POINT}"
@@ -512,9 +520,12 @@ div.member p strong {
 							</a>
 						</li>
                      </ul>
+                     
                  	</c:if>
-                 	
-                 	<c:if test="${MEMBER_ID !=null && memberInfo.NAME ==null}">
+                 	<c:choose>
+                 		<c:when test="${MEMBER_ID!=null }"></c:when>
+                 	</c:choose>
+                 	<c:if test="${MEMBER_ID !=null && memberInfo.NAME ==null && NON_MEMBER_ID==null}">
 	                	<p>
 	                       	<strong>${MEMBER_ID }</strong> 님은, KAKAO 회원입니다.
 	                    </p>
@@ -523,7 +534,7 @@ div.member p strong {
 	                    </ul>
                   	</c:if>
                   	
-                  	<c:if test="${MEMBER_ID ==null}">
+                  	<c:if test="${NON_MEMBER_ID !=null}">
 	                	<p>
 	                       	<strong>${NON_MEMBER_ID }</strong> 님은, 비회원입니다.
 	                    </p>
@@ -532,11 +543,6 @@ div.member p strong {
 	                    </ul>
                   	</c:if>
                   	
-                  	<%-- <c:if test="${memberInfo.NAME ==null && NON_MEMBER_ID==null}">
-                 		<p>
-                        	<strong><%=id %></strong> 님은, Kakao 회원입니다.
-                     	</p>
-                     </c:if> --%>
                </div>
 
             </div>
@@ -851,7 +857,7 @@ div.member p strong {
 	                     <td>
 	                        <p>
 	                           <input type="text" id="usePoint" onblur="discount_Fun()">
-	                           원 (총 사용가능 적립금 : <strong class="memberPoint">${memberInfo.POINT }</strong>원)
+	                           원 (총 사용가능 적립금 : <strong><span class="memberPoint">${memberInfo.POINT }</span></strong>원)
 	                           <input type="hidden" name="USEPOINT" class="usePoint2">
 	                        </p>
 	                        <ul class="info">
@@ -939,7 +945,7 @@ div.member p strong {
                      </td>
                      <td>
                         <div class="box txtEm txt16">
-                           <strong>=</strong> <strong> <span id="total_order_sale_price_view" class="totalSum">0 KRW</span></strong>
+                           <strong>=</strong> <strong> <span id="total_order_sale_price_view" name="totalSum" class="totalSum">0 KRW</span></strong>
                         	<input type="hidden" name="TOTALSUM2" class="totalSum2">
                         </div>
                      </td>
@@ -956,25 +962,24 @@ div.member p strong {
       <div class="payArea">
          <div class="payment">
             <div class="method">
-               <span class="ec-base-label"> <input id="addr_paymethod0"
-                  name="PAYMENT" fw-filter="isFill" fw-label="결제방식" fw-msg=""
-                  value="cash" type="radio" checked="checked"> <labelfor="addr_paymethod0">무통장
-                  입금</labelfor>
-               </span> <span class="ec-base-label"> <input id="addr_paymethod1"
-                  name="PAYMENT" fw-filter="isFill" fw-label="결제방식" fw-msg=""
-                  value="card" type="radio"> <label for="addr_paymethod1">카드
-                     결제</label>
-               </span> <span class="ec-base-label"> <input id="addr_paymethod2"
-                  name="PAYMENT" fw-filter="isFill" fw-label="결제방식" fw-msg=""
-                  value="cell" type="radio"> <label for="addr_paymethod2">휴대폰
-                     결제</label>
+               <span class="ec-base-label"> 
+	               <input id="addr_paymethod0"name="PAYMENT" value="cash" type="radio" checked="checked"> 
+	               <labelfor="addr_paymethod0">무통장 입금</labelfor>
+               </span> 
+               <!-- <span class="ec-base-label"> 
+	               <input id="addr_paymethod1"name="PAYMENT" value="card" type="radio"> 
+	               <label for="addr_paymethod1">카드 결제</label>
+               </span>  -->
+               <span class="ec-base-label"> 
+	               <input id="addr_paymethod2"name="PAYMENT" value="cell" type="radio"> 
+	               <label for="addr_paymethod2">휴대폰결제(서비스 준비중입니다.)</label>
                </span>
             </div>
 
             <div class="ec-base-table">
                <!-- 무통장입금 -->
-               <table border="1" summary="" id="payment_input_cash"
-                  style="display: table;">
+               
+               <table border="1" summary="" id="payment_input_cash" style="display: table;">
                   <caption>무통장입금</caption>
                   <colgroup>
                      <col style="width: 139px">
@@ -983,36 +988,26 @@ div.member p strong {
                   <tbody>
                      <tr>
                         <th scope="row">입금자명</th>
-                        <td><input id="pname" name="DEPOSIT_NAME" fw-filter=""
-                           fw-label="무통장 입금자명" fw-msg="" class="inputTypeText"
-                           placeholder="" size="15" maxlength="20" value="" type="text"></td>
+                        <td><input id="pname" name="DEPOSIT_NAME" fw-label="무통장 입금자명"  class="inputTypeText" size="15" maxlength="20" value="" type="text"></td>
                      </tr>
                      <tr>
                         <th scope="row">계좌번호</th>
-                        <td><input id="pname" name="DEPOSIT_BANK" fw-filter=""
-                           fw-label="무통장 입금자명" fw-msg="" class="inputTypeText"
-                           placeholder="" size="15" maxlength="20" value="" type="text"></td>
+                        <td><input id="pname" name="DEPOSIT_BANK" fw-label="무통장 입금자명"  class="inputTypeText" size="15" maxlength="20" value="" type="text"></td>
                      </tr>
                      <tr>
                         <th scope="row">입금은행</th>
-                        <td><select id="bankaccount" name="DEPOSIT_" fw-filter=""
-                           fw-label="무통장 입금은행" fw-msg="">
+                        <td>
+                        <select id="bankaccount" name="DEPOSIT_" fw-label="무통장 입금은행" >
                               <option value="-1">::: 선택해 주세요. :::</option>
-                              <option
-                                 value="bank_04:437201-04-192634:서지우(애즈클로):국민은행:www.kbstar.com">국민은행:437201-04-192634
-                                 서지우(애즈클로)</option>
+                              <option value="bank_04:110-370-660054:최종수(3T):신한:www.shinhanbank.com">신한은행:110-370-660054 최종수(3T)</option>
                         </select>
-                           <p class="gBlank5 ">
-                              <a href="#none" id="btn_bank_go"><img
-                                 src="//img.echosting.cafe24.com/skin/base_ko_KR/order/btn_bank.gif"
-                                 alt="은행사이트 바로가기"></a>
-                           </p></td>
+                        </td>
                      </tr>
                   </tbody>
                </table>
+               
                <!-- 실시간 계좌이체 -->
-               <table border="1" summary="" id="payment_input_tcash"
-                  style="display: none;">
+               <!-- <table border="1" summary="" id="payment_input_tcash">
                   <caption>실시간 계좌이체</caption>
                   <colgroup>
                      <col style="width: 139px">
@@ -1021,22 +1016,17 @@ div.member p strong {
                   <tbody>
                      <tr>
                         <th scope="row">예금주명</th>
-                        <td><input id="allat_account_nm" name="allat_account_nm"
-                           fw-filter="" fw-label="무통장 입금자명" fw-msg=""
-                           class="inputTypeText" placeholder="" size="26" maxlength="30"
-                           value="" type="text"></td>
+                        <td><input id="allat_account_nm" name="allat_account_nm" fw-label="무통장 입금자명" class="inputTypeText" size="26" maxlength="30" type="text"></td>
                      </tr>
                      <tr>
                         <th scope="row"></th>
-                        <td><input type="checkbox" name="flagEscrowUse"
-                           id="flagEscrowUse0" value="T"><label
-                           for="flagEscrowUse0"> 에스크로(구매안전)서비스를 적용합니다.</label></td>
+                        <td><input type="checkbox" name="flagEscrowUse" id="flagEscrowUse0" value="T"><label for="flagEscrowUse0"> 에스크로(구매안전)서비스를 적용합니다.</label></td>
                      </tr>
                   </tbody>
-               </table>
+               </table> -->
+               
                <!-- 에스크로(가상계좌) -->
-               <table border="1" summary="" id="payment_input_icash"
-                  style="display: none;">
+               <!-- <table border="1" summary="" id="payment_input_icash">
                   <caption>에스크로(가상계좌)</caption>
                   <colgroup>
                      <col style="width: 139px">
@@ -1045,21 +1035,17 @@ div.member p strong {
                   <tbody>
                      <tr>
                         <th scope="row">에스크로</th>
-                        <td><input id="flagEscrowIcashUse0"
-                           name="flagEscrowIcashUse" fw-filter="" fw-label="에스크로(구매안전)"
-                           fw-msg="" value="T" type="checkbox"><label
-                           for="flagEscrowIcashUse0"></label><label
-                           for="flagEscrowIcashUse0">에스크로(구매안전)서비스를 적용합니다.</label></td>
+                        <td>
+                        	<input id="flagEscrowIcashUse0" name="flagEscrowIcashUse"  fw-label="에스크로(구매안전)" value="T" type="checkbox">
+                           	<label for="flagEscrowIcashUse0"></label>
+                           	<labelfor="flagEscrowIcashUse0">에스크로(구매안전)서비스를 적용합니다.</label>
+                        </td>
                      </tr>
                   </tbody>
-               </table>
+               </table> -->
                <!-- 무통장입금, 카드결제, 휴대폰결제, 실시간계좌이체 -->
                <div id="pg_paymethod_info" class="payHelp" style="display: block;">
-                  <p id="pg_paymethod_info_shipfee" class="ec-base-help">최소 결제
-                     가능 금액은 결제금액에서 배송비를 제외한 금액입니다.</p>
-                  <p id="pg_paymethod_info_pg" class="ec-base-help"
-                     style="display: none;">소액 결제의 경우 PG사 정책에 따라 결제 금액 제한이 있을 수
-                     있습니다.</p>
+                  <p id="pg_paymethod_info_shipfee" class="ec-base-help">최소 결제 가능 금액은 결제금액에서 배송비를 제외한 금액입니다.</p>
                </div>
             </div>
          </div>
@@ -1067,23 +1053,20 @@ div.member p strong {
          <!-- 최종결제금액 -->
          <div class="total">
             <h4>
-               <strong id="current_pay_name">무통장 입금</strong> <span>최종결제 금액</span>
+               <strong id="current_pay_name">무통장 입금</strong> 
+               <span>최종결제 금액</span>
             </h4>
             <p class="total_t">
-               <span class="totalSum">0 KRW( 722번째줄도) </span> <input type="hidden"
-                  name="TOTALPRICE" class="totalSum2">
+               <span class="totalSum">0 KRW </span> 
+               <input type="hidden" name="TOTALPRICE" class="totalSum2">
             </p>
-            <p class="paymentAgree" id="chk_purchase_agreement"
-               style="display: block;">
-               <input id="chk_purchase_agreement0" name="chk_purchase_agreement"
-                  fw-filter="" fw-label="구매진행 동의" fw-msg="" value="T"
-                  type="checkbox" style="display: block;"> <label
-                  for="chk_purchase_agreement0">결제정보를 확인하였으며, 구매진행에 동의합니다.</label>
+            <p class="paymentAgree" id="chk_purchase_agreement" style="display: block;">
+               <input id="chk_purchase_agreement0" name="chk_purchase_agreement" fw-label="구매진행 동의"  value="T" type="checkbox" style="display: block;"> 
+               <label for="chk_purchase_agreement0">결제정보를 확인하였으며, 구매진행에 동의합니다.</label>
             </p>
             <div class="button">
-               <a href="/3T/order/insert"> <input name="submit" type="submit"
-                  style="width: 18em; font-family: 돋움; background-color: #121212; color: #FFFFFF; line-height: 5em; border-color: #121212;"
-                  value="결제하기 " />
+               <a href="/3T/order/insert"> 
+               <input name="submit" type="submit" style="width: 18em; font-family: 돋움; background-color: #121212; color: #FFFFFF; line-height: 5em; border-color: #121212;" value="결제하기 " />
                </a>
             </div>
          </div>
@@ -1093,8 +1076,7 @@ div.member p strong {
       <div class="ec-base-help">
          <h3>이용안내</h3>
          <div class="inner">
-            <h4>WindowXP 서비스팩2를 설치하신후 결제가 정상적인 단계로 처리되지 않는경우, 아래의 절차에 따라
-               해결하시기 바랍니다.</h4>
+            <h4>WindowXP 서비스팩2를 설치하신후 결제가 정상적인 단계로 처리되지 않는경우, 아래의 절차에 따라 해결하시기 바랍니다.</h4>
             <ol>
                <li class="item1"><a href="javascript:;"
                   onclick="window.open('http://service-api.echosting.cafe24.com/shop/notice_XP_ActiveX.html','','width=795,height=500,scrollbars=yes',resizable=1);">안심클릭
