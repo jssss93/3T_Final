@@ -49,7 +49,7 @@ public class AdminOrderController {
 	
 
 	//관리자 총 주문목록
-	@RequestMapping(value = "/order/orderlist")		
+	@RequestMapping(value = "/order/orderlistAll")		
 	public ModelAndView orderList(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("order.list");
 		
@@ -73,9 +73,9 @@ public class AdminOrderController {
 	}
 
 	//관리자 0,1,2,3 주문 목록
-	@RequestMapping(value = "/order/orderlist2")		
+	@RequestMapping(value = "/order/orderlist")		
 	public ModelAndView orderList2(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("order.orderlist3");
+		ModelAndView mv = new ModelAndView("order.list");
 		
 		HttpSession session = request.getSession();
 		
@@ -92,6 +92,42 @@ public class AdminOrderController {
 		
 		mv.addObject("list", resultMap.get("result"));
 		
+		return mv;
+	
+	}
+	
+	@RequestMapping(value = "/order/refundlist")		
+	public ModelAndView orderRefundList(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("order.list");
+		
+		HttpSession session = request.getSession();
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		
+		Map<String, Object> resultMap = null;
+		
+		resultMap=orderService.selectRefundListAll(commandMap.getMap());
+		
+		mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
+		
+		mv.addObject("list", resultMap.get("result"));
+		return mv;
+	
+	}
+	
+	@RequestMapping(value = "/order/changelist")		
+	public ModelAndView orderChangeList(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("order.list");
+		
+		HttpSession session = request.getSession();
+		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		
+		Map<String, Object> resultMap = null;
+		
+		resultMap=orderService.selectChangeListAll(commandMap.getMap());
+		
+		mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
+		
+		mv.addObject("list", resultMap.get("result"));
 		return mv;
 	
 	}
@@ -147,40 +183,7 @@ public class AdminOrderController {
 		
 	}
 	
-	@RequestMapping(value = "/order/refundlist")		
-	public ModelAndView orderRefundList(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("order.list");
-		
-		HttpSession session = request.getSession();
-		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
-		
-		Map<String, Object> resultMap = null;
-		
-		resultMap=orderService.selectRefundListAll(commandMap.getMap());
-		
-		mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
-		
-		mv.addObject("list", resultMap.get("result"));
-		return mv;
 	
-	}
-	@RequestMapping(value = "/order/changelist")		
-	public ModelAndView orderChangeList(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("order.list");
-		
-		HttpSession session = request.getSession();
-		commandMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
-		
-		Map<String, Object> resultMap = null;
-		
-		resultMap=orderService.selectChangeListAll(commandMap.getMap());
-		
-		mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
-		
-		mv.addObject("list", resultMap.get("result"));
-		return mv;
-	
-	}
 	
 	
 	

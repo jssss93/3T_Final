@@ -139,6 +139,7 @@ FROM
         ROW_NUMBER() OVER (
         ORDER BY
         		<choose>
+        		
 	 			<when test='CATEGORY2 == "1"'>
 					 NAME ASC
 				 </when>
@@ -227,12 +228,62 @@ FROM
             c.GOODS_NO=d.GOODS_NO
             )
             WHERE
-            	<if test='CATEGORY1 == "0"'>
-        		COUNT = 0 AND
-        		</if>
-        		<if test='CATEGORY1 == "1"'>
-        		COUNT > 0 AND
-        		</if>
+            	<choose>
+        		
+		 			<when test='CATEGORY1 == "0"'>
+						 COUNT = 0 AND
+					 </when>
+					 <when test='CATEGORY1 == "1"'>
+						 COUNT > 0 AND
+					 </when>
+					 
+					 <otherwise>
+						
+					 </otherwise>
+				 </choose>
+            	
+            	
+            	<choose>
+        		
+		 			<when test='CATEGORY == OUTER'>
+						CATEGORY ='CATEGORY'
+					 </when>
+					 <when test='CATEGORY == SUIT'>
+						CATEGORY ='SUIT'
+					 </when>
+					 <when test='CATEGORY == TOP'>
+						CATEGORY ='TOP'
+					 </when>
+					 <when test='CATEGORY == SHIRT'>
+						CATEGORY ='SHIRT'
+					 </when>
+					 <when test='CATEGORY == KNIT'>
+						CATEGORY ='KNIT'
+					 </when>
+					 <when test='CATEGORY == BOTTOM'>
+						CATEGORY ='BOTTOM'
+					 </when>
+					 <when test='CATEGORY == SHOES'>
+						CATEGORY ='SHOES'
+					 </when>
+					 <when test='CATEGORY == BOTTOM'>
+						CATEGORY ='BOTTOM'
+					 </when>
+					 <when test='CATEGORY == SHOES'>
+						CATEGORY ='SHOES'
+					 </when>
+					 <when test='CATEGORY == ACC'>
+						CATEGORY ='ACC'
+					 </when>
+					 
+					 
+					 
+					 
+					 
+					 <otherwise>
+						
+					 </otherwise>
+				 </choose>
             	CATEGORY LIKE '%'||#{CATEGORY}||'%'
             GROUP BY
                GOODS_NO,

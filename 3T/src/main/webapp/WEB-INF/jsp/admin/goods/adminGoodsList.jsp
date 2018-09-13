@@ -112,7 +112,7 @@ function delchk(){
 					<div class="row" style="margin-bottom:5px;align: left;">
 						<div class="col-sm-6">
 							<a href="/MODA/goods/goodsList"><button type="button" class="btn btn-outline btn-default">전체</button></a>
-							<select class="form-control" name="CATEGORY" id="CATEGORY" onchange="ajaxStart()">		
+							<select class="form-control" name="CATEGORY" id="CATEGORY" onchange="cateChange()">		
 								<option value ="">--카테고리--</option>
 								<option value ="OUTER">OUTER</option>
 								<option value ="SUIT">SUIT</option>
@@ -123,12 +123,12 @@ function delchk(){
 								<option value ="SHOES">SHOES</option>
 								<option value ="ACC">ACC</option>
 							</select>
-							<select class="form-control" name="CATEGORY1" id="CATEGORY1" onchange="ajaxStart()">
+							<select class="form-control" name="CATEGORY1" id="CATEGORY1" onchange="cateChange()">
 								<option value ="">--상품구분--</option>
 								<option value ="1">판매중</option>
 								<option value ="0">품절상품</option>
 							</select>			
-							<select class="form-control" name="CATEGORY2" id="CATEGORY2" onchange="ajaxStart()">
+							<select class="form-control" name="CATEGORY2" id="CATEGORY2" onchange="cateChange()">
 								<option value ="">--상품정렬--</option>
 								<option value ="1">이름순</option>
 								<option value ="2">낮은 가격순</option>
@@ -208,7 +208,7 @@ function delchk(){
 									function fn_search(pageNo) {
 										var comSubmit = new ComSubmit();
 										comSubmit
-												.setUrl("<c:url value='/admin/goods/list' />");
+												.setUrl("<c:url value='/admin/goods/cateList' />");
 										comSubmit.addParam("currentPageNo",
 												pageNo);
 										comSubmit.submit();
@@ -251,8 +251,28 @@ function delchk(){
 </body>
 
 <script>
+/* $(document).ready(function() {
+	$("#CATEGORY").on("click", function(e) { //글쓰기 버튼
+		e.preventDefault();
+		fn_WriteForm();
+	});
 
-function ajaxStart(){
+	$("a[name='title']").on("click", function(e) { //상세보기
+		e.preventDefault();
+		fn_Detail($(this));
+	}); 
+}); */ 
+   
+function cateChange() {
+	var comSubmit = new ComSubmit();
+	comSubmit.setUrl("<c:url value='/admin/goods/cateList' />");
+	comSubmit.addParam("CATEGORY", $("#CATEGORY option:selected").val());
+	comSubmit.addParam("CATEGORY1", $("#CATEGORY1 option:selected").val());
+	comSubmit.addParam("CATEGORY2", $("#CATEGORY2 option:selected").val());
+	comSubmit.submit();
+}
+
+/* function ajaxStart(){
     
 	var params = $("#goodslist").serialize();
 	console.log(params);
@@ -270,7 +290,7 @@ function ajaxStart(){
          });  
        
       
-   }
+   } */
 
    /* function ajaxStart(){
 	      

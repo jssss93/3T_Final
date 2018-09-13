@@ -396,116 +396,15 @@ $(document).ready(function() {
 		ajaxTest(start,end,cateNum);
 	});
 	
-	 $("#searchNonMem").on("click", function(e) { 
-		 var no=$("#orderNo").val().substr(13,5);
-		 var name=$("#orderName").val();
-		 var cateNum = sel.options[sel.selectedIndex].value;
-		e.preventDefault();
-		nonMemberAjax(no,name,cateNum);
-	}); 
 	
-	
-	$("#searchToday").on("click", function(e) { 
-		var startDate 	=	new Date();
-		var endDate 	= 	new Date();
-		var cateNum = sel.options[sel.selectedIndex].value;
-		
-		startDate.setDate(endDate.getDate()-1);
-		
-		var start		=	startDate.getFullYear()+'-'
-							+((startDate.getMonth()+1<10)	? "0"+(startDate.getMonth()+1)  : startDate.getMonth()+1)+'-'
-							+((startDate.getDate()+1<10) 		? "0"+startDate.getDate()+1 		: startDate.getDate()+1);
-		var end			=	endDate.getFullYear()+'-'
-							+((endDate.getMonth()+1<10) 	? "0"+(endDate.getMonth()+1)  	: endDate.getMonth()+1)+'-'
-							+((endDate.getDate()+1<10) 		? "0"+endDate.getDate()+1 			: endDate.getDate()+1);
-		
-		console.log("1일전:"+startDate);
-		e.preventDefault();
-		ajaxTest(start,end,cateNum);
-	}); 
-	
-	
-	$("#searchWeek").on("click", function(e) { 
-		var startDate 	=	new Date();
-		var endDate 	= 	new Date();
-		var cateNum = sel.options[sel.selectedIndex].value;
-		
-		startDate.setDate(endDate.getDate()-7);
-		
-		var start		=	startDate.getFullYear()+'-'
-							+((startDate.getMonth()+1<10)	? "0"+(startDate.getMonth()+1)  : startDate.getMonth()+1)+'-'
-							+((startDate.getDate()<10) 		? "0"+startDate.getDate() 		: startDate.getDate());
-		var end			=	endDate.getFullYear()+'-'
-							+((endDate.getMonth()+1<10) 	? "0"+(endDate.getMonth()+1)  	: endDate.getMonth()+1)+'-'
-							+((endDate.getDate()<10) 		? "0"+endDate.getDate() 			: endDate.getDate());
-		
-		console.log("1주전:"+startDate);
-		e.preventDefault();
-		ajaxTest(start,end,cateNum);
-	}); 
-	
-	
-	$("#searchMonth").on("click", function(e) { 
-		var startDate 	=	new Date();
-		var endDate 	= 	new Date();
-		var cateNum = sel.options[sel.selectedIndex].value;
-		
-		startDate.setMonth(endDate.getMonth()-1);
-		
-		var start		=	startDate.getFullYear()+'-'
-							+((startDate.getMonth()+1<10)	? "0"+(startDate.getMonth()+1)  : startDate.getMonth()+1)+'-'
-							+((startDate.getDate()<10) 		? "0"+startDate.getDate() 		: startDate.getDate());
-		var end			=	endDate.getFullYear()+'-'
-							+((endDate.getMonth()+1<10) 	? "0"+(endDate.getMonth()+1)  	: endDate.getMonth()+1)+'-'
-							+((endDate.getDate()<10) 		? "0"+endDate.getDate() 			: endDate.getDate());
-		
-		console.log("1달전:"+startDate);
-		e.preventDefault();
-		ajaxTest(start,end,cateNum);
-	}); 
-	
-	
-	$("#search3Month").on("click", function(e) { 
-		var startDate 	=	new Date();
-		var endDate 	= 	new Date();
-		var cateNum = sel.options[sel.selectedIndex].value;
-		
-		startDate.setMonth(endDate.getMonth()-3);
-		
-		var start		=	startDate.getFullYear()+'-'
-							+((startDate.getMonth()+1<10)	? "0"+(startDate.getMonth()+1)  : startDate.getMonth()+1)+'-'
-							+((startDate.getDate()<10) 		? "0"+startDate.getDate() 		: startDate.getDate());
-		var end			=	endDate.getFullYear()+'-'
-							+((endDate.getMonth()+1<10) 	? "0"+(endDate.getMonth()+1)  	: endDate.getMonth()+1)+'-'
-							+((endDate.getDate()<10) 		? "0"+endDate.getDate() 			: endDate.getDate());
-		
-		console.log("3달전:"+startDate);
-		e.preventDefault();
-		ajaxTest(start,end,cateNum);
-	}); 
-	
-	
-	$("#search6Month").on("click", function(e) { 
-		var startDate 	=	new Date();
-		var endDate 	= 	new Date();
-		var cateNum = sel.options[sel.selectedIndex].value;
-		
-		startDate.setMonth(endDate.getMonth()-6);
-		
-		var start		=	startDate.getFullYear()+'-'
-							+((startDate.getMonth()+1<10)	? "0"+(startDate.getMonth()+1)  : startDate.getMonth()+1)+'-'
-							+((startDate.getDate()<10) 		? "0"+startDate.getDate() 		: startDate.getDate());
-		var end			=	endDate.getFullYear()+'-'
-							+((endDate.getMonth()+1<10) 	? "0"+(endDate.getMonth()+1)  	: endDate.getMonth()+1)+'-'
-							+((endDate.getDate()<10) 		? "0"+endDate.getDate() 			: endDate.getDate());
-		
-		console.log("6달전:"+startDate);
-		e.preventDefault();
-		ajaxTest(start,end,cateNum);
-	}); 
 	 	 
 	
-}); 
+});
+function fn_WriteForm() {
+	var comSubmit = new ComSubmit();
+	comSubmit.setUrl("<c:url value='/notice/write' />");
+	comSubmit.submit();
+}
 </script>
 </body>
 </html>

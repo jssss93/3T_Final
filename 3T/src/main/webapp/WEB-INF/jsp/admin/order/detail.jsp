@@ -55,7 +55,7 @@ function joinValidation(adminModifyMember){
 				<input type="hidden" id="ORDER_NO" name="ORDER_NO" value="${ORDER_NO}">
 				<input type="hidden" id="ORDER_DETAIL_NO" name="ORDER_DETAIL_NO" value="${ORDER_DETAIL_NO}">	
                 <div>주문번호		:2018${ORDER_NO }</div>
-                <div>주문상세번호	:$0000{ORDER_DETAIL_NO}</div>
+                <div>주문상세번호	:-0000${ORDER_DETAIL_NO}</div>
                 <div>주문날짜		:${REGDATE }</div>
                 <br><br>
 				<div>
