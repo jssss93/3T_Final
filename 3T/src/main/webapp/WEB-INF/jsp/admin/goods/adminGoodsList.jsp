@@ -173,7 +173,7 @@ function delchk(){
 											<td style="text-align:center;vertical-align:middle;">${goodsList.NAME}</td>	
 											<td style="text-align:center;vertical-align:middle;">${goodsList.CATEGORY}<input type="hidden" value="${goodsList.GOODS_NO }"></td>								
 											<td style="text-align:center;vertical-align:middle;"><img src="/3T/resources/upload/${goodsList.IMAGE.split(',')[0]}" width="60" height="60" alt=""  onerror="상품 이미지가 없습니다." /></td>
-												<td style="text-align:center;vertical-align:middle;">${goodsList.PRICE}</td>
+												<td style="text-align:center;vertical-align:middle;"><fmt:formatNumber value="${goodsList.PRICE}" pattern="#,###" /></td>
 											<td style="text-align:center;vertical-align:middle;">${goodsList.COLOR}</td>
 											<td style="text-align:center;vertical-align:middle;">${goodsList.GOODS_SIZE}</td>
 											<td style="text-align:center;vertical-align:middle;">${goodsList.COUNT}</td>

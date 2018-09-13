@@ -267,7 +267,7 @@
 														</li>
 													</ul>
 												</td>
-												<td><span class="price" value="${row.PRICE}">${row.PRICE}</span></td>
+												<td><span class="price" value="${row.PRICE}"><fmt:formatNumber value="${row.PRICE}" pattern="#,###" /></span></td>
 												<td>
 												
 													<c:url var="cntUp" value="/cart/CountUp">
@@ -291,7 +291,7 @@
 												<td class="delivery">기본배송</td>
 												<td><span class="totprice" 
 													value="${row.PRICE*row.COUNT}">${row.PRICE*row.COUNT}</span></td>
-												<td class="total"><strong>${row.PRICE * row.COUNT }</strong></td>
+												<td class="total"><strong><fmt:formatNumber value="${row.PRICE * row.COUNT }" pattern="#,###" /></strong></td>
 
 												<td class="button">
 												

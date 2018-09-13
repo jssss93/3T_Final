@@ -2,6 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%> 
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -117,7 +118,7 @@ table {
 				   <a href="#this" name="title"> 
 				   <img id="myImg" name="bestimg" src="/3T/resources/upload/${row.IMAGE.split(',')[0] }"> 
 				     <input type="hidden" id="GOODS_NO"name="GOODS_NO" value="${row.GOODS_NO }"></a> <br>
-					      ${row.NAME }<br> KRWsdsds&nbsp;${row.PRICE }</td>
+					      ${row.NAME }<br> KRWsdsds&nbsp;<fmt:formatNumber value="${row.PRICE }" pattern="#,###" /></td>
 
 
 			</c:forEach>
@@ -139,7 +140,7 @@ table {
 			  <a href="#this" name="title"> 
 			   <img id="myImg2" src="/3T/resources/upload/${list.IMAGE.split(',')[0] }"> 
 			    <input type="hidden" id="GOODS_NO" name="GOODS_NO" value="${list.GOODS_NO }"></a> <br>
-				 ${list.NAME }<br> KRW&nbsp;${list.PRICE }</td>
+				 ${list.NAME }<br> KRW&nbsp;<fmt:formatNumber value="${list.PRICE }" pattern="#,###" /></td>
 
 		</c:forEach>
 
