@@ -4,6 +4,7 @@
 <html>
 <head>
 <title>reviewGoodsList</title>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 </head>
@@ -38,7 +39,8 @@
 			<tr>
 				<td><img width="50" height="50"
 					src="/3T/resources/upload/${row.IMAGE.split(',')[0] }" /></td>
-				<td>${row.NAME }<br /> KRW&nbsp; ${row.PRICE }
+				<td>${row.NAME }<br /> KRW&nbsp;<fmt:formatNumber value="${row.PRICE }"
+                                             pattern="#,###" /> 
 				</td>
 				<form action="/3T/review/reviewGoodsSuccess" >
 					<td><input type="submit" class="btn" value="선택"></td> <input

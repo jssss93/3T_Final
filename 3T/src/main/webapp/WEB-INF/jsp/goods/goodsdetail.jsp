@@ -41,6 +41,7 @@
     border-bottom: 1px solid #ccc!important;
     border-right: 1px solid #ccc!important;
     border-left: 1px solid #ccc!important;
+
 }
 .board_review2 {
     width: 85%!important;
@@ -61,6 +62,7 @@
     margin: -17px 0 0 0!important;
 }
 </style>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <script type="text/javascript">
@@ -165,7 +167,7 @@ table {
                      <td class="han" colspan="2"><br>
                      <!------------------------  PRICE ----------------------------->
                      <input type="hidden" name="PRICE" id="PRICE" value="${goodsBasic.PRICE }">
-                        <p></p> <!--상품 가격  --> KRW&nbsp; ${goodsBasic.PRICE }</td>
+                        <p></p> <!--상품 가격  --> KRW&nbsp;<fmt:formatNumber value="${goodsBasic.PRICE }" pattern="#,###" /> </td>
                   </tr>
 
                   <tr>
@@ -353,7 +355,7 @@ table {
 						src="/3T/resources/upload/${list.IMAGE.split(',')[0] }"
 						width="300" height="300"> <input type="hidden" id="GOODS_NO"
 						name="	" value="${list.GOODS_NO }">
-				</a><br> <br> ${list.NAME }<br> &nbsp;${list.PRICE }</td>
+				</a><br> <br> ${list.NAME }<br> &nbsp;<fmt:formatNumber value="${list.PRICE }" pattern="#,###" /></td>
 
 
 			</c:forEach></td>

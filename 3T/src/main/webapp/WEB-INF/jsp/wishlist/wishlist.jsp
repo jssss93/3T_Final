@@ -454,11 +454,11 @@
 															[옵션: ${row.COLOR }/${row.GOODS_SIZE }] 
 														</li>
 													</ul></td>
-												<td><span class="price" value="${row.PRICE}">${row.PRICE}</span></td>
+												<td><span class="price" value="${row.PRICE}"><fmt:formatNumber value="${row.PRICE}" pattern="#,###" /></span></td>
 												<td class="delivery">기본배송</td>
 												<td><span class="">무료<br></span></td>
 												<td><span class="totprice"
-													value="${row.PRICE*1}">${row.PRICE*1}</span></td>
+													value="${row.PRICE*1}"><fmt:formatNumber value="${row.PRICE*1}" pattern="#,###" /></span></td>
 												
 												<td class="button">
 												

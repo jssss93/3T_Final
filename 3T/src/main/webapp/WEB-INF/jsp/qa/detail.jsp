@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <style>
 </style>
@@ -28,7 +29,8 @@
 		<tr>
 			<td align="center" width="120"><img width="100" height="100"
 				src="/3T/resources/upload/${list.IMAGE.split(',')[0] }" /></td>
-			<td>${list.NAME }<br /> KRW&nbsp;${list.PRICE } <br /> <br />
+			<td>${list.NAME }<br /> KRW&nbsp;<fmt:formatNumber value="${list.PRICE }"
+                                             pattern="#,###" /> <br /> <br />
 				&nbsp;
 				<form action="/3T/goods/detail">
 					<input class="btn_qa" type="submit" value="상품 상세보기▶"> <input

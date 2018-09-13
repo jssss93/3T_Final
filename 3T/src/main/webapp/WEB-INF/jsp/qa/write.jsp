@@ -4,7 +4,7 @@
 <html lang="ko">
 <head>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
@@ -143,7 +143,8 @@
 				<tr class="board_subject2">
 					<td align="center" width="120"><img width="100" height="100"
 						src="/3T/resources/upload/${list.IMAGE.split(',')[0] }">
-					<td>${list.NAME }<br /> KRW&nbsp;${list.PRICE } <br> <a
+					<td>${list.NAME }<br /> KRW&nbsp;<fmt:formatNumber value="${list.PRICE }"
+                                             pattern="#,###" /> <br> <a
 						class="board_subject4" type="button"
 						onclick="javascript:open_win_noresizable('qaGoodsSelect', write)">
 							<img
@@ -162,7 +163,7 @@
 			<c:otherwise>
 				<tr class="board_subject2">
 					<td align="center" width="120"><img width="100" height="100"
-						src="/3T/resources/upload/QA.PNG" /></td>
+						src="/3T/resources/images/QA.PNG" /></td>
 					<td class="board_subject"><a type="button"
 						onclick="javascript:open_win_noresizable('qaGoodsSelect', write)">
 							<img
