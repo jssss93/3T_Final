@@ -435,17 +435,16 @@ table {
 <br>
 
 	<!-- 상품 디테일에서 GOODS_NO 보내서 쓰기 -->
+	<form action="/3T/review/writeForm">
 	<table class="notice_button">
 		<tr>
 			<td>
-				<form action="/3T/review/writeForm">
-
 					<input type="submit" class="btn btn-default2" value="WRITE">
-				</form>
 			</td>
 		</tr>
-</table>
-
+	</table>
+		<input type="hidden" id="GOODS_NO" name="GOODS_NO" value="${goodsBasic.GOODS_NO }">
+	</form>
 <br></br>
 <!-- Q & A 게시판 -->
 <br>
@@ -549,9 +548,13 @@ table {
 	<form action="/3T/qa/writeForm">
 		<table class="notice_button">
 			<tr>
-				<td><input type="submit" class="btn btn-default2" value="WRITE"></td>
+				<td><input type="submit" class="btn btn-default2" value="WRITE">
+					
+				</td>
+			
 			</tr>
 		</table>
+		<input type="hidden" id="GOODS_NO" name="GOODS_NO" value="${goodsBasic.GOODS_NO }">
 	</form>
 
 
