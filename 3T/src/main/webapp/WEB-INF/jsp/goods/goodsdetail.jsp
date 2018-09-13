@@ -391,7 +391,6 @@ table {
 		<td valign="middle"><strong>NO</strong></td>
 		<td valign="middle"><strong>ITEM</strong></td>
 		<td valign="middle"><strong>SUBJECT</strong></td>
-		<td valign="middle"><strong>CONTENT</strong></td>
 		<td valign="middle"><strong>NAME</strong></td>
 		<td valign="middle"><strong>DATE</strong></td>
 		<td valign="middle"><strong>HIT</strong></td>
@@ -399,7 +398,7 @@ table {
 	
 	<c:if test="${fn:length(goodsDetail1) le 0}">
 		<tr>
-			<td colspan="7" style="text-align: center;">등록된 리뷰가 없습니다</td>
+			<td colspan="6" style="text-align: center;">등록된 리뷰가 없습니다</td>
 		</tr>
 	</c:if>
 
@@ -417,8 +416,6 @@ table {
                      ${goodsDetail1.CONTENT}</details>
 			    <input type="hidden" id="REVIEW_NO" value="${goodsDetail1.REVIEW_NO }">
 				<input type="hidden" id="GOODS_NO" value="${goodsDetail1.GOODS_NO }">
-	
-			<td align="center">${goodsDetail1.CONTENT}</td>
 
 			<td align="center">${goodsDetail1.MEMBER_ID}</td>
 

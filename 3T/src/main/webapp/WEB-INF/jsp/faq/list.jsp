@@ -15,6 +15,9 @@ a:link{
     font-family: 'Lato', 'NanumGothic';
     font-size: 12px;
 }
+a {
+    font-size: 11px;
+}
 </style>
 
 </head>
