@@ -237,7 +237,7 @@ function getCookie(cookieName) {
                         
                         <span class="loginbtn"><input class="loginbtn" type="submit" id="login" value="Login"></span>
                         <span class="joinusbtn"><a href="/3T/joinStep1">Join us</a></span>
-                        <fb:login-button scope="public_profile,email"onlogin="checkLoginState();"><span>(서비스 준비중)</span></fb:login-button>
+                        <fb:login-button scope="public_profile,email"onlogin="checkLoginState();"><span>Facebook</span></fb:login-button>
 						<div class="han123"id="status"></div>
 						<a class="kakao" cid='custom-login-btn' href='javascript:loginWithKakao()'>
                 			<img src='/3T/images/Kakao_login_btn.PNG' width='357' height='50' />
