@@ -4,6 +4,7 @@
 <html>
 <head>
 <title>first</title>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 
@@ -149,9 +150,9 @@ font-size:15px;
                     	</td>        	
                         <td>${row.COUPON_NO }</td>
                         <td>
-							<a data-toggle="modal" data-target="#myModal${vs.index}">${row.CONTENT}</a>
+							<a data-toggle="modal" data-target="#myModal${vs.index}"><fmt:formatNumber value="${row.CONTENT}" pattern="#,###" /></a>
 						</td>
-                        <td>${row.VALIDITY}</td>
+                        <td><fmt:formatDate value="${row.VALIDITY}" pattern="yyyy.MM.dd" /></td>
                     </tr>
 						<div class="modal fade" id="myModal${vs.index}">
 							<div class="modal-content">
@@ -168,8 +169,8 @@ font-size:15px;
 										<section style="padding: 50px 20px;">
 											<div class="form-group">
 												<div class="col-xs-24 col-lg-24 form-inline">
-													${row.CONTENT}원을 할인가능한 쿠폰입니다. 
-													<br> 쿠폰사용기간은 ${row.VALIDITY} 까지입니다.
+													<fmt:formatNumber value="${row.CONTENT}" pattern="#,###" />원을 할인가능한 쿠폰입니다. 
+													<br> 쿠폰사용기간은 <fmt:formatDate value="${row.VALIDITY}" pattern="yyyy.MM.dd" /> 까지입니다.
 													<p/>
 													
 													<div class="text-center" style="padding-top: 10px">

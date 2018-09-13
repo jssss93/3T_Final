@@ -12,7 +12,10 @@ public interface GoodsService {
 	 * Exception;
 	 */
 	// 대신에
+	//관리자 총 상품 리스트
 	Map<String, Object> goodsList(Map<String, Object> map) throws Exception;
+	//관리자 카테고리 리스트
+	Map<String, Object> goodsCategoryList(Map<String, Object> map) throws Exception;
 
 	void goodsWrite(Map<String, Object> map, HttpServletRequest request) throws Exception;
 	
@@ -20,7 +23,7 @@ public interface GoodsService {
 	public int updateHitcnt(Map<String, Object> map) throws Exception;
 	
 	List<Map<String, Object>> selectMainList(Map<String, Object> map) throws Exception;
-	
+	//회원 카테고리 리스트
 	public Map<String, Object> selectGoodsCategory(Map<String, Object> map) throws Exception;
 	
 	List<Map<String, Object>> selectGoodsBestCategory(Map<String, Object> map) throws Exception;

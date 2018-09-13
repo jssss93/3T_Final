@@ -116,7 +116,7 @@ function delchk(){
 											<td style="text-align:center;vertical-align:middle;"><img width="50" height="50" src="/3T/resources/upload/${list.IMAGE.split(',')[0] }" /></td>		
 											<td style="text-align:center;vertical-align:middle;">${list.NAME}</td>										
 											<td style="text-align:center;vertical-align:middle;">${list.CONTENT}...<br>[${list.COLOR }/${list.GOODS_SIZE }]</td>	
-											<td style="text-align:center;vertical-align:middle;">${list.PRICE}</td>
+											<td style="text-align:center;vertical-align:middle;"><fmt:formatNumber value="${list.PRICE }" pattern="#,###" /></td>
 											<td style="text-align:center;vertical-align:middle;">${list.COUNT}</td>
 											<td style="text-align:center;vertical-align:middle;">
 												
@@ -134,7 +134,7 @@ function delchk(){
 													
 												</c:choose>
 											</td>
-											<td style="text-align:center;vertical-align:middle;">${list.PRICE*list.COUNT}</td>
+											<td style="text-align:center;vertical-align:middle;"><fmt:formatNumber value="${list.PRICE*list.COUNT}" pattern="#,###" /></td>
 											<td style="text-align:center;vertical-align:middle;"> 
 												<%-- <input type="hidden" name="ORDER_NO" value="${list.ORDER_NO }">
 												<input type="hidden" name="ORDER_DETAIL_NO" value="${list.ORDER_DETAIL_NO }"> --%>

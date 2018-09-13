@@ -4,6 +4,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- wing_banner -->
 <link href="<c:url value='/resources/css/wing_banner.css'/>"
 	rel="stylesheet" type="text/css" />
@@ -85,7 +86,7 @@ table {
 									<input type="hidden" id="GOODS_NO" name="GOODS_NO" value="${list.GOODS_NO }">
 								</a><br><br>
 								${list.NAME }<br>
-								KRW&nbsp;${list.PRICE }
+								KRW&nbsp;<fmt:formatNumber value="${list.PRICE }" pattern="#,###" />
 							</td>
 						</c:forEach>
 					</c:when>
@@ -124,7 +125,7 @@ table {
 									<input type="hidden" id="GOODS_NO" name="GOODS_NO" value="${best.GOODS_NO }">
 								</a> 
 								<br><br>${best.NAME }
-								<br>KRW&nbsp;${best.PRICE }
+								<br>KRW&nbsp;<fmt:formatNumber value="${best.PRICE }" pattern="#,###" />
 							</td>
 						</c:forEach>
 					</c:when>

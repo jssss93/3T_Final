@@ -28,6 +28,10 @@ public class ReviewController {
 	@RequestMapping(value = "/review/list")
 	public ModelAndView reviewBoardList(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("review/list");
+		
+		List<Map<String, Object>> list = null;
+		//FAQ 공지사항 리스트
+		list = ReviewService.review4List(commandMap.getMap());
 
 		Map<String, Object> resultMap = null;
 		//검색정보가 들어왔을때 리스트와 안들어왔을 때 리스트
@@ -39,6 +43,8 @@ public class ReviewController {
 		mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
 
 		mv.addObject("list", resultMap.get("result"));
+		
+		mv.addObject("review4list", list);
 		return mv;
 	}
 	//리뷰 쓰기 폼

@@ -42,7 +42,16 @@ a:link{
 			<td valign="middle"><strong>NO</strong></td>
 		</tr>
 		<tbody>
-			<c:choose>
+		<c:forEach items="${faq2list }" var="row2">
+					<tr>
+							<td><strong>&nbsp;&nbsp;☆</strong></td>
+							<td class="subject">
+								<a href="#this" name="title2"><strong>${row2.TITLE }</strong></a>
+								<input type="hidden" id="NOTICE_NO" name="NOTICE_NO" value="${row2.NOTICE_NO }">
+							</td>
+					</tr>
+		</c:forEach>
+		<c:choose>
 				<c:when test="${fn:length(list) > 0}">
 					<c:forEach items="${list }" var="row">
 						<tr>
@@ -95,6 +104,11 @@ a:link{
 				e.preventDefault();
 				fn_Detail($(this));
 			});
+			
+			$("a[name='title2']").on("click", function(e) { //제목 
+				e.preventDefault();
+				fn_Detail23($(this));
+			});
 		});
 
 		function fn_WriteForm() {
@@ -107,6 +121,12 @@ a:link{
 			var comSubmit = new ComSubmit();
 			comSubmit.setUrl("<c:url value='/faq/detail' />");
 			comSubmit.addParam("FAQ_NO", obj.parent().find("#FAQ_NO").val());
+			comSubmit.submit();
+		}
+		function fn_Detail23(obj) {
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("<c:url value='/notice/detail' />");
+			comSubmit.addParam("NOTICE_NO", obj.parent().find("#NOTICE_NO").val());
 			comSubmit.submit();
 		}
 		function fn_search(pageNo) {

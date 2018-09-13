@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
@@ -136,7 +136,8 @@
 				<tr class="board_subject2">
 					<td align="center" width="120"><img width="100" height="100"
 						src="/3T/resources/upload/${list.IMAGE.split(',')[0] }" />
-					<td>${list.NAME }<br /> KRW&nbsp;${list.PRICE } <br> 
+					<td>${list.NAME }<br /> KRW&nbsp;<fmt:formatNumber value="${list.PRICE }"
+                                             pattern="#,###" /> <br> 
 					<a class="board_subject4" type="button" onclick="javascript:open_win_noresizable('reviewGoodsSelect', write)">
 							<img src="http://img.echosting.cafe24.com/skin/base_ko_KR/board/btn_prd_select.gif" alt="상품정보선택">
 					</a> <input type="hidden" name="GOODS_NO" value="${list.GOODS_NO }" />
@@ -152,7 +153,7 @@
 			<c:otherwise>
 				<tr class="board_subject2">
 					<td align="center" width="120"><img width="100" height="100"
-						src="/3T/resources/upload/QA.PNG" /></td>
+						src="/3T/resources/images/QA.PNG" /></td>
 					<td class="board_subject"><a type="button"
 						onclick="javascript:open_win_noresizable('reviewGoodsSelect', write)">
 							<img

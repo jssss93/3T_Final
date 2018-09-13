@@ -1,5 +1,6 @@
 package com.kh.iclass.faq.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
@@ -12,6 +13,11 @@ public class FaqDAO extends AbstractDAO{
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> FaqList(Map<String, Object> map) throws Exception{
 	    return (Map<String, Object>)selectPagingList("faq.selectList", map);
+	}
+	//faq 공지 리스트
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> Faq2List(Map<String, Object> map) throws Exception{
+	    return selectList("faq.faq2List", map);
 	}
 
 /*	public void UpdateReadCnt(Map<String, Object> map) throws Exception{

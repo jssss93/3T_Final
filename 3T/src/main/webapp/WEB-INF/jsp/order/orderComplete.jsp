@@ -95,7 +95,7 @@
 									<tbody>
 										<tr>
 											<th scope="row">최종결제금액</th>
-											<td class="price">KRW <strong>${orderInfo.TOTALPRICE}</strong><strong
+											<td class="price">KRW <strong><fmt:formatNumber value="${orderInfo.TOTALPRICE}" pattern="#,###" /></strong><strong
 												class="tail"></strong> 
 											</td>
 										</tr>
@@ -148,11 +148,11 @@
 														</a>
 														<div class="option ">[옵션: ${row.COLOR} / ${row.GOODS_SIZE}]</div>
 													</td>
-													<td class="price"><strong>${row.PRICE}</strong></td>
+													<td class="price"><strong><fmt:formatNumber value="${row.PRICE}" pattern="#,###" /></strong></td>
 													<td class="quantity">${row.COUNT}</td>
 													<td class="mileage">-</td>
 													<td class="delivery">기본배송</td>
-													<td class="total"><strong>KRW ${row.COUNT*row.PRICE}</strong></td>
+													<td class="total"><strong>KRW <fmt:formatNumber value="${row.COUNT*row.PRICE}" pattern="#,###" /></strong></td>
 													</tr>
 											</c:forEach>
 										</c:when>
@@ -177,17 +177,18 @@
 										<tr>
 											<td>
 												<div class="box">KRW 
-													<strong>${TOTALPRICE }</strong>
+													<strong><fmt:formatNumber value="${TOTALPRICE }" pattern="#,###" /></strong>
+												</div>
+											</td>
+											<td>
+
+												<div class="box"> KRW 
+													<strong><fmt:formatNumber value="${DISCOUNT }" pattern="#,###" /></strong>
 												</div>
 											</td>
 											<td>
 												<div class="box">KRW 
-													<strong>${DISCOUNT }</strong>
-												</div>
-											</td>
-											<td>
-												<div class="box">KRW 
-													<strong>${TOTALSUM }</strong>
+													<strong><fmt:formatNumber value="${TOTALSUM }" pattern="#,###" /></strong>
 												</div>
 											</td>
 										</tr>

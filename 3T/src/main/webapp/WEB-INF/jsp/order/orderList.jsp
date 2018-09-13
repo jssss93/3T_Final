@@ -198,7 +198,7 @@
 													</ul>
 												</td> 
 												<td>
-													<span class="price" value="${row.PRICE}">${row.PRICE} </span>
+													<span class="price" value="${row.PRICE}"><fmt:formatNumber value="${row.PRICE}" pattern="#,###" /> </span>
 												</td> 
 												<td>
 													<strong>${row.COUNT }</strong>
@@ -219,7 +219,7 @@
 												</td>												
 												<td class="delivery">기본배송</td>
 												<td><span class="totprice" >-</span></td>
-												<td class="total"><strong>${row.PRICE * row.COUNT }</strong></td>
+												<td class="total"><strong><fmt:formatNumber value="${row.PRICE * row.COUNT }" pattern="#,###" /></strong></td>
 												
 											</tr>
 
