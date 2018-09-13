@@ -95,7 +95,7 @@ function joinValidation(adminModifyMember){
 						
 						
 						<button type="submit" class="btn btn-success">회원수정</button>
-						<a href="/MODA/member/adminMemberList?searchNum=0&isSearch=">
+						<a href="/3T/admin/member/list?searchNum=0&isSearch=">
 							<button type="button" name="searchNum" id="searchNum" class="btn btn-outline btn-default">목록으로</button>
 						</a>		
 			</form:form>
