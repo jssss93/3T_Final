@@ -168,6 +168,7 @@
            		QA_NO,
            		TITLE,
            		MEMBER_ID,
+           		GOODS_NO,
            		REGDATE
            	FROM 
            		QA
@@ -184,6 +185,7 @@
            		REVIEW_NO,
            		TITLE,
            		MEMBER_ID,
+           		GOODS_NO,
            		REGDATE
            	FROM 
            		REVIEW
@@ -348,7 +350,7 @@
 
 	<!-- 회원가입 -->
 	<insert id="insertMember" parameterType="hashmap" useGeneratedKeys="true" keyProperty="MEMBER_NO">
-		<selectKey keyProperty="MEMBER_NO" resultType="java.lang.Integer" order="BEFORE">
+		<selectKey keyProperty="MEMZBER_NO" resultType="java.lang.Integer" order="BEFORE">
 			SELECT MEMBER_NO_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
 		<![CDATA[

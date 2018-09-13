@@ -68,15 +68,12 @@ public class AdminMemberController {
 	//회원 정보 수정
 	@RequestMapping(value="/member/Update", method=RequestMethod.POST)
 	public ModelAndView joinComplete(CommandMap commandMap, HttpServletRequest request) throws Exception{
-		System.out.println("아이디"+commandMap.get("MEMBER_ID"));
-		System.out.println("주소1"+commandMap.get("ADDR1"));
-		System.out.println("주소2"+commandMap.get("ADDR2"));
-		System.out.println("폰번호"+commandMap.get("PHONE"));
-		System.out.println("비밀번호"+commandMap.get("PASSWD"));
+	
 		ModelAndView mv = new ModelAndView();
 		Map<String, Object> adminMemberMap = new HashMap<String, Object>();
 		commandMap.getMap().put("MEMBER_ID", request.getParameter("MEMBER_ID"));
 		adminMemberMap = commandMap.getMap();
+		adminMemberMap.put("PASSWD3", commandMap.get("PASSWD"));
 		
 		
 		adminMemberService.updateMember(adminMemberMap, request);
