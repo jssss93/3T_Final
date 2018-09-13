@@ -130,7 +130,10 @@
     
     
     <!-- QA 쓰기 -->
-    <insert id="QA_insert" parameterType="hashmap">
+    <insert id="QA_insert" parameterType="hashmap" useGeneratedKeys="true" keyProperty="QA_NO">
+		<selectKey keyProperty="QA_NO" resultType="java.lang.Integer" order="BEFORE">
+			SELECT QA_NO1_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
       <![CDATA[
       
          INSERT INTO
@@ -151,7 +154,7 @@
 
 		)
 		VALUES (
-			QA_NO_SEQ.NEXTVAL,
+			#{QA_NO},
 			#{TITLE},
 			#{PASSWD},
 			#{CONTENT},
@@ -159,7 +162,7 @@
 			#{CATEGORY},
 			#{STATUS},
 		
-			QA_NO_SEQ.CURRVAL,
+			QA_NO1_SEQ.CURRVAL,
 			
 			
 			#{MEMBER_ID},
@@ -326,7 +329,10 @@
 		<include refid="common.pagingPost"/>
 </select>
 <!-- QA 답글 쓰기 -->
-   <insert id="QaInsertReply" parameterType="hashmap">
+   <insert id="QaInsertReply" parameterType="hashmap" useGeneratedKeys="true" keyProperty="QA_NO">
+		<selectKey keyProperty="QA_NO" resultType="java.lang.Integer" order="BEFORE">
+			SELECT QA_NO1_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
       <![CDATA[
 			  INSERT INTO
 		QA (
@@ -346,7 +352,7 @@
 			
 		)
 		VALUES (
-			QA_NO_SEQ.NEXTVAL,
+			#{QA_NO},
 			#{TITLE},
 			#{MEMBER_ID},
 			#{PASSWD},
