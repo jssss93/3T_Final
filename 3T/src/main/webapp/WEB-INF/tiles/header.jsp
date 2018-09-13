@@ -73,23 +73,23 @@ to {
 
 	<div class="w3-content w3-section w3-display-container"
 		style="max-width: 100%;z-index: 9;">
-		<a href="GoodsView.action?goods_no=1124">
+		<a href="goods/detail?GOODS_NO=1161">
 			<img id="myimg3" class="mySlides"
 				src="/3T/resources/images/slide1.PNG" width="100%" height="auto">
 		</a>
-		<a href="GoodsView.action?goods_no=1123">
+		<a href="goods/detail?GOODS_NO=1221">
 			<img id="myimg3" class="mySlides"
 				src="/3T/resources/images/slide2.PNG" width="100%" height="auto" >
 		</a>
-		<a href="GoodsView.action?goods_no=1122">
+		<a href="goods/detail?GOODS_NO=1181">
 			<img id="myimg3" class="mySlides"
 				src="/3T/resources/images/slide3.PNG" width="100%" height="auto">
 		</a>
-		<a href="GoodsView.action?goods_no=823">
+		<a href="goods/detail?GOODS_NO=1201">
 			<img id="myimg3" class="mySlides"
 				src="/3T/resources/images/slide4.PNG" width="100%" height="auto">
 		</a>
-		<a href="GoodsView.action?goods_no=945">
+		<a href="goods/detail?GOODS_NO=1081">
 			<img id="myimg3" class="mySlides"
 				src="/3T/resources/images/slide5.PNG" width="100%" height="auto">
 		</a>
