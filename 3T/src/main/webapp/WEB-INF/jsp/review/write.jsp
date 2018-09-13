@@ -28,18 +28,18 @@
 </script>
 <style type="text/css">
 .btn-group > .btn:first-child {
-   width: 50;
-   height: 26;
+   width: 50!important;
+   height: 26!important;
 }
 .btn-group .btn + .btn, .btn-group .btn + .btn-group, .btn-group .btn-group + .btn, .btn-group .btn-group + .btn-group {
-  width: 40;
+  width: 40!important;
 }
 .note-popover .popover-content, .panel-heading.note-toolbar {
-  height: 40px;
+  height: 40px!important;
 }
 .note-icon-magic {
- margin: 0 0 0 10px;
-    height:     32px;
+ margin: 0 0 0 10px!important;
+    height:     32px!important;
 }
 
 @media(min-width:768px) {
@@ -51,12 +51,8 @@
        /*  border-left: 1px solid #e7e7e7; */
     }
 }
-.btn btn-default2 {
-  border-color: #adadad;
-}
-.btn {
-  border: 1px solid #ccc;
-}
+
+
 
 .note-btn btn btn-default btn-sm dropdown-toggle {
   height: 40px;
@@ -67,14 +63,24 @@
 .notice_button td {
   padding: 0px 0 0 129px!important;
 }
-.board_list2 tbody td {
-  font: 14px 'Hind Madurai','맑은 고딕','Malgun Gothic',AppleGothic,sans-serif;
-}
 .board_top {
   width: 80%!important;
 }
 .board_top h6 {
   font-size: 15px!important;
+}
+.board_list2 tbody td {
+  font: 14px 'Hind Madurai','맑은 고딕','Malgun Gothic',AppleGothic,sans-serif;
+}
+.btn btn-default2 {
+  border-color: #adadad;
+}
+.btn {
+  border: 1px solid #ccc;
+}
+.note-popover .popover-content>.btn-group, .panel-heading.note-toolbar>.btn-group {
+  height: 2532%;
+  top: 15px;
 }
 </style>	
 </head>

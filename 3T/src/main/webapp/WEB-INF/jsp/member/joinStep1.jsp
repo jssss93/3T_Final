@@ -113,8 +113,12 @@ font-size:15px;
     margin: -1px 0 0 0!important;
 }
 .form-control {
-    width: 52%;
-    margin: 0px 0 0 51px;
+    width: 40%;
+    margin: 0px 0 0 -95px;
+}
+.btn-default3 {
+    padding: 6px 3px!important;
+}
 </style>
 
 	<div id="contentwrap">
