@@ -29,7 +29,7 @@ public class AdminNoticeController {
 		ModelAndView mv = new ModelAndView("notice.list");
 		Map<String, Object> resultMap = null;
 		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
-			resultMap = noticeService.NoticeList(commandMap.getMap());
+			resultMap = noticeService.NoticeAllList(commandMap.getMap());
 		else
 			resultMap = noticeService.NoticeSearchList(commandMap.getMap());
 		
@@ -58,7 +58,7 @@ public class AdminNoticeController {
 		
 		
 		noticeService.NoticeInsert(commandMap.getMap());
-
+ 
 		return mv;
 	}
 

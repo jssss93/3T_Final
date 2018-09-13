@@ -1,5 +1,6 @@
 package com.kh.iclass.faq.service;
 
+import java.util.List;
 import java.util.Map;
 
 public interface FaqService {
@@ -17,6 +18,8 @@ public interface FaqService {
 	/*void FaqReadCntUp(Map<String, Object> map) throws Exception;*/
 	//faq 검색
 	Map<String, Object> FaqSearchList(Map<String, Object> map) throws Exception;
+	//faq 공지사항 리스트
+	List<Map<String, Object>> faq2List(Map<String, Object> map) throws Exception;
 	
 
 }

@@ -1,5 +1,6 @@
 package com.kh.iclass.notice.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
@@ -12,6 +13,16 @@ public class NoticeDAO extends AbstractDAO{
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> NoticeList(Map<String, Object> map) throws Exception{
 	    return (Map<String, Object>)selectPagingList("notice.selectList", map);
+	}
+	//공지사항 전체 리스트
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> NoticeAllList(Map<String, Object> map) throws Exception{
+		return (Map<String, Object>)selectPagingList("notice.selectAllList", map);
+	}
+	//공지사항의 공지 리스트
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> notice1List(Map<String, Object> map) throws Exception{
+		return selectList("notice.notice1List", map);
 	}
 	//공지사항 조회수
 	public void UpdateReadCnt(Map<String, Object> map) throws Exception{

@@ -14,9 +14,15 @@ public class GoodsDAO extends AbstractDAO{
 	public List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception{
 		return (List<Map<String, Object>>)selectList("sample.selectBoardList", map);
 	}*/
+	//관리자 총 상품 리스트
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> selectGoodsList(Map<String, Object> map) throws Exception{
 	    return (Map<String, Object>)selectPagingList("goods.selectList", map);
+	}
+	//관리자 카테고리 리스트
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> selectGoodsCategoryList(Map<String, Object> map) throws Exception{
+		return (Map<String, Object>)selectPagingList("goods.selectListcate", map);
 	}
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectMainList(Map<String, Object> map) throws Exception{
@@ -32,7 +38,7 @@ public class GoodsDAO extends AbstractDAO{
 	public List<Map<String, Object>> selectBestList(Map<String, Object> map) throws Exception{
 		return (List<Map<String, Object>>)selectList("goods.selectGoodsBestList",map);
 	}
-	//카테고리 리스트
+	//회원 카테고리 리스트
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> selectGoodsCategory(Map<String, Object> map) throws Exception{
 		return (Map<String, Object>)selectPagingList3("goods.selectGoodsCategory",map);

@@ -1,8 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>  
+<!DOCTYPE html>
+<html>
 <head>
 <script type="text/javascript">
 //주문번호 같은 열 합치는 Jquery
@@ -76,71 +79,11 @@ function delchk(){
     
 }
 </script>
-<style type="text/css">
-.paging{text-align:center;margin-top:5px;margin-bottom:15px;}
-.paging a,
-.paging strong{display:inline-block;width:36px;height:32px;line-height:28px;font-size:14px;border:1px solid #e0e0e0;margin-left:5px;
--webkit-border-radius:3px;
-   -moz-border-radius:3px;
-		border-radius:3px;
--webkit-box-shadow:1px 1px 1px 0px rgba(235,235,235,1);
-	-moz-box-shadow:1px 1px 1px 0px rgba(235,235,235,1);
-		  box-shadow:1px 1px 1px 0px rgba(235,235,235,1);
-}
-.paging a:first-child{margin-left:0;}
-.paging strong{color:#fff;background:#337AB7;border:1px solid #337AB7;}
-.paging .page_arw{font-size:11px;line-height:30px;}
-</style> 
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
-<body id="body1" name="body1" style="float: left;">
-<div  style="align:left;float: left;">
-
-<div class="row" style="padding-left:15px;width:900px;">    
-	<h1 class="page-header">상품목록</h1>
-</div>
-<div class="row" style="align:left;">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-                         [상품목록페이지] 상품을 검색, 수정, 삭제 기능하는 페이지입니다.
-        </div>
-        <div class="panel-body">
-			<div class="dataTable_wrapper">
-				<div id="dataTables-example_wrapper"
-					class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-					<form id="goodslist" name="goodslist" method="get" enctype="multipart/form-data">
-					<div class="row" style="margin-bottom:5px;align: left;">
-						<div class="col-sm-6">
-							<a href="/MODA/goods/goodsList"><button type="button" class="btn btn-outline btn-default">전체</button></a>
-							<select class="form-control" name="CATEGORY" id="CATEGORY" onchange="ajaxStart()">		
-								<option value ="">--카테고리--</option>
-								<option value ="OUTER">OUTER</option>
-								<option value ="SUIT">SUIT</option>
-								<option value ="TOP">TOP</option>
-								<option value ="SHIRT">SHIRT</option>
-								<option value ="KNIT">KNIT</option>
-								<option value ="BOTTOM">BOTTOM</option>
-								<option value ="SHOES">SHOES</option>
-								<option value ="ACC">ACC</option>
-							</select>
-							<select class="form-control" name="CATEGORY1" id="CATEGORY1" onchange="ajaxStart()">
-								<option value ="">--상품구분--</option>
-								<option value ="1">판매중</option>
-								<option value ="0">품절상품</option>
-							</select>			
-							<select class="form-control" name="CATEGORY2" id="CATEGORY2" onchange="ajaxStart()">
-								<option value ="">--상품정렬--</option>
-								<option value ="1">이름순</option>
-								<option value ="2">낮은 가격순</option>
-								<option value ="3">높은 가격순</option>
-								<option value ="4">조회순</option>
-							</select>											
-						</div>
-						
-						
-					</div>
-					</form>
-					<fieldset id="changelist">
-					<div id="body" style="float: left;">
+<body>
+<div id="body" style="float: left;">
 					<div class="row"  >
 						<div class="col-sm-12">
 							<table
@@ -207,103 +150,12 @@ function delchk(){
 									function fn_search(pageNo) {
 										var comSubmit = new ComSubmit();
 										comSubmit
-												.setUrl("<c:url value='/admin/goods/list' />");
+												.setUrl("<c:url value='/admin/goods/list2' />");
 										comSubmit.addParam("currentPageNo",
 												pageNo);
 										comSubmit.submit();
 									}
 								</script>
 							</div>
-						</fieldset>
-					
-					
-					
-					<div class="row">
-							<div style="text-align:center;">
-								<div id="dataTables-example_filter" class="dataTables_filter">
-								<form action="/3T/admin/goods/list">
-									<select class="form-control" name="SearchNum" id="SearchNum">
-								<option value="NAME">상품명</option>
-								<option value="PRICE">상품 가격</option>
-								<option value="COLOR">상품 색상</option>
-								<option value="GOODS_SIZE">상품 사이즈</option>
-								<option value="COUNT">상품 수량</option>
-								
-									</select>
-										<input class="form-control" type="text" name="SearchKeyword" id="SearchKeyword"/>
-										<span>
-										<button type="submit" class="btn btn-default">검색</button>
-										</span>
-									</form>
-								</div>							
-							</div>
-							
-					</div>
-				</div>
-			</div>
-			<!-- /.table-responsive -->							
-		</div>
-	</div>
-        <!-- /.panel -->   
-</div>
-</div>
 </body>
-
-<script>
-
-function ajaxStart(){
-    
-	var params = $("#goodslist").serialize();
-	console.log(params);
-       $.ajax({
-            url: "/3T/admin/goods/list2",
-            type : "post",
-            data: params,
-            success:function(data){
-            	$("#changelist").html(data);
-            	console.log("date?"+data); 
-            },
-            error: function(){
-            	alert("ajax 통신 error");
-            }
-         });  
-       
-      
-   }
-
-   /* function ajaxStart(){
-	      
-		var target = document.getElementById("select");
-    	var targetText=  target.options[target.selectedIndex].text;     // 옵션 text 값
-    	console.log(targetText);
-    	 
-	        $.ajaxSettings.traditional = true;//배열 형태로 서버쪽 전송을 위한 설정
-	       
-	        
-	       $.ajax({
-	            url: "/3T/admin/goods/listOfOuter",
-	            type : "post",
-	            data: {"CATEGORY":targetText},
-	            success:function(data){
-	            	console.log(data);
-	            	$("#body").html(data); 
-	            }
-	         });  
-	       
-	      
-	   } */      
-         
-      /* /*** ranking 가격bar 마우스를 뗄 경우 이벤트 발생 ***/
-     /*  $( "#price-range-slider" ).slider({
-           stop: function() {
-              ajaxList();
-            console.log("다다다");
-            //솔트(2);
-           }
-      }); */
-
-
-   
-
-
-</script>
+</html>

@@ -32,6 +32,10 @@ public class GoodsServiceImpl implements GoodsService {
 	public Map<String, Object> goodsList(Map<String, Object> map) throws Exception {
 		return goodsDAO.selectGoodsList(map);
 	}
+	@Override
+	public Map<String, Object> goodsCategoryList(Map<String, Object> map) throws Exception {
+		return goodsDAO.selectGoodsCategoryList(map);
+	}
 	
 	@Override
 	@Transactional
