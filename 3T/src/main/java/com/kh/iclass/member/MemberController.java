@@ -45,6 +45,7 @@ public class MemberController {
 		System.out.println("세션 : " + request.getSession().getAttribute("MEMBER_ID"));
 		List<Map<String, Object>> stateList = new ArrayList<Map<String, Object>>();
 		
+		Map<String, Object> point = new HashMap<String, Object>();
 		Map<String, Object> order = new HashMap<String, Object>();
 		Map<String, Object> swap = new HashMap<String, Object>();
 		Map<String, Object> refund = new HashMap<String, Object>();
@@ -54,7 +55,8 @@ public class MemberController {
 
 		commandMap.put("MEMBER_ID", request.getSession().getAttribute("MEMBER_ID"));
 		commandMap.put("TOMEMBER", request.getSession().getAttribute("MEMBER_ID"));
-
+		
+		point = memberService.memberInfo((String)request.getSession().getAttribute("MEMBER_ID"));
 		stateList = memberService.state(commandMap.getMap());
 		
 		order = memberService.order(commandMap.getMap());
@@ -71,6 +73,7 @@ public class MemberController {
 		}
 
 		
+		mv.addObject("point", point.get("POINT"));
 		mv.addObject("order", order);
 		mv.addObject("swap", swap);
 		mv.addObject("refund", refund);

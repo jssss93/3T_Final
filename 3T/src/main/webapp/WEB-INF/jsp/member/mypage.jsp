@@ -123,12 +123,19 @@
 										</span> 
 									</li>
 									
+									<li>
+										<strong>포인트</strong>
+											<span id="title">${point}</span>
+										</a>
+									</li>
+									
 									<li class="etc ">
 										<span class="title">메시지</span>
 										<span class="data">
 											<a href="/3T/member/mymessage">${NOREADMESSAGE.NOREADMESSAGE}개</a>
 										</span> 
 									</li>
+						
 
 								</ul>
 							</div>

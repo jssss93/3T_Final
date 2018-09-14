@@ -22,15 +22,10 @@ public class LoginDAO extends AbstractDAO {
 	public String findId(Map<String, Object> map) throws Exception {
 		return (String) selectOne("member.findId", map);
 	}
-
-	// 비밀번호 찾기
-	public String findPasswd(Map<String, Object> map) throws Exception {
-		return (String) selectOne("member.findPasswd", map);
-	}
 	//비밀번호 찾기변경
-	public void findPasswd2(Map<String, Object> map) throws Exception
+	public void findPasswd(Map<String, Object> map) throws Exception
 	{
-		update("member.findPasswd2", map);
+		update("member.findPasswd", map);
 	}
 
 	// 자동로그인 체크한 경우에 사용자 테이블에 세션과 유효시간을 저장
