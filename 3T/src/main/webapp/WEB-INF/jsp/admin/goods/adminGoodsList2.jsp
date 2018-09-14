@@ -113,6 +113,7 @@ function delchk(){
 						<div class="col-sm-6">
 							<a href="/3T/admin/goods/list"><button type="button" class="btn btn-outline btn-default">전체</button></a>
 							<select class="form-control" name="CATEGORY" id="CATEGORY" onchange="cateChange()">		
+								<option value ="<%=request.getParameter("CATEGORY") %>" selected="<%=request.getParameter("CATEGORY") %>"><%=request.getParameter("CATEGORY") %></option>
 								<option value ="">--카테고리--</option>
 								<option value ="OUTER">OUTER</option>
 								<option value ="SUIT">SUIT</option>
@@ -124,16 +125,18 @@ function delchk(){
 								<option value ="ACC">ACC</option>
 							</select>
 							<select class="form-control" name="CATEGORY1" id="CATEGORY1" onchange="cateChange()">
-								<option value ="">--상품구분--</option>
-								<option value ="1">판매중</option>
-								<option value ="0">품절상품</option>
+								<option value ="<%=request.getParameter("CATEGORY1") %>" selected="<%=request.getParameter("CATEGORY1") %>"><%=request.getParameter("CATEGORY1") %></option>
+								<option value ="--상품구분--">--상품구분--</option>
+								<option value ="판매중">판매중</option>
+								<option value ="품절상품">품절상품</option>
 							</select>			
 							<select class="form-control" name="CATEGORY2" id="CATEGORY2" onchange="cateChange()">
-								<option value ="">--상품정렬--</option>
-								<option value ="1">이름순</option>
-								<option value ="2">낮은 가격순</option>
-								<option value ="3">높은 가격순</option>
-								<option value ="4">조회순</option>
+								<option value ="<%=request.getParameter("CATEGORY2") %>" selected="<%=request.getParameter("CATEGORY2") %>"><%=request.getParameter("CATEGORY2") %></option>
+								<option value ="--상품정렬--">--상품정렬--</option>
+								<option value ="이름순">이름순</option>
+								<option value ="낮은가격순">낮은 가격순</option>
+								<option value ="높은가격순">높은 가격순</option>
+								<option value ="조회순">조회순</option>
 							</select>											
 						</div>
 						
@@ -211,7 +214,9 @@ function delchk(){
 												.setUrl("<c:url value='/admin/goods/cateList' />");
 										comSubmit.addParam("currentPageNo",
 												pageNo);
-									/* 	comSubmit.addParam("CATEGORY" ,("#CATEGORY option selected").val()); */
+									 	comSubmit.addParam("CATEGORY" ,$("#CATEGORY option:selected").val());
+									 	comSubmit.addParam("CATEGORY1" ,$("#CATEGORY1 option:selected").val());
+									 	comSubmit.addParam("CATEGORY2" ,$("#CATEGORY2 option:selected").val());
 										comSubmit.submit();
 									}
 								</script>

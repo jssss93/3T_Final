@@ -140,16 +140,16 @@ FROM
         ORDER BY
         		<choose>
         		
-	 			<when test='CATEGORY2 == "1"'>
+	 			<when test='CATEGORY2 == "이름순"'>
 					 NAME ASC
 				 </when>
-				 <when test='CATEGORY2 == "2"'>
+				 <when test='CATEGORY2 == "낮은가격순"'>
 					 PRICE ASC
 				 </when>
-				 <when test='CATEGORY2 == "3"'>
+				 <when test='CATEGORY2 == "높은가격순"'>
 					 PRICE DESC
 				 </when>
-				 <when test='CATEGORY2 == "4"'>
+				 <when test='CATEGORY2 == "조회순"'>
 					 READCNT DESC
 				 </when>
 				 <otherwise>
@@ -230,10 +230,10 @@ FROM
             WHERE
             	<choose>
         		
-		 			<when test='CATEGORY1 == "0"'>
+		 			<when test='CATEGORY1 == "품절상품"'>
 						 COUNT = 0 AND
 					 </when>
-					 <when test='CATEGORY1 == "1"'>
+					 <when test='CATEGORY1 == "판매중"'>
 						 COUNT > 0 AND
 					 </when>
 					 

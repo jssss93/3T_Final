@@ -125,15 +125,15 @@ function delchk(){
 							</select>
 							<select class="form-control" name="CATEGORY1" id="CATEGORY1" onchange="cateChange()">
 								<option value ="">--상품구분--</option>
-								<option value ="1">판매중</option>
-								<option value ="0">품절상품</option>
+								<option value ="판매중">판매중</option>
+								<option value ="품절상품">품절상품</option>
 							</select>			
 							<select class="form-control" name="CATEGORY2" id="CATEGORY2" onchange="cateChange()">
 								<option value ="">--상품정렬--</option>
-								<option value ="1">이름순</option>
-								<option value ="2">낮은 가격순</option>
-								<option value ="3">높은 가격순</option>
-								<option value ="4">조회순</option>
+								<option value ="이름순">이름순</option>
+								<option value ="낮은가격순">낮은 가격순</option>
+								<option value ="높은가격순">높은 가격순</option>
+								<option value ="조회순">조회순</option>
 							</select>											
 						</div>
 						
