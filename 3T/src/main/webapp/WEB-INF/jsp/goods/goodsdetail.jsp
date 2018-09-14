@@ -515,7 +515,7 @@ table {
 									password &nbsp;&nbsp; <input type="text"
 									id="PASSWD" name="PASSWD" ></input> &nbsp;&nbsp; <input
 									 type="submit" value="확인"> <input type="hidden" id="QA_NO"
-									name="QA_NO" value="${list.QA_NO }">
+									name="QA_NO" value="${goodsDetail2.QA_NO }">
 								</td>
 							</tr>
 						</table>
