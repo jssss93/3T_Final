@@ -58,17 +58,6 @@
 			)
 		]]>
 	</insert>
-	
-    <!-- <update id="updateReadCnt" parameterType="hashmap">
-		<![CDATA[
-			UPDATE 
-				FAQ 
-			SET
-				READCNT = NVL(READCNT, 0) + 1
-			WHERE
-				FAQ_NO = #{FAQ_NO}	
-		]]>
-	</update> -->
 	<!-- faq 상세보기 -->
    <select id="selectDetail" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[

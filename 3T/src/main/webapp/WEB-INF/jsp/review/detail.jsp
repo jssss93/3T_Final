@@ -123,7 +123,7 @@
 					<tr height="10" width="130" align="center">
 
 						<form action="/3T/review/passwdCheckForm">
-							<td>${row.NAME }<br /> ${row.REGDATE }
+							<td>${row.NAME }<br /> <fmt:formatDate value="${row.REGDATE }" pattern="yyyy.MM.dd" />
 							</td>
 							<td>${row.CONTENT }<br /> <br /></td> 
 							<td><input class="btn" type="submit" value="삭제"></td>

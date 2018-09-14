@@ -961,6 +961,9 @@
 			    b.GOODS_NO=e.GOODS_NO AND
 			    a.STATE IN (0,1,2,3,4,5,6,7,8,9) AND
 			    
+			    <if test='SearchNum.equals("ORDER_NO")'> 	
+			(a.ORDER_NO LIKE '%' || #{SearchKeyword} || '%')	
+				</if>
 			    <if test='SearchNum.equals("MEMBER_ID")'> 	
 			(MEMBER_ID LIKE '%' || #{SearchKeyword} || '%')	
 				</if>
@@ -973,6 +976,8 @@
 				<if test='SearchNum.equals("GOODS_SIZE")'> 	
 			(GOODS_SIZE LIKE '%' || #{SearchKeyword} || '%')	
 				</if>
+			
+				
 				
 			    ORDER BY
 		    	a.ORDER_NO desc
