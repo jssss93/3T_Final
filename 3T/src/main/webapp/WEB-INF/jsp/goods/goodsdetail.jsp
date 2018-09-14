@@ -128,6 +128,9 @@ table {
     transition: 0.3s;
     margin: 15;
 }
+.han000 img { 
+    width: 150px!important;
+} 
 </style>
 </head>
 
@@ -411,17 +414,13 @@ table {
 			<td align="center"><img width="50" height="50" 
 			 src="/3T/resources/upload/${goodsDetail1.IMAGE.split(',')[0] }" /></td>
 
-			<td><a href="#this" name="title2">${goodsDetail1.TITLE }</a> 
+			<td class="han000"><a href="#this" name="title2">${goodsDetail1.TITLE }</a> 
 			 <details> <summary>내용보기</summary>
                      ${goodsDetail1.CONTENT}</details>
 			    <input type="hidden" id="REVIEW_NO" value="${goodsDetail1.REVIEW_NO }">
 				<input type="hidden" id="GOODS_NO" value="${goodsDetail1.GOODS_NO }">
-
 			<td align="center">${goodsDetail1.MEMBER_ID}</td>
-
-
 			<td align="center">${goodsDetail1.REGDATE}</td>
-
 			<td align="center">${goodsDetail1.READCNT}</td>
 
 		</tr>
@@ -500,7 +499,7 @@ table {
 			   <td align="center"><img width="50" height="50"
 				src="/3T/resources/upload/${goodsDetail2.IMAGE.split(',')[0] }" /></td>
 			
-           <td><a href="#this" name="title3">${goodsDetail2.TITLE }</a> 
+           <td class="han000"><a href="#this" name="title3">${goodsDetail2.TITLE }</a> 
 			   <details> <summary>내용보기</summary>
 			   		<c:if test="${goodsDetail2.STATUS ==1 }">
 						${goodsDetail2.CONTENT}
