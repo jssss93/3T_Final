@@ -24,10 +24,6 @@ public class LoginServiceImpl implements LoginService{
 	
 	@Override
 	public Map<String, Object> loginGo2(Map<String, Object> map, Key privateKey) throws Exception {
-		System.out.println("impl넘어오는값:");
-		System.out.println("PASSWD2:");
-		System.out.println(map.get("PASSWD2").toString());
-		System.out.println("********");
 		map.put("PASSWORD_CHK1",RSAUtil.decrypt(privateKey, map.get("PASSWD2").toString()));
 		map.put("PASSWORD_CHK2",SHA256Util.hashing(map.get("PASSWORD_CHK1").toString()));
 		return loginDAO.selectId2(map);
@@ -38,18 +34,13 @@ public class LoginServiceImpl implements LoginService{
 		// TODO Auto-generated method stub
 		return loginDAO.findId(map);
 	}
-	//비밀번호 찾기
-	public String findPasswd(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return loginDAO.findPasswd(map);
-	}	
 	//
-	public void findPasswd2(Map<String, Object> map, Key privateKey) throws Exception 
+	public void findPasswd(Map<String, Object> map, Key privateKey) throws Exception 
 	{
 		map.put("PASSWORD_CHK1",RSAUtil.decrypt(privateKey, map.get("PASSWD2").toString()));
 		map.put("PASSWORD_CHK2",SHA256Util.hashing(map.get("PASSWORD_CHK1").toString()));
 		
-		loginDAO.findPasswd2(map);
+		loginDAO.findPasswd(map);
 	}
 	
 	// 자동로그인 체크한 경우에 사용자 테이블에 세션과 유효시간을 저장하기 위한 메서드

@@ -136,8 +136,6 @@ public class LoginController {
 				 // 쿠키 사용한다는게 체크되어 있으면...
 				if(commandMap.get("autoLogin") != null)
 				{
-					System.out.println("session.getId()? : "+session.getId());
-					System.out.println("session.getId()? : "+ session.getAttribute("MEMBER_ID"));
 	                // 쿠키를 생성하고 현재 로그인되어 있을 때 생성되었던 세션을 쿠키에 저장한다.
 					Cookie autoLogin = new Cookie("autoLogin", session.getId());
 					// 쿠키를 찾을 경로를 컨텍스트 경로로 변경해 주고...
@@ -407,7 +405,7 @@ public class LoginController {
 	   
 	   if(session.getAttribute("RSA_private") != null) 
 	   {
-		   	loginService.findPasswd2(commandMap.getMap(), (Key)session.getAttribute("RSA_private"));
+		   	loginService.findPasswd(commandMap.getMap(), (Key)session.getAttribute("RSA_private"));
 			//if(memberService.regist(member, (Key)session.getAttribute("RSA_private")) > 0)
 			mv.addObject("Modulus",commandMap.get("modulus"));
 			mv.addObject("Exponent",commandMap.get("exponent"));

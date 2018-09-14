@@ -10,8 +10,7 @@ public interface LoginService {
 	//아이디찾기
 	String findId(Map<String, Object> map) throws Exception;
 	//비밀번호 찾기
-	String findPasswd(Map<String, Object> map) throws Exception;
-	void findPasswd2(Map<String, Object> map, Key privateKey) throws Exception;
+	void findPasswd(Map<String, Object> map, Key privateKey) throws Exception;
 	
 	// 자동로그인 체크한 경우에 사용자 테이블에 세션과 유효시간을 저장하기 위한 메서드
     void keepLogin(Map<String, Object> map) throws Exception; 
