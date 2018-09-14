@@ -234,7 +234,7 @@ var chkCount = $("input[type=checkbox]").length ;
 function checkAll(){    
    console.log("checkAll실행");
    if($("#chkBox").is(":checked")) {
-      for(i=0;i<$("input[type=checkbox]").length-4;i++){
+      for(i=0;i<$("input[type=checkbox]").length-2;i++){
          if($("#checkbox"+i).is(":checked")){
          }
          else{
@@ -504,7 +504,7 @@ div.member p strong {
                      </ul>
                      
                      <ul class="mileage">
-                        <li><a href="/myshop/mileage/historyList.html">가용포인트 :
+                        <li><a>가용포인트 :
                               <strong><fmt:formatNumber value="${memberInfo.POINT}"
                                     pattern="#,###" /> P</strong>
                         </a></li> 

@@ -242,7 +242,7 @@ function getCookie(cookieName) {
 						<a class="kakao" cid='custom-login-btn' href='javascript:loginWithKakao()'>
                 			<img src='/3T/images/Kakao_login_btn.PNG' width='357' height='50' />
                 		</a>
-                		<a class="belogin"href="/3T/nonMember3" >비회원으로 이용하기2</a>
+                		<a class="belogin"href="/3T/nonMember3" >비회원으로 이용하기</a>
                 		<span class="han7"style="margin: -43px 0px 0px 115px;">
                 		비회원님도 상품구매가 가능하나<br>다양한회원혜택에서 제외됩니다. </span>  
                      </p>

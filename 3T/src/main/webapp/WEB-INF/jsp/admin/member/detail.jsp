@@ -54,19 +54,19 @@ function joinValidation(adminModifyMember){
 					<input type="hidden" id="MEMBER_MEMBER_ID" name="MEMBER_MEMBER_ID" value="${memberDetail.MEMBER_ID}">	
                         <div class="form-group">
                             <label>아이디</label>                            
-                            <input type="text" class="form-control" id="MEMBER_ID" name="MEMBER_ID" value="${memberDetail.MEMBER_ID}" style="width:initial;"/>                            
+                            <input type="text" class="form-control" id="MEMBER_ID" name="MEMBER_ID" value="${memberDetail.MEMBER_ID}" style="width:initial;" readonly/>                            
                         </div>
                         <div class="form-group">
                             <label>비밀번호</label>
-                            <input type="text" class="form-control" id="PASSWD" name="PASSWD" value="${memberDetail.PASSWD}" style="width:initial;"/>
+                            <input type="text" class="form-control" id="PASSWD" name="PASSWD" value="${memberDetail.PASSWD}" style="width:initial;"readonly/>
                         </div>
                         <div class="form-group">
                             <label>이름</label>
-                            <input type="text" class="form-control" id="NAME" name="NAME" value="${memberDetail.NAME}" style="width:100px;"/>
+                            <input type="text" class="form-control" id="NAME" name="NAME" value="${memberDetail.NAME}" style="width:100px;"readonly/>
                         </div>
                         <div class="form-group">
                             <label>생일</label>
-                            <input type="text" class="form-control" id="BIRTH" name="BIRTH" value="${memberDetail.BIRTH}" style="width:100px;"/>
+                            <input type="text" class="form-control" id="BIRTH" name="BIRTH" value="${memberDetail.BIRTH}" style="width:100px;"readonly/>
                         </div>
                         <div class="form-group">
                             <label>우편번호</label>
@@ -75,17 +75,17 @@ function joinValidation(adminModifyMember){
                         </div>
                         <div class="form-group">
                             <label>주소</label>
-                            <input type="text" class="form-control" id="ADDR1" name="ADDR1" value="${memberDetail.ADDR1}" style="width:400px;"/>
+                            <input type="text" class="form-control" id="ADDR1" name="ADDR1" value="${memberDetail.ADDR1}" style="width:400px;readonly"/>
                        		 <p class="help-block">행정 구역 단위인 읍, 면, 동까지만 입력해 주세요.</p>
                         </div>
                         <div class="form-group">
                             <label>상세주소</label>
-                            <input type="text" class="form-control" id="ADDR2" name="ADDR2" value="${memberDetail.ADDR2}" style="width:400px;"/>
+                            <input type="text" class="form-control" id="ADDR2" name="ADDR2" value="${memberDetail.ADDR2}" style="width:400px;readonly"/>
                        		<p class="help-block">상세주소를 입력해 주세요.</p>
                         </div>
                         <div class="form-group">
                             <label>전화번호</label>
-                            <input type="text" class="form-control" id="PHONE" name="PHONE" value="${memberDetail.PHONE}" style="width:initial;"/>
+                            <input type="text" class="form-control" id="PHONE" name="PHONE" value="${memberDetail.PHONE}" style="width:initial;"readonly/>
                             <p class="help-block">010-0000-0000 형식으로 입력해 주세요.</p>
                         </div>
                          <div class="form-group">

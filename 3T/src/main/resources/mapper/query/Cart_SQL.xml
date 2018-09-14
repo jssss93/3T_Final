@@ -3,14 +3,6 @@
 
 <mapper namespace="cart">
 
-	<!-- 장바구니 신청전에 똑같은 카인드넘버있나 확인 -->
-	<select id="confirmCart" parameterType="hashmap" resultType="hashmap">
-	<![CDATA[
-		SELECT * FROM CART
-		WHERE GOODS_KIND_NUMBER=#{GOODS_KIND_NUMBER} AND MEMBER_NUMBER=#{MEMBER_NUMBER}
-	]]>
-	</select>
-
 	<!-- 회원 장바구니 인서트 -->
 	<insert id="insertCart" useGeneratedKeys="true" keyProperty="CART_NO">
 		<selectKey keyProperty="CART_NO" resultType="java.lang.Integer" order="BEFORE">
@@ -352,45 +344,6 @@
 	</delete>
 	
 
-	<!-- 세션에서 장바구니 목록 불러오기(비회원 인서트는 SESSION에 저장하고
-	비회원 장바구니 조회는 SESSION에서 GOODS_NUMBER, GOODS_KINDSNUMBER,  CART_AMOUNT 를 가지고 셀렉트문 실행) -->
-	<select id="sessionCartList" parameterType="hashmap" resultType="hashmap">
-	<![CDATA[
-			SELECT A.GOODS_NAME, A.GOODS_PRICE, A.GOODS_DISPRICE, A.GOODS_THUMBNAIL,
-			A.GOODS_CATEGORY1, A.GOODS_CATEGORY2, A.GOODS_SALEDATE, A.GOODS_NUMBER,
-			C.GOODS_AMOUNT, C.GOODS_SIZE, C.GOODS_COLOR, C.GOODS_KIND_NUMBER
-			FROM GOODS A, GOODS_KIND C
-			WHERE A.GOODS_NUMBER= #{GOODS_NUMBER} AND C.GOODS_KIND_NUMBER=#{GOODS_KIND_NUMBER}
-			AND A.GOODS_ONOFF=0
-	]]>
-	</select>
-
-
-	<!-- 장바구니 수량수정하기전 수정폼에 띄어줄 셀렉트문[옵션변경] -->
-	<!-- 회원 -->
-	<select id="selectOption" parameterType="hashmap" resultType="hashmap">	
-		<![CDATA[
-			SELECT A.CART_NUMBER, A.GOODS_NUMBER, A.GOODS_KIND_NUMBER, A.CART_AMOUNT,
-			C.GOODS_NAME, C.GOODS_PRICE, C.GOODS_DISPRICE, C.GOODS_THUMBNAIL, C.GOODS_SALEDATE,
-			D.GOODS_SIZE, D.GOODS_AMOUNT, D.GOODS_COLOR
-			FROM CART A, GOODS C, GOODS_KIND D
-			WHERE A.GOODS_NUMBER=C.GOODS_NUMBER AND A.GOODS_KIND_NUMBER=D.GOODS_KIND_NUMBER
-			AND CART_NUMBER=#{CART_NUMBER}
-		]]>
-	</select>
-	
-	<!-- 비회원 -->
-	<select id="sessionOption" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[
-			SELECT C.GOODS_NUMBER, D.GOODS_KIND_NUMBER,
-			C.GOODS_NAME, C.GOODS_PRICE, C.GOODS_DISPRICE, C.GOODS_THUMBNAIL,
-			D.GOODS_SIZE, D.GOODS_AMOUNT, D.GOODS_COLOR, C.GOODS_SALEDATE
-			FROM GOODS C, GOODS_KIND D
-			WHERE C.GOODS_NUMBER=D.GOODS_NUMBER                      
-			AND D.GOODS_KIND_NUMBER=#{GOODS_KIND_NUMBER}
-		]]>
-	</select>
-	 
 	<!-- 장바구니 수량 수정 (비회원은 SESSION값 REMOVE 후 다시 PUT) -->
 	<update id="updateCountUp" parameterType="hashmap">
 		<![CDATA[
@@ -438,27 +391,5 @@
 				MEMBER_ID= #{MEMBER_ID}
 		]]>
 	</delete>
-
-
-	<!-- 장바구니에서 주문 -->
-	<!-- 회원 GOODS_KIND_NUMBER에 해당하는 장바구니만 뽑아온 후 나머지는 기존 구매와 동일처리 -->
-	<select id="buyInCart" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[
-			SELECT DISTINCT A.GOODS_NUMBER, A.CART_NUMBER, A.MEMBER_NUMBER,
-			A.CART_REG_DATE, A.CART_AMOUNT, A.GOODS_KIND_NUMBER, E.GOODS_AMOUNT,
-			E.GOODS_SIZE, E.GOODS_COLOR, E.GOODS_KIND_NUMBER,
-			D.GOODS_NAME, D.GOODS_PRICE, D.GOODS_DISPRICE, D.GOODS_SALEDATE,
-			D.GOODS_THUMBNAIL,D.GOODS_CATEGORY1, D.GOODS_CATEGORY2
-			FROM CART A, GOODS D, GOODS_KIND E WHERE A.MEMBER_NUMBER=${MEMBER_NUMBER}
-		    AND A.CART_REG_DATE>SYSDATE-3
-        	AND A.GOODS_KIND_NUMBER=E.GOODS_KIND_NUMBER
-        	AND A.GOODS_KIND_NUMBER=${GOODS_KIND_NUMBER}
-			AND A.GOODS_NUMBER=D.GOODS_NUMBER AND D.GOODS_ONOFF=0
-			ORDER BY A.CART_REG_DATE DESC, A.GOODS_NUMBER ASC
-		]]>
-	</select>
-	<!-- 비회원은 세션에 GOODS_KIND_NUMBER가 이미 존재한상태에서 
-	장바구니에서 일부 품목만 선택했을때 새로운 GOODS_KIND_NUMBER2 를 세션에 저장해서 
-	그 값을 위에 비회원 장바구니 조회 쿼리에 적용 후 기존 비회원 구매와 동일처리 -->
 
 </mapper>

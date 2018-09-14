@@ -140,7 +140,6 @@ function delchk(){
 											
 											<a href="${update}"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Cog_font_awesome.svg/32px-Cog_font_awesome.svg.png"></a>&nbsp;&nbsp;
 											<a href="${delete}"><input type="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Trash_font_awesome.svg/32px-Trash_font_awesome.svg.png"></a>&nbsp;&nbsp;
-											<a href="공지/미공지 스왑해주는 매핑경로"><input type="button" value="미공지"></a>
 										</tr>
 										
 									</c:forEach>
