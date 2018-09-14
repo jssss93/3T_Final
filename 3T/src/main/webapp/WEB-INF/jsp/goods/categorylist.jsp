@@ -119,7 +119,7 @@ table {
 				   <img id="myImg" name="bestimg" src="/3T/resources/upload/${row.IMAGE.split(',')[0] }"> 
 				     <input type="hidden" id="GOODS_NO"name="GOODS_NO" value="${row.GOODS_NO }"></a> <br>
 
-					      ${row.NAME }<br> KRWsdsds&nbsp;<fmt:formatNumber value="${row.PRICE }" pattern="#,###" /></td>
+					      ${row.NAME }<br> KRW&nbsp;<fmt:formatNumber value="${row.PRICE }" pattern="#,###" /></td>
 
 
 
