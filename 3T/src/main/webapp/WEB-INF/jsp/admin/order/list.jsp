@@ -193,10 +193,12 @@ function delchk(){
 								<div id="dataTables-example_filter" class="dataTables_filter">
 										<form action="/3T/admin/order/orderlist">
 									<select class="form-control" name="SearchNum" id="SearchNum">
+								<option value="ORDER_NO">주문번호</option>
 								<option value="MEMBER_ID">회원 ID</option>
 								<option value="NAME">상품이름</option>
 								<option value="COLOR">상품 색깔</option>
 								<option value="GOODS_SIZE">상품 사이즈</option>
+								
 									</select>
 										<input class="form-control" type="text" name="SearchKeyword" id="SearchKeyword"/>
 										<span>

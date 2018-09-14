@@ -175,25 +175,4 @@
 
 		
 </select>
-
-<select id="selectList_QA" parameterType="hashmap" resultType="hashmap">
-	
-		<![CDATA[
-		SELECT
-			    NOTICE_NO,
-			    CATEGORY,
-			    MEMBER_ID,
-			    TITLE,
-			    CONTENT,
-			    REGDATE,
-			    READCNT	   
-			FROM
-			    NOTICE
-     	    WHERE CATEGORY = 1
-		]]>
-		
-
-	</select>
-
-
 </mapper> 

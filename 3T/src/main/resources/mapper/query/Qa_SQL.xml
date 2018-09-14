@@ -99,7 +99,7 @@
     WHERE 
         CATEGORY = 3
 	</select>
-    
+    <!-- 관리자 QA 리스트 -->
      <select id="QA_AdminSelectList" parameterType="hashmap" resultType="hashmap">
      <include refid="common.pagingPre"/> 
         <![CDATA[
@@ -191,6 +191,7 @@
             QA_NO = #{QA_NO}       
       ]]>
     </select>
+    <!-- 관리자 QA 상세보기에서 필요한 정보가져오기 -->
     <select id="QA_selectDetail2" parameterType="hashmap" resultType="hashmap">
       <![CDATA[
         SELECT
