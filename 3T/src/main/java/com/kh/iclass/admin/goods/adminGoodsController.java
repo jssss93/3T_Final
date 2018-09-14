@@ -52,7 +52,7 @@ public class adminGoodsController {
 	
 	@RequestMapping(value = "/goods/cateList")
 	public ModelAndView cateList(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("goods.adminGoodsList");
+		ModelAndView mv = new ModelAndView("goods.adminGoodsList2");
 		System.out.println("들어가는값"+commandMap.getMap());
 		Map<String, Object> resultMap =null;
 		

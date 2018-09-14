@@ -111,7 +111,7 @@ function delchk(){
 					<form id="goodslist" name="goodslist" method="get" enctype="multipart/form-data">
 					<div class="row" style="margin-bottom:5px;align: left;">
 						<div class="col-sm-6">
-							<a href="/MODA/goods/goodsList"><button type="button" class="btn btn-outline btn-default">전체</button></a>
+							<a href="/3T/admin/goods/list"><button type="button" class="btn btn-outline btn-default">전체</button></a>
 							<select class="form-control" name="CATEGORY" id="CATEGORY" onchange="cateChange()">		
 								<option value ="">--카테고리--</option>
 								<option value ="OUTER">OUTER</option>
@@ -208,7 +208,7 @@ function delchk(){
 									function fn_search(pageNo) {
 										var comSubmit = new ComSubmit();
 										comSubmit
-												.setUrl("<c:url value='/admin/goods/cateList' />");
+												.setUrl("<c:url value='/admin/goods/list' />");
 										comSubmit.addParam("currentPageNo",
 												pageNo);
 										comSubmit.submit();
