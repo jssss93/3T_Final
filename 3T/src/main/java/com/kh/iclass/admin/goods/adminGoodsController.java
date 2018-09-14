@@ -10,7 +10,6 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.iclass.common.map.CommandMap;
@@ -37,6 +36,28 @@ public class adminGoodsController {
 		
 		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
 			resultMap = goodsService.goodsList(commandMap.getMap());
+		else
+			resultMap = goodsService.goodsAdminSearchList(commandMap.getMap());
+			
+		
+		mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
+		/*
+		 * mv.addObject("paginationInfo", (PaginationInfo)
+		 * resultMap.get("paginationInfo"));
+		 */
+		mv.addObject("list", resultMap.get("result"));
+
+		return mv;
+	}
+	
+	@RequestMapping(value = "/goods/cateList")
+	public ModelAndView cateList(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("goods.adminGoodsList");
+		System.out.println("들어가는값"+commandMap.getMap());
+		Map<String, Object> resultMap =null;
+		
+		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
+			resultMap = goodsService.goodsCategoryList(commandMap.getMap());
 		else
 			resultMap = goodsService.goodsAdminSearchList(commandMap.getMap());
 			

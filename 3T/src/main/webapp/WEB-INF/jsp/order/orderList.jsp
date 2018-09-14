@@ -184,7 +184,7 @@
 													${row.ORDER_NO }
 												</td>
 												<td class="thumb">
-													<a href="/product/detail.html?product_no=8171&amp;cate_no=1">
+													<a href="/3T/goods/detail?GOODS_NO=${row.GOODS_NO }">
 														<img width="60" height="60"	src="/3T/resources/upload/${row.IMAGE.split(',')[0] }" />
 													</a>
 												</td>  
@@ -314,12 +314,12 @@
 	      	str += 		+list.ORDER_NO
 	      	str += "	</td>"
 	      	str += "	<td class='thumb'>"
-	      	str += "	<a href='/product/detail.html?product_no=8171&amp;cate_no=1'>"
+	      	str += "	<a href='/3T/goods/detail?GOODS_NO='"+list.GOODS_NO+"'>"
 	      	str += "		<img width='50' height='50' src='/3T/resources/upload/"+list.IMAGE.split(',')[0]+"'>"
 	      	str += "	</a>"
 	      	str += " </td>"
 	      	str += "<td class='product'>"
-	      	str += "<a href='/product/detail.html?product_no=8171&amp;cate_no=1'>"
+	      	str += "<a href='/3T/goods/detail?GOODS_NO='"+list.GOODS_NO+"'>"
 	      	str += "	<strong>"+list.NAME+"</strong> </a>"
 	      	str += "<ul class='xans-element- xans-order xans-order-optionall option'>"
 	      	str += "	<li class='xans-record-'>"
@@ -396,7 +396,7 @@ $(document).ready(function() {
 		ajaxTest(start,end,cateNum);
 	});
 	
-	 $("#searchNonMem").on("click", function(e) { 
+	$("#searchNonMem").on("click", function(e) { 
 		 var no=$("#orderNo").val().substr(13,5);
 		 var name=$("#orderName").val();
 		 var cateNum = sel.options[sel.selectedIndex].value;
@@ -503,9 +503,15 @@ $(document).ready(function() {
 		e.preventDefault();
 		ajaxTest(start,end,cateNum);
 	}); 
+	
 	 	 
 	
-}); 
+});
+function fn_WriteForm() {
+	var comSubmit = new ComSubmit();
+	comSubmit.setUrl("<c:url value='/notice/write' />");
+	comSubmit.submit();
+}
 </script>
 </body>
 </html>
