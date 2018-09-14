@@ -279,8 +279,10 @@
             </ul>
          </div>
          <br><br><br><br>
-         <div id="plusfriend-addfriend-button" style="z-index:11"></div>
-          <div id="plusfriend-chat-button" style="z-index:11"></div>
+         <div style="z-index:11">
+	         <div id="plusfriend-addfriend-button" style="z-index:11"></div>
+	          <div id="plusfriend-chat-button" style="z-index:11"></div>
+          </div>
       </div>
    </div>
 

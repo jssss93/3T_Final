@@ -1133,6 +1133,7 @@
 		where 
 			GOODS_NO=#{GOODS_NO}
 	</select>
+	
 	<select id="selectAttrList" parameterType="hashmap" resultType="hashmap">
 		select 
 			ATTRIBUTE_NO,

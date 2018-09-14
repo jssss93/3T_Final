@@ -388,7 +388,7 @@
 					<div class="xans-element- xans-order xans-order-totalorder">
 						<a href="#this" id="cartAddSelected">선택상품주문</a>
 						 <a href="#this"id="addOrderAll">전체상품주문</a> <span class="right"> <a
-							href="/">쇼핑계속하기</a>
+							href="javascript:back();">쇼핑계속하기</a>
 						</span>
 					</div>
 				</div>
@@ -426,6 +426,12 @@
 		</div>
 </form>
 <script type="text/javascript">
+	function back(){
+		history.back();
+	}  		
+    </script>
+<script type="text/javascript">
+
 $(document).ready(function() {
     $("#cartAddSelected").on("click", function(e) {
        e.preventDefault();
