@@ -3,6 +3,7 @@
 
 <mapper namespace="member">
 
+	<!-- 비밀번호 체크(회원가입,정보수정) -->
 	<select id="checkPass" parameterType="hashmap" resultType="int">
 		SELECT
 			count(MEMBER_ID)
@@ -13,6 +14,7 @@
 			PASSWD = #{PASSWD3}
 	</select>
 	
+	<!-- 이메일확인(이메일인증) -->
 	<select id="checkMember" parameterType="hashmap"
 		resultType="java.lang.Integer">
 	<![CDATA[
@@ -47,7 +49,8 @@
 	]]>
 	</select>
 	
-		<update id="keepLogin">
+	<!-- 자동로그인 기간설정 -->
+	<update id="keepLogin">
     	UPDATE 
     		MEMBER 
     	SET
@@ -57,6 +60,7 @@
     		MEMBER_ID = #{MEMBER_ID}
     </update>
     
+    <!-- 자동로그인 세션id로저장 -->
     <select id="checkUserWithSessionKey" parameterType="String" resultType="hashmap">
         SELECT
         	MEMBER_NO,
@@ -77,6 +81,7 @@
         	SESSIONLIMIT > SYSDATE
     </select>
 	
+	<!-- 아이디 찾기 -->
 	<select id="findId" parameterType="hashmap" resultType="String">
 		<![CDATA[
 		SELECT 
@@ -89,20 +94,8 @@
 	]]>
 	</select>
 	
-	<select id="findPasswd" parameterType="hashmap" resultType="String">
-		<![CDATA[
-		SELECT 
-			PASSWD
-		FROM 
-			MEMBER 
-		WHERE 
-			MEMBER_ID = #{MEMBER_ID} AND
-			BIRTH = #{BIRTH} AND
-			NAME = #{NAME}
-	]]>
-	</select>
-	
-		<update id="findPasswd2" parameterType="hashmap">
+	<!-- 비밀번호 찾기 재설정 -->
+	<update id="findPasswd" parameterType="hashmap">
 		<![CDATA[
 		UPDATE 
 			MEMBER 
@@ -113,6 +106,7 @@
 	]]>
 	</update>
 
+	<!-- 회원정보 -->
 	<select id="memberInfo" parameterType="String" resultType="hashmap">
 			<![CDATA[
 		SELECT 
@@ -135,6 +129,7 @@
 			MEMBER_ID = #{MEMBER_ID}
 	]]>
 	</select>
+	
 	<!-- 암호화해서 로그인 -->
 	<select id="memberInfo2" parameterType="String" resultType="hashmap">
 			<![CDATA[
@@ -209,6 +204,7 @@
            		MEMBER_ID = #{MEMBER_ID}	
         ]]>
 	</select>
+	
 	<!-- 쿠폰확인 -->
 	<update id="couponRead" parameterType="hashmap">
 		UPDATE
@@ -470,10 +466,8 @@
          	VALIDITY < sysdate
       	]]>
 	</delete>
-	
 
-
-	
+	<!-- 아이디 체크 -->
  	<select id="checkId" parameterType="String" resultType="int">
 	<![CDATA[
 		SELECT 
@@ -499,7 +493,8 @@
 	
 	</update>
 	
-<select id="AdminSearchmyMessage" parameterType="hashmap"
+	<!-- 관리자 메세지 확인 -->
+	<select id="AdminSearchmyMessage" parameterType="hashmap"
 		resultType="hashmap">
         
            SELECT
