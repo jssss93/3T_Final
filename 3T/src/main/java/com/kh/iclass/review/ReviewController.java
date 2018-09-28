@@ -1,4 +1,4 @@
-package com.kh.iclass.review.controller;
+package com.kh.iclass.review;
 
 import java.util.List;
 import java.util.Map;
@@ -10,8 +10,6 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.kh.iclass.review.service.ReviewService;
 
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 

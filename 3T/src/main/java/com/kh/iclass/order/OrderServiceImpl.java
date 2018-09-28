@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.iclass.cart.CartDAO;
 import com.kh.iclass.common.util.OrderDetailUtils;
-import com.kh.iclass.goods.dao.GoodsDAO;
+import com.kh.iclass.goods.GoodsDAO;
 
 @Service("orderService")
 public class OrderServiceImpl implements OrderService {

@@ -1,4 +1,4 @@
-package com.kh.iclass.review.service;
+package com.kh.iclass.review;
 
 import java.util.List;
 import java.util.Map;
@@ -7,8 +7,6 @@ import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
-
-import com.kh.iclass.review.dao.ReviewDAO;
 
 
 @Service("ReviewService")

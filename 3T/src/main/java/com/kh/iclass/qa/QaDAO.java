@@ -1,4 +1,4 @@
-package com.kh.iclass.qa.dao;
+package com.kh.iclass.qa;
 
 import org.springframework.stereotype.Repository;
 

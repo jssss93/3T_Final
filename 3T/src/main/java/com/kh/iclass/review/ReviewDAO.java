@@ -1,4 +1,4 @@
-package com.kh.iclass.review.dao;
+package com.kh.iclass.review;
 
 import org.springframework.stereotype.Repository;
 

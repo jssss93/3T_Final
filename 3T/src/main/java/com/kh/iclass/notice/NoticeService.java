@@ -1,4 +1,4 @@
-package com.kh.iclass.notice.service;
+package com.kh.iclass.notice;
 
 import java.util.List;
 import java.util.Map;

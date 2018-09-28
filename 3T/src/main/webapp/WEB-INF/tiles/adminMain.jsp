@@ -13,7 +13,7 @@
          <li>
             <div class="timeline-badge">
                <i class="fa fa-check"></i>
-            </div>
+            </div> 
             <div class="timeline-panel">
                <div class="timeline-heading">
                   <h4 class="timeline-title">관리자 홈으로 이동</h4>
@@ -57,18 +57,31 @@
                </div>
                <div class="timeline-body">
                   <p>회원목록 이동 - 회원목록을 볼 수 있습니다</p>
+                  <p>메세지목록 이동 - 메세지목록을 볼 수 있습니다</p>
                </div>
             </div>
          </li>
+         <li class="timeline-inverted">
+            <div class="timeline-panel">
+               <div class="timeline-heading">
+                  <h4 class="timeline-title">매출 관리</h4>
+               </div>
+               <div class="timeline-body">
+                  <p>매출 그래프- 매출을 날짜별로 그래프를통해 볼 수 있습니다.</p>
+               </div>
+            </div>
+         </li>
+         
          <li>
             <div class="timeline-panel">
                <div class="timeline-heading">
                   <h4 class="timeline-title">주문관리</h4>
                </div>
                <div class="timeline-body">
-                  <p>주문목록 - 주문목록 확인 및 관리</p>
-                  <p>주문취소목록 - 주문목록 확인 및 관리</p>
-                  <p>교환/반품목록 - 주문목록 확인 및 관리</p>
+               	  <p>총 주문목록 - 총주문 목록 확인 및 관리</p>
+                  <p>주문목록 - 주문 목록 확인 및 관리</p>
+                  <p>주문취소목록 - 주문취소 목록 확인 및 관리</p>
+                  <p>교환/반품목록 - 교환/반품 목록 확인 및 관리</p>
                </div>
             </div>
          </li>
@@ -78,9 +91,8 @@
                   <h4 class="timeline-title">게시판 관리</h4>
                </div>
                <div class="timeline-body">
-                  <p>공지사항 - 공지게시판 수정,삭제 등 관리</p>
-                  <p>광고 - 광고 수정,삭제 등 관리</p>
-                  <p>구매 후기 - Review 수정,삭제 등 관리</p>
+                  <p>NOTICE - 공지게시판 수정,삭제 등 관리</p>
+                  <p>REVIEW - Review 수정,삭제 등 관리</p>
                   <p>FAQ - FAQ게시판 수정,삭제 등 관리</p>
                   <p>Q&A - Q&A게시판 수정,삭제 등 관리</p>
                </div>

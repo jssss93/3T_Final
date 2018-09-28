@@ -1,4 +1,4 @@
-package com.kh.iclass.goods.service;
+package com.kh.iclass.goods;
 
 import java.util.List;
 import java.util.Map;

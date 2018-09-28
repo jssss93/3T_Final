@@ -1,5 +1,6 @@
-/*package com.kh.iclass.faq;
+package com.kh.iclass.faq;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -15,86 +16,102 @@ import com.kh.iclass.common.map.CommandMap;
 
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
+
 @Controller
 
-public class faqController {
+public class FaqController {
 	Logger log = Logger.getLogger(this.getClass());
 
 	@Resource(name = "faqService")
-	private faqService faqService;
-
+	private FaqService faqService;
+	
+	//faq 리스트
 	@RequestMapping(value = "/faq/list")
-	public ModelAndView goodsList(CommandMap commandMap) throws Exception {
+	public ModelAndView faqList(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("faq/list");
-
-		Map<String, Object> resultMap = faqService.faqList(commandMap.getMap());
+		
+		List<Map<String, Object>> list = null;
+		//FAQ 공지사항 리스트
+		list = faqService.faq2List(commandMap.getMap());
+		
+		Map<String, Object> resultMap = null;
+		//검색정보가 들어왔을때 리스트와 안들어왔을 때 리스트
+		if (commandMap.get("SearchKeyword") == null && commandMap.get("SearchNum") == null)
+			resultMap = faqService.FaqList(commandMap.getMap());
+		else
+			resultMap = faqService.FaqSearchList(commandMap.getMap());
 
 		mv.addObject("paginationInfo", (PaginationInfo) resultMap.get("paginationInfo"));
-
 		mv.addObject("list", resultMap.get("result"));
+		mv.addObject("faq2list", list);
 
 		return mv;
 	}
-
-	@RequestMapping(value = "/faq/write" ,method = RequestMethod.GET)
-	public ModelAndView goodsWriteForm(CommandMap commandMap) throws Exception {
+	//faq 쓰기 폼
+	@RequestMapping(value = "/faq/write", method = RequestMethod.GET)
+	public ModelAndView faqWrtieForm(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("faq/write");
 
 		return mv;
 	}
+	//faq 쓰기
+	@RequestMapping(value = "/faq/write", method = RequestMethod.POST)
+	public ModelAndView faqWrite(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:list");
+		
+		faqService.FaqInsert(commandMap.getMap());
 
-	@RequestMapping(value = "/faq/write")
-	public ModelAndView goodsWrite(CommandMap commandMap,HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:faq/list");
+		return mv;
+	}
+	
+	//faq 상세보기
+	@RequestMapping(value = "/faq/detail")
+	public ModelAndView faqDetail(CommandMap commandMap,HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("faq/detail");
+		
+		Map<String, Object> map = faqService.FaqDetail(commandMap.getMap());
+		mv.addObject("Detail", map);
+		
+		String MEMBER_ID="";
+		
+		if(request.getSession().getAttribute("MEMBER_ID")!=null) {
+			MEMBER_ID=(String) request.getSession().getAttribute("MEMBER_ID");
+		}
+		mv.addObject("MEMBER_ID",MEMBER_ID);
+		
+		return mv;
+	}
 
-		faqService.faqWrite(commandMap.getMap(),request);
+	//faq 수정 폼
+	@RequestMapping(value = "/faq/updateForm")
+	public ModelAndView faqUpdateForm(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("faq/update");
+		
+		Map<String, Object> map = faqService.FaqDetail(commandMap.getMap());
+		mv.addObject("map", map);
 
 		return mv;
 	}
 
-	@RequestMapping(value = "/goods/detail")
-	public ModelAndView goodsDetail(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("goods/detail");
+	//faq 수정
+	@RequestMapping(value = "/faq/update")
+	public ModelAndView faqUpdate(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:detail");
 
-		Map<String, Object> map = goodsService.goodsDetail(commandMap.getMap());
-		mv.addObject("Detail",map.get("map"));
-		//첨부파일 목록
-		mv.addObject("list",map.get("list"));
+		faqService.FaqUpdate(commandMap.getMap());
 
+		mv.addObject("FAQ_NO", commandMap.get("FAQ_NO"));
 		return mv;
 	}
+	
+	//faq 삭제
+	@RequestMapping(value = "/faq/delete")
+	public ModelAndView faqDelete(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:list");
 
-	// 업데이트 화면 띄우기
-	@RequestMapping(value = "/goods/updateForm")
-	public ModelAndView goodsUpdateForm(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("/goods/update");
-
-		Map<String, Object> map = goodsService.goodsDetail(commandMap.getMap());
-		mv.addObject("map", map.get("map"));
-		mv.addObject("list", map.get("list"));
-
-		return mv;
-	}
-
-	// 업데이트 처리
-	@RequestMapping(value = "/goods/update")
-	public ModelAndView goodsUpdate(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:goods/detail");
-
-		goodsService.goodsUpdate(commandMap.getMap(),request);
-
-		mv.addObject("GOODS_NO", commandMap.get("GOODS_NO"));
-		return mv;
-	}
-
-	@RequestMapping(value = "/goods/delete")
-	public ModelAndView goodsDelete(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:goods/list");
-
-		goodsService.goodsDelete(commandMap.getMap());
+		faqService.FaqDelete(commandMap.getMap());
 
 		return mv;
 	}
 
 }
-*/

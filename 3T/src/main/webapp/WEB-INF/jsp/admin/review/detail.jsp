@@ -153,8 +153,10 @@
 							<td>${list.CONTENT }<br /> <br /></td> 	
 						 <td>${list.REVIEW_COMMENT_NO }
 						<input type="hidden" id="REVIEW_COMMENT_NO" name="REVIEW_COMMENT_NO" value="${list.REVIEW_COMMENT_NO }"></td>
+							 
+							<c:if test="${MEMBER_ID==ADMIN }">
 							<td><button type="submit" class="btn btn-success" onclick="button2_click();">삭제</button></td>
-							
+							</c:if>
 						</tr>
 					</c:forEach>
 					<c:if test="${fn:length(list) le 0}">

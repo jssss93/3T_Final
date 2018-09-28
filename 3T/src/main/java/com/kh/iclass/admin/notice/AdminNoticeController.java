@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.iclass.common.map.CommandMap;
-import com.kh.iclass.notice.service.NoticeService;
+import com.kh.iclass.notice.NoticeService;
 
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
