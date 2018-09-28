@@ -1,4 +1,4 @@
-package com.kh.iclass.qa.controller;
+package com.kh.iclass.qa;
 
 import java.util.List;
 import java.util.Map;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.iclass.common.map.CommandMap;
-import com.kh.iclass.qa.service.QaService;
 
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 

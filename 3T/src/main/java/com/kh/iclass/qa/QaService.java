@@ -1,4 +1,4 @@
-package com.kh.iclass.qa.service;
+package com.kh.iclass.qa;
 
 import java.util.List;
 import java.util.Map;

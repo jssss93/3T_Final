@@ -1,4 +1,4 @@
-package com.kh.iclass.notice.dao;
+package com.kh.iclass.notice;
 
 import java.util.List;
 import java.util.Map;

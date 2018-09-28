@@ -1,4 +1,4 @@
-package com.kh.iclass.goods.controller;
+package com.kh.iclass.goods;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.iclass.common.map.CommandMap;
 import com.kh.iclass.common.util.CookieUtils;
 import com.kh.iclass.common.util.ParseListToJson;
-import com.kh.iclass.goods.service.GoodsService;
 
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 

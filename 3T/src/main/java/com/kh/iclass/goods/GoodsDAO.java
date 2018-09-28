@@ -1,4 +1,4 @@
-package com.kh.iclass.goods.dao;
+package com.kh.iclass.goods;
 
 import java.util.Map;
 import java.util.List;

@@ -1,4 +1,4 @@
-/*package com.kh.iclass.faq;
+package com.kh.iclass.faq;
 
 import java.util.List;
 import java.util.Map;
@@ -8,55 +8,43 @@ import org.springframework.stereotype.Repository;
 import com.kh.iclass.common.dao.AbstractDAO;
 
 @Repository("faqDAO")
-public class faqDAO extends AbstractDAO{
-
+public class FaqDAO extends AbstractDAO{
+	//faq 리스트
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception{
-		return (List<Map<String, Object>>)selectList("sample.selectBoardList", map);
-	}
-	@SuppressWarnings("unchecked")
-	public Map<String, Object> selectfaqList(Map<String, Object> map) throws Exception{
+	public Map<String, Object> FaqList(Map<String, Object> map) throws Exception{
 	    return (Map<String, Object>)selectPagingList("faq.selectList", map);
 	}
-
-	public void updateReadCnt(Map<String, Object> map) throws Exception{
-		update("faq.updateReadCnt", map);
-	}
-	
+	//faq 공지 리스트
 	@SuppressWarnings("unchecked")
-	public Map<String, Object> selectGoodsDetail(Map<String, Object> map) throws Exception{
-		return (Map<String, Object>) selectOne("goods.selectDetail", map);
-	}
-	
-	public void updateGoods(Map<String, Object> map) throws Exception{
-		update("goods.update", map);
+	public List<Map<String, Object>> Faq2List(Map<String, Object> map) throws Exception{
+	    return selectList("faq.faq2List", map);
 	}
 
-	public void deleteGoods(Map<String, Object> map) throws Exception{
-		update("goods.delete", map);
+/*	public void UpdateReadCnt(Map<String, Object> map) throws Exception{
+		update("faq.updateReadCnt", map);
+	}*/
+	//faq 상세보기
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> FaqDetail(Map<String, Object> map) throws Exception{
+		return (Map<String, Object>) selectOne("faq.selectDetail", map);
 	}
-		
-	public void insertFaq(Map<String, Object> map) throws Exception{
+	//faq 수정
+	public void FaqUpdate(Map<String, Object> map) throws Exception{
+		update("faq.update", map);
+	}
+	//faq 삭제
+	public void FaqDelete(Map<String, Object> map) throws Exception{
+		update("faq.delete", map);
+	}
+	//faq 쓰기
+	public void FaqInsert(Map<String, Object> map) throws Exception{
 		insert("faq.insert", map);
 	}
-	public void insertFile(Map<String, Object> map) throws Exception{
-	    insert("goods.insertFile", map);
-	}
+	//faq 검색
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectFileList(Map<String, Object> map) throws Exception{
-	    return (List<Map<String, Object>>)selectList("goods.selectFileList", map);
-	}
-	public void deleteFileList(Map<String, Object> map) throws Exception{
-	    update("goods.deleteFileList", map);
-	}
-	 
-	public void updateFile(Map<String, Object> map) throws Exception{
-	    update("goods.updateFile", map);
+	public Map<String, Object> FaqSearchList(Map<String, Object> map) throws Exception{
+	    return (Map<String, Object>)selectPagingList("faq.selectSearchList", map);
 	}
 
-
-
-	
 
 }
-*/

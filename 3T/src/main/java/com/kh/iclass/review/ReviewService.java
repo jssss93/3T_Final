@@ -1,4 +1,4 @@
-package com.kh.iclass.review.service;
+package com.kh.iclass.review;
 
 import java.util.List;
 import java.util.Map;

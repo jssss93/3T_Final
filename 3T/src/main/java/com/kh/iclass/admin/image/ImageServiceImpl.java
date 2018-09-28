@@ -28,6 +28,7 @@ public class ImageServiceImpl implements ImageService {
 		
 		//uploadpath:C:\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\3T\
 		//uploadpath+attachPath:C:\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\3T\resources/upload/
+		
 		//서버에 직접 저장?
 		File newFile = new File(uploadPath + attachPath + fileName);
 		
